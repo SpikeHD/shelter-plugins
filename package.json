@@ -6,8 +6,8 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "lint": "eslint ./plugins",
-    "lint:fix": "eslint --fix ./plugins"
+    "lint": "eslint ./plugins ./components",
+    "lint:fix": "eslint --fix ./plugins ./components"
   },
   "type": "module",
   "workspaces": [

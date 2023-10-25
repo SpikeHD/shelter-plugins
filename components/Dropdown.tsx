@@ -1,17 +1,17 @@
-import { css, classes } from "./Dropdown.tsx.scss";
-import { SelectArrow } from "./SelectArrow";
+import { css, classes } from './Dropdown.tsx.scss'
+import { SelectArrow } from './SelectArrow'
 
 const {
   ui: { injectCss },
-} = shelter;
+} = shelter
 
-let injectedCss = false;
+let injectedCss = false
 
 export const Dropdown: Component<{
   value?: string;
   placeholder?: string;
   id?: string;
-  "aria-label"?: string;
+  'aria-label'?: string;
   onChange?(e): void;
   options?: {
     label: string;
@@ -20,8 +20,8 @@ export const Dropdown: Component<{
   selected?: string;
 }> = (props) => {
   if (!injectedCss) {
-    injectedCss = true;
-    injectCss(css);
+    injectedCss = true
+    injectCss(css)
   }
 
   return (
@@ -31,7 +31,7 @@ export const Dropdown: Component<{
         value={props.value}
         placeholder={props.placeholder}
         id={props.id}
-        aria-label={props["aria-label"]}
+        aria-label={props['aria-label']}
         onChange={props.onChange}
       >
         {props.options?.map((o) => (
@@ -43,5 +43,5 @@ export const Dropdown: Component<{
 
       <SelectArrow class={classes.dsarrow} />
     </div>
-  );
-};
+  )
+}

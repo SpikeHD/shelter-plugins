@@ -1,11 +1,11 @@
-import { css, classes } from "./Slider.tsx.scss"
+import { css, classes } from './Slider.tsx.scss'
 
 const {
   ui: { injectCss },
   solid: { createSignal },
-} = shelter;
+} = shelter
 
-let injectedCss = false;
+let injectedCss = false
 
 export const Slider: Component<{
   min: number;
@@ -21,11 +21,11 @@ export const Slider: Component<{
 }> = (props) => {
   const [fill, setFill] = createSignal(
     props.value ? ((props.value || props.min) / (props.max - props.min)) * 100 : 0
-  );
+  )
 
   if (!injectedCss) {
-    injectedCss = true;
-    injectCss(css);
+    injectedCss = true
+    injectCss(css)
   }
 
   return (
@@ -42,14 +42,14 @@ export const Slider: Component<{
           '--upper-half': `${fill()}%`,
         }}
         onChange={(e) => {
-          props.onChange?.(e.target.value);
+          props.onChange?.(e.target.value)
         }}
         onInput={(e) => {
           // Calc the fill based on the min and max
-          const newFill = ((e.target.value - props.min) / (props.max - props.min)) * 100;
-          setFill(newFill);
+          const newFill = ((e.target.value - props.min) / (props.max - props.min)) * 100
+          setFill(newFill)
 
-          props.oninput?.(e.target.value);
+          props.oninput?.(e.target.value)
         }}
       />
       <div class={classes.sticks}>
@@ -61,5 +61,5 @@ export const Slider: Component<{
         ))}
       </div>
     </div>
-  );
+  )
 }

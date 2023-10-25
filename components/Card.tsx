@@ -1,10 +1,10 @@
-import { css, classes } from "./Card.tsx.scss"
+import { css, classes } from './Card.tsx.scss'
 
 const {
   ui: { injectCss },
-} = shelter;
+} = shelter
 
-let injectedCss = false;
+let injectedCss = false
 
 export const Card: Component<{
   title: string;
@@ -12,13 +12,13 @@ export const Card: Component<{
   style?: any;
 }> = (props) => {
   if (!injectedCss) {
-    injectedCss = true;
-    injectCss(css);
+    injectedCss = true
+    injectCss(css)
   }
 
   return (
     <div class={classes.card} style={props.style}>
       { props.children }
     </div>
-  );
-};
+  )
+}

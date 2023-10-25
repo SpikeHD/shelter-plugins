@@ -63,8 +63,6 @@ export function SettingsPage() {
   createEffect(async () => {
     setSettings(JSON.parse(await invoke('read_config_file')))
     setThemes(await getThemes())
-
-    console.log(settings())
   })
 
   const saveSettings = async () => {
