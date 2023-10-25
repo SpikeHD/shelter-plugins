@@ -123,6 +123,7 @@ export function SettingsPage() {
         steps={
           Array.from(Array(16).keys()).map(i => (i * 5 + 50) + '%')
         }
+        step={5}
         value={parseInt(settings().zoom) * 100}
       />
       <SwitchItem

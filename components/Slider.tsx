@@ -12,12 +12,16 @@ export const Slider: Component<{
   max: number;
   // These are the little labelled ticks on the slider
   steps?: string[];
+  step?: number;
   class?: string;
   style?: any;
   onChange?(e): void;
+  oninput?(e): void;
   value?: number;
 }> = (props) => {
-  const [fill, setFill] = createSignal(props.value || 0);
+  const [fill, setFill] = createSignal(
+    props.value ? ((props.value || props.min) / (props.max - props.min)) * 100 : 0
+  );
 
   if (!injectedCss) {
     injectedCss = true;
@@ -32,18 +36,20 @@ export const Slider: Component<{
         max={props.max}
         step={props.step}
         class={classes.srange}
-        value={props.value || props.min}
+        value={props.value ? props.value : props.min}
         style={{
           ...props.style,
           '--upper-half': `${fill()}%`,
         }}
         onChange={(e) => {
-          props.onChange?.(e);
+          props.onChange?.(e.target.value);
         }}
         onInput={(e) => {
           // Calc the fill based on the min and max
           const newFill = ((e.target.value - props.min) / (props.max - props.min)) * 100;
           setFill(newFill);
+
+          props.oninput?.(e.target.value);
         }}
       />
       <div class={classes.sticks}>
