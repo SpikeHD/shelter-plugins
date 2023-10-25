@@ -67,7 +67,7 @@ export function SettingsPage() {
 
   const saveSettings = async () => {
     await invoke('write_config_file', {
-      contents: JSON.stringify(settings),
+      contents: JSON.stringify(settings()),
     })
 
     process.relaunch()
@@ -273,7 +273,7 @@ export function SettingsPage() {
 
       <Button
         onClick={saveSettings}
-        style={{ 'margin-top': '1rem', padding: '8px' }}
+        style={{ 'margin-top': '1rem', padding: '18px' }}
         grow={true}
       >
         Save & Restart
