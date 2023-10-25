@@ -12,7 +12,7 @@ export const Dropdown: Component<{
   placeholder?: string;
   id?: string;
   "aria-label"?: string;
-  onInput?(v: string): void;
+  onChange?(e): void;
   options?: {
     label: string;
     value: string;
@@ -32,7 +32,7 @@ export const Dropdown: Component<{
         placeholder={props.placeholder}
         id={props.id}
         aria-label={props["aria-label"]}
-        onChange={props.onInput}
+        onChange={props.onChange}
       >
         {props.options?.map((o) => (
           <option value={o.value} selected={props?.selected}>

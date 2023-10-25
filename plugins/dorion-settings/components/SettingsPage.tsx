@@ -1,5 +1,6 @@
 import { Card } from '../../../components/Card'
 import { Dropdown } from '../../../components/Dropdown'
+import { Slider } from '../../../components/Slider'
 import { PluginList } from './PluginList'
 
 import { css, classes } from './SettingsPage.tsx.scss'
@@ -76,10 +77,10 @@ export function SettingsPage() {
       <Header tag={HeaderTags.H1}>Dorion Settings</Header>
       <Dropdown
         value={settings().theme}
-        onInput={(v: string) => {
+        onChange={(e) => {
           setSettings({
             ...settings(),
-            theme: v,
+            theme: e.currentTarget.value,
           })
         }}
         options={themes()}
@@ -104,17 +105,20 @@ export function SettingsPage() {
         placeholder={'Select a client type...'}
         maxVisibleItems={5}
         closeOnSelect={true}
-        onInput={(v: string) => {
+        onChange={(e) => {
           setSettings({
             ...settings(),
-            client_type: v,
+            client_type: e.currentValue.value,
           })
         }}
         selected={settings().client_type}
       />
 
       <Header class={classes.shead}>Window</Header>
-      {/* TODO: SLIDER FOR ZOOM LEVEL */}
+      <Slider
+        min={50}
+        max={125}
+      />
       <SwitchItem
         value={settings().sys_tray}
         onChange={(v) =>
