@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@tauri-apps/api": "^1.5.1",
+    "@uwu/lune": "^1.2.1",
+    "@uwu/shelter-defs": "^1.1.0"
+  },
+  "type": "module",
+  "workspaces": [
+    "plugins/*"
+  ],
+  "dependencies": {
+    "spitroast": "^1.4.3"
+  }
+}

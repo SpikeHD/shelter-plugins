@@ -1,0 +1,33 @@
+.ddown {
+  box-sizing: border-box;
+
+  font-size: 16px;
+  width: 100%;
+  border-radius: 3px;
+  color: var(--text-normal);
+  background-color: var(--input-background);
+  border: none;
+  transition: border-color 0.2s ease-in-out;
+  padding: 10px;
+
+  appearance: none;
+
+  cursor: pointer;
+}
+
+.dcontainer {
+  position: relative;
+  width: 100%;
+}
+
+.dsarrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.dsarrow path {
+  fill: var(--text-secondary)
+}
