@@ -20,6 +20,7 @@ const {
 const { invoke, process } = (window as any).__TAURI__
 
 let injectedCss = false
+let fetched = false
 
 const getThemes = async () => {
   const themes: string[] = await invoke('get_theme_names')
@@ -38,11 +39,6 @@ const openThemesFolder = () => {
 }
 
 export function SettingsPage() {
-  if (!injectedCss) {
-    injectedCss = true
-    injectCss(css)
-  }
-
   const [settings, setSettings] = createSignal<DorionSettings>({
     zoom: '1.0',
     client_type: 'default',
@@ -59,10 +55,20 @@ export function SettingsPage() {
   })
   const [themes, setThemes] = createSignal<DorionTheme[]>([])
 
-  ;(async () => {
-    setSettings(JSON.parse(await invoke('read_config_file')))
-    setThemes(await getThemes())
-  })()
+  if (!injectedCss) {
+    injectedCss = true
+    injectCss(css)
+  }
+
+  if (!fetched) {
+    ;(async () => {
+      setSettings(JSON.parse(await invoke('read_config_file')))
+      setThemes(await getThemes())
+    })()
+
+    fetched = true
+  }
+
 
   const saveSettings = async () => {
     await invoke('write_config_file', {
@@ -82,7 +88,7 @@ export function SettingsPage() {
         onChange={(e) => {
           setSettings({
             ...settings(),
-            theme: e.currentTarget.value,
+            theme: e.target.value,
           })
         }}
         options={themes()}
@@ -110,7 +116,7 @@ export function SettingsPage() {
         onChange={(e) => {
           setSettings({
             ...settings(),
-            client_type: e.currentValue.value,
+            client_type: e.target.value,
           })
         }}
         selected={settings().client_type}
