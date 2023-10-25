@@ -5,6 +5,10 @@
     "@uwu/shelter-defs": "^1.1.0",
     "typescript": "^5.2.2"
   },
+  "scripts": {
+    "lint": "eslint ./plugins",
+    "lint:fix": "eslint --fix ./plugins"
+  },
   "type": "module",
   "workspaces": [
     "plugins/*"

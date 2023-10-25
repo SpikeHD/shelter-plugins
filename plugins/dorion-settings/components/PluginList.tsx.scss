@@ -3,6 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  font-size: 16px;
+}
+
+.pheader {
+  border-bottom: 1px solid var(--background-tertiary);
+  font-weight: bold;
+  padding-bottom: 16px;
 }
 
 .plistrow {
@@ -11,6 +19,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  padding: 16px;
 }
 
 .plistrow .scell {
@@ -29,4 +39,8 @@
 
 .left16 {
   margin-left: 16px;
+}
+
+.top16 {
+  margin-top: 16px;
 }

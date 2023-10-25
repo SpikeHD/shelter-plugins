@@ -1,79 +1,75 @@
-import { Card } from "../../../components/Card";
-import { Dropdown } from "../../../components/Dropdown";
+import { Card } from '../../../components/Card'
+import { Dropdown } from '../../../components/Dropdown'
+import { PluginList } from './PluginList'
 
-import { css, classes } from "./SettingsPage.tsx.scss";
+import { css, classes } from './SettingsPage.tsx.scss'
 
 const {
   ui: {
-    Switch,
     SwitchItem,
     Button,
     Text,
     Header,
     HeaderTags,
-    Divider,
     injectCss,
   },
   solid: { createSignal },
-} = shelter;
+} = shelter
 
-const { invoke, process } = (window as any).__TAURI__;
+const { invoke, process } = (window as any).__TAURI__
 
-let injectedCss = false;
+let injectedCss = false
 
 const getThemes = async () => {
-  const themes: string[] = await invoke("get_theme_names");
+  const themes: string[] = await invoke('get_theme_names')
   return themes.map((t: string) => ({
-    label: t.replace(/"/g, "").replace(".css", "").replace(".theme", ""),
-    value: t.replace(/"/g, ""),
-  }));
-};
+    label: t.replace(/"/g, '').replace('.css', '').replace('.theme', ''),
+    value: t.replace(/"/g, ''),
+  }))
+}
 
 const openPluginsFolder = () => {
-  invoke("open_plugins");
-};
+  invoke('open_plugins')
+}
 
 const openThemesFolder = () => {
-  invoke("open_themes");
-};
+  invoke('open_themes')
+}
 
 export function SettingsPage() {
   if (!injectedCss) {
-    injectedCss = true;
-    injectCss(css);
+    injectedCss = true
+    injectCss(css)
   }
 
-  let [settings, setSettings] = createSignal<DorionSettings>({
-    zoom: "1.0",
-    client_type: "default",
+  const [settings, setSettings] = createSignal<DorionSettings>({
+    zoom: '1.0',
+    client_type: 'default',
     sys_tray: false,
     push_to_talk: false,
     push_to_talk_keys: [],
-    theme: "none",
+    theme: 'none',
     use_native_titlebar: false,
     start_maximized: false,
     open_on_startup: false,
     startup_minimized: false,
     autoupdate: false,
     update_notify: true,
-  });
-  let [themes, setThemes] = createSignal<DorionTheme[]>([]);
+  })
+  const [themes, setThemes] = createSignal<DorionTheme[]>([]);
 
   (async () => {
-    setSettings(JSON.parse(await invoke("read_config_file")));
-    setThemes(await getThemes());
-    setPlugins(await getPlugins());
-
-    console.log("Got settings!");
-  })();
+    setSettings(JSON.parse(await invoke('read_config_file')))
+    setThemes(await getThemes())
+  })()
 
   const saveSettings = async () => {
-    await invoke("write_config_file", {
+    await invoke('write_config_file', {
       contents: JSON.stringify(settings),
-    });
+    })
 
-    process.relaunch();
-  };
+    process.relaunch()
+  }
 
   return (
     <>
@@ -84,7 +80,7 @@ export function SettingsPage() {
           setSettings({
             ...settings(),
             theme: v,
-          });
+          })
         }}
         options={themes()}
       />
@@ -93,26 +89,26 @@ export function SettingsPage() {
       <Dropdown
         options={[
           {
-            label: "Default",
-            value: "default",
+            label: 'Default',
+            value: 'default',
           },
           {
-            label: "Canary",
-            value: "canary",
+            label: 'Canary',
+            value: 'canary',
           },
           {
-            label: "PTB",
-            value: "ptb",
+            label: 'PTB',
+            value: 'ptb',
           },
         ]}
-        placeholder={"Select a client type..."}
+        placeholder={'Select a client type...'}
         maxVisibleItems={5}
         closeOnSelect={true}
         onInput={(v: string) => {
           setSettings({
             ...settings(),
             client_type: v,
-          });
+          })
         }}
         selected={settings().client_type}
       />
@@ -196,7 +192,7 @@ export function SettingsPage() {
         }
         note={
           <>
-            Automatically update various Dorion components, such as{" "}
+            Automatically update various Dorion components, such as{' '}
             <a href="https://github.com/SpikeHD/Vencordorion" target="_blank">
               Vencordorion
             </a>
@@ -222,16 +218,27 @@ export function SettingsPage() {
         Notify me of updates
       </SwitchItem>
 
-      <Card style={{ marginTop: "1rem" }}>
+      <Card style={{ marginTop: '1rem' }}>
         <div class={classes.fcard}>
-          <span>Plugins Folder</span>
+          <Text class={classes.left16}>Plugins Folder</Text>
           <Button onClick={openPluginsFolder}>Open</Button>
         </div>
         <div class={classes.fcard}>
-          <span>Themes Folder</span>
+          <Text class={classes.left16}>Themes Folder</Text>
           <Button onClick={openThemesFolder}>Open</Button>
         </div>
       </Card>
+
+      <Header class={classes.shead}>Plugins</Header>
+      <PluginList />
+
+      <Button
+        onClick={saveSettings}
+        style={{ 'margin-top': '1rem', padding: '8px' }}
+        grow={true}
+      >
+        Save & Restart
+      </Button>
     </>
-  );
+  )
 }

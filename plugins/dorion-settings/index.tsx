@@ -1,4 +1,4 @@
-import { SettingsPage } from "./components/SettingsPage"
+import { SettingsPage } from './components/SettingsPage'
 
 const {
   settings: {
@@ -6,10 +6,10 @@ const {
   }
 } = shelter
 
-let settingsUninjects = [
-  registerSection("divider"),
-  registerSection("header", "Dorion"),
-  registerSection("section", "dorion-settings", "Dorion Settings", SettingsPage)
+const settingsUninjects = [
+  registerSection('divider'),
+  registerSection('header', 'Dorion'),
+  registerSection('section', 'dorion-settings', 'Dorion Settings', SettingsPage)
 ]
 
 export const onUnload = () => {
