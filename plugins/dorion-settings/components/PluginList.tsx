@@ -1,38 +1,38 @@
-import { css, classes } from "./PluginList.tsx.scss";
-import { Card } from "../../../components/Card";
+import { css, classes } from './PluginList.tsx.scss'
+import { Card } from '../../../components/Card'
 
 const {
   ui: { Switch, Text, injectCss },
   solid: { createSignal },
-} = shelter;
+} = shelter
 
-const { invoke } = (window as any).__TAURI__;
+const { invoke } = (window as any).__TAURI__
 
-let injectedCss = false;
+let injectedCss = false
 
 const getPlugins = async () => {
-  const plugins: DorionPlugin[] = await invoke("get_plugin_list");
-  return plugins;
-};
+  const plugins: DorionPlugin[] = await invoke('get_plugin_list')
+  return plugins
+}
 
 export function PluginList() {
   if (!injectedCss) {
-    injectedCss = true;
-    injectCss(css);
+    injectedCss = true
+    injectCss(css)
   }
 
   const [plugins, setPlugins] = createSignal<DorionPlugin[]>([]);
 
   (async () => {
-    setPlugins(await getPlugins());
-  })();
+    setPlugins(await getPlugins())
+  })()
 
   return (
-    <Card style={{ marginTop: "1rem" }}>
+    <Card style={{ marginTop: '1rem' }}>
       <div class={classes.plist}>
         <div
           class={
-            classes.pheader + " " + classes.plistrow
+            classes.pheader + ' ' + classes.plistrow
           }
         >
           <div class={classes.mcell}>
@@ -64,22 +64,22 @@ export function PluginList() {
               <Switch
                 value={!plugin.disabled}
                 onChange={(_v) => {
-                  invoke("toggle_plugin", {
+                  invoke('toggle_plugin', {
                     name: plugin.name,
-                  });
+                  })
 
                   setPlugins(
                     plugins().map((p) => {
                       if (p.name === plugin.name) {
-                        p.disabled = !p.disabled;
+                        p.disabled = !p.disabled
                       }
 
-                      return p;
+                      return p
                     })
-                  );
+                  )
                 }}
                 style={{
-                  flexDirection: "column-reverse",
+                  flexDirection: 'column-reverse',
                 }}
               />
             </div>
@@ -88,19 +88,19 @@ export function PluginList() {
               <Switch
                 checked={plugin.preload}
                 onChange={(_v) => {
-                  invoke("toggle_preload", {
+                  invoke('toggle_preload', {
                     name: plugin.name,
-                  });
+                  })
 
                   setPlugins(
                     plugins().map((p) => {
                       if (p.name === plugin.name) {
-                        p.preload = !p.preload;
+                        p.preload = !p.preload
                       }
 
-                      return p;
+                      return p
                     })
-                  );
+                  )
                 }}
               />
             </div>
@@ -108,5 +108,5 @@ export function PluginList() {
         ))}
       </div>
     </Card>
-  );
+  )
 }

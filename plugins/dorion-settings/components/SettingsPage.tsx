@@ -14,13 +14,13 @@ const {
     HeaderTags,
     injectCss,
   },
-  solid: { createSignal },
+  solid: { createSignal, createEffect },
 } = shelter
 
 const { invoke, process } = (window as any).__TAURI__
 
 let injectedCss = false
-let fetched = false
+const fetched = false
 
 const getThemes = async () => {
   const themes: string[] = await invoke('get_theme_names')
@@ -60,16 +60,12 @@ export function SettingsPage() {
     injectCss(css)
   }
 
-  if (!fetched) {
-    ;(async () => {
-      setSettings(JSON.parse(await invoke('read_config_file')))
-      setThemes(await getThemes())
+  createEffect(async () => {
+    setSettings(JSON.parse(await invoke('read_config_file')))
+    setThemes(await getThemes())
 
-      console.log(settings())
-    })()
-
-    fetched = true
-  }
+    console.log(settings())
+  })
 
   const saveSettings = async () => {
     await invoke('write_config_file', {
