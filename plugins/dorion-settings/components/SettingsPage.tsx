@@ -64,11 +64,12 @@ export function SettingsPage() {
     ;(async () => {
       setSettings(JSON.parse(await invoke('read_config_file')))
       setThemes(await getThemes())
+
+      console.log(settings())
     })()
 
     fetched = true
   }
-
 
   const saveSettings = async () => {
     await invoke('write_config_file', {
@@ -86,12 +87,15 @@ export function SettingsPage() {
       <Dropdown
         value={settings().theme}
         onChange={(e) => {
-          setSettings({
-            ...settings(),
-            theme: e.target.value,
+          setSettings(p => {
+            return {
+              ...p,
+              theme: e.target.value,
+            }
           })
         }}
-        options={themes()}
+        options={['none', ...themes()]}
+        selected={settings().theme}
       />
 
       <Header class={classes.shead}>Client Type</Header>
@@ -114,9 +118,11 @@ export function SettingsPage() {
         maxVisibleItems={5}
         closeOnSelect={true}
         onChange={(e) => {
-          setSettings({
-            ...settings(),
-            client_type: e.target.value,
+          setSettings(p => {
+            return {
+              ...p,
+              client_type: e.target.value,
+            }
           })
         }}
         selected={settings().client_type}
@@ -134,12 +140,14 @@ export function SettingsPage() {
       />
       <SwitchItem
         value={settings().sys_tray}
-        onChange={(v) =>
-          setSettings({
-            ...settings(),
-            sys_tray: v,
+        onChange={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              sys_tray: v,
+            }
           })
-        }
+        }}
         note="Instead of closing, Dorion will run in the background and will be accessible via the system tray."
       >
         Minimize to System Tray
@@ -147,12 +155,14 @@ export function SettingsPage() {
 
       <SwitchItem
         value={settings().start_maximized}
-        onChange={(v) =>
-          setSettings({
-            ...settings(),
-            start_maximized: v,
+        onChange={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              start_maximized: v,
+            }
           })
-        }
+        }}
       >
         Start Maximized
       </SwitchItem>
@@ -160,12 +170,14 @@ export function SettingsPage() {
       <Header class={classes.shead}>Startup</Header>
       <SwitchItem
         value={settings().open_on_startup}
-        onChange={(v) =>
-          setSettings({
-            ...settings(),
-            open_on_startup: v,
+        onChange={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              open_on_startup: v,
+            }
           })
-        }
+        }}
         note="Open Dorion when your system starts."
       >
         Open on Startup
@@ -174,12 +186,14 @@ export function SettingsPage() {
       <SwitchItem
         value={settings().startup_minimized}
         disabled={!settings().open_on_startup}
-        onChange={(v) =>
-          setSettings({
-            ...settings(),
-            startup_minimized: v,
+        onChange={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              startup_minimized: v,
+            }
           })
-        }
+        }}
         note="Open in the background when your system starts."
       >
         Start Minimized
@@ -188,12 +202,14 @@ export function SettingsPage() {
       <Header class={classes.shead}>Misc.</Header>
       <SwitchItem
         value={settings().use_native_titlebar}
-        onChange={(v) =>
-          setSettings({
-            ...settings(),
-            use_native_titlebar: v,
+        onChange={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              use_native_titlebar: v,
+            }
           })
-        }
+        }}
         note="Disable the custom titlebar and use your systems native one instead."
       >
         Use Native Titlebar
@@ -201,12 +217,14 @@ export function SettingsPage() {
 
       <SwitchItem
         value={settings().autoupdate}
-        onChange={(v) =>
-          setSettings({
-            ...settings(),
-            autoupdate: v,
+        onChange={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              autoupdate: v,
+            }
           })
-        }
+        }}
         note={
           <>
             Automatically update various Dorion components, such as{' '}
@@ -224,12 +242,14 @@ export function SettingsPage() {
         value={
           settings().update_notify === undefined || settings().update_notify
         }
-        onChange={(v) =>
-          setSettings({
-            ...settings(),
-            update_notify: v,
+        onChange={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              update_notify: v,
+            }
           })
-        }
+        }}
         disabled={settings().autoupdate}
       >
         Notify me of updates

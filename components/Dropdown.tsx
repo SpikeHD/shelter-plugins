@@ -35,7 +35,7 @@ export const Dropdown: Component<{
         onChange={props.onChange}
       >
         {props.options?.map((o) => (
-          <option value={o.value} selected={props?.selected}>
+          <option value={o.value} selected={o.value === props?.selected}>
             {o.label}
           </option>
         ))}
