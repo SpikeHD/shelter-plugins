@@ -4,11 +4,22 @@ import { Dropdown } from "../../../components/Dropdown";
 import { css, classes } from "./SettingsPage.tsx.scss";
 
 const {
-  ui: { Switch, SwitchItem, Button, Text, Header, HeaderTags, Divider },
+  ui: {
+    Switch,
+    SwitchItem,
+    Button,
+    Text,
+    Header,
+    HeaderTags,
+    Divider,
+    injectCss,
+  },
   solid: { createSignal },
 } = shelter;
 
 const { invoke, process } = (window as any).__TAURI__;
+
+let injectedCss = false;
 
 const getThemes = async () => {
   const themes: string[] = await invoke("get_theme_names");
@@ -16,11 +27,6 @@ const getThemes = async () => {
     label: t.replace(/"/g, "").replace(".css", "").replace(".theme", ""),
     value: t.replace(/"/g, ""),
   }));
-};
-
-const getPlugins = async () => {
-  const plugins: DorionPlugin[] = await invoke("get_plugin_list");
-  return plugins;
 };
 
 const openPluginsFolder = () => {
@@ -32,6 +38,11 @@ const openThemesFolder = () => {
 };
 
 export function SettingsPage() {
+  if (!injectedCss) {
+    injectedCss = true;
+    injectCss(css);
+  }
+
   let [settings, setSettings] = createSignal<DorionSettings>({
     zoom: "1.0",
     client_type: "default",
@@ -47,7 +58,6 @@ export function SettingsPage() {
     update_notify: true,
   });
   let [themes, setThemes] = createSignal<DorionTheme[]>([]);
-  let [plugins, setPlugins] = createSignal<DorionPlugin[]>([]);
 
   (async () => {
     setSettings(JSON.parse(await invoke("read_config_file")));
@@ -162,7 +172,6 @@ export function SettingsPage() {
         Start Minimized
       </SwitchItem>
 
-      
       <Header class={classes.shead}>Misc.</Header>
       <SwitchItem
         value={settings().use_native_titlebar}
@@ -199,7 +208,9 @@ export function SettingsPage() {
       </SwitchItem>
 
       <SwitchItem
-        value={settings().update_notify === undefined || settings().update_notify}
+        value={
+          settings().update_notify === undefined || settings().update_notify
+        }
         onChange={(v) =>
           setSettings({
             ...settings(),
@@ -216,7 +227,6 @@ export function SettingsPage() {
           <span>Plugins Folder</span>
           <Button onClick={openPluginsFolder}>Open</Button>
         </div>
-        <Divider />
         <div class={classes.fcard}>
           <span>Themes Folder</span>
           <Button onClick={openThemesFolder}>Open</Button>

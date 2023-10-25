@@ -2,13 +2,17 @@
   "devDependencies": {
     "@tauri-apps/api": "^1.5.1",
     "@uwu/lune": "^1.2.1",
-    "@uwu/shelter-defs": "^1.1.0"
+    "@uwu/shelter-defs": "^1.1.0",
+    "typescript": "^5.2.2"
   },
   "type": "module",
   "workspaces": [
     "plugins/*"
   ],
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "latest",
     "spitroast": "^1.4.3"
   }
 }

@@ -5,8 +5,13 @@
 
 .fcard {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
-  
+  color: var(--text-primary);
+
+  padding: 8px;
 }
 
 .pcard {
