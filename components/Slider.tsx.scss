@@ -1,8 +1,15 @@
 .scontainer {
   position: relative;
+  display: flex;
+  align-items: center;
 
   width: 100%;
   margin-bottom: 16px;
+
+  height: 54px;
+
+  font-size: 10px;
+  color: var(--header-secondary);
 }
 
 .srange {
@@ -16,6 +23,9 @@
 
   --upper-half: 0%;
 
+  z-index: 2;
+
+  /* This CSS is schnasty but apparently they cannot be comma-separated */
   &::-ms-track {
     appearance: none;
     -webkit-appearance: none;
@@ -101,9 +111,35 @@
 }
 
 .sticks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  pointer-events: none;
+  z-index: 1;
 }
 
 .stick {
+  height: 100%;
+  z-index: 1;
 
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.stickline {
+  width: 1px;
+  margin-top: 6px;
+  height: 40%;
+
+  background-color: var(--primary-500);
 }

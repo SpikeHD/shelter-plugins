@@ -57,9 +57,9 @@ export function SettingsPage() {
     autoupdate: false,
     update_notify: true,
   })
-  const [themes, setThemes] = createSignal<DorionTheme[]>([]);
+  const [themes, setThemes] = createSignal<DorionTheme[]>([])
 
-  (async () => {
+  ;(async () => {
     setSettings(JSON.parse(await invoke('read_config_file')))
     setThemes(await getThemes())
   })()
@@ -75,6 +75,8 @@ export function SettingsPage() {
   return (
     <>
       <Header tag={HeaderTags.H1}>Dorion Settings</Header>
+
+      <Header class={classes.shead}>Theme</Header>
       <Dropdown
         value={settings().theme}
         onChange={(e) => {
@@ -118,6 +120,10 @@ export function SettingsPage() {
       <Slider
         min={50}
         max={125}
+        steps={
+          Array.from(Array(16).keys()).map(i => (i * 5 + 50) + '%')
+        }
+        value={parseInt(settings().zoom) * 100}
       />
       <SwitchItem
         value={settings().sys_tray}

@@ -10,9 +10,8 @@ let injectedCss = false;
 export const Slider: Component<{
   min: number;
   max: number;
-  step?: number;
   // These are the little labelled ticks on the slider
-  ticks?: string[];
+  steps?: string[];
   class?: string;
   style?: any;
   onChange?(e): void;
@@ -33,7 +32,7 @@ export const Slider: Component<{
         max={props.max}
         step={props.step}
         class={classes.srange}
-        value={props.value}
+        value={props.value || props.min}
         style={{
           ...props.style,
           '--upper-half': `${fill()}%`,
@@ -48,8 +47,11 @@ export const Slider: Component<{
         }}
       />
       <div class={classes.sticks}>
-        {props.ticks?.map((t) => (
-          <div class={classes.stick}>{t}</div>
+        {props.steps?.map((t) => (
+          <div class={classes.stick}>
+            <span>{t}</span>
+            <div class={classes.stickline}></div>
+          </div>
         ))}
       </div>
     </div>
