@@ -130,7 +130,15 @@ export function SettingsPage() {
           Array.from(Array(16).keys()).map(i => (i * 5 + 50) + '%')
         }
         step={5}
-        value={parseInt(settings().zoom) * 100}
+        value={parseFloat(settings().zoom) * 100}
+        onInput={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              zoom: (parseFloat(v) / 100).toString(),
+            }
+          })
+        }}
       />
       <SwitchItem
         value={settings().sys_tray}

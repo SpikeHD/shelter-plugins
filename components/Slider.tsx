@@ -14,15 +14,11 @@ export const Slider: Component<{
   steps?: string[];
   step?: number;
   class?: string;
-  style?: any;
+  style?: CSSStyleDeclaration;
   onChange?(e): void;
-  oninput?(e): void;
+  onInput?(e): void;
   value?: number;
 }> = (props) => {
-  const [fill, setFill] = createSignal(
-    props.value ? ((props.value || props.min) / (props.max - props.min)) * 100 : 0
-  )
-
   if (!injectedCss) {
     injectedCss = true
     injectCss(css)
@@ -39,17 +35,13 @@ export const Slider: Component<{
         value={props.value ? props.value : props.min}
         style={{
           ...props.style,
-          '--upper-half': `${fill()}%`,
+          '--upper-half': `${(props.value - props.min) / (props.max - props.min) * 100}%`,
         }}
         onChange={(e) => {
           props.onChange?.(e.target.value)
         }}
         onInput={(e) => {
-          // Calc the fill based on the min and max
-          const newFill = ((e.target.value - props.min) / (props.max - props.min)) * 100
-          setFill(newFill)
-
-          props.oninput?.(e.target.value)
+          props.onInput?.(e.target.value)
         }}
       />
       <div class={classes.sticks}>
