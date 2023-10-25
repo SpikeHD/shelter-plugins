@@ -32,7 +32,7 @@ export const Dropdown: Component<{
         placeholder={props.placeholder}
         id={props.id}
         aria-label={props["aria-label"]}
-        onInput={props.onInput}
+        onChange={props.onInput}
       >
         {props.options?.map((o) => (
           <option value={o.value} selected={props?.selected}>

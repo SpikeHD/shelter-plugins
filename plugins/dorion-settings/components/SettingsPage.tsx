@@ -1,12 +1,11 @@
+import { Card } from "../../../components/Card";
 import { Dropdown } from "../../../components/Dropdown";
 
-import { css, classes } from "./SettingsPage.tsx.scss"; 
+import { css, classes } from "./SettingsPage.tsx.scss";
 
 const {
   ui: { Switch, SwitchItem, Button, Text, Header, HeaderTags, Divider },
-  solid: {
-    createSignal,
-  }
+  solid: { createSignal },
 } = shelter;
 
 const { invoke, process } = (window as any).__TAURI__;
@@ -112,10 +111,12 @@ export function SettingsPage() {
       {/* TODO: SLIDER FOR ZOOM LEVEL */}
       <SwitchItem
         value={settings().sys_tray}
-        onChange={(v) => setSettings({
-          ...settings(),
-          sys_tray: v,
-        })}
+        onChange={(v) =>
+          setSettings({
+            ...settings(),
+            sys_tray: v,
+          })
+        }
         note="Instead of closing, Dorion will run in the background and will be accessible via the system tray."
       >
         Minimize to System Tray
@@ -123,13 +124,104 @@ export function SettingsPage() {
 
       <SwitchItem
         value={settings().start_maximized}
-        onChange={(v) => setSettings({
-          ...settings(),
-          start_maximized: v,
-        })}
+        onChange={(v) =>
+          setSettings({
+            ...settings(),
+            start_maximized: v,
+          })
+        }
       >
         Start Maximized
       </SwitchItem>
+
+      <Header class={classes.shead}>Startup</Header>
+      <SwitchItem
+        value={settings().open_on_startup}
+        onChange={(v) =>
+          setSettings({
+            ...settings(),
+            open_on_startup: v,
+          })
+        }
+        note="Open Dorion when your system starts."
+      >
+        Open on Startup
+      </SwitchItem>
+
+      <SwitchItem
+        value={settings().startup_minimized}
+        disabled={!settings().open_on_startup}
+        onChange={(v) =>
+          setSettings({
+            ...settings(),
+            startup_minimized: v,
+          })
+        }
+        note="Open in the background when your system starts."
+      >
+        Start Minimized
+      </SwitchItem>
+
+      
+      <Header class={classes.shead}>Misc.</Header>
+      <SwitchItem
+        value={settings().use_native_titlebar}
+        onChange={(v) =>
+          setSettings({
+            ...settings(),
+            use_native_titlebar: v,
+          })
+        }
+        note="Disable the custom titlebar and use your systems native one instead."
+      >
+        Use Native Titlebar
+      </SwitchItem>
+
+      <SwitchItem
+        value={settings().autoupdate}
+        onChange={(v) =>
+          setSettings({
+            ...settings(),
+            autoupdate: v,
+          })
+        }
+        note={
+          <>
+            Automatically update various Dorion components, such as{" "}
+            <a href="https://github.com/SpikeHD/Vencordorion" target="_blank">
+              Vencordorion
+            </a>
+            .
+          </>
+        }
+      >
+        Autoupdate
+      </SwitchItem>
+
+      <SwitchItem
+        value={settings().update_notify === undefined || settings().update_notify}
+        onChange={(v) =>
+          setSettings({
+            ...settings(),
+            update_notify: v,
+          })
+        }
+        disabled={settings().autoupdate}
+      >
+        Notify me of updates
+      </SwitchItem>
+
+      <Card style={{ marginTop: "1rem" }}>
+        <div class={classes.fcard}>
+          <span>Plugins Folder</span>
+          <Button onClick={openPluginsFolder}>Open</Button>
+        </div>
+        <Divider />
+        <div class={classes.fcard}>
+          <span>Themes Folder</span>
+          <Button onClick={openThemesFolder}>Open</Button>
+        </div>
+      </Card>
     </>
   );
 }
