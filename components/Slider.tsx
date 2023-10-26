@@ -15,7 +15,6 @@ export const Slider: Component<{
   step?: number;
   class?: string;
   style?: CSSStyleDeclaration;
-  onChange?(e): void;
   onInput?(e): void;
   value?: number;
 }> = (props) => {
