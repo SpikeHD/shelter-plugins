@@ -1,3 +1,4 @@
+import { ProfilesPage } from './components/ProfilesPage'
 import { SettingsPage } from './components/SettingsPage'
 
 const {
@@ -9,7 +10,8 @@ const {
 const settingsUninjects = [
   registerSection('divider'),
   registerSection('header', 'Dorion'),
-  registerSection('section', 'dorion-settings', 'Dorion Settings', SettingsPage)
+  registerSection('section', 'dorion-settings', 'Dorion Settings', SettingsPage),
+  registerSection('section', 'dorion-profiles', 'Profiles', ProfilesPage)
 ]
 
 export const onUnload = () => {

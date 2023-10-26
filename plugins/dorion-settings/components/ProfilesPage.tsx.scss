@@ -1,0 +1,25 @@
+.shead {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.sbutton {
+  margin-top: 16px;
+  padding: 18px;
+
+  width: 100%;
+}
+
+.splitbutton {
+  width: 45%;
+}
+
+.pbuttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  margin-top: 16px;
+}
