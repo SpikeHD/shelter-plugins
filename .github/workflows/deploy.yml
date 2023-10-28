@@ -27,7 +27,6 @@ jobs:
 
             - name: Copy additional files
               run: |
-                  cp -r static dist
                   cp README.md dist/README.md
                   printf -- "---\npermalink: /404.html\n---\n" > dist/404.md
                   printf -- ">You are somewhere you probably shouldn't be. If you meant to install a plugin, copy the link into Shelter\n\n" >> dist/404.md
