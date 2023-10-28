@@ -1,10 +1,9 @@
 const {
   flux: {
-    getDispatcher
+    dispatcher: FluxDispatcher
   }
 } = shelter
 
-const FluxDispatcher = getDispatcher()
 
 const unlisten = (window as any).__TAURI__.listen('streamer_mode_toggle', (event) => {
   const enabled = event.payload

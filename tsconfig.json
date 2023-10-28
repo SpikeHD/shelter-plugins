@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "types": ["./types.d.ts", "./css.d.ts"],
+    "target": "es6"
   }
 }

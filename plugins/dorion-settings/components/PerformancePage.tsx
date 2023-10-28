@@ -1,7 +1,20 @@
 import { css, classes } from './PerformancePage.tsx.scss'
 
 const {
-  ui: { injectCss, SwitchItem, Button, Text, Header, HeaderTags },
+  ui: {
+    injectCss,
+    openModal,
+    ModalRoot,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    SwitchItem,
+    Button,
+    ButtonLooks,
+    Header,
+    HeaderTags,
+    showToast
+  },
   solid: { createSignal, createEffect },
 } = shelter
 
@@ -40,7 +53,7 @@ export function PerformancePage() {
 
   const saveSettings = async () => {
     await invoke('write_config_file', {
-      contents: JSON.stringify(state),
+      contents: JSON.stringify(state()),
     })
 
     process.relaunch()
@@ -48,26 +61,37 @@ export function PerformancePage() {
 
   const clearCSSCache = async () => {
     await invoke('clear_css_cache')
-    showToast('Cleared CSS cache')
+    showToast({
+      title: 'CSS Cache Cleared',
+      duration: 3000
+    })
   }
 
   const clearWebCache = async () => {
-    Alerts.show({
-      title: 'Are you sure?',
-      body: (
-        <>
+    const rm = openModal((close) => 
+      <ModalRoot>
+        <ModalHeader close={close}>Are you sure?</ModalHeader>
+        <ModalBody>
           <p>
-            Clearing web cache will log you out and reset your Vencord settings
-            (unless they are on the cloud, of course), but can often help solve
-            permission-based issues.
+            Clearing web cache will log you out and reset your settings,
+            but can often help solve permission-based issues.
           </p>
           <p>Do you want to proceed?</p>
-        </>
-      ),
-      confirmText: 'Confirm',
-      cancelText: 'Cancel',
-      onConfirm: () => invoke('set_clear_cache'),
-    })
+        </ModalBody>
+
+        <ModalFooter>
+          <div class={classes.pbuttons}>
+            <Button look={ButtonLooks.OUTLINED} class={classes.pbutton} onClick={close}>Cancel</Button>
+            <Button class={classes.pbutton} onClick={() => {
+              invoke('set_clear_cache')
+              close()
+            }}>Confirm</Button>
+          </div>
+        </ModalFooter>
+      </ModalRoot>
+    )
+    
+    rm()
   }
 
   return (
