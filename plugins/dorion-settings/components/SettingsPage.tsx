@@ -1,6 +1,5 @@
 import { Card } from '../../../components/Card'
 import { Dropdown } from '../../../components/Dropdown'
-import { Slider } from '../../../components/Slider'
 import { PluginList } from './PluginList'
 
 import { css, classes } from './SettingsPage.tsx.scss'
@@ -12,6 +11,7 @@ const {
     Text,
     Header,
     HeaderTags,
+    Slider,
     injectCss,
   },
   solid: { createSignal, createEffect },

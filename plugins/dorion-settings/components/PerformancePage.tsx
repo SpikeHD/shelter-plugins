@@ -143,21 +143,24 @@ export function PerformancePage() {
       <div class={classes.pbuttons}>
         <Button
           onClick={saveSettings}
-          class={classes.pbutton}
+          style={{ width: '30%', padding: '18px' }}
+          grow={true}
         >
           Save and Restart
         </Button>
 
         <Button
           onClick={clearWebCache}
-          class={classes.pbutton}
+          style={{ width: '30%', padding: '18px' }}
+          grow={true}
         >
           Clear WebData Cache
         </Button>
 
         <Button
           onClick={clearCSSCache}
-          class={classes.pbutton}
+          style={{ width: '30%', padding: '18px' }}s
+          grow={true}
         >
           Clear CSS Cache
         </Button>
