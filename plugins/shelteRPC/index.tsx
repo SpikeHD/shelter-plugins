@@ -12,7 +12,7 @@ const apps: Record<string, { name: string }> = {}
 
 async function lookupApp(id: string) {
   // stub
-  return false
+  return { name: 'none' }
 }
 
 async function fetchAssetIds(applicationId: string, keys: string[]) {
