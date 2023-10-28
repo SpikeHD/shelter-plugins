@@ -2,7 +2,7 @@ name: Build and deploy
 
 on:
     push:
-        branches: [master]
+        branches: [main]
 
 # Shamelessly yoinked from https://github.com/ioj4/shelter-plugins/blob/master/.github/workflows/deploy.yml
 jobs:
