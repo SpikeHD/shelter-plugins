@@ -16,6 +16,11 @@ Dorion stuff, now written for Shelter.
 
 ## Regular Plugins
 
+### Always Trust
+Remove the "You are leaving Discord" popup
+
+`https://spikehd.github.io/shelter-plugins/always-trust/`
+
 ### shelteRPC
 arRPC replication for Shelter
 
@@ -34,11 +39,6 @@ Streamer mode detection for Dorion
 Settings menus and interaction for Dorion
 
 `https://spikehd.github.io/shelter-plugins/dorion-settings/`
-
-### Dorion Link Fix
-Link behaviour fix for Dorion
-
-`https://spikehd.github.io/shelter-plugins/dorion-link-fix/`
 
 ### Dorion Voice Fix
 Voice chat fix for Dorion
