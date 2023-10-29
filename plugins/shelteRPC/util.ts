@@ -5,7 +5,7 @@ export const generateIconUrl = (appId: string, icon: string) => {
 }
 
 export const generateCoverUrl = (appId: string, cover: string) => {
-  return `${baseUrl}/app-assets/${appId}/store/${cover}.png`
+  return `${baseUrl}/app-assets/${appId}/${cover}.png`
 }
 export const generateAssetUrl = (appId: string, asset: string) => {
   return `${baseUrl}/app-assets/${appId}/${asset}.png`
