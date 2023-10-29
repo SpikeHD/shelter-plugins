@@ -1,6 +1,11 @@
+import { generateAssetUrl } from './util'
+
 const {
   flux: {
-    dispatcher: FluxDispatcher
+    dispatcher: FluxDispatcher,
+    stores: {
+      GameStore
+    }
   },
   ui: {
     showToast
@@ -8,35 +13,27 @@ const {
 } = shelter
 
 let ws: WebSocket
-const apps: Record<string, { name: string }> = {}
+const apps: Record<string, { name: string } | string> = {}
 
-async function lookupApp(id: string) {
-  // stub
-  return { name: 'none' }
-}
-
-async function fetchAssetIds(applicationId: string, keys: string[]) {
-  // stub
-  return ['none']
-}
-
-async function lookupAsset(applicationId: string, key: string): Promise<string> {
-  return (await fetchAssetIds(applicationId, [key]))[0]
+async function lookupApp(applicationId: string): Promise<string> {
+  return GameStore.getGame(applicationId)?.name || 'Unknown'
 }
 
 async function handleMessage(e: MessageEvent<string>) {
   const data = JSON.parse(e.data)
   const assets = data.activity?.assets
 
-  if (assets?.large_image) assets.large_image = await lookupAsset(data.activity.application_id, assets.large_image)
-  if (assets?.small_image) assets.small_image = await lookupAsset(data.activity.application_id, assets.small_image)
+  if (assets?.large_image) assets.large_image = generateAssetUrl(data.activity.application_id, assets.large_image)
+  if (assets?.small_image) assets.small_image = generateAssetUrl(data.activity.application_id, assets.small_image)
 
   if (data.activity) {
     const appId = data.activity.application_id
     apps[appId] ||= await lookupApp(appId)
     
     const app = apps[appId]
-    data.activity.name ||= app.name
+    if (typeof app !== 'string') {
+      data.activity.name ||= app.name
+    }
   }
 
   FluxDispatcher.dispatch({
