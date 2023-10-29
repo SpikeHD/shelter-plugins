@@ -230,8 +230,8 @@ export function SettingsPage() {
         note={
           <>
             Automatically update various Dorion components, such as{' '}
-            <a href="https://github.com/SpikeHD/Vencordorion" target="_blank">
-              Vencordorion
+            <a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">
+              SpikeHD/shelter-plugins
             </a>
             .
           </>
