@@ -41,6 +41,5 @@ jobs:
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./dist
-                  destination_dir: ./shelter
                   # Makes it so the md files in the previous step get processed by GitHub Pages
                   enable_jekyll: true
