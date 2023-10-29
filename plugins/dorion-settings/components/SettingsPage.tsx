@@ -20,7 +20,6 @@ const {
 const { invoke, process } = (window as any).__TAURI__
 
 let injectedCss = false
-const fetched = false
 
 const getThemes = async () => {
   const themes: string[] = await invoke('get_theme_names')
@@ -88,7 +87,8 @@ export function SettingsPage() {
             }
           })
         }}
-        options={['none', ...themes()]}
+        placeholder={'Select a theme...'}
+        options={[{ label: 'None', value: 'none' }, ...themes()]}
         selected={settings().theme}
       />
 
