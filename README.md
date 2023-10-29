@@ -7,8 +7,8 @@ Dorion stuff, now written for Shelter.
 - [x] Dorion Settings
 - [x] Dorion performance settings
 - [x] Dorion profile settings
-- [ ] RPC implementation
-- [ ] Dorion link fix
+- [x] RPC implementation
+- [x] Dorion link fix
 - [ ] Dorion MacOS stuff
 - [ ] Dorion notification stuff
 
