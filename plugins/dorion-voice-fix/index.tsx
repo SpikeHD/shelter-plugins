@@ -7,6 +7,12 @@ const {
   patcher
 } = shelter
 
-const unpatch = patcher.instead('isSupported', MediaEngineStore, () => true)
+const unpatches = [
+  patcher.instead('isSupported', MediaEngineStore, () => true),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  patcher.instead('supports', MediaEngineStore, (_e: string) => true),
+]
 
-export const onUnload = () => unpatch()
+export const onUnload = () => {
+  unpatches.forEach(unpatch => unpatch())
+}
