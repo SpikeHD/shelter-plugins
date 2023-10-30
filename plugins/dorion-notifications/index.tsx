@@ -1,61 +1,82 @@
 const {
   ui: {
-    SwitchItem
+    Switch,
   },
   util: {
-    sleep
+    reactFiberWalker,
+    getFiber
   },
   flux: {
-    stores,
     dispatcher: FluxDispatcher
+  },
+  solid: {
+    createSignal,
   },
   observeDom,
   patcher
 } = shelter
 
-const { invoke } = (window as any).__TAURI__
+const { invoke, notification } = (window as any).__TAURI__
 
-const settingsRootSelector = 'div[class*="contentColumn"] div[class*="children"]'
-const notifSelector = 'div[class*="contentColumn"] div[class*="container"]'
+let isOnNotifSection = false
+
+const notifSelector = 'div[class*="contentColumn"] div[class*="container"] div[class*="control"]'
 
 FluxDispatcher.subscribe('USER_SETTINGS_MODAL_SET_SECTION', async (payload) => {
-  if (payload.section !== 'Notifications') return
+  if (payload.section !== 'Notifications') {
+    // This removes the CSS
+    isOnNotifSection = false
+    return
+  }
+  else if (isOnNotifSection) return
+  isOnNotifSection = true
 
-  const settings: DorionSettings = JSON.parse(await invoke('read_config_file'))
+  const [settings, setSettings] = createSignal<DorionSettings>(JSON.parse(await invoke('read_config_file')))
 
   const unobserve = observeDom(notifSelector, (node: HTMLDivElement) => {
     unobserve.now()
 
-    node.style.display = 'none'
-  
-    const newNotifElm = (
-      <SwitchItem
-        value={settings.desktop_notifications}
-        onChange={(v) => {
-          settings.desktop_notifications = v
+    const fiber = reactFiberWalker(getFiber(node), 'onChange', false)
 
-          // Save the settings
-          invoke('write_config_file', {
-            contents: JSON.stringify(settings)
-          })
-        }}
-        note="If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings."
-        style={{ marginTop: '16px' }}
-      >
-        Enable Desktop Notifications
-      </SwitchItem>
-    )
-  
-    const settingsRoot = document.querySelector(settingsRootSelector)
-    settingsRoot.prepend(newNotifElm)
+    console.log(fiber)
+
+    patcher.instead('onChange', fiber?.pendingProps, ([v, _e]) => {
+      console.log(v)
+      console.log(_e)
+      console.log(this)
+      
+      setSettings({
+        ...settings,
+        desktop_notifications: v
+      })
+
+      // Save the settings
+      invoke('write_config_file', {
+        contents: JSON.stringify(settings())
+      })
+    })
   })
 })
 
 FluxDispatcher.subscribe('RPC_NOTIFICATION_CREATE', async (payload) => {
-  await invoke('send_notification', {
-    icon: payload.icon,
+  let permGranted = await notification.isPermissionGranted()
+
+  if (!permGranted) {
+    console.log('Requesting permission...')
+    permGranted = (await notification.requestPermission()) === 'granted'
+  }
+
+  if (!permGranted) return console.log('No permissions!')
+
+  // Only if we know we have permission should we check if the user wants notifications
+  const settings: DorionSettings = JSON.parse(await invoke('read_config_file'))
+
+  if (!settings.desktop_notifications) return
+
+  notification.sendNotification({
     title: payload.title,
-    body: payload.body
+    body: payload.body,
+    icon: payload.icon,
   })
 })
 
