@@ -76,7 +76,7 @@ export function PerformancePage() {
       `,
       header: () => 'Are you sure?',
       type: 'neutral',
-      confirmText: 'No thanks',
+      confirmText: 'Confirm',
     }).then(
       () => invoke('set_clear_cache'),
       () => {},
