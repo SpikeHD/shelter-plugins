@@ -11,6 +11,7 @@ interface DorionSettings {
   startup_minimized: boolean;
   autoupdate: boolean;
   update_notify: boolean;
+  desktop_notifications: boolean;
 }
 
 interface DorionTheme {
