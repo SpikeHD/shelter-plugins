@@ -67,7 +67,7 @@ export function PerformancePage() {
     })
   }
 
-  const clearWebCache = async () => {
+  const clearWebCache = () => {
     openConfirmationModal({
       body: () => `
       Clearing web cache will log you out and reset your settings, but can often help solve permission-based issues.
