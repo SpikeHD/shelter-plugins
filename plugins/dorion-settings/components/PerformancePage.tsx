@@ -90,8 +90,6 @@ export function PerformancePage() {
         </ModalFooter>
       </ModalRoot>
     )
-    
-    rm()
   }
 
   return (
