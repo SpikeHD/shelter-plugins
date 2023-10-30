@@ -3,7 +3,7 @@ import { css, classes } from './PerformancePage.tsx.scss'
 const {
   ui: {
     injectCss,
-    openModal,
+    openConfirmationModal,
     ModalRoot,
     ModalHeader,
     ModalBody,
@@ -68,27 +68,18 @@ export function PerformancePage() {
   }
 
   const clearWebCache = async () => {
-    const rm = openModal((close) => 
-      <ModalRoot>
-        <ModalHeader close={close}>Are you sure?</ModalHeader>
-        <ModalBody>
-          <p>
-            Clearing web cache will log you out and reset your settings,
-            but can often help solve permission-based issues.
-          </p>
-          <p>Do you want to proceed?</p>
-        </ModalBody>
+    openConfirmationModal({
+      body: () => `
+      Clearing web cache will log you out and reset your settings, but can often help solve permission-based issues.
 
-        <ModalFooter>
-          <div class={classes.pbuttons}>
-            <Button look={ButtonLooks.OUTLINED} class={classes.pbutton} onClick={close}>Cancel</Button>
-            <Button class={classes.pbutton} onClick={() => {
-              invoke('set_clear_cache')
-              close()
-            }}>Confirm</Button>
-          </div>
-        </ModalFooter>
-      </ModalRoot>
+      Do you want to proceed?
+      `,
+      header: () => 'Are you sure?',
+      type: 'neutral',
+      confirmText: 'No thanks',
+    }).then(
+      () => invoke('set_clear_cache'),
+      () => {},
     )
   }
 
