@@ -65,3 +65,5 @@ export const onLoad = async () => {
     )
   })
 }
+
+export const onUnload = () => {}
