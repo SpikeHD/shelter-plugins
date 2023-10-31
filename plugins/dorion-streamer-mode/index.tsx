@@ -5,7 +5,7 @@ const {
 } = shelter
 
 
-const unlisten = (window as any).__TAURI__.listen('streamer_mode_toggle', (event) => {
+const unlisten = (window as any).__TAURI__.event.listen('streamer_mode_toggle', (event) => {
   const enabled = event.payload
 
   FluxDispatcher.dispatch({
