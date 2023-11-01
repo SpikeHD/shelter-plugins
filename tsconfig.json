@@ -2,6 +2,7 @@
   "compilerOptions": {
     "jsx": "react",
     "types": ["./types.d.ts", "./css.d.ts"],
-    "target": "es6"
-  }
+    "target": "es6",
+  },
+  "include": ["plugins/**/*.ts", "plugins/**/*.tsx", "node_modules/@uwu/shelter-defs/**/*.d.ts"]
 }
