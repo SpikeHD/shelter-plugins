@@ -51,6 +51,7 @@ export function SettingsPage() {
     startup_minimized: false,
     autoupdate: false,
     update_notify: true,
+    multi_instance: false,
   })
   const [themes, setThemes] = createSignal<DorionTheme[]>([])
 
@@ -202,6 +203,21 @@ export function SettingsPage() {
       </SwitchItem>
 
       <Header class={classes.shead}>Misc.</Header>
+      <SwitchItem
+        value={settings().multi_instance}
+        onChange={(v) => {
+          setSettings(p => {
+            return {
+              ...p,
+              multi_instance: v,
+            }
+          })
+        }}
+        note="Allow multiple instances of Dorion to be running at the same time."
+      >
+        Allow Multiple Instances
+      </SwitchItem>
+
       <SwitchItem
         value={settings().use_native_titlebar}
         onChange={(v) => {
