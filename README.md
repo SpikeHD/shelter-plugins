@@ -3,9 +3,15 @@
 Shelter plugin repo housing both general-use plugins AND [Dorion](https://github.com/SpikeHD/Dorion)-specific plugins
 
 # Table of Contents
-* [TODO](#todo)
-* [Plugins](#plugins)
+* [Plugins](#plugins)'
+  * [Always Trust](#always-trust)
+  * [Inline CSS](#inline-css)
+  * [shelteRPC](#shelterpc)
 * [Dorion Plugins](#dorion-plugins)
+  * [Dorion Streamer Mode](#dorion-streamer-mode)
+  * [Dorion Settings](#dorion-settings)
+  * [Dorion Notifications](#dorion-notifications)
+  * [Dorion Updater](#dorion-updater)
 
 # Plugins
 
@@ -25,7 +31,7 @@ Lightweight inline CSS editor, with hot reloading
 
 ## shelteRPC
 
-arRPC replication for Shelter. Useful only on Web Discord.
+arRPC replication for Shelter. Useful only on Web Discord, and if you aren't using a client that has it built-in, you'll need to run an [arRPC server](https://github.com/OpenAsar/arrpc)
 
 `https://spikehd.github.io/shelter-plugins/shelteRPC/`
 
