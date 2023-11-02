@@ -33,7 +33,9 @@ export function PerformancePage() {
     cache_css: false,
     streamer_mode_detection: false,
     rpc_server: false,
+    auto_clear_cache: false,
   })
+  const [platform, setPlatform] = createSignal<string>('')
 
   if (!injectedCss) {
     injectedCss = true
@@ -43,6 +45,11 @@ export function PerformancePage() {
   createEffect(async () => {
     const settings = await invoke('read_config_file')
     const defaultConf = await invoke('default_config')
+
+    try {
+      const platform = await invoke('get_platform')
+      setPlatform(platform)
+    } catch(e) { /* this can fail it's fine */ }
 
     try {
       setState(JSON.parse(settings))
@@ -101,6 +108,20 @@ export function PerformancePage() {
         Cache CSS
       </SwitchItem>
 
+      <SwitchItem
+        value={state().auto_clear_cache}
+        onChange={(v) =>
+          setState({
+            ...state(),
+            auto_clear_cache: v,
+          })
+        }
+        disabled={true}
+        note="Coming soon! This will clean out the web-based cache every time you close Dorion. This is usually cached images, scripts, and other data, and it can build up!"
+      >
+        Auto Clear Cache
+      </SwitchItem>
+
       <Header class={classes.shead}>Optional Features</Header>
       <SwitchItem
         value={state().streamer_mode_detection}
@@ -143,7 +164,7 @@ export function PerformancePage() {
           style={{ width: '30%', padding: '18px' }}
           grow={true}
         >
-          Clear WebData Cache
+          Wipe all web-based data
         </Button>
 
         <Button

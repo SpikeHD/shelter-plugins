@@ -12,6 +12,7 @@ interface DorionSettings {
   autoupdate: boolean;
   update_notify: boolean;
   desktop_notifications: boolean;
+  auto_clear_cache: boolean;
 }
 
 interface DorionTheme {
