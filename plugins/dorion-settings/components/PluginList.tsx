@@ -54,7 +54,7 @@ export function PluginList() {
           </div>
         </div>
 
-        {plugins().map((plugin) => (
+        {plugins().map((plugin: DorionPlugin) => (
           <div key={plugin.name} class={classes.plistrow}>
             <div class={classes.mcell}>
               <Text class={classes.left16}>{plugin.name}</Text>
@@ -62,14 +62,14 @@ export function PluginList() {
 
             <div class={classes.scell}>
               <Switch
-                value={!plugin.disabled}
+                checked={!plugin.disabled}
                 onChange={(_v) => {
                   invoke('toggle_plugin', {
                     name: plugin.name,
                   })
 
                   setPlugins(
-                    plugins().map((p) => {
+                    plugins().map((p: DorionPlugin) => {
                       if (p.name === plugin.name) {
                         p.disabled = !p.disabled
                       }
@@ -93,7 +93,7 @@ export function PluginList() {
                   })
 
                   setPlugins(
-                    plugins().map((p) => {
+                    plugins().map((p: DorionPlugin) => {
                       if (p.name === plugin.name) {
                         p.preload = !p.preload
                       }
