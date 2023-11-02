@@ -3,7 +3,7 @@
 Shelter plugin repo housing both general-use plugins AND [Dorion](https://github.com/SpikeHD/Dorion)-specific plugins
 
 # Table of Contents
-* [Plugins](#plugins)'
+* [Plugins](#plugins)
   * [Always Trust](#always-trust)
   * [Inline CSS](#inline-css)
   * [shelteRPC](#shelterpc)
