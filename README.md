@@ -6,6 +6,7 @@ Shelter plugin repo housing both general-use plugins AND [Dorion](https://github
 * [Plugins](#plugins)
   * [Always Trust](#always-trust)
   * [Inline CSS](#inline-css)
+  * [Invisible Typing](#invisible-typing)
   * [shelteRPC](#shelterpc)
 * [Dorion Plugins](#dorion-plugins)
   * [Dorion Streamer Mode](#dorion-streamer-mode)
@@ -34,6 +35,8 @@ Lightweight inline CSS editor, with hot reloading.
 Prevents others from seeing when you are typing.
 
 `https://spikehd.github.io/shelter-plugins/invisible-typing/`
+
+![invis-typing](https://github.com/SpikeHD/shelter-plugins/assets/25207995/9c50535f-4fcc-40c2-adff-3b989eb5470a)
 
 ## shelteRPC
 
