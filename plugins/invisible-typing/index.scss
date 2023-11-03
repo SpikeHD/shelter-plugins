@@ -1,0 +1,19 @@
+.invisContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+
+  /* We have to apply to the SVG because Discord hits us with a !important */
+  &.notShowing svg path {
+    fill: var(--status-danger) !important;
+  }
+
+  cursor: pointer;
+}
+
+.invisContainer svg {
+  height: 55%;
+  width: 100%;
+}
