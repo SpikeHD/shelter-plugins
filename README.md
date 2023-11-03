@@ -10,8 +10,8 @@ Shelter plugin repo housing both general-use plugins AND [Dorion](https://github
   * [Invisible Typing](#invisible-typing)
   * [shelteRPC](#shelterpc)
 * [Dorion Plugins](#dorion-plugins)
-  * [Dorion Streamer Mode](#dorion-streamer-mode)
   * [Dorion Settings](#dorion-settings)
+  * [Dorion Streamer Mode](#dorion-streamer-mode)
   * [Dorion Notifications](#dorion-notifications)
   * [Dorion Updater](#dorion-updater)
 
@@ -59,17 +59,17 @@ arRPC replication for Shelter. Only really useful on web Discord, and if you are
 
 (you don't want these next plugins, they are for the [Dorion client](https://github.com/SpikeHD/Dorion))
 
-## Dorion Streamer Mode
-
-Streamer mode detection for Dorion.
-
-`https://spikehd.github.io/shelter-plugins/dorion-streamer-mode/`
-
 ## Dorion Settings
 
 Settings menus and interaction for Dorion.
 
 `https://spikehd.github.io/shelter-plugins/dorion-settings/`
+
+## Dorion Streamer Mode
+
+Streamer mode detection for Dorion.
+
+`https://spikehd.github.io/shelter-plugins/dorion-streamer-mode/`
 
 ## Dorion Notifications
 
