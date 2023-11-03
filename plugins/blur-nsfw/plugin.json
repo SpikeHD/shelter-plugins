@@ -1,5 +1,5 @@
 {
-  "name": "Invisible Typing",
+  "name": "Blur NSFW",
   "author": "SpikeHD",
-  "description": "Prevents others from seeing when you are typing."
+  "description": "Blur images and videos in NSFW channels. Hover to unblur, clicking to preview will also be unblurred."
 }

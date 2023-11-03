@@ -22,6 +22,12 @@ Remove the "You are leaving Discord" popup.
 
 `https://spikehd.github.io/shelter-plugins/always-trust/`
 
+## Blur NSFW
+
+Blur images and videos in NSFW channels. Hover to unblur, clicking to preview will also be unblurred.
+
+`https://spikehd.github.io/shelter-plugins/blur-nsfw/`
+
 ## Inline CSS
 
 Lightweight inline CSS editor, with hot reloading.
