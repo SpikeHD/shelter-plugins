@@ -5,7 +5,13 @@
 
   width: 40px;
 
+
+
   /* We have to apply to the SVG because Discord hits us with a !important */
+  svg path {
+    fill: var(--interactive-normal) !important;
+  }
+
   &.notShowing svg path {
     fill: var(--status-danger) !important;
   }
