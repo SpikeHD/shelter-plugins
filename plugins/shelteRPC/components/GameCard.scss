@@ -1,0 +1,48 @@
+.gameCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 72px;
+
+  border-radius: 5px;
+
+  color: var(--text-normal);
+
+  margin: 12px 0;
+
+  &.cardNone {
+    background-color: var(--primary-400);
+  }
+
+  &.cardPlaying {
+    background-color: var(--green-360);
+  }
+
+  &.cardPlayed {
+    background: transparent;
+    border-bottom: 1px solid var(--text-normal);
+  }
+}
+
+.gameCardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  width: 70%;
+  height: 100%;
+
+  padding: 0 20px;
+}
+
+.gameCardName {
+  font-weight: bold;
+}
+
+.lastPlayedTimestamp {
+  font-weight: bold;
+}

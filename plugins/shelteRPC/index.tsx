@@ -1,3 +1,4 @@
+import RegisteredGames from './components/RegisteredGames'
 import { generateAssetUrl } from './util'
 
 const {
@@ -7,10 +8,16 @@ const {
       GameStore
     }
   },
+  settings: {
+    registerSection
+  },
   ui: {
     showToast
   }
 } = shelter
+
+let maybeUnregisterGameSetting = () => {}
+let storeExtraData = false
 
 let ws: WebSocket
 const apps: Record<string, { name: string } | string> = {}
@@ -41,7 +48,6 @@ async function handleMessage(e: MessageEvent<string>) {
     ...data
   })
 }
-
 
 export const onLoad = async () => {
   if (ws) ws.close()
@@ -82,8 +88,17 @@ export const onLoad = async () => {
     content: 'Connected to ShelteRPC server',
     duration: 3000
   })
+
+  // If we are running in Dorion, register the game settings section
+  if ((await (window as any)?.__TAURI__.app.getName()) === 'Dorion') {
+    console.log('[ShelteRPC] We are on Dorion, enabling extra features')
+    storeExtraData = true
+    maybeUnregisterGameSetting = registerSection('section', 'shelterpc', 'Registered Games', RegisteredGames)
+  }
 }
 
-export const onUnload = () => {
+export const onUnload = async () => {
   ws.close()
+  
+  if (maybeUnregisterGameSetting) maybeUnregisterGameSetting()
 }
