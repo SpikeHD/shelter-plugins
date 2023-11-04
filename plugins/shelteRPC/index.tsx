@@ -13,17 +13,19 @@ const {
   },
   ui: {
     showToast
+  },
+  plugin: {
+    store
   }
 } = shelter
 
 let maybeUnregisterGameSetting = () => {}
-let storeExtraData = false
 
 let ws: WebSocket
 const apps: Record<string, { name: string } | string> = {}
 
-async function lookupApp(applicationId: string): Promise<string> {
-  return GameStore.getGame(applicationId)?.name || 'Unknown'
+async function lookupApp(name: string): Promise<string> {
+  return GameStore.getGameByName(name)?.name || 'Unknown'
 }
 
 async function handleMessage(e: MessageEvent<string>) {
@@ -33,14 +35,33 @@ async function handleMessage(e: MessageEvent<string>) {
   if (assets?.large_image) assets.large_image = generateAssetUrl(data.activity.application_id, assets.large_image)
   if (assets?.small_image) assets.small_image = generateAssetUrl(data.activity.application_id, assets.small_image)
 
+  console.log(data)
+
   if (data.activity) {
     const appId = data.activity.application_id
-    apps[appId] ||= await lookupApp(appId)
+    apps[appId] ||= await lookupApp(data.activity.name)
     
     const app = apps[appId]
     if (typeof app !== 'string') {
       data.activity.name ||= app.name
     }
+
+    store.currentlyPlaying = data.activity.name
+
+    if (!store.previouslyPlayed) store.previouslyPlayed = {}
+
+    // If this isn't already in the list, add it
+    if (!(data.activity.application_id in store.previouslyPlayed)) {
+      store.previouslyPlayed[data.activity.application_id] = {}
+    }
+    
+    store.previouslyPlayed[data.activity.application_id] = {
+      name: data.activity.name,
+      lastPlayed: Date.now()
+    }
+  } else {
+    // Clear out "currentlyPlaying"
+    store.currentlyPlaying = ''
   }
 
   FluxDispatcher.dispatch({

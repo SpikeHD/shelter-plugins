@@ -27,10 +27,12 @@ interface DorionPlugin {
   disabled: boolean
 }
 
+interface ShelteRPCPreviouslyPlayed {
+  name: string
+  lastPlayed: number
+}
+
 interface ShelteRPCStore {
   currentlyPlaying: string
-  previouslyPlayed: {
-    name: string
-    lastPlayed: number
-  }
+  previouslyPlayed: 
 }

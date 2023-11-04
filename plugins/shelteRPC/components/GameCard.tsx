@@ -32,8 +32,8 @@ export default (props: Props) => {
         <span class={classes.gameCardName}>{props.name || 'No game detected'}</span>
         <span class={classes.gameCardLastPlayed}>
           {
-            props.type === 'played' ? 'Last played ' + (<span classes={classes.lastPlayedTimestamp}>{timestampToRelative(props.lastPlayed)}</span>) :
-              props.type === 'playing' ? 'Now playing' :
+            props.type === 'played' ? <>Last played: <span class={classes.lastPlayedTimestamp}>{timestampToRelative(props.lastPlayed)}</span></> :
+              props.type === 'playing' ? 'Now playing!' :
                 'What are you playing?'
           }
         </span>

@@ -29,9 +29,19 @@ export default () => {
   }
 
   const [isDorion, setIsDorion] = createSignal(false)
+  const [currentlyPlaying, setCurrentlyPlaying] = createSignal('')
+  const [previouslyPlayed, setPreviouslyPlayed] = createSignal({})
 
   createEffect(async () => {
     setIsDorion(await (window as any)?.__TAURI__?.app.getName() === 'Dorion')
+    setCurrentlyPlaying(store.currentlyPlaying || '')
+    setPreviouslyPlayed(store.previouslyPlayed || {})
+
+    // Every couple seconds, grab new data from the plugin store
+    setInterval(() => {
+      setCurrentlyPlaying(store.currentlyPlaying || '')
+      setPreviouslyPlayed(store.previouslyPlayed || {})
+    }, 2000)
   })
 
   return (
@@ -45,9 +55,18 @@ export default () => {
 
       <Divider mt={20} mb={20} />
 
-      <GameCard
-        type='none'
-      />
+      {
+        currentlyPlaying() ? (
+          <GameCard
+            name={currentlyPlaying()}
+            type='playing'
+          />
+        ) : (
+          <GameCard
+            type='none'
+          />
+        )
+      }
 
       <Text
         class={classes.addIt}
@@ -61,8 +80,21 @@ export default () => {
         }
       </Text>
 
-      { /* TODO: This will be where the list of games goes */ }
       <Header class={classes.addhead}>Added Games</Header>
+      {
+        Object.values(previouslyPlayed()).map((game: ShelteRPCPreviouslyPlayed) => {
+          // If we are playing the game, exclude it
+          if (game.name === currentlyPlaying()) return null
+
+          return (
+            <GameCard
+              name={game.name}
+              lastPlayed={game.lastPlayed}
+              type='played'
+            />
+          )
+        })
+      }
     </>
   )
 }

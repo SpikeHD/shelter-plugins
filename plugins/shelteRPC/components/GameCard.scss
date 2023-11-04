@@ -18,12 +18,21 @@
   }
 
   &.cardPlaying {
-    background-color: var(--green-360);
+    background-color: var(--green-400);
   }
 
   &.cardPlayed {
     background: transparent;
-    border-bottom: 1px solid var(--text-normal);
+    border-radius: 0;
+    border-bottom: 1px solid var(--text-muted);
+
+    .gameCardLastPlayed {
+      color: var(--text-muted);
+    }
+    
+    .lastPlayedTimestamp {
+      font-weight: bold;
+    }
   }
 }
 
@@ -40,9 +49,5 @@
 }
 
 .gameCardName {
-  font-weight: bold;
-}
-
-.lastPlayedTimestamp {
   font-weight: bold;
 }
