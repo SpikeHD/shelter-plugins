@@ -35,8 +35,6 @@ async function handleMessage(e: MessageEvent<string>) {
   if (assets?.large_image) assets.large_image = generateAssetUrl(data.activity.application_id, assets.large_image)
   if (assets?.small_image) assets.small_image = generateAssetUrl(data.activity.application_id, assets.small_image)
 
-  console.log(data)
-
   if (data.activity) {
     const appId = data.activity.application_id
     apps[appId] ||= await lookupApp(data.activity.name)
