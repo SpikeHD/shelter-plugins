@@ -89,12 +89,7 @@ export const onLoad = async () => {
     duration: 3000
   })
 
-  // If we are running in Dorion, register the game settings section
-  if ((await (window as any)?.__TAURI__.app.getName()) === 'Dorion') {
-    console.log('[ShelteRPC] We are on Dorion, enabling extra features')
-    storeExtraData = true
-    maybeUnregisterGameSetting = registerSection('section', 'shelterpc', 'Registered Games', RegisteredGames)
-  }
+  maybeUnregisterGameSetting = registerSection('section', 'shelterpc', 'Registered Games', RegisteredGames)
 }
 
 export const onUnload = async () => {

@@ -28,6 +28,12 @@ export default () => {
     injectCss(css)
   }
 
+  const [isDorion, setIsDorion] = createSignal(false)
+
+  createEffect(async () => {
+    setIsDorion(await (window as any)?.__TAURI__?.app.getName() === 'Dorion')
+  })
+
   return (
     <>
       <Header tag={HeaderTags.H1} class={classes.shead}>Registered Games</Header>
@@ -46,7 +52,13 @@ export default () => {
       <Text
         class={classes.addIt}
       >
-        Not seeing your game? Too bad, you can't add it quite yet.
+        Not seeing your game? {
+          isDorion() ? (
+            <a target="_blank">Add it!</a>
+          ) : (
+            <>Adding it is unsupported.</>
+          )
+        }
       </Text>
 
       { /* TODO: This will be where the list of games goes */ }
