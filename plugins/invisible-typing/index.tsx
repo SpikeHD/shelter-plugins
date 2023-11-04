@@ -51,6 +51,7 @@ const unobserve = observeDom('[class^="channelTextArea"] [class^="buttons"]', (n
     <div
       id="invis-icon"
       class={classes.invisContainer + (enabled() ? ' ' + classes.notShowing : '')}
+      style={(node.childElementCount === 0 && { display: 'none' })}
       onClick={toggleEnabled}
       use:tooltip={enabled() ? 'Currently hiding' : 'Currently not hiding'}
     >
