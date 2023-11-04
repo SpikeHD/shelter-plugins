@@ -86,7 +86,7 @@ export function ProfilesPage() {
         placeholder={'Select profile...'}
         maxVisibleItems={5}
         closeOnSelect={true}
-        onChange={(v) => setProfile(v)}
+        onChange={(e) => setProfile(e.target.value)}
         selected={profile()}
       />
 
