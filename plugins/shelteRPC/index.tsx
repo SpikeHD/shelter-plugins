@@ -69,15 +69,17 @@ async function handleMessage(e: MessageEvent<string>) {
 }
 
 export const onLoad = async () => {
-  if (ws) ws.close()
+  if (ws && ws?.close) ws.close()
 
   ws = new WebSocket('ws://127.0.0.1:1337')
   ws.onmessage = handleMessage
+  ws.onerror = (e) => console.error(e)
 
   // See if we were able to connect after a second
   const connected = await new Promise(r => setTimeout(() => {
     if (ws.readyState !== WebSocket.OPEN) {
-      ws.close()
+      console.log(ws)
+      ws?.close()
       ws = null
 
       showToast({
@@ -112,7 +114,7 @@ export const onLoad = async () => {
 }
 
 export const onUnload = async () => {
-  ws.close()
+  ws?.close()
   
   if (maybeUnregisterGameSetting) maybeUnregisterGameSetting()
 }
