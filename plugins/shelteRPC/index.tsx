@@ -63,12 +63,7 @@ async function handleMessage(e: MessageEvent<string>) {
     // Clear out "currentlyPlaying"
     store.currentlyPlaying = ''
   }
-
-  console.log({
-    type: 'LOCAL_ACTIVITY_UPDATE',
-    ...data
-  })
-
+  
   FluxDispatcher.dispatch({
     type: 'LOCAL_ACTIVITY_UPDATE',
     ...data
