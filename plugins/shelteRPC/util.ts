@@ -1,4 +1,17 @@
+interface AssetCache {
+  [key: string]: {
+    id: string
+    name: string
+    type: number
+  }[]
+}
+
+const {
+  http
+} = shelter
+
 const baseUrl = 'https://cdn.discordapp.com'
+const cachedAssets: AssetCache = {}
 
 export const generateIconUrl = (appId: string, icon: string) => {
   return `${baseUrl}/app-icons/${appId}/${icon}.png`
@@ -8,8 +21,21 @@ export const generateCoverUrl = (appId: string, cover: string) => {
   return `${baseUrl}/app-icons/${appId}/${cover}.png`
 }
 
-export const generateAssetUrl = (appId: string, asset: string) => {
-  return `${baseUrl}/app-assets/${appId}/${asset}.png`
+export const generateAssetId = async (appId: string, asset: string) => {
+  // get cached assets for the appid if we dont have them already
+  if (!cachedAssets[appId]) {
+    const resp = await http.get(`/oauth2/applications/${appId}/assets`)
+
+    if (resp.status !== 200) {
+      console.log('Failed to fetch assets')
+    }
+
+    cachedAssets[appId] = resp.body as AssetCache[typeof appId]
+  }
+
+  const assetId = cachedAssets[appId].find(a => a.name === asset)?.id
+
+  return assetId
 }
 
 /**

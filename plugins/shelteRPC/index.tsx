@@ -1,5 +1,5 @@
 import RegisteredGames from './components/RegisteredGames'
-import { generateAssetUrl } from './util'
+import { generateAssetId } from './util'
 
 const {
   flux: {
@@ -16,7 +16,8 @@ const {
   },
   plugin: {
     store
-  }
+  },
+  http
 } = shelter
 
 let maybeUnregisterGameSetting = () => {}
@@ -29,11 +30,12 @@ async function lookupApp(name: string): Promise<string> {
 }
 
 async function handleMessage(e: MessageEvent<string>) {
+  console.log(e.data)
   const data = JSON.parse(e.data)
   const assets = data.activity?.assets
 
-  if (assets?.large_image) assets.large_image = generateAssetUrl(data.activity.application_id, assets.large_image)
-  if (assets?.small_image) assets.small_image = generateAssetUrl(data.activity.application_id, assets.small_image)
+  if (assets?.large_image) assets.large_image = await generateAssetId(data.activity.application_id, assets.large_image)
+  if (assets?.small_image) assets.small_image = await generateAssetId(data.activity.application_id, assets.small_image)
 
   if (data.activity) {
     const appId = data.activity.application_id
@@ -61,6 +63,11 @@ async function handleMessage(e: MessageEvent<string>) {
     // Clear out "currentlyPlaying"
     store.currentlyPlaying = ''
   }
+
+  console.log({
+    type: 'LOCAL_ACTIVITY_UPDATE',
+    ...data
+  })
 
   FluxDispatcher.dispatch({
     type: 'LOCAL_ACTIVITY_UPDATE',
