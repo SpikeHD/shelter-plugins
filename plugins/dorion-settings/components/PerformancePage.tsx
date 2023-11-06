@@ -145,7 +145,7 @@ export function PerformancePage() {
           })
         }
         tooltipNote="This is a work in progress, and won't do EVERYTHING arRPC does quite yet."
-        note="Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the arRPC plugin!"
+        note="Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the shelteRPC/arRPC plugin!"
       >
         Integrated rich presence server
       </SwitchItem>
