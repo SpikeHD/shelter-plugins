@@ -44,6 +44,11 @@ export default function (props: Props) {
   })
 
   const setCss = (css: string) => {
+    // Insert a newline if there is none
+    if (css.length > 0 && css[css.length - 1] !== '\n') {
+      css += '\n'
+    }
+
     setInlineCss(css)
     saveCss(css, props.styleElm)
   }

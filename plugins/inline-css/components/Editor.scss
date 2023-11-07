@@ -11,4 +11,30 @@
 
 .ceditor textarea {
   height: 100% !important;
+  cursor: auto;
+
+  &::-webkit-scrollbar-corner {
+    background: transparent
+  }
+
+  &::-webkit-scrollbar {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary-530);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar:vertical {
+    width: 8px;
+  }
 }
