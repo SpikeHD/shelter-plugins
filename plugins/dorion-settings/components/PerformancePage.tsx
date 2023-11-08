@@ -116,8 +116,9 @@ export function PerformancePage() {
             auto_clear_cache: v,
           })
         }
-        disabled={true}
-        note="Coming soon! This will clean out the web-based cache every time you close Dorion. This is usually cached images, scripts, and other data, and it can build up!"
+        disabled={platform() !== 'windows'}
+        tooltipNote={platform() !== 'windows' && 'This is only supported on Windows right now.'}
+        note="Clean out the web-based cache every time you close Dorion. This is usually cached images, scripts, and other data, and it can build up!"
       >
         Auto Clear Cache
       </SwitchItem>
