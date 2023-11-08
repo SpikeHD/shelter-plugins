@@ -1,0 +1,55 @@
+.window {
+  height: 400px;
+  width: 30vw;
+
+  overflow-y: hidden;
+
+  position: absolute;
+  z-index: 99999;
+
+  /* Start in middle */
+  top: 50%;
+  left: 50%;
+
+  background: var(--background-primary);
+  border-radius: 6px;
+  border: 1px solid var(--background-secondary);
+
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0);
+
+  & .inner {
+    margin: 8px;
+    overflow-y: auto;
+  }
+}
+
+.topbar {
+  height: 30px;
+  width: 100%;
+  margin-bottom: 12px;
+  background: var(--input-background);
+}
+
+.exit {
+  height: 100%;
+  width: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+    background: #f23f43;
+  }
+
+  & svg {
+    height: 60%;
+    width: 100%;
+  }
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+}

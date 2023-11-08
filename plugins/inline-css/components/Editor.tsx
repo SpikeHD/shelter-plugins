@@ -4,9 +4,12 @@ import cssModule from 'highlight.js/lib/languages/css'
 
 import {css, classes} from './Editor.scss'
 import { debounce } from '../util'
+import { Popout } from './Popout'
+import { Window } from './Window'
 
 interface Props {
   styleElm?: HTMLStyleElement
+  popout?: boolean
 }
 
 hljs.registerLanguage('css', cssModule)
@@ -15,7 +18,8 @@ const {
   ui: {
     injectCss,
     Header,
-    HeaderTags
+    HeaderTags,
+    Button,
   },
   plugin: { store },
   solid: { createSignal, createEffect },
@@ -56,6 +60,24 @@ export default function (props: Props) {
   return (
     <>
       <Header tag={HeaderTags.H1}>CSS Editor</Header>
+
+      {
+        !props.popout && (
+          <Button
+            class={classes.popout}
+            onClick={() => {
+              console.log('popping out')
+              document.body.appendChild(
+                Window()
+              )
+            }}
+          >
+            Pop Out 
+            <Popout />
+          </Button>
+        )
+      }
+
 
       <div class={classes.ceditor}>
         <CodeInput

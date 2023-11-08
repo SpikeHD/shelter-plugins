@@ -19,6 +19,7 @@ styleElm = document.body.appendChild(style)
 // Also create another style element to contain the CSS
 let inlineStyleElm: HTMLStyleElement | null = null
 const inlineStyle = document.createElement('style')
+inlineStyle.id = 'inline-css-output'
 inlineStyleElm = document.body.appendChild(inlineStyle)
 
 // Set the initial contents of the inline CSS

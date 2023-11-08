@@ -9,6 +9,15 @@
   height: 100% !important;
 }
 
+.ceditor .popout {
+  width: 20%;
+
+  & svg {
+    height: 80%;
+    width: 30px;
+  }
+}
+
 .ceditor textarea {
   height: 100% !important;
   cursor: auto;
