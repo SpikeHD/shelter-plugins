@@ -63,19 +63,8 @@ const settingsHandler = async (payload) => {
   })
 }
 
-const notifHandler = async (payload) => {
-  let permGranted = await notification.isPermissionGranted()
-
-  if (!permGranted) {
-    console.log('Requesting permission...')
-    permGranted = (await notification.requestPermission()) === 'granted'
-  }
-
-  if (!permGranted) return console.log('No notification permissions!')
-
-  if (!settings()?.desktop_notifications) return
-
-  notification.sendNotification({
+const notifHandler = (payload) => {
+  invoke('send_notification', {
     title: payload.title,
     body: payload.body,
     icon: payload.icon,
