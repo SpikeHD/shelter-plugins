@@ -5,11 +5,10 @@ const {
   ui: {
     Divider,
     Header,
-    Button,
     HeaderTags,
-    TextBox,
     Text,
-    injectCss
+    injectCss,
+    showToast
   },
   solid: {
     createSignal,
@@ -73,7 +72,16 @@ export default () => {
       >
         Not seeing your game? {
           isDorion() ? (
-            <a target="_blank">Add it!</a>
+            <a
+              target="_blank"
+              onClick={() => {
+                showToast({
+                  title: 'ShelteRPC',
+                  content: 'This is not implemented yet!',
+                  duration: 4000
+                })
+              }}
+            >Add it!</a>
           ) : (
             <>Adding it is unsupported.</>
           )
