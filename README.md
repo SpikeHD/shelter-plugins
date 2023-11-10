@@ -82,3 +82,9 @@ Notification settings fix for Dorion.
 Updater for Dorion.
 
 `https://spikehd.github.io/shelter-plugins/dorion-updater/`
+
+## Dorion Voice Fix
+
+Fix (specifically, for MacOS) that prevents permission spam when using voice features.
+
+`https://spikehd.github.io/shelter-plugins/dorion-voice-fix/`
