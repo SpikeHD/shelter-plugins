@@ -12,7 +12,7 @@ let tempStyle = null
 
 const handleNsfwChannelSelect = async (payload) => {
   const { channelId } = payload
-  const channel = ChannelStore.getChannel(channelId)
+  const channel = ChannelStore?.getChannel(channelId)
 
   if (!channel.nsfw_) {
     if (tempStyle) {
