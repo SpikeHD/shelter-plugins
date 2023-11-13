@@ -52,6 +52,8 @@ Prevents others from seeing when you are typing.
 
 Disables mentions on replies by default.
 
+`https://spikehd.github.io/shelter-plugins/no-reply-mention/`
+
 ## shelteRPC
 
 arRPC replication for Shelter. Only really useful on web Discord, and if you aren't using a client/mod that has it built-in, you'll need to run an [arRPC](https://github.com/OpenAsar/arrpc) or [rsRPC](https://github.com/SpikeHD/rsRPC) server.
