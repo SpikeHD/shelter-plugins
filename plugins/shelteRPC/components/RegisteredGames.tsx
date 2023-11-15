@@ -1,5 +1,6 @@
 import GameCard from './GameCard'
 import { css, classes } from './RegisteredGames.scss'
+import WindowProcessSelect from './WindowProcessSelect'
 
 const {
   ui: {
@@ -8,7 +9,12 @@ const {
     HeaderTags,
     Text,
     injectCss,
-    showToast
+    showToast,
+    openModal,
+    ModalRoot,
+    ModalHeader,
+    ModalBody,
+    ModalFooter
   },
   solid: {
     createSignal,
@@ -104,5 +110,29 @@ export default () => {
         })
       }
     </>
+  )
+}
+
+function addIt() {
+  // Show a modal with WindowProcessSelect
+  openModal(
+    <ModalRoot>
+      <ModalHeader>Add a game</ModalHeader>
+      <ModalBody>
+        <WindowProcessSelect />
+      </ModalBody>
+      <ModalFooter>
+        <Button
+          onClick={() => {}}
+          type='neutral'
+        >Cancel</Button>
+        <Button
+          onClick={() => {
+            console.log('yo')
+          }}
+          type='primary'
+        >Add</Button>
+      </ModalFooter>
+    </ModalRoot>
   )
 }

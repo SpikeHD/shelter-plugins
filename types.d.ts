@@ -34,5 +34,11 @@ interface ShelteRPCPreviouslyPlayed {
 
 interface ShelteRPCStore {
   currentlyPlaying: string
-  previouslyPlayed: 
+  previouslyPlayed: ShelteRPCPreviouslyPlayed[]
+}
+
+interface ProcessWindow {
+  title: string
+  pid: string
+  process_name: string
 }
