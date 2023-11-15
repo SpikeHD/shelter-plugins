@@ -121,6 +121,8 @@ export const onLoad = async () => {
     r(true)
   }, 1000))
 
+  maybeUnregisterGameSetting = registerSection('section', 'shelterpc', 'Registered Games', RegisteredGames)
+
   if (!connected) return
 
   ws.onclose = () => {
@@ -136,8 +138,6 @@ export const onLoad = async () => {
     content: 'Connected to ShelteRPC server',
     duration: 3000
   })
-
-  maybeUnregisterGameSetting = registerSection('section', 'shelterpc', 'Registered Games', RegisteredGames)
 }
 
 export const onUnload = async () => {
