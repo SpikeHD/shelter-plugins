@@ -9,12 +9,11 @@ const {
     HeaderTags,
     Text,
     injectCss,
-    showToast,
     openModal,
     ModalRoot,
     ModalHeader,
     ModalBody,
-    ModalFooter
+    ModalConfirmFooter
   },
   solid: {
     createSignal,
@@ -78,16 +77,7 @@ export default () => {
       >
         Not seeing your game? {
           isDorion() ? (
-            <a
-              target="_blank"
-              onClick={() => {
-                showToast({
-                  title: 'ShelteRPC',
-                  content: 'This is not implemented yet!',
-                  duration: 4000
-                })
-              }}
-            >Add it!</a>
+            <a target="_blank" onclick={addIt}>Add it!</a>
           ) : (
             <>Adding it is unsupported.</>
           )
@@ -115,24 +105,20 @@ export default () => {
 
 function addIt() {
   // Show a modal with WindowProcessSelect
-  openModal(
+  openModal((props) => (
     <ModalRoot>
       <ModalHeader>Add a game</ModalHeader>
       <ModalBody>
         <WindowProcessSelect />
       </ModalBody>
-      <ModalFooter>
-        <Button
-          onClick={() => {}}
-          type='neutral'
-        >Cancel</Button>
-        <Button
-          onClick={() => {
-            console.log('yo')
-          }}
-          type='primary'
-        >Add</Button>
-      </ModalFooter>
+      <ModalConfirmFooter
+        onConfirm={() => {}}
+        onCancel={props.close}
+        close={props.close}
+        confirmText="Add"
+        cancelText="Cancel"
+        type={'neutral'}
+      />
     </ModalRoot>
-  )
+  ))
 }

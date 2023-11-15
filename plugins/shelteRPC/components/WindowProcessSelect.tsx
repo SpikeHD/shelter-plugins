@@ -2,8 +2,6 @@ import { Dropdown } from "../../../components/Dropdown"
 
 const {
   ui: {
-    Header,
-    HeaderTags,
     Text
   },
   solid: {
@@ -25,7 +23,6 @@ export default () => {
 
   return (
     <>
-      <Header tag={HeaderTags.H1}>Select a process</Header>
       {
         windows().length > 0 ? (
           <Dropdown
@@ -39,7 +36,6 @@ export default () => {
             maxVisibleItems={5}
             closeOnSelect={true}
             onChange={(e) => setSelected(e.target.value)}
-            selected={selected()}
           />
         ) : (
           <Text>

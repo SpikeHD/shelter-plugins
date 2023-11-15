@@ -141,7 +141,7 @@ export const onLoad = async () => {
 }
 
 export const onUnload = async () => {
-  ws?.close()
+  if (ws?.close) ws.close?.()
   
   if (maybeUnregisterGameSetting) maybeUnregisterGameSetting()
 }
