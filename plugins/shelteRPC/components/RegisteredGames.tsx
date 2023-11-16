@@ -1,6 +1,8 @@
 import GameCard from './GameCard'
-import { css, classes } from './RegisteredGames.scss'
 import WindowProcessSelect from './WindowProcessSelect'
+import { Dropdown } from "../../../components/Dropdown"
+
+import { css, classes } from './RegisteredGames.scss'
 
 const {
   ui: {
@@ -8,6 +10,7 @@ const {
     Header,
     HeaderTags,
     Text,
+    TextBox,
     injectCss,
     openModal,
     ModalRoot,
@@ -23,6 +26,8 @@ const {
     store
   }
 } = shelter
+
+const { invoke, event } = (window as any).__TAURI__
 
 let injectedCss = false
 
@@ -104,15 +109,60 @@ export default () => {
 }
 
 function addIt() {
+  const [windows, setWindows] = createSignal<ProcessWindow[]>([])
+  const [selected, setSelected] = createSignal<number>(0)
+  const [name, setName] = createSignal<string>('')
+
+  createEffect(async () => {
+    const res = await invoke('get_windows')
+    setWindows(res)
+  })
+
   // Show a modal with WindowProcessSelect
   openModal((props) => (
     <ModalRoot>
       <ModalHeader>Add a game</ModalHeader>
       <ModalBody>
-        <WindowProcessSelect />
+        {
+          windows().length > 0 ? (
+            <>
+              <Dropdown
+                options={windows().map((w: ProcessWindow) => ({
+                  label: w.process_name,
+                  value: w.pid,
+                }))}
+                placeholder={'Select process...'}
+                maxVisibleItems={5}
+                closeOnSelect={true}
+                onChange={(e) => setSelected(Number(e.target.value))}
+              />
+
+              <Header
+                class={classes.modalhead}
+              >Name to Display</Header>
+              <TextBox
+                value={name()}
+                onInput={(v) => setName(v)}
+                placeholder={'Enter the name to display...'}
+              />
+            </>
+          ) : (
+            <Text>
+              Please wait...
+            </Text>
+          )
+        }
       </ModalBody>
       <ModalConfirmFooter
-        onConfirm={() => {}}
+        onConfirm={() => {
+          console.log(selected())
+          console.log(windows())
+          console.log(windows().find((w) => w.pid === selected()))
+          event.emit('add_detectable', {
+            exe: windows().find((w) => w.pid === selected())?.process_name,
+            name: name(),
+          })
+        }}
         onCancel={props.close}
         close={props.close}
         confirmText="Add"
