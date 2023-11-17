@@ -40,16 +40,35 @@ export default () => {
   const [isDorion, setIsDorion] = createSignal(false)
   const [currentlyPlaying, setCurrentlyPlaying] = createSignal('')
   const [previouslyPlayed, setPreviouslyPlayed] = createSignal({})
+  const [local, setLocal] = createSignal([])
 
   createEffect(async () => {
     setIsDorion(await (window as any)?.__TAURI__?.app.getName() === 'Dorion')
     setCurrentlyPlaying(store.currentlyPlaying || '')
     setPreviouslyPlayed(store.previouslyPlayed || {})
 
+    // Also grab local detectable games
+    setLocal(isDorion && await invoke('get_local_detectables'))
+
+    // For all local detectables that match existing previously played games, add the "local" property
+    // This is used to show the "delete" icon
+    const markLocals = () => {
+      for (const o of local()) {
+        const maybeIdx = Object.values(previouslyPlayed()).findIndex((p: ShelteRPCPreviouslyPlayed) => p.name === o.name)
+        if (maybeIdx !== -1) {
+          previouslyPlayed()[Object.keys(previouslyPlayed())[maybeIdx]]['local'] = true
+        }
+      }
+    }
+
+    markLocals()
+
     // Every couple seconds, grab new data from the plugin store
     setInterval(() => {
       setCurrentlyPlaying(store.currentlyPlaying || '')
       setPreviouslyPlayed(store.previouslyPlayed || {})
+
+      markLocals()
     }, 2000)
   })
 
@@ -100,6 +119,7 @@ export default () => {
               name={game.name}
               lastPlayed={game.lastPlayed}
               type='played'
+              local={game.local}
             />
           )
         })
@@ -155,9 +175,6 @@ function addIt() {
       </ModalBody>
       <ModalConfirmFooter
         onConfirm={() => {
-          console.log(selected())
-          console.log(windows())
-          console.log(windows().find((w) => w.pid === selected()))
           event.emit('add_detectable', {
             exe: windows().find((w) => w.pid === selected())?.process_name,
             name: name(),
