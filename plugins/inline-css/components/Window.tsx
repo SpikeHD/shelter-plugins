@@ -1,6 +1,7 @@
 import { css, classes } from './Window.scss'
 import Editor from './Editor'
 import { Close } from './Close'
+import { debounce } from '../util'
 
 const {
   ui: { injectCss },
@@ -20,43 +21,70 @@ export const Window = () => {
 
   const [dragging, setDragging] = createSignal(false)
 
-
   const close = () => {
     if (ref) ref.remove()
   }
 
-  const handleMouseDown = () => {
+  const handleMouseDown = (evt) => {
+    evt.preventDefault()
     setDragging(true)
-
-    // Create global mousemove listener that will be unlistened when global mouse up
-    // is triggered
-    document.addEventListener('mousemove', handleDrag)
-    document.addEventListener('mouseup', handleMouseUp)
+    mousedown(evt)
   }
 
-  const handleMouseUp = () => {
-    setDragging(false)
+  // Yoinked from SpikeHD/SpikeHD.github.io
+  const mousedown = (evt) => {
+    // Handle touches and mouse movement
+    const clientX = evt.touches
+      ? evt.touches[evt.touches.length - 1].clientX
+      : evt.clientX
+    const clientY = evt.touches
+      ? evt.touches[evt.touches.length - 1].clientY
+      : evt.clientY
 
-    document.removeEventListener('mousemove', handleDrag)
-    document.removeEventListener('mouseup', handleMouseUp)
-  }
+    const rect = evt.target.getBoundingClientRect()
+    const tgtX = rect.left
+    const tgtY = rect.top
+    const mouseX = clientX
+    const mouseY = clientY
+    const dragOffsetX = mouseX - tgtX
+    const dragOffsetY = mouseY - tgtY
 
-  const handleDrag = (evt) => {
-    const clientX = evt.pageX
-    const clientY = evt.pageY
+    // Get the window ancestor
+    const windowElm = evt.target.closest('.' + classes.window)
 
-    if (dragging() && ref) {
-      ref.style.left = `${clientX}px`
-      ref.style.top = `${clientY}px`
+    const drag = debounce((evt: DragEvent) => {
+      evt.preventDefault()
+
+      // Handle touches AND  mouse movement
+      const clientX = evt?.clientX
+      const clientY = evt?.clientY
+      const newX = clientX - dragOffsetX
+      const newY = clientY - dragOffsetY
+
+      windowElm.style.left = `${newX}px`
+      windowElm.style.top = `${newY}px`
+    }, 10)
+
+    const mouseup = () => {
+      // Remove movement event since we have lifted up
+      document.removeEventListener('mousemove', drag)
+      document.removeEventListener('touchmove', drag)
+
+      document.removeEventListener('mouseup', mouseup)
+      document.removeEventListener('touchend', mouseup)
     }
+
+    // Mousemove is added to the document in case the lement can't catch up and the mouse leaves the elemnts zone
+    document.addEventListener('mousemove', drag)
+    document.addEventListener('touchmove', drag)
+
+    document.addEventListener('mouseup', mouseup)
+    document.addEventListener('touchend', mouseup)
   }
 
   return (
     <div class={classes.window} ref={ref}>
-      <div
-        class={classes.topbar}
-        onmousedown={handleMouseDown}
-      >
+      <div class={classes.topbar} onmousedown={handleMouseDown}>
         <div class={classes.exit} onclick={close}>
           <Close />
         </div>
