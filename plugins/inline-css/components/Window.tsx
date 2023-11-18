@@ -91,7 +91,7 @@ export const Window = () => {
       </div>
 
       <div class={classes.inner}>
-        <div class={classes.nain}>
+        <div class={classes.main}>
           <Editor
             styleElm={
               document.getElementById('inline-css-output') as HTMLStyleElement

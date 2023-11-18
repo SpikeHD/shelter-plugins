@@ -21,6 +21,32 @@
     margin: 8px;
     overflow-y: auto;
     height: calc(100% - 30px);
+
+    /* Scrollbar */
+    &::-webkit-scrollbar-corner {
+      background: transparent
+    }
+  
+    &::-webkit-scrollbar {
+      background: transparent;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: var(--input-background);
+      border-radius: 4px;
+    }
+  
+    &::-webkit-scrollbar:horizontal {
+      height: 8px;
+    }
+  
+    &::-webkit-scrollbar:vertical {
+      width: 8px;
+    }
   }
 }
 
@@ -51,6 +77,5 @@
 }
 
 .main {
-  height: 100%;
-  width: 100%;
+  margin-right: 10px;
 }

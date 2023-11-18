@@ -66,7 +66,6 @@ export default function (props: Props) {
           <Button
             class={classes.popout}
             onClick={() => {
-              console.log('popping out')
               document.body.appendChild(
                 Window()
               )
