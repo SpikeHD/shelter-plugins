@@ -50,20 +50,18 @@ export default (props: Props) => {
     injectCss(css)
   }
 
-  if (!props.name) return null
-
   return (
     <div class={classes.gameCard + ' ' + (
-      props.type === 'playing' ? classes.cardPlaying :
+      props.type === 'playing' && props.name ? classes.cardPlaying :
         props.type === 'played' ? classes.cardPlayed :
           classes.cardNone
     )}>
       <div class={classes.gameCardInfo}>
-        <span class={classes.gameCardName}>{props.name || 'N/A'}</span>
+        <span class={classes.gameCardName}>{props.name || 'No game detected'}</span>
         <span class={classes.gameCardLastPlayed}>
           {
             props.type === 'played' ? <>Last played: <span class={classes.lastPlayedTimestamp}>{timestampToRelative(props.lastPlayed)}</span></> :
-              props.type === 'playing' ? 'Now playing!' :
+              props.type === 'playing' && props.name ? 'Now playing!' :
                 'What are you playing?'
           }
         </span>
