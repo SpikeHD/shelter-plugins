@@ -14,6 +14,7 @@ interface DorionSettings {
   desktop_notifications: boolean
   auto_clear_cache: boolean
   multi_instance: boolean
+  disable_hardware_accel: boolean
 }
 
 interface DorionTheme {

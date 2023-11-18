@@ -4,13 +4,8 @@ const {
   ui: {
     injectCss,
     openConfirmationModal,
-    ModalRoot,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
     SwitchItem,
     Button,
-    ButtonLooks,
     Header,
     HeaderTags,
     showToast
@@ -26,6 +21,8 @@ interface Settings {
   cache_css: boolean;
   streamer_mode_detection: boolean;
   rpc_server: boolean;
+  auto_clear_cache: boolean;
+  disable_hardware_accel: boolean;
 }
 
 export function PerformancePage() {
@@ -34,6 +31,7 @@ export function PerformancePage() {
     streamer_mode_detection: false,
     rpc_server: false,
     auto_clear_cache: false,
+    disable_hardware_accel: false,
   })
   const [platform, setPlatform] = createSignal<string>('')
 
@@ -149,6 +147,20 @@ export function PerformancePage() {
         note="Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the shelteRPC/arRPC plugin!"
       >
         Integrated rich presence server
+      </SwitchItem>
+
+      <SwitchItem
+        value={state().disable_hardware_accel}
+        onChange={(v) =>
+          setState({
+            ...state(),
+            disable_hardware_accel: v,
+          })
+        }
+        note="Disable hardware acceleration, which may cause issues on some systems. Disabling this can also cause performance issues on some systems. Unsupported on macOS."
+        disabled={platform() === 'macos'}
+      >
+        Disable Hardware Acceleration
       </SwitchItem>
 
       <div class={classes.pbuttons}>
