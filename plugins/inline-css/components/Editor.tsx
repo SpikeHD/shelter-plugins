@@ -23,6 +23,9 @@ const {
   },
   plugin: { store },
   solid: { createSignal, createEffect },
+  flux: {
+    dispatcher
+  }
 } = shelter
 
 const saveCss = debounce((css: string, styleElm: HTMLStyleElement) => {
@@ -36,6 +39,8 @@ const saveCss = debounce((css: string, styleElm: HTMLStyleElement) => {
 let injectedCss = false
 
 export default function (props: Props) {
+  let ref = null
+
   if (!injectedCss) {
     injectCss(css)
     injectedCss = true
@@ -48,9 +53,12 @@ export default function (props: Props) {
   })
 
   const setCss = (css: string) => {
-    // Insert a newline if there is none
-    if (css.length > 0 && css[css.length - 1] !== '\n') {
-      css += '\n'
+    if (ref) {
+      // Find the textarea in the ref, and autoscroll down
+      const textarea = ref.querySelector('textarea')
+      if (textarea && textarea.scrollTop !== textarea.scrollHeight) {
+        textarea.scrollTop = textarea.scrollHeight
+      }
     }
 
     setInlineCss(css)
@@ -69,6 +77,11 @@ export default function (props: Props) {
               document.body.appendChild(
                 Window()
               )
+
+              // This closes settings automagically
+              dispatcher.dispatch({
+                type: 'LAYER_POP'
+              })
             }}
           >
             Pop Out 
@@ -78,10 +91,10 @@ export default function (props: Props) {
       }
 
 
-      <div class={classes.ceditor}>
+      <div class={classes.ceditor} ref={ref}>
         <CodeInput
           highlightjs={hljs}
-          autoHeight={true}
+          autoHeight={false}
           resize="none"
           placeholder="Enter any CSS here..."
           onChange={setCss}

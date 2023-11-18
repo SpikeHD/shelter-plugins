@@ -3,6 +3,8 @@
   margin-top: 28px;
   border-radius: 5px;
   background: var(--input-background);
+
+  height: 80vh !important;
 }
 
 .ceditor > div {
@@ -46,4 +48,8 @@
   &::-webkit-scrollbar:vertical {
     width: 8px;
   }
+}
+
+.ceditor .div[class*="styles-"] {
+  height: 100% !important;
 }
