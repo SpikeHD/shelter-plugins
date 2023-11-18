@@ -63,7 +63,7 @@ export const Window = () => {
 
       windowElm.style.left = `${newX}px`
       windowElm.style.top = `${newY}px`
-    }, 10)
+    }, 5)
 
     const mouseup = () => {
       // Remove movement event since we have lifted up
