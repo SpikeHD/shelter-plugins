@@ -88,6 +88,9 @@ export default () => {
           <GameCard
             name={currentlyPlaying()}
             type='playing'
+            local={
+              Object.values(previouslyPlayed()).find((p: ShelteRPCPreviouslyPlayed) => p.name === currentlyPlaying())?.local || false
+            }
           />
         ) : (
           <GameCard

@@ -34,6 +34,9 @@ const cachedAssets: AssetCache = {}
 let ws: WebSocket
 const apps: Record<string, { name: string } | string> = {}
 
+// when we load, set current game as nothing
+store.currentlyPlaying = ''
+
 async function lookupApp(name: string): Promise<string> {
   return GameStore.getGameByName(name)?.name || 'Unknown'
 }

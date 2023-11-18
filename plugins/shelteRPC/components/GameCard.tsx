@@ -28,8 +28,6 @@ const trashIcon = () => (
 let injectedCss = false
 
 const deleteGame = (name: string) => {
-  console.log('Deleting ', name)
-
   // Remove from local detectables
   window.dorion && (window as any).__TAURI__.event.emit('remove_detectable', {
     name,
@@ -37,7 +35,13 @@ const deleteGame = (name: string) => {
   })
 
   // Also remove from the plugin store
-  delete store.previouslyPlayed[name]
+  const key = Object.keys(store.previouslyPlayed).find(k => store.previouslyPlayed[k].name === name)
+  delete store.previouslyPlayed[key]
+
+  // If the currently playing game is the one we're deleting, set it to nothing
+  if (store.currentlyPlaying === name) {
+    store.currentlyPlaying = ''
+  }
 }
 
 export default (props: Props) => {
@@ -46,6 +50,8 @@ export default (props: Props) => {
     injectCss(css)
   }
 
+  if (!props.name) return null
+
   return (
     <div class={classes.gameCard + ' ' + (
       props.type === 'playing' ? classes.cardPlaying :
@@ -53,7 +59,7 @@ export default (props: Props) => {
           classes.cardNone
     )}>
       <div class={classes.gameCardInfo}>
-        <span class={classes.gameCardName}>{props.name || 'No game detected'}</span>
+        <span class={classes.gameCardName}>{props.name || 'N/A'}</span>
         <span class={classes.gameCardLastPlayed}>
           {
             props.type === 'played' ? <>Last played: <span class={classes.lastPlayedTimestamp}>{timestampToRelative(props.lastPlayed)}</span></> :
