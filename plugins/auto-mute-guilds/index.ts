@@ -5,7 +5,7 @@ const {
 } = shelter
 
 const unsubscribe = dispatcher.subscribe('INVITE_ACCEPT_SUCCESS', async (payload) => {
-  const { guild_id } = payload
+  const { guild_id } = payload.invite
 
   // Mute guild
   dispatcher.dispatch(
