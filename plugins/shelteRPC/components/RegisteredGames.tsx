@@ -144,7 +144,9 @@ function addIt() {
   // Show a modal with WindowProcessSelect
   openModal((props) => (
     <ModalRoot>
-      <ModalHeader>Add a game</ModalHeader>
+      <ModalHeader
+        close={props.close}
+      >Add a game</ModalHeader>
       <ModalBody>
         {
           windows().length > 0 ? (
@@ -184,7 +186,6 @@ function addIt() {
           })
         }}
         onCancel={props.close}
-        close={props.close}
         confirmText="Add"
         cancelText="Cancel"
         type={'neutral'}

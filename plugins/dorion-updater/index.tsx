@@ -21,12 +21,13 @@ const {
 const { invoke, process, event } = (window as any).__TAURI__
 const confirmModal = (props: ConfirmationModalProps) => (
   <ModalRoot>
-    <ModalHeader>{props.header}</ModalHeader>
+    <ModalHeader
+      close={props.onCancel}
+    >{props.header}</ModalHeader>
     <ModalBody>{props.body}</ModalBody>
     <ModalConfirmFooter
       onConfirm={props.onConfirm}
       onCancel={props.onCancel}
-      close={props.onCancel}
       confirmText={props.confirmText}
       cancelText={props.cancelText}
       type={props.type}
