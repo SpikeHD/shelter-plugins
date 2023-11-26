@@ -12,9 +12,14 @@ const {
   patcher
 } = shelter
 
-const { invoke, notification } = (window as any).__TAURI__
+const { invoke } = (window as any).__TAURI__
 const [settings, setSettings] = createSignal<DorionSettings>(null)
 const notifSelector = 'div[class*="contentColumn"] div[class*="container"]'
+
+// Overwrite the default window.Notification function
+const unpatchNotif = patcher.instead('Notification', window, () => {
+  return
+})
 
 let unobserve = null
 let isOnNotifSection = false
@@ -84,4 +89,5 @@ export const onUnload = () => {
   unobserve?.now()
   FluxDispatcher.unsubscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
   FluxDispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', notifHandler)
+  unpatchNotif()
 }
