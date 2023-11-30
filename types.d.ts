@@ -31,7 +31,9 @@ interface DorionPlugin {
 interface ShelteRPCPreviouslyPlayed {
   name: string
   lastPlayed: number
-  shouldHide: boolean
+  hide: boolean
+  local?: boolean
+  appid: string
 }
 
 interface ShelteRPCStore {
