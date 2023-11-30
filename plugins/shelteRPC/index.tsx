@@ -78,19 +78,24 @@ async function handleMessage(e: MessageEvent<string>) {
 
     if (!store.previouslyPlayed) store.previouslyPlayed = {}
 
+    if (!data.activity?.name) return
+
     // If this isn't already in the list, add it
-    if (!(data.activity.application_id in store.previouslyPlayed)) {
-      store.previouslyPlayed[data.activity.application_id] = {}
+    if (!(data.activity.name in store.previouslyPlayed)) {
+      store.previouslyPlayed[data.activity.name] = {}
     }
-    
-    store.previouslyPlayed[data.activity.application_id] = {
-      name: data.activity.name,
-      lastPlayed: Date.now()
-    }
+
+    store.previouslyPlayed[data.activity.name].name = data.activity.name
+    store.previouslyPlayed[data.activity.name].appid = data.activity.application_id
+    store.previouslyPlayed[data.activity.name].lastPlayed = Date.now()
+    store.previouslyPlayed[data.activity.name].local = data.activity.application_id === '1337'
   } else {
     // Clear out "currentlyPlaying"
     store.currentlyPlaying = ''
   }
+
+  // If this activity should be hidden, don't update activity
+  if (store.previouslyPlayed[data.activity?.name]?.hide) return
   
   FluxDispatcher.dispatch({
     type: 'LOCAL_ACTIVITY_UPDATE',

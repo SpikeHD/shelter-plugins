@@ -1,5 +1,4 @@
 import GameCard from './GameCard'
-import WindowProcessSelect from './WindowProcessSelect'
 import { Dropdown } from "../../../components/Dropdown"
 
 import { css, classes } from './RegisteredGames.scss'
@@ -122,7 +121,7 @@ export default () => {
               name={game.name}
               lastPlayed={game.lastPlayed}
               type='played'
-              local={game.local}
+              local={game?.local}
             />
           )
         })
