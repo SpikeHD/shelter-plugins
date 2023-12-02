@@ -151,10 +151,12 @@ function addIt() {
           windows().length > 0 ? (
             <>
               <Dropdown
-                options={windows().map((w: ProcessWindow) => ({
-                  label: w.process_name,
-                  value: w.pid,
-                }))}
+                options={
+                  // Unique
+                  windows().filter((w: ProcessWindow, i: number, a: ProcessWindow[]) => a.findIndex((w2: ProcessWindow) => w2.process_name === w.process_name) === i).map((w: ProcessWindow) => ({
+                    label: w.process_name,
+                    value: w.pid,
+                  }))}
                 placeholder={'Select process...'}
                 maxVisibleItems={5}
                 closeOnSelect={true}
