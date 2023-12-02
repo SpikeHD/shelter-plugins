@@ -13,7 +13,7 @@ const {
   solid: { createSignal, createEffect },
 } = shelter
 
-const { invoke, process } = (window as any).__TAURI__
+const { invoke, process } = window.__TAURI__
 
 let injectedCss = false
 

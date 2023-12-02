@@ -46,7 +46,7 @@ let injectedCss = false
 
 const deleteGame = (name: string) => {
   // Remove from local detectables
-  window.dorion && (window as any).__TAURI__.event.emit('remove_detectable', {
+  (window as any).dorion && (window as any).__TAURI__.event.emit('remove_detectable', {
     name,
     exe: ''
   })
