@@ -1,5 +1,5 @@
 import GameCard from './GameCard'
-import { Dropdown } from "../../../components/Dropdown"
+import { Dropdown } from '../../../components/Dropdown'
 
 import { css, classes } from './RegisteredGames.scss'
 

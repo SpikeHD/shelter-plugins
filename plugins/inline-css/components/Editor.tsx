@@ -39,6 +39,7 @@ const saveCss = debounce((css: string, styleElm: HTMLStyleElement) => {
 let injectedCss = false
 
 export default function (props: Props) {
+  // eslint-disable-next-line prefer-const
   let ref = null
 
   if (!injectedCss) {

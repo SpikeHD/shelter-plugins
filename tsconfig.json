@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "preserve",
     "types": ["./types.d.ts", "./css.d.ts"],
     "target": "es6",
     "lib": ["es2020", "dom"],
+    "moduleResolution": "NodeNext"
   },
   "include": ["plugins/**/*.ts", "plugins/**/*.tsx", "node_modules/@uwu/shelter-defs/**/*.d.ts"]
 }

@@ -1,17 +1,17 @@
-import { Dropdown } from "../../components/Dropdown";
-import { css, classes } from "./settings.scss";
+import { Dropdown } from '../../components/Dropdown'
+import { css, classes } from './settings.scss'
 
 const {
   plugin: { store },
   ui: { SwitchItem, Header, injectCss },
-} = shelter;
+} = shelter
 
-let injectedCss = false;
+let injectedCss = false
 
 export default () => {
   if (!injectedCss) {
-    injectedCss = true;
-    injectCss(css);
+    injectedCss = true
+    injectCss(css)
   }
 
   return (
@@ -22,15 +22,15 @@ export default () => {
         onChange={(e) => (store.notifications = e.target.value)}
         options={[
           {
-            label: "All messages",
+            label: 'All messages',
             value: 0,
           },
           {
-            label: "Only @mentions",
+            label: 'Only @mentions',
             value: 1,
           },
           {
-            label: "Nothing",
+            label: 'Nothing',
             value: 2,
           },
         ]}
@@ -69,5 +69,5 @@ export default () => {
         Mute mobile notifications
       </SwitchItem>
     </>
-  );
-};
+  )
+}
