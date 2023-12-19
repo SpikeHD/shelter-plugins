@@ -12,6 +12,7 @@ Shelter plugin repo housing both general-use plugins AND [Dorion](https://github
   * [No Reply Mention](#no-reply-mention)
   * [shelteRPC](#shelterpc)
 * [Dorion Plugins](#dorion-plugins)
+  * [Dorion Fullscreen](#dorion-fullscreen)
   * [Dorion Settings](#dorion-settings)
   * [Dorion Streamer Mode](#dorion-streamer-mode)
   * [Dorion Notifications](#dorion-notifications)
@@ -72,6 +73,12 @@ arRPC replication for Shelter. Only really useful on web Discord, and if you are
 # Dorion Plugins
 
 (you don't want these next plugins, they are for the [Dorion client](https://github.com/SpikeHD/Dorion))
+
+## Dorion Fullscreen
+
+Tweak Fullscreen behaviour in Dorion.
+
+`https://spikehd.github.io/shelter-plugins/dorion-fullscreen/`
 
 ## Dorion Settings
 
