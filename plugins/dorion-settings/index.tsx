@@ -20,8 +20,10 @@ const appendDorionVersion = async () => {
   await sleep(1000)
 
   const versionThings = document.querySelector('div[class*="side_"] div[class*="info_"]')
-  const firstChild = versionThings.firstElementChild as HTMLSpanElement
+  const firstChild = versionThings?.firstElementChild as HTMLSpanElement
   const newVersionThing = document.createElement('span') as HTMLSpanElement
+
+  if (!firstChild) return
 
   newVersionThing.innerHTML = `Dorion v${await app.getVersion()}`
   newVersionThing.classList.add(...firstChild.classList)
