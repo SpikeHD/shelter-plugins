@@ -41,7 +41,7 @@ const settingsHandler = async (payload) => {
       const text = node.querySelector(textSelector)
 
       if (text.textContent.includes('(')) {
-        text.textContent = text.textContent.replace(/\(.?+\)/g, '')
+        text.textContent = text.textContent.replace(/\(.+?\)/g, '')
       }
     })
   )
