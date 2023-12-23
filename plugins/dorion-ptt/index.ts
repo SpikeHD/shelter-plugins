@@ -15,6 +15,7 @@ const events = []
 const subscriptions = []
 const unobserves = []
 const warningSelector = 'div[class*="pttToolsMessage_"]'
+const radiobarSelector = 'div[class*="radioBar_"]'
 const popupSelector = 'div[class*="layerContainer_"] div[class*="layer_"]'
 
 const unobserveAll = () => unobserves.forEach((unobserve) => unobserve())
@@ -34,6 +35,14 @@ const settingsHandler = async (payload) => {
     observeDom(popupSelector, (node: HTMLDivElement) => {
       // Remove all children of the parent element
       node.parentElement.innerHTML = ''
+    }),
+    observeDom(radiobarSelector, (node: HTMLDivElement) => {
+      const textSelector = 'div[class*="info_"] div[class*="text"]'
+      const text = node.querySelector(textSelector)
+
+      if (text.textContent.includes('(')) {
+        text.textContent = text.textContent.replace(/\(.?+\)/g, '')
+      }
     })
   )
 }
