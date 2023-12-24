@@ -33,8 +33,11 @@ const settingsHandler = async (payload) => {
       node.remove()
     }),
     observeDom(popupSelector, (node: HTMLDivElement) => {
-      // Remove all children of the parent element
-      node.innerHTML = ''
+      // Click the backdrop
+      const unobserveBackdrop = observeDom('div[class*="backdrop_"]', (backdrop: HTMLDivElement) => {
+        backdrop.click()
+        unobserveBackdrop()
+      })
     }),
     observeDom(radiobarSelector, (node: HTMLDivElement) => {
       const textSelector = 'div[class*="info_"] div[class*="text"]'
