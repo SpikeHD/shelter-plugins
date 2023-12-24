@@ -34,7 +34,7 @@ const settingsHandler = async (payload) => {
     }),
     observeDom(popupSelector, (node: HTMLDivElement) => {
       // Remove the actual popout
-      node.remove()
+      node.innerHTML = ''
 
       // Click the backdrop
       const unobserveBackdrop = observeDom('div[class*="backdrop_"]', (backdrop: HTMLDivElement) => {
