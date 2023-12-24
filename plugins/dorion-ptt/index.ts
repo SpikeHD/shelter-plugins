@@ -34,7 +34,7 @@ const settingsHandler = async (payload) => {
     }),
     observeDom(popupSelector, (node: HTMLDivElement) => {
       // Remove all children of the parent element
-      node.parentElement.innerHTML = ''
+      node.innerHTML = ''
     }),
     observeDom(radiobarSelector, (node: HTMLDivElement) => {
       const textSelector = 'div[class*="info_"] div[class*="text"]'
@@ -78,7 +78,6 @@ const toggleHandler = async (e) => {
   }
 
   console.log('Toggle handler called with state: ', state)
-  console.log(e.payload)
 
   FluxDispatcher.dispatch(
     fluxPayload
