@@ -42,13 +42,7 @@ const appendDorionVersion = async () => {
   newVersionThing.classList.add(...firstChild.classList)
   newVersionThing.style.color = firstChild.style.color
 
-  console.log('going to append')
-  console.log(versionThings)
-
-  const newChild = versionThings.appendChild(newVersionThing)
-
-  console.log('appened as:')
-  console.log(newChild)
+  versionThings.appendChild(newVersionThing)
 }
 
 dispatcher.subscribe('USER_SETTINGS_MODAL_OPEN', appendDorionVersion)
