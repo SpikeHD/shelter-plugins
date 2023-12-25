@@ -18,9 +18,12 @@ const {
 const { app } = (window as any).__TAURI__
 
 const appendDorionVersion = async () => {
+  let added = false
   const infoBoxSelector = 'div[class*="side_"] div[class*="info_"]'
 
   const unobserve = observeDom(infoBoxSelector, async (versionThings: HTMLDivElement) => {
+    if (!added) return
+
     const firstChild = versionThings?.firstElementChild as HTMLSpanElement
     const newVersionThing = document.createElement('span') as HTMLSpanElement
 
@@ -33,6 +36,7 @@ const appendDorionVersion = async () => {
 
     versionThings.appendChild(newVersionThing)
 
+    added = true
     unobserve()
   })
 
