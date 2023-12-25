@@ -50,10 +50,13 @@ export function PerformancePage() {
 
   createEffect(async () => {
     const settings = await invoke('read_config_file')
-    const availableBlurs = await invoke('available_blurs')
     const defaultConf = await invoke('default_config')
 
-    setBlurOptions(availableBlurs)
+    try {
+      const availableBlurs = await invoke('available_blurs')
+      setBlurOptions(availableBlurs)
+    } catch(e) { /* this can fail it's fine */ }
+
 
     try {
       const platform = await invoke('get_platform')
@@ -189,7 +192,7 @@ export function PerformancePage() {
           label: capitalize(b),
           value: b,
         }))}
-        disabled={platform() !== 'linux'}
+        disabled={platform() === 'linux'}
       />
 
       <div class={classes.stext}>
@@ -205,7 +208,7 @@ export function PerformancePage() {
           })
         }
         note="Enable this if you are not using a theme designed to take advantage of transparent windows."
-        disabled={platform() !== 'linux' || state().blur === 'none'}
+        disabled={platform() === 'linux' || state().blur === 'none'}
       >
         Enable builtin background transparency CSS
       </SwitchItem>
