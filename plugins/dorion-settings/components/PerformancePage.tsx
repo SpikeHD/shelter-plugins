@@ -178,7 +178,7 @@ export function PerformancePage() {
       </SwitchItem>
 
       <Header class={classes.shead}>Blur</Header>
-      <Text>
+      <Text class={classes.stext}>
         The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">the window-vibrancy crate</a>.
       </Text>
 
