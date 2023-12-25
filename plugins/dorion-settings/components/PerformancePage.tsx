@@ -1,4 +1,5 @@
 import { css, classes } from './PerformancePage.tsx.scss'
+import { Dropdown } from '../components/Dropdown.tsx'
 
 const {
   ui: {
@@ -8,6 +9,7 @@ const {
     Button,
     Header,
     HeaderTags,
+    Text,
     showToast
   },
   solid: { createSignal, createEffect },
@@ -17,12 +19,16 @@ const { invoke, process } = window.__TAURI__
 
 let injectedCss = false
 
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+
 interface Settings {
   cache_css: boolean;
   streamer_mode_detection: boolean;
   rpc_server: boolean;
   auto_clear_cache: boolean;
   disable_hardware_accel: boolean;
+  blur: 'none' | 'blur' | 'acrylic' | 'mica' | 'vibrancy';
+  blur_css: boolean;
 }
 
 export function PerformancePage() {
@@ -32,8 +38,11 @@ export function PerformancePage() {
     rpc_server: false,
     auto_clear_cache: false,
     disable_hardware_accel: false,
+    blur: 'none',
+    blur_css: false,
   })
   const [platform, setPlatform] = createSignal<string>('')
+  const [blurOptions, setBlurOptions] = createSignal<string[]>([])
 
   if (!injectedCss) {
     injectedCss = true
@@ -42,7 +51,10 @@ export function PerformancePage() {
 
   createEffect(async () => {
     const settings = await invoke('read_config_file')
+    const availableBlurs = await invoke('available_blurs')
     const defaultConf = await invoke('default_config')
+
+    setBlurOptions(availableBlurs)
 
     try {
       const platform = await invoke('get_platform')
@@ -161,6 +173,39 @@ export function PerformancePage() {
         disabled={platform() === 'macos'}
       >
         Disable Hardware Acceleration
+      </SwitchItem>
+
+      <Header class={classes.shead}>Blur</Header>
+      <Text>
+        The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">the window-vibrancy crate</a>.
+      </Text>
+
+      <Dropdown
+        value={state().blur}
+        selected={state().blur}
+        onChange={(e) =>
+          setState({
+            ...state(),
+            blur: e.target.value as any,
+          })
+        }
+        options={blurOptions().map((b) => ({
+          label: capitalize(b),
+          value: b,
+        }))}
+      />
+
+      <SwitchItem
+        value={state().blur_css}
+        onChange={(v) =>
+          setState({
+            ...state(),
+            blur_css: v,
+          })
+        }
+        note="Enable this if you are not using a theme designed to take advantage of transparent windows."
+      >
+        Enable builtin background transparency CSS
       </SwitchItem>
 
       <div class={classes.pbuttons}>
