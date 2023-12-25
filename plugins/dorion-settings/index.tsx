@@ -12,38 +12,43 @@ const {
   util: {
     sleep
   },
-  observeDom
 } = shelter
 
 const { app } = (window as any).__TAURI__
 
 const appendDorionVersion = async () => {
-  let added = false
+  let tries = 0
   const infoBoxSelector = 'div[class*="side_"] div[class*="info_"]'
 
-  const unobserve = observeDom(infoBoxSelector, async (versionThings: HTMLDivElement) => {
-    if (!added) return
+  // Wait for infoBox to exist
+  while (!document.querySelector(infoBoxSelector)) {
+    await sleep(500)
+    tries++
 
-    const firstChild = versionThings?.firstElementChild as HTMLSpanElement
-    const newVersionThing = document.createElement('span') as HTMLSpanElement
+    if (tries > 5) {
+      console.error('Failed to find infoBox')
+      return
+    }
+  }
 
-    if (!firstChild) return
+  const versionThings = document.querySelector(infoBoxSelector)
+  const firstChild = versionThings?.firstElementChild as HTMLSpanElement
+  const newVersionThing = document.createElement('span') as HTMLSpanElement
 
-    newVersionThing.innerHTML = `Dorion v${await app.getVersion()}`
-    // @ts-expect-error This works
-    newVersionThing.classList.add(...firstChild.classList)
-    newVersionThing.style.color = firstChild.style.color
+  if (!firstChild) return
 
-    versionThings.appendChild(newVersionThing)
+  newVersionThing.innerHTML = `Dorion v${await app.getVersion()}`
+  // @ts-expect-error This works
+  newVersionThing.classList.add(...firstChild.classList)
+  newVersionThing.style.color = firstChild.style.color
 
-    added = true
-    unobserve()
-  })
+  console.log('going to append')
+  console.log(versionThings)
 
-  // Unobserve after 5 seconds just in case something gets silly
-  await sleep(5000)
+  const newChild = versionThings.appendChild(newVersionThing)
 
-  unobserve?.()
+  console.log('appened as:')
+  console.log(newChild)
 }
 
 dispatcher.subscribe('USER_SETTINGS_MODAL_OPEN', appendDorionVersion)
