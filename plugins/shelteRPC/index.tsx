@@ -118,35 +118,31 @@ const retry = async (fn: (curTry: number) => any, times: number = 5, wait: numbe
 export const onLoad = async () => {
   if (ws && ws?.close) ws.close()
 
-  ws = new WebSocket('ws://127.0.0.1:1337')
-  ws.onmessage = handleMessage
-  ws.onerror = (e) => console.error(e)
+  const connected = retry(
+    async (curTry) => {
+      ws = new WebSocket('ws://127.0.0.1:1337')
+      ws.onmessage = handleMessage
+      ws.onerror = (e) => { throw e }
 
-  // See if we were able to connect after a second
-  const connected = await new Promise((r) =>
-    setTimeout(() => {
-      retry(
-        (curTry) => {
-          if (ws.readyState !== WebSocket.OPEN) {
-            console.log(ws)
-            ws?.close()
-            ws = null
+      await new Promise((r) => setTimeout(r, 1000))
 
-            showToast({
-              title: 'ShelteRPC',
-              content: `Unable to connect to ShelteRPC server (${curTry})`,
-              duration: 3000,
-            })
+      if (ws.readyState !== WebSocket.OPEN) {
+        ws?.close()
+        ws = null
 
-            r(false)
-          }
+        showToast({
+          title: 'ShelteRPC',
+          content: `Unable to connect to ShelteRPC server (${curTry})`,
+          duration: 2000,
+        })
 
-          r(true)
-        },
-        5,
-        1000
-      )
-    }, 1000)
+        return false
+      }
+
+      return true
+    },
+    5,
+    1000
   )
 
   maybeUnregisterGameSetting = registerSection(
