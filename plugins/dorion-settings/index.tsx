@@ -11,25 +11,35 @@ const {
   },
   util: {
     sleep
-  }
+  },
+  observeDom
 } = shelter
 
 const { app } = (window as any).__TAURI__
 
 const appendDorionVersion = async () => {
-  await sleep(1000)
+  const infoBoxSelector = 'div[class*="side_"] div[class*="info_"]'
 
-  const versionThings = document.querySelector('div[class*="side_"] div[class*="info_"]')
-  const firstChild = versionThings?.firstElementChild as HTMLSpanElement
-  const newVersionThing = document.createElement('span') as HTMLSpanElement
+  const unobserve = observeDom(infoBoxSelector, async (versionThings: HTMLDivElement) => {
+    const firstChild = versionThings?.firstElementChild as HTMLSpanElement
+    const newVersionThing = document.createElement('span') as HTMLSpanElement
 
-  if (!firstChild) return
+    if (!firstChild) return
 
-  newVersionThing.innerHTML = `Dorion v${await app.getVersion()}`
-  newVersionThing.classList.add(...firstChild.classList)
-  newVersionThing.style.color = firstChild.style.color
+    newVersionThing.innerHTML = `Dorion v${await app.getVersion()}`
+    // @ts-expect-error This works
+    newVersionThing.classList.add(...firstChild.classList)
+    newVersionThing.style.color = firstChild.style.color
 
-  versionThings.appendChild(newVersionThing)
+    versionThings.appendChild(newVersionThing)
+
+    unobserve()
+  })
+
+  // Unobserve after 5 seconds just in case something gets silly
+  await sleep(5000)
+
+  unobserve?.()
 }
 
 dispatcher.subscribe('USER_SETTINGS_MODAL_OPEN', appendDorionVersion)
