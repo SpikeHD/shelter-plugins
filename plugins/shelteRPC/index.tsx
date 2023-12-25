@@ -106,19 +106,21 @@ async function handleMessage(e: MessageEvent<string>) {
 }
 
 const retry = async (fn: (curTry: number) => any, times: number = 5, wait: number = 500) => {
-  try {
+  let result
+
+  for (let i = 0; i < times; i++) {
+    result = await fn(i)
+    if (result) return result
     await new Promise((r) => setTimeout(r, wait))
-    return await fn(times)
-  } catch (e) {
-    if (times === 0) throw e
-    return retry(fn, times - 1)
   }
+
+  return result
 }
 
 export const onLoad = async () => {
   if (ws && ws?.close) ws.close()
 
-  const connected = retry(
+  const connected = await retry(
     async (curTry) => {
       ws = new WebSocket('ws://127.0.0.1:1337')
       ws.onmessage = handleMessage
@@ -127,7 +129,7 @@ export const onLoad = async () => {
       await new Promise((r) => setTimeout(r, 1000))
 
       if (ws.readyState !== WebSocket.OPEN) {
-        ws?.close()
+        ws?.close?.()
         ws = null
 
         showToast({
@@ -141,8 +143,8 @@ export const onLoad = async () => {
 
       return true
     },
-    5,
-    1000
+    3,
+    3000
   )
 
   maybeUnregisterGameSetting = registerSection(
