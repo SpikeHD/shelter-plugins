@@ -2,29 +2,21 @@ import RegisteredGames from './components/RegisteredGames'
 
 interface AssetCache {
   [key: string]: {
-    id: string
-    name: string
-    type: number
-  }[]
+    id: string;
+    name: string;
+    type: number;
+  }[];
 }
 
 const {
   flux: {
     dispatcher: FluxDispatcher,
-    stores: {
-      GameStore
-    }
+    stores: { GameStore },
   },
-  settings: {
-    registerSection
-  },
-  ui: {
-    showToast
-  },
-  plugin: {
-    store
-  },
-  http
+  settings: { registerSection },
+  ui: { showToast },
+  plugin: { store },
+  http,
 } = shelter
 
 let maybeUnregisterGameSetting = () => {}
@@ -53,7 +45,7 @@ export const generateAssetId = async (appId: string, asset: string) => {
     cachedAssets[appId] = resp.body as AssetCache[typeof appId]
   }
 
-  const assetId = cachedAssets[appId].find(a => a.name === asset)?.id
+  const assetId = cachedAssets[appId].find((a) => a.name === asset)?.id
 
   return assetId
 }
@@ -62,13 +54,21 @@ async function handleMessage(e: MessageEvent<string>) {
   const data = JSON.parse(e.data)
   const assets = data.activity?.assets
 
-  if (assets?.large_image) assets.large_image = await generateAssetId(data.activity.application_id, assets.large_image)
-  if (assets?.small_image) assets.small_image = await generateAssetId(data.activity.application_id, assets.small_image)
+  if (assets?.large_image)
+    assets.large_image = await generateAssetId(
+      data.activity.application_id,
+      assets.large_image
+    )
+  if (assets?.small_image)
+    assets.small_image = await generateAssetId(
+      data.activity.application_id,
+      assets.small_image
+    )
 
   if (data.activity) {
     const appId = data.activity.application_id
     apps[appId] ||= await lookupApp(data.activity.name)
-    
+
     const app = apps[appId]
     if (typeof app !== 'string') {
       data.activity.name ||= app.name
@@ -86,9 +86,11 @@ async function handleMessage(e: MessageEvent<string>) {
     }
 
     store.previouslyPlayed[data.activity.name].name = data.activity.name
-    store.previouslyPlayed[data.activity.name].appid = data.activity.application_id
+    store.previouslyPlayed[data.activity.name].appid =
+      data.activity.application_id
     store.previouslyPlayed[data.activity.name].lastPlayed = Date.now()
-    store.previouslyPlayed[data.activity.name].local = data.activity.application_id === '1337'
+    store.previouslyPlayed[data.activity.name].local =
+      data.activity.application_id === '1337'
   } else {
     // Clear out "currentlyPlaying"
     store.currentlyPlaying = ''
@@ -96,11 +98,21 @@ async function handleMessage(e: MessageEvent<string>) {
 
   // If this activity should be hidden, don't update activity
   if (store.previouslyPlayed[data.activity?.name]?.hide) return
-  
+
   FluxDispatcher.dispatch({
     type: 'LOCAL_ACTIVITY_UPDATE',
-    ...data
+    ...data,
   })
+}
+
+const retry = async (fn: (curTry: number) => any, times: number = 5, wait: number = 500) => {
+  try {
+    await new Promise((r) => setTimeout(r, wait))
+    return await fn(times)
+  } catch (e) {
+    if (times === 0) throw e
+    return retry(fn, times - 1)
+  }
 }
 
 export const onLoad = async () => {
@@ -111,25 +123,38 @@ export const onLoad = async () => {
   ws.onerror = (e) => console.error(e)
 
   // See if we were able to connect after a second
-  const connected = await new Promise(r => setTimeout(() => {
-    if (ws.readyState !== WebSocket.OPEN) {
-      console.log(ws)
-      ws?.close()
-      ws = null
+  const connected = await new Promise((r) =>
+    setTimeout(() => {
+      retry(
+        (curTry) => {
+          if (ws.readyState !== WebSocket.OPEN) {
+            console.log(ws)
+            ws?.close()
+            ws = null
 
-      showToast({
-        title: 'ShelteRPC',
-        content: 'Unable to connect to ShelteRPC server',
-        duration: 3000
-      })
+            showToast({
+              title: 'ShelteRPC',
+              content: `Unable to connect to ShelteRPC server (${curTry})`,
+              duration: 3000,
+            })
 
-      r(false)
-    }
+            r(false)
+          }
 
-    r(true)
-  }, 1000))
+          r(true)
+        },
+        5,
+        1000
+      )
+    }, 1000)
+  )
 
-  maybeUnregisterGameSetting = registerSection('section', 'shelterpc', 'Registered Games', RegisteredGames)
+  maybeUnregisterGameSetting = registerSection(
+    'section',
+    'shelterpc',
+    'Registered Games',
+    RegisteredGames
+  )
 
   if (!connected) return
 
@@ -137,19 +162,19 @@ export const onLoad = async () => {
     showToast({
       title: 'ShelteRPC',
       content: 'ShelteRPC server disconnected',
-      duration: 3000
+      duration: 3000,
     })
   }
 
   showToast({
     title: 'ShelteRPC',
     content: 'Connected to ShelteRPC server',
-    duration: 3000
+    duration: 3000,
   })
 }
 
 export const onUnload = async () => {
   if (ws?.close) ws.close?.()
-  
+
   if (maybeUnregisterGameSetting) maybeUnregisterGameSetting()
 }
