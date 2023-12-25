@@ -43,6 +43,7 @@ export function PerformancePage() {
   })
   const [platform, setPlatform] = createSignal<string>('')
   const [blurOptions, setBlurOptions] = createSignal<string[]>([])
+  const [isLinux, setIsLinux] = createSignal<boolean>(false)
 
   if (!injectedCss) {
     injectedCss = true
@@ -55,6 +56,7 @@ export function PerformancePage() {
     const defaultConf = await invoke('default_config')
 
     setBlurOptions(availableBlurs)
+    setIsLinux((await invoke('get_platform')) === 'linux')
 
     try {
       const platform = await invoke('get_platform')
@@ -193,6 +195,7 @@ export function PerformancePage() {
           label: capitalize(b),
           value: b,
         }))}
+        disabled={isLinux()}
       />
 
       <SwitchItem
@@ -204,6 +207,7 @@ export function PerformancePage() {
           })
         }
         note="Enable this if you are not using a theme designed to take advantage of transparent windows."
+        disabled={isLinux()}
       >
         Enable builtin background transparency CSS
       </SwitchItem>

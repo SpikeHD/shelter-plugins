@@ -18,6 +18,7 @@ export const Dropdown: Component<{
     value: string;
   }[];
   selected?: string;
+  disabled?: boolean;
 }> = (props) => {
   if (!injectedCss) {
     injectedCss = true
@@ -33,6 +34,7 @@ export const Dropdown: Component<{
         id={props.id}
         aria-label={props['aria-label']}
         onChange={props.onChange}
+        disabled={props.disabled}
       >
         {props.options?.map((o) => (
           <option value={o.value} selected={o.value === props?.selected}>
