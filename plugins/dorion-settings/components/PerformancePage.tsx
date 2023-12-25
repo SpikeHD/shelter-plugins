@@ -1,5 +1,5 @@
 import { css, classes } from './PerformancePage.tsx.scss'
-import { Dropdown } from '../components/Dropdown.tsx'
+import { Dropdown } from '../../../components/Dropdown'
 
 const {
   ui: {
