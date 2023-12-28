@@ -14,17 +14,21 @@
   margin: 12px 0;
 
   &.cardNone {
-    background-color: var(--primary-400);
+    background-color: var(--background-secondary);
   }
 
   &.cardPlaying {
-    background-color: var(--green-400);
+    background-color: var(--status-positive-background);
+
+    .gameCardIcons {
+      color: var(--green-230);
+    }
   }
 
   &.cardPlayed {
     background: transparent;
     border-radius: 0;
-    border-bottom: 1px solid var(--text-muted);
+    border-bottom: 1px solid var(--primary-500);
 
     .gameCardLastPlayed {
       color: var(--text-muted);
@@ -62,7 +66,7 @@
 
   padding: 0 20px;
 
-  color: var(--text-muted);
+  color: var(--primary-400);
 
   & span {
     margin: 4px;
@@ -84,5 +88,5 @@
 }
 
 .trash:hover {
-  color: var(--text-danger) !important;
+  color: var(--status-danger) !important;
 }
