@@ -51,21 +51,18 @@ const load = async () => {
 
   if (config.update_notify !== undefined && !config.update_notify) return
 
-  if (updateCheck.includes('vencordorion') || updateCheck.includes('dorion')) {
+  if (updateCheck.includes('dorion')) {
     // If autoupdate is enabled, just do it, otherwise ask the user.
     if (config.autoupdate) {
       // We should still warn that Dorion is going to restart
-      if (updateCheck.includes('dorion')) {
-        openModal((props) => confirmModal({
-          header: 'Dorion Update',
-          body: 'A Dorion update has been fetched, and Dorion will restart momentarily.',
-          confirmText: 'Got it!',
-          type: 'neutral',
-          onConfirm: () => doUpdate(),
-          onCancel: props.close,
-        }))
-        return
-      }
+      openModal((props) => confirmModal({
+        header: 'Dorion Update',
+        body: 'A Dorion update has been fetched, and Dorion will restart momentarily.',
+        confirmText: 'Got it!',
+        type: 'neutral',
+        onConfirm: () => doUpdate(),
+        onCancel: props.close,
+      }))
 
       doUpdate()
       return
@@ -82,7 +79,7 @@ const load = async () => {
     }))
   }
 
-  // Listen for update_complete eevent
+  // Listen for update_complete event
   event.once('update_complete', () => {
     openModal((props) => confirmModal({
       header: 'Update Complete!',
