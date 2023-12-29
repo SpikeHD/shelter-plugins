@@ -26,7 +26,12 @@ const {
   }
 } = shelter
 
-const { invoke, event } = (window as any).__TAURI__
+const { invoke, event } = (window as any)?.__TAURI__ || {
+  invoke: () => {},
+  event: {
+    emit: () => {}
+  }
+}
 
 let injectedCss = false
 
