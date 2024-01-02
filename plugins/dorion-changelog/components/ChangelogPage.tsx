@@ -2,7 +2,7 @@ import css from './ChangelogPage.tsx.scss'
 import { marked } from 'marked'
 
 const {
-  ui: { injectCss, Header, HeaderTags, showToast },
+  ui: { injectCss, Header, HeaderTags, showToast, Button, ButtonSizes, ButtonColors, Text, LinkButton },
   solid: { createSignal, createEffect },
 } = shelter
 
@@ -22,12 +22,16 @@ export function ChangelogPage() {
 
   const [releases, setReleases] = createSignal<IRelease[]>([])
   const [currentVersion, setCurrentVersion] = createSignal<string>('')
+  const [latestVersion, setLatestVersion] = createSignal<string>('')
+  const [needsUpdate, setNeedsUpdate] = createSignal<boolean>(true)
 
   setReleases(loadChangelogFromLocalStorage())
 
   createEffect(async () => {
+    // Set current version
     setCurrentVersion(`v${await app.getVersion()}`)
 
+    // Load changelog from GitHub
     try {
       // const fetchedChangelog: IRelease[] | null = await loadChangelogFromGitHub()
 
@@ -52,7 +56,30 @@ export function ChangelogPage() {
         duration: 3000,
       })
     }
+
+    // Set latest version
+    if (releases().length > 0) {
+      setLatestVersion(releases()[0].version)
+    }
+
+    // Check for updates
+    const updateCheck = await invoke('update_check')
+    if (updateCheck.includes('dorion')) {
+      setNeedsUpdate(true)
+    }
   }, [])
+
+  async function doUpdate () {
+    const updateCheck = await invoke('update_check')
+    invoke('do_update', {
+      toUpdate: updateCheck,
+    })
+  }
+
+  function versionToNumber(version: string): number {
+    const parts = version.split('.')
+    return parseInt(parts[0]) * 10000 + parseInt(parts[1]) * 100 + parseInt(parts[2])
+  }
   
   function sanitizeChangelog(releases: IRelease[]): IRelease[] {
     console.log('Sanitizing changelog')
@@ -102,8 +129,15 @@ export function ChangelogPage() {
   return (
     <>
       <Header tag={HeaderTags.H1} class="tophead">Changelog</Header>
+      {needsUpdate() && (
+        <div class="card update-card">
+          <Header tag={HeaderTags.H1} class='title'>Update available!</Header>
+          <Text>Your current version is {currentVersion()}</Text>
+          <Button size={ButtonSizes.LARGE} color={ButtonColors.GREEN} onClick={doUpdate}>Update to {latestVersion()}</Button>
+        </div>
+      )}
       {releases().map((release: IRelease) => (
-        <div class="release-card">
+        <div class="card release-card">
           <Header tag={HeaderTags.H1} class="title">
             <span>
               {release.version}
@@ -115,7 +149,8 @@ export function ChangelogPage() {
                 <span class='badge latest'>Latest</span>}
             </div>
           </Header>
-          <div innerHTML={release.changes} />
+          <LinkButton href={`https://github.com/SpikeHD/Dorion/releases/tag/${release.version}`}>View on GitHub</LinkButton>
+          <div class="contents" innerHTML={release.changes} />
         </div>
       ))}
     </>
