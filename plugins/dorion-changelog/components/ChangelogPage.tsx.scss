@@ -1,0 +1,91 @@
+.tophead {
+  margin-bottom: 16px;
+}
+
+.release-card,
+.release-card * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.release-card {
+  padding: 16px;
+  border-radius: 8px;
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  .title {
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .badges {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    .badge {
+      padding: 0 8px;
+      font-size: 0.75rem;
+      border-radius: 4px;
+
+      &.current {
+        background-color: var(--status-positive-background);
+        color: var(--green-230);
+      }
+
+      &.latest {
+        background-color: var(--status-warning-background);
+        color: var(--yellow-600);
+      }
+    }
+  }
+
+  h1,
+  h2 {
+    color: var(--header-primary);
+    font-weight: 500;
+    margin-bottom: 8px;
+
+    &:not(:first-child) {
+      margin-top: 24px;
+    }
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  p,
+  ul,
+  summary {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
+
+  ul {
+    padding-left: 32px;
+
+    li {
+      list-style-type: initial;
+    }
+  }
+}
