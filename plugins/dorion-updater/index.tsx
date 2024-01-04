@@ -1,13 +1,3 @@
-interface ConfirmationModalProps {
-  header: string
-  body: string
-  confirmText: string
-  cancelText?: string
-  onConfirm?: () => void
-  onCancel?: () => void
-  type?: 'neutral' | 'danger' | 'warning'
-}
-
 const {
   ui: {
     openModal,

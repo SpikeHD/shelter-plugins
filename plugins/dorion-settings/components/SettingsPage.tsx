@@ -1,5 +1,6 @@
 import { Card } from '../../../components/Card'
 import { Dropdown } from '../../../components/Dropdown'
+import { installThemeModal } from '../util/theme.jsx'
 import { PluginList } from './PluginList'
 
 import { css, classes } from './SettingsPage.tsx.scss'
@@ -78,20 +79,36 @@ export function SettingsPage() {
       <Header tag={HeaderTags.H1}>Dorion Settings</Header>
 
       <Header class={classes.shead}>Theme</Header>
-      <Dropdown
-        value={settings().theme}
-        onChange={(e) => {
-          setSettings(p => {
-            return {
-              ...p,
-              theme: e.target.value,
-            }
-          })
-        }}
-        placeholder={'Select a theme...'}
-        options={[{ label: 'None', value: 'none' }, ...themes()]}
-        selected={settings().theme}
-      />
+      <div class={classes.themeRow}>
+        <Dropdown
+          value={settings().theme}
+          onChange={(e) => {
+            setSettings(p => {
+              return {
+                ...p,
+                theme: e.target.value,
+              }
+            })
+          }}
+          placeholder={'Select a theme...'}
+          options={[{ label: 'None', value: 'none' }, ...themes()]}
+          selected={settings().theme}
+          style={'width: 80%'}
+        />
+
+        <Button
+          onClick={() => {
+            installThemeModal()
+          }}
+          style={{
+            width: '15%',
+            height: '40px'
+          }}
+        >
+          Install from Link
+        </Button>
+      </div>
+
 
       <Header class={classes.shead}>Client Type</Header>
       <Dropdown

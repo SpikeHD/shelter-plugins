@@ -46,3 +46,13 @@ interface ProcessWindow {
   pid: string
   process_name: string
 }
+
+interface ConfirmationModalProps {
+  header: string
+  body: string
+  confirmText: string
+  cancelText?: string
+  onConfirm?: () => void
+  onCancel?: () => void
+  type?: 'neutral' | 'danger' | 'warning'
+}
