@@ -2,7 +2,7 @@ import css from './ChangelogPage.tsx.scss'
 import { marked } from 'marked'
 
 const {
-  ui: { injectCss, Header, HeaderTags, showToast, Button, ButtonSizes, ButtonColors, Text, LinkButton },
+  ui: { injectCss, Header, HeaderTags, showToast, Button, ButtonSizes, ButtonColors, Text, LinkButton, ButtonLooks },
   solid: { createSignal, createEffect },
 } = shelter
 
@@ -20,10 +20,11 @@ export function ChangelogPage() {
     injectCss(css)
   }
 
+  const [loading ,setLoading] = createSignal<boolean>(true)
   const [releases, setReleases] = createSignal<IRelease[]>([])
   const [currentVersion, setCurrentVersion] = createSignal<string>('')
   const [latestVersion, setLatestVersion] = createSignal<string>('')
-  const [needsUpdate, setNeedsUpdate] = createSignal<boolean>(true)
+  const [needsUpdate, setNeedsUpdate] = createSignal<boolean>(false)
 
   setReleases(loadChangelogFromLocalStorage())
 
@@ -32,30 +33,7 @@ export function ChangelogPage() {
     setCurrentVersion(`v${await app.getVersion()}`)
 
     // Load changelog from GitHub
-    try {
-      // const fetchedChangelog: IRelease[] | null = await loadChangelogFromGitHub()
-
-      // if (!fetchedChangelog) {
-      //   showToast({
-      //     title: 'Failed to load changelog',
-      //     content: 'Failed to load changelog from GitHub',
-      //     duration: 3000,
-      //   })
-      //   return
-      // }
-      
-      // const changelog = sanitizeChangelog(fetchedChangelog)
-
-      // saveChangelogToLocalStorage(changelog)
-      // setReleases(changelog)
-    }
-    catch (e) {
-      showToast({
-        title: 'Failed to load changelog',
-        content: e.message,
-        duration: 3000,
-      })
-    }
+    setReleases(await loadChangelogFromGitHub())
 
     // Set latest version
     if (releases().length > 0) {
@@ -67,6 +45,12 @@ export function ChangelogPage() {
     if (updateCheck.includes('dorion')) {
       setNeedsUpdate(true)
     }
+
+    // Fix image links
+    await fixImageLinks()
+
+    // Done loading
+    setLoading(false)
   }, [])
 
   async function doUpdate () {
@@ -96,7 +80,7 @@ export function ChangelogPage() {
     return temp
   }
 
-  async function loadChangelogFromGitHub(): Promise<IRelease[] | null> {
+  async function fetchChangelogFromGitHub(): Promise<IRelease[] | null> {
     const changelog = await invoke('get_changelog')
     const temp: IRelease[] = []
     await changelog.forEach(async (entry) => {
@@ -116,6 +100,31 @@ export function ChangelogPage() {
     return (temp.length > 1) ? temp : null
   }
 
+  async function loadChangelogFromGitHub(): Promise<IRelease[]> {
+    let changelog: IRelease[] = []
+
+    try {
+      changelog = sanitizeChangelog(await fetchChangelogFromGitHub())
+
+      if (changelog.length == 0) {
+        throw new Error('Changelog is empty')
+      }
+
+      saveChangelogToLocalStorage(changelog)
+    }
+    catch (e) {
+      showToast({
+        title: 'Failed to load changelog',
+        content: e.message,
+        duration: 3000,
+      })
+
+      changelog = loadChangelogFromLocalStorage()
+    }
+
+    return changelog
+  }
+
   function loadChangelogFromLocalStorage(): IRelease[] {
     const changelog = localStorage.getItem('changelog')
     if (!changelog) return []
@@ -126,9 +135,31 @@ export function ChangelogPage() {
     localStorage.setItem('changelog', JSON.stringify(changelog))
   }
 
+  async function fixImageLinks(): Promise<void> {
+    const page = document.getElementById('dorion-changelog-tab')
+    if (!page) return
+
+    const images = page.getElementsByTagName('img')
+
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i]
+      const url = image.src
+      const response = await window.fetch(url)
+      image.src = await response.image()
+    }
+  }
+
+  async function refresh(): Promise<void> {
+    setLoading(true)
+    setReleases(await loadChangelogFromGitHub())
+    await fixImageLinks()
+    setLoading(false)
+  }
+
   return (
     <>
       <Header tag={HeaderTags.H1} class="tophead">Changelog</Header>
+      <Button onClick={refresh} disabled={loading()} class="refresh-button">Refresh</Button>
       {needsUpdate() && (
         <div class="card update-card">
           <Header tag={HeaderTags.H1} class='title'>Update available!</Header>
