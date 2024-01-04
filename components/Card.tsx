@@ -10,6 +10,7 @@ export const Card: Component<{
   title: string;
   children?: any;
   style?: any;
+  class?: string;
 }> = (props) => {
   if (!injectedCss) {
     injectedCss = true
@@ -17,7 +18,7 @@ export const Card: Component<{
   }
 
   return (
-    <div class={classes.card} style={props.style}>
+    <div class={classes.card + ` ${props.class}`} style={props.style}>
       { props.children }
     </div>
   )

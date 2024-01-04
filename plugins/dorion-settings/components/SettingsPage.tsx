@@ -65,6 +65,9 @@ export function SettingsPage() {
   createEffect(async () => {
     setSettingsState(JSON.parse(await invoke('read_config_file')))
     setThemes(await getThemes())
+
+    // @ts-expect-error cry about it
+    setRestartRequired(window?.__DORION_RESTART__ === true)
   })
 
   const saveSettings = async () => {
@@ -86,12 +89,30 @@ export function SettingsPage() {
     // If a restart is now required, set that
     if (requiresRestart) {
       setRestartRequired(true)
+      
+      // @ts-expect-error cry about it
+      window.__DORION_RESTART__ = true
     }
   }
 
   return (
     <>
       <Header tag={HeaderTags.H1}>Dorion Settings</Header>
+
+      {restartRequired() && (
+        <Card style={{ marginTop: '1rem' }} class={classes.restartCard}>
+          <Text>
+            One or more settings have been changed that require a restart to take effect.
+          </Text>
+          <Button
+            onClick={() => process.relaunch()}
+            class={classes.restartButton}
+            grow={true}
+          >
+            Restart
+          </Button>
+        </Card>
+      )}
 
       <Header class={classes.shead}>Theme</Header>
       <div class={classes.themeRow}>
@@ -147,12 +168,15 @@ export function SettingsPage() {
         maxVisibleItems={5}
         closeOnSelect={true}
         onChange={(e) => {
-          setSettings(p => {
-            return {
-              ...p,
-              client_type: e.target.value,
-            }
-          })
+          setSettings(
+            p => {
+              return {
+                ...p,
+                client_type: e.target.value,
+              }
+            },
+            true
+          )
         }}
         selected={settings().client_type}
       />
@@ -173,17 +197,24 @@ export function SettingsPage() {
               zoom: (parseFloat(v) / 100).toString(),
             }
           })
+
+          invoke('window_zoom_level', {
+            value: parseFloat(v)
+          })
         }}
       />
       <SwitchItem
         value={settings().sys_tray}
         onChange={(v) => {
-          setSettings(p => {
-            return {
-              ...p,
-              sys_tray: v,
-            }
-          })
+          setSettings(
+            p => {
+              return {
+                ...p,
+                sys_tray: v,
+              }
+            },
+            true
+          )
         }}
         note="Instead of closing, Dorion will run in the background and will be accessible via the system tray."
       >
@@ -240,12 +271,15 @@ export function SettingsPage() {
       <SwitchItem
         value={settings().multi_instance}
         onChange={(v) => {
-          setSettings(p => {
-            return {
-              ...p,
-              multi_instance: v,
-            }
-          })
+          setSettings(
+            p => {
+              return {
+                ...p,
+                multi_instance: v,
+              }
+            },
+            true
+          )
         }}
         note="Allow multiple instances of Dorion to be running at the same time."
       >
@@ -255,12 +289,15 @@ export function SettingsPage() {
       <SwitchItem
         value={settings().use_native_titlebar}
         onChange={(v) => {
-          setSettings(p => {
-            return {
-              ...p,
-              use_native_titlebar: v,
-            }
-          })
+          setSettings(
+            p => {
+              return {
+                ...p,
+                use_native_titlebar: v,
+              }
+            },
+            true
+          )
         }}
         note="Disable the custom titlebar and use your systems native one instead."
       >
