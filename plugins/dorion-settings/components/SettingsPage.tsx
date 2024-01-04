@@ -357,14 +357,6 @@ export function SettingsPage() {
 
       <Header class={classes.shead}>Plugins</Header>
       <PluginList />
-
-      <Button
-        onClick={saveSettings}
-        style={{ 'margin-top': '1rem', padding: '18px' }}
-        grow={true}
-      >
-        Save & Restart
-      </Button>
     </>
   )
 }
