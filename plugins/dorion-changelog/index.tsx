@@ -12,14 +12,21 @@ const {
   // },
 } = shelter
 
-// const { app } = (window as any).__TAURI__
+const { invoke } = (window as any).__TAURI__
 
-const settingsUninjects = [
+let settingsUninjects = [
   registerSection('divider'),
   registerSection('header', 'Dorion'),
-  registerSection('section', 'dorion-changelog', 'Changelog', ChangelogPage),
 ]
 
 export const onUnload = () => {
   settingsUninjects.forEach((u) => u())
 }
+
+invoke('update_check')
+  .then((updateCheck: string) => updateCheck.includes('dorion'))
+  .then((needsUpdate: boolean) => {
+    settingsUninjects.push(registerSection('section', 'dorion-changelog', 'Changelog', ChangelogPage, { 
+      badgeCount: needsUpdate ? 1 : 0 
+    }))
+  })
