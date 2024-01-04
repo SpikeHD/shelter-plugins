@@ -34,7 +34,6 @@ export const installThemeModal = async () => {
           <Text>{status()}</Text>
         </div>
       </div>
-
     ),
     confirmText: 'Install',
     type: 'neutral',
@@ -48,7 +47,31 @@ export const installThemeModal = async () => {
 }
 
 export const loadTheme = async (theme: string) => {
+  const { invoke } = (window as any).__TAURI__
 
+  // Get the Dorion theme style tag, replace the contents
+  const themeTag = document.getElementById('dorion-theme') as HTMLStyleElement
+
+  if (theme === 'none') return themeTag.innerText = ''
+
+  const themeContents = await invoke('get_theme', {
+    name: theme
+  })
+
+  // Localize
+  const localized = await invoke('localize_imports', {
+    css: themeContents,
+    name: theme
+  })
+
+  console.log('Got the localized theme!')
+
+  // Internal Dorion function
+  const contents = (window as any)._cssSanitize(localized)
+
+  console.log('Sanitized!')
+
+  themeTag.innerHTML = contents
 }
 
 export const installAndLoad = async (link: string, statusUpdater: (string) => void) => {
@@ -63,22 +86,7 @@ export const installAndLoad = async (link: string, statusUpdater: (string) => vo
   statusUpdater(`Applying ${themeName} ...`)
 
   // Get the Dorion theme style tag, replace the contents
-  const themeTag = document.getElementById('dorion-theme') as HTMLStyleElement
-
-  const themeContents = await invoke('get_theme', {
-    name: themeName
-  })
-
-  // Localize
-  const localized = await invoke('localize_imports', {
-    css: themeContents,
-    name: themeName
-  })
-
-  // Internal Dorion function
-  const contents = (window as any)._cssSanitize(localized)
-
-  themeTag.innerText = contents
+  loadTheme(themeName)
 
   // Save the theme to the config
   const config = JSON.parse(await invoke('read_config_file'))

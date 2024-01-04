@@ -1,6 +1,6 @@
 import { Card } from '../../../components/Card'
 import { Dropdown } from '../../../components/Dropdown'
-import { installThemeModal } from '../util/theme.jsx'
+import { installThemeModal, loadTheme } from '../util/theme.jsx'
 import { PluginList } from './PluginList'
 
 import { css, classes } from './SettingsPage.tsx.scss'
@@ -39,7 +39,7 @@ const openThemesFolder = () => {
 }
 
 export function SettingsPage() {
-  const [settings, setSettings] = createSignal<DorionSettings>({
+  const [settings, setSettingsState] = createSignal<DorionSettings>({
     zoom: '1.0',
     client_type: 'default',
     sys_tray: false,
@@ -55,6 +55,7 @@ export function SettingsPage() {
     multi_instance: false,
   })
   const [themes, setThemes] = createSignal<DorionTheme[]>([])
+  const [restartRequired, setRestartRequired] = createSignal(false)
 
   if (!injectedCss) {
     injectedCss = true
@@ -62,7 +63,7 @@ export function SettingsPage() {
   }
 
   createEffect(async () => {
-    setSettings(JSON.parse(await invoke('read_config_file')))
+    setSettingsState(JSON.parse(await invoke('read_config_file')))
     setThemes(await getThemes())
   })
 
@@ -72,6 +73,20 @@ export function SettingsPage() {
     })
 
     process.relaunch()
+  }
+
+  const setSettings = (fn: (DorionSettings) => DorionSettings, requiresRestart?: boolean) => {
+    setSettingsState(fn(settings()))
+
+    // Save the settings
+    invoke('write_config_file', {
+      contents: JSON.stringify(fn(settings())),
+    })
+
+    // If a restart is now required, set that
+    if (requiresRestart) {
+      setRestartRequired(true)
+    }
   }
 
   return (
@@ -89,6 +104,8 @@ export function SettingsPage() {
                 theme: e.target.value,
               }
             })
+
+            loadTheme(e.target.value)
           }}
           placeholder={'Select a theme...'}
           options={[{ label: 'None', value: 'none' }, ...themes()]}
