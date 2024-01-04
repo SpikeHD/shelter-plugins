@@ -89,7 +89,7 @@ export function SettingsPage() {
     // If a restart is now required, set that
     if (requiresRestart) {
       setRestartRequired(true)
-      
+
       // @ts-expect-error cry about it
       window.__DORION_RESTART__ = true
     }
@@ -199,7 +199,7 @@ export function SettingsPage() {
           })
 
           invoke('window_zoom_level', {
-            value: parseFloat(v)
+            value: parseFloat(v) / 100,
           })
         }}
       />
