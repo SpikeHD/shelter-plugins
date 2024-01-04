@@ -86,7 +86,7 @@ export const installAndLoad = async (link: string, statusUpdater: (string) => vo
   statusUpdater(`Applying ${themeName} ...`)
 
   // Get the Dorion theme style tag, replace the contents
-  loadTheme(themeName)
+  await loadTheme(themeName)
 
   // Save the theme to the config
   const config = JSON.parse(await invoke('read_config_file'))
