@@ -1,8 +1,8 @@
-import css from './ChangelogPage.tsx.scss'
+import { css, classes } from './ChangelogPage.tsx.scss'
 import { marked } from 'marked'
 
 const {
-  ui: { injectCss, Header, HeaderTags, showToast, Button, ButtonSizes, ButtonColors, Text, LinkButton, ButtonLooks },
+  ui: { injectCss, Header, HeaderTags, showToast, Button, ButtonSizes, ButtonColors, Text, LinkButton },
   solid: { createSignal, createEffect },
 } = shelter
 
@@ -29,11 +29,11 @@ export function ChangelogPage() {
   setReleases(loadChangelogFromLocalStorage())
 
   createEffect(async () => {
-    // Set current version
-    setCurrentVersion(`v${await app.getVersion()}`)
-
     // Load changelog from GitHub
     setReleases(await loadChangelogFromGitHub())
+    
+    // Set current version
+    setCurrentVersion(`v${await app.getVersion()}`)
 
     // Set latest version
     if (releases().length > 0) {
@@ -59,14 +59,12 @@ export function ChangelogPage() {
       toUpdate: updateCheck,
     })
   }
-
-  function versionToNumber(version: string): number {
-    const parts = version.split('.')
-    return parseInt(parts[0]) * 10000 + parseInt(parts[1]) * 100 + parseInt(parts[2])
-  }
   
   function sanitizeChangelog(releases: IRelease[]): IRelease[] {
     console.log('Sanitizing changelog')
+
+    if (releases == null || releases.length < 1)
+      throw new Error('Changelog is null. You probably ran out of GitHub API requests. Try again later.')
 
     const temp: IRelease[] = []
     releases.forEach((release) => {
@@ -81,7 +79,11 @@ export function ChangelogPage() {
   }
 
   async function fetchChangelogFromGitHub(): Promise<IRelease[] | null> {
-    const changelog = await invoke('get_changelog')
+    const changelog: string[] | null = await invoke('get_changelog')
+
+    if (changelog == null || changelog.length < 1)
+      throw new Error('Changelog is null. You probably ran out of GitHub API requests. Try again later.')
+
     const temp: IRelease[] = []
     await changelog.forEach(async (entry) => {
       const lines = entry.split('\n')
@@ -106,13 +108,13 @@ export function ChangelogPage() {
     try {
       changelog = sanitizeChangelog(await fetchChangelogFromGitHub())
 
-      if (changelog.length == 0) {
-        throw new Error('Changelog is empty')
-      }
+      if (changelog == null || changelog.length < 1)
+        throw new Error('Changelog is null. You probably ran out of GitHub API requests. Try again later.')
 
       saveChangelogToLocalStorage(changelog)
     }
     catch (e) {
+      console.error(e)
       showToast({
         title: 'Failed to load changelog',
         content: e.message,
@@ -158,30 +160,30 @@ export function ChangelogPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class="tophead">Changelog</Header>
-      <Button onClick={refresh} disabled={loading()} class="refresh-button">Refresh</Button>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>Changelog</Header>
+      <Button onClick={refresh} disabled={loading()} class={classes.refresh}>Refresh</Button>
       {needsUpdate() && (
-        <div class="card update-card">
-          <Header tag={HeaderTags.H1} class='title'>Update available!</Header>
+        <div class={classes.card}>
+          <Header tag={HeaderTags.H1} class={classes.title}>Update available!</Header>
           <Text>Your current version is {currentVersion()}</Text>
           <Button size={ButtonSizes.LARGE} color={ButtonColors.GREEN} onClick={doUpdate}>Update to {latestVersion()}</Button>
         </div>
       )}
       {releases().map((release: IRelease) => (
-        <div class="card release-card">
-          <Header tag={HeaderTags.H1} class="title">
+        <div class={classes.card}>
+          <Header tag={HeaderTags.H1} class={classes.title}>
             <span>
               {release.version}
             </span>
-            <div class="badges">
+            <div class={classes.badges}>
               {currentVersion() == release.version && 
-                <span class='badge current'>Current</span>}
+                <span class={classes.badge}>Current</span>}
               {releases()[0].version == release.version && 
-                <span class='badge latest'>Latest</span>}
+                <span class={classes.badge}>Latest</span>}
             </div>
           </Header>
           <LinkButton href={`https://github.com/SpikeHD/Dorion/releases/tag/${release.version}`}>View on GitHub</LinkButton>
-          <div class="contents" innerHTML={release.changes} />
+          <div class={classes.contents} innerHTML={release.changes} />
         </div>
       ))}
     </>
