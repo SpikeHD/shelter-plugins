@@ -16,12 +16,12 @@ export async function loadChangelog(): Promise<TReleases> {
   ///NOTE - This is a thing for development. Otherwise GitHub will rate limit us :)
   if (isDevMode()) {
     console.warn('[Dorion Changelog] Dev mode is on. Loading changelog from local storage.')
-    return _loadChangelogFromLocalStorage()
+    return loadChangelogFromLocalStorage()
   }
 
   try {
-    const changelog = await _fetchChangelogFromGitHub()
-    _saveChangelogToLocalStorage(changelog)
+    const changelog = await fetchChangelogFromGitHub()
+    saveChangelogToLocalStorage(changelog)
     return changelog
   }
   catch (e) {
@@ -32,11 +32,11 @@ export async function loadChangelog(): Promise<TReleases> {
       duration: 3000,
     })
 
-    return _loadChangelogFromLocalStorage()
+    return loadChangelogFromLocalStorage()
   }
 }
 
-async function _fetchChangelogFromGitHub(): Promise<TReleases> {
+async function fetchChangelogFromGitHub(): Promise<TReleases> {
   const response = await fetch('https://api.github.com/repos/SpikeHD/Dorion/releases')
 
   if (!response.ok) {
@@ -46,13 +46,13 @@ async function _fetchChangelogFromGitHub(): Promise<TReleases> {
   return await response.json() as TReleases
 }
 
-function _loadChangelogFromLocalStorage(): TReleases {
+function loadChangelogFromLocalStorage(): TReleases {
   const changelog = localStorage.getItem('changelog')
   if (!changelog) return []
   return JSON.parse(changelog)
 }
 
-function _saveChangelogToLocalStorage(changelog: TReleases): void {
+function saveChangelogToLocalStorage(changelog: TReleases): void {
   localStorage.setItem('changelog', JSON.stringify(changelog))
 }
 
@@ -65,7 +65,7 @@ export async function processReleaseBodies(releases: TReleases): Promise<TReleas
   return sanitizedReleases
 }
 
-export async function _processReleaseBody(body: string): Promise<string> {
+export async function processReleaseBody(body: string): Promise<string> {
   const parsedBody = await marked.parse(body)
 
   return parsedBody

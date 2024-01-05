@@ -27,7 +27,7 @@ export function ChangelogPage() {
     injectCss(css)
   }
 
-  const [loading ,setLoading] = createSignal<boolean>(true)
+  const [loading, setLoading] = createSignal<boolean>(true)
   const [releases, setReleases] = createSignal<TReleases>([])
   const [currentVersion, setCurrentVersion] = createSignal<string>('')
   const [latestVersion, setLatestVersion] = createSignal<string>('')
