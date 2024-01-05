@@ -14,6 +14,7 @@
   color: var(--text-primary);
   background: var(--background-secondary);
   position: relative;
+  min-height: 82px;
 
   &:not(:last-child) {
     margin-bottom: 16px;
@@ -44,6 +45,21 @@
       border-radius: 3px;
       background-color: var(--status-positive-background);
     }
+  }
+
+  .spinner {
+    $size: 50px;
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    top: calc(50% - $size / 2);
+    left: calc(50% - $size / 2);
+    width: $size;
+    height: $size;
+    border: 10px solid transparent;
+    border-top-color: var(--text-secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
   }
 
   .contents {
@@ -81,22 +97,12 @@
         color: var(--text-secondary);
         background: var(--background-tertiary);
         position: relative;
-        height: 200px !important;
         border-radius: 8px;
+        padding: 16px;
+        height: 82px;
 
         &::before {
-          $size: 50px;
-          box-sizing: border-box;
-          content: "";
-          position: absolute;
-          top: calc(50% - $size / 2);
-          left: calc(50% - $size / 2);
-          width: $size;
-          height: $size;
-          border: 10px solid transparent;
-          border-top-color: var(--text-secondary);
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
+          @extend .spinner;
         }
       }
     }
