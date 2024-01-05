@@ -82,7 +82,6 @@ export async function fixImageLinks(scope: HTMLElement): Promise<void> {
 
   await Promise.all(Array.from(images).map(async (image: HTMLImageElement) => {
     const url = image.src
-    const response = await window.fetch(url)
-    image.src = await response.image()
+    image.src = await window.fetchImage(url)
   }))    
 }
