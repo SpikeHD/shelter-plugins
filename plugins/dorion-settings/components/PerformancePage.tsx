@@ -1,6 +1,5 @@
 import { css, classes } from './PerformancePage.tsx.scss'
 import { Dropdown } from '../../../components/Dropdown'
-import { Card } from '../../../components/Card'
 import { WarningCard } from './WarningCard.jsx'
 
 const {
@@ -11,13 +10,12 @@ const {
     Button,
     Header,
     HeaderTags,
-    Text,
     showToast
   },
   solid: { createSignal, createEffect },
 } = shelter
 
-const { invoke, process } = window.__TAURI__
+const { invoke } = window.__TAURI__
 
 let injectedCss = false
 
