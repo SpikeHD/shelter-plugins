@@ -95,7 +95,7 @@ export function ChangelogPage() {
                 <div class={classes.badges}>
                   {currentVersion() == release.tag_name && 
                     <span class={classes.badge}>Current</span>}
-                  {releases()[0].version == release.tag_name && 
+                  {releases()[0].tag_name == release.tag_name && 
                     <span class={classes.badge}>Latest</span>}
                 </div>
               </Header>
