@@ -4,6 +4,7 @@ import { installThemeModal, loadTheme } from '../util/theme.jsx'
 import { PluginList } from './PluginList'
 
 import { css, classes } from './SettingsPage.tsx.scss'
+import { WarningCard } from './WarningCard.jsx'
 
 const {
   ui: {
@@ -92,18 +93,7 @@ export function SettingsPage() {
       <Header tag={HeaderTags.H1} class={classes.tophead}>Dorion Settings</Header>
 
       {restartRequired() && (
-        <Card style={{ marginTop: '1rem' }} class={classes.restartCard}>
-          <Text>
-            One or more settings have been changed that require a restart to take effect.
-          </Text>
-          <Button
-            onClick={() => process.relaunch()}
-            class={classes.restartButton}
-            grow={true}
-          >
-            Restart
-          </Button>
-        </Card>
+        <WarningCard />
       )}
 
       <Header class={classes.shead}>Theme</Header>

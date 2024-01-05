@@ -22,20 +22,3 @@
 
   margin-top: 16px;
 }
-
-.restartCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-
-  height: 80px;
-
-  border: 1px solid var(--status-warning) !important;
-  background-color: var(--info-warning-background);
-}
-
-.restartButton {
-  width: 80% !important;
-  background-color: var(--status-warning) !important;
-}

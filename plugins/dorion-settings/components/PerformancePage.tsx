@@ -1,6 +1,7 @@
 import { css, classes } from './PerformancePage.tsx.scss'
 import { Dropdown } from '../../../components/Dropdown'
 import { Card } from '../../../components/Card'
+import { WarningCard } from './WarningCard.jsx'
 
 const {
   ui: {
@@ -121,18 +122,7 @@ export function PerformancePage() {
       <Header tag={HeaderTags.H1} class={classes.tophead}>Dorion Performance Settings</Header>
 
       {restartRequired() && (
-        <Card style={{ marginTop: '1rem' }} class={classes.restartCard}>
-          <Text>
-            One or more settings have been changed that require a restart to take effect.
-          </Text>
-          <Button
-            onClick={() => process.relaunch()}
-            class={classes.restartButton}
-            grow={true}
-          >
-            Restart
-          </Button>
-        </Card>
+        <WarningCard />
       )}
 
       <Header class={classes.shead}>Cache</Header>
