@@ -1,3 +1,7 @@
+.tophead {
+  margin-bottom: 16px;
+}
+
 .shead {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -44,6 +48,6 @@
 }
 
 .restartButton {
-  width: '80%';
+  width: 80% !important;
   background-color: var(--status-warning) !important;
 }

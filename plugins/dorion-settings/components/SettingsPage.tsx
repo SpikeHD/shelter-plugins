@@ -70,14 +70,6 @@ export function SettingsPage() {
     setRestartRequired(window?.__DORION_RESTART__ === true)
   })
 
-  const saveSettings = async () => {
-    await invoke('write_config_file', {
-      contents: JSON.stringify(settings()),
-    })
-
-    process.relaunch()
-  }
-
   const setSettings = (fn: (DorionSettings) => DorionSettings, requiresRestart?: boolean) => {
     setSettingsState(fn(settings()))
 
@@ -97,7 +89,7 @@ export function SettingsPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1}>Dorion Settings</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>Dorion Settings</Header>
 
       {restartRequired() && (
         <Card style={{ marginTop: '1rem' }} class={classes.restartCard}>
