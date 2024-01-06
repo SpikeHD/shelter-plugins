@@ -1,0 +1,142 @@
+.tophead {
+  margin-bottom: 16px;
+}
+
+.refresh {
+  position: absolute;
+  top: 52px;
+  right: 40px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 8px;
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  position: relative;
+  min-height: 82px;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  button {
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .title {
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .badges {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    .badge {
+      padding: 0 8px;
+      font-size: 0.75rem;
+      border-radius: 3px;
+      background-color: var(--status-positive-background);
+    }
+  }
+
+  .spinner {
+    $size: 50px;
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    top: calc(50% - $size / 2);
+    left: calc(50% - $size / 2);
+    width: $size;
+    height: $size;
+    border: 10px solid transparent;
+    border-top-color: var(--text-secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .contents {
+    margin-top: 16px;
+
+    h1,
+    h2 {
+      color: var(--header-primary);
+      font-weight: 500;
+      margin-bottom: 8px;
+
+      &:not(:first-child) {
+        margin-top: 24px;
+      }
+    }
+
+    h1 {
+      font-size: 1.25rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto;
+
+      &[src^="http"],
+      &[src^="https"] {
+        display: block;
+        font-size: 0.75rem;
+        margin-top: 8px;
+        color: var(--text-secondary);
+        background: var(--background-tertiary);
+        position: relative;
+        border-radius: 8px;
+        padding: 16px;
+        height: 82px;
+
+        &::before {
+          @extend .spinner;
+        }
+      }
+    }
+
+    p,
+    ul,
+    ol,
+    summary,
+    img {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+
+      &:not(:last-child) {
+        margin-bottom: 6px;
+      }
+    }
+
+    ul,
+    ol {
+      padding-left: 32px;
+
+      li {
+        list-style-type: initial;
+      }
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import { PerformancePage } from './components/PerformancePage'
 import { ProfilesPage } from './components/ProfilesPage'
 import { SettingsPage } from './components/SettingsPage'
+import { ChangelogPage } from './components/ChangelogPage'
+
 
 const {
   settings: {
@@ -14,7 +16,15 @@ const {
   },
 } = shelter
 
-const { app } = (window as any).__TAURI__
+const { app, invoke } = (window as any).__TAURI__
+
+const settingsUninjects = [
+  registerSection('divider'),
+  registerSection('header', 'Dorion'),
+  registerSection('section', 'dorion-settings', 'Dorion Settings', SettingsPage),
+  registerSection('section', 'dorion-performance', 'Performance & Extras', PerformancePage),
+  registerSection('section', 'dorion-profiles', 'Profiles', ProfilesPage)
+]
 
 const appendDorionVersion = async () => {
   let tries = 0
@@ -45,15 +55,23 @@ const appendDorionVersion = async () => {
   versionThings.appendChild(newVersionThing)
 }
 
+const checkForUpdates = async () => {    
+  const updateCheck = await invoke('update_check')
+  let needsUpdate = false
+
+  if (updateCheck.includes('dorion')) needsUpdate = true
+
+  settingsUninjects.push(
+    // @ts-expect-error Shelter types are wrong? badgeCount does exist on type
+    registerSection('section', 'dorion-changelog', 'Changelog', ChangelogPage, { 
+      badgeCount: needsUpdate ? 1 : 0 
+    })
+  )
+}
+
 dispatcher.subscribe('USER_SETTINGS_MODAL_OPEN', appendDorionVersion)
 
-const settingsUninjects = [
-  registerSection('divider'),
-  registerSection('header', 'Dorion'),
-  registerSection('section', 'dorion-settings', 'Dorion Settings', SettingsPage),
-  registerSection('section', 'dorion-performance', 'Performance & Extras', PerformancePage),
-  registerSection('section', 'dorion-profiles', 'Profiles', ProfilesPage)
-]
+checkForUpdates()
 
 export const onUnload = () => {
   settingsUninjects.forEach((u) => u())
