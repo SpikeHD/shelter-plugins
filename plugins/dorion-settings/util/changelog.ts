@@ -74,10 +74,10 @@ export async function processReleaseBody(body: string): Promise<string> {
 
   return parsedBody
     .replace('\n', '') // remove newlines. It's converted to html, so it's not needed
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(code)) // Fix ascii references (such as &#39;)
     .replace(/@([\w-]+)/g, '<a href="https://github.com/$1">@$1</a>') // GitHub user
     .replace(/#(\d+)/g, '<a href="https://github.com/spikehd/dorion/pull/$1">#$1</a>') // GitHub issue or PR
     .replace(/<a href="([^"]+)">([^<]+)<\/a>/g, '<a href="$1" target="_blank">$2</a>') // External link
-    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(code)) // Fix ascii references (such as &#39;)
 }
 
 export async function fixImageLinks(scope: HTMLElement): Promise<void> {
