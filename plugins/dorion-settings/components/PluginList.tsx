@@ -63,7 +63,7 @@ export function PluginList() {
             <div class={classes.scell}>
               <Switch
                 checked={!plugin.disabled}
-                onChange={(_v) => {
+                onChange={() => {
                   invoke('toggle_plugin', {
                     name: plugin.name,
                   })
@@ -87,7 +87,7 @@ export function PluginList() {
             <div class={classes.scell}>
               <Switch
                 checked={plugin.preload}
-                onChange={(_v) => {
+                onChange={() => {
                   invoke('toggle_preload', {
                     name: plugin.name,
                   })

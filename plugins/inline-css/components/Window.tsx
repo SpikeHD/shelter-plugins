@@ -5,7 +5,6 @@ import { debounce } from '../util'
 
 const {
   ui: { injectCss },
-  solid: { createSignal },
 } = shelter
 
 let injectedCss = false
@@ -19,15 +18,12 @@ export const Window = () => {
     injectedCss = true
   }
 
-  const [dragging, setDragging] = createSignal(false)
-
   const close = () => {
     if (ref) ref.remove()
   }
 
   const handleMouseDown = (evt) => {
     evt.preventDefault()
-    setDragging(true)
     mousedown(evt)
   }
 
