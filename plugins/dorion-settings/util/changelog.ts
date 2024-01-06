@@ -37,7 +37,11 @@ export async function loadChangelog(): Promise<TReleases> {
 }
 
 async function fetchChangelogFromGitHub(): Promise<TReleases> {
-  const response = await fetch('https://api.github.com/repos/SpikeHD/Dorion/releases')
+  const response = await fetch('https://api.github.com/repos/SpikeHD/Dorion/releases', {
+    headers: {
+      'User-Agent': 'Dorion'
+    }
+  })
 
   if (!response.ok) {
     throw new Error(`Failed to fetch changelog. ${response.status} ${response.statusText}`)
