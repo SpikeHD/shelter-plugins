@@ -1,6 +1,16 @@
 import { marked } from 'marked'
 import { TReleases } from '../types/release.js'
 
+declare global {
+  interface Window {
+    Dorion: {
+      util: {
+        fetchImage: (url: string) => Promise<string>
+      }
+    }
+  }
+}
+
 const {
   ui: { showToast },
   plugins: { installedPlugins }
@@ -87,6 +97,6 @@ export async function fixImageLinks(scope: HTMLElement): Promise<void> {
 
   await Promise.all(Array.from(images).map(async (image: HTMLImageElement) => {
     const url = image.src
-    image.src = await window._fetchImage(url)
+    image.src = await window.Dorion.util.fetchImage(url)
   }))    
 }
