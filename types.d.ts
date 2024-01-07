@@ -22,10 +22,13 @@ interface DorionTheme {
   value: string
 }
 
-interface DorionPlugin {
-  name: string
-  preload: boolean
-  disabled: boolean
+interface DorionPluginList {
+  // Key is the filename
+  [key: string]: {
+    name: string
+    preload: boolean
+    enabled: boolean
+  }
 }
 
 interface ShelteRPCPreviouslyPlayed {

@@ -338,7 +338,11 @@ export function SettingsPage() {
       </Card>
 
       <Header class={classes.shead}>Plugins</Header>
-      <PluginList />
+      <PluginList
+        onChange={() => {
+          setRestartRequired(true)
+        }}
+      />
     </>
   )
 }
