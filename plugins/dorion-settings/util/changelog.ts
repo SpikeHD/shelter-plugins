@@ -71,12 +71,12 @@ function saveChangelogToLocalStorage(changelog: TReleases): void {
 }
 
 export async function processReleaseBodies(releases: TReleases): Promise<TReleases> {
-  const sanitizedReleases = await Promise.all(releases.map(async (release) => {
+  const processedReleases = await Promise.all(releases.map(async (release) => {
     release.body = await processReleaseBody(release.body)
     return release
   }))
 
-  return sanitizedReleases
+  return processedReleases
 }
 
 export async function processReleaseBody(body: string): Promise<string> {
