@@ -5,25 +5,28 @@ const {
   ui: { Switch, Text, injectCss },
   solid: { createSignal },
 } = shelter
-
 const { invoke } = (window as any).__TAURI__
 
 let injectedCss = false
 
 const getPlugins = async () => {
-  const plugins: DorionPlugin[] = await invoke('get_plugin_list')
+  const plugins: DorionPluginList = await invoke('get_plugin_list')
   return plugins
 }
 
-export function PluginList() {
+interface Props {
+  onChange: () => void
+}
+
+export function PluginList(props: Props) {
   if (!injectedCss) {
     injectedCss = true
     injectCss(css)
   }
 
-  const [plugins, setPlugins] = createSignal<DorionPlugin[]>([]);
+  const [plugins, setPlugins] = createSignal<DorionPluginList>({})
 
-  (async () => {
+  ;(async () => {
     setPlugins(await getPlugins())
   })()
 
@@ -43,39 +46,41 @@ export function PluginList() {
 
           <div class={classes.scell}>
             <Text class={classes.left16}>
-              Enabled?
+              Enabled
             </Text>
           </div>
 
           <div class={classes.scell}>
             <Text class={classes.left16}>
-              Preload?
+              Preload
             </Text>
           </div>
         </div>
 
-        {plugins().map((plugin: DorionPlugin) => (
-          <div key={plugin.name} class={classes.plistrow}>
+        {Object.entries(plugins() as DorionPluginList).map(([filename, plugin]) => (
+          <div key={filename} class={classes.plistrow}>
             <div class={classes.mcell}>
               <Text class={classes.left16}>{plugin.name}</Text>
             </div>
 
             <div class={classes.scell}>
               <Switch
-                checked={!plugin.disabled}
+                checked={plugin.enabled}
                 onChange={() => {
+                  props.onChange()
+
                   invoke('toggle_plugin', {
-                    name: plugin.name,
+                    name: filename,
                   })
 
                   setPlugins(
-                    plugins().map((p: DorionPlugin) => {
-                      if (p.name === plugin.name) {
-                        p.disabled = !p.disabled
-                      }
-
-                      return p
-                    })
+                    {
+                      ...plugins(),
+                      [filename]: {
+                        ...plugin,
+                        enabled: !plugin.enabled,
+                      },
+                    }
                   )
                 }}
                 style={{
@@ -88,18 +93,20 @@ export function PluginList() {
               <Switch
                 checked={plugin.preload}
                 onChange={() => {
+                  props.onChange()
+
                   invoke('toggle_preload', {
-                    name: plugin.name,
+                    name: filename,
                   })
 
                   setPlugins(
-                    plugins().map((p: DorionPlugin) => {
-                      if (p.name === plugin.name) {
-                        p.preload = !p.preload
-                      }
-
-                      return p
-                    })
+                    {
+                      ...plugins(),
+                      [filename]: {
+                        ...plugin,
+                        preload: !plugin.preload,
+                      },
+                    }
                   )
                 }}
               />

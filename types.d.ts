@@ -22,10 +22,13 @@ interface DorionTheme {
   value: string
 }
 
-interface DorionPlugin {
-  name: string
-  preload: boolean
-  disabled: boolean
+interface DorionPluginList {
+  // Key is the filename
+  [key: string]: {
+    name: string
+    preload: boolean
+    enabled: boolean
+  }
 }
 
 interface ShelteRPCPreviouslyPlayed {
@@ -45,4 +48,14 @@ interface ProcessWindow {
   title: string
   pid: string
   process_name: string
+}
+
+interface ConfirmationModalProps {
+  header: string
+  body: string
+  confirmText: string
+  cancelText?: string
+  onConfirm?: () => void
+  onCancel?: () => void
+  type?: 'neutral' | 'danger' | 'warning'
 }

@@ -13,6 +13,7 @@ export const Dropdown: Component<{
   id?: string;
   'aria-label'?: string;
   onChange?(e): void;
+  style?: any
   options?: {
     label: string;
     value: string;
@@ -26,7 +27,7 @@ export const Dropdown: Component<{
   }
 
   return (
-    <div class={classes.dcontainer}>
+    <div class={classes.dcontainer} style={props.style}>
       <select
         class={classes.ddown}
         value={props.value}

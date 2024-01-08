@@ -1,8 +1,10 @@
 import { Card } from '../../../components/Card'
 import { Dropdown } from '../../../components/Dropdown'
+import { installThemeModal, loadTheme } from '../util/theme.jsx'
 import { PluginList } from './PluginList'
 
 import { css, classes } from './SettingsPage.tsx.scss'
+import { WarningCard } from './WarningCard.jsx'
 
 const {
   ui: {
@@ -17,7 +19,7 @@ const {
   solid: { createSignal, createEffect },
 } = shelter
 
-const { invoke, process } = (window as any).__TAURI__
+const { invoke } = (window as any).__TAURI__
 
 let injectedCss = false
 
@@ -38,7 +40,7 @@ const openThemesFolder = () => {
 }
 
 export function SettingsPage() {
-  const [settings, setSettings] = createSignal<DorionSettings>({
+  const [settings, setSettingsState] = createSignal<DorionSettings>({
     zoom: '1.0',
     client_type: 'default',
     sys_tray: false,
@@ -54,6 +56,7 @@ export function SettingsPage() {
     multi_instance: false,
   })
   const [themes, setThemes] = createSignal<DorionTheme[]>([])
+  const [restartRequired, setRestartRequired] = createSignal(false)
 
   if (!injectedCss) {
     injectedCss = true
@@ -61,37 +64,71 @@ export function SettingsPage() {
   }
 
   createEffect(async () => {
-    setSettings(JSON.parse(await invoke('read_config_file')))
+    setSettingsState(JSON.parse(await invoke('read_config_file')))
     setThemes(await getThemes())
+
+    // @ts-expect-error cry about it
+    setRestartRequired(window?.__DORION_RESTART__ === true)
   })
 
-  const saveSettings = async () => {
-    await invoke('write_config_file', {
-      contents: JSON.stringify(settings()),
+  const setSettings = (fn: (DorionSettings) => DorionSettings, requiresRestart?: boolean) => {
+    setSettingsState(fn(settings()))
+
+    // Save the settings
+    invoke('write_config_file', {
+      contents: JSON.stringify(fn(settings())),
     })
 
-    process.relaunch()
+    // If a restart is now required, set that
+    if (requiresRestart) {
+      setRestartRequired(true)
+
+      // @ts-expect-error cry about it
+      window.__DORION_RESTART__ = true
+    }
   }
 
   return (
     <>
-      <Header tag={HeaderTags.H1}>Dorion Settings</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>Dorion Settings</Header>
+
+      {restartRequired() && (
+        <WarningCard />
+      )}
 
       <Header class={classes.shead}>Theme</Header>
-      <Dropdown
-        value={settings().theme}
-        onChange={(e) => {
-          setSettings(p => {
-            return {
-              ...p,
-              theme: e.target.value,
-            }
-          })
-        }}
-        placeholder={'Select a theme...'}
-        options={[{ label: 'None', value: 'none' }, ...themes()]}
-        selected={settings().theme}
-      />
+      <div class={classes.themeRow}>
+        <Dropdown
+          value={settings().theme}
+          onChange={(e) => {
+            setSettings(p => {
+              return {
+                ...p,
+                theme: e.target.value,
+              }
+            })
+
+            loadTheme(e.target.value)
+          }}
+          placeholder={'Select a theme...'}
+          options={[{ label: 'None', value: 'none' }, ...themes()]}
+          selected={settings().theme}
+          style={'width: 80%'}
+        />
+
+        <Button
+          onClick={() => {
+            installThemeModal()
+          }}
+          style={{
+            width: '15%',
+            height: '40px'
+          }}
+        >
+          Install from Link
+        </Button>
+      </div>
+
 
       <Header class={classes.shead}>Client Type</Header>
       <Dropdown
@@ -113,12 +150,15 @@ export function SettingsPage() {
         maxVisibleItems={5}
         closeOnSelect={true}
         onChange={(e) => {
-          setSettings(p => {
-            return {
-              ...p,
-              client_type: e.target.value,
-            }
-          })
+          setSettings(
+            p => {
+              return {
+                ...p,
+                client_type: e.target.value,
+              }
+            },
+            true
+          )
         }}
         selected={settings().client_type}
       />
@@ -139,17 +179,24 @@ export function SettingsPage() {
               zoom: (parseFloat(v) / 100).toString(),
             }
           })
+
+          invoke('window_zoom_level', {
+            value: parseFloat(v) / 100,
+          })
         }}
       />
       <SwitchItem
         value={settings().sys_tray}
         onChange={(v) => {
-          setSettings(p => {
-            return {
-              ...p,
-              sys_tray: v,
-            }
-          })
+          setSettings(
+            p => {
+              return {
+                ...p,
+                sys_tray: v,
+              }
+            },
+            true
+          )
         }}
         note="Instead of closing, Dorion will run in the background and will be accessible via the system tray."
       >
@@ -206,12 +253,15 @@ export function SettingsPage() {
       <SwitchItem
         value={settings().multi_instance}
         onChange={(v) => {
-          setSettings(p => {
-            return {
-              ...p,
-              multi_instance: v,
-            }
-          })
+          setSettings(
+            p => {
+              return {
+                ...p,
+                multi_instance: v,
+              }
+            },
+            true
+          )
         }}
         note="Allow multiple instances of Dorion to be running at the same time."
       >
@@ -221,12 +271,15 @@ export function SettingsPage() {
       <SwitchItem
         value={settings().use_native_titlebar}
         onChange={(v) => {
-          setSettings(p => {
-            return {
-              ...p,
-              use_native_titlebar: v,
-            }
-          })
+          setSettings(
+            p => {
+              return {
+                ...p,
+                use_native_titlebar: v,
+              }
+            },
+            true
+          )
         }}
         note="Disable the custom titlebar and use your systems native one instead."
       >
@@ -285,15 +338,11 @@ export function SettingsPage() {
       </Card>
 
       <Header class={classes.shead}>Plugins</Header>
-      <PluginList />
-
-      <Button
-        onClick={saveSettings}
-        style={{ 'margin-top': '1rem', padding: '18px' }}
-        grow={true}
-      >
-        Save & Restart
-      </Button>
+      <PluginList
+        onChange={() => {
+          setRestartRequired(true)
+        }}
+      />
     </>
   )
 }
