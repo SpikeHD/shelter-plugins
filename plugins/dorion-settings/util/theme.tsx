@@ -1,14 +1,6 @@
 import { confirmModal } from './modal.jsx'
 
-declare global {
-  interface Window {
-    Dorion: {
-      util: {
-        cssSanitize: (css: string) => string
-      }
-    }
-  }
-}
+
 
 const {
   ui: {
@@ -77,7 +69,7 @@ export const loadTheme = async (theme: string) => {
   console.log('Got the localized theme!')
 
   // Internal Dorion function
-  const contents = window.Dorion.cssSanitize(localized)
+  const contents = window.Dorion.util.cssSanitize(localized)
 
   console.log('Sanitized!')
 

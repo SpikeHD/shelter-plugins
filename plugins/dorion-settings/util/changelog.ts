@@ -1,16 +1,6 @@
 import { marked } from 'marked'
 import { TReleases } from '../types/release.js'
 
-declare global {
-  interface Window {
-    Dorion: {
-      util: {
-        fetchImage: (url: string) => Promise<string>
-      }
-    }
-  }
-}
-
 const {
   ui: { showToast },
   plugins: { installedPlugins }

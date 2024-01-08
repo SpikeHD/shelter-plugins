@@ -3,6 +3,16 @@ import { ProfilesPage } from './components/ProfilesPage'
 import { SettingsPage } from './components/SettingsPage'
 import { ChangelogPage } from './components/ChangelogPage'
 
+declare global {
+  interface Window {
+    Dorion: {
+      util: {
+        cssSanitize: (css: string) => string
+        fetchImage: (url: string) => Promise<string>
+      }
+    }
+  }
+}
 
 const {
   settings: {
