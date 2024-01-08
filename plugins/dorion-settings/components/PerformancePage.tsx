@@ -1,5 +1,6 @@
 import { css, classes } from './PerformancePage.tsx.scss'
 import { Dropdown } from '../../../components/Dropdown'
+import { WarningCard } from './WarningCard.jsx'
 
 const {
   ui: {
@@ -14,7 +15,7 @@ const {
   solid: { createSignal, createEffect },
 } = shelter
 
-const { invoke, process } = window.__TAURI__
+const { invoke } = window.__TAURI__
 
 let injectedCss = false
 
@@ -42,10 +43,28 @@ export function PerformancePage() {
   })
   const [platform, setPlatform] = createSignal<string>('')
   const [blurOptions, setBlurOptions] = createSignal<string[]>([])
+  const [restartRequired, setRestartRequired] = createSignal(false)
 
   if (!injectedCss) {
     injectedCss = true
     injectCss(css)
+  }
+
+  const setSettings = (fn: (DorionSettings) => DorionSettings, requiresRestart?: boolean) => {
+    setState(fn(state()))
+
+    // Save the settings
+    invoke('write_config_file', {
+      contents: JSON.stringify(fn(state())),
+    })
+
+    // If a restart is now required, set that
+    if (requiresRestart) {
+      setRestartRequired(true)
+
+      // @ts-expect-error cry about it
+      window.__DORION_RESTART__ = true
+    }
   }
 
   createEffect(async () => {
@@ -57,7 +76,6 @@ export function PerformancePage() {
       setBlurOptions(availableBlurs)
     } catch(e) { /* this can fail it's fine */ }
 
-
     try {
       const platform = await invoke('get_platform')
       setPlatform(platform)
@@ -68,15 +86,10 @@ export function PerformancePage() {
     } catch (e) {
       setState(JSON.parse(defaultConf))
     }
+
+    // @ts-expect-error cry about it
+    setRestartRequired(window?.__DORION_RESTART__ === true)
   })
-
-  const saveSettings = async () => {
-    await invoke('write_config_file', {
-      contents: JSON.stringify(state()),
-    })
-
-    process.relaunch()
-  }
 
   const clearCSSCache = async () => {
     await invoke('clear_css_cache')
@@ -106,14 +119,20 @@ export function PerformancePage() {
     <>
       <Header tag={HeaderTags.H1} class={classes.tophead}>Dorion Performance Settings</Header>
 
+      {restartRequired() && (
+        <WarningCard />
+      )}
+
       <Header class={classes.shead}>Cache</Header>
       <SwitchItem
         value={state().cache_css}
         onChange={(v) =>
-          setState({
-            ...state(),
-            cache_css: v,
-          })
+          setSettings((settings) => (
+            {
+              ...settings,
+              cache_css: v,
+            }
+          ), true)
         }
         note="Save CSS to disk that would otherwise be loaded from the web, decreasing load times."
       >
@@ -123,10 +142,13 @@ export function PerformancePage() {
       <SwitchItem
         value={state().auto_clear_cache}
         onChange={(v) =>
-          setState({
-            ...state(),
-            auto_clear_cache: v,
-          })
+          setSettings(
+            {
+              ...state(),
+              auto_clear_cache: v,
+            },
+            true,
+          )
         }
         disabled={platform() !== 'windows'}
         tooltipNote={platform() !== 'windows' && 'This is only supported on Windows right now.'}
@@ -139,10 +161,13 @@ export function PerformancePage() {
       <SwitchItem
         value={state().streamer_mode_detection}
         onChange={(v) =>
-          setState({
-            ...state(),
-            streamer_mode_detection: v,
-          })
+          setSettings(
+            {
+              ...state(),
+              streamer_mode_detection: v,
+            },
+            true,
+          )
         }
         note="Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running."
       >
@@ -152,10 +177,13 @@ export function PerformancePage() {
       <SwitchItem
         value={state().rpc_server}
         onChange={(v) =>
-          setState({
-            ...state(),
-            rpc_server: v,
-          })
+          setSettings(
+            {
+              ...state(),
+              rpc_server: v,
+            },
+            true,
+          )
         }
         tooltipNote="This is a work in progress, and won't do EVERYTHING arRPC does quite yet."
         note="Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the shelteRPC/arRPC plugin!"
@@ -166,10 +194,13 @@ export function PerformancePage() {
       <SwitchItem
         value={state().disable_hardware_accel}
         onChange={(v) =>
-          setState({
-            ...state(),
-            disable_hardware_accel: v,
-          })
+          setSettings(
+            {
+              ...state(),
+              disable_hardware_accel: v,
+            },
+            true,
+          )
         }
         note="Disable hardware acceleration, which may cause issues on some systems. Disabling this can also cause performance issues on some systems. Unsupported on macOS."
         disabled={platform() === 'macos'}
@@ -183,10 +214,13 @@ export function PerformancePage() {
         value={state().blur}
         selected={state().blur}
         onChange={(e) =>
-          setState({
-            ...state(),
-            blur: e.target.value as any,
-          })
+          setSettings(
+            {
+              ...state(),
+              blur: e.target.value,
+            },
+            true,
+          )
         }
         options={blurOptions().map((b) => ({
           label: capitalize(b),
@@ -202,10 +236,13 @@ export function PerformancePage() {
       <SwitchItem
         value={state().blur_css}
         onChange={(v) =>
-          setState({
-            ...state(),
-            blur_css: v,
-          })
+          setSettings(
+            {
+              ...state(),
+              blur_css: v,
+            },
+            true,
+          )
         }
         note="Enable this if you are not using a theme designed to take advantage of transparent windows."
         disabled={platform() === 'linux' || state().blur === 'none'}
@@ -215,16 +252,8 @@ export function PerformancePage() {
 
       <div class={classes.pbuttons}>
         <Button
-          onClick={saveSettings}
-          style={{ width: '30%', padding: '18px' }}
-          grow={true}
-        >
-          Save and Restart
-        </Button>
-
-        <Button
           onClick={clearWebCache}
-          style={{ width: '30%', padding: '18px' }}
+          style={{ width: '40%', padding: '18px' }}
           grow={true}
         >
           Wipe all web-based data
@@ -232,7 +261,7 @@ export function PerformancePage() {
 
         <Button
           onClick={clearCSSCache}
-          style={{ width: '30%', padding: '18px' }}s
+          style={{ width: '40%', padding: '18px' }}s
           grow={true}
         >
           Clear CSS Cache

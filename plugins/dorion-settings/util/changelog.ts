@@ -61,12 +61,12 @@ function saveChangelogToLocalStorage(changelog: TReleases): void {
 }
 
 export async function processReleaseBodies(releases: TReleases): Promise<TReleases> {
-  const sanitizedReleases = await Promise.all(releases.map(async (release) => {
+  const processedReleases = await Promise.all(releases.map(async (release) => {
     release.body = await processReleaseBody(release.body)
     return release
   }))
 
-  return sanitizedReleases
+  return processedReleases
 }
 
 export async function processReleaseBody(body: string): Promise<string> {
@@ -74,8 +74,9 @@ export async function processReleaseBody(body: string): Promise<string> {
 
   return parsedBody
     .replace('\n', '') // remove newlines. It's converted to html, so it's not needed
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(code)) // Fix ascii references (such as &#39;)
     .replace(/@([\w-]+)/g, '<a href="https://github.com/$1">@$1</a>') // GitHub user
-    .replace(/ #(\d+)/g, ' <a href="https://github.com/spikehd/dorion/pull/$1">#$1</a>') // GitHub issue or PR
+    .replace(/#(\d+)/g, '<a href="https://github.com/spikehd/dorion/pull/$1">#$1</a>') // GitHub issue or PR
     .replace(/<a href="([^"]+)">([^<]+)<\/a>/g, '<a href="$1" target="_blank">$2</a>') // External link
 }
 
@@ -86,6 +87,6 @@ export async function fixImageLinks(scope: HTMLElement): Promise<void> {
 
   await Promise.all(Array.from(images).map(async (image: HTMLImageElement) => {
     const url = image.src
-    image.src = await window._fetchImage(url)
+    image.src = await window.Dorion.util.fetchImage(url)
   }))    
 }

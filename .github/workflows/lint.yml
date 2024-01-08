@@ -1,0 +1,39 @@
+name: Lint
+
+on:
+  push:
+    paths-ignore:
+      - '**.lock'
+  pull_request:
+    paths-ignore:
+      - '**.lock'
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  CARGO_INCREMENTAL: 0
+
+jobs:
+  tsc-eslint-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
+
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.7
+
+      - name: Install modules
+        run: pnpm install
+
+      - name: Run tsc
+        run: pnpm lune ci
+
+      - name: Run ESLint
+        run: pnpm lint

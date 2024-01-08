@@ -1,3 +1,7 @@
+.tophead {
+  margin-bottom: 16px;
+}
+
 .shead {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -20,4 +24,13 @@
 
 .left16 {
   margin-left: 16px;
+}
+
+.themeRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 42px;
 }
