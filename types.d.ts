@@ -16,6 +16,13 @@ interface DorionSettings {
   multi_instance: boolean
   disable_hardware_accel: boolean
 }
+interface DorionClientMod {
+  name: string
+  script: string
+  enabled: boolean
+  fallback?: string
+  styles?: string
+}
 
 interface DorionTheme {
   label: string
