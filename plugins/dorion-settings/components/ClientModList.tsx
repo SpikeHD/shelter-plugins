@@ -40,7 +40,7 @@ export function ClientModList(props: Props) {
         >
           <div class={classes.mcell}>
             <Text class={classes.left16}>
-              Name
+              Client Mod Name
             </Text>
           </div>
 
