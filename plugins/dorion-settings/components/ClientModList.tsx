@@ -10,7 +10,8 @@ const { invoke } = (window as any).__TAURI__
 let injectedCss = false
 
 const getClientMods = async () => {
-  const clientMods: DorionClientMod[] = JSON.parse(await invoke('read_client_mods_file'))
+  const clientMods: string = await invoke('available_mods')
+  console.log(clientMods)
   return clientMods
 }
 
@@ -24,11 +25,54 @@ export function ClientModList(props: Props) {
     injectCss(css)
   }
 
-  const [clientMods, setClientMods] = createSignal<DorionClientMod[]>([])
+  const [settings, setSettingsState] = createSignal<DorionSettings>({
+    zoom: '1.0',
+    client_type: 'default',
+    sys_tray: false,
+    push_to_talk: false,
+    push_to_talk_keys: [],
+    theme: 'none',
+    use_native_titlebar: false,
+    start_maximized: false,
+    open_on_startup: false,
+    startup_minimized: false,
+    autoupdate: false,
+    update_notify: true,
+    multi_instance: false,
+    client_mods: [],
+  })
+
+  const [clientMods, setClientMods] = createSignal<string[]>([])
 
   ;(async () => {
+    setSettingsState(JSON.parse(await invoke('read_config_file')))
     setClientMods(await getClientMods())
+
+    console.log(settings())
   })()
+
+  function onClientModToggle(modName: string) {
+    const newClientMods = [...settings().client_mods]
+
+    if (newClientMods.includes(modName)) {
+      newClientMods.splice(newClientMods.indexOf(modName), 1)
+    } else {
+      newClientMods.push(modName)
+    }
+
+    setSettings((s) => ({ ...s, client_mods: newClientMods }))
+
+    props.onChange()
+  }
+
+  const setSettings = (fn: (DorionSettings) => DorionSettings) => {
+    setSettingsState(fn(settings()))
+
+    // Save the settings
+    invoke('write_config_file', {
+      contents: JSON.stringify(fn(settings())),
+    })
+  }
 
   return (
     <Card style={{ marginTop: '1rem' }}>
@@ -51,36 +95,17 @@ export function ClientModList(props: Props) {
           </div>
         </div>
 
-        {clientMods().map((clientMod: DorionClientMod) => (
-          <div key={clientMod.name} class={classes.plistrow}>
+        {clientMods().map((modName: string) => (
+          <div key={modName} class={classes.plistrow}>
             <div class={classes.mcell}>
-              <Text class={classes.left16}>{clientMod.name}</Text>
+              <Text class={classes.left16}>{modName}</Text>
             </div>
 
             <div class={classes.scell}>
               <Switch
-                disabled={clientMod.name === 'Shelter'}
-                checked={clientMod.enabled}
-                onChange={() => {
-                  props.onChange()
-
-                  const newClientMods = [
-                    ...clientMods().filter((c) => c.name !== clientMod.name),
-                    {
-                      ...clientMod,
-                      enabled: !clientMod.enabled,
-                    },
-                  ]
-
-                  invoke('write_client_mods_file', {
-                    contents: JSON.stringify(newClientMods),
-                  })
-
-                  setClientMods(newClientMods)
-                }}
-                style={{
-                  flexDirection: 'column-reverse',
-                }}
+                disabled={modName === 'Shelter'}
+                checked={settings().client_mods?.includes(modName) || false}
+                onChange={() => onClientModToggle(modName)}
               />
             </div>
           </div>
