@@ -33,6 +33,8 @@ const settingsHandler = async (payload) => {
       node.remove()
     }),
     observeDom(popupSelector, (node: HTMLDivElement) => {
+      if (node.id) return
+
       // Remove the actual popout
       node.innerHTML = ''
 
