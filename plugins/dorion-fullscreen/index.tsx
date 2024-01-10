@@ -12,7 +12,7 @@ const {
 
 const toggleFullscreen = async (payload) => {
   const isFullscreen = payload?.properties?.video_layout === 'full-screen'
-  appWindow?.setFullscreen(!isFullscreen)
+  appWindow?.setFullscreen(isFullscreen)
 }
 
 FluxDispatcher.subscribe('WINDOW_FULLSCREEN_CHANGE', toggleFullscreen)
