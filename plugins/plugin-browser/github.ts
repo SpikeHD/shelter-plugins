@@ -86,7 +86,7 @@ export async function getPluginJson(site: string, plugin: string) {
     const json = await resp.json()
     return json
   } catch (e) {
-    console.log('[Plugin Browser] Error parsing plugin.json: ', e)
+    console.log('[Plugin Browser] Error parsing plugin.json: ', e.message)
     return null
   }
 }

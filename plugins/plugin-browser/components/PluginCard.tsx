@@ -12,10 +12,15 @@ const {
   ui: {
     injectCss,
     Button,
+    Text
   },
   solid: {
     createSignal,
     createEffect,
+  },
+  plugins: {
+    installedPlugins,
+    addRemotePlugin
   }
 } = shelter
 
@@ -28,27 +33,37 @@ export function PluginCard(props: Props) {
   }
 
   const [info, setInfo] = createSignal({})
+  const [installed, setInstalled] = createSignal(false)
 
   createEffect(async () => {
     setInfo(await getPluginJson(props.site, props.plugin))
+
+    const installed = Object.values(installedPlugins?.() || {}).some((p: any) => p.manifest.name === info()?.name && p.manifest.author === info()?.author)
+    setInstalled(installed)
   })
 
   const installPlugin = () => {
-    // TODO
+    addRemotePlugin(props.plugin, props.install_url, true)
+    setInstalled(true)
   }
-
-  if (!info()) return null
 
   return (
     <div class={classes.pluginCard}>
-      <div class={classes.name}>{info().name} by {props.author}</div>
-      <div class={classes.description}>{info().description}</div>
+      <Text class={classes.name}>
+        <b>{info()?.name || 'Unknown'}</b> by <b>{props.author}</b>
+      </Text>
+
+      <Text>{info()?.description}</Text>
+
       <div class={classes.installButton}>
         <Button
           class={classes.installButton}
           onClick={installPlugin}
+          disabled={installed() || !info()?.name}
         >
-          Install
+          {
+            installed() ? 'Already Installed!' : 'Install'
+          }
         </Button>
       </div>
     </div>

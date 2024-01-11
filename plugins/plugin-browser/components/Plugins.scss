@@ -3,5 +3,14 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.repoHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+
+  margin-top: 20px;
 }

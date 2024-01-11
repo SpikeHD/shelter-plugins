@@ -42,12 +42,16 @@ export function Plugins() {
         repos().map((repo: RepoInfo) => {
           return (
             <>
-              <Header tag={HeaderTags.H2}>{repo.repo.owner}</Header>
+              <div class={classes.repoHeader}>
+                <Header tag={HeaderTags.H2}>{repo.repo.owner}</Header>
+                <Header tag={HeaderTags.H2}>{repo.repo.stars} ⭐</Header>
+              </div>
 
               <div class={classes.pluginList}>
                 {
                   repo.plugins.map((p: string) => {
-                    // TODO: filter out already installed plugins
+                    if (p.toLowerCase().includes('dorion')) return null
+
                     return (
                       <PluginCard
                         plugin={p}

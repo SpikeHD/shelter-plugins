@@ -8,10 +8,24 @@
   flex-grow: 1;
   flex-shrink: 1;
 
-  width: 30%;
+  width: 40%;
   margin: 10px;
+  padding: 8px;
+
+  background: var(--input-background);
+
+  border-radius: 5px;
+}
+
+.pluginCard > span {
+  padding: 4px 0;
 }
 
 .installButton {
-  flex-grow: 1
+  flex-grow: 1;
+  width: 100%;
+}
+
+.installButton button P{
+  width: 100%;
 }
