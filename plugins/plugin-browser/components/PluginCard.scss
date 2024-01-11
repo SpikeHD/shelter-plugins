@@ -5,27 +5,29 @@
   align-items: flex-start;
   text-align: left;
 
-  flex-grow: 1;
-  flex-shrink: 1;
+  padding: 16px;
 
-  width: 40%;
-  margin: 10px;
-  padding: 8px;
+  color: var(--text-primary);
+  background: var(--background-secondary);
 
-  background: var(--input-background);
+  border-radius: 8px;
+  
+  .contents {
+    margin-top: 8px;
+    flex: 1;
+  }
 
-  border-radius: 5px;
-}
+  .buttonContainer {
+    margin-top: 8px;
+    width: 100%;
 
-.pluginCard > span {
-  padding: 4px 0;
-}
+    .installButton {
+      flex-grow: 1;
+      width: 100%;
 
-.installButton {
-  flex-grow: 1;
-  width: 100%;
-}
-
-.installButton button P{
-  width: 100%;
+      button P{
+        width: 100%;
+      }
+    }
+  }
 }

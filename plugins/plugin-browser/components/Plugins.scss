@@ -1,9 +1,13 @@
+.subtitle {
+  margin-top: 12px;
+  display: block;
+}
+
 .pluginList {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+  margin-top: 16px;
 }
 
 .repoHeader {
@@ -11,6 +15,4 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  margin-top: 20px;
 }
