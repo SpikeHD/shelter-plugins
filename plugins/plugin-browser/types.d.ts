@@ -8,3 +8,9 @@ interface Repo {
   owner_avatar: string
   homepage: string
 }
+
+interface RepoInfo {
+  repo: Repo
+  site: string
+  plugins: string[]
+}

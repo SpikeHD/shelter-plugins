@@ -1,0 +1,16 @@
+.pluginCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  text-align: left;
+
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  width: 30%;
+}
+
+.installButton {
+  flex-grow: 1
+}

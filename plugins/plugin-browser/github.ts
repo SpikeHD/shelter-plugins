@@ -1,6 +1,16 @@
+import { savePluginsCache } from './storage.js'
+
+const ghFetch = async (url: string) => {
+  return fetch(url, {
+    headers: {
+      'User-Agent': 'Shelter Plugin Browser',
+    }
+  })
+}
+
 export async function getRepos() {
-  const resp = fetch('https://api.github.com/search/repositories?q=topic:shelter-plugins')
-  const json = await resp.then((res) => res.json())
+  const resp = await ghFetch('https://api.github.com/search/repositories?q=topic:shelter-plugins')
+  const json = await resp.json()
   
   // Transform into more digestable/saveable data
   return json.items.map((item: any) => {
@@ -28,8 +38,8 @@ export async function pluginsSite(repo: Repo) {
 
 export async function getRepoPlugins(repo: Repo) {
   // List all the files in the plugins/ directory in the repo
-  const resp = fetch(`https://api.github.com/repos/${repo.owner}/${repo.name}/contents/plugins`)
-  const json = await resp.then((res) => res.json())
+  const resp = await ghFetch(`https://api.github.com/repos/${repo.owner}/${repo.name}/contents/plugins`)
+  const json = await resp.json()
 
   return json.map((item: any) => item.name)
 }
@@ -52,8 +62,8 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
 
   for (const path of paths) {
     const url = `${path}/${plugin}/plugin.json`
-    const resp = fetch(url)
-    const json = await resp.then((res) => res.json())
+    const resp = await ghFetch(url)
+    const json = await resp.json()
     if (json) {
       workingPath = path
       break
@@ -64,8 +74,8 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
 }
 
 export async function getPluginJson(site: string, plugin: string) {
-  const resp = fetch(`${site}/${plugin}/plugin.json`)
-  const json = await resp.then((res) => res.json())
+  const resp = await ghFetch(`${site}/${plugin}/plugin.json`)
+  const json = await resp.json()
 
   return json
 }
@@ -92,10 +102,13 @@ export async function getAllPlugins() {
       repo,
       site,
       plugins,
-    }
+    } satisfies RepoInfo
   }))
 
   plugins = plugins.filter((plugin) => plugin !== null)
 
-  return plugins
+  // Save to cache
+  savePluginsCache(plugins)
+
+  return plugins as RepoInfo[]
 }
