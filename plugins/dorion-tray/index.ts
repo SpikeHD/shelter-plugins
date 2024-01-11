@@ -7,12 +7,12 @@ const {
 const { invoke } = (window as any).__TAURI__
 
 const state = {
-  connected: false,
-  muted: false,
-  deafened: false,
-  streaming: false,
   video: false,
+  streaming: false,
+  deafened: false,
+  muted: false,
   speaking: false,
+  connected: false,
 }
 
 const handleConnect = async (payload) => {
@@ -55,33 +55,8 @@ const handleSpeakAction = async (payload) => {
 }
 
 const handleTrayUpdate = async () => {
-  const {connected, muted, deafened, streaming, video, speaking} = state
-
-  let icon: string | null = null
-
-  if (!connected) {
-    icon = 'disconnected'
-  } else if (video) {
-    icon = 'video'
-  } else if (streaming) {
-    icon = 'streaming'
-  } else if (deafened) {
-    icon = 'deafened'
-  } else if (muted) {
-    icon = 'muted'
-  } else if (speaking) {
-    icon = 'speaking'
-  } else if (connected) {
-    icon = 'connected'
-  } else {
-    return
-  }
-
-  try {
-    await invoke('set_tray_icon', { event: icon })
-  } catch (err) {
-    // function not implemented, do nothing for older versions of the app
-  }
+  const icon = Object.keys(state).find(k => state[k]) || 'disconnected'
+  await invoke('set_tray_icon', { event: icon })
 }
 
 dispatcher.subscribe('VOICE_STATE_UPDATES', handleVoiceChannelActions)
