@@ -66,7 +66,7 @@ Disables mentions on replies by default.
 
 ## Plugin Browser
 
-Find many Shelter plugins in one place!
+Find many Shelter plugins in one place! If you're curious why something isn't showing up, <a href="https://github.com/SpikeHD/shelter-plugins/blob/main/plugins/plugin-browser/README.md">view the docs on it</a>.
 
 `https://spikehd.github.io/shelter-plugins/plugin-browser/`
 
