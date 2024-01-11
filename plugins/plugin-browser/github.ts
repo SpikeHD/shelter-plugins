@@ -45,13 +45,14 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
   }
 
   const paths = [
-    `${site}/shelter-plugins/${plugin}/plugin.json`,
-    `${site}/${plugin}/plugin.json`,
+    `${site}/shelter-plugins/`,
+    `${site}/`,
   ]
   let workingPath: null | string = null
 
   for (const path of paths) {
-    const resp = fetch(path)
+    const url = `${path}/${plugin}/plugin.json`
+    const resp = fetch(url)
     const json = await resp.then((res) => res.json())
     if (json) {
       workingPath = path
@@ -60,4 +61,41 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
   }
 
   return workingPath
+}
+
+export async function getPluginJson(site: string, plugin: string) {
+  const resp = fetch(`${site}/${plugin}/plugin.json`)
+  const json = await resp.then((res) => res.json())
+
+  return json
+}
+
+export async function getAllPlugins() {
+  const repos = await getRepos()
+  // Map the plugins to their repos
+  let plugins = await Promise.all(repos.map(async (repo) => {
+    const site = await pluginsSite(repo)
+
+    if (!site) {
+      console.log('[Plugin Browser] No site found for repo: ', repo.name)
+      return null
+    }
+
+    const plugins = await getRepoPlugins(repo)
+
+    if (!plugins) {
+      console.log('[Plugin Browser] No plugins found for repo: ', repo.name)
+      return null
+    }
+
+    return {
+      repo,
+      site,
+      plugins,
+    }
+  }))
+
+  plugins = plugins.filter((plugin) => plugin !== null)
+
+  return plugins
 }
