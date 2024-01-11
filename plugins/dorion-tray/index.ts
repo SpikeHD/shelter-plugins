@@ -1,8 +1,6 @@
 const {
   flux: {
     dispatcher,
-    // stores: {
-    // }
   },
 } = shelter
 
