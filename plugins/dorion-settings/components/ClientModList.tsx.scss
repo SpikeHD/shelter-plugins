@@ -1,0 +1,77 @@
+.shead {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.plist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 16px;
+}
+
+.pheader {
+  border-bottom: 1px solid var(--background-tertiary);
+  font-weight: bold;
+  padding-bottom: 16px;
+}
+
+.pbuttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  margin-top: 16px;
+
+  & button {
+    width: 30%;
+    padding: 18px;
+  }
+}
+
+.sbutton {
+  margin-top: 16px;
+  padding: 18px;
+
+  width: 100%;
+}
+
+.plistrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  padding: 16px;
+}
+
+.plistrow .scell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+
+.plistrow .mcell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.left16 {
+  margin-left: 16px;
+}
+
+.top16 {
+  margin-top: 16px;
+}
+
+.top32 {
+  margin-top: 32px;
+}

@@ -1,6 +1,7 @@
 import { Card } from '../../../components/Card'
 import { Dropdown } from '../../../components/Dropdown'
 import { installThemeModal, loadTheme } from '../util/theme.jsx'
+import { ClientModList } from './ClientModList.jsx'
 import { PluginList } from './PluginList'
 
 import { css, classes } from './SettingsPage.tsx.scss'
@@ -336,6 +337,12 @@ export function SettingsPage() {
           <Button onClick={openThemesFolder}>Open</Button>
         </div>
       </Card>
+
+      <ClientModList
+        onChange={() => {
+          setRestartRequired(true)
+        }}
+      />
 
       <Header class={classes.shead}>Plugins</Header>
       <PluginList
