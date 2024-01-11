@@ -338,7 +338,6 @@ export function SettingsPage() {
         </div>
       </Card>
 
-      <Header class={classes.shead}>Client Mods</Header>
       <ClientModList
         onChange={() => {
           setRestartRequired(true)
