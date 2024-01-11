@@ -37,10 +37,12 @@ export function PluginCard(props: Props) {
     // TODO
   }
 
+  if (!info()) return null
+
   return (
     <div class={classes.pluginCard}>
-      <div class={classes.name}>{info.name} by {props.author}</div>
-      <div class={classes.description}>{info.description}</div>
+      <div class={classes.name}>{info().name} by {props.author}</div>
+      <div class={classes.description}>{info().description}</div>
       <div class={classes.installButton}>
         <Button
           class={classes.installButton}

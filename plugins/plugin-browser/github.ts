@@ -63,10 +63,16 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
   for (const path of paths) {
     const url = `${path}/${plugin}/plugin.json`
     const resp = await ghFetch(url)
-    const json = await resp.json()
-    if (json) {
-      workingPath = path
-      break
+    
+    try {
+      const json = await resp.json()
+      if (json.name === plugin) {
+        workingPath = path
+        break
+      }
+    } catch (e) {
+      // If we get an error, its probably because the file doesn't exist
+      // So we can just ignore it
     }
   }
 
@@ -75,9 +81,14 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
 
 export async function getPluginJson(site: string, plugin: string) {
   const resp = await ghFetch(`${site}/${plugin}/plugin.json`)
-  const json = await resp.json()
-
-  return json
+  
+  try {
+    const json = await resp.json()
+    return json
+  } catch (e) {
+    console.log('[Plugin Browser] Error parsing plugin.json: ', e)
+    return null
+  }
 }
 
 export async function getAllPlugins() {
