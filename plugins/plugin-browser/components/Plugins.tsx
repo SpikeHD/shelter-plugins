@@ -9,6 +9,7 @@ const {
     Header,
     HeaderTags,
     Text,
+    Divider,
   },
   solid: {
     createSignal,
@@ -34,7 +35,7 @@ export function Plugins() {
     <>
       <Header tag={HeaderTags.H1}>Plugins</Header>
 
-      <Text>
+      <Text class={classes.subtitle}>
         Not seeing your plugin repo? <a href="https://github.com/SpikeHD/shelter-plugins/tree/main/plugins/plugin-browser" target="_blank">Take a look</a> at how this plugin finds repos!
       </Text>
 
@@ -42,6 +43,7 @@ export function Plugins() {
         repos().map((repo: RepoInfo) => {
           return (
             <>
+              <Divider mt={16} mb={16} />
               <div class={classes.repoHeader}>
                 <Header tag={HeaderTags.H2}>{repo.repo.owner}</Header>
                 <Header tag={HeaderTags.H2}>

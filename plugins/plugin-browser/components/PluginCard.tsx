@@ -53,9 +53,9 @@ export function PluginCard(props: Props) {
         <b>{info()?.name || 'Unknown'}</b> by <b>{props.author}</b>
       </Text>
 
-      <Text>{info()?.description}</Text>
+      <Text class={classes.contents}>{info()?.description}</Text>
 
-      <div class={classes.installButton}>
+      <div class={classes.buttonContainer}>
         <Button
           class={classes.installButton}
           onClick={installPlugin}
