@@ -15,6 +15,7 @@ interface DorionSettings {
   auto_clear_cache: boolean
   multi_instance: boolean
   disable_hardware_accel: boolean
+  client_mods: string[]
 }
 
 interface DorionTheme {

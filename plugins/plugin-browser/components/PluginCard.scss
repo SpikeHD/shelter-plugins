@@ -1,0 +1,33 @@
+.pluginCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  text-align: left;
+
+  padding: 16px;
+
+  color: var(--text-primary);
+  background: var(--background-secondary);
+
+  border-radius: 8px;
+  
+  .contents {
+    margin-top: 8px;
+    flex: 1;
+  }
+
+  .buttonContainer {
+    margin-top: 8px;
+    width: 100%;
+
+    .installButton {
+      flex-grow: 1;
+      width: 100%;
+
+      button P{
+        width: 100%;
+      }
+    }
+  }
+}

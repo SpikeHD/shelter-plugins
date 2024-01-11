@@ -10,6 +10,7 @@ Shelter plugin repo housing both general-use plugins AND [Dorion](https://github
   * [Inline CSS](#inline-css)
   * [Invisible Typing](#invisible-typing)
   * [No Reply Mention](#no-reply-mention)
+  * [Plugin Browser](#plugin-browser)
   * [shelteRPC](#shelterpc)
 * [Dorion Plugins](#dorion-plugins)
   * [Dorion Fullscreen](#dorion-fullscreen)
@@ -62,6 +63,14 @@ Prevents others from seeing when you are typing.
 Disables mentions on replies by default.
 
 `https://spikehd.github.io/shelter-plugins/no-reply-mention/`
+
+## Plugin Browser
+
+Find many Shelter plugins in one place! If you're curious why something isn't showing up, <a href="https://github.com/SpikeHD/shelter-plugins/blob/main/plugins/plugin-browser/README.md">view the docs on it</a>.
+
+`https://spikehd.github.io/shelter-plugins/plugin-browser/`
+
+![image](https://github.com/SpikeHD/shelter-plugins/assets/25207995/a32ab408-117c-42fb-91fb-6d8c74e90ec6)
 
 ## shelteRPC
 
