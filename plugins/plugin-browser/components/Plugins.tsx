@@ -35,7 +35,7 @@ export function Plugins() {
       <Header tag={HeaderTags.H1}>Plugins</Header>
 
       <Text>
-        Not seeing your plugin repo? <a href="">Take a look</a> at how this plugin finds repos!
+        Not seeing your plugin repo? <a href="https://github.com/SpikeHD/shelter-plugins/tree/main/plugins/plugin-browser">Take a look</a> at how this plugin finds repos!
       </Text>
 
       {

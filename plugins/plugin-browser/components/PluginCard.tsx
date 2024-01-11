@@ -62,7 +62,7 @@ export function PluginCard(props: Props) {
           disabled={installed() || !info()?.name}
         >
           {
-            installed() ? 'Already Installed!' : 'Install'
+            installed() ? 'Installed' : 'Install'
           }
         </Button>
       </div>
