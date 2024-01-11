@@ -125,3 +125,9 @@ Updater for Dorion.
 Fix (specifically, for MacOS) that prevents permission spam when using voice features.
 
 `https://spikehd.github.io/shelter-plugins/dorion-voice-fix/`
+
+## Dorion Tray
+
+Adds indicator icons to the tray icon when in a call, just like the normal Discord client
+
+`https://spikehd.github.io/shelter-plugins/dorion-tray`
