@@ -1,6 +1,6 @@
 import { css, classes } from './Plugins.scss'
 import { PluginCard } from './PluginCard'
-import { getAllPlugins, getPluginJson } from '../github.js'
+import { getAllPlugins } from '../github.js'
 import { getPluginsCache } from '../storage.js'
 
 const {
