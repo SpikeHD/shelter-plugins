@@ -35,7 +35,7 @@ export function Plugins() {
       <Header tag={HeaderTags.H1}>Plugins</Header>
 
       <Text>
-        Not seeing your plugin repo? <a href="https://github.com/SpikeHD/shelter-plugins/tree/main/plugins/plugin-browser">Take a look</a> at how this plugin finds repos!
+        Not seeing your plugin repo? <a href="https://github.com/SpikeHD/shelter-plugins/tree/main/plugins/plugin-browser" target="_blank">Take a look</a> at how this plugin finds repos!
       </Text>
 
       {
@@ -44,7 +44,9 @@ export function Plugins() {
             <>
               <div class={classes.repoHeader}>
                 <Header tag={HeaderTags.H2}>{repo.repo.owner}</Header>
-                <Header tag={HeaderTags.H2}>{repo.repo.stars} ⭐</Header>
+                <Header tag={HeaderTags.H2}>
+                  <a href={repo.repo.url} target="_blank">View Repository</a> - {repo.repo.stars} ⭐
+                </Header>
               </div>
 
               <div class={classes.pluginList}>
