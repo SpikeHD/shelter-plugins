@@ -10,7 +10,11 @@ const {
   }
 } = (window as any).__TAURI__
 
+let isPopout = false
+
 const toggleFullscreen = async (payload) => {
+  if (isPopout) return
+
   const topbar = document.querySelector('#dorion_topbar') as HTMLDivElement
 
   if (topbar) {
@@ -20,8 +24,24 @@ const toggleFullscreen = async (payload) => {
   appWindow?.setFullscreen(payload?.isElementFullscreen)
 }
 
+const toggleIsPopout = (toggle: boolean) => {
+  isPopout = toggle
+}
+
+const popoutOff = () => {
+  toggleIsPopout(false)
+}
+
+const popoutOn = () => {
+  toggleIsPopout(true)
+}
+
 FluxDispatcher.subscribe('WINDOW_FULLSCREEN_CHANGE', toggleFullscreen)
+FluxDispatcher.subscribe('POPOUT_WINDOW_OPEN', popoutOn)
+FluxDispatcher.subscribe('WINDOW_UNLOAD', popoutOff)
 
 export const onUnload = () => {
   FluxDispatcher.unsubscribe('WINDOW_FULLSCREEN_CHANGE', toggleFullscreen)
+  FluxDispatcher.unsubscribe('POPOUT_WINDOW_OPEN', popoutOn)
+  FluxDispatcher.unsubscribe('WINDOW_UNLOAD', popoutOff)
 }
