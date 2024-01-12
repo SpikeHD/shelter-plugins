@@ -51,22 +51,22 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
   const plugin = plugins?.[0]
 
   if (!plugin) {
-    return null
+    return site
   }
 
   const paths = [
     `${site}/shelter-plugins/`,
     `${site}/`,
   ]
-  let workingPath: null | string = null
+  let workingPath: null | string = site
 
   for (const path of paths) {
     const url = `${path}/${plugin}/plugin.json`
     const resp = await ghFetch(url)
-    
+
     try {
       const json = await resp.json()
-      if (json.name === plugin) {
+      if (json.name) {
         workingPath = path
         break
       }
@@ -110,8 +110,8 @@ export async function getAllPlugins() {
     }
 
     return {
+      site: await getPluginsLocation(site, plugins),
       repo,
-      site,
       plugins,
     } satisfies RepoInfo
   }))
