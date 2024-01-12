@@ -1,4 +1,4 @@
-import { savePluginsCache } from './storage.js'
+import { getPluginJsonCache, savePluginJsonCache, savePluginsCache } from './storage.js'
 
 const ghFetch = async (url: string) => {
   return fetch(url, {
@@ -80,10 +80,22 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
 }
 
 export async function getPluginJson(site: string, plugin: string) {
-  const resp = await ghFetch(`${site}/${plugin}/plugin.json`)
+  const url = `${site}/${plugin}/plugin.json`
+
+  // Check if we have it cached
+  const cache = getPluginJsonCache()
+  if (cache[url]) {
+    return cache[url]
+  }
+
+  const resp = await ghFetch(url)
   
   try {
     const json = await resp.json()
+
+    // Cache the plugin.json
+    savePluginJsonCache(url, json)
+
     return json
   } catch (e) {
     console.log('[Plugin Browser] Error parsing plugin.json: ', e.message)

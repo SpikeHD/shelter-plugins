@@ -10,6 +10,7 @@ const {
     HeaderTags,
     Text,
     Divider,
+    TextBox
   },
   solid: {
     createSignal,
@@ -18,6 +19,15 @@ const {
 } = shelter
 
 let injectedCss = false
+const debounce = (fn: (...args) => any, ms: number) => {
+  let timeoutId = null
+  return (...args) => {
+    window.clearTimeout(timeoutId)
+    timeoutId = window.setTimeout(() => {
+      fn(...args)
+    }, ms)
+  }
+}
 
 export function Plugins() {
   if (!injectedCss) {
@@ -26,6 +36,7 @@ export function Plugins() {
   }
 
   const [repos, setRepos] = createSignal<RepoInfo[]>([])
+  const [search, setSearch] = createSignal('')
 
   createEffect(async () => {
     setRepos(getPluginsCache() ||  await getAllPlugins())
@@ -38,6 +49,14 @@ export function Plugins() {
       <Text class={classes.subtitle}>
         Not seeing your plugin repo? <a href="https://github.com/SpikeHD/shelter-plugins/tree/main/plugins/plugin-browser" target="_blank">Take a look</a> at how this plugin finds repos!
       </Text>
+
+      <Divider mt={16} mb={16} />
+
+      <TextBox
+        value={search()}
+        onInput={debounce((v) => setSearch(v), 100)}
+        placeholder={'Search...'}
+      />
 
       {
         repos().map((repo: RepoInfo) => {
@@ -55,6 +74,7 @@ export function Plugins() {
                 {
                   repo.plugins.map((p: string) => {
                     if (p.toLowerCase().includes('dorion')) return null
+                    if (!p.toLowerCase().includes(search().toLowerCase())) return null
 
                     return (
                       <PluginCard
