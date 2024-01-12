@@ -1,8 +1,8 @@
 # Where is my plugin repo?
 
-This plugin searches the `shelter-plugins` GitHub topic. If your repository does not have that topic set, you can <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics">set it in your repository's settings</a>.
+This plugin searches the term `shelter-plugins` on GitHub. That's it! If your repository doesn't show up, make sure to include "shelter plugins" somewhere in your repo's description or name.
 
-# Why are my plugins not showing up/showing as unknown?
+# Why are my plugins not showing up/showing as uninstallable?
 
 Since there is zero standardization as to how plugins are shared and deployed, this plugin makes some best-guesses:
 
@@ -12,6 +12,6 @@ Since there is zero standardization as to how plugins are shared and deployed, t
   * `<url>/shelter-plugins/<plugin-name>`
   * `<url>/<plugin-name>`
 
-If neither checks succeed, the plugin will be marked as unknown.
+If neither checks succeed, the plugin will be marked as uninstallable, as it doesn't know where to source it.
 
 To fix this (for example, if you use a custom domain), just set the `homepage` field in your GitHub repo to where the `shelter-plugin`s live. For example, if you host your plugins at `https://myplugins.dev/files/shelter/<plugin>`, set the homepage to `https://myplugins.dev/files/shelter`.
