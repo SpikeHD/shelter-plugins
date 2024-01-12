@@ -50,7 +50,7 @@ export function PluginCard(props: Props) {
   return (
     <div class={classes.pluginCard}>
       <Text class={classes.name}>
-        <b>{info()?.name || 'Unknown'}</b> by <b>{props.author}</b>
+        <b>{info()?.name || props.plugin}</b> by <b>{props.author}</b>
       </Text>
 
       <Text class={classes.contents}>{info()?.description}</Text>
