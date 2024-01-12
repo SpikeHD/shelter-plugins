@@ -11,8 +11,7 @@ const {
 } = (window as any).__TAURI__
 
 const toggleFullscreen = async (payload) => {
-  const isFullscreen = payload?.properties?.video_layout === 'full-screen'
-  appWindow?.setFullscreen(isFullscreen)
+  appWindow?.setFullscreen(payload?.isElementFullscreen)
 }
 
 FluxDispatcher.subscribe('WINDOW_FULLSCREEN_CHANGE', toggleFullscreen)
