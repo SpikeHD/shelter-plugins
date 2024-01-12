@@ -9,7 +9,7 @@ const ghFetch = async (url: string) => {
 }
 
 export async function getRepos() {
-  const resp = await ghFetch('https://api.github.com/search/repositories?q=topic:shelter-plugins')
+  const resp = await ghFetch('https://api.github.com/search/repositories?q=shelter-plugins')
   const json = await resp.json()
   
   // Transform into more digestable/saveable data
@@ -40,6 +40,11 @@ export async function getRepoPlugins(repo: Repo) {
   // List all the files in the plugins/ directory in the repo
   const resp = await ghFetch(`https://api.github.com/repos/${repo.owner}/${repo.name}/contents/plugins`)
   const json = await resp.json()
+
+  // Ensure this is an array
+  if (!Array.isArray(json)) {
+    return []
+  }
 
   return json.map((item: any) => item.name)
 }
@@ -105,6 +110,9 @@ export async function getPluginJson(site: string, plugin: string) {
 
 export async function getAllPlugins() {
   const repos = await getRepos()
+
+  console.log(repos)
+
   // Map the plugins to their repos
   let plugins = await Promise.all(repos.map(async (repo) => {
     const site = await pluginsSite(repo)
@@ -116,8 +124,8 @@ export async function getAllPlugins() {
 
     const plugins = await getRepoPlugins(repo)
 
-    if (!plugins) {
-      console.log('[Plugin Browser] No plugins found for repo: ', repo.name)
+    if (!plugins || plugins.length === 0) {
+      console.log(`[Plugin Browser] No plugins found for repo: ${repo.owner}/${repo.name}`)
       return null
     }
 
