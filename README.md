@@ -70,7 +70,7 @@ Find many Shelter plugins in one place! If you're curious why something isn't sh
 
 `https://spikehd.github.io/shelter-plugins/plugin-browser/`
 
-![image](https://github.com/SpikeHD/shelter-plugins/assets/25207995/a32ab408-117c-42fb-91fb-6d8c74e90ec6)
+![image](https://github.com/SpikeHD/shelter-plugins/assets/25207995/2ad78966-10b2-45a6-af84-7ef4a2992b7b)
 
 ## shelteRPC
 
