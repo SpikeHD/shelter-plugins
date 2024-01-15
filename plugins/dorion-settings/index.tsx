@@ -9,7 +9,10 @@ declare global {
       util: {
         cssSanitize: (css: string) => string
         fetchImage: (url: string) => Promise<string>
+        applyNotificationCount: () => void
       }
+
+      shouldShowUnreadBadge: boolean
     }
   }
 }

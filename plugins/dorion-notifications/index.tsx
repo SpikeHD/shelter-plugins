@@ -41,34 +41,68 @@ const settingsHandler = async (payload) => {
 
     node.style.display = 'none'
 
+    // The next node after should also be hidden
+    const next = node.nextElementSibling as HTMLDivElement
+    if (next) next.style.display = 'none'
+
     if (newSettingInjected) return
 
-    const newNotif = (
-      <SwitchItem
-        note="If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings."
-        value={settings()?.desktop_notifications}
-        onChange={async (value) => {
-          setSettings({
-            ...settings(),
-            desktop_notifications: value
-          })
+    const newNotifs = [
+      (
+        <SwitchItem
+          note="Shows a red badge on the app icon when you have unread messages."
+          value={settings()?.unread_badge}
+          onChange={async (value) => {
+            setSettings({
+              ...settings(),
+              unread_badge: value
+            })
+  
+            await invoke('write_config_file', {
+              contents: JSON.stringify(settings())
+            })
+  
+            window.Dorion.shouldShowUnreadBadge = value
 
-          await invoke('write_config_file', {
-            contents: JSON.stringify(settings())
-          })
-        }}
-      >
-        Enable Desktop Notifications
-      </SwitchItem>
-    )
+            // Also wipe the current badge if it was enabled
+            if (!value) invoke('notif_count', { amount: 0 })
+            else window.Dorion.util.applyNotificationCount()
+          }}
+        >
+            Enable Unread Message Badge
+        </SwitchItem>
+      ),
+      (
+        <SwitchItem
+          note="If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings."
+          value={settings()?.desktop_notifications}
+          onChange={async (value) => {
+            setSettings({
+              ...settings(),
+              desktop_notifications: value
+            })
 
-    node.parentElement.prepend(newNotif)
+            await invoke('write_config_file', {
+              contents: JSON.stringify(settings())
+            })
+          }}
+        >
+          Enable Desktop Notifications
+        </SwitchItem>
+      )
+    ]
+
+    for (const newNotif of newNotifs) {
+      node.parentElement.prepend(newNotif)
+    }
 
     newSettingInjected = true
   })
 }
 
 const notifHandler = (payload) => {
+  if (!settings().desktop_notifications) return
+
   invoke('send_notification', {
     title: payload.title,
     body: payload.body,
