@@ -142,13 +142,12 @@ export function PerformancePage() {
       <SwitchItem
         value={state().auto_clear_cache}
         onChange={(v) =>
-          setSettings(
+          setSettings((settings) => (
             {
-              ...state(),
+              ...settings,
               auto_clear_cache: v,
-            },
-            true,
-          )
+            }
+          ), true)
         }
         disabled={platform() !== 'windows'}
         tooltipNote={platform() !== 'windows' && 'This is only supported on Windows right now.'}
@@ -161,13 +160,12 @@ export function PerformancePage() {
       <SwitchItem
         value={state().streamer_mode_detection}
         onChange={(v) =>
-          setSettings(
+          setSettings((settings) => (
             {
-              ...state(),
+              ...settings,
               streamer_mode_detection: v,
-            },
-            true,
-          )
+            }
+          ), true)
         }
         note="Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running."
       >
@@ -177,13 +175,12 @@ export function PerformancePage() {
       <SwitchItem
         value={state().rpc_server}
         onChange={(v) =>
-          setSettings(
+          setSettings((settings) => (
             {
-              ...state(),
+              ...settings,
               rpc_server: v,
-            },
-            true,
-          )
+            }
+          ), true)
         }
         tooltipNote="This is a work in progress, and won't do EVERYTHING arRPC does quite yet."
         note="Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the shelteRPC/arRPC plugin!"
@@ -194,13 +191,12 @@ export function PerformancePage() {
       <SwitchItem
         value={state().disable_hardware_accel}
         onChange={(v) =>
-          setSettings(
+          setSettings((settings) => (
             {
-              ...state(),
+              ...settings,
               disable_hardware_accel: v,
-            },
-            true,
-          )
+            }
+          ), true)
         }
         note="Disable hardware acceleration, which may cause issues on some systems. Disabling this can also cause performance issues on some systems. Unsupported on macOS."
         disabled={platform() === 'macos'}
@@ -214,13 +210,12 @@ export function PerformancePage() {
         value={state().blur}
         selected={state().blur}
         onChange={(e) =>
-          setSettings(
+          setSettings((settings) => (
             {
-              ...state(),
+              ...settings,
               blur: e.target.value,
-            },
-            true,
-          )
+            }
+          ), true)
         }
         options={blurOptions().map((b) => ({
           label: capitalize(b),
@@ -236,13 +231,12 @@ export function PerformancePage() {
       <SwitchItem
         value={state().blur_css}
         onChange={(v) =>
-          setSettings(
+          setSettings((settings) => (
             {
-              ...state(),
+              ...settings,
               blur_css: v,
-            },
-            true,
-          )
+            }
+          ), true)
         }
         note="Enable this if you are not using a theme designed to take advantage of transparent windows."
         disabled={platform() === 'linux' || state().blur === 'none'}
