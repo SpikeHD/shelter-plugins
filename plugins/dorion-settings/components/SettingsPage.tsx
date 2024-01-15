@@ -1,8 +1,4 @@
-import { Card } from '../../../components/Card'
-import { Dropdown } from '../../../components/Dropdown'
-import { installThemeModal, loadTheme } from '../util/theme.jsx'
-import { ClientModList } from './ClientModList.jsx'
-import { PluginList } from './PluginList'
+import { Dropdown } from '../../../components/Dropdown.jsx'
 
 import { css, classes } from './SettingsPage.tsx.scss'
 import { WarningCard } from './WarningCard.jsx'
@@ -10,8 +6,6 @@ import { WarningCard } from './WarningCard.jsx'
 const {
   ui: {
     SwitchItem,
-    Button,
-    Text,
     Header,
     HeaderTags,
     Slider,
@@ -23,22 +17,6 @@ const {
 const { invoke } = (window as any).__TAURI__
 
 let injectedCss = false
-
-const getThemes = async () => {
-  const themes: string[] = await invoke('get_theme_names')
-  return themes.map((t: string) => ({
-    label: t.replace(/"/g, '').replace('.css', '').replace('.theme', ''),
-    value: t.replace(/"/g, ''),
-  }))
-}
-
-const openPluginsFolder = () => {
-  invoke('open_plugins')
-}
-
-const openThemesFolder = () => {
-  invoke('open_themes')
-}
 
 export function SettingsPage() {
   const [settings, setSettingsState] = createSignal<DorionSettings>({
@@ -56,7 +34,6 @@ export function SettingsPage() {
     update_notify: true,
     multi_instance: false,
   })
-  const [themes, setThemes] = createSignal<DorionTheme[]>([])
   const [restartRequired, setRestartRequired] = createSignal(false)
 
   if (!injectedCss) {
@@ -66,7 +43,6 @@ export function SettingsPage() {
 
   createEffect(async () => {
     setSettingsState(JSON.parse(await invoke('read_config_file')))
-    setThemes(await getThemes())
 
     // @ts-expect-error cry about it
     setRestartRequired(window?.__DORION_RESTART__ === true)
@@ -96,40 +72,6 @@ export function SettingsPage() {
       {restartRequired() && (
         <WarningCard />
       )}
-
-      <Header class={classes.shead}>Theme</Header>
-      <div class={classes.themeRow}>
-        <Dropdown
-          value={settings().theme}
-          onChange={(e) => {
-            setSettings(p => {
-              return {
-                ...p,
-                theme: e.target.value,
-              }
-            })
-
-            loadTheme(e.target.value)
-          }}
-          placeholder={'Select a theme...'}
-          options={[{ label: 'None', value: 'none' }, ...themes()]}
-          selected={settings().theme}
-          style={'width: 80%'}
-        />
-
-        <Button
-          onClick={() => {
-            installThemeModal()
-          }}
-          style={{
-            width: '15%',
-            height: '40px'
-          }}
-        >
-          Install from Link
-        </Button>
-      </div>
-
 
       <Header class={classes.shead}>Client Type</Header>
       <Dropdown
@@ -288,6 +230,7 @@ export function SettingsPage() {
         Use Native Titlebar
       </SwitchItem>
 
+      <Header class={classes.shead}>Updates</Header>
       <SwitchItem
         value={settings().autoupdate}
         onChange={(v) => {
@@ -328,30 +271,6 @@ export function SettingsPage() {
       >
         Notify me of updates
       </SwitchItem>
-
-      <Card style={{ marginTop: '1rem' }}>
-        <div class={classes.fcard}>
-          <Text class={classes.left16}>Plugins Folder</Text>
-          <Button onClick={openPluginsFolder}>Open</Button>
-        </div>
-        <div class={classes.fcard}>
-          <Text class={classes.left16}>Themes Folder</Text>
-          <Button onClick={openThemesFolder}>Open</Button>
-        </div>
-      </Card>
-
-      <ClientModList
-        onChange={() => {
-          setRestartRequired(true)
-        }}
-      />
-
-      <Header class={classes.shead}>Plugins</Header>
-      <PluginList
-        onChange={() => {
-          setRestartRequired(true)
-        }}
-      />
     </>
   )
 }

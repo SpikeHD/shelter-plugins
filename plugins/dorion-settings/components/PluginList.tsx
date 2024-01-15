@@ -1,5 +1,5 @@
 import { css, classes } from './PluginList.tsx.scss'
-import { Card } from '../../../components/Card'
+import { Card } from '../../../components/Card.jsx'
 
 const {
   ui: { Switch, Text, injectCss },
@@ -56,6 +56,14 @@ export function PluginList(props: Props) {
             </Text>
           </div>
         </div>
+
+        {Object.entries(plugins() as DorionPluginList).length === 0 && (
+          <div class={classes.plistrow}>
+            <Text class={classes.left16}>
+              No plugins found
+            </Text>
+          </div>
+        )}
 
         {Object.entries(plugins() as DorionPluginList).map(([filename, plugin]) => (
           <div key={filename} class={classes.plistrow}>

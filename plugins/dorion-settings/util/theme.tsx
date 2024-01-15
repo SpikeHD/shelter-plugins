@@ -1,7 +1,5 @@
 import { confirmModal } from './modal.jsx'
 
-
-
 const {
   ui: {
     openModal,

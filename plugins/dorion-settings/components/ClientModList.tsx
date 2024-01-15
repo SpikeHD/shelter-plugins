@@ -1,8 +1,8 @@
 import { css, classes } from './ClientModList.tsx.scss'
-import { Card } from '../../../components/Card'
+import { Card } from '../../../components/Card.jsx'
 
 const {
-  ui: { Switch, Text, injectCss, Header },
+  ui: { Switch, Text, injectCss },
   solid: { createSignal },
 } = shelter
 const { invoke } = (window as any).__TAURI__
@@ -76,48 +76,49 @@ export function ClientModList(props: Props) {
     })
   }
 
-  return <>{
-    clientMods().length > 0 && (
-      <>
-        <Header class={classes.shead}>Client Mods</Header>
-        <Card style={{ marginTop: '1rem' }}>
-          <div class={classes.plist}>
-            <div
-              class={
-                classes.pheader + ' ' + classes.plistrow
-              }
-            >
-              <div class={classes.mcell}>
-                <Text class={classes.left16}>
-                  Client Mod Name
-                </Text>
-              </div>
+  return <Card style={{ marginTop: '1rem' }}>
+    <div class={classes.plist}>
+      <div
+        class={
+          classes.pheader + ' ' + classes.plistrow
+        }
+      >
+        <div class={classes.mcell}>
+          <Text class={classes.left16}>
+            Client Mod Name
+          </Text>
+        </div>
 
-              <div class={classes.scell}>
-                <Text class={classes.left16}>
-                  Enabled
-                </Text>
-              </div>
-            </div>
+        <div class={classes.scell}>
+          <Text class={classes.left16}>
+            Enabled
+          </Text>
+        </div>
+      </div>
 
-            {clientMods().map((modName: string) => (
-              <div key={modName} class={classes.plistrow}>
-                <div class={classes.mcell}>
-                  <Text class={classes.left16}>{modName}</Text>
-                </div>
+      {clientMods().length === 0 && (
+        <div class={classes.plistrow}>
+          <Text class={classes.left16}>
+            Client mods not available. Please update
+          </Text>
+        </div>
+      )}
 
-                <div class={classes.scell}>
-                  <Switch
-                    disabled={modName === 'Shelter'}
-                    checked={settings().client_mods?.includes(modName) || false}
-                    onChange={() => onClientModToggle(modName)}
-                  />
-                </div>
-              </div>
-            ))}
+      {clientMods().map((modName: string) => (
+        <div key={modName} class={classes.plistrow}>
+          <div class={classes.mcell}>
+            <Text class={classes.left16}>{modName}</Text>
           </div>
-        </Card>
-      </>
-    )
-  }</>
+
+          <div class={classes.scell}>
+            <Switch
+              disabled={modName === 'Shelter'}
+              checked={settings().client_mods?.includes(modName) || false}
+              onChange={() => onClientModToggle(modName)}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </Card>
 }

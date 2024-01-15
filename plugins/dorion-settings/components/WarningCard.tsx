@@ -1,5 +1,5 @@
-import { Card } from '../../../components/Card'
-import { css, classes } from './WarningCard.scss'
+import { Card } from '../../../components/Card.jsx'
+import { css, classes } from './WarningCard.tsx.scss'
 
 const {
   ui: {

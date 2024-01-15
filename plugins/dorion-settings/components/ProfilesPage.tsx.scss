@@ -1,5 +1,9 @@
+.tophead {
+  margin-bottom: 16px;
+}
+
 .shead {
-  margin-top: 32px;
+  margin-top: 16px;
   margin-bottom: 8px;
 }
 
@@ -11,7 +15,7 @@
 }
 
 .splitbutton {
-  width: 45%;
+  width: 100%;
 }
 
 .pbuttons {
@@ -20,6 +24,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 16px;
 
   margin-top: 16px;
 }

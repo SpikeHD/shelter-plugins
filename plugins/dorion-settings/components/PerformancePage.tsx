@@ -1,5 +1,5 @@
 import { css, classes } from './PerformancePage.tsx.scss'
-import { Dropdown } from '../../../components/Dropdown'
+import { Dropdown } from '../../../components/Dropdown.jsx'
 import { WarningCard } from './WarningCard.jsx'
 
 const {
@@ -15,7 +15,7 @@ const {
   solid: { createSignal, createEffect },
 } = shelter
 
-const { invoke } = window.__TAURI__
+const { invoke } = (window as any).__TAURI__
 
 let injectedCss = false
 
@@ -117,7 +117,7 @@ export function PerformancePage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Dorion Performance Settings</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>Performance Settings</Header>
 
       {restartRequired() && (
         <WarningCard />
@@ -247,7 +247,7 @@ export function PerformancePage() {
       <div class={classes.pbuttons}>
         <Button
           onClick={clearWebCache}
-          style={{ width: '40%', padding: '18px' }}
+          style={{ width: '100%', padding: '18px' }}
           grow={true}
         >
           Wipe all web-based data
@@ -255,7 +255,7 @@ export function PerformancePage() {
 
         <Button
           onClick={clearCSSCache}
-          style={{ width: '40%', padding: '18px' }}s
+          style={{ width: '100%', padding: '18px' }}
           grow={true}
         >
           Clear CSS Cache
