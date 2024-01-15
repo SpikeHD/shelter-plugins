@@ -226,6 +226,7 @@ export function SettingsPage() {
             return {
               ...p,
               open_on_startup: v,
+              startup_minimized: v ? p.startup_minimized : false,
             }
           })
         }}
@@ -294,6 +295,7 @@ export function SettingsPage() {
             return {
               ...p,
               autoupdate: v,
+              update_notify: v ? p.update_notify : false,
             }
           })
         }}
