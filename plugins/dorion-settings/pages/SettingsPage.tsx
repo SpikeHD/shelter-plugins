@@ -2,6 +2,7 @@ import { Dropdown } from '../../../components/Dropdown.jsx'
 
 import { css, classes } from './SettingsPage.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
+import { RadioGroup } from '../../../components/RadioGroup.jsx'
 
 const {
   ui: {
@@ -74,36 +75,33 @@ export function SettingsPage() {
       )}
 
       <Header class={classes.shead}>Client Type</Header>
-      <Dropdown
+      <RadioGroup 
         options={[
           {
             label: 'Default',
             value: 'default',
           },
           {
-            label: 'Canary',
-            value: 'canary',
-          },
-          {
             label: 'PTB',
             value: 'ptb',
           },
+          {
+            label: 'Canary',
+            value: 'canary',
+          },
         ]}
-        placeholder={'Select a client type...'}
-        maxVisibleItems={5}
-        closeOnSelect={true}
         onChange={(e) => {
           setSettings(
             p => {
               return {
                 ...p,
-                client_type: e.target.value,
+                client_type: e,
               }
             },
             true
           )
         }}
-        selected={settings().client_type}
+        selected={settings().client_type} 
       />
 
       <Header class={classes.shead}>Window</Header>
