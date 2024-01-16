@@ -1,0 +1,54 @@
+.radio {
+    color: var(--interactive-normal);
+    grid-template-columns: auto 1fr;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: grid;
+    grid-gap: 8px;
+    align-items: center;
+    padding: 8px;
+    background: var(--background-secondary);   
+
+    &:not(:last-child) {
+        margin-bottom: 8px;
+    }
+
+    .radioButton {
+        $size: 20px;
+
+        height: $size;
+        width: $size;
+        border-radius: 50%;
+        border: 2px solid var(--interactive-normal);
+        margin: 4px;
+        position: relative;
+
+        .radioButtonInner {
+            position: absolute;
+            height: calc($size / 2);
+            width: calc($size / 2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: var(--interactive-normal);
+        }
+    }
+
+    &:hover {
+        background-color: var(--background-modifier-hover);
+    }
+    
+    &.selected {
+        color: var(--interactive-active);
+        background-color: var(--background-modifier-selected);
+
+        .radioButton {
+            border-color: var(--interactive-active);
+    
+            .radioButtonInner {
+                background: var(--interactive-active);
+            }
+        }
+    }
+}

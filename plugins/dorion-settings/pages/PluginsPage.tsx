@@ -7,7 +7,7 @@ import { WarningCard } from '../components/WarningCard.jsx'
 const { invoke } = (window as any).__TAURI__
 
 const {
-  ui: { Header, Button, HeaderTags, injectCss, Text },
+  ui: { Header, Button, HeaderTags, injectCss, ButtonSizes},
   solid: { createSignal },
 } = shelter
 
@@ -27,7 +27,7 @@ export function PluginsPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Plugins & Client Mods</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>Client Mods & Plugins</Header>
 
       {restartRequired() && (
         <WarningCard />
@@ -43,18 +43,13 @@ export function PluginsPage() {
       
       <Header class={classes.shead}>Plugins</Header>
 
-      <Card class={classes.card}>
-        <div class={classes.fcard}>
-          <Text class={classes.left16}>Plugins Folder</Text>
-          <Button onClick={openPluginsFolder}>Open</Button>
-        </div>
-      </Card>
-
       <PluginList
         onChange={() => {
           setRestartRequired(true)
         }}
       />
+
+      <Button size={ButtonSizes.MEDIUM} class={classes.openButton} onClick={openPluginsFolder}>Open Plugins Folder</Button>
     </>
   )
 }

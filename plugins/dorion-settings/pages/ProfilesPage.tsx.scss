@@ -20,11 +20,10 @@
 
 .pbuttons {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
   gap: 16px;
-
   margin-top: 16px;
+
+  button {
+    width: 100% !important;
+  }
 }
