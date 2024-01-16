@@ -1,9 +1,9 @@
-import { PerformancePage } from './components/PerformancePage.jsx'
-import { ProfilesPage } from './components/ProfilesPage.jsx'
-import { SettingsPage } from './components/SettingsPage.jsx'
-import { ChangelogPage } from './components/ChangelogPage.jsx'
-import { PluginsPage } from './components/PluginsPage.jsx'
-import { ThemesPage } from './components/ThemesPage.jsx'
+import { PerformancePage } from './pages/PerformancePage.jsx'
+import { ProfilesPage } from './pages/ProfilesPage.jsx'
+import { SettingsPage } from './pages/SettingsPage.jsx'
+import { ChangelogPage } from './pages/ChangelogPage.jsx'
+import { PluginsPage } from './pages/PluginsPage.jsx'
+import { ThemesPage } from './pages/ThemesPage.jsx'
 
 declare global {
   interface Window {

@@ -1,6 +1,6 @@
 import { css, classes } from './PerformancePage.tsx.scss'
 import { Dropdown } from '../../../components/Dropdown.jsx'
-import { WarningCard } from './WarningCard.jsx'
+import { WarningCard } from '../components/WarningCard.jsx'
 
 const {
   ui: {

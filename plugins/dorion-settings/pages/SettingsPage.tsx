@@ -1,7 +1,7 @@
 import { Dropdown } from '../../../components/Dropdown.jsx'
 
 import { css, classes } from './SettingsPage.tsx.scss'
-import { WarningCard } from './WarningCard.jsx'
+import { WarningCard } from '../components/WarningCard.jsx'
 
 const {
   ui: {

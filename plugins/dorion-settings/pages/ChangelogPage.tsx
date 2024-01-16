@@ -1,4 +1,4 @@
-import type { IRelease, TReleases } from '../types/release.ts'
+import type { IRelease, TReleases } from '../types/release.js'
 import { css, classes } from './ChangelogPage.tsx.scss'
 import { processReleaseBodies, loadChangelog, fixImageLinks } from '../util/changelog.js'
 
