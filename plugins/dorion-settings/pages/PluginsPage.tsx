@@ -1,7 +1,6 @@
 import { ClientModList } from '../components/ClientModList.jsx'
 import { PluginList } from '../components/PluginList.jsx'
 import { css, classes } from './PluginsPage.tsx.scss'
-import { Card } from '../../../components/Card.jsx'
 import { WarningCard } from '../components/WarningCard.jsx'
 
 const { invoke } = (window as any).__TAURI__

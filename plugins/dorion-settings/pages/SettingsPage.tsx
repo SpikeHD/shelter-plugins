@@ -1,5 +1,3 @@
-import { Dropdown } from '../../../components/Dropdown.jsx'
-
 import { css, classes } from './SettingsPage.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
 import { RadioGroup } from '../../../components/RadioGroup.jsx'
