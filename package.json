@@ -14,6 +14,7 @@
     "plugins/*"
   ],
   "dependencies": {
+    "@cumjar/websmack": "^1.2.0",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "eslint": "latest",
