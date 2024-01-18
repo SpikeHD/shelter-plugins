@@ -42,7 +42,7 @@ export function ChangelogPage() {
 
     // Set latest version
     if (releases().length > 0) {
-      setLatestVersion(releases()[0].version)
+      setLatestVersion(releases()[0].tag_name)
     }
 
     // Check for updates
