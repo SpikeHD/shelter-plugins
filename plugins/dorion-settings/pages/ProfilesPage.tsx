@@ -1,10 +1,10 @@
-import { Dropdown } from '../../../components/Dropdown'
+import { Dropdown } from '../../../components/Dropdown.jsx'
 import { css, classes } from './ProfilesPage.tsx.scss'
 
 const { invoke, process } = (window as any).__TAURI__
 
 const {
-  ui: { Header, Button, HeaderTags, TextBox, injectCss },
+  ui: { Header, Button, HeaderTags, TextBox, injectCss, Divider, ButtonColors, ButtonSizes },
   solid: { createSignal, createEffect },
 } = shelter
 
@@ -75,7 +75,7 @@ export function ProfilesPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1}>Profiles</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>Profiles</Header>
       <Dropdown
         options={profileList().map((p: string) => {
           return {
@@ -106,18 +106,21 @@ export function ProfilesPage() {
         Create Profile
       </Button>
 
+      <Divider mt={16} mb={16} />
+
       <div class={classes.pbuttons}>
         <Button
           onClick={saveProfile}
-          class={classes.splitbutton}
+          size={ButtonSizes.MEDIUM} 
         >
           Save and Restart
         </Button>
 
         <Button
           onClick={deleteProfile}
-          class={classes.splitbutton}
           disabled={profile() === 'default' || internalProfile() === profile}
+          color={ButtonColors.RED}
+          size={ButtonSizes.MEDIUM} 
         >
           Delete Selected Profile
         </Button>

@@ -5,13 +5,13 @@
   justify-content: space-around;
   align-items: center;
 
-  height: 80px;
-
   border: 1px solid var(--status-warning) !important;
   background-color: var(--info-warning-background);
+  padding: 16px;
 }
 
 .restartButton {
-  width: 80% !important;
+  width: 100% !important;
   background-color: var(--status-warning) !important;
+  margin-top: 8px;
 }

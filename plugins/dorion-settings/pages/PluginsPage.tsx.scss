@@ -1,0 +1,45 @@
+.tophead {
+  margin-bottom: 16px;
+}
+
+.shead {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.card {
+  margin-bottom: 16px;
+}
+
+.fcard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  color: var(--text-primary);
+
+  padding: 8px;
+}
+
+.pcard {
+  display: flex;
+}
+
+.left16 {
+  margin-left: 16px;
+}
+
+.themeRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 42px;
+}
+
+.openButton {
+  margin-top: 16px;
+  width: 100% !important;
+}

@@ -1,0 +1,18 @@
+.tophead {
+  margin-bottom: 16px;
+}
+
+.shead {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.pbuttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+
+  button {
+    width: 100% !important;
+  }
+}

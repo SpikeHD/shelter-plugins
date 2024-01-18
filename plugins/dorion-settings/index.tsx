@@ -1,7 +1,9 @@
-import { PerformancePage } from './components/PerformancePage'
-import { ProfilesPage } from './components/ProfilesPage'
-import { SettingsPage } from './components/SettingsPage'
-import { ChangelogPage } from './components/ChangelogPage'
+import { PerformancePage } from './pages/PerformancePage.jsx'
+import { ProfilesPage } from './pages/ProfilesPage.jsx'
+import { SettingsPage } from './pages/SettingsPage.jsx'
+import { ChangelogPage } from './pages/ChangelogPage.jsx'
+import { PluginsPage } from './pages/PluginsPage.jsx'
+import { ThemesPage } from './pages/ThemesPage.jsx'
 
 declare global {
   interface Window {
@@ -35,6 +37,8 @@ const settingsUninjects = [
   registerSection('divider'),
   registerSection('header', 'Dorion'),
   registerSection('section', 'dorion-settings', 'Dorion Settings', SettingsPage),
+  registerSection('section', 'dorion-plugins', 'Client Mods & Plugins', PluginsPage),
+  registerSection('section', 'dorion-themes', 'Themes', ThemesPage),
   registerSection('section', 'dorion-performance', 'Performance & Extras', PerformancePage),
   registerSection('section', 'dorion-profiles', 'Profiles', ProfilesPage)
 ]
