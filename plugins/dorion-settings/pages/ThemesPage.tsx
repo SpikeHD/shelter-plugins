@@ -1,6 +1,5 @@
 import { css, classes } from './ThemesPage.tsx.scss'
 import { installThemeModal, loadTheme } from '../util/theme.jsx'
-import { RadioGroup } from '../../../components/RadioGroup.jsx'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 
 const { invoke } = (window as any).__TAURI__
