@@ -67,17 +67,6 @@ export function ThemesPage() {
 
       <Header class={classes.shead}>Theme</Header>
 
-      {/* <RadioGroup selected={settings().theme} options={[{ label: 'None', value: 'none' }, ...themes()]} onChange={(e) => {
-        setSettings(p => {
-          return {
-            ...p,
-            theme: e,
-          }
-        })
-
-        loadTheme(e)
-      }} /> */}
-
       <Dropdown
         value={settings().theme}
         onChange={(e) => {
@@ -98,7 +87,7 @@ export function ThemesPage() {
       <Divider mt={16} mb={16} />
 
       <div class={classes.pbuttons}>
-        <Button size={ButtonSizes.MEDIUM} onClick={installThemeModal}>Install Theme From Online</Button>
+        <Button size={ButtonSizes.MEDIUM} onClick={installThemeModal}>Install Theme From Link</Button>
         <Button size={ButtonSizes.MEDIUM} onClick={openThemesFolder}>Open Themes Folder</Button>
       </div>
     </>
