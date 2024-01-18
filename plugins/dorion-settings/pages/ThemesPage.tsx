@@ -1,6 +1,7 @@
 import { css, classes } from './ThemesPage.tsx.scss'
 import { installThemeModal, loadTheme } from '../util/theme.jsx'
 import { Dropdown } from '../../../components/Dropdown.jsx'
+import { defaultConfig } from '../util/settings.js'
 
 const { invoke } = (window as any).__TAURI__
 
@@ -17,21 +18,7 @@ export function ThemesPage() {
     injectCss(css)
   }
 
-  const [settings, setSettingsState] = createSignal<DorionSettings>({
-    zoom: '1.0',
-    client_type: 'default',
-    sys_tray: false,
-    push_to_talk: false,
-    push_to_talk_keys: [],
-    theme: 'none',
-    use_native_titlebar: false,
-    start_maximized: false,
-    open_on_startup: false,
-    startup_minimized: false,
-    autoupdate: false,
-    update_notify: true,
-    multi_instance: false,
-  })
+  const [settings, setSettingsState] = createSignal<DorionSettings>(defaultConfig)
   const [themes, setThemes] = createSignal<DorionTheme[]>([])
 
   const getThemes = async () => {

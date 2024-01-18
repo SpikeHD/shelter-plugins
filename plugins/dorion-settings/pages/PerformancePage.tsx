@@ -1,6 +1,7 @@
 import { css, classes } from './PerformancePage.tsx.scss'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 import { WarningCard } from '../components/WarningCard.jsx'
+import { defaultConfig } from '../util/settings.js'
 
 const {
   ui: {
@@ -21,26 +22,8 @@ let injectedCss = false
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
-interface Settings {
-  cache_css: boolean;
-  streamer_mode_detection: boolean;
-  rpc_server: boolean;
-  auto_clear_cache: boolean;
-  disable_hardware_accel: boolean;
-  blur: 'none' | 'blur' | 'acrylic' | 'mica' | 'vibrancy';
-  blur_css: boolean;
-}
-
 export function PerformancePage() {
-  const [state, setState] = createSignal<Settings>({
-    cache_css: false,
-    streamer_mode_detection: false,
-    rpc_server: false,
-    auto_clear_cache: false,
-    disable_hardware_accel: false,
-    blur: 'none',
-    blur_css: false,
-  })
+  const [state, setState] = createSignal<DorionSettings>(defaultConfig)
   const [platform, setPlatform] = createSignal<string>('')
   const [blurOptions, setBlurOptions] = createSignal<string[]>([])
   const [restartRequired, setRestartRequired] = createSignal(false)

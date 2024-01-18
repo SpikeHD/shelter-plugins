@@ -1,21 +1,28 @@
 interface DorionSettings {
-  zoom: number | string
-  client_type: string
-  sys_tray: boolean
-  push_to_talk: boolean
-  push_to_talk_keys: string[]
-  theme: string
-  use_native_titlebar: boolean
-  start_maximized: boolean
-  open_on_startup: boolean
-  startup_minimized: boolean
-  autoupdate: boolean
-  update_notify: boolean
-  desktop_notifications: boolean
-  auto_clear_cache: boolean
-  multi_instance: boolean
-  disable_hardware_accel: boolean
-  client_mods: string[]
+  theme: string;
+  zoom: string;
+  client_type: string;
+  sys_tray: boolean;
+  push_to_talk: boolean;
+  push_to_talk_keys: string[];
+  cache_css: boolean;
+  use_native_titlebar: boolean;
+  start_maximized: boolean;
+  profile: string;
+  streamer_mode_detection: boolean;
+  rpc_server: boolean;
+  open_on_startup: boolean;
+  startup_minimized: boolean;
+  autoupdate: boolean;
+  update_notify: boolean;
+  desktop_notifications: boolean;
+  auto_clear_cache: boolean;
+  multi_instance: boolean;
+  disable_hardware_accel: boolean;
+  blur: string;
+  blur_css: boolean;
+  client_mods: string[];
+  unread_badge: boolean;
 }
 
 interface DorionTheme {
