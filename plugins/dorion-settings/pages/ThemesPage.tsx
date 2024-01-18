@@ -1,6 +1,7 @@
 import { css, classes } from './ThemesPage.tsx.scss'
 import { installThemeModal, loadTheme } from '../util/theme.jsx'
 import { RadioGroup } from '../../../components/RadioGroup.jsx'
+import { Dropdown } from '../../../components/Dropdown.jsx'
 
 const { invoke } = (window as any).__TAURI__
 
@@ -66,7 +67,7 @@ export function ThemesPage() {
 
       <Header class={classes.shead}>Theme</Header>
 
-      <RadioGroup selected={settings().theme} options={[{ label: 'None', value: 'none' }, ...themes()]} onChange={(e) => {
+      {/* <RadioGroup selected={settings().theme} options={[{ label: 'None', value: 'none' }, ...themes()]} onChange={(e) => {
         setSettings(p => {
           return {
             ...p,
@@ -75,7 +76,24 @@ export function ThemesPage() {
         })
 
         loadTheme(e)
-      }} />
+      }} /> */}
+
+      <Dropdown
+        value={settings().theme}
+        onChange={(e) => {
+          setSettings(p => {
+            return {
+              ...p,
+              theme: e.target.value,
+            }
+          })
+
+          loadTheme(e.target.value)
+        }}
+        placeholder={'Select a theme...'}
+        options={[{ label: 'None', value: 'none' }, ...themes()]}
+        selected={settings().theme}
+      />
 
       <Divider mt={16} mb={16} />
 
