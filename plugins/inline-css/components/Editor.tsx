@@ -20,6 +20,7 @@ const {
     Header,
     HeaderTags,
     Button,
+    CheckboxItem
   },
   plugin: { store },
   solid: { createSignal, createEffect },
@@ -48,6 +49,7 @@ export default function (props: Props) {
   }
 
   const [inlineCss, setInlineCss] = createSignal('')
+  const [hotReload, setHotReload] = createSignal(true)
 
   createEffect(() => {
     setInlineCss(store.inlineCss)
@@ -91,6 +93,24 @@ export default function (props: Props) {
         )
       }
 
+      <div class={classes.controls}>
+        <CheckboxItem
+          checked={hotReload()}
+          onChange={setHotReload}
+        >
+          Hot Reload
+        </CheckboxItem>
+
+        <Button
+          onClick={() => {
+            // Save inline CSS
+            setCss(inlineCss())
+          }}
+          disabled={hotReload()}
+        >
+          Save & Apply
+        </Button>
+      </div>
 
       <div class={classes.ceditor} ref={ref}>
         <CodeInput
@@ -98,7 +118,7 @@ export default function (props: Props) {
           autoHeight={false}
           resize="none"
           placeholder="Enter any CSS here..."
-          onChange={setCss}
+          onChange={hotReload() ? setCss : setInlineCss}
           value={inlineCss()}
           language={'css'}
         />

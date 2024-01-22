@@ -11,8 +11,22 @@
   height: 100% !important;
 }
 
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 24px;
+
+  & button {
+    width: 30%;
+  }
+}
+
 .popout {
-  width: 20% !important;
+  width: 100% !important;
+  margin-top: 12px;
 
   & svg {
     height: 50%;
