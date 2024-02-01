@@ -7,7 +7,9 @@
     grid-gap: 8px;
     align-items: center;
     padding: 8px;
-    background: var(--background-secondary);   
+    background: var(--background-secondary);
+
+    cursor: pointer;
 
     &:not(:last-child) {
         margin-bottom: 8px;
