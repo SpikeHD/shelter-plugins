@@ -23,6 +23,7 @@ interface DorionSettings {
   blur_css: boolean;
   client_mods: string[];
   unread_badge: boolean;
+  dorion_plugins: boolean;
 }
 
 interface DorionTheme {

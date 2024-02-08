@@ -187,6 +187,49 @@ export function PerformancePage() {
         Disable Hardware Acceleration
       </SwitchItem>
 
+      <SwitchItem
+        value={state().dorion_plugins}
+        onChange={(v) => {
+          if (!state().dorion_plugins && v) {
+            // Just enable
+            setSettings((settings) => (
+              {
+                ...settings,
+                dorion_plugins: v,
+              }
+            ), true)
+
+            return
+          }
+
+          openConfirmationModal({
+            body: () => (
+              <p>
+              I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. Dorion will have several vital systems removed,
+              such as the <i>entire settings menu</i>.
+                <br />
+                <br />
+              This option is intended only for debugging, development, and for running old versions of Dorion functionality on old versions of Dorion. If you're not doing that, don't touch this.
+              </p>
+            ),
+            header: () => 'Are you ABSOLUTELY sure?',
+            type: 'neutral',
+            confirmText: 'Confirm',
+          }).then(
+            () => setSettings((settings) => (
+              {
+                ...settings,
+                dorion_plugins: v,
+              }
+            ), true),
+            () => { /* do nothing */ }
+          )
+        }}
+        note={<><b>DO NOT DISABLE THIS OPTION.</b> If you do, vital functionality will be lost. Only touch this if you know what you're doing.</>}
+      >
+        Enable Dorion Plugins
+      </SwitchItem>
+
       <Header class={classes.shead}>Blur</Header>
 
       <Dropdown
