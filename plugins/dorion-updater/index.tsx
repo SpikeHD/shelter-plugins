@@ -1,3 +1,5 @@
+import { invoke, process, event } from "../../api/api.js"
+
 const {
   ui: {
     openModal,
@@ -8,7 +10,6 @@ const {
   },
 } = shelter
 
-const { invoke, process, event } = (window as any).__TAURI__
 const confirmModal = (props: ConfirmationModalProps) => (
   <ModalRoot>
     <ModalHeader

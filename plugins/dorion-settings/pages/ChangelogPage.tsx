@@ -1,3 +1,4 @@
+import { invoke,app } from '../../../api/api.js'
 import type { IRelease, TReleases } from '../types/release.js'
 import { css, classes } from './ChangelogPage.tsx.scss'
 import { processReleaseBodies, loadChangelog, fixImageLinks } from '../util/changelog.js'
@@ -18,7 +19,6 @@ const {
   solid: { createSignal, createEffect },
 } = shelter
 
-const { invoke, app } = (window as any).__TAURI__
 let injectedCss = false
 
 export function ChangelogPage() {

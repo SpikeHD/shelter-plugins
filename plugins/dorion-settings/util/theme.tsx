@@ -1,3 +1,4 @@
+import { api, invoke } from '../../../api/api.js'
 import { confirmModal } from './modal.jsx'
 
 const {
@@ -47,8 +48,6 @@ export const installThemeModal = async () => {
 }
 
 export const loadTheme = async (theme: string) => {
-  const { invoke } = (window as any).__TAURI__
-
   // Get the Dorion theme style tag, replace the contents
   const themeTag = document.getElementById('dorion-theme') as HTMLStyleElement
 
@@ -67,7 +66,7 @@ export const loadTheme = async (theme: string) => {
   console.log('Got the localized theme!')
 
   // Internal Dorion function
-  const contents = window.Dorion.util.cssSanitize(localized)
+  const contents = api.util.cssSanitize(localized)
 
   console.log('Sanitized!')
 
@@ -75,8 +74,6 @@ export const loadTheme = async (theme: string) => {
 }
 
 export const installAndLoad = async (link: string, statusUpdater: (string) => void) => {
-  const { invoke } = (window as any).__TAURI__
-
   statusUpdater('Fetching...')
 
   const themeName = await invoke('theme_from_link', {

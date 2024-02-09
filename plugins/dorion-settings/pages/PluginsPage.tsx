@@ -1,9 +1,8 @@
+import { invoke } from '../../../api/api.js'
 import { ClientModList } from '../components/ClientModList.jsx'
 import { PluginList } from '../components/PluginList.jsx'
 import { css, classes } from './PluginsPage.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
-
-const { invoke } = (window as any).__TAURI__
 
 const {
   ui: { Header, Button, HeaderTags, injectCss, ButtonSizes},

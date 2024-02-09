@@ -1,5 +1,6 @@
 import { marked } from 'marked'
 import { TReleases } from '../types/release.js'
+import { api } from '../../../api/api.js'
 
 const {
   ui: { showToast },
@@ -87,6 +88,6 @@ export async function fixImageLinks(scope: HTMLElement): Promise<void> {
 
   await Promise.all(Array.from(images).map(async (image: HTMLImageElement) => {
     const url = image.src
-    image.src = await window.Dorion.util.fetchImage(url)
+    image.src = await api.util.fetchImage(url)
   }))    
 }

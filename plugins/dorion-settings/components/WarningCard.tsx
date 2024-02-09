@@ -1,3 +1,4 @@
+import { process } from '../../../api/api.js'
 import { Card } from '../../../components/Card.jsx'
 import { css, classes } from './WarningCard.tsx.scss'
 
@@ -12,8 +13,6 @@ const {
 let injectedCss = false
 
 export function WarningCard() {
-  const { process } = (window as any).__TAURI__
-
   if (!injectedCss) {
     injectedCss = true
     injectCss(css)

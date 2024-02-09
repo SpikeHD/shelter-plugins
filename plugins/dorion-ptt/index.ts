@@ -1,4 +1,5 @@
 import { keyToStr } from './keyUtil.js'
+import { invoke, event } from '../../api/api.js'
 
 const {
   flux: {
@@ -10,7 +11,6 @@ const {
   observeDom
 } = shelter
 
-const { invoke, event } = (window as any).__TAURI__
 const events = []
 const subscriptions = []
 const unobserves = []

@@ -1,9 +1,8 @@
+import { invoke } from '../../../api/api.js'
 import { css, classes } from './ThemesPage.tsx.scss'
 import { installThemeModal, loadTheme } from '../util/theme.jsx'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 import { defaultConfig } from '../util/settings.js'
-
-const { invoke } = (window as any).__TAURI__
 
 const {
   ui: { Header, Button, HeaderTags, injectCss, Divider, ButtonSizes },

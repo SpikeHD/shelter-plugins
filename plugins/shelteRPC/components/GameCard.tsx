@@ -1,4 +1,5 @@
-import { timestampToRelative } from '../util'
+import { event } from '../../../api/api.js'
+import { timestampToRelative } from '../util.js'
 import { css, classes } from './GameCard.scss'
 
 interface Props {
@@ -46,7 +47,7 @@ let injectedCss = false
 
 const deleteGame = (name: string) => {
   // Remove from local detectables
-  (window as any).dorion && (window as any).__TAURI__.event.emit('remove_detectable', {
+  backend !== 'None' && event.emit('remove_detectable', {
     name,
     exe: ''
   })

@@ -1,3 +1,5 @@
+import { api, invoke } from '../../api/api.js'
+
 const {
   ui: {
     SwitchItem,
@@ -12,7 +14,6 @@ const {
   patcher
 } = shelter
 
-const { invoke } = (window as any).__TAURI__
 const [settings, setSettings] = createSignal<DorionSettings>(null)
 const notifSelector = 'div[class*="contentColumn"] div[class*="container"]'
 
@@ -62,11 +63,11 @@ const settingsHandler = async (payload) => {
               contents: JSON.stringify(settings())
             })
   
-            window.Dorion.shouldShowUnreadBadge = value
+            api.shouldShowUnreadBadge = value
 
             // Also wipe the current badge if it was enabled
             if (!value) invoke('notif_count', { amount: 0 })
-            else window.Dorion.util.applyNotificationCount()
+            else api.util.applyNotificationCount()
           }}
         >
             Enable Unread Message Badge

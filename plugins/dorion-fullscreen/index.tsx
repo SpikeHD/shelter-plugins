@@ -1,14 +1,10 @@
+import { apiWindow } from '../../api/api.js'
+
 const {
   flux: {
     dispatcher: FluxDispatcher
   },
 } = shelter
-
-const {
-  window: {
-    appWindow
-  }
-} = (window as any).__TAURI__
 
 let isPopout = false
 
@@ -21,7 +17,7 @@ const toggleFullscreen = async (payload) => {
     topbar.style.display = payload?.isElementFullscreen ? 'none' : 'initial'
   }
 
-  appWindow?.setFullscreen(payload?.isElementFullscreen)
+  apiWindow.appWindow?.setFullscreen(payload?.isElementFullscreen)
 }
 
 const toggleIsPopout = (toggle: boolean) => {

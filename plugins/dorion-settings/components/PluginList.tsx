@@ -1,3 +1,4 @@
+import { invoke } from '../../../api/api.js'
 import { css, classes } from './PluginList.tsx.scss'
 import { Card } from '../../../components/Card.jsx'
 
@@ -5,7 +6,6 @@ const {
   ui: { Switch, Text, injectCss },
   solid: { createSignal },
 } = shelter
-const { invoke } = (window as any).__TAURI__
 
 let injectedCss = false
 

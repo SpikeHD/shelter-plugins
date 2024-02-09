@@ -1,5 +1,6 @@
-import GameCard from './GameCard'
-import { Dropdown } from '../../../components/Dropdown'
+import { invoke, event, app } from '../../../api/api.js'
+import GameCard from './GameCard.jsx'
+import { Dropdown } from '../../../components/Dropdown.jsx'
 
 import { css, classes } from './RegisteredGames.scss'
 
@@ -26,13 +27,6 @@ const {
   }
 } = shelter
 
-const { invoke, event } = (window as any)?.__TAURI__ || {
-  invoke: () => {},
-  event: {
-    emit: () => {}
-  }
-}
-
 let injectedCss = false
 
 export default () => {
@@ -47,7 +41,7 @@ export default () => {
   const [local, setLocal] = createSignal([])
 
   createEffect(async () => {
-    setIsDorion(await (window as any)?.__TAURI__?.app.getName() === 'Dorion')
+    setIsDorion(await app.getName() === 'Dorion')
     setCurrentlyPlaying(store.currentlyPlaying || '')
     setPreviouslyPlayed(store.previouslyPlayed || {})
 

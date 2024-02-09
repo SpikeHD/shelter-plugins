@@ -1,23 +1,11 @@
+import { app, invoke } from '../../api/api.js'
+
 import { PerformancePage } from './pages/PerformancePage.jsx'
 import { ProfilesPage } from './pages/ProfilesPage.jsx'
 import { SettingsPage } from './pages/SettingsPage.jsx'
 import { ChangelogPage } from './pages/ChangelogPage.jsx'
 import { PluginsPage } from './pages/PluginsPage.jsx'
 import { ThemesPage } from './pages/ThemesPage.jsx'
-
-declare global {
-  interface Window {
-    Dorion: {
-      util: {
-        cssSanitize: (css: string) => string
-        fetchImage: (url: string) => Promise<string>
-        applyNotificationCount: () => void
-      }
-
-      shouldShowUnreadBadge: boolean
-    }
-  }
-}
 
 const {
   settings: {
@@ -30,8 +18,6 @@ const {
     sleep
   },
 } = shelter
-
-const { app, invoke } = (window as any).__TAURI__
 
 const settingsUninjects = [
   registerSection('divider'),

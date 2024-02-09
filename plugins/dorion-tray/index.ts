@@ -1,10 +1,10 @@
+import { invoke } from '../../api/api.js'
+
 const {
   flux: {
     dispatcher,
   },
 } = shelter
-
-const { invoke } = (window as any).__TAURI__
 
 const state = {
   video: false,

@@ -1,7 +1,6 @@
+import { invoke, process } from '../../../api/api.js'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 import { css, classes } from './ProfilesPage.tsx.scss'
-
-const { invoke, process } = (window as any).__TAURI__
 
 const {
   ui: { Header, Button, HeaderTags, TextBox, injectCss, Divider, ButtonColors, ButtonSizes },

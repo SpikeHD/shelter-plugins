@@ -68,3 +68,23 @@ interface ConfirmationModalProps {
   onCancel?: () => void
   type?: 'neutral' | 'danger' | 'warning'
 }
+
+interface Backend {
+  invoke: (name: string, args?: any) => Promise<any>
+  event: {
+    emit: (name: string, args?: any) => void
+    listen: (name: string, cb: (args: any) => void) => Promise<void>
+  }
+  app: {
+    getVersion: () => string
+    getName: () => string
+  }
+  process: {
+    relaunch: () => void
+  }
+  apiWindow: {
+    appWindow: {
+      setFullscreen: (isFullscreen: boolean) => void
+    }
+  }
+}

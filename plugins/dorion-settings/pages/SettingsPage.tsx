@@ -1,3 +1,4 @@
+import { backendRestartRequired, invoke } from '../../../api/api.js'
 import { css, classes } from './SettingsPage.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
 import { RadioGroup } from '../../../components/RadioGroup.jsx'
@@ -13,8 +14,6 @@ const {
   },
   solid: { createSignal, createEffect },
 } = shelter
-
-const { invoke } = (window as any).__TAURI__
 
 let injectedCss = false
 
@@ -45,9 +44,7 @@ export function SettingsPage() {
     // If a restart is now required, set that
     if (requiresRestart) {
       setRestartRequired(true)
-
-      // @ts-expect-error cry about it
-      window.__DORION_RESTART__ = true
+      backendRestartRequired
     }
   }
 
