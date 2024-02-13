@@ -185,14 +185,14 @@ export function PerformancePage() {
       </SwitchItem>
 
       <SwitchItem
-        value={state().dorion_plugins}
+        value={state().client_plugins}
         onChange={(v) => {
-          if (!state().dorion_plugins && v) {
+          if (!state().client_plugins && v) {
             // Just enable
             setSettings((settings) => (
               {
                 ...settings,
-                dorion_plugins: v,
+                client_plugins: v,
               }
             ), true)
 
@@ -216,7 +216,7 @@ export function PerformancePage() {
             () => setSettings((settings) => (
               {
                 ...settings,
-                dorion_plugins: v,
+                client_plugins: v,
               }
             ), true),
             () => { /* do nothing */ }
