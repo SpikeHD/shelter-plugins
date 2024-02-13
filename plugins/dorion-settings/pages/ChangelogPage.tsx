@@ -1,9 +1,9 @@
-import { invoke,app } from '../../../api/api.js'
+import { invoke,app, appName } from '../../../api/api.js'
 import type { IRelease, TReleases } from '../types/release.js'
 import { css, classes } from './ChangelogPage.tsx.scss'
 import { processReleaseBodies, loadChangelog, fixImageLinks } from '../util/changelog.js'
 
-const PAGE_ID = 'dorion-changelog-tab'
+const PAGE_ID = `${appName}-changelog-tab`
 
 const {
   ui: { 

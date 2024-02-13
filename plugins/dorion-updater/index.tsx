@@ -1,4 +1,4 @@
-import { invoke, process, event } from "../../api/api.js"
+import { invoke, process, event, appName } from '../../api/api.js'
 
 const {
   ui: {
@@ -38,7 +38,7 @@ const load = async () => {
     })
   }
 
-  console.log(`[Updater] Dorion things to update: ${updateCheck}`)
+  console.log(`[Updater] ${appName} things to update: ${updateCheck}`)
 
   if (config.update_notify !== undefined && !config.update_notify) return
 
@@ -47,8 +47,8 @@ const load = async () => {
     if (config.autoupdate) {
       // We should still warn that Dorion is going to restart
       openModal((props) => confirmModal({
-        header: 'Dorion Update',
-        body: 'A Dorion update has been fetched, and Dorion will restart momentarily.',
+        header: `${appName} Update`,
+        body: `A ${appName} update has been fetched, and ${appName} will restart momentarily.`,
         confirmText: 'Got it!',
         type: 'neutral',
         onConfirm: () => doUpdate(),
@@ -61,7 +61,7 @@ const load = async () => {
 
     openModal((props) => confirmModal({
       header: 'Updates Available!',
-      body: 'There are Dorion updates available. Would you like to apply them? This notification can be disabled in Dorion Settings',
+      body: `There are ${appName} updates available. Would you like to apply them? This notification can be disabled in ${appName} Settings`,
       confirmText: 'Yes please!',
       cancelText: 'Nope!',
       type: 'neutral',

@@ -1,4 +1,4 @@
-import { backendRestartRequired, invoke } from '../../../api/api.js'
+import { appName, backendRestartRequired, invoke } from '../../../api/api.js'
 import { css, classes } from './SettingsPage.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
 import { RadioGroup } from '../../../components/RadioGroup.jsx'
@@ -50,7 +50,7 @@ export function SettingsPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Dorion Settings</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{appName} Settings</Header>
 
       {restartRequired() && (
         <WarningCard />
@@ -121,7 +121,7 @@ export function SettingsPage() {
             true
           )
         }}
-        note="Instead of closing, Dorion will run in the background and will be accessible via the system tray."
+        note={`Instead of closing, ${appName} will run in the background and will be accessible via the system tray.`}
       >
         Minimize to System Tray
       </SwitchItem>
@@ -152,7 +152,7 @@ export function SettingsPage() {
             }
           })
         }}
-        note="Open Dorion when your system starts."
+        note={`Open ${appName} when your system starts.`}
       >
         Open on Startup
       </SwitchItem>
@@ -187,7 +187,7 @@ export function SettingsPage() {
             true
           )
         }}
-        note="Allow multiple instances of Dorion to be running at the same time."
+        note={`Allow multiple instances of ${appName} to be running at the same time.`}
       >
         Allow Multiple Instances
       </SwitchItem>
@@ -224,7 +224,7 @@ export function SettingsPage() {
         }}
         note={
           <>
-            Automatically update various Dorion components, such as{' '}
+            Automatically update various {appName} components, such as{' '}
             <a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">
               SpikeHD/shelter-plugins
             </a>

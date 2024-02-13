@@ -1,4 +1,4 @@
-import { backendRestartRequired, invoke } from '../../../api/api.js'
+import { appName, backendRestartRequired, invoke } from '../../../api/api.js'
 import { css, classes } from './PerformancePage.tsx.scss'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 import { WarningCard } from '../components/WarningCard.jsx'
@@ -131,7 +131,7 @@ export function PerformancePage() {
         }
         disabled={platform() !== 'windows'}
         tooltipNote={platform() !== 'windows' && 'This is only supported on Windows right now.'}
-        note="Clean out the web-based cache every time you close Dorion. This is usually cached images, scripts, and other data, and it can build up!"
+        note={`Clean out the web-based cache every time you close ${appName}. This is usually cached images, scripts, and other data, and it can build up!`}
       >
         Auto Clear Cache
       </SwitchItem>
@@ -202,11 +202,11 @@ export function PerformancePage() {
           openConfirmationModal({
             body: () => (
               <p>
-              I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. Dorion will have several vital systems removed,
+              I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. {appName} will have several vital systems removed,
               such as the <i>entire settings menu</i>.
                 <br />
                 <br />
-              This option is intended only for debugging, development, and for running old versions of Dorion functionality on old versions of Dorion. If you're not doing that, don't touch this.
+              This option is intended only for debugging, development, and for running old versions of {appName} functionality on old versions of {appName}. If you're not doing that, don't touch this.
               </p>
             ),
             header: () => 'Are you ABSOLUTELY sure?',

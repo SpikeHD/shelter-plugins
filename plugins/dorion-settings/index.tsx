@@ -22,7 +22,7 @@ const {
 const settingsUninjects = [
   registerSection('divider'),
   registerSection('header', appName),
-  registerSection('section', `${appName}-settings`, appName, SettingsPage),
+  registerSection('section', `${appName}-settings`, `${appName} Settings`, SettingsPage),
   registerSection('section', `${appName}-plugins`, 'Plugins', PluginsPage),
   registerSection('section', `${appName}-themes`, 'Themes', ThemesPage),
   registerSection('section',  `${appName}-performance`, 'Performance & Extras', PerformancePage),

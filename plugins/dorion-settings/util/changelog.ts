@@ -1,6 +1,6 @@
 import { marked } from 'marked'
 import { TReleases } from '../types/release.js'
-import { api } from '../../../api/api.js'
+import { api, appName } from '../../../api/api.js'
 
 const {
   ui: { showToast },
@@ -16,7 +16,7 @@ function isDevMode(): boolean {
 export async function loadChangelog(): Promise<TReleases> {
   ///NOTE - This is a thing for development. Otherwise GitHub will rate limit us :)
   if (isDevMode()) {
-    console.warn('[Dorion Changelog] Dev mode is on. Loading changelog from local storage.')
+    console.warn(`[${appName} Changelog] Dev mode is on. Loading changelog from local storage.`)
     return loadChangelogFromLocalStorage()
   }
 
@@ -38,9 +38,9 @@ export async function loadChangelog(): Promise<TReleases> {
 }
 
 async function fetchChangelogFromGitHub(): Promise<TReleases> {
-  const response = await fetch('https://api.github.com/repos/SpikeHD/Dorion/releases', {
+  const response = await fetch(`https://api.github.com/repos/SpikeHD/${appName}/releases`, {
     headers: {
-      'User-Agent': 'Dorion'
+      'User-Agent': appName
     }
   })
 
@@ -77,7 +77,7 @@ export async function processReleaseBody(body: string): Promise<string> {
     .replace('\n', '') // remove newlines. It's converted to html, so it's not needed
     .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(code)) // Fix ascii references (such as &#39;)
     .replace(/@([\w-]+)/g, '<a href="https://github.com/$1">@$1</a>') // GitHub user
-    .replace(/#(\d+)/g, '<a href="https://github.com/spikehd/dorion/pull/$1">#$1</a>') // GitHub issue or PR
+    .replace(/#(\d+)/g, `<a href="https://github.com/spikehd/${appName}/pull/$1">#$1</a>`) // GitHub issue or PR
     .replace(/<a href="([^"]+)">([^<]+)<\/a>/g, '<a href="$1" target="_blank">$2</a>') // External link
 }
 

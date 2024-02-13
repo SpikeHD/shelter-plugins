@@ -1,4 +1,4 @@
-import { invoke, event, app } from '../../../api/api.js'
+import { invoke, event, appName } from '../../../api/api.js'
 import GameCard from './GameCard.jsx'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 
@@ -41,7 +41,7 @@ export default () => {
   const [local, setLocal] = createSignal([])
 
   createEffect(async () => {
-    setIsDorion(await app.getName() === 'Dorion')
+    setIsDorion(appName === 'Dorion')
     setCurrentlyPlaying(store.currentlyPlaying || '')
     setPreviouslyPlayed(store.previouslyPlayed || {})
 
