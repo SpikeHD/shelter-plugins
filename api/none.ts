@@ -1,4 +1,6 @@
 export default {
+  name: 'Unknown',
+
   /* stub */
   invoke: async () => {},
   event: {

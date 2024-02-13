@@ -70,6 +70,7 @@ interface ConfirmationModalProps {
 }
 
 interface Backend {
+  name: string
   invoke: (name: string, args?: any) => Promise<any>
   event: {
     emit: (name: string, args?: any) => void

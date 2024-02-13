@@ -21,9 +21,12 @@ declare global {
   }
 }
 
-let backendName = 'Dorion' as BackendName
+let backendName = 'None' as BackendName
 
-if (window.Flooed) {
+// Determine backend to use
+if (window.Dorion) {
+  backendName = 'Dorion'
+} else if (window.Flooed) {
   backendName = 'Flooed'
 }
 
@@ -49,6 +52,7 @@ export const backendRestartRequired = (v: boolean) => {
   requiresRestart = v
 }
 
+export const appName = backendObj.name
 export const invoke = backendObj.invoke
 export const event = backendObj.event
 export const app = backendObj.app

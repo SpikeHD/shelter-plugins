@@ -1,4 +1,6 @@
 export default {
+  name: 'Flooed',
+
   /* stub */
   invoke: async () => {},
   event: {

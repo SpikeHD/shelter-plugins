@@ -1,4 +1,4 @@
-import { app, invoke } from '../../api/api.js'
+import { app, appName, invoke } from '../../api/api.js'
 
 import { PerformancePage } from './pages/PerformancePage.jsx'
 import { ProfilesPage } from './pages/ProfilesPage.jsx'
@@ -21,15 +21,15 @@ const {
 
 const settingsUninjects = [
   registerSection('divider'),
-  registerSection('header', 'Dorion'),
-  registerSection('section', 'dorion-settings', 'Dorion Settings', SettingsPage),
-  registerSection('section', 'dorion-plugins', 'Client Mods & Plugins', PluginsPage),
-  registerSection('section', 'dorion-themes', 'Themes', ThemesPage),
-  registerSection('section', 'dorion-performance', 'Performance & Extras', PerformancePage),
-  registerSection('section', 'dorion-profiles', 'Profiles', ProfilesPage)
+  registerSection('header', appName),
+  registerSection('section', `${appName}-settings`, appName, SettingsPage),
+  registerSection('section', `${appName}-plugins`, 'Plugins', PluginsPage),
+  registerSection('section', `${appName}-themes`, 'Themes', ThemesPage),
+  registerSection('section',  `${appName}-performance`, 'Performance & Extras', PerformancePage),
+  registerSection('section', `${appName}-profiles`, 'Profiles', ProfilesPage),
 ]
 
-const appendDorionVersion = async () => {
+const appendAppVersion = async () => {
   let tries = 0
   const infoBoxSelector = 'div[class*="side_"] div[class*="info_"]'
 
@@ -50,7 +50,7 @@ const appendDorionVersion = async () => {
 
   if (!firstChild) return
 
-  newVersionThing.innerHTML = `Dorion v${await app.getVersion()}`
+  newVersionThing.innerHTML = `${appName} v${await app.getVersion()}`
   // @ts-expect-error This works
   newVersionThing.classList.add(...firstChild.classList)
   newVersionThing.style.color = firstChild.style.color
@@ -66,17 +66,17 @@ const checkForUpdates = async () => {
 
   settingsUninjects.push(
     // @ts-expect-error Shelter types are wrong? badgeCount does exist on type
-    registerSection('section', 'dorion-changelog', 'Changelog', ChangelogPage, { 
+    registerSection('section', `${appName}-changelog`, 'Changelog', ChangelogPage, { 
       badgeCount: needsUpdate ? 1 : 0 
     })
   )
 }
 
-dispatcher.subscribe('USER_SETTINGS_MODAL_OPEN', appendDorionVersion)
+dispatcher.subscribe('USER_SETTINGS_MODAL_OPEN', appendAppVersion)
 
 checkForUpdates()
 
 export const onUnload = () => {
   settingsUninjects.forEach((u) => u())
-  dispatcher.unsubscribe('USER_SETTINGS_MODAL_OPEN', appendDorionVersion)
+  dispatcher.unsubscribe('USER_SETTINGS_MODAL_OPEN', appendAppVersion)
 }

@@ -1,4 +1,6 @@
 export default {
+  name: 'Dorion',
+
   invoke: (name: string, payload?: any) => {
     return (window as any).__TAURI__.invoke(name, payload)
   },
