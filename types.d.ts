@@ -78,7 +78,6 @@ interface Backend {
   }
   app: {
     getVersion: () => string
-    getName: () => string
   }
   process: {
     relaunch: () => void

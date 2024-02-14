@@ -17,7 +17,11 @@ interface GlobalApi {
 declare global {
   interface Window {
     Dorion?: GlobalApi
-    Flooed?: GlobalApi
+    Flooed?: GlobalApi & {
+      invoke: (name: string, payload?: any) => Promise<any>
+      version: string
+      name: string
+    }
   }
 }
 

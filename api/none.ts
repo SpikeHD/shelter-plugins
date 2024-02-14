@@ -8,8 +8,7 @@ export default {
     listen: async () => {}
   },
   app: {
-    getVersion: () => '0.0.0',
-    getName: () => 'None'
+    getVersion: () => '0.0.0'
   },
   process: {
     relaunch: () => {}

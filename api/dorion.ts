@@ -15,9 +15,6 @@ export default {
   app: {
     getVersion: () => {
       return (window as any).__TAURI__.app.getVersion()
-    },
-    getName: () => {
-      return (window as any).__TAURI__.app.getName()
     }
   },
   process: {

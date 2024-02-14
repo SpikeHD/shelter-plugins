@@ -1,22 +1,34 @@
 export default {
   name: 'Flooed',
 
-  /* stub */
-  invoke: async () => {},
+  invoke: (name: string, payload?: any) => {
+    return window.Flooed.invoke(name, payload)
+  },
   event: {
+    // emit: (name: string, payload: any) => {
+    //   return
+    // },
+    // listen: async (name: string, callback: (payload: any) => void) => {
+    //   return
+    // }
     emit: () => {},
     listen: async () => {}
   },
   app: {
-    getVersion: () => '0.0.0',
-    getName: () => 'None'
+    getVersion: () => {
+      return window.Flooed.version
+    }
   },
   process: {
-    relaunch: () => {}
+    relaunch: () => {
+      return window.Flooed.invoke('relaunch')
+    }
   },
   apiWindow: {
     appWindow: {
-      setFullscreen: () => {}
+      setFullscreen: (isFullscreen: boolean) => {
+        return window.Flooed.invoke('set_fullscreen', isFullscreen)
+      }
     }
   }
 } satisfies Backend
