@@ -3,7 +3,7 @@ import type { IRelease, TReleases } from '../types/release.js'
 import { css, classes } from './ChangelogPage.tsx.scss'
 import { processReleaseBodies, loadChangelog, fixImageLinks } from '../util/changelog.js'
 
-const PAGE_ID = `${appName}-changelog-tab`
+const PAGE_ID = `${appName.toLowerCase()}-changelog-tab`
 
 const {
   ui: { 
