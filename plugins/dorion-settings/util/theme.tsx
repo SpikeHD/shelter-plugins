@@ -1,4 +1,4 @@
-import { api, invoke } from '../../../api/api.js'
+import { api, appName, invoke } from '../../../api/api.js'
 import { confirmModal } from './modal.jsx'
 
 const {
@@ -49,7 +49,7 @@ export const installThemeModal = async () => {
 
 export const loadTheme = async (theme: string) => {
   // Get the Dorion theme style tag, replace the contents
-  const themeTag = document.getElementById('dorion-theme') as HTMLStyleElement
+  const themeTag = document.getElementById(`${appName.toLowerCase()}}-theme`) as HTMLStyleElement
 
   if (theme === 'none') return themeTag.innerText = ''
 
