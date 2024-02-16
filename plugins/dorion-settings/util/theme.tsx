@@ -49,7 +49,7 @@ export const installThemeModal = async () => {
 
 export const loadTheme = async (theme: string) => {
   // Get the Dorion theme style tag, replace the contents
-  const themeTag = document.getElementById(`${appName.toLowerCase()}}-theme`) as HTMLStyleElement
+  const themeTag = document.getElementById(`${appName.toLowerCase()}-theme`) as HTMLStyleElement
 
   if (theme === 'none') return themeTag.innerText = ''
 
