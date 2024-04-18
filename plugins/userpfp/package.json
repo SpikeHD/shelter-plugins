@@ -1,0 +1,7 @@
+{
+  "name": "userpfp",
+  "dependencies": {
+    "@cumjar/websmack": "^1.2.0",
+    "spitroast": "^1.4.4"
+  }
+}
