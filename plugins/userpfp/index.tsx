@@ -23,8 +23,6 @@ for (const m of c) {
   after('getUserAvatarURL', m, (args, response) => {
     return store.preferNitro && response.includes('a_') ? response : window.userpfp.getUrl(args[0]) ?? response
   })
-
-  console.log(m)
 }
 
 declare global {
