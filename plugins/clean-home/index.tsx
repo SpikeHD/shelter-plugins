@@ -32,6 +32,8 @@ const components = [
 ]
 
 const style = document.createElement('style')
+style.id = 'clean-home-style'
+
 const styleElm = document.body.appendChild(style)
 
 const setStyle = () => {
@@ -40,6 +42,9 @@ const setStyle = () => {
     .map(c => c.rules)
     .join(' ')
 }
+
+// Initial call when we load
+setStyle()
 
 export const settings = () => {
   return components.map(c => {
