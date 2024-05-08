@@ -97,7 +97,7 @@ async function handleMessage(e: MessageEvent<string>) {
   }
 
   // If this activity should be hidden, don't update activity
-  if (store.previouslyPlayed[data.activity?.name]?.hide) return
+  if (store?.previouslyPlayed?.[data.activity?.name]?.hide) return
 
   FluxDispatcher.dispatch({
     type: 'LOCAL_ACTIVITY_UPDATE',
