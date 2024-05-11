@@ -12,11 +12,7 @@ const {
     Text,
     TextBox,
     injectCss,
-    openModal,
-    ModalRoot,
-    ModalHeader,
-    ModalBody,
-    ModalConfirmFooter
+    openConfirmationModal,
   },
   solid: {
     createSignal,
@@ -140,12 +136,9 @@ function addIt() {
   })
 
   // Show a modal with WindowProcessSelect
-  openModal((props) => (
-    <ModalRoot>
-      <ModalHeader
-        close={props.close}
-      >Add a game</ModalHeader>
-      <ModalBody>
+  openConfirmationModal({
+    body: () => (
+      <>
         {
           windows().length > 0 ? (
             <>
@@ -177,19 +170,19 @@ function addIt() {
             </Text>
           )
         }
-      </ModalBody>
-      <ModalConfirmFooter
-        onConfirm={() => {
-          event.emit('add_detectable', {
-            exe: windows().find((w) => w.pid === selected())?.process_name,
-            name: name(),
-          })
-        }}
-        onCancel={props.close}
-        confirmText="Add"
-        cancelText="Cancel"
-        type={'neutral'}
-      />
-    </ModalRoot>
-  ))
+      </>
+    ),
+
+    header: () => 'Add a game',
+    confirmText: 'Add',
+    type: 'neutral',
+  }).then(() => {
+    event.emit('add_detectable', {
+      exe: windows().find((w) => w.pid === selected())?.process_name,
+      name: name(),
+    })
+  },
+  () => {
+    /* do nothing */
+  })
 }

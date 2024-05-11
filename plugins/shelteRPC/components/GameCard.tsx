@@ -1,4 +1,4 @@
-import { event } from '../../../api/api.js'
+import { backend, event } from '../../../api/api.js'
 import { timestampToRelative } from '../util.js'
 import { css, classes } from './GameCard.scss'
 

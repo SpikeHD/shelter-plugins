@@ -25,7 +25,7 @@ declare global {
   }
 }
 
-let backendName = 'None' as BackendName
+let backendName: BackendName = 'None'
 
 // Determine backend to use
 if (window.Dorion) {
@@ -49,6 +49,7 @@ default:
   break
 }
 
+export const backend = backendName
 export const api = window[backendName] as GlobalApi
 
 export let requiresRestart = false
