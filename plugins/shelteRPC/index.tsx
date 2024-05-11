@@ -78,8 +78,6 @@ async function handleMessage(e: MessageEvent<string>) {
 
     if (!store.previouslyPlayed) store.previouslyPlayed = {}
 
-    if (!data.activity?.name) return
-
     // If this isn't already in the list, add it
     if (!(data.activity.name in store.previouslyPlayed)) {
       store.previouslyPlayed[data.activity.name] = {}
