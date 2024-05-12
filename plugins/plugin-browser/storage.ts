@@ -1,3 +1,22 @@
+export function createLocalStorage() {
+  const iframe = document.createElement('iframe')
+
+  // Wait for document.head to exist, then append the iframe
+  const interval = setInterval(() => {
+    if (!document.head) return
+
+    document.head.append(iframe)
+    const pd = Object.getOwnPropertyDescriptor(iframe.contentWindow, 'localStorage')
+    iframe.remove()
+
+    if (!pd) return
+
+    Object.defineProperty(window, 'localStorage', pd)
+
+    clearInterval(interval)
+  }, 50)
+}
+
 // Save the list of all plugins and repos to localStorage
 export function savePluginsCache(cache: object) {
   localStorage.setItem('plugins-browser-cache', `${Date.now()};${JSON.stringify(cache)}`)
