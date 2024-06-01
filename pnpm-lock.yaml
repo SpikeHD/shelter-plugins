@@ -46,6 +46,15 @@ importers:
         specifier: ^11.9.0
         version: 11.9.0
 
+  plugins/platformSpoof:
+    dependencies:
+      '@cumjar/websmack':
+        specifier: ^1.2.0
+        version: 1.2.0
+      spitroast:
+        specifier: ^1.4.4
+        version: 1.4.4
+
   plugins/userpfp:
     dependencies:
       '@cumjar/websmack':
