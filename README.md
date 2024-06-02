@@ -5,7 +5,6 @@ Shelter plugin repo housing both general-use plugins AND [Dorion](https://github
 # Table of Contents
 * [Plugins](#plugins)
   * [Always Trust](#always-trust)
-  * [Auto Mute Guilds](#auto-mute-guilds)
   * [Blur NSFW](#blur-nsfw)
   * [Clean Home](#clean-home)
   * [Inline CSS](#inline-css)
@@ -30,12 +29,6 @@ Shelter plugin repo housing both general-use plugins AND [Dorion](https://github
 Remove the "You are leaving Discord" popup.
 
 `https://spikehd.github.io/shelter-plugins/always-trust/`
-
-## Auto Mute Guilds
-
-Mute guilds upon joining them.
-
-`https://spikehd.github.io/shelter-plugins/auto-mute-guilds/`
 
 ## Blur NSFW
 
