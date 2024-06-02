@@ -12,7 +12,7 @@ const wp = chunk && createApi([undefined, ...chunk])
 const s = wp.findByProps('getSuperProperties')
 
 if (!s) {
-  throw new Error('Failed to find idenficiation function')
+  throw new Error('Failed to find identification function')
 }
 
 // @ts-expect-error defining to global window
