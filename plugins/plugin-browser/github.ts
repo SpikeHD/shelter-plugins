@@ -111,8 +111,6 @@ export async function getPluginJson(site: string, plugin: string) {
 export async function getAllPlugins() {
   const repos = await getRepos()
 
-  console.log(repos)
-
   // Map the plugins to their repos
   let plugins = await Promise.all(repos.map(async (repo) => {
     const site = await pluginsSite(repo)

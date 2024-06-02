@@ -10,7 +10,8 @@ const {
     HeaderTags,
     Text,
     Divider,
-    TextBox
+    TextBox,
+    showToast
   },
   solid: {
     createSignal,
@@ -39,7 +40,17 @@ export function Plugins() {
   const [search, setSearch] = createSignal('')
 
   createEffect(async () => {
-    setRepos(getPluginsCache() ||  await getAllPlugins())
+    setRepos(getPluginsCache() ||  await getAllPlugins().catch((e) => {
+      console.error(e)
+
+      showToast({
+        title: 'Plugin Browser',
+        content: 'Failed to load plugins, check DevTools for error.',
+        duration: 5000,
+      })
+
+      return []
+    }))
   })
 
   return (
@@ -59,7 +70,7 @@ export function Plugins() {
       />
 
       {
-        repos().map((repo: RepoInfo) => {
+        repos().length > 0 ? repos().map((repo: RepoInfo) => {
           return (
             <>
               <Divider mt={16} mb={16} />
@@ -89,7 +100,9 @@ export function Plugins() {
               </div>
             </>
           )
-        })
+        }) : (
+          <Text>Loading...</Text>
+        )
       }
     </>
   )
