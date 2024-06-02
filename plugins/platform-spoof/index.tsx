@@ -1,12 +1,7 @@
 import { createApi, webpackChunk } from '@cumjar/websmack'
-import { after, before } from 'spitroast'
+import { after } from 'spitroast'
 
 const {
-  ui: {
-    Header,
-    HeaderTags,
-    RadioGroup,
-  },
   plugin: {
     store
   }
