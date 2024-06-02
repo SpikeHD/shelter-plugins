@@ -101,7 +101,9 @@ export function Plugins() {
             </>
           )
         }) : (
-          <Text>Loading...</Text>
+          <div class={classes.loading}>
+            <Text>Loading...</Text>
+          </div>
         )
       }
     </>
