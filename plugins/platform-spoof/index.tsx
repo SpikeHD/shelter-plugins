@@ -35,7 +35,7 @@ after('getSuperProperties', c, (args, response) => {
   return {
     ...response,
     // @ts-expect-error spoofing the client type
-    ...{browser: window.PlatformSpoof[store.clientType]},
+    ...{browser: window.PlatformSpoof?.[store.clientType] ?? window.PlatformSpoof.desktop},
   }
 })
 
