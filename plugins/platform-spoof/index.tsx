@@ -1,5 +1,5 @@
 import { createApi, webpackChunk } from '@cumjar/websmack'
-import { after } from 'spitroast'
+import { after, before } from 'spitroast'
 
 const {
   ui: {
@@ -14,10 +14,10 @@ const {
 
 const chunk = webpackChunk()
 const wp = chunk && createApi([undefined, ...chunk])
-const c = wp.findByProps('getSuperProperties')
+const s = wp.findByProps('getSuperProperties')
 
-if (!c) {
-  throw new Error('Failed to find getSuperProperties')
+if (!s) {
+  throw new Error('Failed to find idenficiation function')
 }
 
 // @ts-expect-error defining to global window
@@ -28,10 +28,10 @@ window.PlatformSpoof = {
 
   setSpoof: (type: 'desktop' | 'web' | 'mobile') => {
     store.clientType = type
-  }
+  },
 }
 
-after('getSuperProperties', c, (args, response) => {
+after('getSuperProperties', s, (args, response) => {
   return {
     ...response,
     // @ts-expect-error spoofing the client type
@@ -39,26 +39,27 @@ after('getSuperProperties', c, (args, response) => {
   }
 })
 
-export const settings = () => (
-  <>
-    <Header tag={HeaderTags.H1}>Client Type</Header>
-    <RadioGroup
-      options={[
-        {
-          label: 'Desktop Client',
-          value: 'desktop',
-        },
-        {
-          label: 'Web',
-          value: 'web',
-        },
-        {
-          label: 'Mobile',
-          value: 'mobile',
-        },
-      ]}
-      value={store.clientType}
-      onChange={(v) => (store.clientType = v)}
-    />
-  </>
-)
+// Apparently this breaks all Shelter dialogs for some reason right now lolol
+// export const settings = () => (
+//   <>
+//     <Header tag={HeaderTags.H1}>Client Type</Header>
+//     <RadioGroup
+//       options={[
+//         {
+//           label: 'Desktop Client',
+//           value: 'desktop',
+//         },
+//         {
+//           label: 'Web',
+//           value: 'web',
+//         },
+//         {
+//           label: 'Mobile',
+//           value: 'mobile',
+//         },
+//       ]}
+//       value={store.clientType}
+//       onChange={(v) => (store.clientType = v)}
+//     />
+//   </>
+// )
