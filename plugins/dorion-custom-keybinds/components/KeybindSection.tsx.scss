@@ -1,0 +1,22 @@
+.keybindSection {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionSection,
+.keybindArea {
+  display: flex;
+  flex-direction: column;
+  align-items
+}
+
+.actionSection {
+  width: 50%;
+}
+
+.keybindArea {
+  width: 50%;
+}
