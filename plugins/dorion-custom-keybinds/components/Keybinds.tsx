@@ -18,8 +18,8 @@ const {
 let injectedCss = false
 
 interface Props {
-  keybindActionTypes: Record<string, string>[] // { label: string, value: string }
-  keybindDescriptions: Record<string, string>
+  keybindActionTypes: KeybindActionType[]
+  keybindDescriptions: KeybindDescription[]
 }
 
 export function Keybinds(props: Props) {
@@ -71,7 +71,6 @@ export function Keybinds(props: Props) {
             keybindActionTypes={
               // Filter out keybinds that are already set. Always allow UNASSIGNED
               props.keybindActionTypes.filter((type) => {
-                console.log(type)
                 if (section.key === 'UNASSIGNED') return true
 
                 return !keybindSections().some((keybind) => keybind.key === type.value)

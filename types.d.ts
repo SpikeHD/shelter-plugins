@@ -94,3 +94,12 @@ interface Keybind {
   action: string
   keys: string[]
 }
+
+interface KeybindActionType {
+  label: string
+  value: string
+}
+
+interface KeybindDescription {
+  [key: string]: string
+}
