@@ -29,7 +29,7 @@ export function Keybinds(props: Props) {
   }
 
   // list of keybinds that are set (aka keybinds that have a section already)
-  const [keybindSections, setKeybindSections] = createSignal([])
+  const [keybindSections, setKeybindSections] = createSignal<Keybind>([])
 
   return (
     <div class={classes.keybindSection}>
@@ -65,19 +65,30 @@ export function Keybinds(props: Props) {
       </div>
 
       {
-        keybindSections().map((section, idx) => (
+        keybindSections().map((section: Keybind, idx) => (
           <KeybindSection
             key={idx}
             keybindActionTypes={
               // Filter out keybinds that are already set. Always allow UNASSIGNED
               props.keybindActionTypes.filter((type) => {
                 if (section.key === 'UNASSIGNED') return true
-
                 return !keybindSections().some((keybind) => keybind.key === type.value)
               })
             }
             keybindDescriptions={props.keybindDescriptions}
-            keybinds={section}
+            keybind={section}
+            onKeybindChange={(keybind) => {
+              console.log(keybind)
+              console.log(keybindSections())
+              const newKeybinds = keybindSections().map((k) => {
+                if (k.key === keybind.key) {
+                  return keybind
+                }
+                return k
+              })
+
+              setKeybindSections(newKeybinds)
+            }}
           />
         ))
       }

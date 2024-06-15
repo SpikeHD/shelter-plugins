@@ -20,9 +20,11 @@ interface Props {
   internalName?: string
   enabled?: boolean
 
-  keybindActionTypes: Record<string, string>[]
-  keybindDescriptions: Record<string, string>
-  keybinds: Keybind[]
+  keybindActionTypes: KeybindActionType[]
+  keybindDescriptions: KeybindDescription[]
+  keybind?: Keybind
+
+  onKeybindChange: (keybind: Keybind) => void
 
   // Not to be confused with keybind related stuff, this is just so it can be used in a loop
   key?: any
@@ -63,8 +65,15 @@ export function KeybindSection(props: Props) {
           </Header>
 
           <KeybindInput
+            initialKeybind={props.keybind.keys || []}
             onKeybindChange={(keybind) => {
-              console.log(keybind)
+              props.onKeybindChange({
+                keys: keybind,
+                key: keybindType(),
+
+                // TODO finish this
+                action: ''
+              })
             }}
             style='width: 100%'
           />

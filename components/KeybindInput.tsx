@@ -12,7 +12,8 @@ const {
 } = shelter
 
 interface Props {
-  onKeybindChange(keybind: number[]): void
+  initialKeybind: string[]
+  onKeybindChange(keybind: string[]): void
 
   // style overrides
   style?: string
@@ -28,7 +29,7 @@ export function KeybindInput(props: Props) {
   }
 
   const [recording, setRecording] = createSignal(false)
-  const [keybind, setKeybind] = createSignal([])
+  const [keybind, setKeybind] = createSignal(props.initialKeybind || [])
 
   const keyDown = (e) => {
     // If the key is already in the keybind, don't add it again
