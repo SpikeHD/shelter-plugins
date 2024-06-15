@@ -10,6 +10,9 @@ const {
     Header,
     injectCss
   },
+  solid: {
+    createSignal
+  }
 } = shelter
 
 let injectedCss = false
@@ -25,9 +28,12 @@ export function Keybinds(props: Props) {
     injectCss(css)
   }
 
+  // list of keybinds that are set (aka keybinds that have a section already)
+  const [keybindSections, setKeybindSections] = createSignal([])
+
   return (
     <div class={classes.keybindSection}>
-      <Header size={HeaderTags.H1}>
+      <Header tag={HeaderTags.H1} class={classes.header}>
         Keybinds
       </Header>
 
@@ -41,16 +47,41 @@ export function Keybinds(props: Props) {
         <Button
           class={classes.keybindsButton}
           grow={true}
+          onClick={() => {
+            // Ensure keybinds list max is the same as the keybindActionTypes list
+            if (keybindSections().length >= props.keybindActionTypes.length) {
+              return
+            }
+
+            setKeybindSections([...keybindSections(), {
+              key: 'UNASSIGNED',
+              action: '',
+              keys: []
+            }])
+          }}
         >
           Add Keybind
         </Button>
       </div>
 
-      <KeybindSection
-        keybindActionTypes={props.keybindActionTypes}
-        keybindDescriptions={props.keybindDescriptions}
-        keybinds={[]}
-      />
+      {
+        keybindSections().map((section, idx) => (
+          <KeybindSection
+            key={idx}
+            keybindActionTypes={
+              // Filter out keybinds that are already set. Always allow UNASSIGNED
+              props.keybindActionTypes.filter((type) => {
+                console.log(type)
+                if (section.key === 'UNASSIGNED') return true
+
+                return !keybindSections().some((keybind) => keybind.key === type.value)
+              })
+            }
+            keybindDescriptions={props.keybindDescriptions}
+            keybinds={section}
+          />
+        ))
+      }
     </div>
   )
 }

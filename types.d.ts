@@ -88,3 +88,9 @@ interface Backend {
     }
   }
 }
+
+interface Keybind {
+  key: string
+  action: string
+  keys: string[]
+}

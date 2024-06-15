@@ -22,7 +22,10 @@ interface Props {
 
   keybindActionTypes: Record<string, string>[]
   keybindDescriptions: Record<string, string>
-  keybinds: string[]
+  keybinds: Keybind[]
+
+  // Not to be confused with keybind related stuff, this is just so it can be used in a loop
+  key?: any
 }
 
 let injectedCss = false
