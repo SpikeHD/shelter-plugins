@@ -1,5 +1,5 @@
 
-import { KeybindSection } from "./components/KeybindSection"
+import { Keybinds } from "./components/Keybinds"
 
 const {
   flux: {
@@ -32,37 +32,18 @@ const viewedKeybindsCallback = (e) => {
     }
 
     const keybindsArea = document.querySelector('#keybinds-tab')
-    // const root = ReactDOM.createRoot(keybindsArea)
-    const keybindObjs = Object.entries(owner.keybindDescriptions).map(([key, value], i) => {
-      return {
-        id: i,
-        enabled: true,
-        action: key,
-        shortcut: [],
-        managed: false,
-        params: {}
-      }
-    })
 
     // hide (don't remove) all children
     for (const child of keybindsArea.children) {
       child.style.display = 'none'
     }
 
-    // root.render(
-    //   owner.renderKeybinds(keybindObjs)
-    // )
-
     keybindsArea.appendChild(
       <ReactiveRoot>
-        <KeybindSection
-          name="test"
+        <Keybinds
           keybindActionTypes={owner.keybindActionTypes}
-          internalName="test"
-          description="test"
-          keybinds={keybindObjs.map(k => k.shortcut)}
-          enabled={true}
-        ></KeybindSection>
+          keybindDescriptions={owner.keybindDescriptions}
+        />
       </ReactiveRoot>
     )
   })

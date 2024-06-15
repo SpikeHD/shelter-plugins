@@ -28,7 +28,6 @@ export function KeybindInput(props: Props) {
   }
 
   const [recording, setRecording] = createSignal(false)
-  // numbers mean (in order) 
   const [keybind, setKeybind] = createSignal([])
 
   const keyDown = (e) => {
@@ -72,8 +71,6 @@ export function KeybindInput(props: Props) {
     setKeybind([])
 
     // Create event listeners to set the keybind based on what is being held down
-    // Order should be (if they are pressed): Ctrl -> Alt -> Shift -> Everything else
-    // If a key is released, it should be removed from the keybind
     window.addEventListener('keydown', keyDown),
     window.addEventListener('keyup', keyUp)
 
@@ -97,8 +94,10 @@ export function KeybindInput(props: Props) {
 
       </div>
       <div
-        class={classes.keybindButton}
+        class={classes.keybindButton + ' ' + (props.disabled ? classes.disabled : '')}
         onClick={() => {
+          if (props.disabled) return
+
           setRecordingState()
         }}
       >
