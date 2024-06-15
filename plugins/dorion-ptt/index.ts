@@ -1,4 +1,4 @@
-import { keyToStr } from './keyUtil.js'
+import { keyToStr } from '../../util/keyUtil.js'
 import { invoke, event } from '../../api/api.js'
 
 const {

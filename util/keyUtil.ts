@@ -11,6 +11,7 @@ const Keycode = {
   220: 'BackSlash', 186: 'Semicolon', 222: 'Apostrophe', 188: 'Comma', 190: 'Dot', 191: 'Slash'
 }
 
+// Convert a key code to a string
 export const keyToStr = (key: number) => {
   let keyStr = ''
   
@@ -35,4 +36,33 @@ export const keyToStr = (key: number) => {
   }
 
   return keyStr
+}
+
+// Convert a key string to a key code
+export const strToKey = (str: string) => {
+  let key = 0
+
+  // get char code of uppercase letter
+  if (str >= 'A' && str <= 'Z') {
+    key = str.charCodeAt(0)
+  }
+
+  // get char code of lowercase letter
+  if (str >= 'a' && str <= 'z') {
+    key = str.charCodeAt(0) - 32
+  }
+
+  // get char code of number
+  if (str >= '0' && str <= '9') {
+    key = str.charCodeAt(0)
+  }
+
+  // Get everything else
+  for (const [k, v] of Object.entries(Keycode)) {
+    if (v === str) {
+      key = parseInt(k)
+    }
+  }
+
+  return key
 }

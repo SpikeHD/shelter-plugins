@@ -1,5 +1,6 @@
 import { css, classes } from './KeybindSection.tsx.scss'
 import { Dropdown } from '../../../components/Dropdown'
+import { KeybindInput } from '../../../components/KeybindInput'
 
 const {
   ui: {
@@ -38,15 +39,11 @@ export function KeybindSection(props) {
 
         <Dropdown
           value={props.name}
-          options={Object.entries(props.keybindActionTypes).map(([key, value]) => {
-            return {
-              value: key,
-              label: value
-            }
-          })}
+          options={props.keybindActionTypes}
           onChange={(e) => {
             console.log(e)
           }}
+          style='width: 90%'
         ></Dropdown>
       </div>
 
@@ -54,6 +51,13 @@ export function KeybindSection(props) {
         <Header size={HeaderTags.H5}>
           Keybind
         </Header>
+
+        <KeybindInput
+          onKeybindChange={(keybind) => {
+            console.log(keybind)
+          }}
+          style='width: 90%'
+        />
       </div>
     </div>
   )
