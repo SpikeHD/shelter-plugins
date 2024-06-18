@@ -71,7 +71,7 @@ export function Keybinds(props: Props) {
             keybindActionTypes={
               // Filter out keybinds that are already set (and it's own key). Always allow UNASSIGNED
               props.keybindActionTypes.filter((type) => {
-                if (section.key === 'UNASSIGNED' || section.key === section.key) return true
+                if (section.key === 'UNASSIGNED' || section.key === type.value) return true
                 return !keybindSections().some((keybind) => keybind.key === type.value)
               })
             }
