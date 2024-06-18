@@ -52,7 +52,6 @@ export function KeybindSection(props: Props) {
             value={props.internalName || props.keybindActionTypes[0].value}
             options={props.keybindActionTypes}
             onChange={(e) => {
-              console.log(e)
               setKeybindType(e.target.value)
             }}
             style='width: 90%'

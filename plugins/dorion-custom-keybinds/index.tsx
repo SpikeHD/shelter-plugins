@@ -25,7 +25,7 @@ const viewedKeybindsCallback = (e) => {
   const unsub = observeDom('#keybinds-tab', () => {
     unsub()
 
-    const oldElm = document.querySelector('.browserNotice__7a436')
+    const oldElm = document.querySelector('div[class*="browserNotice_"')
     const owner = shelter.util.getFiberOwner(oldElm)
     const keybindsArea = document.querySelector('#keybinds-tab')
 

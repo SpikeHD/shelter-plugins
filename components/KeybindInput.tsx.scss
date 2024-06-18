@@ -33,6 +33,8 @@
   }
   
   border: 1px solid var(--status-danger);
+
+  animation: pulse 1s infinite;
 }
 
 .keybindInput {
@@ -70,4 +72,17 @@
 
 .keybindButton:hover {
   background: var(--button-secondary-background-hover);
+}
+
+/* animation to pulse shadow intensity */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px 0px hsl(var(--red-400-hsl)/.5);
+  }
+  50% {
+    box-shadow: 0 0 10px 4px hsl(var(--red-400-hsl)/.5);
+  }
+  100% {
+    box-shadow: 0 0 10px 0px hsl(var(--red-400-hsl)/.5);
+  }
 }

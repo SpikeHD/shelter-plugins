@@ -78,14 +78,10 @@ export function Keybinds(props: Props) {
             keybindDescriptions={props.keybindDescriptions}
             keybind={section}
             onKeybindChange={(keybind) => {
-              console.log(keybind)
-              console.log(keybindSections())
-              const newKeybinds = keybindSections().map((k) => {
-                if (k.key === keybind.key) {
-                  return keybind
-                }
-                return k
-              })
+              // TODO last keybind persists when adding a new keybind
+              // so i need to filter it out somehow
+              const newKeybinds = keybindSections().filter(bind => bind.key !== keybind.key)
+              newKeybinds.push(keybind)
 
               setKeybindSections(newKeybinds)
             }}
