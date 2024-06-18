@@ -24,7 +24,7 @@ interface Props {
   keybindDescriptions: KeybindDescription[]
   keybind?: Keybind
 
-  onKeybindChange: (keybind: Keybind) => void
+  onKeybindChange: (keybind: Keybind, old: Keybind) => void
 
   // Not to be confused with keybind related stuff, this is just so it can be used in a loop
   key?: any
@@ -38,7 +38,8 @@ export function KeybindSection(props: Props) {
     injectCss(css)
   }
 
-  const [keybindType, setKeybindType] = createSignal(props.internalName || props.keybindActionTypes[0].value)
+  const [keybindType, setKeybindType] = createSignal(props.internalName || props.keybind?.key || props.keybindActionTypes[0].value)
+  const old = props.keybind
 
   return (
     <div class={classes.keybindRoot}>
@@ -49,7 +50,7 @@ export function KeybindSection(props: Props) {
           </Header>
 
           <Dropdown
-            value={props.internalName || props.keybindActionTypes[0].value}
+            value={props.internalName || props.keybind?.key || props.keybindActionTypes[0].value}
             options={props.keybindActionTypes}
             onChange={(e) => {
               setKeybindType(e.target.value)
@@ -72,7 +73,7 @@ export function KeybindSection(props: Props) {
 
                 // TODO finish this
                 action: ''
-              })
+              }, old)
             }}
             style='width: 100%'
           />

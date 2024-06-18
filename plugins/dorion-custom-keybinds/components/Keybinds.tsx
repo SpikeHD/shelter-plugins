@@ -69,18 +69,19 @@ export function Keybinds(props: Props) {
           <KeybindSection
             key={idx}
             keybindActionTypes={
-              // Filter out keybinds that are already set. Always allow UNASSIGNED
+              // Filter out keybinds that are already set (and it's own key). Always allow UNASSIGNED
               props.keybindActionTypes.filter((type) => {
-                if (section.key === 'UNASSIGNED') return true
+                if (section.key === 'UNASSIGNED' || section.key === section.key) return true
                 return !keybindSections().some((keybind) => keybind.key === type.value)
               })
             }
             keybindDescriptions={props.keybindDescriptions}
             keybind={section}
-            onKeybindChange={(keybind) => {
-              // TODO last keybind persists when adding a new keybind
-              // so i need to filter it out somehow
-              const newKeybinds = keybindSections().filter(bind => bind.key !== keybind.key)
+            onKeybindChange={(keybind, old) => {
+              const newKeybinds = keybindSections().filter(
+                bind => bind.key !== keybind.key && bind.key !== old.key
+              )
+
               newKeybinds.push(keybind)
 
               setKeybindSections(newKeybinds)
