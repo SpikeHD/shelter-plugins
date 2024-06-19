@@ -103,3 +103,14 @@ interface KeybindActionType {
 interface KeybindDescription {
   [key: string]: string
 }
+
+interface KeybindActionsInternal {
+  [key: string]: {
+    press?: {
+      [key: string]: any
+    }[]
+    release?: {
+      [key: string]: any
+    }[]
+  }
+}
