@@ -78,6 +78,20 @@ export function Keybinds(props: Props) {
             keybindDescriptions={props.keybindDescriptions}
             keybind={section}
             onKeybindChange={(keybind, old) => {
+              // If the keybind is the same (and we are just changing the action), we don't need to remove the old keybind,
+              // we can just modify the existing keybind
+              if (keybind.key === old.key) {
+                setKeybindSections(keybindSections().map((bind) => {
+                  if (bind.key === keybind.key) {
+                    return keybind
+                  }
+
+                  return bind
+                }))
+
+                return
+              }
+              
               const newKeybinds = keybindSections().filter(
                 bind => bind.key !== keybind.key && bind.key !== old.key
               )
