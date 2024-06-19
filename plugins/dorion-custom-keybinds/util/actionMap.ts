@@ -14,13 +14,21 @@ export const keybindActions: KeybindActionsInternal = {
       context: 'default',
       syncRemote: true
     }]
-  }
-}
-
-export const getKeybindAction = (action: string) => {
-
-}
-
-export const getAllKeybindActions = () => {
-
+  },
+  'TOGGLE_STREAMER_MODE': {
+    press: [{
+      type: 'TOGGLE_STREAMER_MODE',
+      context: 'default'
+    }]
+  },
+  'TOGGLE_VOICE_MODE': {
+    press: [{
+      type: 'TOGGLE_VOICE_MODE',
+      context: 'default'
+    }]
+  },
+  // TODO finish these - also grab the existing push to talk bind and display it here
+  'PUSH_TO_TALK': {},
+  'PUSH_TO_TALK_PRIORITY': {},
+  'PUSH_TO_MUTE': {},
 }
