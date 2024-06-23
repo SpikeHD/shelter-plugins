@@ -23,6 +23,25 @@
   width: 50%;
 }
 
+.removeButton {
+  width: 10%;
+  height: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* hide by default */
+  opacity: 0;
+
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.keybindRoot:hover .removeButton {
+  opacity: 1;
+}
+
 .keybindArea {
   width: 50%;
 }

@@ -1,3 +1,11 @@
+const {
+  flux: {
+    stores: {
+      UserStore,
+    }
+  }
+} = shelter
+
 export const keybindActions: KeybindActionsInternal = {
   'UNASSIGNED': {},
   'TOGGLE_MUTE': {
@@ -27,8 +35,47 @@ export const keybindActions: KeybindActionsInternal = {
       context: 'default'
     }]
   },
-  // TODO finish these - also grab the existing push to talk bind and display it here
-  'PUSH_TO_TALK': {},
-  'PUSH_TO_TALK_PRIORITY': {},
-  'PUSH_TO_MUTE': {},
+  // TODO grab the existing push to talk bind and display it in the keybinds section
+  'PUSH_TO_TALK': {
+    press: [{
+      type: 'SPEAKING',
+      context: 'default',
+      userId: UserStore.getCurrentUser().id,
+      speakingFlags: 1
+    }],
+    release: [{
+      type: 'SPEAKING',
+      context: 'default',
+      userId: UserStore.getCurrentUser().id,
+      speakingFlags: 0
+    }]
+  },
+  'PUSH_TO_TALK_PRIORITY': {
+    press: [{
+      type: 'SPEAKING',
+      context: 'default',
+      userId: UserStore.getCurrentUser().id,
+      speakingFlags: 4
+    }],
+    release: [{
+      type: 'SPEAKING',
+      context: 'default',
+      userId: UserStore.getCurrentUser().id,
+      speakingFlags: 0
+    }]
+  },
+  'PUSH_TO_MUTE': {
+    press: [{
+      type: 'AUDIO_TOGGLE_SELF_MUTE',
+      context: 'default',
+      syncRemote: true,
+      skipMuteUnmuteSoundEffect: true
+    }],
+    release: [{
+      type: 'AUDIO_TOGGLE_SELF_MUTE',
+      context: 'default',
+      syncRemote: true,
+      skipMuteUnmuteSoundEffect: true
+    }]
+  },
 }

@@ -4,7 +4,6 @@ import { KeybindSection } from './KeybindSection'
 const {
   ui: {
     Button,
-    Switch,
     Text,
     HeaderTags,
     Header,
@@ -99,6 +98,9 @@ export function Keybinds(props: Props) {
               newKeybinds.push(keybind)
 
               setKeybindSections(newKeybinds)
+            }}
+            onKeybindRemove={(keybind) => {
+              setKeybindSections(keybindSections().filter((bind) => bind.key !== keybind.key))
             }}
           />
         ))
