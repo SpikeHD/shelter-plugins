@@ -28,13 +28,11 @@ const viewedKeybindsCallback = (e) => {
 
     const oldElm = document.querySelector('div[class*="browserNotice_"')
     const owner = shelter.util.getFiberOwner(oldElm)
-    const keybindsArea = document.querySelector('#keybinds-tab')
+    const keybindsArea = oldElm.parentElement
 
-    // hide (don't remove) all children
-    // @ts-expect-error this is iterable
-    for (const child of keybindsArea.children) {
-      child.style.display = 'none'
-    }
+    // hide browser notice
+    // @ts-expect-error this is real
+    oldElm.style.display = 'none'
 
     child = keybindsArea.appendChild(
       <ReactiveRoot>

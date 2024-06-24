@@ -6,8 +6,6 @@ const {
   ui: {
     Button,
     Text,
-    HeaderTags,
-    Header,
     injectCss
   },
   solid: {
@@ -52,10 +50,6 @@ export function Keybinds(props: Props) {
 
   return (
     <div class={classes.keybindSection}>
-      <Header tag={HeaderTags.H1} class={classes.header}>
-        Keybinds
-      </Header>
-
       <div class={classes.keybindsHeader}>
         <div class={classes.keybindsBanner}>
           <Text>
