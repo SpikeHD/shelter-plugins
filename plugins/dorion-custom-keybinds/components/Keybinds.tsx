@@ -1,3 +1,4 @@
+import { event, invoke } from '../../../api/api'
 import { css, classes } from './Keybinds.tsx.scss'
 import { KeybindSection } from './KeybindSection'
 
@@ -10,7 +11,8 @@ const {
     injectCss
   },
   solid: {
-    createSignal
+    createSignal,
+    createEffect
   }
 } = shelter
 
@@ -29,6 +31,24 @@ export function Keybinds(props: Props) {
 
   // list of keybinds that are set (aka keybinds that have a section already)
   const [keybindSections, setKeybindSections] = createSignal<Keybind>([])
+
+  createEffect(async () => {
+    const keybinds = await invoke('get_keybinds')
+
+    // Convert the map (key: bind[]) to the array
+    const sections = Object.keys(keybinds).map((key) => ({
+      key,
+      keys: keybinds[key]
+    }))
+
+    setKeybindSections(sections)
+  }, [])
+
+  const updateKeybinds = (keybinds: Keybind[]) => {
+    setKeybindSections(keybinds)
+
+    event.emit('keybinds_changed', keybinds)
+  }
 
   return (
     <div class={classes.keybindSection}>
@@ -52,9 +72,8 @@ export function Keybinds(props: Props) {
               return
             }
 
-            setKeybindSections([...keybindSections(), {
+            updateKeybinds([...keybindSections(), {
               key: 'UNASSIGNED',
-              action: '',
               keys: []
             }])
           }}
@@ -80,7 +99,7 @@ export function Keybinds(props: Props) {
               // If the keybind is the same (and we are just changing the action), we don't need to remove the old keybind,
               // we can just modify the existing keybind
               if (keybind.key === old.key) {
-                setKeybindSections(keybindSections().map((bind) => {
+                updateKeybinds(keybindSections().map((bind) => {
                   if (bind.key === keybind.key) {
                     return keybind
                   }
@@ -97,10 +116,11 @@ export function Keybinds(props: Props) {
 
               newKeybinds.push(keybind)
 
-              setKeybindSections(newKeybinds)
+              updateKeybinds(newKeybinds)
             }}
             onKeybindRemove={(keybind) => {
-              setKeybindSections(keybindSections().filter((bind) => bind.key !== keybind.key))
+              console.log(keybind)
+              updateKeybinds(keybindSections().filter((bind) => bind.key !== keybind.key))
             }}
           />
         ))

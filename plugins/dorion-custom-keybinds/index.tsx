@@ -1,4 +1,5 @@
 import { Keybinds } from './components/Keybinds'
+import { register, unregister } from './util/events'
 
 const {
   flux: {
@@ -52,10 +53,14 @@ const subscriptions = [
   FluxDispatcher.subscribe('USER_SETTINGS_MODAL_SET_SECTION', viewedKeybindsCallback)
 ]
 
+register()
+
 export const onUnload = () => {
   for (const unsub of subscriptions) {
     unsub()
   }
+
+  unregister()
 }
 
 

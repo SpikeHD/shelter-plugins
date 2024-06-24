@@ -3,7 +3,8 @@ import { css, classes } from './KeybindInput.tsx.scss'
 
 const {
   solid: {
-    createSignal
+    createSignal,
+    onCleanup
   },
   ui: {
     Text,
@@ -12,8 +13,8 @@ const {
 } = shelter
 
 interface Props {
-  initialKeybind: string[]
-  onKeybindChange(keybind: string[]): void
+  initialKeybind: KeyStruct[]
+  onKeybindChange(keybind: KeyStruct[]): void
 
   // style overrides
   style?: string
@@ -29,11 +30,25 @@ export function KeybindInput(props: Props) {
   }
 
   const [recording, setRecording] = createSignal(false)
-  const [keybind, setKeybind] = createSignal(props.initialKeybind || [])
+  const [keybind, setKeybind] = createSignal<KeyStruct[]>(props.initialKeybind || [])
+
+  onCleanup(() => {
+    window.removeEventListener('keydown', keyDown),
+    window.removeEventListener('keyup', keyUp)
+  })
 
   const keyDown = (e) => {
+    const keycode = {
+      name: e.key,
+      code: e.code,
+    }
+
+    if (keycode.name.length === 1) {
+      keycode.name = keycode.name.toUpperCase()
+    }
+
     // If the key is already in the keybind, don't add it again
-    if (keybind().includes(e.key) || keybind().includes(e.key.toLowerCase())) {
+    if (keybind().find((k) => k.code === keycode.code)) {
       return
     }
 
@@ -43,15 +58,19 @@ export function KeybindInput(props: Props) {
     case 'Alt':
     case 'Shift':
     case 'Meta':
-      setKeybind([e.key, ...keybind()])
+      setKeybind([keycode, ...keybind()])
       break
     default:
-      setKeybind([...keybind(), e.key.toLowerCase()])
+      setKeybind([...keybind(), keycode])
     }
   }
 
   const keyUp = (e) => {
-    setKeybind(keybind().filter((k) => k !== e.key && k !== e.key.toLowerCase()))
+    const keycode = {
+      name: e.key,
+      code: e.code,
+    }
+    setKeybind(keybind().filter((k) => k.code !== keycode.code))
   }
 
   const setRecordingState = () => {
@@ -87,8 +106,7 @@ export function KeybindInput(props: Props) {
         <Text class={!keybind().length ? classes.keybindPlaceholder : ''}>
           {
             keybind().length ? keybind().map((k, i) => {
-              const key = k.length > 1 ? k : k.toUpperCase()
-              return i === keybind().length - 1 ? key : key + ' + '
+              return i === keybind().length - 1 ? k.name : k.name + ' + '
             }) : 'No Keybind Set'
           }
         </Text>

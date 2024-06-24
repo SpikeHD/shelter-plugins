@@ -4,8 +4,6 @@ import { KeybindInput } from '../../../components/KeybindInput'
 
 const {
   ui: {
-    Button,
-    Switch,
     Text,
     HeaderTags,
     Header,
@@ -80,12 +78,10 @@ export function KeybindSection(props: Props) {
           <KeybindInput
             initialKeybind={props.keybind.keys || []}
             onKeybindChange={(keybind) => {
+              console.log(keybind)
               props.onKeybindChange({
                 keys: keybind,
                 key: keybindType(),
-
-                // TODO finish this
-                action: ''
               }, old)
             }}
             style='width: 100%'

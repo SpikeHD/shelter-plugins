@@ -42,19 +42,13 @@ export const keyToStr = (key: number) => {
 export const strToKey = (str: string) => {
   let key = 0
 
-  // get char code of uppercase letter
-  if (str >= 'A' && str <= 'Z') {
-    key = str.charCodeAt(0)
-  }
+  if (str.length === 1) {
+    // get char code of lowercase letter
+    if (str >= 'a' && str <= 'z') {
+      return str.charCodeAt(0) - 32
+    }
 
-  // get char code of lowercase letter
-  if (str >= 'a' && str <= 'z') {
-    key = str.charCodeAt(0) - 32
-  }
-
-  // get char code of number
-  if (str >= '0' && str <= '9') {
-    key = str.charCodeAt(0)
+    return str.charCodeAt(0)
   }
 
   // Get everything else

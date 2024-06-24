@@ -89,10 +89,14 @@ interface Backend {
   }
 }
 
+interface KeyStruct {
+  name: string
+  code: string
+}
+
 interface Keybind {
   key: string
-  action: string
-  keys: string[]
+  keys: KeyStruct[]
 }
 
 interface KeybindActionType {
