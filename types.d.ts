@@ -110,6 +110,11 @@ interface KeybindDescription {
 
 interface KeybindActionsInternal {
   [key: string]: {
+    storeValue?: {
+      store: string
+      key: string
+      setKey: string
+    }
     press?: {
       [key: string]: any
     }[]

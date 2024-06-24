@@ -39,8 +39,10 @@ const viewedKeybindsCallback = (e) => {
     child = keybindsArea.appendChild(
       <ReactiveRoot>
         <Keybinds
+          // Remove PUSH_TO_TALK because that is set in the voice & video section and I can't be assed
+          // to come up with a good way to handle it being set somewhere else right now
           // @ts-expect-error it does exist I promise
-          keybindActionTypes={owner.keybindActionTypes}
+          keybindActionTypes={owner.keybindActionTypes.filter((k) => k.value !== 'PUSH_TO_TALK')}
           // @ts-expect-error it does exist I promise
           keybindDescriptions={owner.keybindDescriptions}
         />

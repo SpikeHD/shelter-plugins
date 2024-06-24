@@ -65,6 +65,10 @@ export function KeybindSection(props: Props) {
             options={props.keybindActionTypes}
             onChange={(e) => {
               setKeybindType(e.target.value)
+              props.onKeybindChange({
+                keys: props.keybind.keys || [],
+                key: e.target.value,
+              }, old)
             }}
             style='width: 90%'
           ></Dropdown>
@@ -78,7 +82,6 @@ export function KeybindSection(props: Props) {
           <KeybindInput
             initialKeybind={props.keybind.keys || []}
             onKeybindChange={(keybind) => {
-              console.log(keybind)
               props.onKeybindChange({
                 keys: keybind,
                 key: keybindType(),

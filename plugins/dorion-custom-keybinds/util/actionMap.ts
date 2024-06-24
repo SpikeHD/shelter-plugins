@@ -2,6 +2,7 @@ const {
   flux: {
     stores: {
       UserStore,
+      StreamerModeStore
     }
   }
 } = shelter
@@ -24,9 +25,14 @@ export const keybindActions: KeybindActionsInternal = {
     }]
   },
   'TOGGLE_STREAMER_MODE': {
+    storeValue: {
+      store: 'StreamerModeStore',
+      key: 'enabled',
+      setKey: 'value'
+    },
     press: [{
-      type: 'TOGGLE_STREAMER_MODE',
-      context: 'default'
+      type: 'STREAMER_MODE_UPDATE',
+      key: 'enabled',
     }]
   },
   'TOGGLE_VOICE_MODE': {

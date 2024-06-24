@@ -15,10 +15,18 @@ export const register = () => {
     const action = keybindActions?.[key]
 
     if (!action || !action.press) return
-    
+
     for (const press of action.press) {
+      const e = press
+
+      if (action.storeValue) {
+        const { store, key, setKey } = action.storeValue
+        const storeInstance = shelter.flux.stores[store]
+        e[setKey] = !storeInstance[key]
+      }
+
       FluxDispatcher.dispatch(
-        press
+        e
       )
     }
   }))
@@ -30,6 +38,14 @@ export const register = () => {
     if (!action || !action.release) return
 
     for (const release of action.release) {
+      const e = release
+
+      if (action.storeValue) {
+        const { store, key, setKey } = action.storeValue
+        const storeInstance = shelter.flux.stores[store]
+        e[setKey] = !storeInstance[key]
+      }
+
       FluxDispatcher.dispatch(
         release
       )
