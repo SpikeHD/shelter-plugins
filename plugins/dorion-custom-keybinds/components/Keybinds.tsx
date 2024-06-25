@@ -108,8 +108,10 @@ export function Keybinds(props: Props) {
             setKeybindsEnabled(value)
             setKeybindEnabledChanged(true)
             invoke('set_config', {
-              ...await invoke('get_config'),
-              keybinds_enabled: value
+              config: {
+                ...await invoke('get_config'),
+                keybinds_enabled: value
+              }
             })
           }}
           note="Enable or disable global keybinds. Requires restart."
