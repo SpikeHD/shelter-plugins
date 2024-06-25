@@ -1,0 +1,88 @@
+.keybindContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 40px;
+
+  border-radius: 4px;
+
+  background: var(--input-background);
+  color: var(--text-normal);
+  border: 1px solid transparent;
+
+  padding: 4px;
+
+  transition: all 0.2s;
+}
+
+.keybindContainer:hover {
+  border: 1px solid var(--status-danger);
+}
+
+.recording {
+  .keybindButton {
+    background: hsl(var(--red-400-hsl)/.1);
+    color: var(--status-danger);
+  }
+
+  .keybindButton:hover {
+    background: hsl(var(--red-400-hsl)/.2);
+  }
+  
+  border: 1px solid var(--status-danger);
+
+  animation: pulse 1s infinite;
+}
+
+.keybindInput {
+  background: transparent;
+  
+  display: flex;
+  align-items: center;
+}
+
+.keybindPlaceholder {
+  color: var(--text-muted) !important;
+}
+
+.keybindButton {
+  height: 30px;
+  width: 50%;
+
+  margin: 0;
+  padding: 4px;
+
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+
+  background: var(--button-secondary-background);
+  color: var(--white-500);
+
+  border: 1px solid transparent;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+}
+
+.keybindButton:hover {
+  background: var(--button-secondary-background-hover);
+}
+
+/* animation to pulse shadow intensity */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px 0px hsl(var(--red-400-hsl)/.5);
+  }
+  50% {
+    box-shadow: 0 0 10px 4px hsl(var(--red-400-hsl)/.5);
+  }
+  100% {
+    box-shadow: 0 0 10px 0px hsl(var(--red-400-hsl)/.5);
+  }
+}

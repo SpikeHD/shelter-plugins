@@ -1,0 +1,55 @@
+.keybindRoot {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.keybindSection {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionSection,
+.keybindArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.actionSection {
+  width: 50%;
+}
+
+.removeButton {
+  width: 10%;
+  height: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* hide by default */
+  opacity: 0;
+
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.keybindRoot:hover .removeButton {
+  opacity: 1;
+}
+
+.keybindArea {
+  width: 50%;
+}
+
+.note {
+  margin-top: 8px;
+  color: var(--header-secondary) !important;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}

@@ -88,3 +88,39 @@ interface Backend {
     }
   }
 }
+
+interface KeyStruct {
+  name: string
+  code: string
+}
+
+interface Keybind {
+  key: string
+  keys: KeyStruct[]
+}
+
+interface KeybindActionType {
+  label: string
+  value: string
+}
+
+interface KeybindDescription {
+  [key: string]: string
+}
+
+interface KeybindActionsInternal {
+  [key: string]: {
+    storeValue?: {
+      store: string
+      key: string
+      eventKey: string
+      modify: (event: any, store: any) => any
+    }
+    press?: {
+      [key: string]: any
+    }[]
+    release?: {
+      [key: string]: any
+    }[]
+  }
+}

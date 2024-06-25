@@ -1,11 +1,11 @@
-import { keyToStr } from './keyUtil.js'
+import { keyToStr } from '../../util/keyUtil.js'
 import { invoke, event } from '../../api/api.js'
 
 const {
   flux: {
     dispatcher: FluxDispatcher,
     stores: {
-      UserStore
+      MediaEngineStore
     }
   },
   observeDom
@@ -65,40 +65,29 @@ const keybindCreationHandler = async (payload) => {
   } = payload
 
   const keys = shortcut.map(k => k[1])
-  const toKeys = keys.map(keyToStr)
+  const toKeys = keys.map((k) => ({
+    code: keyToStr(k),
+    name: keyToStr(k)
+  }))
 
-  invoke('save_ptt_keys', { keys: toKeys })
+  invoke('set_keybind', { action: 'PUSH_TO_TALK', keys: toKeys })
 
-  invoke('toggle_ptt', {
+  event.emit('ptt_toggled', {
     state: mode === 'PUSH_TO_TALK'
   })
 }
 
-// Handles toggling the PTT state
-const toggleHandler = async (e) => {
-  const { state } = e.payload
-  const fluxPayload = {
-    type: 'SPEAKING',
-    context: 'default',
-    // @ts-expect-error This is a real property I promise
-    userId: UserStore?.getCurrentUser()?.id,
-    speakingFlags: state ? 1 : 0
-  }
-
-  console.log('Toggle handler called with state: ', state)
-
-  FluxDispatcher.dispatch(
-    fluxPayload
-  )
-}
+// Initial set internally
+event.emit('ptt_toggled', {
+  // @ts-expect-error shut up
+  state: MediaEngineStore?.getMode?.() === 'PUSH_TO_TALK'
+})
 
 subscriptions.push(
   FluxDispatcher.subscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler),
   FluxDispatcher.subscribe('LAYER_POP', unobserveAll),
   FluxDispatcher.subscribe('AUDIO_SET_MODE', keybindCreationHandler)
 )
-
-event.listen('ptt_toggle', toggleHandler).then(unlisten => events.push(unlisten))
 
 export const onUnload = () => {
   unobserveAll()

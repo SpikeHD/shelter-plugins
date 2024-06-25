@@ -1,0 +1,70 @@
+.keybindSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.keybindsHeader {
+  width: 100%;
+  height: 40px;
+
+  margin-bottom: 20px;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.keybindsBanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  width: 75%;
+
+  border-radius: 4px;
+
+  border: 1px solid var(--status-warning) !important;
+  background-color: var(--info-warning-background);
+  padding: 12px;
+}
+
+.keybindsButton {
+  width: 20% !important;
+  height: 100%;
+  background-color: var(--brand-500) !important;
+}
+
+.keybindsSwitch {
+  width: 100%;
+}
+
+.keybindRestartCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  border: 1px solid var(--status-warning) !important;
+  background-color: var(--info-warning-background);
+  padding: 16px;
+
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.keybindRestartButton {
+  width: 100% !important;
+  background-color: var(--status-warning) !important;
+  margin-top: 8px;
+}
