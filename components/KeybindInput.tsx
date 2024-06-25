@@ -31,6 +31,7 @@ export function KeybindInput(props: Props) {
 
   const [recording, setRecording] = createSignal(false)
   const [keybind, setKeybind] = createSignal<KeyStruct[]>(props.initialKeybind || [])
+  const [keysPressed, setKeysPressed] = createSignal<KeyStruct[]>([])
 
   onCleanup(() => {
     window.removeEventListener('keydown', keyDown),
@@ -43,8 +44,16 @@ export function KeybindInput(props: Props) {
       code: e.code,
     }
 
+    setKeysPressed([...keysPressed(), keycode])
+
     if (keycode.name.length === 1) {
       keycode.name = keycode.name.toUpperCase()
+    }
+    
+    // clear keybind if its a new keybind
+    if (keysPressed().length === 1) {
+      setKeybind([keycode])
+      return
     }
 
     // If the key is already in the keybind, don't add it again
@@ -70,7 +79,8 @@ export function KeybindInput(props: Props) {
       name: e.key,
       code: e.code,
     }
-    setKeybind(keybind().filter((k) => k.code !== keycode.code))
+
+    setKeysPressed(keysPressed().filter((k) => k.code !== keycode.code))
   }
 
   const setRecordingState = () => {

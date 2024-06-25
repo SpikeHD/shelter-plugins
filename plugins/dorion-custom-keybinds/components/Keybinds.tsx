@@ -113,7 +113,6 @@ export function Keybinds(props: Props) {
               updateKeybinds(newKeybinds)
             }}
             onKeybindRemove={(keybind) => {
-              console.log(keybind)
               updateKeybinds(keybindSections().filter((bind) => bind.key !== keybind.key))
             }}
           />
