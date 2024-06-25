@@ -1,4 +1,4 @@
-import { event, invoke } from '../../../api/api'
+import { event, invoke, process } from '../../../api/api'
 import { css, classes } from './Keybinds.tsx.scss'
 import { KeybindSection } from './KeybindSection'
 
@@ -6,6 +6,7 @@ const {
   ui: {
     Button,
     Text,
+    SwitchItem,
     injectCss
   },
   solid: {
@@ -27,11 +28,14 @@ export function Keybinds(props: Props) {
     injectCss(css)
   }
 
+  const [keybindsEnabled, setKeybindsEnabled] = createSignal(false)
+  const [keybindEnabledChanged, setKeybindEnabledChanged] = createSignal(false)
   // list of keybinds that are set (aka keybinds that have a section already)
   const [keybindSections, setKeybindSections] = createSignal<Keybind>([])
 
   createEffect(async () => {
     const keybinds = await invoke('get_keybinds')
+    const config = await invoke('get_config')
 
     // Convert the map (key: bind[]) to the array
     const sections = Object.keys(keybinds).map((key) => ({
@@ -40,6 +44,7 @@ export function Keybinds(props: Props) {
     }))
 
     setKeybindSections(sections)
+    setKeybindsEnabled(config.keybinds_enabled ?? false)
   }, [])
 
   const updateKeybinds = (keybinds: Keybind[]) => {
@@ -50,6 +55,26 @@ export function Keybinds(props: Props) {
 
   return (
     <div class={classes.keybindSection}>
+      {
+        keybindEnabledChanged() && (
+          <div class={classes.keybindRestartCard}>
+            <Text>
+                Enabling or disabling global keybinds requires a restart to take effect.
+            </Text>
+
+            <Button
+              class={classes.keybindRestartButton}
+              grow={true}
+              onClick={() => {
+                process.relaunch()
+              }}
+            >
+                Restart
+            </Button>
+          </div>
+        )
+      }
+        
       <div class={classes.keybindsHeader}>
         <div class={classes.keybindsBanner}>
           <Text>
@@ -74,6 +99,23 @@ export function Keybinds(props: Props) {
         >
           Add Keybind
         </Button>
+      </div>
+
+      <div class={classes.keybindsSwitch}>
+        <SwitchItem
+          value={keybindsEnabled()}
+          onChange={async (value) => {
+            setKeybindsEnabled(value)
+            setKeybindEnabledChanged(true)
+            invoke('set_config', {
+              ...await invoke('get_config'),
+              keybinds_enabled: value
+            })
+          }}
+          note="Enable or disable global keybinds. Requires restart."
+        >
+          Enable Global Keybinds
+        </SwitchItem>
       </div>
 
       {

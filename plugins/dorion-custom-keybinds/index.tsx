@@ -34,6 +34,16 @@ const viewedKeybindsCallback = (e) => {
     // @ts-expect-error this is real
     oldElm.style.display = 'none'
 
+    // Find the divider in the keybinds area
+    const divider = keybindsArea.parentElement.parentElement.querySelector('div[class*="divider_"]')
+    // @ts-expect-error this is real
+    divider.style.display = 'none'
+    
+    // Remove big margin on the default keybinds bit
+    const defaultKeybinds = keybindsArea.parentElement.parentElement.querySelector('div[class*="marginTop"]')
+    // @ts-expect-error this is real
+    defaultKeybinds.style.marginTop = '0'
+
     child = keybindsArea.appendChild(
       <ReactiveRoot>
         <Keybinds
