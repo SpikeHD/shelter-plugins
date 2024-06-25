@@ -56,30 +56,44 @@ export const keybindActions: KeybindActionsInternal = {
   },
   // TODO grab the existing push to talk bind and display it in the keybinds section
   'PUSH_TO_TALK': {
+    storeValue: {
+      store: 'UserStore',
+      key: '',
+      eventKey: 'userId',
+      modify: (event, store) => {
+        event['userId'] = store['getCurrentUser']().id
+        return event
+      }
+    },
     press: [{
       type: 'SPEAKING',
       context: 'default',
-      userId: UserStore.getCurrentUser().id,
       speakingFlags: 1
     }],
     release: [{
       type: 'SPEAKING',
       context: 'default',
-      userId: UserStore.getCurrentUser().id,
       speakingFlags: 0
     }]
   },
   'PUSH_TO_TALK_PRIORITY': {
+    storeValue: {
+      store: 'UserStore',
+      key: '',
+      eventKey: 'userId',
+      modify: (event, store) => {
+        event['userId'] = store['getCurrentUser']().id
+        return event
+      }
+    },
     press: [{
       type: 'SPEAKING',
       context: 'default',
-      userId: UserStore.getCurrentUser().id,
       speakingFlags: 4
     }],
     release: [{
       type: 'SPEAKING',
       context: 'default',
-      userId: UserStore.getCurrentUser().id,
       speakingFlags: 0
     }]
   },
