@@ -60,3 +60,23 @@ export const strToKey = (str: string) => {
 
   return key
 }
+
+// converts things like A to KeyA and 0 to Digit0
+export function strToCode(str: string) {
+  const code = 'Key'
+
+  if (str.length === 1) {
+    // get char code of lowercase letter
+    if (str >= 'a' && str <= 'z') {
+      return code + str.toUpperCase()
+    }
+
+    return 'Digit' + str
+  }
+  
+  if (Keycode[str]) {
+    return Keycode[str]
+  }
+
+  return code + str
+}

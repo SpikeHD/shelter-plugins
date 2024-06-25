@@ -1,4 +1,4 @@
-import { keyToStr } from '../../util/keyUtil.js'
+import { keyToStr, strToCode } from '../../util/keyUtil.js'
 import { invoke, event } from '../../api/api.js'
 
 const {
@@ -66,8 +66,8 @@ const keybindCreationHandler = async (payload) => {
 
   const keys = shortcut.map(k => k[1])
   const toKeys = keys.map((k) => ({
-    code: keyToStr(k),
-    name: keyToStr(k)
+    code: strToCode(keyToStr(k)),
+    name: strToCode(keyToStr(k))
   }))
 
   invoke('set_keybind', { action: 'PUSH_TO_TALK', keys: toKeys })
