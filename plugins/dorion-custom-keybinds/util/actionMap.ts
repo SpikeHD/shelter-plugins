@@ -2,7 +2,6 @@ const {
   flux: {
     stores: {
       UserStore,
-      StreamerModeStore
     }
   }
 } = shelter
@@ -28,7 +27,11 @@ export const keybindActions: KeybindActionsInternal = {
     storeValue: {
       store: 'StreamerModeStore',
       key: 'enabled',
-      setKey: 'value'
+      eventKey: 'value',
+      modify: (event, store) => {
+        event['value'] = !store['enabled']
+        return event
+      }
     },
     press: [{
       type: 'STREAMER_MODE_UPDATE',
@@ -36,8 +39,18 @@ export const keybindActions: KeybindActionsInternal = {
     }]
   },
   'TOGGLE_VOICE_MODE': {
+    storeValue: {
+      store: 'MediaEngineStore',
+      key: 'getMode',
+      eventKey: 'mode',
+      modify: (event, store) => {
+        event['mode'] = store['getMode']() === 'PUSH_TO_TALK' ? 'VOICE_ACTIVITY' : 'PUSH_TO_TALK'
+        event['options'] = store['getModeOptions']() || {}
+        return event
+      }
+    },
     press: [{
-      type: 'TOGGLE_VOICE_MODE',
+      type: 'AUDIO_SET_MODE',
       context: 'default'
     }]
   },

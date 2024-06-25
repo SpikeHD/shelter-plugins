@@ -17,12 +17,12 @@ export const register = () => {
     if (!action || !action.press) return
 
     for (const press of action.press) {
-      const e = press
+      let e = press
 
       if (action.storeValue) {
-        const { store, key, setKey } = action.storeValue
+        const { store, modify } = action.storeValue
         const storeInstance = shelter.flux.stores[store]
-        e[setKey] = !storeInstance[key]
+        e = modify(e, storeInstance)
       }
 
       FluxDispatcher.dispatch(
@@ -38,12 +38,12 @@ export const register = () => {
     if (!action || !action.release) return
 
     for (const release of action.release) {
-      const e = release
+      let e = release
 
       if (action.storeValue) {
-        const { store, key, setKey } = action.storeValue
+        const { store, modify } = action.storeValue
         const storeInstance = shelter.flux.stores[store]
-        e[setKey] = !storeInstance[key]
+        e = modify(e, storeInstance)
       }
 
       FluxDispatcher.dispatch(

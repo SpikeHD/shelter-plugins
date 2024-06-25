@@ -113,7 +113,8 @@ interface KeybindActionsInternal {
     storeValue?: {
       store: string
       key: string
-      setKey: string
+      eventKey: string
+      modify: (event: any, store: any) => any
     }
     press?: {
       [key: string]: any
