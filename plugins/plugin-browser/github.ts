@@ -113,25 +113,30 @@ export async function getAllPlugins() {
 
   // Map the plugins to their repos
   let plugins = await Promise.all(repos.map(async (repo) => {
-    const site = await pluginsSite(repo)
+    try {
+      const site = await pluginsSite(repo)
 
-    if (!site) {
-      console.log('[Plugin Browser] No site found for repo: ', repo.name)
-      return null
+      if (!site) {
+        console.log('[Plugin Browser] No site found for repo: ', repo.name)
+        return null
+      }
+  
+      const plugins = await getRepoPlugins(repo)
+  
+      if (!plugins || plugins.length === 0) {
+        console.log(`[Plugin Browser] No plugins found for repo: ${repo.owner}/${repo.name}`)
+        return null
+      }
+  
+      return {
+        site: await getPluginsLocation(site, plugins),
+        repo,
+        plugins,
+      } satisfies RepoInfo
+    } catch(e) {
+      console.error(e)
+      return null;
     }
-
-    const plugins = await getRepoPlugins(repo)
-
-    if (!plugins || plugins.length === 0) {
-      console.log(`[Plugin Browser] No plugins found for repo: ${repo.owner}/${repo.name}`)
-      return null
-    }
-
-    return {
-      site: await getPluginsLocation(site, plugins),
-      repo,
-      plugins,
-    } satisfies RepoInfo
   }))
 
   plugins = plugins.filter((plugin) => plugin !== null)
