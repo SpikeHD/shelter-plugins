@@ -29,7 +29,7 @@ const apps: Record<string, { name: string } | string> = {}
 store.currentlyPlaying = ''
 
 async function lookupApp(appId: string): Promise<string> {
-  return (await shelter.http.get(`/oauth2/applications/${appId}/rpc`)).body
+  return (await shelter.http.get(`/oauth2/applications/${appId}/rpc`))?.body || 'Unknown'
 }
 
 export const generateAssetId = async (appId: string, asset: string) => {
