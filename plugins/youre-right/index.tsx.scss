@@ -1,0 +1,30 @@
+.youreRightItem {
+  transform: scaleX(-1);
+
+  /* text within the container should be double-flipped */
+  img,
+  h3,
+  [id^=message-content-],
+  [id^=username] {
+    transform: scaleX(-1);
+    text-align: right;
+    margin: 0;
+  }
+
+  [id^=message-content-] {
+    max-width: 60%;
+    text-align: left;
+  }
+
+  [class^=buttonsInner] {
+    transform: scaleX(-1);
+  }
+
+  [id^=message-reply-context-] {
+    // /* revert */
+    // transform: scaleX(-1);
+
+    /* bring to the right */
+    justify-content: flex-end;
+  }
+}
