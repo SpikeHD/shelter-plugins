@@ -10,8 +10,7 @@ interface AssetCache {
 
 const {
   flux: {
-    dispatcher: FluxDispatcher,
-    stores: { GameStore },
+    dispatcher: FluxDispatcher
   },
   settings: { registerSection },
   ui: { showToast },
@@ -29,8 +28,8 @@ const apps: Record<string, { name: string } | string> = {}
 // when we load, set current game as nothing
 store.currentlyPlaying = ''
 
-async function lookupApp(name: string): Promise<string> {
-  return GameStore.getGameByName(name)?.name || 'Unknown'
+async function lookupApp(appId: string): Promise<string> {
+  return (await http.get(`/oauth2/applications/${appId}/rpc`))?.body || 'Unknown'
 }
 
 export const generateAssetId = async (appId: string, asset: string) => {
@@ -67,7 +66,7 @@ async function handleMessage(e: MessageEvent<string>) {
 
   if (data.activity) {
     const appId = data.activity.application_id
-    apps[appId] ||= await lookupApp(data.activity.name)
+    apps[appId] ||= await lookupApp(appId)
 
     const app = apps[appId]
     if (typeof app !== 'string') {
