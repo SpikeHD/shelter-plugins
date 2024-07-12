@@ -32,7 +32,7 @@ export default {
       setFullscreen: (isFullscreen: boolean) => {
         // for tauri v2, `setFullscreen` exists on __TAURI__.webviewWindow.getCurrent()[0], instead of base __TAURI__.window.appWindow, so we should check for both
         if ((window as any).__TAURI__?.webviewWindow?.getCurrent) {
-          return (window as any).__TAURI__.webviewWindow.getCurrent()[0].setFullscreen(isFullscreen)
+          return (window as any).__TAURI__.webviewWindow.getCurrent().setFullscreen(isFullscreen)
         } else {
           return (window as any).__TAURI__.window.appWindow.setFullscreen(isFullscreen)
         }
