@@ -83,6 +83,12 @@ const settingsHandler = async (payload) => {
               desktop_notifications: value
             })
 
+            // If enabling, dispatch the flux event as well
+            FluxDispatcher.dispatch({
+              type: 'NOTIFICATIONS_SET_PERMISSION_STATE',
+              enabled: value ? 'ENABLED' : 'DISABLED'
+            })
+
             await invoke('write_config_file', {
               contents: JSON.stringify(settings())
             })
