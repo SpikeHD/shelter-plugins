@@ -1,13 +1,33 @@
 .window {
-  height: 400px;
-  width: 30vw;
-
   position: absolute;
   z-index: 99999;
+  min-width: 300px;
+  min-height: 300px;
+  pointer-events: none;
 
   /* Start in middle */
   top: 50%;
   left: 50%;
+}
+
+.resize {
+  cursor: se-resize;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  z-index: -1;
+  pointer-events: all;
+}
+
+.content {
+  --inset: 8px;
+
+  width: calc(100% - 2px - 2 * var(--inset));
+  height: calc(100% - 2px - 2 * var(--inset));
+  margin: var(--inset);
+  pointer-events: all;
 
   background: var(--background-primary);
   border-radius: 6px;

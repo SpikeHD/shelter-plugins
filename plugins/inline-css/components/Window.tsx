@@ -9,6 +9,40 @@ const {
 
 let injectedCss = false
 
+// Handle touches and mouse movement
+const getClientCoordinates = ({ touches, clientX, clientY }) => {
+  if (touches) {
+    return [
+      touches[touches.length - 1].clientX,
+      touches[touches.length - 1].clientY
+    ]
+  }
+  return [clientX, clientY]
+}
+
+const handleDragging = (onDrag: (evt: DragEvent) => void) => {
+  const drag = debounce((evt: DragEvent) => {
+    evt.preventDefault()
+    onDrag(evt)
+  }, 5)
+
+  const mouseup = () => {
+    // Remove movement event since we have lifted up
+    document.removeEventListener('mousemove', drag)
+    document.removeEventListener('touchmove', drag)
+
+    document.removeEventListener('mouseup', mouseup)
+    document.removeEventListener('touchend', mouseup)
+  }
+
+  // Mousemove is added to the document in case the lement can't catch up and the mouse leaves the elemnts zone
+  document.addEventListener('mousemove', drag)
+  document.addEventListener('touchmove', drag)
+
+  document.addEventListener('mouseup', mouseup)
+  document.addEventListener('touchend', mouseup)
+}
+
 export const Window = () => {
   // eslint-disable-next-line prefer-const
   let ref = null
@@ -22,78 +56,66 @@ export const Window = () => {
     if (ref) ref.remove()
   }
 
-  const handleMouseDown = (evt) => {
+  const topbarMouseDown = (evt) => {
     evt.preventDefault()
-    mousedown(evt)
-  }
-
-  // Yoinked from SpikeHD/SpikeHD.github.io
-  const mousedown = (evt) => {
-    // Handle touches and mouse movement
-    const clientX = evt.touches
-      ? evt.touches[evt.touches.length - 1].clientX
-      : evt.clientX
-    const clientY = evt.touches
-      ? evt.touches[evt.touches.length - 1].clientY
-      : evt.clientY
-
-    const rect = evt.target.getBoundingClientRect()
-    const tgtX = rect.left
-    const tgtY = rect.top
-    const mouseX = clientX
-    const mouseY = clientY
-    const dragOffsetX = mouseX - tgtX
-    const dragOffsetY = mouseY - tgtY
+    const [oldClientX, oldClientY] = getClientCoordinates(evt)
 
     // Get the window ancestor
     const windowElm = evt.target.closest('.' + classes.window)
 
-    const drag = debounce((evt: DragEvent) => {
-      evt.preventDefault()
+    const rect = windowElm.getBoundingClientRect()
+    const dragOffsetX = oldClientX - rect.left
+    const dragOffsetY = oldClientY - rect.top
 
-      // Handle touches AND  mouse movement
-      const clientX = evt?.clientX
-      const clientY = evt?.clientY
-      const newX = clientX - dragOffsetX
-      const newY = clientY - dragOffsetY
+
+    handleDragging((evt) => {
+      const newX = evt.clientX - dragOffsetX
+      const newY = evt.clientY - dragOffsetY
 
       windowElm.style.left = `${newX}px`
       windowElm.style.top = `${newY}px`
-    }, 5)
+    })
+  }
 
-    const mouseup = () => {
-      // Remove movement event since we have lifted up
-      document.removeEventListener('mousemove', drag)
-      document.removeEventListener('touchmove', drag)
+  const resizeMouseDown = (evt) => {
+    evt.preventDefault()
+    const [oldClientX, oldClientY] = getClientCoordinates(evt)
+  
+    // Get the window ancestor
+    const windowElm = evt.target.closest('.' + classes.window)
+    const rect = windowElm.getBoundingClientRect()
+    
+    handleDragging((evt) => {
+      const newWidth = rect.width + evt.clientX - oldClientX
+      const newHeight = rect.height + evt.clientY - oldClientY
 
-      document.removeEventListener('mouseup', mouseup)
-      document.removeEventListener('touchend', mouseup)
-    }
-
-    // Mousemove is added to the document in case the lement can't catch up and the mouse leaves the elemnts zone
-    document.addEventListener('mousemove', drag)
-    document.addEventListener('touchmove', drag)
-
-    document.addEventListener('mouseup', mouseup)
-    document.addEventListener('touchend', mouseup)
+      windowElm.style.width = `${newWidth}px`
+      windowElm.style.height = `${newHeight}px`
+    })
   }
 
   return (
-    <div class={classes.window} ref={ref}>
-      <div class={classes.topbar} onmousedown={handleMouseDown}>
-        <div class={classes.exit} onclick={close}>
-          <Close />
+    <div class={classes.window} ref={ref} style={{
+      height: '400px',
+      width: '30vw'
+    }}>
+      <div class={classes.resize} onmousedown={resizeMouseDown}/>
+      <div class={classes.content}>
+        <div class={classes.topbar} onmousedown={topbarMouseDown}>
+          <div class={classes.exit} onclick={close}>
+            <Close />
+          </div>
         </div>
-      </div>
 
-      <div class={classes.inner}>
-        <div class={classes.main}>
-          <Editor
-            styleElm={
-              document.getElementById('inline-css-output') as HTMLStyleElement
-            }
-            popout={true}
-          />
+        <div class={classes.inner}>
+          <div class={classes.main}>
+            <Editor
+              styleElm={
+                document.getElementById('inline-css-output') as HTMLStyleElement
+              }
+              popout={true}
+            />
+          </div>
         </div>
       </div>
     </div>
