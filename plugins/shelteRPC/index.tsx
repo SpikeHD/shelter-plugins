@@ -53,6 +53,8 @@ async function handleMessage(e: MessageEvent<string>) {
   const data = JSON.parse(e.data)
   const assets = data.activity?.assets
 
+  if (data.cmd) return handleCmd(data)
+
   if (assets?.large_image)
     assets.large_image = await generateAssetId(
       data.activity.application_id,
@@ -100,6 +102,13 @@ async function handleMessage(e: MessageEvent<string>) {
     type: 'LOCAL_ACTIVITY_UPDATE',
     ...data,
   })
+}
+
+const handleCmd = async (payload: any) => {
+  switch(payload.cmd) {
+  case 'INVITE_BROWSER':
+    // TODO
+  }
 }
 
 const retry = async (fn: (curTry: number) => any, times: number = 5, wait: number = 500) => {
