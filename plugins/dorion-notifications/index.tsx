@@ -15,10 +15,6 @@ const {
 const [settings, setSettings] = createSignal<DorionSettings>(null)
 const notifSelector = 'div[class*="contentColumn"] div[class*="container"]'
 
-if (settings().desktop_notifications) {
-  Notification.requestPermission()
-}
-
 let isOnNotifSection = false
 let newSettingInjected = false
 
@@ -106,9 +102,12 @@ const settingsHandler = async (payload) => {
 FluxDispatcher.subscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
 
 export const onLoad = async () => {
-  setSettings(
-    JSON.parse(await invoke('read_config_file'))
-  )
+  const cfg = JSON.parse(await invoke('read_config_file'))
+  setSettings(cfg)
+  
+  if (cfg.desktop_notifications) {
+    Notification.requestPermission()
+  }
 }
 
 export const onUnload = () => {
