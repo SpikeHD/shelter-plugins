@@ -10,19 +10,13 @@ const {
   solid: {
     createSignal,
   },
-  observeDom,
-  patcher
 } = shelter
+
+Notification.requestPermission()
 
 const [settings, setSettings] = createSignal<DorionSettings>(null)
 const notifSelector = 'div[class*="contentColumn"] div[class*="container"]'
 
-// Overwrite the default window.Notification function
-const unpatchNotif = patcher.instead('Notification', window, () => {
-  return
-})
-
-let unobserve = null
 let isOnNotifSection = false
 let newSettingInjected = false
 
@@ -36,75 +30,75 @@ const settingsHandler = async (payload) => {
   else if (isOnNotifSection) return
   isOnNotifSection = true
 
-  unobserve = observeDom(notifSelector, (node: HTMLDivElement) => {
-    // Only ever need to get the first
-    unobserve.now()
+  // Wait for notif tab to load
+  await window.Dorion.util.waitForElm('#notifications-tab')
 
-    node.style.display = 'none'
+  const node = document.querySelector(notifSelector) as HTMLElement
 
-    // The next node after should also be hidden
-    const next = node.nextElementSibling as HTMLDivElement
-    if (next) next.style.display = 'none'
+  node.style.display = 'none'
 
-    if (newSettingInjected) return
+  // The next node after should also be hidden
+  const next = node.nextElementSibling as HTMLDivElement
+  if (next) next.style.display = 'none'
 
-    const newNotifs = [
-      (
-        <SwitchItem
-          note="Shows a red badge on the app icon when you have unread messages."
-          value={settings()?.unread_badge}
-          onChange={async (value) => {
-            setSettings({
-              ...settings(),
-              unread_badge: value
-            })
-  
-            await invoke('write_config_file', {
-              contents: JSON.stringify(settings())
-            })
-  
-            api.shouldShowUnreadBadge = value
+  if (newSettingInjected) return
 
-            // Also wipe the current badge if it was enabled
-            if (!value) invoke('notif_count', { amount: 0 })
-            else api.util.applyNotificationCount()
-          }}
-        >
-            Enable Unread Message Badge
-        </SwitchItem>
-      ),
-      (
-        <SwitchItem
-          note="If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings."
-          value={settings()?.desktop_notifications}
-          onChange={async (value) => {
-            setSettings({
-              ...settings(),
-              desktop_notifications: value
-            })
+  const newNotifs = [
+    (
+      <SwitchItem
+        note="Shows a red badge on the app icon when you have unread messages."
+        value={settings()?.unread_badge}
+        onChange={async (value) => {
+          setSettings({
+            ...settings(),
+            unread_badge: value
+          })
 
-            // If enabling, dispatch the flux event as well
-            FluxDispatcher.dispatch({
-              type: 'NOTIFICATIONS_SET_PERMISSION_STATE',
-              enabled: value ? 'ENABLED' : 'DISABLED'
-            })
+          await invoke('write_config_file', {
+            contents: JSON.stringify(settings())
+          })
 
-            await invoke('write_config_file', {
-              contents: JSON.stringify(settings())
-            })
-          }}
-        >
-          Enable Desktop Notifications
-        </SwitchItem>
-      )
-    ]
+          api.shouldShowUnreadBadge = value
 
-    for (const newNotif of newNotifs) {
-      node.parentElement.prepend(newNotif)
-    }
+          // Also wipe the current badge if it was enabled
+          if (!value) invoke('notif_count', { amount: 0 })
+          else api.util.applyNotificationCount()
+        }}
+      >
+          Enable Unread Message Badge
+      </SwitchItem>
+    ),
+    (
+      <SwitchItem
+        note="If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings."
+        value={settings()?.desktop_notifications}
+        onChange={async (value) => {
+          setSettings({
+            ...settings(),
+            desktop_notifications: value
+          })
 
-    newSettingInjected = true
-  })
+          // If enabling, dispatch the flux event as well
+          FluxDispatcher.dispatch({
+            type: 'NOTIFICATIONS_SET_PERMISSION_STATE',
+            enabled: value ? 'ENABLED' : 'DISABLED'
+          })
+
+          await invoke('write_config_file', {
+            contents: JSON.stringify(settings())
+          })
+        }}
+      >
+        Enable Desktop Notifications
+      </SwitchItem>
+    )
+  ]
+
+  for (const newNotif of newNotifs) {
+    node.parentElement.prepend(newNotif)
+  }
+
+  newSettingInjected = true
 }
 
 const notifHandler = (payload) => {
@@ -127,8 +121,6 @@ export const onLoad = async () => {
 }
 
 export const onUnload = () => {
-  unobserve?.now()
   FluxDispatcher.unsubscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
   FluxDispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', notifHandler)
-  unpatchNotif()
 }

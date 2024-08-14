@@ -9,6 +9,7 @@ interface GlobalApi {
     cssSanitize: (css: string) => string
     fetchImage: (url: string) => Promise<string>
     applyNotificationCount: () => void
+    waitForElm: (selector: string) => Promise<HTMLElement>
   }
 
   shouldShowUnreadBadge: boolean
