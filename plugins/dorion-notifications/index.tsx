@@ -12,10 +12,12 @@ const {
   },
 } = shelter
 
-Notification.requestPermission()
-
 const [settings, setSettings] = createSignal<DorionSettings>(null)
 const notifSelector = 'div[class*="contentColumn"] div[class*="container"]'
+
+if (settings().desktop_notifications) {
+  Notification.requestPermission()
+}
 
 let isOnNotifSection = false
 let newSettingInjected = false
@@ -101,18 +103,7 @@ const settingsHandler = async (payload) => {
   newSettingInjected = true
 }
 
-const notifHandler = (payload) => {
-  if (!settings().desktop_notifications) return
-
-  invoke('send_notification', {
-    title: payload.title,
-    body: payload.body,
-    icon: payload.icon,
-  })
-}
-
 FluxDispatcher.subscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
-FluxDispatcher.subscribe('RPC_NOTIFICATION_CREATE', notifHandler)
 
 export const onLoad = async () => {
   setSettings(
@@ -122,5 +113,4 @@ export const onLoad = async () => {
 
 export const onUnload = () => {
   FluxDispatcher.unsubscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
-  FluxDispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', notifHandler)
 }
