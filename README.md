@@ -14,6 +14,7 @@ Shelter plugin repo housing both general-use plugins AND [Dorion](https://github
   * [Plugin Browser](#plugin-browser)
   * [shelteRPC](#shelterpc)
   * [UserPFP](#userpfp)
+  * [You're Right](#youre-right)
 * [Dorion Plugins](#dorion-plugins)
   * [Dorion Fullscreen](#dorion-fullscreen)
   * [Dorion PTT](#dorion-ptt)
@@ -93,6 +94,12 @@ arRPC replication for Shelter. Only really useful on web Discord, and if you are
 View and use animated profile pictures without Nitro. See the [UserPFP README](https://github.com/UserPFP/UserPFP) for more information.
 
 `https://spikehd.github.io/shelter-plugins/userpfp/`
+
+## You're Right
+
+(Experimental) Float your messages to the right instead of the left. Like a texting app. Or something.
+
+![image](https://github.com/user-attachments/assets/b933d071-c46f-4937-9ff6-a05fc527f788)
 
 # Dorion Plugins
 
