@@ -2,7 +2,7 @@
   transform: scaleX(-1);
 
   /* text within the container should be double-flipped */
-  img,
+  video,
   h3,
   [id^=message-content-],
   [id^=username] {
@@ -11,13 +11,32 @@
     margin: 0;
   }
 
-  [id^=message-content-] {
-    max-width: 60%;
-    text-align: left;
+  img {
+    text-align: right;
+    margin: 0;
   }
 
+  img[class^=emoji] {
+    transform: scaleX(1) !important;
+  }
+
+  [id^=message-content-] {
+    max-width: 60%;
+    text-align: right;
+  }
+
+  [class^=nonVisualMediaItemContainer],
+  [class^=imageWrapper],
+  [class^=avatar],
+  [class^=embedWrapper],
+  [class^=reaction_],
   [class^=buttonsInner] {
     transform: scaleX(-1);
+  }
+  
+  [class*=timestampVisible] {
+    transform: scaleX(-1);
+    text-align: left !important;
   }
 
   [id^=message-reply-context-] {
@@ -25,6 +44,19 @@
     // transform: scaleX(-1);
 
     /* bring to the right */
-    justify-content: flex-end;
+    justify-content: flex-start;
+
+    [class^=username] {
+      transform: scaleX(-1);
+    }
+  }
+
+  img:active {
+    transform: scaleX(-1) translateY(-1px);
+  }
+
+  [role^=textbox] {
+    transform: scaleX(-1);
+    text-align: right;
   }
 }
