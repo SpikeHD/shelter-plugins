@@ -23,6 +23,10 @@
 }
 
 .recording {
+  border: 1px solid var(--status-danger);
+
+  animation: pulse 1s infinite;
+  
   .keybindButton {
     background: hsl(var(--red-400-hsl)/.1);
     color: var(--status-danger);
@@ -31,10 +35,6 @@
   .keybindButton:hover {
     background: hsl(var(--red-400-hsl)/.2);
   }
-  
-  border: 1px solid var(--status-danger);
-
-  animation: pulse 1s infinite;
 }
 
 .keybindInput {

@@ -5,7 +5,7 @@
 
   width: 40px;
 
-
+  cursor: pointer;
 
   /* We have to apply to the SVG because Discord hits us with a !important */
   svg path {
@@ -15,8 +15,6 @@
   &.notShowing svg path {
     fill: var(--status-danger) !important;
   }
-
-  cursor: pointer;
 }
 
 .invisContainer svg {
