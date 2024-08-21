@@ -30,7 +30,7 @@ document.head.appendChild(style)
 function handleElm(elm) {
   const message = reactFiberWalker(getFiber(elm), 'message', true)?.pendingProps?.message
   const id = UserStore.getCurrentUser().id
-  if (!message || message.author.id !== id || elm.classList.contains(classes.youreRight)) return
+  if (!message || message.author.id !== id || elm.classList.contains(classes.youreRightItem)) return
 
   elm.classList.add(classes.youreRightItem)
 }
