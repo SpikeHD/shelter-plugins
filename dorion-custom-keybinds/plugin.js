@@ -1,1 +1,944 @@
-(()=>{var We=Object.create;var I=Object.defineProperty,He=Object.defineProperties,Ve=Object.getOwnPropertyDescriptor,Ye=Object.getOwnPropertyDescriptors,Ze=Object.getOwnPropertyNames,X=Object.getOwnPropertySymbols,Je=Object.getPrototypeOf,te=Object.prototype.hasOwnProperty,Qe=Object.prototype.propertyIsEnumerable;var ee=(e,t,n)=>t in e?I(e,t,{enumerable:!0,configurable:!0,writable:!0,value:n}):e[t]=n,ne=(e,t)=>{for(var n in t||={})te.call(t,n)&&ee(e,n,t[n]);if(X)for(var n of X(t))Qe.call(t,n)&&ee(e,n,t[n]);return e},oe=(e,t)=>He(e,Ye(t));var Xe=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),et=(e,t)=>{for(var n in t)I(e,n,{get:t[n],enumerable:!0})},re=(e,t,n,o)=>{if(t&&typeof t=="object"||typeof t=="function")for(let a of Ze(t))!te.call(e,a)&&a!==n&&I(e,a,{get:()=>t[a],enumerable:!(o=Ve(t,a))||o.enumerable});return e};var l=(e,t,n)=>(n=e!=null?We(Je(e)):{},re(t||!e||!e.__esModule?I(n,"default",{value:e,enumerable:!0}):n,e)),tt=e=>re(I({},"__esModule",{value:!0}),e);var v=(e,t,n)=>new Promise((o,a)=>{var d=i=>{try{_(n.next(i))}catch(p){a(p)}},b=i=>{try{_(n.throw(i))}catch(p){a(p)}},_=i=>i.done?o(i.value):Promise.resolve(i.value).then(d,b);_((n=n.apply(e,t)).next())});var s=Xe((Ct,ie)=>{ie.exports=shelter.solidWeb});var St={};et(St,{onUnload:()=>Et});var Q=l(s());var Y=l(s()),R=l(s()),V=l(s()),x=l(s()),C=l(s()),Fe=l(s());var se={name:"Dorion",invoke:(e,t)=>{var n;return(n=window.__TAURI__)!=null&&n.invoke?window.__TAURI__.invoke(e,t):window.__TAURI__.core.invoke(e,t)},event:{emit:(e,t)=>window.__TAURI__.event.emit(e,t),listen:(e,t)=>v(void 0,null,function*(){return window.__TAURI__.event.listen(e,t)})},app:{getVersion:()=>window.__TAURI__.app.getVersion()},process:{relaunch:()=>window.__TAURI__.process.relaunch()},apiWindow:{appWindow:{setFullscreen:e=>{var t,n;return(n=(t=window.__TAURI__)==null?void 0:t.webviewWindow)!=null&&n.getCurrentWebviewWindow?window.__TAURI__.webviewWindow.getCurrentWebviewWindow().setFullscreen(e):window.__TAURI__.window.appWindow.setFullscreen(e)}}}};var ae={name:"Flooed",invoke:(e,t)=>window.Flooed.invoke(e,t),event:{emit:()=>{},listen:()=>v(void 0,null,function*(){})},app:{getVersion:()=>window.Flooed.version},process:{relaunch:()=>window.Flooed.invoke("relaunch")},apiWindow:{appWindow:{setFullscreen:e=>window.Flooed.invoke("set_fullscreen",e)}}};var de={name:"Unknown",invoke:()=>v(void 0,null,function*(){}),event:{emit:()=>{},listen:()=>v(void 0,null,function*(){})},app:{getVersion:()=>"0.0.0"},process:{relaunch:()=>{}},apiWindow:{appWindow:{setFullscreen:()=>{}}}};var B="None";window.Dorion?B="Dorion":window.Flooed&&(B="Flooed");var k;switch(B){case"Dorion":k=se;break;case"Flooed":k=ae;break;default:k=de;break}var Ot=window[B];var zt=k.name,K=k.invoke,U=k.event,Gt=k.app,le=k.process,Ft=k.apiWindow;var ce="._keybindSection_1rgyd_1{width:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;margin-bottom:20px}._header_1rgyd_1{margin-bottom:20px}._keybindsHeader_1rgyd_1{width:100%;height:40px;margin-bottom:20px;display:flex;flex-direction:row;justify-content:space-between;align-items:center}._keybindsBanner_1rgyd_1{display:flex;flex-direction:column;justify-content:space-around;align-items:flex-start;width:75%;border-radius:4px;border:1px solid var(--status-warning) !important;background-color:var(--info-warning-background);padding:12px}._keybindsButton_1rgyd_1{width:20% !important;height:100%;background-color:var(--brand-500) !important}._keybindsSwitch_1rgyd_1{width:100%}._keybindRestartCard_1rgyd_1{display:flex;flex-direction:column;justify-content:space-around;align-items:center;border:1px solid var(--status-warning) !important;background-color:var(--info-warning-background);padding:16px;width:100%;margin-bottom:20px}._keybindRestartButton_1rgyd_1{width:100% !important;background-color:var(--status-warning) !important;margin-top:8px}",w={keybindSection:"_keybindSection_1rgyd_1",header:"_header_1rgyd_1",keybindsHeader:"_keybindsHeader_1rgyd_1",keybindsBanner:"_keybindsBanner_1rgyd_1",keybindsButton:"_keybindsButton_1rgyd_1",keybindsSwitch:"_keybindsSwitch_1rgyd_1",keybindRestartCard:"_keybindRestartCard_1rgyd_1",keybindRestartButton:"_keybindRestartButton_1rgyd_1"};var W=l(s()),Ne=l(s()),T=l(s()),Be=l(s()),S=l(s()),Xt=l(s()),A=l(s()),Le=l(s());var _e="._keybindRoot_1bqau_1{display:flex;flex-direction:column;width:100%;margin-bottom:16px}._keybindSection_1bqau_1{width:100%;display:flex;flex-direction:row;justify-content:space-between;align-items:center}._actionSection_1bqau_1,._keybindArea_1bqau_1{display:flex;flex-direction:column}._actionSection_1bqau_1{width:50%}._removeButton_1bqau_1{width:10%;height:20px;display:flex;justify-content:center;align-items:center;opacity:0;transition:all .1s ease-in-out;cursor:pointer}._keybindRoot_1bqau_1:hover ._removeButton_1bqau_1{opacity:1}._keybindArea_1bqau_1{width:50%}._note_1bqau_1{margin-top:8px;color:var(--header-secondary) !important;font-size:14px;line-height:20px;font-weight:400}",$={keybindRoot:"_keybindRoot_1bqau_1",keybindSection:"_keybindSection_1bqau_1",actionSection:"_actionSection_1bqau_1",keybindArea:"_keybindArea_1bqau_1",removeButton:"_removeButton_1bqau_1",note:"_note_1bqau_1"};var j=l(s(),1),D=l(s(),1),ve=l(s(),1),F=l(s(),1),ke=l(s(),1),O=l(s(),1),ge=l(s(),1),N=l(s(),1);var ue="._ddown_1njos_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_1njos_1{position:relative;width:100%}._dsarrow_1njos_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_1njos_1 path{fill:var(--header-secondary)}",L={ddown:"_ddown_1njos_1",dcontainer:"_dcontainer_1njos_1",dsarrow:"_dsarrow_1njos_1"};var ye=l(s(),1),me=l(s(),1),be=l(s(),1),nt=(0,ye.template)('<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>',4),pe=e=>(()=>{let t=nt.cloneNode(!0);return(0,be.effect)(()=>(0,me.setAttribute)(t,"class",e.class)),t})();var ot=(0,j.template)("<div><select></select></div>",4),rt=(0,j.template)("<option></option>",2),{ui:{injectCss:it}}=shelter,fe=!1,he=e=>(fe||(fe=!0,it(ue)),(()=>{let t=ot.cloneNode(!0),n=t.firstChild;return(0,ge.addEventListener)(n,"change",e.onChange),(0,O.insert)(n,()=>{var o;return(o=e.options)==null?void 0:o.map(a=>(()=>{let d=rt.cloneNode(!0);return(0,O.insert)(d,()=>a.label),(0,N.effect)(()=>d.selected=a.value===(e==null?void 0:e.selected)),(0,N.effect)(()=>d.value=a.value),d})())}),(0,O.insert)(t,(0,ke.createComponent)(pe,{get class(){return L.dsarrow}}),null),(0,N.effect)(o=>{let a=L.dcontainer,d=e.style,b=L.ddown,_=e.placeholder,i=e.id,p=e["aria-label"],r=e.disabled;return a!==o._v$&&(0,F.className)(t,o._v$=a),o._v$2=(0,ve.style)(t,d,o._v$2),b!==o._v$3&&(0,F.className)(n,o._v$3=b),_!==o._v$4&&(0,D.setAttribute)(n,"placeholder",o._v$4=_),i!==o._v$5&&(0,D.setAttribute)(n,"id",o._v$5=i),p!==o._v$6&&(0,D.setAttribute)(n,"aria-label",o._v$6=p),r!==o._v$7&&(n.disabled=o._v$7=r),o},{_v$:void 0,_v$2:void 0,_v$3:void 0,_v$4:void 0,_v$5:void 0,_v$6:void 0,_v$7:void 0}),(0,N.effect)(()=>n.value=e.value),t})());var Ee=l(s(),1),Se=l(s(),1),Ae=l(s(),1),z=l(s(),1),Ce=l(s(),1),q=l(s(),1),P=l(s(),1),Te=l(s(),1);var we="._keybindContainer_z5eo4_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;height:40px;border-radius:4px;background:var(--input-background);color:var(--text-normal);border:1px solid rgba(0,0,0,0);padding:4px;transition:all .2s}._keybindContainer_z5eo4_1:hover{border:1px solid var(--status-danger)}._recording_z5eo4_1{border:1px solid var(--status-danger);animation:_pulse_z5eo4_1 1s infinite}._recording_z5eo4_1 ._keybindButton_z5eo4_1{background:hsl(var(--red-400-hsl)/0.1);color:var(--status-danger)}._recording_z5eo4_1 ._keybindButton_z5eo4_1:hover{background:hsl(var(--red-400-hsl)/0.2)}._keybindInput_z5eo4_1{background:rgba(0,0,0,0);display:flex;align-items:center}._keybindPlaceholder_z5eo4_1{color:var(--text-muted) !important}._keybindButton_z5eo4_1{height:30px;width:50%;margin:0;padding:4px;border-radius:4px;display:flex;align-items:center;background:var(--button-secondary-background);color:var(--white-500);border:1px solid rgba(0,0,0,0);cursor:pointer;transition:all .2s}._keybindButton_z5eo4_1:hover{background:var(--button-secondary-background-hover)}@keyframes _pulse_z5eo4_1{0%{box-shadow:0 0 10px 0px hsl(var(--red-400-hsl)/0.5)}50%{box-shadow:0 0 10px 4px hsl(var(--red-400-hsl)/0.5)}100%{box-shadow:0 0 10px 0px hsl(var(--red-400-hsl)/0.5)}}",E={keybindContainer:"_keybindContainer_z5eo4_1",recording:"_recording_z5eo4_1",pulse:"_pulse_z5eo4_1",keybindButton:"_keybindButton_z5eo4_1",keybindInput:"_keybindInput_z5eo4_1",keybindPlaceholder:"_keybindPlaceholder_z5eo4_1"};var st=(0,Ee.template)("<div><div></div><div></div></div>",6),{solid:{createSignal:M,onCleanup:at},ui:{Text:xe,injectCss:dt}}=shelter,$e=!1;function Re(e){$e||($e=!0,dt(we));let[t,n]=M(!1),[o,a]=M(e.initialKeybind||[]),[d,b]=M([]);at(()=>{window.removeEventListener("keydown",_),window.removeEventListener("keyup",i)});let _=r=>{let y={name:r.key,code:r.code};if(b([...d(),y]),y.name.length===1&&(y.name=y.name.toUpperCase()),d().length===1){a([y]);return}if(!o().find(c=>c.code===y.code))switch(r.key){case"Control":case"Alt":case"Shift":case"Meta":a([y,...o()]);break;default:a([...o(),y])}},i=r=>{let y={name:r.key,code:r.code};b(d().filter(c=>c.code!==y.code))},p=()=>{if(t()){window.removeEventListener("keydown",_),window.removeEventListener("keyup",i),e.onKeybindChange(o()),n(!1);return}a([]),window.addEventListener("keydown",_),window.addEventListener("keyup",i),n(!0)};return(()=>{let r=st.cloneNode(!0),y=r.firstChild,c=y.nextSibling;return(0,q.insert)(y,(0,P.createComponent)(xe,{get class(){return o().length?"":E.keybindPlaceholder},get children(){return(0,Te.memo)(()=>!!o().length)()?o().map((u,m)=>m===o().length-1?u.name:u.name+" + "):"No Keybind Set"}})),c.$$click=()=>{e.disabled||p()},(0,q.insert)(c,(0,P.createComponent)(xe,{get children(){return t()?"Stop Recording":"Edit Keybind"}})),(0,Ce.effect)(u=>{let m=E.keybindContainer+" "+(t()?E.recording:null),f=e.style,g=E.keybindInput,h=E.keybindButton+" "+(e.disabled?E.disabled:"");return m!==u._v$&&(0,z.className)(r,u._v$=m),u._v$2=(0,Ae.style)(r,f,u._v$2),g!==u._v$3&&(0,z.className)(y,u._v$3=g),h!==u._v$4&&(0,z.className)(c,u._v$4=h),u},{_v$:void 0,_v$2:void 0,_v$3:void 0,_v$4:void 0}),r})()}(0,Se.delegateEvents)(["click"]);var lt=(0,W.template)('<svg width="256" height="256" viewBox="0 0 256 256" style="height: 100%"><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 11 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 c -4.295 -4.296 -4.295 -11.261 0 -15.557 l 68 -68 c 4.297 -4.296 11.26 -4.296 15.557 0 c 4.296 4.296 4.296 11.261 0 15.557 l -68 68 C 16.63 88.926 13.815 90 11 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 79 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 l -68 -68 c -4.295 -4.296 -4.295 -11.261 0 -15.557 c 4.296 -4.296 11.261 -4.296 15.557 0 l 68 68 c 4.296 4.296 4.296 11.261 0 15.557 C 84.63 88.926 81.815 90 79 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>',8),ct=(0,W.template)("<div><div><div></div><div></div><div></div></div></div>",10),{ui:{Text:_t,HeaderTags:Ie,Header:Ke,injectCss:ut},solid:{createSignal:yt}}=shelter,mt=e=>(()=>{let t=lt.cloneNode(!0);return(0,Le.addEventListener)(t,"click",e.onClick,!0),t})(),Ue=!1;function De(e){var a;Ue||(Ue=!0,ut(_e));let[t,n]=yt(e.internalName||((a=e.keybind)==null?void 0:a.key)||e.keybindActionTypes[0].value),o=e.keybind;return(()=>{let d=ct.cloneNode(!0),b=d.firstChild,_=b.firstChild,i=_.nextSibling,p=i.nextSibling;return(0,S.insert)(_,(0,A.createComponent)(Ke,{get size(){return Ie.H5},children:"Action"}),null),(0,S.insert)(_,(0,A.createComponent)(he,{get value(){var r;return e.internalName||((r=e.keybind)==null?void 0:r.key)||e.keybindActionTypes[0].value},get options(){return e.keybindActionTypes},onChange:r=>{n(r.target.value),e.onKeybindChange({keys:e.keybind.keys||[],key:r.target.value},o)},style:"width: 90%"}),null),(0,S.insert)(i,(0,A.createComponent)(Ke,{get size(){return Ie.H5},children:"Keybind"}),null),(0,S.insert)(i,(0,A.createComponent)(Re,{get initialKeybind(){return e.keybind.keys||[]},onKeybindChange:r=>{e.onKeybindChange({keys:r,key:t()},o)},style:"width: 100%"}),null),(0,S.insert)(p,(0,A.createComponent)(mt,{onClick:()=>e.onKeybindRemove(o)})),(0,S.insert)(d,(0,A.createComponent)(_t,{get class(){return $.note},get children(){return e.keybindDescriptions[t()]}}),null),(0,Be.effect)(r=>{let y=$.keybindRoot,c=$.keybindSection,u=$.actionSection,m=$.keybindArea,f=$.removeButton;return y!==r._v$&&(0,T.className)(d,r._v$=y),c!==r._v$2&&(0,T.className)(b,r._v$2=c),u!==r._v$3&&(0,T.className)(_,r._v$3=u),m!==r._v$4&&(0,T.className)(i,r._v$4=m),f!==r._v$5&&(0,T.className)(p,r._v$5=f),r},{_v$:void 0,_v$2:void 0,_v$3:void 0,_v$4:void 0,_v$5:void 0}),d})()}(0,Ne.delegateEvents)(["click"]);var bt=(0,Y.template)("<div><div><div></div></div><div></div></div>",8),pt=(0,Y.template)("<div></div>",2),{ui:{Button:Oe,Text:ze,SwitchItem:ft,injectCss:vt},solid:{createSignal:H,createEffect:kt}}=shelter,Ge=!1;function je(e){Ge||(Ge=!0,vt(ce));let[t,n]=H(!1),[o,a]=H(!1),[d,b]=H([]);kt(()=>v(this,null,function*(){var y;let i=yield K("get_keybinds"),p=yield K("get_config"),r=Object.keys(i).map(c=>({key:c,keys:i[c]}));b(r),n((y=p.keybinds_enabled)!=null?y:!1)}),[]);let _=i=>{b(i),U.emit("keybinds_changed",i)};return(()=>{let i=bt.cloneNode(!0),p=i.firstChild,r=p.firstChild,y=p.nextSibling;return(0,x.insert)(i,(()=>{let c=(0,Fe.memo)(()=>!!o());return()=>c()&&(()=>{let u=pt.cloneNode(!0);return(0,x.insert)(u,(0,C.createComponent)(ze,{children:"Enabling or disabling global keybinds requires a restart to take effect."}),null),(0,x.insert)(u,(0,C.createComponent)(Oe,{get class(){return w.keybindRestartButton},grow:!0,onClick:()=>{le.relaunch()},children:"Restart"}),null),(0,V.effect)(()=>(0,R.className)(u,w.keybindRestartCard)),u})()})(),p),(0,x.insert)(r,(0,C.createComponent)(ze,{children:"Global keybinds are an experimental feature!"})),(0,x.insert)(p,(0,C.createComponent)(Oe,{get class(){return w.keybindsButton},grow:!0,onClick:()=>{d().length>=e.keybindActionTypes.length||_([...d(),{key:"UNASSIGNED",keys:[]}])},children:"Add Keybind"}),null),(0,x.insert)(y,(0,C.createComponent)(ft,{get value(){return t()},onChange:c=>v(this,null,function*(){n(c),a(!0),K("set_config",{config:oe(ne({},yield K("get_config")),{keybinds_enabled:c})})}),note:"Enable or disable global keybinds. Requires restart.",children:"Enable Global Keybinds"})),(0,x.insert)(i,()=>d().map((c,u)=>(0,C.createComponent)(De,{key:u,get keybindActionTypes(){return e.keybindActionTypes.filter(m=>c.key==="UNASSIGNED"||c.key===m.value?!0:!d().some(f=>f.key===m.value))},get keybindDescriptions(){return e.keybindDescriptions},keybind:c,onKeybindChange:(m,f)=>{if(m.key===f.key){_(d().map(h=>h.key===m.key?m:h));return}let g=d().filter(h=>h.key!==m.key&&h.key!==f.key);g.push(m),_(g)},onKeybindRemove:m=>{_(d().filter(f=>f.key!==m.key))}})),null),(0,V.effect)(c=>{let u=w.keybindSection,m=w.keybindsHeader,f=w.keybindsBanner,g=w.keybindsSwitch;return u!==c._v$&&(0,R.className)(i,c._v$=u),m!==c._v$2&&(0,R.className)(p,c._v$2=m),f!==c._v$3&&(0,R.className)(r,c._v$3=f),g!==c._v$4&&(0,R.className)(y,c._v$4=g),c},{_v$:void 0,_v$2:void 0,_v$3:void 0,_v$4:void 0}),i})()}var{flux:{stores:{UserStore:_n}}}=shelter,Z={UNASSIGNED:{},TOGGLE_MUTE:{press:[{type:"AUDIO_TOGGLE_SELF_MUTE",context:"default",syncRemote:!0,skipMuteUnmuteSoundEffect:!1}]},TOGGLE_DEAFEN:{press:[{type:"AUDIO_TOGGLE_SELF_DEAF",context:"default",syncRemote:!0}]},TOGGLE_STREAMER_MODE:{storeValue:{store:"StreamerModeStore",key:"enabled",eventKey:"value",modify:(e,t)=>(e.value=!t.enabled,e)},press:[{type:"STREAMER_MODE_UPDATE",key:"enabled"}]},TOGGLE_VOICE_MODE:{storeValue:{store:"MediaEngineStore",key:"getMode",eventKey:"mode",modify:(e,t)=>(e.mode=t.getMode()==="PUSH_TO_TALK"?"VOICE_ACTIVITY":"PUSH_TO_TALK",e.options=t.getModeOptions()||{},e)},press:[{type:"AUDIO_SET_MODE",context:"default"}]},PUSH_TO_TALK:{storeValue:{store:"UserStore",key:"",eventKey:"userId",modify:(e,t)=>(e.userId=t.getCurrentUser().id,e)},press:[{type:"SPEAKING",context:"default",speakingFlags:1}],release:[{type:"SPEAKING",context:"default",speakingFlags:0}]},PUSH_TO_TALK_PRIORITY:{storeValue:{store:"UserStore",key:"",eventKey:"userId",modify:(e,t)=>(e.userId=t.getCurrentUser().id,e)},press:[{type:"SPEAKING",context:"default",speakingFlags:4}],release:[{type:"SPEAKING",context:"default",speakingFlags:0}]},PUSH_TO_MUTE:{press:[{type:"AUDIO_TOGGLE_SELF_MUTE",context:"default",syncRemote:!0,skipMuteUnmuteSoundEffect:!0}],release:[{type:"AUDIO_TOGGLE_SELF_MUTE",context:"default",syncRemote:!0,skipMuteUnmuteSoundEffect:!0}]}};var{flux:{dispatcher:Me}}=shelter,J=[],qe=()=>{J.push(U.listen("keybind_pressed",e=>{var o;let t=e.payload,n=(o=Z)==null?void 0:o[t];if(!(!n||!n.press))for(let a of n.press){let d=a;if(n.storeValue){let{store:b,modify:_}=n.storeValue,i=shelter.flux.stores[b];d=_(d,i)}Me.dispatch(d)}})),J.push(U.listen("keybind_released",e=>{var o;let t=e.payload,n=(o=Z)==null?void 0:o[t];if(!(!n||!n.release))for(let a of n.release){let d=a;if(n.storeValue){let{store:b,modify:_}=n.storeValue,i=shelter.flux.stores[b];d=_(d,i)}Me.dispatch(a)}}))},Pe=()=>{J.forEach(e=>e())};var{flux:{dispatcher:gt},observeDom:ht,ui:{ReactiveRoot:wt}}=shelter,G=null,xt=e=>{if(e.section!=="Keybinds"){G&&(G.remove(),G=null);return}let t=ht("#keybinds-tab",()=>{t();let n=document.querySelector('div[class*="browserNotice_"'),o=shelter.util.getFiberOwner(n),a=n.parentElement;n.style.display="none";let d=a.parentElement.parentElement.querySelector('div[class*="divider_"]');d.style.display="none";let b=a.parentElement.parentElement.querySelector('div[class*="marginTop"]');b.style.marginTop="0",G=a.appendChild((0,Q.createComponent)(wt,{get children(){return(0,Q.createComponent)(je,{get keybindActionTypes(){return o.keybindActionTypes.filter(_=>_.value!=="PUSH_TO_TALK")},get keybindDescriptions(){return o.keybindDescriptions}})}}))})},$t=[gt.subscribe("USER_SETTINGS_MODAL_SET_SECTION",xt)];qe();var Et=()=>{for(let e of $t)e();Pe()};return tt(St);})();
+(() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __defProps = Object.defineProperties;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues = (a, b) => {
+    for (var prop in b ||= {})
+      if (__hasOwnProp.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
+      }
+    return a;
+  };
+  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+
+  // shltr-res-ns:solid-js/web
+  var require_web = __commonJS({
+    "shltr-res-ns:solid-js/web"(exports, module) {
+      module.exports = shelter.solidWeb;
+    }
+  });
+
+  // plugins/dorion-custom-keybinds/index.tsx
+  var dorion_custom_keybinds_exports = {};
+  __export(dorion_custom_keybinds_exports, {
+    onUnload: () => onUnload
+  });
+  var import_web34 = __toESM(require_web());
+
+  // plugins/dorion-custom-keybinds/components/Keybinds.tsx
+  var import_web28 = __toESM(require_web());
+  var import_web29 = __toESM(require_web());
+  var import_web30 = __toESM(require_web());
+  var import_web31 = __toESM(require_web());
+  var import_web32 = __toESM(require_web());
+  var import_web33 = __toESM(require_web());
+
+  // api/dorion.ts
+  var dorion_default = {
+    name: "Dorion",
+    invoke: (name, payload) => {
+      var _a;
+      if ((_a = window.__TAURI__) == null ? void 0 : _a.invoke) {
+        return window.__TAURI__.invoke(name, payload);
+      } else {
+        return window.__TAURI__.core.invoke(name, payload);
+      }
+    },
+    event: {
+      emit: (name, payload) => {
+        return window.__TAURI__.event.emit(name, payload);
+      },
+      listen: (name, callback) => __async(void 0, null, function* () {
+        return window.__TAURI__.event.listen(name, callback);
+      })
+    },
+    app: {
+      getVersion: () => {
+        return window.__TAURI__.app.getVersion();
+      }
+    },
+    process: {
+      relaunch: () => {
+        return window.__TAURI__.process.relaunch();
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: (isFullscreen) => {
+          var _a, _b;
+          if ((_b = (_a = window.__TAURI__) == null ? void 0 : _a.webviewWindow) == null ? void 0 : _b.getCurrentWebviewWindow) {
+            return window.__TAURI__.webviewWindow.getCurrentWebviewWindow().setFullscreen(isFullscreen);
+          } else {
+            return window.__TAURI__.window.appWindow.setFullscreen(isFullscreen);
+          }
+        }
+      }
+    }
+  };
+
+  // api/flooed.ts
+  var flooed_default = {
+    name: "Flooed",
+    invoke: (name, payload) => {
+      return window.Flooed.invoke(name, payload);
+    },
+    event: {
+      // emit: (name: string, payload: any) => {
+      //   return
+      // },
+      // listen: async (name: string, callback: (payload: any) => void) => {
+      //   return
+      // }
+      emit: () => {
+      },
+      listen: () => __async(void 0, null, function* () {
+      })
+    },
+    app: {
+      getVersion: () => {
+        return window.Flooed.version;
+      }
+    },
+    process: {
+      relaunch: () => {
+        return window.Flooed.invoke("relaunch");
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: (isFullscreen) => {
+          return window.Flooed.invoke("set_fullscreen", isFullscreen);
+        }
+      }
+    }
+  };
+
+  // api/none.ts
+  var none_default = {
+    name: "Unknown",
+    /* stub */
+    invoke: () => __async(void 0, null, function* () {
+    }),
+    event: {
+      emit: () => {
+      },
+      listen: () => __async(void 0, null, function* () {
+      })
+    },
+    app: {
+      getVersion: () => "0.0.0"
+    },
+    process: {
+      relaunch: () => {
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: () => {
+        }
+      }
+    }
+  };
+
+  // api/api.ts
+  var backendName = "None";
+  if (window.Dorion) {
+    backendName = "Dorion";
+  } else if (window.Flooed) {
+    backendName = "Flooed";
+  }
+  var backendObj;
+  switch (backendName) {
+    case "Dorion":
+      backendObj = dorion_default;
+      break;
+    case "Flooed":
+      backendObj = flooed_default;
+      break;
+    default:
+      backendObj = none_default;
+      break;
+  }
+  var api = window[backendName];
+  var appName = backendObj.name;
+  var invoke = backendObj.invoke;
+  var event = backendObj.event;
+  var app = backendObj.app;
+  var process = backendObj.process;
+  var apiWindow = backendObj.apiWindow;
+
+  // plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
+  var css = `._keybindSection_1rgyd_1{width:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;margin-bottom:20px}._header_1rgyd_1{margin-bottom:20px}._keybindsHeader_1rgyd_1{width:100%;height:40px;margin-bottom:20px;display:flex;flex-direction:row;justify-content:space-between;align-items:center}._keybindsBanner_1rgyd_1{display:flex;flex-direction:column;justify-content:space-around;align-items:flex-start;width:75%;border-radius:4px;border:1px solid var(--status-warning) !important;background-color:var(--info-warning-background);padding:12px}._keybindsButton_1rgyd_1{width:20% !important;height:100%;background-color:var(--brand-500) !important}._keybindsSwitch_1rgyd_1{width:100%}._keybindRestartCard_1rgyd_1{display:flex;flex-direction:column;justify-content:space-around;align-items:center;border:1px solid var(--status-warning) !important;background-color:var(--info-warning-background);padding:16px;width:100%;margin-bottom:20px}._keybindRestartButton_1rgyd_1{width:100% !important;background-color:var(--status-warning) !important;margin-top:8px}`;
+  var classes = {
+    "keybindSection": "_keybindSection_1rgyd_1",
+    "header": "_header_1rgyd_1",
+    "keybindsHeader": "_keybindsHeader_1rgyd_1",
+    "keybindsBanner": "_keybindsBanner_1rgyd_1",
+    "keybindsButton": "_keybindsButton_1rgyd_1",
+    "keybindsSwitch": "_keybindsSwitch_1rgyd_1",
+    "keybindRestartCard": "_keybindRestartCard_1rgyd_1",
+    "keybindRestartButton": "_keybindRestartButton_1rgyd_1"
+  };
+
+  // plugins/dorion-custom-keybinds/components/KeybindSection.tsx
+  var import_web20 = __toESM(require_web());
+  var import_web21 = __toESM(require_web());
+  var import_web22 = __toESM(require_web());
+  var import_web23 = __toESM(require_web());
+  var import_web24 = __toESM(require_web());
+  var import_web25 = __toESM(require_web());
+  var import_web26 = __toESM(require_web());
+  var import_web27 = __toESM(require_web());
+
+  // plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
+  var css2 = `._keybindRoot_1bqau_1{display:flex;flex-direction:column;width:100%;margin-bottom:16px}._keybindSection_1bqau_1{width:100%;display:flex;flex-direction:row;justify-content:space-between;align-items:center}._actionSection_1bqau_1,._keybindArea_1bqau_1{display:flex;flex-direction:column}._actionSection_1bqau_1{width:50%}._removeButton_1bqau_1{width:10%;height:20px;display:flex;justify-content:center;align-items:center;opacity:0;transition:all .1s ease-in-out;cursor:pointer}._keybindRoot_1bqau_1:hover ._removeButton_1bqau_1{opacity:1}._keybindArea_1bqau_1{width:50%}._note_1bqau_1{margin-top:8px;color:var(--header-secondary) !important;font-size:14px;line-height:20px;font-weight:400}`;
+  var classes2 = {
+    "keybindRoot": "_keybindRoot_1bqau_1",
+    "keybindSection": "_keybindSection_1bqau_1",
+    "actionSection": "_actionSection_1bqau_1",
+    "keybindArea": "_keybindArea_1bqau_1",
+    "removeButton": "_removeButton_1bqau_1",
+    "note": "_note_1bqau_1"
+  };
+
+  // components/Dropdown.tsx
+  var import_web4 = __toESM(require_web(), 1);
+  var import_web5 = __toESM(require_web(), 1);
+  var import_web6 = __toESM(require_web(), 1);
+  var import_web7 = __toESM(require_web(), 1);
+  var import_web8 = __toESM(require_web(), 1);
+  var import_web9 = __toESM(require_web(), 1);
+  var import_web10 = __toESM(require_web(), 1);
+  var import_web11 = __toESM(require_web(), 1);
+
+  // components/Dropdown.tsx.scss
+  var css3 = `._ddown_1njos_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_1njos_1{position:relative;width:100%}._dsarrow_1njos_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_1njos_1 path{fill:var(--header-secondary)}`;
+  var classes3 = {
+    "ddown": "_ddown_1njos_1",
+    "dcontainer": "_dcontainer_1njos_1",
+    "dsarrow": "_dsarrow_1njos_1"
+  };
+
+  // components/SelectArrow.tsx
+  var import_web = __toESM(require_web(), 1);
+  var import_web2 = __toESM(require_web(), 1);
+  var import_web3 = __toESM(require_web(), 1);
+  var _tmpl$ = /* @__PURE__ */ (0, import_web.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
+  var SelectArrow = (props) => (() => {
+    const _el$ = _tmpl$.cloneNode(true);
+    (0, import_web3.effect)(() => (0, import_web2.setAttribute)(_el$, "class", props.class));
+    return _el$;
+  })();
+
+  // components/Dropdown.tsx
+  var _tmpl$2 = /* @__PURE__ */ (0, import_web4.template)(`<div><select></select></div>`, 4);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web4.template)(`<option></option>`, 2);
+  var {
+    ui: {
+      injectCss
+    }
+  } = shelter;
+  var injectedCss = false;
+  var Dropdown = (props) => {
+    if (!injectedCss) {
+      injectedCss = true;
+      injectCss(css3);
+    }
+    return (() => {
+      const _el$ = _tmpl$2.cloneNode(true), _el$2 = _el$.firstChild;
+      (0, import_web10.addEventListener)(_el$2, "change", props.onChange);
+      (0, import_web9.insert)(_el$2, () => {
+        var _a;
+        return (_a = props.options) == null ? void 0 : _a.map((o) => (() => {
+          const _el$3 = _tmpl$22.cloneNode(true);
+          (0, import_web9.insert)(_el$3, () => o.label);
+          (0, import_web11.effect)(() => _el$3.selected = o.value === (props == null ? void 0 : props.selected));
+          (0, import_web11.effect)(() => _el$3.value = o.value);
+          return _el$3;
+        })());
+      });
+      (0, import_web9.insert)(_el$, (0, import_web8.createComponent)(SelectArrow, {
+        get ["class"]() {
+          return classes3.dsarrow;
+        }
+      }), null);
+      (0, import_web11.effect)((_p$) => {
+        const _v$ = classes3.dcontainer, _v$2 = props.style, _v$3 = classes3.ddown, _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
+        _v$ !== _p$._v$ && (0, import_web7.className)(_el$, _p$._v$ = _v$);
+        _p$._v$2 = (0, import_web6.style)(_el$, _v$2, _p$._v$2);
+        _v$3 !== _p$._v$3 && (0, import_web7.className)(_el$2, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web5.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
+        _v$5 !== _p$._v$5 && (0, import_web5.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
+        _v$6 !== _p$._v$6 && (0, import_web5.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
+        _v$7 !== _p$._v$7 && (_el$2.disabled = _p$._v$7 = _v$7);
+        return _p$;
+      }, {
+        _v$: void 0,
+        _v$2: void 0,
+        _v$3: void 0,
+        _v$4: void 0,
+        _v$5: void 0,
+        _v$6: void 0,
+        _v$7: void 0
+      });
+      (0, import_web11.effect)(() => _el$2.value = props.value);
+      return _el$;
+    })();
+  };
+
+  // components/KeybindInput.tsx
+  var import_web12 = __toESM(require_web(), 1);
+  var import_web13 = __toESM(require_web(), 1);
+  var import_web14 = __toESM(require_web(), 1);
+  var import_web15 = __toESM(require_web(), 1);
+  var import_web16 = __toESM(require_web(), 1);
+  var import_web17 = __toESM(require_web(), 1);
+  var import_web18 = __toESM(require_web(), 1);
+  var import_web19 = __toESM(require_web(), 1);
+
+  // components/KeybindInput.tsx.scss
+  var css4 = `._keybindContainer_z5eo4_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;height:40px;border-radius:4px;background:var(--input-background);color:var(--text-normal);border:1px solid rgba(0,0,0,0);padding:4px;transition:all .2s}._keybindContainer_z5eo4_1:hover{border:1px solid var(--status-danger)}._recording_z5eo4_1{border:1px solid var(--status-danger);animation:_pulse_z5eo4_1 1s infinite}._recording_z5eo4_1 ._keybindButton_z5eo4_1{background:hsl(var(--red-400-hsl)/0.1);color:var(--status-danger)}._recording_z5eo4_1 ._keybindButton_z5eo4_1:hover{background:hsl(var(--red-400-hsl)/0.2)}._keybindInput_z5eo4_1{background:rgba(0,0,0,0);display:flex;align-items:center}._keybindPlaceholder_z5eo4_1{color:var(--text-muted) !important}._keybindButton_z5eo4_1{height:30px;width:50%;margin:0;padding:4px;border-radius:4px;display:flex;align-items:center;background:var(--button-secondary-background);color:var(--white-500);border:1px solid rgba(0,0,0,0);cursor:pointer;transition:all .2s}._keybindButton_z5eo4_1:hover{background:var(--button-secondary-background-hover)}@keyframes _pulse_z5eo4_1{0%{box-shadow:0 0 10px 0px hsl(var(--red-400-hsl)/0.5)}50%{box-shadow:0 0 10px 4px hsl(var(--red-400-hsl)/0.5)}100%{box-shadow:0 0 10px 0px hsl(var(--red-400-hsl)/0.5)}}`;
+  var classes4 = {
+    "keybindContainer": "_keybindContainer_z5eo4_1",
+    "recording": "_recording_z5eo4_1",
+    "pulse": "_pulse_z5eo4_1",
+    "keybindButton": "_keybindButton_z5eo4_1",
+    "keybindInput": "_keybindInput_z5eo4_1",
+    "keybindPlaceholder": "_keybindPlaceholder_z5eo4_1"
+  };
+
+  // components/KeybindInput.tsx
+  var _tmpl$3 = /* @__PURE__ */ (0, import_web12.template)(`<div><div></div><div></div></div>`, 6);
+  var {
+    solid: {
+      createSignal,
+      onCleanup
+    },
+    ui: {
+      Text,
+      injectCss: injectCss2
+    }
+  } = shelter;
+  var injectedCss2 = false;
+  function KeybindInput(props) {
+    if (!injectedCss2) {
+      injectedCss2 = true;
+      injectCss2(css4);
+    }
+    const [recording, setRecording] = createSignal(false);
+    const [keybind, setKeybind] = createSignal(props.initialKeybind || []);
+    const [keysPressed, setKeysPressed] = createSignal([]);
+    onCleanup(() => {
+      window.removeEventListener("keydown", keyDown), window.removeEventListener("keyup", keyUp);
+    });
+    const keyDown = (e) => {
+      const keycode = {
+        name: e.key,
+        code: e.code
+      };
+      setKeysPressed([...keysPressed(), keycode]);
+      if (keycode.name.length === 1) {
+        keycode.name = keycode.name.toUpperCase();
+      }
+      if (keysPressed().length === 1) {
+        setKeybind([keycode]);
+        return;
+      }
+      if (keybind().find((k) => k.code === keycode.code)) {
+        return;
+      }
+      switch (e.key) {
+        case "Control":
+        case "Alt":
+        case "Shift":
+        case "Meta":
+          setKeybind([keycode, ...keybind()]);
+          break;
+        default:
+          setKeybind([...keybind(), keycode]);
+      }
+    };
+    const keyUp = (e) => {
+      const keycode = {
+        name: e.key,
+        code: e.code
+      };
+      setKeysPressed(keysPressed().filter((k) => k.code !== keycode.code));
+    };
+    const setRecordingState = () => {
+      if (recording()) {
+        window.removeEventListener("keydown", keyDown), window.removeEventListener("keyup", keyUp);
+        props.onKeybindChange(keybind());
+        setRecording(false);
+        return;
+      }
+      setKeybind([]);
+      window.addEventListener("keydown", keyDown), window.addEventListener("keyup", keyUp);
+      setRecording(true);
+    };
+    return (() => {
+      const _el$ = _tmpl$3.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling;
+      (0, import_web17.insert)(_el$2, (0, import_web18.createComponent)(Text, {
+        get ["class"]() {
+          return !keybind().length ? classes4.keybindPlaceholder : "";
+        },
+        get children() {
+          return (0, import_web19.memo)(() => !!keybind().length)() ? keybind().map((k, i) => {
+            return i === keybind().length - 1 ? k.name : k.name + " + ";
+          }) : "No Keybind Set";
+        }
+      }));
+      _el$3.$$click = () => {
+        if (props.disabled)
+          return;
+        setRecordingState();
+      };
+      (0, import_web17.insert)(_el$3, (0, import_web18.createComponent)(Text, {
+        get children() {
+          return recording() ? "Stop Recording" : "Edit Keybind";
+        }
+      }));
+      (0, import_web16.effect)((_p$) => {
+        const _v$ = classes4.keybindContainer + " " + (recording() ? classes4.recording : null), _v$2 = props.style, _v$3 = classes4.keybindInput, _v$4 = classes4.keybindButton + " " + (props.disabled ? classes4.disabled : "");
+        _v$ !== _p$._v$ && (0, import_web15.className)(_el$, _p$._v$ = _v$);
+        _p$._v$2 = (0, import_web14.style)(_el$, _v$2, _p$._v$2);
+        _v$3 !== _p$._v$3 && (0, import_web15.className)(_el$2, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web15.className)(_el$3, _p$._v$4 = _v$4);
+        return _p$;
+      }, {
+        _v$: void 0,
+        _v$2: void 0,
+        _v$3: void 0,
+        _v$4: void 0
+      });
+      return _el$;
+    })();
+  }
+  (0, import_web13.delegateEvents)(["click"]);
+
+  // plugins/dorion-custom-keybinds/components/KeybindSection.tsx
+  var _tmpl$4 = /* @__PURE__ */ (0, import_web20.template)(`<svg width="256" height="256" viewBox="0 0 256 256" style="height: 100%"><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 11 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 c -4.295 -4.296 -4.295 -11.261 0 -15.557 l 68 -68 c 4.297 -4.296 11.26 -4.296 15.557 0 c 4.296 4.296 4.296 11.261 0 15.557 l -68 68 C 16.63 88.926 13.815 90 11 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 79 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 l -68 -68 c -4.295 -4.296 -4.295 -11.261 0 -15.557 c 4.296 -4.296 11.261 -4.296 15.557 0 l 68 68 c 4.296 4.296 4.296 11.261 0 15.557 C 84.63 88.926 81.815 90 79 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>`, 8);
+  var _tmpl$23 = /* @__PURE__ */ (0, import_web20.template)(`<div><div><div></div><div></div><div></div></div></div>`, 10);
+  var {
+    ui: {
+      Text: Text2,
+      HeaderTags,
+      Header,
+      injectCss: injectCss3
+    },
+    solid: {
+      createSignal: createSignal2
+    }
+  } = shelter;
+  var RemoveIcon = (props) => (() => {
+    const _el$ = _tmpl$4.cloneNode(true);
+    (0, import_web27.addEventListener)(_el$, "click", props.onClick, true);
+    return _el$;
+  })();
+  var injectedCss3 = false;
+  function KeybindSection(props) {
+    var _a;
+    if (!injectedCss3) {
+      injectedCss3 = true;
+      injectCss3(css2);
+    }
+    const [keybindType, setKeybindType] = createSignal2(props.internalName || ((_a = props.keybind) == null ? void 0 : _a.key) || props.keybindActionTypes[0].value);
+    const old = props.keybind;
+    return (() => {
+      const _el$2 = _tmpl$23.cloneNode(true), _el$3 = _el$2.firstChild, _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling, _el$6 = _el$5.nextSibling;
+      (0, import_web24.insert)(_el$4, (0, import_web26.createComponent)(Header, {
+        get size() {
+          return HeaderTags.H5;
+        },
+        children: "Action"
+      }), null);
+      (0, import_web24.insert)(_el$4, (0, import_web26.createComponent)(Dropdown, {
+        get value() {
+          var _a2;
+          return props.internalName || ((_a2 = props.keybind) == null ? void 0 : _a2.key) || props.keybindActionTypes[0].value;
+        },
+        get options() {
+          return props.keybindActionTypes;
+        },
+        onChange: (e) => {
+          setKeybindType(e.target.value);
+          props.onKeybindChange({
+            keys: props.keybind.keys || [],
+            key: e.target.value
+          }, old);
+        },
+        style: "width: 90%"
+      }), null);
+      (0, import_web24.insert)(_el$5, (0, import_web26.createComponent)(Header, {
+        get size() {
+          return HeaderTags.H5;
+        },
+        children: "Keybind"
+      }), null);
+      (0, import_web24.insert)(_el$5, (0, import_web26.createComponent)(KeybindInput, {
+        get initialKeybind() {
+          return props.keybind.keys || [];
+        },
+        onKeybindChange: (keybind) => {
+          props.onKeybindChange({
+            keys: keybind,
+            key: keybindType()
+          }, old);
+        },
+        style: "width: 100%"
+      }), null);
+      (0, import_web24.insert)(_el$6, (0, import_web26.createComponent)(RemoveIcon, {
+        onClick: () => props.onKeybindRemove(old)
+      }));
+      (0, import_web24.insert)(_el$2, (0, import_web26.createComponent)(Text2, {
+        get ["class"]() {
+          return classes2.note;
+        },
+        get children() {
+          return props.keybindDescriptions[keybindType()];
+        }
+      }), null);
+      (0, import_web23.effect)((_p$) => {
+        const _v$ = classes2.keybindRoot, _v$2 = classes2.keybindSection, _v$3 = classes2.actionSection, _v$4 = classes2.keybindArea, _v$5 = classes2.removeButton;
+        _v$ !== _p$._v$ && (0, import_web22.className)(_el$2, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web22.className)(_el$3, _p$._v$2 = _v$2);
+        _v$3 !== _p$._v$3 && (0, import_web22.className)(_el$4, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web22.className)(_el$5, _p$._v$4 = _v$4);
+        _v$5 !== _p$._v$5 && (0, import_web22.className)(_el$6, _p$._v$5 = _v$5);
+        return _p$;
+      }, {
+        _v$: void 0,
+        _v$2: void 0,
+        _v$3: void 0,
+        _v$4: void 0,
+        _v$5: void 0
+      });
+      return _el$2;
+    })();
+  }
+  (0, import_web21.delegateEvents)(["click"]);
+
+  // plugins/dorion-custom-keybinds/components/Keybinds.tsx
+  var _tmpl$5 = /* @__PURE__ */ (0, import_web28.template)(`<div><div><div></div></div><div></div></div>`, 8);
+  var _tmpl$24 = /* @__PURE__ */ (0, import_web28.template)(`<div></div>`, 2);
+  var {
+    ui: {
+      Button,
+      Text: Text3,
+      SwitchItem,
+      injectCss: injectCss4
+    },
+    solid: {
+      createSignal: createSignal3,
+      createEffect
+    }
+  } = shelter;
+  var injectedCss4 = false;
+  function Keybinds(props) {
+    if (!injectedCss4) {
+      injectedCss4 = true;
+      injectCss4(css);
+    }
+    const [keybindsEnabled, setKeybindsEnabled] = createSignal3(false);
+    const [keybindEnabledChanged, setKeybindEnabledChanged] = createSignal3(false);
+    const [keybindSections, setKeybindSections] = createSignal3([]);
+    createEffect(() => __async(this, null, function* () {
+      var _a;
+      const keybinds = yield invoke("get_keybinds");
+      const config = yield invoke("get_config");
+      const sections = Object.keys(keybinds).map((key) => ({
+        key,
+        keys: keybinds[key]
+      }));
+      setKeybindSections(sections);
+      setKeybindsEnabled((_a = config.keybinds_enabled) != null ? _a : false);
+    }), []);
+    const updateKeybinds = (keybinds) => {
+      setKeybindSections(keybinds);
+      event.emit("keybinds_changed", keybinds);
+    };
+    return (() => {
+      const _el$ = _tmpl$5.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$2.nextSibling;
+      (0, import_web31.insert)(_el$, (() => {
+        const _c$ = (0, import_web33.memo)(() => !!keybindEnabledChanged());
+        return () => _c$() && (() => {
+          const _el$5 = _tmpl$24.cloneNode(true);
+          (0, import_web31.insert)(_el$5, (0, import_web32.createComponent)(Text3, {
+            children: "Enabling or disabling global keybinds requires a restart to take effect."
+          }), null);
+          (0, import_web31.insert)(_el$5, (0, import_web32.createComponent)(Button, {
+            get ["class"]() {
+              return classes.keybindRestartButton;
+            },
+            grow: true,
+            onClick: () => {
+              process.relaunch();
+            },
+            children: "Restart"
+          }), null);
+          (0, import_web30.effect)(() => (0, import_web29.className)(_el$5, classes.keybindRestartCard));
+          return _el$5;
+        })();
+      })(), _el$2);
+      (0, import_web31.insert)(_el$3, (0, import_web32.createComponent)(Text3, {
+        children: "Global keybinds are an experimental feature!"
+      }));
+      (0, import_web31.insert)(_el$2, (0, import_web32.createComponent)(Button, {
+        get ["class"]() {
+          return classes.keybindsButton;
+        },
+        grow: true,
+        onClick: () => {
+          if (keybindSections().length >= props.keybindActionTypes.length) {
+            return;
+          }
+          updateKeybinds([...keybindSections(), {
+            key: "UNASSIGNED",
+            keys: []
+          }]);
+        },
+        children: "Add Keybind"
+      }), null);
+      (0, import_web31.insert)(_el$4, (0, import_web32.createComponent)(SwitchItem, {
+        get value() {
+          return keybindsEnabled();
+        },
+        onChange: (value) => __async(this, null, function* () {
+          setKeybindsEnabled(value);
+          setKeybindEnabledChanged(true);
+          invoke("set_config", {
+            config: __spreadProps(__spreadValues({}, yield invoke("get_config")), {
+              keybinds_enabled: value
+            })
+          });
+        }),
+        note: "Enable or disable global keybinds. Requires restart.",
+        children: "Enable Global Keybinds"
+      }));
+      (0, import_web31.insert)(_el$, () => keybindSections().map((section, idx) => (0, import_web32.createComponent)(KeybindSection, {
+        key: idx,
+        get keybindActionTypes() {
+          return (
+            // Filter out keybinds that are already set (and it's own key). Always allow UNASSIGNED
+            props.keybindActionTypes.filter((type) => {
+              if (section.key === "UNASSIGNED" || section.key === type.value)
+                return true;
+              return !keybindSections().some((keybind) => keybind.key === type.value);
+            })
+          );
+        },
+        get keybindDescriptions() {
+          return props.keybindDescriptions;
+        },
+        keybind: section,
+        onKeybindChange: (keybind, old) => {
+          if (keybind.key === old.key) {
+            updateKeybinds(keybindSections().map((bind) => {
+              if (bind.key === keybind.key) {
+                return keybind;
+              }
+              return bind;
+            }));
+            return;
+          }
+          const newKeybinds = keybindSections().filter((bind) => bind.key !== keybind.key && bind.key !== old.key);
+          newKeybinds.push(keybind);
+          updateKeybinds(newKeybinds);
+        },
+        onKeybindRemove: (keybind) => {
+          updateKeybinds(keybindSections().filter((bind) => bind.key !== keybind.key));
+        }
+      })), null);
+      (0, import_web30.effect)((_p$) => {
+        const _v$ = classes.keybindSection, _v$2 = classes.keybindsHeader, _v$3 = classes.keybindsBanner, _v$4 = classes.keybindsSwitch;
+        _v$ !== _p$._v$ && (0, import_web29.className)(_el$, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web29.className)(_el$2, _p$._v$2 = _v$2);
+        _v$3 !== _p$._v$3 && (0, import_web29.className)(_el$3, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web29.className)(_el$4, _p$._v$4 = _v$4);
+        return _p$;
+      }, {
+        _v$: void 0,
+        _v$2: void 0,
+        _v$3: void 0,
+        _v$4: void 0
+      });
+      return _el$;
+    })();
+  }
+
+  // plugins/dorion-custom-keybinds/util/actionMap.ts
+  var {
+    flux: {
+      stores: {
+        UserStore
+      }
+    }
+  } = shelter;
+  var keybindActions = {
+    "UNASSIGNED": {},
+    "TOGGLE_MUTE": {
+      press: [{
+        type: "AUDIO_TOGGLE_SELF_MUTE",
+        context: "default",
+        syncRemote: true,
+        skipMuteUnmuteSoundEffect: false
+      }]
+    },
+    "TOGGLE_DEAFEN": {
+      press: [{
+        type: "AUDIO_TOGGLE_SELF_DEAF",
+        context: "default",
+        syncRemote: true
+      }]
+    },
+    "TOGGLE_STREAMER_MODE": {
+      storeValue: {
+        store: "StreamerModeStore",
+        key: "enabled",
+        eventKey: "value",
+        modify: (event2, store) => {
+          event2["value"] = !store["enabled"];
+          return event2;
+        }
+      },
+      press: [{
+        type: "STREAMER_MODE_UPDATE",
+        key: "enabled"
+      }]
+    },
+    "TOGGLE_VOICE_MODE": {
+      storeValue: {
+        store: "MediaEngineStore",
+        key: "getMode",
+        eventKey: "mode",
+        modify: (event2, store) => {
+          event2["mode"] = store["getMode"]() === "PUSH_TO_TALK" ? "VOICE_ACTIVITY" : "PUSH_TO_TALK";
+          event2["options"] = store["getModeOptions"]() || {};
+          return event2;
+        }
+      },
+      press: [{
+        type: "AUDIO_SET_MODE",
+        context: "default"
+      }]
+    },
+    // TODO grab the existing push to talk bind and display it in the keybinds section
+    "PUSH_TO_TALK": {
+      storeValue: {
+        store: "UserStore",
+        key: "",
+        eventKey: "userId",
+        modify: (event2, store) => {
+          event2["userId"] = store["getCurrentUser"]().id;
+          return event2;
+        }
+      },
+      press: [{
+        type: "SPEAKING",
+        context: "default",
+        speakingFlags: 1
+      }],
+      release: [{
+        type: "SPEAKING",
+        context: "default",
+        speakingFlags: 0
+      }]
+    },
+    "PUSH_TO_TALK_PRIORITY": {
+      storeValue: {
+        store: "UserStore",
+        key: "",
+        eventKey: "userId",
+        modify: (event2, store) => {
+          event2["userId"] = store["getCurrentUser"]().id;
+          return event2;
+        }
+      },
+      press: [{
+        type: "SPEAKING",
+        context: "default",
+        speakingFlags: 4
+      }],
+      release: [{
+        type: "SPEAKING",
+        context: "default",
+        speakingFlags: 0
+      }]
+    },
+    "PUSH_TO_MUTE": {
+      press: [{
+        type: "AUDIO_TOGGLE_SELF_MUTE",
+        context: "default",
+        syncRemote: true,
+        skipMuteUnmuteSoundEffect: true
+      }],
+      release: [{
+        type: "AUDIO_TOGGLE_SELF_MUTE",
+        context: "default",
+        syncRemote: true,
+        skipMuteUnmuteSoundEffect: true
+      }]
+    }
+  };
+
+  // plugins/dorion-custom-keybinds/util/events.ts
+  var {
+    flux: {
+      dispatcher: FluxDispatcher
+    }
+  } = shelter;
+  var events = [];
+  var register = () => {
+    events.push(event.listen("keybind_pressed", (e) => {
+      var _a;
+      const key = e.payload;
+      const action = (_a = keybindActions) == null ? void 0 : _a[key];
+      if (!action || !action.press)
+        return;
+      for (const press of action.press) {
+        let e2 = press;
+        if (action.storeValue) {
+          const { store, modify } = action.storeValue;
+          const storeInstance = shelter.flux.stores[store];
+          e2 = modify(e2, storeInstance);
+        }
+        FluxDispatcher.dispatch(
+          e2
+        );
+      }
+    }));
+    events.push(event.listen("keybind_released", (e) => {
+      var _a;
+      const key = e.payload;
+      const action = (_a = keybindActions) == null ? void 0 : _a[key];
+      if (!action || !action.release)
+        return;
+      for (const release of action.release) {
+        let e2 = release;
+        if (action.storeValue) {
+          const { store, modify } = action.storeValue;
+          const storeInstance = shelter.flux.stores[store];
+          e2 = modify(e2, storeInstance);
+        }
+        FluxDispatcher.dispatch(
+          release
+        );
+      }
+    }));
+  };
+  var unregister = () => {
+    events.forEach((e) => e());
+  };
+
+  // plugins/dorion-custom-keybinds/index.tsx
+  var {
+    flux: {
+      dispatcher: FluxDispatcher2
+    },
+    observeDom,
+    ui: {
+      ReactiveRoot
+    }
+  } = shelter;
+  var child = null;
+  var viewedKeybindsCallback = (e) => {
+    if (e.section !== "Keybinds") {
+      if (child) {
+        child.remove();
+        child = null;
+      }
+      return;
+    }
+    const unsub = observeDom("#keybinds-tab", () => {
+      unsub();
+      const oldElm = document.querySelector('div[class*="browserNotice_"');
+      const owner = shelter.util.getFiberOwner(oldElm);
+      const keybindsArea = oldElm.parentElement;
+      oldElm.style.display = "none";
+      const divider = keybindsArea.parentElement.parentElement.querySelector('div[class*="divider_"]');
+      divider.style.display = "none";
+      const defaultKeybinds = keybindsArea.parentElement.parentElement.querySelector('div[class*="marginTop"]');
+      defaultKeybinds.style.marginTop = "0";
+      child = keybindsArea.appendChild((0, import_web34.createComponent)(ReactiveRoot, {
+        get children() {
+          return (0, import_web34.createComponent)(
+            Keybinds,
+            {
+              get keybindActionTypes() {
+                return owner.keybindActionTypes.filter((k) => k.value !== "PUSH_TO_TALK");
+              },
+              get keybindDescriptions() {
+                return owner.keybindDescriptions;
+              }
+            }
+          );
+        }
+      }));
+    });
+  };
+  var subscriptions = [FluxDispatcher2.subscribe("USER_SETTINGS_MODAL_SET_SECTION", viewedKeybindsCallback)];
+  register();
+  var onUnload = () => {
+    for (const unsub of subscriptions) {
+      unsub();
+    }
+    unregister();
+  };
+  return __toCommonJS(dorion_custom_keybinds_exports);
+})();

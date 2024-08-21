@@ -1,4 +1,71 @@
-(()=>{var c=Object.defineProperty;var b=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var _=Object.prototype.hasOwnProperty;var C=(s,e)=>{for(var t in e)c(s,t,{get:e[t],enumerable:!0})},E=(s,e,t,n)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of g(e))!_.call(s,i)&&i!==t&&c(s,i,{get:()=>e[i],enumerable:!(n=b(e,i))||n.enumerable});return s};var y=s=>E(c({},"__esModule",{value:!0}),s);var f=(s,e,t)=>new Promise((n,i)=>{var h=r=>{try{a(t.next(r))}catch(o){i(o)}},v=r=>{try{a(t.throw(r))}catch(o){i(o)}},a=r=>r.done?n(r.value):Promise.resolve(r.value).then(h,v);a((t=t.apply(s,e)).next())});var N={};C(N,{onUnload:()=>L});var{flux:{dispatcher:p,stores:{ChannelStore:d}}}=shelter,m=!1,l=null,u=s=>f(void 0,null,function*(){let{channelId:e}=s;if(!(d==null?void 0:d.getChannel(e)).nsfw_){l&&(l.remove(),m=!1);return}if(m)return;let n=document.createElement("style");n.innerText=`
+(() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+
+  // plugins/blur-nsfw/index.ts
+  var blur_nsfw_exports = {};
+  __export(blur_nsfw_exports, {
+    onUnload: () => onUnload
+  });
+  var {
+    flux: {
+      dispatcher,
+      stores: {
+        ChannelStore
+      }
+    }
+  } = shelter;
+  var injectedCss = false;
+  var tempStyle = null;
+  var handleNsfwChannelSelect = (payload) => __async(void 0, null, function* () {
+    const { channelId } = payload;
+    const channel = ChannelStore == null ? void 0 : ChannelStore.getChannel(channelId);
+    if (!channel.nsfw_) {
+      if (tempStyle) {
+        tempStyle.remove();
+        injectedCss = false;
+      }
+      return;
+    }
+    if (injectedCss)
+      return;
+    const style = document.createElement("style");
+    style.innerText = `
     div[class*="imageWrapper_"] video,
     div[class*="imageWrapper_"] img {
       filter: blur(10px) !important;
@@ -17,4 +84,16 @@
     div[class*="focusLock_"] img {
       filter: blur(0) !important;
     }
-  `,l=document.body.appendChild(n)});p.subscribe("CHANNEL_SELECT",u);var L=()=>{p.unsubscribe("CHANNEL_SELECT",u),l&&(l.remove(),m=!1)};return y(N);})();
+  `;
+    tempStyle = document.body.appendChild(style);
+  });
+  dispatcher.subscribe("CHANNEL_SELECT", handleNsfwChannelSelect);
+  var onUnload = () => {
+    dispatcher.unsubscribe("CHANNEL_SELECT", handleNsfwChannelSelect);
+    if (tempStyle) {
+      tempStyle.remove();
+      injectedCss = false;
+    }
+  };
+  return __toCommonJS(blur_nsfw_exports);
+})();

@@ -1,1 +1,361 @@
-(()=>{var J=Object.create;var B=Object.defineProperty;var H=Object.getOwnPropertyDescriptor;var V=Object.getOwnPropertyNames;var G=Object.getPrototypeOf,Q=Object.prototype.hasOwnProperty;var X=(o,e)=>()=>(e||o((e={exports:{}}).exports,e),e.exports),Y=(o,e)=>{for(var t in e)B(o,t,{get:e[t],enumerable:!0})},_=(o,e,t,s)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of V(e))!Q.call(o,i)&&i!==t&&B(o,i,{get:()=>e[i],enumerable:!(s=H(e,i))||s.enumerable});return o};var Z=(o,e,t)=>(t=o!=null?J(G(o)):{},_(e||!o||!o.__esModule?B(t,"default",{value:o,enumerable:!0}):t,o)),L=o=>_(B({},"__esModule",{value:!0}),o);var k=(o,e,t)=>new Promise((s,i)=>{var r=f=>{try{p(t.next(f))}catch(a){i(a)}},n=f=>{try{p(t.throw(f))}catch(a){i(a)}},p=f=>f.done?s(f.value):Promise.resolve(f.value).then(r,n);p((t=t.apply(o,e)).next())});var C=X((he,O)=>{O.exports=shelter.solidWeb});var ue={};Y(ue,{onLoad:()=>de,settings:()=>ce});var j=Z(C());var D=o=>{if(o??=Object.keys(window).find(t=>t.startsWith("webpackChunk")),!window[o])return;let e;return window[o].push([[Symbol()],{},t=>{e=t}]),window[o].pop(),[e.c??Object.fromEntries(Object.entries(e.m).map(([t])=>[t,{id:t,loaded:!0,exports:e(t)}])),e]};var d=o=>e=>o.every(t=>e[t]!==void 0),u=o=>e=>e.prototype&&o.every(t=>e.prototype[t]!==void 0),y=(o,e=!0)=>t=>(e?t.displayName:t.default?.displayName)===o,b=o=>e=>o.every(t=>Object.keys(e).some(s=>s.toLowerCase().includes(t.toLowerCase()))),h=o=>e=>{let t=new RegExp(`(${o}$)|((\\w+\\()+${o}\\))`);if(t.test(e.displayName))return!0;if(typeof e.$$typeof=="symbol"&&e.Consumer===void 0&&(e.type||e.render)){for(;typeof e.type=="object"||typeof e.render=="object";)e=e.type??e.render;if(t.test(e.type?.displayName)||t.test(e.render?.displayName))return!0}},R=o=>typeof o=="object"||typeof o=="function",w=o=>e=>R(e)&&Object.values(e).some(t=>R(t)&&o.some(s=>t?.[s]!==void 0)),v=(o,e)=>t=>Object.entries(e).filter(([,s])=>s.toString().match(t)).map(([s])=>o[s]?.exports).filter(s=>s);var re=(o,e)=>{let t=[],s=i=>e.forEach(([r,n],p)=>{n&&!t[p]&&(t[p]=[]),r(i)&&(n?t[p].push(i):t[p]||(t[p]=i))});for(let i in o){let r=o[i].exports;!r||r===window||(r.default&&r.__esModule&&s(r.default),s(r))}return t},se=o=>({find:e=>o.push([e,!1]),findAll:e=>o.push([e,!0]),findByProps:(...e)=>o.push([d(e),!1]),findByPropsAll:(...e)=>o.push([d(e),!0]),findByPrototypes:(...e)=>o.push([u(e),!1]),findByPrototypesAll:(...e)=>o.push([u(e),!0]),findByNestedProps:(...e)=>o.push([w(e),!1]),findByNestedPropsAll:(...e)=>o.push([w(e),!0]),findByDisplayName:(e,t)=>o.push([y(e,t),!1]),findByDisplayNameAll:(e,t)=>o.push([y(e,t),!0]),findByDispNameDeep:e=>o.push([h(e),!1]),findByDispNameDeepAll:e=>o.push([h(e),!0]),findByKeyword:(...e)=>o.push([b(e),!1]),findByKeywordAll:(...e)=>o.push([b(e),!0])}),K=o=>e=>{let t=[],s=se(t);return e(s),re(o,t)};var U=(o,e=!0)=>t=>{let s=[];for(let i in o){let r=o[i].exports;if(!(!r||r===window)){if(r.default&&r.__esModule&&t(r.default)){if(e)return r.default;s.push(r.default)}if(t(r)){if(e)return r;s.push(r)}}}if(!e)return s},g=([,o,e])=>{let t=U(o),s=U(o,!1),i=e?v(o,e.m):()=>{throw new Error("findByCode does not work with this bundler")};return{batchFind:K(o),find:t,findAll:s,findByProps:(...r)=>t(d(r)),findByPropsAll:(...r)=>s(d(r)),findByPrototypes:(...r)=>t(u(r)),findByPrototypesAll:(...r)=>s(u(r)),findByNestedProps:(...r)=>t(w(r)),findByNestedPropsAll:(...r)=>s(w(r)),findByDisplayName:(r,n)=>t(y(r,n)),findByDisplayNameAll:(r,n)=>s(y(r,n)),findByDispNameDeep:r=>t(h(r)),findByDispNameDeepAll:r=>s(h(r)),findByKeyword:(...r)=>t(b(r)),findByKeywordAll:(...r)=>s(b(r)),findByCodeAll:i,findByCode:r=>i(r)[0]}};var S=["a","b","i"],l=new Map;function E(o,e,t,s,i){let r=l.get(e)?.[o];if(!r)return i?Reflect.construct(e[o],t,s):e[o].apply(s,t);for(let p of r.b.values()){let f=p.call(s,t);Array.isArray(f)&&(t=f)}let n=[...r.i.values()].reduce((p,f)=>(...a)=>f.call(s,a,p),(...p)=>i?Reflect.construct(r.o,p,s):r.o.apply(s,p))(...t);for(let p of r.a.values())n=p.call(s,t,n)??n;return n}function $(o,e,t,s){let i=l.get(o),r=i?.[e];return r?.[s].has(t)?(r[s].delete(t),S.every(n=>r[n].size===0)&&(Reflect.defineProperty(o,e,{value:r.o,writable:!0,configurable:!0})||(o[e]=r.o),delete i[e]),Object.keys(i).length==0&&l.delete(o),!0):!1}var P=o=>(e,t,s,i=!1)=>{if(typeof t[e]!="function")throw new Error(`${e} is not a function in ${t.constructor.name}`);l.has(t)||l.set(t,Object.create(null));let r=l.get(t);if(!r[e]){let f=t[e];r[e]={o:f,b:new Map,i:new Map,a:new Map};let a=(m,c,x)=>{let z=E(e,t,c,m,x);return i&&p(),z},N=new Proxy(f,{apply:(m,c,x)=>a(c,x,!1),construct:(m,c)=>a(f,c,!0),get:(m,c,x)=>c=="toString"?f.toString.bind(f):Reflect.get(m,c,x)});Reflect.defineProperty(t,e,{value:N,configurable:!0,writable:!0})||(t[e]=N)}let n=Symbol(),p=()=>$(t,e,n,o);return r[e][o].set(n,s),p};var Xe=P("b"),Ye=P("i"),M=P("a");var q="._submit_gzseg_1{margin-bottom:10px;display:inline-block}",W={submit:"_submit_gzseg_1"};var{ui:{SwitchItem:ie,LinkButton:pe,injectCss:ne},plugin:{store:A}}=shelter,fe="https://userpfp.github.io/UserPFP/source/data.json",I=D(),le=I&&g([void 0,...I]),ae=le.findByPropsAll("getUserAvatarURL");for(let o of ae)M("getUserAvatarURL",o,(e,t)=>{var s;return A.preferNitro&&t.includes("a_")?t:(s=window.userpfp.getUrl(e[0]))!=null?s:t});var T=!1;T||(T=!0,ne(q));var ce=()=>[(0,j.createComponent)(pe,{href:"https://userpfp.github.io/UserPFP/#how-to-request-a-profile-picture-pfp",get class(){return W.submit},children:"Submit your PFP here!"}),(0,j.createComponent)(ie,{get value(){return A.preferNitro},onChange:o=>A.preferNitro=o,tooltip:"If the user has Nitro but also has a custom UserPFP, prefer the Nitro one.",children:"Prefer Nitro"})],de=()=>k(void 0,null,function*(){let o=yield fetch(fe);window.userpfp=yield o.json(),window.userpfp.getUrl=e=>{var t;return(t=window.userpfp.avatars[e])!=null?t:null}});return L(ue);})();
+(() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+
+  // shltr-res-ns:solid-js/web
+  var require_web = __commonJS({
+    "shltr-res-ns:solid-js/web"(exports, module) {
+      module.exports = shelter.solidWeb;
+    }
+  });
+
+  // plugins/userpfp/index.tsx
+  var userpfp_exports = {};
+  __export(userpfp_exports, {
+    onLoad: () => onLoad,
+    settings: () => settings
+  });
+  var import_web = __toESM(require_web());
+
+  // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/raid/webpackChunk.js
+  var webpackChunk_default = (key) => {
+    key ??= Object.keys(window).find((key2) => key2.startsWith("webpackChunk"));
+    if (!window[key])
+      return;
+    let wpRequire;
+    window[key].push([
+      [Symbol()],
+      {},
+      (e) => {
+        wpRequire = e;
+      }
+    ]);
+    window[key].pop();
+    return [wpRequire.c ?? // wow thats jank lmao
+    Object.fromEntries(
+      Object.entries(wpRequire.m).map(([k]) => [
+        k,
+        { id: k, loaded: true, exports: wpRequire(k) }
+      ])
+    ), wpRequire];
+  };
+
+  // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/filters.js
+  var byProps = (props) => (m) => props.every((p) => m[p] !== void 0);
+  var byProtos = (protos) => (m) => m.prototype && protos.every((p) => m.prototype[p] !== void 0);
+  var byDisplayName = (name, defaultExp = true) => (m) => (defaultExp ? m.displayName : m.default?.displayName) === name;
+  var byKeyword = (strs) => (m) => strs.every(
+    (s) => Object.keys(m).some((k) => k.toLowerCase().includes(s.toLowerCase()))
+  );
+  var byDispNameDeep = (name) => (m) => {
+    const regex = new RegExp(`(${name}$)|((\\w+\\()+${name}\\))`);
+    if (regex.test(m.displayName))
+      return true;
+    if (typeof m.$$typeof !== "symbol")
+      return;
+    if (m.Consumer !== void 0)
+      return;
+    if (m.type || m.render) {
+      while (typeof m.type === "object" || typeof m.render === "object")
+        m = m.type ?? m.render;
+      if (regex.test(m.type?.displayName))
+        return true;
+      if (regex.test(m.render?.displayName))
+        return true;
+    }
+  };
+  var isKeyable = (m) => typeof m === "object" || typeof m === "function";
+  var byNestedProps = (props) => (m) => isKeyable(m) && Object.values(m).some(
+    (v) => isKeyable(v) && props.some((p) => v?.[p] !== void 0)
+  );
+  var allByCode = (modules, loaders) => (code) => Object.entries(loaders).filter(([, m]) => m.toString().match(code)).map(([id]) => modules[id]?.exports).filter((m) => m);
+
+  // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/batch.js
+  var batchFilter = (modules, filterList) => {
+    const found = [];
+    const checkModule = (mod) => filterList.forEach(([filter2, multi], i) => {
+      if (multi && !found[i])
+        found[i] = [];
+      if (filter2(mod)) {
+        if (multi)
+          found[i].push(mod);
+        else if (!found[i])
+          found[i] = mod;
+      }
+    });
+    for (const mid in modules) {
+      const module = modules[mid].exports;
+      if (!module || module === window)
+        continue;
+      if (module.default && module.__esModule)
+        checkModule(module.default);
+      checkModule(module);
+    }
+    return found;
+  };
+  var makeFakeWp = (filterList) => ({
+    find: (f) => filterList.push([f, false]),
+    findAll: (f) => filterList.push([f, true]),
+    findByProps: (...p) => filterList.push([byProps(p), false]),
+    findByPropsAll: (...p) => filterList.push([byProps(p), true]),
+    findByPrototypes: (...p) => filterList.push([byProtos(p), false]),
+    findByPrototypesAll: (...p) => filterList.push([byProtos(p), true]),
+    findByNestedProps: (...p) => filterList.push([byNestedProps(p), false]),
+    findByNestedPropsAll: (...p) => filterList.push([byNestedProps(p), true]),
+    findByDisplayName: (n, d) => filterList.push([byDisplayName(n, d), false]),
+    findByDisplayNameAll: (n, d) => filterList.push([byDisplayName(n, d), true]),
+    findByDispNameDeep: (n) => filterList.push([byDispNameDeep(n), false]),
+    findByDispNameDeepAll: (n) => filterList.push([byDispNameDeep(n), true]),
+    findByKeyword: (...s) => filterList.push([byKeyword(s), false]),
+    findByKeywordAll: (...s) => filterList.push([byKeyword(s), true])
+  });
+  var batch_default = (mods) => (cb) => {
+    const fList = [];
+    const fakeWp = makeFakeWp(fList);
+    cb(fakeWp);
+    return batchFilter(mods, fList);
+  };
+
+  // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/index.js
+  var filter = (modules, single = true) => (filterFunc) => {
+    const found = [];
+    for (const mid in modules) {
+      const module = modules[mid].exports;
+      if (!module || module === window)
+        continue;
+      if (module.default && module.__esModule && filterFunc(module.default)) {
+        if (single)
+          return module.default;
+        found.push(module.default);
+      }
+      if (filterFunc(module)) {
+        if (single)
+          return module;
+        found.push(module);
+      }
+    }
+    if (!single)
+      return found;
+  };
+  var api_default = ([, modules, wpR]) => {
+    const find = filter(modules);
+    const findAll = filter(modules, false);
+    const findByCodeAll = wpR ? allByCode(modules, wpR.m) : () => {
+      throw new Error("findByCode does not work with this bundler");
+    };
+    return {
+      batchFind: batch_default(modules),
+      find,
+      findAll,
+      findByProps: (...p) => find(byProps(p)),
+      findByPropsAll: (...p) => findAll(byProps(p)),
+      findByPrototypes: (...p) => find(byProtos(p)),
+      findByPrototypesAll: (...p) => findAll(byProtos(p)),
+      findByNestedProps: (...p) => find(byNestedProps(p)),
+      findByNestedPropsAll: (...p) => findAll(byNestedProps(p)),
+      findByDisplayName: (d, p) => find(byDisplayName(d, p)),
+      findByDisplayNameAll: (d, p) => findAll(byDisplayName(d, p)),
+      findByDispNameDeep: (d) => find(byDispNameDeep(d)),
+      findByDispNameDeepAll: (d) => findAll(byDispNameDeep(d)),
+      findByKeyword: (...k) => find(byKeyword(k)),
+      findByKeywordAll: (...k) => findAll(byKeyword(k)),
+      findByCodeAll,
+      findByCode: (c2) => findByCodeAll(c2)[0]
+    };
+  };
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/shared.js
+  var patchTypes = ["a", "b", "i"];
+  var patchedObjects = /* @__PURE__ */ new Map();
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/hook.js
+  function hook_default(funcName, funcParent, funcArgs, ctxt, isConstruct) {
+    const patch = patchedObjects.get(funcParent)?.[funcName];
+    if (!patch)
+      return isConstruct ? Reflect.construct(funcParent[funcName], funcArgs, ctxt) : funcParent[funcName].apply(ctxt, funcArgs);
+    for (const hook of patch.b.values()) {
+      const maybefuncArgs = hook.call(ctxt, funcArgs);
+      if (Array.isArray(maybefuncArgs))
+        funcArgs = maybefuncArgs;
+    }
+    let workingRetVal = [...patch.i.values()].reduce(
+      (prev, current) => (...args) => current.call(ctxt, args, prev),
+      // This calls the original function
+      (...args) => isConstruct ? Reflect.construct(patch.o, args, ctxt) : patch.o.apply(ctxt, args)
+    )(...funcArgs);
+    for (const hook of patch.a.values())
+      workingRetVal = hook.call(ctxt, funcArgs, workingRetVal) ?? workingRetVal;
+    return workingRetVal;
+  }
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/unpatch.js
+  function unpatch(funcParent, funcName, hookId, type) {
+    const patchedObject = patchedObjects.get(funcParent);
+    const patch = patchedObject?.[funcName];
+    if (!patch?.[type].has(hookId))
+      return false;
+    patch[type].delete(hookId);
+    if (patchTypes.every((t) => patch[t].size === 0)) {
+      const success = Reflect.defineProperty(funcParent, funcName, {
+        value: patch.o,
+        writable: true,
+        configurable: true
+      });
+      if (!success)
+        funcParent[funcName] = patch.o;
+      delete patchedObject[funcName];
+    }
+    if (Object.keys(patchedObject).length == 0)
+      patchedObjects.delete(funcParent);
+    return true;
+  }
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/getPatchFunc.js
+  var getPatchFunc_default = (patchType) => (funcName, funcParent, callback, oneTime = false) => {
+    if (typeof funcParent[funcName] !== "function")
+      throw new Error(`${funcName} is not a function in ${funcParent.constructor.name}`);
+    if (!patchedObjects.has(funcParent))
+      patchedObjects.set(funcParent, /* @__PURE__ */ Object.create(null));
+    const parentInjections = patchedObjects.get(funcParent);
+    if (!parentInjections[funcName]) {
+      const origFunc = funcParent[funcName];
+      parentInjections[funcName] = {
+        o: origFunc,
+        b: /* @__PURE__ */ new Map(),
+        i: /* @__PURE__ */ new Map(),
+        a: /* @__PURE__ */ new Map()
+      };
+      const runHook = (ctxt, args, construct) => {
+        const ret = hook_default(funcName, funcParent, args, ctxt, construct);
+        if (oneTime)
+          unpatchThisPatch();
+        return ret;
+      };
+      const replaceProxy = new Proxy(origFunc, {
+        apply: (_, ctxt, args) => runHook(ctxt, args, false),
+        construct: (_, args) => runHook(origFunc, args, true),
+        get: (target, prop, receiver) => prop == "toString" ? origFunc.toString.bind(origFunc) : Reflect.get(target, prop, receiver)
+      });
+      const success = Reflect.defineProperty(funcParent, funcName, {
+        value: replaceProxy,
+        configurable: true,
+        writable: true
+      });
+      if (!success)
+        funcParent[funcName] = replaceProxy;
+    }
+    const hookId = Symbol();
+    const unpatchThisPatch = () => unpatch(funcParent, funcName, hookId, patchType);
+    parentInjections[funcName][patchType].set(hookId, callback);
+    return unpatchThisPatch;
+  };
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/index.js
+  var before = getPatchFunc_default("b");
+  var instead = getPatchFunc_default("i");
+  var after = getPatchFunc_default("a");
+
+  // plugins/userpfp/index.scss
+  var css = `._submit_gzseg_1{margin-bottom:10px;display:inline-block}`;
+  var classes = {
+    "submit": "_submit_gzseg_1"
+  };
+
+  // plugins/userpfp/index.tsx
+  var {
+    ui: {
+      SwitchItem,
+      LinkButton,
+      injectCss
+    },
+    plugin: {
+      store
+    }
+  } = shelter;
+  var DATA_URL = "https://userpfp.github.io/UserPFP/source/data.json";
+  var chunk = webpackChunk_default();
+  var wp = chunk && api_default([void 0, ...chunk]);
+  var c = wp.findByPropsAll("getUserAvatarURL");
+  for (const m of c) {
+    after("getUserAvatarURL", m, (args, response) => {
+      var _a;
+      return store.preferNitro && response.includes("a_") ? response : (_a = window.userpfp.getUrl(args[0])) != null ? _a : response;
+    });
+  }
+  var injectedCss = false;
+  if (!injectedCss) {
+    injectedCss = true;
+    injectCss(css);
+  }
+  var settings = () => [(0, import_web.createComponent)(LinkButton, {
+    href: "https://userpfp.github.io/UserPFP/#how-to-request-a-profile-picture-pfp",
+    get ["class"]() {
+      return classes.submit;
+    },
+    children: "Submit your PFP here!"
+  }), (0, import_web.createComponent)(SwitchItem, {
+    get value() {
+      return store.preferNitro;
+    },
+    onChange: (v) => store.preferNitro = v,
+    tooltip: "If the user has Nitro but also has a custom UserPFP, prefer the Nitro one.",
+    children: "Prefer Nitro"
+  })];
+  var onLoad = () => __async(void 0, null, function* () {
+    const resp = yield fetch(DATA_URL);
+    window.userpfp = yield resp.json();
+    window.userpfp.getUrl = (id) => {
+      var _a;
+      return (_a = window.userpfp.avatars[id]) != null ? _a : null;
+    };
+  });
+  return __toCommonJS(userpfp_exports);
+})();

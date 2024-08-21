@@ -1,1 +1,38 @@
-(()=>{var o=Object.defineProperty;var r=Object.getOwnPropertyDescriptor;var c=Object.getOwnPropertyNames;var d=Object.prototype.hasOwnProperty;var i=(e,t)=>{for(var n in t)o(e,n,{get:t[n],enumerable:!0})},l=(e,t,n,a)=>{if(t&&typeof t=="object"||typeof t=="function")for(let s of c(t))!d.call(e,s)&&s!==n&&o(e,s,{get:()=>t[s],enumerable:!(a=r(t,s))||a.enumerable});return e};var u=e=>l(o({},"__esModule",{value:!0}),e);var x={};i(x,{onUnload:()=>k});var{flux:{stores:{MaskedLinkStore:h}},patcher:p}=shelter,f=p.instead("isTrustedDomain",h,()=>!0,!1),k=()=>{f()};return u(x);})();
+(() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // plugins/always-trust/index.ts
+  var always_trust_exports = {};
+  __export(always_trust_exports, {
+    onUnload: () => onUnload
+  });
+  var {
+    flux: {
+      stores: {
+        MaskedLinkStore
+      }
+    },
+    patcher
+  } = shelter;
+  var unpatch = patcher.instead("isTrustedDomain", MaskedLinkStore, () => true, false);
+  var onUnload = () => {
+    unpatch();
+  };
+  return __toCommonJS(always_trust_exports);
+})();

@@ -1,1 +1,345 @@
-(()=>{var _=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var U=Object.getOwnPropertyNames;var E=Object.prototype.hasOwnProperty;var R=(e,o)=>{for(var n in o)_(e,n,{get:o[n],enumerable:!0})},I=(e,o,n,t)=>{if(o&&typeof o=="object"||typeof o=="function")for(let r of U(o))!E.call(e,r)&&r!==n&&_(e,r,{get:()=>o[r],enumerable:!(t=D(o,r))||t.enumerable});return e};var L=e=>I(_({},"__esModule",{value:!0}),e);var i=(e,o,n)=>new Promise((t,r)=>{var c=a=>{try{u(n.next(a))}catch(w){r(w)}},S=a=>{try{u(n.throw(a))}catch(w){r(w)}},u=a=>a.done?t(a.value):Promise.resolve(a.value).then(c,S);u((n=n.apply(e,o)).next())});var K={};R(K,{onUnload:()=>P});var m={112:"F1",113:"F2",114:"F3",115:"F4",116:"F5",117:"F6",118:"F7",119:"F8",120:"F9",121:"F10",122:"F11",123:"F12",27:"Escape",32:"Space",17:"Control",16:"Shift",18:"Alt",91:"Meta",13:"Enter",38:"Up",40:"Down",37:"Left",39:"Right",8:"Backspace",20:"CapsLock",9:"Tab",36:"Home",35:"End",33:"PageUp",34:"PageDown",45:"Insert",46:"Delete",109:"NumpadSubtract",107:"NumpadAdd",111:"NumpadDivide",106:"NumpadMultiply",192:"Grave",189:"Minus",187:"Equal",219:"LeftBracket",221:"RightBracket",220:"BackSlash",186:"Semicolon",222:"Apostrophe",188:"Comma",190:"Dot",191:"Slash"},f=e=>{let o="";return e>=65&&e<=90&&(o=String.fromCharCode(e)),e>=97&&e<=122&&(o=String.fromCharCode(e-32)),e>=48&&e<=57&&(o=String.fromCharCode(e)),m[e]&&(o=m[e]),o};function k(e){if(e.length===1)return e.toLowerCase()>="a"&&e.toLowerCase()<="z"?"Key"+e.toUpperCase():"Digit"+e;let o="";return Object.values(m).forEach(n=>{console.log("comparing",e,n),e.includes(n)&&(console.log("found!"),o=n)}),console.log(o),o||"Key"+e}var y={name:"Dorion",invoke:(e,o)=>{var n;return(n=window.__TAURI__)!=null&&n.invoke?window.__TAURI__.invoke(e,o):window.__TAURI__.core.invoke(e,o)},event:{emit:(e,o)=>window.__TAURI__.event.emit(e,o),listen:(e,o)=>i(void 0,null,function*(){return window.__TAURI__.event.listen(e,o)})},app:{getVersion:()=>window.__TAURI__.app.getVersion()},process:{relaunch:()=>window.__TAURI__.process.relaunch()},apiWindow:{appWindow:{setFullscreen:e=>{var o,n;return(n=(o=window.__TAURI__)==null?void 0:o.webviewWindow)!=null&&n.getCurrentWebviewWindow?window.__TAURI__.webviewWindow.getCurrentWebviewWindow().setFullscreen(e):window.__TAURI__.window.appWindow.setFullscreen(e)}}}};var T={name:"Flooed",invoke:(e,o)=>window.Flooed.invoke(e,o),event:{emit:()=>{},listen:()=>i(void 0,null,function*(){})},app:{getVersion:()=>window.Flooed.version},process:{relaunch:()=>window.Flooed.invoke("relaunch")},apiWindow:{appWindow:{setFullscreen:e=>window.Flooed.invoke("set_fullscreen",e)}}};var h={name:"Unknown",invoke:()=>i(void 0,null,function*(){}),event:{emit:()=>{},listen:()=>i(void 0,null,function*(){})},app:{getVersion:()=>"0.0.0"},process:{relaunch:()=>{}},apiWindow:{appWindow:{setFullscreen:()=>{}}}};var d="None";window.Dorion?d="Dorion":window.Flooed&&(d="Flooed");var s;switch(d){case"Dorion":s=y;break;case"Flooed":s=T;break;default:s=h;break}var ee=window[d];var oe=s.name,F=s.invoke,v=s.event,ne=s.app,te=s.process,re=s.apiWindow;var{flux:{dispatcher:g,stores:{MediaEngineStore:l}},observeDom:p}=shelter,W=[],x=[],C=[],B='div[class*="pttToolsMessage_"]',N='div[class*="radioBar_"]',H='div[class*="layerContainer_"] div[class*="layer_"]',b=()=>C.forEach(e=>e()),O=e=>i(void 0,null,function*(){if(e.section!=="Voice & Video"){b();return}C.push(p(B,o=>{o.remove()}),p(H,o=>{if(o.id)return;o.innerHTML="";let n=p('div[class*="backdrop_"]',t=>{t.click(),n()})}),p(N,o=>{let n='div[class*="info_"] div[class*="text"]',t=o.querySelector(n);t.textContent.includes("(")&&(t.textContent=t.textContent.replace(/\(.+?\)/g,""))}))}),M=e=>i(void 0,null,function*(){let{mode:o,options:{shortcut:n}}=e,r=n.map(c=>c[1]).map(c=>({code:k(f(c)),name:f(c)}));F("set_keybind",{action:"PUSH_TO_TALK",keys:r}),v.emit("ptt_toggled",{state:o==="PUSH_TO_TALK"})}),A;v.emit("ptt_toggled",{state:((A=l==null?void 0:l.getMode)==null?void 0:A.call(l))==="PUSH_TO_TALK"});x.push(g.subscribe("USER_SETTINGS_MODAL_SET_SECTION",O),g.subscribe("LAYER_POP",b),g.subscribe("AUDIO_SET_MODE",M));var P=()=>{b(),W.forEach(e=>e()),x.forEach(e=>e())};return L(K);})();
+(() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+
+  // plugins/dorion-ptt/index.ts
+  var dorion_ptt_exports = {};
+  __export(dorion_ptt_exports, {
+    onUnload: () => onUnload
+  });
+
+  // util/keyUtil.ts
+  var Keycode = {
+    112: "F1",
+    113: "F2",
+    114: "F3",
+    115: "F4",
+    116: "F5",
+    117: "F6",
+    118: "F7",
+    119: "F8",
+    120: "F9",
+    121: "F10",
+    122: "F11",
+    123: "F12",
+    27: "Escape",
+    32: "Space",
+    17: "Control",
+    16: "Shift",
+    18: "Alt",
+    91: "Meta",
+    13: "Enter",
+    38: "Up",
+    40: "Down",
+    37: "Left",
+    39: "Right",
+    8: "Backspace",
+    20: "CapsLock",
+    9: "Tab",
+    36: "Home",
+    35: "End",
+    33: "PageUp",
+    34: "PageDown",
+    45: "Insert",
+    46: "Delete",
+    109: "NumpadSubtract",
+    107: "NumpadAdd",
+    111: "NumpadDivide",
+    106: "NumpadMultiply",
+    192: "Grave",
+    189: "Minus",
+    187: "Equal",
+    219: "LeftBracket",
+    221: "RightBracket",
+    220: "BackSlash",
+    186: "Semicolon",
+    222: "Apostrophe",
+    188: "Comma",
+    190: "Dot",
+    191: "Slash"
+  };
+  var keyToStr = (key) => {
+    let keyStr = "";
+    if (key >= 65 && key <= 90) {
+      keyStr = String.fromCharCode(key);
+    }
+    if (key >= 97 && key <= 122) {
+      keyStr = String.fromCharCode(key - 32);
+    }
+    if (key >= 48 && key <= 57) {
+      keyStr = String.fromCharCode(key);
+    }
+    if (Keycode[key]) {
+      keyStr = Keycode[key];
+    }
+    return keyStr;
+  };
+  function strToCode(str) {
+    if (str.length === 1) {
+      if (str.toLowerCase() >= "a" && str.toLowerCase() <= "z") {
+        return "Key" + str.toUpperCase();
+      }
+      return "Digit" + str;
+    }
+    let maybeKeycode = "";
+    Object.values(Keycode).forEach((v) => {
+      console.log("comparing", str, v);
+      if (str.includes(v)) {
+        console.log("found!");
+        maybeKeycode = v;
+      }
+    });
+    console.log(maybeKeycode);
+    if (maybeKeycode) {
+      return maybeKeycode;
+    }
+    return "Key" + str;
+  }
+
+  // api/dorion.ts
+  var dorion_default = {
+    name: "Dorion",
+    invoke: (name, payload) => {
+      var _a2;
+      if ((_a2 = window.__TAURI__) == null ? void 0 : _a2.invoke) {
+        return window.__TAURI__.invoke(name, payload);
+      } else {
+        return window.__TAURI__.core.invoke(name, payload);
+      }
+    },
+    event: {
+      emit: (name, payload) => {
+        return window.__TAURI__.event.emit(name, payload);
+      },
+      listen: (name, callback) => __async(void 0, null, function* () {
+        return window.__TAURI__.event.listen(name, callback);
+      })
+    },
+    app: {
+      getVersion: () => {
+        return window.__TAURI__.app.getVersion();
+      }
+    },
+    process: {
+      relaunch: () => {
+        return window.__TAURI__.process.relaunch();
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: (isFullscreen) => {
+          var _a2, _b;
+          if ((_b = (_a2 = window.__TAURI__) == null ? void 0 : _a2.webviewWindow) == null ? void 0 : _b.getCurrentWebviewWindow) {
+            return window.__TAURI__.webviewWindow.getCurrentWebviewWindow().setFullscreen(isFullscreen);
+          } else {
+            return window.__TAURI__.window.appWindow.setFullscreen(isFullscreen);
+          }
+        }
+      }
+    }
+  };
+
+  // api/flooed.ts
+  var flooed_default = {
+    name: "Flooed",
+    invoke: (name, payload) => {
+      return window.Flooed.invoke(name, payload);
+    },
+    event: {
+      // emit: (name: string, payload: any) => {
+      //   return
+      // },
+      // listen: async (name: string, callback: (payload: any) => void) => {
+      //   return
+      // }
+      emit: () => {
+      },
+      listen: () => __async(void 0, null, function* () {
+      })
+    },
+    app: {
+      getVersion: () => {
+        return window.Flooed.version;
+      }
+    },
+    process: {
+      relaunch: () => {
+        return window.Flooed.invoke("relaunch");
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: (isFullscreen) => {
+          return window.Flooed.invoke("set_fullscreen", isFullscreen);
+        }
+      }
+    }
+  };
+
+  // api/none.ts
+  var none_default = {
+    name: "Unknown",
+    /* stub */
+    invoke: () => __async(void 0, null, function* () {
+    }),
+    event: {
+      emit: () => {
+      },
+      listen: () => __async(void 0, null, function* () {
+      })
+    },
+    app: {
+      getVersion: () => "0.0.0"
+    },
+    process: {
+      relaunch: () => {
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: () => {
+        }
+      }
+    }
+  };
+
+  // api/api.ts
+  var backendName = "None";
+  if (window.Dorion) {
+    backendName = "Dorion";
+  } else if (window.Flooed) {
+    backendName = "Flooed";
+  }
+  var backendObj;
+  switch (backendName) {
+    case "Dorion":
+      backendObj = dorion_default;
+      break;
+    case "Flooed":
+      backendObj = flooed_default;
+      break;
+    default:
+      backendObj = none_default;
+      break;
+  }
+  var api = window[backendName];
+  var appName = backendObj.name;
+  var invoke = backendObj.invoke;
+  var event = backendObj.event;
+  var app = backendObj.app;
+  var process = backendObj.process;
+  var apiWindow = backendObj.apiWindow;
+
+  // plugins/dorion-ptt/index.ts
+  var {
+    flux: {
+      dispatcher: FluxDispatcher,
+      stores: {
+        MediaEngineStore
+      }
+    },
+    observeDom
+  } = shelter;
+  var events = [];
+  var subscriptions = [];
+  var unobserves = [];
+  var warningSelector = 'div[class*="pttToolsMessage_"]';
+  var radiobarSelector = 'div[class*="radioBar_"]';
+  var popupSelector = 'div[class*="layerContainer_"] div[class*="layer_"]';
+  var unobserveAll = () => unobserves.forEach((unobserve) => unobserve());
+  var settingsHandler = (payload) => __async(void 0, null, function* () {
+    if (payload.section !== "Voice & Video") {
+      unobserveAll();
+      return;
+    }
+    unobserves.push(
+      observeDom(warningSelector, (node) => {
+        node.remove();
+      }),
+      observeDom(popupSelector, (node) => {
+        if (node.id)
+          return;
+        node.innerHTML = "";
+        const unobserveBackdrop = observeDom('div[class*="backdrop_"]', (backdrop) => {
+          backdrop.click();
+          unobserveBackdrop();
+        });
+      }),
+      observeDom(radiobarSelector, (node) => {
+        const textSelector = 'div[class*="info_"] div[class*="text"]';
+        const text = node.querySelector(textSelector);
+        if (text.textContent.includes("(")) {
+          text.textContent = text.textContent.replace(/\(.+?\)/g, "");
+        }
+      })
+    );
+  });
+  var keybindCreationHandler = (payload) => __async(void 0, null, function* () {
+    const {
+      mode,
+      options: {
+        shortcut
+      }
+    } = payload;
+    const keys = shortcut.map((k) => k[1]);
+    const toKeys = keys.map((k) => ({
+      code: strToCode(keyToStr(k)),
+      name: keyToStr(k)
+    }));
+    invoke("set_keybind", { action: "PUSH_TO_TALK", keys: toKeys });
+    event.emit("ptt_toggled", {
+      state: mode === "PUSH_TO_TALK"
+    });
+  });
+  var _a;
+  event.emit("ptt_toggled", {
+    // @ts-expect-error shut up
+    state: ((_a = MediaEngineStore == null ? void 0 : MediaEngineStore.getMode) == null ? void 0 : _a.call(MediaEngineStore)) === "PUSH_TO_TALK"
+  });
+  subscriptions.push(
+    FluxDispatcher.subscribe("USER_SETTINGS_MODAL_SET_SECTION", settingsHandler),
+    FluxDispatcher.subscribe("LAYER_POP", unobserveAll),
+    FluxDispatcher.subscribe("AUDIO_SET_MODE", keybindCreationHandler)
+  );
+  var onUnload = () => {
+    unobserveAll();
+    events.forEach((e) => e());
+    subscriptions.forEach((s) => s());
+  };
+  return __toCommonJS(dorion_ptt_exports);
+})();

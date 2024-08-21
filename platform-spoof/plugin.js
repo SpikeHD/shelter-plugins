@@ -1,1 +1,283 @@
-(()=>{var W=Object.defineProperty,J=Object.defineProperties;var H=Object.getOwnPropertyDescriptors;var A=Object.getOwnPropertySymbols;var I=Object.prototype.hasOwnProperty,z=Object.prototype.propertyIsEnumerable;var k=(o,e,t)=>e in o?W(o,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):o[e]=t,N=(o,e)=>{for(var t in e||={})I.call(e,t)&&k(o,t,e[t]);if(A)for(var t of A(e))z.call(e,t)&&k(o,t,e[t]);return o},O=(o,e)=>J(o,H(e));var D=o=>{if(o??=Object.keys(window).find(t=>t.startsWith("webpackChunk")),!window[o])return;let e;return window[o].push([[Symbol()],{},t=>{e=t}]),window[o].pop(),[e.c??Object.fromEntries(Object.entries(e.m).map(([t])=>[t,{id:t,loaded:!0,exports:e(t)}])),e]};var a=o=>e=>o.every(t=>e[t]!==void 0),c=o=>e=>e.prototype&&o.every(t=>e.prototype[t]!==void 0),y=(o,e=!0)=>t=>(e?t.displayName:t.default?.displayName)===o,u=o=>e=>o.every(t=>Object.keys(e).some(s=>s.toLowerCase().includes(t.toLowerCase()))),b=o=>e=>{let t=new RegExp(`(${o}$)|((\\w+\\()+${o}\\))`);if(t.test(e.displayName))return!0;if(typeof e.$$typeof=="symbol"&&e.Consumer===void 0&&(e.type||e.render)){for(;typeof e.type=="object"||typeof e.render=="object";)e=e.type??e.render;if(t.test(e.type?.displayName)||t.test(e.render?.displayName))return!0}},g=o=>typeof o=="object"||typeof o=="function",w=o=>e=>g(e)&&Object.values(e).some(t=>g(t)&&o.some(s=>t?.[s]!==void 0)),C=(o,e)=>t=>Object.entries(e).filter(([,s])=>s.toString().match(t)).map(([s])=>o[s]?.exports).filter(s=>s);var Q=(o,e)=>{let t=[],s=i=>e.forEach(([r,p],n)=>{p&&!t[n]&&(t[n]=[]),r(i)&&(p?t[n].push(i):t[n]||(t[n]=i))});for(let i in o){let r=o[i].exports;!r||r===window||(r.default&&r.__esModule&&s(r.default),s(r))}return t},X=o=>({find:e=>o.push([e,!1]),findAll:e=>o.push([e,!0]),findByProps:(...e)=>o.push([a(e),!1]),findByPropsAll:(...e)=>o.push([a(e),!0]),findByPrototypes:(...e)=>o.push([c(e),!1]),findByPrototypesAll:(...e)=>o.push([c(e),!0]),findByNestedProps:(...e)=>o.push([w(e),!1]),findByNestedPropsAll:(...e)=>o.push([w(e),!0]),findByDisplayName:(e,t)=>o.push([y(e,t),!1]),findByDisplayNameAll:(e,t)=>o.push([y(e,t),!0]),findByDispNameDeep:e=>o.push([b(e),!1]),findByDispNameDeepAll:e=>o.push([b(e),!0]),findByKeyword:(...e)=>o.push([u(e),!1]),findByKeywordAll:(...e)=>o.push([u(e),!0])}),S=o=>e=>{let t=[],s=X(t);return e(s),Q(o,t)};var K=(o,e=!0)=>t=>{let s=[];for(let i in o){let r=o[i].exports;if(!(!r||r===window)){if(r.default&&r.__esModule&&t(r.default)){if(e)return r.default;s.push(r.default)}if(t(r)){if(e)return r;s.push(r)}}}if(!e)return s},x=([,o,e])=>{let t=K(o),s=K(o,!1),i=e?C(o,e.m):()=>{throw new Error("findByCode does not work with this bundler")};return{batchFind:S(o),find:t,findAll:s,findByProps:(...r)=>t(a(r)),findByPropsAll:(...r)=>s(a(r)),findByPrototypes:(...r)=>t(c(r)),findByPrototypesAll:(...r)=>s(c(r)),findByNestedProps:(...r)=>t(w(r)),findByNestedPropsAll:(...r)=>s(w(r)),findByDisplayName:(r,p)=>t(y(r,p)),findByDisplayNameAll:(r,p)=>s(y(r,p)),findByDispNameDeep:r=>t(b(r)),findByDispNameDeepAll:r=>s(b(r)),findByKeyword:(...r)=>t(u(r)),findByKeywordAll:(...r)=>s(u(r)),findByCodeAll:i,findByCode:r=>i(r)[0]}};var R=["a","b","i"],l=new Map;function v(o,e,t,s,i){let r=l.get(e)?.[o];if(!r)return i?Reflect.construct(e[o],t,s):e[o].apply(s,t);for(let n of r.b.values()){let f=n.call(s,t);Array.isArray(f)&&(t=f)}let p=[...r.i.values()].reduce((n,f)=>(...B)=>f.call(s,B,n),(...n)=>i?Reflect.construct(r.o,n,s):r.o.apply(s,n))(...t);for(let n of r.a.values())p=n.call(s,t,p)??p;return p}function E(o,e,t,s){let i=l.get(o),r=i?.[e];return r?.[s].has(t)?(r[s].delete(t),R.every(p=>r[p].size===0)&&(Reflect.defineProperty(o,e,{value:r.o,writable:!0,configurable:!0})||(o[e]=r.o),delete i[e]),Object.keys(i).length==0&&l.delete(o),!0):!1}var P=o=>(e,t,s,i=!1)=>{if(typeof t[e]!="function")throw new Error(`${e} is not a function in ${t.constructor.name}`);l.has(t)||l.set(t,Object.create(null));let r=l.get(t);if(!r[e]){let f=t[e];r[e]={o:f,b:new Map,i:new Map,a:new Map};let B=(h,d,m)=>{let T=v(e,t,d,h,m);return i&&n(),T},j=new Proxy(f,{apply:(h,d,m)=>B(d,m,!1),construct:(h,d)=>B(f,d,!0),get:(h,d,m)=>d=="toString"?f.toString.bind(f):Reflect.get(h,d,m)});Reflect.defineProperty(t,e,{value:j,configurable:!0,writable:!0})||(t[e]=j)}let p=Symbol(),n=()=>E(t,e,p,o);return r[e][o].set(p,s),n};var Re=P("b"),ve=P("i"),F=P("a");var{plugin:{store:$}}=shelter,M=D(),Y=M&&x([void 0,...M]),q=Y.findByProps("getSuperProperties");if(!q)throw new Error("Failed to find identification function");window.PlatformSpoof={desktop:"Discord Client",web:"Chrome",mobile:"Android",setSpoof:o=>{$.clientType=o}};F("getSuperProperties",q,(o,e)=>{var t,s;return O(N({},e),{browser:(s=(t=window.PlatformSpoof)==null?void 0:t[$.clientType])!=null?s:window.PlatformSpoof.desktop})});})();
+(() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues = (a, b) => {
+    for (var prop in b ||= {})
+      if (__hasOwnProp.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
+      }
+    return a;
+  };
+
+  // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/raid/webpackChunk.js
+  var webpackChunk_default = (key) => {
+    key ??= Object.keys(window).find((key2) => key2.startsWith("webpackChunk"));
+    if (!window[key])
+      return;
+    let wpRequire;
+    window[key].push([
+      [Symbol()],
+      {},
+      (e) => {
+        wpRequire = e;
+      }
+    ]);
+    window[key].pop();
+    return [wpRequire.c ?? // wow thats jank lmao
+    Object.fromEntries(
+      Object.entries(wpRequire.m).map(([k]) => [
+        k,
+        { id: k, loaded: true, exports: wpRequire(k) }
+      ])
+    ), wpRequire];
+  };
+
+  // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/filters.js
+  var byProps = (props) => (m) => props.every((p) => m[p] !== void 0);
+  var byProtos = (protos) => (m) => m.prototype && protos.every((p) => m.prototype[p] !== void 0);
+  var byDisplayName = (name, defaultExp = true) => (m) => (defaultExp ? m.displayName : m.default?.displayName) === name;
+  var byKeyword = (strs) => (m) => strs.every(
+    (s2) => Object.keys(m).some((k) => k.toLowerCase().includes(s2.toLowerCase()))
+  );
+  var byDispNameDeep = (name) => (m) => {
+    const regex = new RegExp(`(${name}$)|((\\w+\\()+${name}\\))`);
+    if (regex.test(m.displayName))
+      return true;
+    if (typeof m.$$typeof !== "symbol")
+      return;
+    if (m.Consumer !== void 0)
+      return;
+    if (m.type || m.render) {
+      while (typeof m.type === "object" || typeof m.render === "object")
+        m = m.type ?? m.render;
+      if (regex.test(m.type?.displayName))
+        return true;
+      if (regex.test(m.render?.displayName))
+        return true;
+    }
+  };
+  var isKeyable = (m) => typeof m === "object" || typeof m === "function";
+  var byNestedProps = (props) => (m) => isKeyable(m) && Object.values(m).some(
+    (v) => isKeyable(v) && props.some((p) => v?.[p] !== void 0)
+  );
+  var allByCode = (modules, loaders) => (code) => Object.entries(loaders).filter(([, m]) => m.toString().match(code)).map(([id]) => modules[id]?.exports).filter((m) => m);
+
+  // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/batch.js
+  var batchFilter = (modules, filterList) => {
+    const found = [];
+    const checkModule = (mod) => filterList.forEach(([filter2, multi], i) => {
+      if (multi && !found[i])
+        found[i] = [];
+      if (filter2(mod)) {
+        if (multi)
+          found[i].push(mod);
+        else if (!found[i])
+          found[i] = mod;
+      }
+    });
+    for (const mid in modules) {
+      const module = modules[mid].exports;
+      if (!module || module === window)
+        continue;
+      if (module.default && module.__esModule)
+        checkModule(module.default);
+      checkModule(module);
+    }
+    return found;
+  };
+  var makeFakeWp = (filterList) => ({
+    find: (f) => filterList.push([f, false]),
+    findAll: (f) => filterList.push([f, true]),
+    findByProps: (...p) => filterList.push([byProps(p), false]),
+    findByPropsAll: (...p) => filterList.push([byProps(p), true]),
+    findByPrototypes: (...p) => filterList.push([byProtos(p), false]),
+    findByPrototypesAll: (...p) => filterList.push([byProtos(p), true]),
+    findByNestedProps: (...p) => filterList.push([byNestedProps(p), false]),
+    findByNestedPropsAll: (...p) => filterList.push([byNestedProps(p), true]),
+    findByDisplayName: (n, d) => filterList.push([byDisplayName(n, d), false]),
+    findByDisplayNameAll: (n, d) => filterList.push([byDisplayName(n, d), true]),
+    findByDispNameDeep: (n) => filterList.push([byDispNameDeep(n), false]),
+    findByDispNameDeepAll: (n) => filterList.push([byDispNameDeep(n), true]),
+    findByKeyword: (...s2) => filterList.push([byKeyword(s2), false]),
+    findByKeywordAll: (...s2) => filterList.push([byKeyword(s2), true])
+  });
+  var batch_default = (mods) => (cb) => {
+    const fList = [];
+    const fakeWp = makeFakeWp(fList);
+    cb(fakeWp);
+    return batchFilter(mods, fList);
+  };
+
+  // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/index.js
+  var filter = (modules, single = true) => (filterFunc) => {
+    const found = [];
+    for (const mid in modules) {
+      const module = modules[mid].exports;
+      if (!module || module === window)
+        continue;
+      if (module.default && module.__esModule && filterFunc(module.default)) {
+        if (single)
+          return module.default;
+        found.push(module.default);
+      }
+      if (filterFunc(module)) {
+        if (single)
+          return module;
+        found.push(module);
+      }
+    }
+    if (!single)
+      return found;
+  };
+  var api_default = ([, modules, wpR]) => {
+    const find = filter(modules);
+    const findAll = filter(modules, false);
+    const findByCodeAll = wpR ? allByCode(modules, wpR.m) : () => {
+      throw new Error("findByCode does not work with this bundler");
+    };
+    return {
+      batchFind: batch_default(modules),
+      find,
+      findAll,
+      findByProps: (...p) => find(byProps(p)),
+      findByPropsAll: (...p) => findAll(byProps(p)),
+      findByPrototypes: (...p) => find(byProtos(p)),
+      findByPrototypesAll: (...p) => findAll(byProtos(p)),
+      findByNestedProps: (...p) => find(byNestedProps(p)),
+      findByNestedPropsAll: (...p) => findAll(byNestedProps(p)),
+      findByDisplayName: (d, p) => find(byDisplayName(d, p)),
+      findByDisplayNameAll: (d, p) => findAll(byDisplayName(d, p)),
+      findByDispNameDeep: (d) => find(byDispNameDeep(d)),
+      findByDispNameDeepAll: (d) => findAll(byDispNameDeep(d)),
+      findByKeyword: (...k) => find(byKeyword(k)),
+      findByKeywordAll: (...k) => findAll(byKeyword(k)),
+      findByCodeAll,
+      findByCode: (c) => findByCodeAll(c)[0]
+    };
+  };
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/shared.js
+  var patchTypes = ["a", "b", "i"];
+  var patchedObjects = /* @__PURE__ */ new Map();
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/hook.js
+  function hook_default(funcName, funcParent, funcArgs, ctxt, isConstruct) {
+    const patch = patchedObjects.get(funcParent)?.[funcName];
+    if (!patch)
+      return isConstruct ? Reflect.construct(funcParent[funcName], funcArgs, ctxt) : funcParent[funcName].apply(ctxt, funcArgs);
+    for (const hook of patch.b.values()) {
+      const maybefuncArgs = hook.call(ctxt, funcArgs);
+      if (Array.isArray(maybefuncArgs))
+        funcArgs = maybefuncArgs;
+    }
+    let workingRetVal = [...patch.i.values()].reduce(
+      (prev, current) => (...args) => current.call(ctxt, args, prev),
+      // This calls the original function
+      (...args) => isConstruct ? Reflect.construct(patch.o, args, ctxt) : patch.o.apply(ctxt, args)
+    )(...funcArgs);
+    for (const hook of patch.a.values())
+      workingRetVal = hook.call(ctxt, funcArgs, workingRetVal) ?? workingRetVal;
+    return workingRetVal;
+  }
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/unpatch.js
+  function unpatch(funcParent, funcName, hookId, type) {
+    const patchedObject = patchedObjects.get(funcParent);
+    const patch = patchedObject?.[funcName];
+    if (!patch?.[type].has(hookId))
+      return false;
+    patch[type].delete(hookId);
+    if (patchTypes.every((t) => patch[t].size === 0)) {
+      const success = Reflect.defineProperty(funcParent, funcName, {
+        value: patch.o,
+        writable: true,
+        configurable: true
+      });
+      if (!success)
+        funcParent[funcName] = patch.o;
+      delete patchedObject[funcName];
+    }
+    if (Object.keys(patchedObject).length == 0)
+      patchedObjects.delete(funcParent);
+    return true;
+  }
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/getPatchFunc.js
+  var getPatchFunc_default = (patchType) => (funcName, funcParent, callback, oneTime = false) => {
+    if (typeof funcParent[funcName] !== "function")
+      throw new Error(`${funcName} is not a function in ${funcParent.constructor.name}`);
+    if (!patchedObjects.has(funcParent))
+      patchedObjects.set(funcParent, /* @__PURE__ */ Object.create(null));
+    const parentInjections = patchedObjects.get(funcParent);
+    if (!parentInjections[funcName]) {
+      const origFunc = funcParent[funcName];
+      parentInjections[funcName] = {
+        o: origFunc,
+        b: /* @__PURE__ */ new Map(),
+        i: /* @__PURE__ */ new Map(),
+        a: /* @__PURE__ */ new Map()
+      };
+      const runHook = (ctxt, args, construct) => {
+        const ret = hook_default(funcName, funcParent, args, ctxt, construct);
+        if (oneTime)
+          unpatchThisPatch();
+        return ret;
+      };
+      const replaceProxy = new Proxy(origFunc, {
+        apply: (_, ctxt, args) => runHook(ctxt, args, false),
+        construct: (_, args) => runHook(origFunc, args, true),
+        get: (target, prop, receiver) => prop == "toString" ? origFunc.toString.bind(origFunc) : Reflect.get(target, prop, receiver)
+      });
+      const success = Reflect.defineProperty(funcParent, funcName, {
+        value: replaceProxy,
+        configurable: true,
+        writable: true
+      });
+      if (!success)
+        funcParent[funcName] = replaceProxy;
+    }
+    const hookId = Symbol();
+    const unpatchThisPatch = () => unpatch(funcParent, funcName, hookId, patchType);
+    parentInjections[funcName][patchType].set(hookId, callback);
+    return unpatchThisPatch;
+  };
+
+  // node_modules/.pnpm/spitroast@1.4.4/node_modules/spitroast/dist/esm/index.js
+  var before = getPatchFunc_default("b");
+  var instead = getPatchFunc_default("i");
+  var after = getPatchFunc_default("a");
+
+  // plugins/platform-spoof/index.tsx
+  var {
+    plugin: {
+      store
+    }
+  } = shelter;
+  var chunk = webpackChunk_default();
+  var wp = chunk && api_default([void 0, ...chunk]);
+  var s = wp.findByProps("getSuperProperties");
+  if (!s) {
+    throw new Error("Failed to find identification function");
+  }
+  window.PlatformSpoof = {
+    desktop: "Discord Client",
+    web: "Chrome",
+    mobile: "Android",
+    setSpoof: (type) => {
+      store.clientType = type;
+    }
+  };
+  after("getSuperProperties", s, (args, response) => {
+    var _a, _b;
+    return __spreadValues(__spreadValues({}, response), {
+      browser: (_b = (_a = window.PlatformSpoof) == null ? void 0 : _a[store.clientType]) != null ? _b : window.PlatformSpoof.desktop
+    });
+  });
+})();

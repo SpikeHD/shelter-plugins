@@ -1,1 +1,83 @@
-(()=>{var i=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var h=Object.prototype.hasOwnProperty;var f=(e,t)=>{for(var s in t)i(e,s,{get:t[s],enumerable:!0})},d=(e,t,s,r)=>{if(t&&typeof t=="object"||typeof t=="function")for(let o of l(t))!h.call(e,o)&&o!==s&&i(e,o,{get:()=>t[o],enumerable:!(r=u(t,o))||r.enumerable});return e};var E=e=>d(i({},"__esModule",{value:!0}),e);var A={};f(A,{onUnload:()=>x});var a="._youreRightItem_1f0oc_1{transform:scaleX(-1)}._youreRightItem_1f0oc_1 img,._youreRightItem_1f0oc_1 h3,._youreRightItem_1f0oc_1 [id^=message-content-],._youreRightItem_1f0oc_1 [id^=username]{transform:scaleX(-1);text-align:right;margin:0}._youreRightItem_1f0oc_1 [id^=message-content-]{max-width:60%;text-align:left}._youreRightItem_1f0oc_1 [class^=buttonsInner]{transform:scaleX(-1)}._youreRightItem_1f0oc_1 [id^=message-reply-context-]{justify-content:flex-end}",c={youreRightItem:"_youreRightItem_1f0oc_1"};var{flux:{storesFlat:{UserStore:y,SelectedChannelStore:I}},util:{getFiber:S,reactFiberWalker:R},plugin:{scoped:{flux:{subscribe:_}}},observeDom:p}=shelter,n=document.createElement("style");n.innerHTML=a;n.id="youre-right-styles";document.head.appendChild(n);function C(e){var r,o;let t=(o=(r=R(S(e),"message",!0))==null?void 0:r.pendingProps)==null?void 0:o.message,s=y.getCurrentUser().id;!t||t.author.id!==s||e.classList.contains(c.youreRight)||e.classList.add(c.youreRightItem)}function g(e){if(e.type==="MESSAGE_CREATE"&&e.channelId!==I.getChannelId())return;let t=p("li[id^=chat-messages-]",s=>{C(s),t()});setTimeout(t,500)}var m=["MESSAGE_CREATE","CHANNEL_SELECT","LOAD_MESSAGES_SUCCESS","UPDATE_CHANNEL_DIMENSIONS"];for(let e of m)_(e,g);var x=()=>{n.remove();for(let e of m)_(e,g)};return E(A);})();
+(() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // plugins/youre-right/index.tsx
+  var youre_right_exports = {};
+  __export(youre_right_exports, {
+    onUnload: () => onUnload
+  });
+
+  // plugins/youre-right/index.tsx.scss
+  var css = `._youreRightItem_8vjb7_1{transform:scaleX(-1)}._youreRightItem_8vjb7_1 video,._youreRightItem_8vjb7_1 h3,._youreRightItem_8vjb7_1 [id^=message-content-],._youreRightItem_8vjb7_1 [id^=username]{transform:scaleX(-1);text-align:right;margin:0}._youreRightItem_8vjb7_1 img{text-align:right;margin:0}._youreRightItem_8vjb7_1 img[class^=emoji]{transform:scaleX(1) !important}._youreRightItem_8vjb7_1 [id^=message-content-]{max-width:60%;text-align:right}._youreRightItem_8vjb7_1 [class^=nonVisualMediaItemContainer],._youreRightItem_8vjb7_1 [class^=imageWrapper],._youreRightItem_8vjb7_1 [class^=avatar],._youreRightItem_8vjb7_1 [class^=embedWrapper],._youreRightItem_8vjb7_1 [class^=reaction_],._youreRightItem_8vjb7_1 [class^=buttonsInner]{transform:scaleX(-1)}._youreRightItem_8vjb7_1 [class*=timestampVisible]{transform:scaleX(-1);text-align:left !important}._youreRightItem_8vjb7_1 [id^=message-reply-context-]{justify-content:flex-start}._youreRightItem_8vjb7_1 [id^=message-reply-context-] [class^=username]{transform:scaleX(-1)}._youreRightItem_8vjb7_1 img:active{transform:scaleX(-1) translateY(-1px)}._youreRightItem_8vjb7_1 [role^=textbox]{transform:scaleX(-1);text-align:right}`;
+  var classes = {
+    "youreRightItem": "_youreRightItem_8vjb7_1"
+  };
+
+  // plugins/youre-right/index.tsx
+  var {
+    flux: {
+      storesFlat: {
+        UserStore,
+        SelectedChannelStore
+      }
+    },
+    util: {
+      getFiber,
+      reactFiberWalker
+    },
+    plugin: {
+      scoped: {
+        flux: {
+          subscribe
+        }
+      }
+    },
+    observeDom
+  } = shelter;
+  var style = document.createElement("style");
+  style.innerHTML = css;
+  style.id = "youre-right-styles";
+  document.head.appendChild(style);
+  function handleElm(elm) {
+    var _a, _b;
+    const message = (_b = (_a = reactFiberWalker(getFiber(elm), "message", true)) == null ? void 0 : _a.pendingProps) == null ? void 0 : _b.message;
+    const id = UserStore.getCurrentUser().id;
+    if (!message || message.author.id !== id || elm.classList.contains(classes.youreRightItem))
+      return;
+    elm.classList.add(classes.youreRightItem);
+  }
+  function handleDispatch(payload) {
+    if (payload.type === "MESSAGE_CREATE" && payload.channelId !== SelectedChannelStore.getChannelId())
+      return;
+    const unObserve = observeDom("li[id^=chat-messages-]", (elem) => {
+      handleElm(elem);
+      unObserve();
+    });
+    setTimeout(unObserve, 500);
+  }
+  var triggers = ["MESSAGE_CREATE", "CHANNEL_SELECT", "LOAD_MESSAGES_SUCCESS", "UPDATE_CHANNEL_DIMENSIONS"];
+  for (const t of triggers)
+    subscribe(t, handleDispatch);
+  var onUnload = () => {
+    style.remove();
+    for (const t of triggers)
+      subscribe(t, handleDispatch);
+  };
+  return __toCommonJS(youre_right_exports);
+})();

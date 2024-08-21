@@ -1,1 +1,770 @@
-(()=>{var Ne=Object.create;var k=Object.defineProperty;var Ae=Object.getOwnPropertyDescriptor;var Te=Object.getOwnPropertyNames,Q=Object.getOwnPropertySymbols,Re=Object.getPrototypeOf,ee=Object.prototype.hasOwnProperty,Se=Object.prototype.propertyIsEnumerable;var X=(e,t,a)=>t in e?k(e,t,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[t]=a,te=(e,t)=>{for(var a in t||={})ee.call(t,a)&&X(e,a,t[a]);if(Q)for(var a of Q(t))Se.call(t,a)&&X(e,a,t[a]);return e};var We=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),Ue=(e,t)=>{for(var a in t)k(e,a,{get:t[a],enumerable:!0})},ae=(e,t,a,n)=>{if(t&&typeof t=="object"||typeof t=="function")for(let o of Te(t))!ee.call(e,o)&&o!==a&&k(e,o,{get:()=>t[o],enumerable:!(n=Ae(t,o))||n.enumerable});return e};var u=(e,t,a)=>(a=e!=null?Ne(Re(e)):{},ae(t||!e||!e.__esModule?k(a,"default",{value:e,enumerable:!0}):a,e)),Le=e=>ae(k({},"__esModule",{value:!0}),e);var g=(e,t,a)=>new Promise((n,o)=>{var s=r=>{try{d(a.next(r))}catch(i){o(i)}},c=r=>{try{d(a.throw(r))}catch(i){o(i)}},d=r=>r.done?n(r.value):Promise.resolve(r.value).then(s,c);d((a=a.apply(e,t)).next())});var m=We((pt,ne)=>{ne.exports=shelter.solidWeb});var ut={};Ue(ut,{generateAssetId:()=>q,onLoad:()=>mt,onUnload:()=>_t});var Pe=u(m(),1),je=u(m(),1),x=u(m(),1),y=u(m(),1);var oe={name:"Dorion",invoke:(e,t)=>{var a;return(a=window.__TAURI__)!=null&&a.invoke?window.__TAURI__.invoke(e,t):window.__TAURI__.core.invoke(e,t)},event:{emit:(e,t)=>window.__TAURI__.event.emit(e,t),listen:(e,t)=>g(void 0,null,function*(){return window.__TAURI__.event.listen(e,t)})},app:{getVersion:()=>window.__TAURI__.app.getVersion()},process:{relaunch:()=>window.__TAURI__.process.relaunch()},apiWindow:{appWindow:{setFullscreen:e=>{var t,a;return(a=(t=window.__TAURI__)==null?void 0:t.webviewWindow)!=null&&a.getCurrentWebviewWindow?window.__TAURI__.webviewWindow.getCurrentWebviewWindow().setFullscreen(e):window.__TAURI__.window.appWindow.setFullscreen(e)}}}};var re={name:"Flooed",invoke:(e,t)=>window.Flooed.invoke(e,t),event:{emit:()=>{},listen:()=>g(void 0,null,function*(){})},app:{getVersion:()=>window.Flooed.version},process:{relaunch:()=>window.Flooed.invoke("relaunch")},apiWindow:{appWindow:{setFullscreen:e=>window.Flooed.invoke("set_fullscreen",e)}}};var ie={name:"Unknown",invoke:()=>g(void 0,null,function*(){}),event:{emit:()=>{},listen:()=>g(void 0,null,function*(){})},app:{getVersion:()=>"0.0.0"},process:{relaunch:()=>{}},apiWindow:{appWindow:{setFullscreen:()=>{}}}};var z="None";window.Dorion?z="Dorion":window.Flooed&&(z="Flooed");var f;switch(z){case"Dorion":f=oe;break;case"Flooed":f=re;break;default:f=ie;break}var se=z,Pt=window[z];var le=f.name,V=f.invoke,R=f.event,jt=f.app,kt=f.process,zt=f.apiWindow;var P=u(m(),1),_e=u(m(),1),h=u(m(),1),I=u(m(),1),b=u(m(),1),N=u(m(),1);var de=e=>{let a=Date.now()-e,n=Math.floor(a/1e3),o=Math.floor(n/60),s=Math.floor(o/60),c=Math.floor(s/24);return c>0?`${c} day${c>1?"s":""} ago`:s>0?`${s} hour${s>1?"s":""} ago`:o>0?`${o} minute${o>1?"s":""} ago`:"Just now"};var ce="._gameCard_1jztg_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;height:72px;border-radius:5px;color:var(--text-normal);margin:12px 0}._gameCard_1jztg_1._cardNone_1jztg_1{background-color:var(--background-secondary)}._gameCard_1jztg_1._cardPlaying_1jztg_1{background-color:var(--status-positive-background)}._gameCard_1jztg_1._cardPlaying_1jztg_1 ._gameCardIcons_1jztg_1{color:var(--green-230)}._gameCard_1jztg_1._cardPlayed_1jztg_1{background:rgba(0,0,0,0);border-radius:0;border-bottom:1px solid var(--primary-500)}._gameCard_1jztg_1._cardPlayed_1jztg_1 ._gameCardLastPlayed_1jztg_1{color:var(--text-muted)}._gameCard_1jztg_1._cardPlayed_1jztg_1 ._lastPlayedTimestamp_1jztg_1{font-weight:bold}._gameCardInfo_1jztg_1{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:70%;height:100%;padding:0 20px}._gameCardName_1jztg_1{font-weight:bold}._gameCardIcons_1jztg_1{display:flex;flex-direction:row;align-items:center;justify-content:flex-end;height:100%;padding:0 20px;color:var(--primary-400)}._gameCardIcons_1jztg_1 span{margin:4px;width:24px;height:24px;cursor:pointer}._gameCardIcons_1jztg_1 span:hover{color:var(--text-normal)}._gameCardIcons_1jztg_1 span svg{width:100%;height:100%}._trash_1jztg_1:hover{color:var(--status-danger) !important}",v={gameCard:"_gameCard_1jztg_1",cardNone:"_cardNone_1jztg_1",cardPlaying:"_cardPlaying_1jztg_1",gameCardIcons:"_gameCardIcons_1jztg_1",cardPlayed:"_cardPlayed_1jztg_1",gameCardLastPlayed:"_gameCardLastPlayed_1jztg_1",lastPlayedTimestamp:"_lastPlayedTimestamp_1jztg_1",gameCardInfo:"_gameCardInfo_1jztg_1",gameCardName:"_gameCardName_1jztg_1",trash:"_trash_1jztg_1"};var De=(0,P.template)('<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 3.999V2H9V3.999H3V5.999H21V3.999H15Z"></path><path fill="currentColor" d="M5 6.99902V18.999C5 20.101 5.897 20.999 7 20.999H17C18.103 20.999 19 20.101 19 18.999V6.99902H5ZM11 17H9V11H11V17ZM15 17H13V11H15V17Z"></path></svg>',6),Fe=(0,P.template)('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"></path></svg>',4),Ve=(0,P.template)('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z"></path></svg>',4),Be=(0,P.template)("<div><div><span></span><span></span></div><div></div></div>",10),B=(0,P.template)("<span></span>",2),{ui:{injectCss:He},plugin:{store:w},solid:{createSignal:Ee}}=shelter,Me=()=>De.cloneNode(!0),Oe=()=>Fe.cloneNode(!0),Ge=()=>Ve.cloneNode(!0),me=!1,Ze=e=>{se!=="None"&&R.emit("remove_detectable",{name:e,exe:""});let t=Object.keys(w.previouslyPlayed).find(a=>w.previouslyPlayed[a].name===e);delete w.previouslyPlayed[t],w.currentlyPlaying===e&&(w.currentlyPlaying="")},S=e=>{var n;me||(me=!0,He(ce));let[t,a]=Ee(e.name?(n=w.previouslyPlayed[e.name])==null?void 0:n.hide:!1);return(()=>{let o=Be.cloneNode(!0),s=o.firstChild,c=s.firstChild,d=c.nextSibling,r=s.nextSibling;return(0,b.insert)(c,()=>e.name||"No game detected"),(0,b.insert)(d,(()=>{let i=(0,N.memo)(()=>e.type==="played");return()=>i()?["Last played: ",(()=>{let l=B.cloneNode(!0);return(0,b.insert)(l,()=>de(e.lastPlayed)),(0,I.effect)(()=>(0,h.className)(l,v.lastPlayedTimestamp)),l})()]:e.type==="playing"&&e.name?"Now playing!":"What are you playing?"})()),(0,b.insert)(r,(()=>{let i=(0,N.memo)(()=>!!e.local);return()=>i()&&(()=>{let l=B.cloneNode(!0);return l.$$click=()=>{Ze(e.name||"")},(0,b.insert)(l,Me),(0,I.effect)(()=>(0,h.className)(l,v.trash)),l})()})(),null),(0,b.insert)(r,(()=>{let i=(0,N.memo)(()=>!!(e.name&&e.type!=="playing"));return()=>i()&&(()=>{let l=B.cloneNode(!0);return l.$$click=()=>{if(!e.name)return;let $=Object.keys(w.previouslyPlayed).find(T=>w.previouslyPlayed[T].name===e.name);w.previouslyPlayed[$].hide=!t(),a(!t())},(0,b.insert)(l,(()=>{let $=(0,N.memo)(()=>!!t());return()=>$()?Ge():Oe()})()),(0,I.effect)(()=>(0,h.className)(l,v.hide)),l})()})(),null),(0,I.effect)(i=>{let l=v.gameCard+" "+(e.type==="playing"&&e.name?v.cardPlaying:e.type==="played"?v.cardPlayed:v.cardNone),$=v.gameCardInfo,T=v.gameCardName,J=v.gameCardLastPlayed,K=v.gameCardIcons;return l!==i._v$&&(0,h.className)(o,i._v$=l),$!==i._v$2&&(0,h.className)(s,i._v$2=$),T!==i._v$3&&(0,h.className)(c,i._v$3=T),J!==i._v$4&&(0,h.className)(d,i._v$4=J),K!==i._v$5&&(0,h.className)(r,i._v$5=K),i},{_v$:void 0,_v$2:void 0,_v$3:void 0,_v$4:void 0,_v$5:void 0}),o})()};(0,_e.delegateEvents)(["click"]);var E=u(m(),1),U=u(m(),1),he=u(m(),1),H=u(m(),1),we=u(m(),1),L=u(m(),1),$e=u(m(),1),A=u(m(),1);var ue="._ddown_1njos_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_1njos_1{position:relative;width:100%}._dsarrow_1njos_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_1njos_1 path{fill:var(--header-secondary)}",W={ddown:"_ddown_1njos_1",dcontainer:"_dcontainer_1njos_1",dsarrow:"_dsarrow_1njos_1"};var ge=u(m(),1),pe=u(m(),1),ye=u(m(),1),Ye=(0,ge.template)('<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>',4),ve=e=>(()=>{let t=Ye.cloneNode(!0);return(0,ye.effect)(()=>(0,pe.setAttribute)(t,"class",e.class)),t})();var qe=(0,E.template)("<div><select></select></div>",4),Je=(0,E.template)("<option></option>",2),{ui:{injectCss:Ke}}=shelter,fe=!1,be=e=>(fe||(fe=!0,Ke(ue)),(()=>{let t=qe.cloneNode(!0),a=t.firstChild;return(0,$e.addEventListener)(a,"change",e.onChange),(0,L.insert)(a,()=>{var n;return(n=e.options)==null?void 0:n.map(o=>(()=>{let s=Je.cloneNode(!0);return(0,L.insert)(s,()=>o.label),(0,A.effect)(()=>s.selected=o.value===(e==null?void 0:e.selected)),(0,A.effect)(()=>s.value=o.value),s})())}),(0,L.insert)(t,(0,we.createComponent)(ve,{get class(){return W.dsarrow}}),null),(0,A.effect)(n=>{let o=W.dcontainer,s=e.style,c=W.ddown,d=e.placeholder,r=e.id,i=e["aria-label"],l=e.disabled;return o!==n._v$&&(0,H.className)(t,n._v$=o),n._v$2=(0,he.style)(t,s,n._v$2),c!==n._v$3&&(0,H.className)(a,n._v$3=c),d!==n._v$4&&(0,U.setAttribute)(a,"placeholder",n._v$4=d),r!==n._v$5&&(0,U.setAttribute)(a,"id",n._v$5=r),i!==n._v$6&&(0,U.setAttribute)(a,"aria-label",n._v$6=i),l!==n._v$7&&(a.disabled=n._v$7=l),n},{_v$:void 0,_v$2:void 0,_v$3:void 0,_v$4:void 0,_v$5:void 0,_v$6:void 0,_v$7:void 0}),(0,A.effect)(()=>a.value=e.value),t})());var xe="._description_1kj0u_1{margin-top:8px;margin-bottom:8px}._addIt_1kj0u_1{margin-top:8px;margin-bottom:28px}._shead_1kj0u_1{margin-bottom:12px}._addhead_1kj0u_1{margin-top:42px;margin-bottom:12px}._modalhead_1kj0u_1{margin-top:12px}",j={description:"_description_1kj0u_1",addIt:"_addIt_1kj0u_1",shead:"_shead_1kj0u_1",addhead:"_addhead_1kj0u_1",modalhead:"_modalhead_1kj0u_1"};var Qe=(0,Pe.template)('<a target="_blank">Add it!</a>',2),{ui:{Divider:Xe,Header:M,HeaderTags:et,Text:O,TextBox:tt,injectCss:at,openConfirmationModal:nt},solid:{createSignal:C,createEffect:ke},plugin:{store:D}}=shelter,Ce=!1,ze=()=>{Ce||(Ce=!0,at(xe));let[e,t]=C(!1),[a,n]=C(""),[o,s]=C({}),[c,d]=C([]);return ke(()=>g(void 0,null,function*(){t(le==="Dorion"),n(D.currentlyPlaying||""),s(D.previouslyPlayed||{}),d(e&&(yield V("get_local_detectables")));let r=()=>{for(let i of c()){let l=Object.values(o()).findIndex($=>$.name===i.name);l!==-1&&(o()[Object.keys(o())[l]].local=!0)}};r(),setInterval(()=>{n(D.currentlyPlaying||""),s(D.previouslyPlayed||{}),r()},2e3)})),[(0,y.createComponent)(M,{get tag(){return et.H1},get class(){return j.shead},children:"Registered Games"}),(0,y.createComponent)(O,{get class(){return j.description},children:"ShelteRPC will automatically update your status based on the game you're playing (if detectable). You can also manually add games to this list if it isn't being detected."}),(0,y.createComponent)(Xe,{mt:20,mb:20}),(0,x.memo)((()=>{let r=(0,x.memo)(()=>!!a());return()=>r()?(0,y.createComponent)(S,{get name(){return a()},type:"playing",get local(){var i;return((i=Object.values(o()).find(l=>l.name===a()))==null?void 0:i.local)||!1}}):(0,y.createComponent)(S,{type:"none"})})()),(0,y.createComponent)(O,{get class(){return j.addIt},get children(){return["Not seeing your game? ",(0,x.memo)(()=>(0,x.memo)(()=>!!e())()?(()=>{let r=Qe.cloneNode(!0);return r.$$click=ot,r})():"Adding it is unsupported.")]}}),(0,y.createComponent)(M,{get class(){return j.addhead},children:"Added Games"}),(0,x.memo)(()=>Object.values(o()).map(r=>r.name===a()?null:(0,y.createComponent)(S,{get name(){return r.name},get lastPlayed(){return r.lastPlayed},type:"played",get local(){return r==null?void 0:r.local}})))]};function ot(){let[e,t]=C([]),[a,n]=C(0),[o,s]=C("");ke(()=>g(this,null,function*(){let c=yield V("get_windows");t(c)})),nt({body:()=>(0,x.memo)((()=>{let c=(0,x.memo)(()=>e().length>0);return()=>c()?[(0,y.createComponent)(be,{get options(){return e().filter((d,r,i)=>i.findIndex(l=>l.process_name===d.process_name)===r).map(d=>({label:d.process_name,value:d.pid}))},placeholder:"Select process...",maxVisibleItems:5,closeOnSelect:!0,onChange:d=>n(Number(d.target.value))}),(0,y.createComponent)(M,{get class(){return j.modalhead},children:"Name to Display"}),(0,y.createComponent)(tt,{get value(){return o()},onInput:d=>s(d),placeholder:"Enter the name to display..."})]:(0,y.createComponent)(O,{children:"Please wait..."})})()),header:()=>"Add a game",confirmText:"Add",type:"neutral"}).then(()=>{var c;R.emit("add_detectable",{exe:(c=e().find(d=>d.pid===a()))==null?void 0:c.process_name,name:o()})},()=>{})}(0,je.delegateEvents)(["click"]);var{flux:{dispatcher:rt},settings:{registerSection:it},ui:{showToast:G},plugin:{store:p},http:Ie}=shelter,Y=()=>{},Z={},_,F={};p.currentlyPlaying="";function st(e){return g(this,null,function*(){var t;return((t=yield Ie.get(`/oauth2/applications/${e}/rpc`))==null?void 0:t.body)||"Unknown"})}var q=(e,t)=>g(void 0,null,function*(){var n;if(!Z[e]){let o=yield Ie.get(`/oauth2/applications/${e}/assets`);o.status!==200&&console.log("Failed to fetch assets"),Z[e]=o.body}return(n=Z[e].find(o=>o.name===t))==null?void 0:n.id});function lt(e){return g(this,null,function*(){var n,o,s,c,d;let t=JSON.parse(e.data),a=(n=t.activity)==null?void 0:n.assets;if(t.cmd)return dt(t);if(a!=null&&a.large_image&&(a.large_image=yield q(t.activity.application_id,a.large_image)),a!=null&&a.small_image&&(a.small_image=yield q(t.activity.application_id,a.small_image)),t.activity){let r=t.activity.application_id;F[r]||(F[r]=yield st(r));let i=F[r];typeof i!="string"&&((o=t.activity).name||(o.name=i.name)),p.currentlyPlaying=t.activity.name,p.previouslyPlayed||(p.previouslyPlayed={}),t.activity.name in p.previouslyPlayed||(p.previouslyPlayed[t.activity.name]={}),p.previouslyPlayed[t.activity.name].name=t.activity.name,p.previouslyPlayed[t.activity.name].appid=t.activity.application_id,p.previouslyPlayed[t.activity.name].lastPlayed=Date.now(),p.previouslyPlayed[t.activity.name].local=t.activity.application_id==="1337"}else p.currentlyPlaying="";(d=(c=p==null?void 0:p.previouslyPlayed)==null?void 0:c[(s=t.activity)==null?void 0:s.name])!=null&&d.hide||rt.dispatch(te({type:"LOCAL_ACTIVITY_UPDATE"},t))})}var dt=e=>g(void 0,null,function*(){switch(e.cmd){case"INVITE_BROWSER":}}),ct=(e,t=5,a=500)=>g(void 0,null,function*(){let n;for(let o=0;o<t;o++){if(n=yield e(o),n)return n;yield new Promise(s=>setTimeout(s,a))}return n}),mt=()=>g(void 0,null,function*(){_&&(_!=null&&_.close)&&_.close();let e=yield ct(t=>g(void 0,null,function*(){var a;return _=new WebSocket("ws://127.0.0.1:1337"),_.onmessage=lt,_.onerror=n=>{throw n},yield new Promise(n=>setTimeout(n,1e3)),_.readyState!==WebSocket.OPEN?((a=_==null?void 0:_.close)==null||a.call(_),_=null,G({title:"ShelteRPC",content:`Unable to connect to ShelteRPC server (${t})`,duration:2e3}),!1):!0}),3,3e3);Y=it("section","shelterpc","Registered Games",ze),e&&(_.onclose=()=>{G({title:"ShelteRPC",content:"ShelteRPC server disconnected",duration:3e3})},G({title:"ShelteRPC",content:"Connected to ShelteRPC server",duration:3e3}))}),_t=()=>g(void 0,null,function*(){var e;_!=null&&_.close&&((e=_.close)==null||e.call(_)),Y&&Y()});return Le(ut);})();
+(() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues = (a, b) => {
+    for (var prop in b ||= {})
+      if (__hasOwnProp.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
+      }
+    return a;
+  };
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+
+  // shltr-res-ns:solid-js/web
+  var require_web = __commonJS({
+    "shltr-res-ns:solid-js/web"(exports, module) {
+      module.exports = shelter.solidWeb;
+    }
+  });
+
+  // plugins/shelteRPC/index.tsx
+  var shelteRPC_exports = {};
+  __export(shelteRPC_exports, {
+    generateAssetId: () => generateAssetId,
+    onLoad: () => onLoad,
+    onUnload: () => onUnload
+  });
+
+  // plugins/shelteRPC/components/RegisteredGames.tsx
+  var import_web18 = __toESM(require_web(), 1);
+  var import_web19 = __toESM(require_web(), 1);
+  var import_web20 = __toESM(require_web(), 1);
+  var import_web21 = __toESM(require_web(), 1);
+
+  // api/dorion.ts
+  var dorion_default = {
+    name: "Dorion",
+    invoke: (name, payload) => {
+      var _a;
+      if ((_a = window.__TAURI__) == null ? void 0 : _a.invoke) {
+        return window.__TAURI__.invoke(name, payload);
+      } else {
+        return window.__TAURI__.core.invoke(name, payload);
+      }
+    },
+    event: {
+      emit: (name, payload) => {
+        return window.__TAURI__.event.emit(name, payload);
+      },
+      listen: (name, callback) => __async(void 0, null, function* () {
+        return window.__TAURI__.event.listen(name, callback);
+      })
+    },
+    app: {
+      getVersion: () => {
+        return window.__TAURI__.app.getVersion();
+      }
+    },
+    process: {
+      relaunch: () => {
+        return window.__TAURI__.process.relaunch();
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: (isFullscreen) => {
+          var _a, _b;
+          if ((_b = (_a = window.__TAURI__) == null ? void 0 : _a.webviewWindow) == null ? void 0 : _b.getCurrentWebviewWindow) {
+            return window.__TAURI__.webviewWindow.getCurrentWebviewWindow().setFullscreen(isFullscreen);
+          } else {
+            return window.__TAURI__.window.appWindow.setFullscreen(isFullscreen);
+          }
+        }
+      }
+    }
+  };
+
+  // api/flooed.ts
+  var flooed_default = {
+    name: "Flooed",
+    invoke: (name, payload) => {
+      return window.Flooed.invoke(name, payload);
+    },
+    event: {
+      // emit: (name: string, payload: any) => {
+      //   return
+      // },
+      // listen: async (name: string, callback: (payload: any) => void) => {
+      //   return
+      // }
+      emit: () => {
+      },
+      listen: () => __async(void 0, null, function* () {
+      })
+    },
+    app: {
+      getVersion: () => {
+        return window.Flooed.version;
+      }
+    },
+    process: {
+      relaunch: () => {
+        return window.Flooed.invoke("relaunch");
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: (isFullscreen) => {
+          return window.Flooed.invoke("set_fullscreen", isFullscreen);
+        }
+      }
+    }
+  };
+
+  // api/none.ts
+  var none_default = {
+    name: "Unknown",
+    /* stub */
+    invoke: () => __async(void 0, null, function* () {
+    }),
+    event: {
+      emit: () => {
+      },
+      listen: () => __async(void 0, null, function* () {
+      })
+    },
+    app: {
+      getVersion: () => "0.0.0"
+    },
+    process: {
+      relaunch: () => {
+      }
+    },
+    apiWindow: {
+      appWindow: {
+        setFullscreen: () => {
+        }
+      }
+    }
+  };
+
+  // api/api.ts
+  var backendName = "None";
+  if (window.Dorion) {
+    backendName = "Dorion";
+  } else if (window.Flooed) {
+    backendName = "Flooed";
+  }
+  var backendObj;
+  switch (backendName) {
+    case "Dorion":
+      backendObj = dorion_default;
+      break;
+    case "Flooed":
+      backendObj = flooed_default;
+      break;
+    default:
+      backendObj = none_default;
+      break;
+  }
+  var backend = backendName;
+  var api = window[backendName];
+  var appName = backendObj.name;
+  var invoke = backendObj.invoke;
+  var event = backendObj.event;
+  var app = backendObj.app;
+  var process = backendObj.process;
+  var apiWindow = backendObj.apiWindow;
+
+  // plugins/shelteRPC/components/GameCard.tsx
+  var import_web = __toESM(require_web(), 1);
+  var import_web2 = __toESM(require_web(), 1);
+  var import_web3 = __toESM(require_web(), 1);
+  var import_web4 = __toESM(require_web(), 1);
+  var import_web5 = __toESM(require_web(), 1);
+  var import_web6 = __toESM(require_web(), 1);
+
+  // plugins/shelteRPC/util.ts
+  var timestampToRelative = (timestamp) => {
+    const now = Date.now();
+    const diff = now - timestamp;
+    const seconds = Math.floor(diff / 1e3);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    if (days > 0) {
+      return `${days} day${days > 1 ? "s" : ""} ago`;
+    }
+    if (hours > 0) {
+      return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+    }
+    if (minutes > 0) {
+      return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+    }
+    return "Just now";
+  };
+
+  // plugins/shelteRPC/components/GameCard.scss
+  var css = `._gameCard_1jztg_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;height:72px;border-radius:5px;color:var(--text-normal);margin:12px 0}._gameCard_1jztg_1._cardNone_1jztg_1{background-color:var(--background-secondary)}._gameCard_1jztg_1._cardPlaying_1jztg_1{background-color:var(--status-positive-background)}._gameCard_1jztg_1._cardPlaying_1jztg_1 ._gameCardIcons_1jztg_1{color:var(--green-230)}._gameCard_1jztg_1._cardPlayed_1jztg_1{background:rgba(0,0,0,0);border-radius:0;border-bottom:1px solid var(--primary-500)}._gameCard_1jztg_1._cardPlayed_1jztg_1 ._gameCardLastPlayed_1jztg_1{color:var(--text-muted)}._gameCard_1jztg_1._cardPlayed_1jztg_1 ._lastPlayedTimestamp_1jztg_1{font-weight:bold}._gameCardInfo_1jztg_1{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:70%;height:100%;padding:0 20px}._gameCardName_1jztg_1{font-weight:bold}._gameCardIcons_1jztg_1{display:flex;flex-direction:row;align-items:center;justify-content:flex-end;height:100%;padding:0 20px;color:var(--primary-400)}._gameCardIcons_1jztg_1 span{margin:4px;width:24px;height:24px;cursor:pointer}._gameCardIcons_1jztg_1 span:hover{color:var(--text-normal)}._gameCardIcons_1jztg_1 span svg{width:100%;height:100%}._trash_1jztg_1:hover{color:var(--status-danger) !important}`;
+  var classes = {
+    "gameCard": "_gameCard_1jztg_1",
+    "cardNone": "_cardNone_1jztg_1",
+    "cardPlaying": "_cardPlaying_1jztg_1",
+    "gameCardIcons": "_gameCardIcons_1jztg_1",
+    "cardPlayed": "_cardPlayed_1jztg_1",
+    "gameCardLastPlayed": "_gameCardLastPlayed_1jztg_1",
+    "lastPlayedTimestamp": "_lastPlayedTimestamp_1jztg_1",
+    "gameCardInfo": "_gameCardInfo_1jztg_1",
+    "gameCardName": "_gameCardName_1jztg_1",
+    "trash": "_trash_1jztg_1"
+  };
+
+  // plugins/shelteRPC/components/GameCard.tsx
+  var _tmpl$ = /* @__PURE__ */ (0, import_web.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 3.999V2H9V3.999H3V5.999H21V3.999H15Z"></path><path fill="currentColor" d="M5 6.99902V18.999C5 20.101 5.897 20.999 7 20.999H17C18.103 20.999 19 20.101 19 18.999V6.99902H5ZM11 17H9V11H11V17ZM15 17H13V11H15V17Z"></path></svg>`, 6);
+  var _tmpl$2 = /* @__PURE__ */ (0, import_web.template)(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"></path></svg>`, 4);
+  var _tmpl$3 = /* @__PURE__ */ (0, import_web.template)(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z"></path></svg>`, 4);
+  var _tmpl$4 = /* @__PURE__ */ (0, import_web.template)(`<div><div><span></span><span></span></div><div></div></div>`, 10);
+  var _tmpl$5 = /* @__PURE__ */ (0, import_web.template)(`<span></span>`, 2);
+  var {
+    ui: {
+      injectCss
+    },
+    plugin: {
+      store
+    },
+    solid: {
+      createSignal
+    }
+  } = shelter;
+  var trashIcon = () => _tmpl$.cloneNode(true);
+  var hideIcon = () => _tmpl$2.cloneNode(true);
+  var hideClosed = () => _tmpl$3.cloneNode(true);
+  var injectedCss = false;
+  var deleteGame = (name) => {
+    backend !== "None" && event.emit("remove_detectable", {
+      name,
+      exe: ""
+    });
+    const key = Object.keys(store.previouslyPlayed).find((k) => store.previouslyPlayed[k].name === name);
+    delete store.previouslyPlayed[key];
+    if (store.currentlyPlaying === name) {
+      store.currentlyPlaying = "";
+    }
+  };
+  var GameCard_default = (props) => {
+    var _a;
+    if (!injectedCss) {
+      injectedCss = true;
+      injectCss(css);
+    }
+    const [hide, setHide] = createSignal(props.name ? (_a = store.previouslyPlayed[props.name]) == null ? void 0 : _a.hide : false);
+    return (() => {
+      const _el$4 = _tmpl$4.cloneNode(true), _el$5 = _el$4.firstChild, _el$6 = _el$5.firstChild, _el$7 = _el$6.nextSibling, _el$8 = _el$5.nextSibling;
+      (0, import_web5.insert)(_el$6, () => props.name || "No game detected");
+      (0, import_web5.insert)(_el$7, (() => {
+        const _c$ = (0, import_web6.memo)(() => props.type === "played");
+        return () => _c$() ? ["Last played: ", (() => {
+          const _el$9 = _tmpl$5.cloneNode(true);
+          (0, import_web5.insert)(_el$9, () => timestampToRelative(props.lastPlayed));
+          (0, import_web4.effect)(() => (0, import_web3.className)(_el$9, classes.lastPlayedTimestamp));
+          return _el$9;
+        })()] : props.type === "playing" && props.name ? "Now playing!" : "What are you playing?";
+      })());
+      (0, import_web5.insert)(_el$8, (() => {
+        const _c$2 = (0, import_web6.memo)(() => !!props.local);
+        return () => _c$2() && (() => {
+          const _el$10 = _tmpl$5.cloneNode(true);
+          _el$10.$$click = () => {
+            deleteGame(props.name || "");
+          };
+          (0, import_web5.insert)(_el$10, trashIcon);
+          (0, import_web4.effect)(() => (0, import_web3.className)(_el$10, classes.trash));
+          return _el$10;
+        })();
+      })(), null);
+      (0, import_web5.insert)(_el$8, (() => {
+        const _c$3 = (0, import_web6.memo)(() => !!(props.name && props.type !== "playing"));
+        return () => _c$3() && (() => {
+          const _el$11 = _tmpl$5.cloneNode(true);
+          _el$11.$$click = () => {
+            if (!props.name)
+              return;
+            const key = Object.keys(store.previouslyPlayed).find((k) => store.previouslyPlayed[k].name === props.name);
+            store.previouslyPlayed[key].hide = !hide();
+            setHide(!hide());
+          };
+          (0, import_web5.insert)(_el$11, (() => {
+            const _c$4 = (0, import_web6.memo)(() => !!hide());
+            return () => _c$4() ? hideClosed() : hideIcon();
+          })());
+          (0, import_web4.effect)(() => (0, import_web3.className)(_el$11, classes.hide));
+          return _el$11;
+        })();
+      })(), null);
+      (0, import_web4.effect)((_p$) => {
+        const _v$ = classes.gameCard + " " + (props.type === "playing" && props.name ? classes.cardPlaying : props.type === "played" ? classes.cardPlayed : classes.cardNone), _v$2 = classes.gameCardInfo, _v$3 = classes.gameCardName, _v$4 = classes.gameCardLastPlayed, _v$5 = classes.gameCardIcons;
+        _v$ !== _p$._v$ && (0, import_web3.className)(_el$4, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web3.className)(_el$5, _p$._v$2 = _v$2);
+        _v$3 !== _p$._v$3 && (0, import_web3.className)(_el$6, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web3.className)(_el$7, _p$._v$4 = _v$4);
+        _v$5 !== _p$._v$5 && (0, import_web3.className)(_el$8, _p$._v$5 = _v$5);
+        return _p$;
+      }, {
+        _v$: void 0,
+        _v$2: void 0,
+        _v$3: void 0,
+        _v$4: void 0,
+        _v$5: void 0
+      });
+      return _el$4;
+    })();
+  };
+  (0, import_web2.delegateEvents)(["click"]);
+
+  // components/Dropdown.tsx
+  var import_web10 = __toESM(require_web(), 1);
+  var import_web11 = __toESM(require_web(), 1);
+  var import_web12 = __toESM(require_web(), 1);
+  var import_web13 = __toESM(require_web(), 1);
+  var import_web14 = __toESM(require_web(), 1);
+  var import_web15 = __toESM(require_web(), 1);
+  var import_web16 = __toESM(require_web(), 1);
+  var import_web17 = __toESM(require_web(), 1);
+
+  // components/Dropdown.tsx.scss
+  var css2 = `._ddown_1njos_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_1njos_1{position:relative;width:100%}._dsarrow_1njos_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_1njos_1 path{fill:var(--header-secondary)}`;
+  var classes2 = {
+    "ddown": "_ddown_1njos_1",
+    "dcontainer": "_dcontainer_1njos_1",
+    "dsarrow": "_dsarrow_1njos_1"
+  };
+
+  // components/SelectArrow.tsx
+  var import_web7 = __toESM(require_web(), 1);
+  var import_web8 = __toESM(require_web(), 1);
+  var import_web9 = __toESM(require_web(), 1);
+  var _tmpl$6 = /* @__PURE__ */ (0, import_web7.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
+  var SelectArrow = (props) => (() => {
+    const _el$ = _tmpl$6.cloneNode(true);
+    (0, import_web9.effect)(() => (0, import_web8.setAttribute)(_el$, "class", props.class));
+    return _el$;
+  })();
+
+  // components/Dropdown.tsx
+  var _tmpl$7 = /* @__PURE__ */ (0, import_web10.template)(`<div><select></select></div>`, 4);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web10.template)(`<option></option>`, 2);
+  var {
+    ui: {
+      injectCss: injectCss2
+    }
+  } = shelter;
+  var injectedCss2 = false;
+  var Dropdown = (props) => {
+    if (!injectedCss2) {
+      injectedCss2 = true;
+      injectCss2(css2);
+    }
+    return (() => {
+      const _el$ = _tmpl$7.cloneNode(true), _el$2 = _el$.firstChild;
+      (0, import_web16.addEventListener)(_el$2, "change", props.onChange);
+      (0, import_web15.insert)(_el$2, () => {
+        var _a;
+        return (_a = props.options) == null ? void 0 : _a.map((o) => (() => {
+          const _el$3 = _tmpl$22.cloneNode(true);
+          (0, import_web15.insert)(_el$3, () => o.label);
+          (0, import_web17.effect)(() => _el$3.selected = o.value === (props == null ? void 0 : props.selected));
+          (0, import_web17.effect)(() => _el$3.value = o.value);
+          return _el$3;
+        })());
+      });
+      (0, import_web15.insert)(_el$, (0, import_web14.createComponent)(SelectArrow, {
+        get ["class"]() {
+          return classes2.dsarrow;
+        }
+      }), null);
+      (0, import_web17.effect)((_p$) => {
+        const _v$ = classes2.dcontainer, _v$2 = props.style, _v$3 = classes2.ddown, _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
+        _v$ !== _p$._v$ && (0, import_web13.className)(_el$, _p$._v$ = _v$);
+        _p$._v$2 = (0, import_web12.style)(_el$, _v$2, _p$._v$2);
+        _v$3 !== _p$._v$3 && (0, import_web13.className)(_el$2, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web11.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
+        _v$5 !== _p$._v$5 && (0, import_web11.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
+        _v$6 !== _p$._v$6 && (0, import_web11.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
+        _v$7 !== _p$._v$7 && (_el$2.disabled = _p$._v$7 = _v$7);
+        return _p$;
+      }, {
+        _v$: void 0,
+        _v$2: void 0,
+        _v$3: void 0,
+        _v$4: void 0,
+        _v$5: void 0,
+        _v$6: void 0,
+        _v$7: void 0
+      });
+      (0, import_web17.effect)(() => _el$2.value = props.value);
+      return _el$;
+    })();
+  };
+
+  // plugins/shelteRPC/components/RegisteredGames.scss
+  var css3 = `._description_1kj0u_1{margin-top:8px;margin-bottom:8px}._addIt_1kj0u_1{margin-top:8px;margin-bottom:28px}._shead_1kj0u_1{margin-bottom:12px}._addhead_1kj0u_1{margin-top:42px;margin-bottom:12px}._modalhead_1kj0u_1{margin-top:12px}`;
+  var classes3 = {
+    "description": "_description_1kj0u_1",
+    "addIt": "_addIt_1kj0u_1",
+    "shead": "_shead_1kj0u_1",
+    "addhead": "_addhead_1kj0u_1",
+    "modalhead": "_modalhead_1kj0u_1"
+  };
+
+  // plugins/shelteRPC/components/RegisteredGames.tsx
+  var _tmpl$8 = /* @__PURE__ */ (0, import_web18.template)(`<a target="_blank">Add it!</a>`, 2);
+  var {
+    ui: {
+      Divider,
+      Header,
+      HeaderTags,
+      Text,
+      TextBox,
+      injectCss: injectCss3,
+      openConfirmationModal
+    },
+    solid: {
+      createSignal: createSignal2,
+      createEffect
+    },
+    plugin: {
+      store: store2
+    }
+  } = shelter;
+  var injectedCss3 = false;
+  var RegisteredGames_default = () => {
+    if (!injectedCss3) {
+      injectedCss3 = true;
+      injectCss3(css3);
+    }
+    const [isDorion, setIsDorion] = createSignal2(false);
+    const [currentlyPlaying, setCurrentlyPlaying] = createSignal2("");
+    const [previouslyPlayed, setPreviouslyPlayed] = createSignal2({});
+    const [local, setLocal] = createSignal2([]);
+    createEffect(() => __async(void 0, null, function* () {
+      setIsDorion(appName === "Dorion");
+      setCurrentlyPlaying(store2.currentlyPlaying || "");
+      setPreviouslyPlayed(store2.previouslyPlayed || {});
+      setLocal(isDorion && (yield invoke("get_local_detectables")));
+      const markLocals = () => {
+        for (const o of local()) {
+          const maybeIdx = Object.values(previouslyPlayed()).findIndex((p) => p.name === o.name);
+          if (maybeIdx !== -1) {
+            previouslyPlayed()[Object.keys(previouslyPlayed())[maybeIdx]]["local"] = true;
+          }
+        }
+      };
+      markLocals();
+      setInterval(() => {
+        setCurrentlyPlaying(store2.currentlyPlaying || "");
+        setPreviouslyPlayed(store2.previouslyPlayed || {});
+        markLocals();
+      }, 2e3);
+    }));
+    return [(0, import_web21.createComponent)(Header, {
+      get tag() {
+        return HeaderTags.H1;
+      },
+      get ["class"]() {
+        return classes3.shead;
+      },
+      children: "Registered Games"
+    }), (0, import_web21.createComponent)(Text, {
+      get ["class"]() {
+        return classes3.description;
+      },
+      children: "ShelteRPC will automatically update your status based on the game you're playing (if detectable). You can also manually add games to this list if it isn't being detected."
+    }), (0, import_web21.createComponent)(Divider, {
+      mt: 20,
+      mb: 20
+    }), (0, import_web20.memo)((() => {
+      const _c$ = (0, import_web20.memo)(() => !!currentlyPlaying());
+      return () => _c$() ? (0, import_web21.createComponent)(GameCard_default, {
+        get name() {
+          return currentlyPlaying();
+        },
+        type: "playing",
+        get local() {
+          var _a;
+          return ((_a = Object.values(previouslyPlayed()).find((p) => p.name === currentlyPlaying())) == null ? void 0 : _a.local) || false;
+        }
+      }) : (0, import_web21.createComponent)(GameCard_default, {
+        type: "none"
+      });
+    })()), (0, import_web21.createComponent)(Text, {
+      get ["class"]() {
+        return classes3.addIt;
+      },
+      get children() {
+        return ["Not seeing your game? ", (0, import_web20.memo)(() => (0, import_web20.memo)(() => !!isDorion())() ? (() => {
+          const _el$ = _tmpl$8.cloneNode(true);
+          _el$.$$click = addIt;
+          return _el$;
+        })() : "Adding it is unsupported.")];
+      }
+    }), (0, import_web21.createComponent)(Header, {
+      get ["class"]() {
+        return classes3.addhead;
+      },
+      children: "Added Games"
+    }), (0, import_web20.memo)(() => Object.values(previouslyPlayed()).map((game) => {
+      if (game.name === currentlyPlaying())
+        return null;
+      return (0, import_web21.createComponent)(GameCard_default, {
+        get name() {
+          return game.name;
+        },
+        get lastPlayed() {
+          return game.lastPlayed;
+        },
+        type: "played",
+        get local() {
+          return game == null ? void 0 : game.local;
+        }
+      });
+    }))];
+  };
+  function addIt() {
+    const [windows, setWindows] = createSignal2([]);
+    const [selected, setSelected] = createSignal2(0);
+    const [name, setName] = createSignal2("");
+    createEffect(() => __async(this, null, function* () {
+      const res = yield invoke("get_windows");
+      setWindows(res);
+    }));
+    openConfirmationModal({
+      body: () => (0, import_web20.memo)((() => {
+        const _c$2 = (0, import_web20.memo)(() => windows().length > 0);
+        return () => _c$2() ? [(0, import_web21.createComponent)(Dropdown, {
+          get options() {
+            return (
+              // Unique
+              windows().filter((w, i, a) => a.findIndex((w2) => w2.process_name === w.process_name) === i).map((w) => ({
+                label: w.process_name,
+                value: w.pid
+              }))
+            );
+          },
+          placeholder: "Select process...",
+          maxVisibleItems: 5,
+          closeOnSelect: true,
+          onChange: (e) => setSelected(Number(e.target.value))
+        }), (0, import_web21.createComponent)(Header, {
+          get ["class"]() {
+            return classes3.modalhead;
+          },
+          children: "Name to Display"
+        }), (0, import_web21.createComponent)(TextBox, {
+          get value() {
+            return name();
+          },
+          onInput: (v) => setName(v),
+          placeholder: "Enter the name to display..."
+        })] : (0, import_web21.createComponent)(Text, {
+          children: "Please wait..."
+        });
+      })()),
+      header: () => "Add a game",
+      confirmText: "Add",
+      type: "neutral"
+    }).then(() => {
+      var _a;
+      event.emit("add_detectable", {
+        exe: (_a = windows().find((w) => w.pid === selected())) == null ? void 0 : _a.process_name,
+        name: name()
+      });
+    }, () => {
+    });
+  }
+  (0, import_web19.delegateEvents)(["click"]);
+
+  // plugins/shelteRPC/index.tsx
+  var {
+    flux: {
+      dispatcher: FluxDispatcher
+    },
+    settings: {
+      registerSection
+    },
+    ui: {
+      showToast
+    },
+    plugin: {
+      store: store3
+    },
+    http
+  } = shelter;
+  var maybeUnregisterGameSetting = () => {
+  };
+  var cachedAssets = {};
+  var ws;
+  var apps = {};
+  store3.currentlyPlaying = "";
+  function lookupApp(appId) {
+    return __async(this, null, function* () {
+      var _a;
+      return ((_a = yield http.get(`/oauth2/applications/${appId}/rpc`)) == null ? void 0 : _a.body) || "Unknown";
+    });
+  }
+  var generateAssetId = (appId, asset) => __async(void 0, null, function* () {
+    var _a;
+    if (!cachedAssets[appId]) {
+      const resp = yield http.get(`/oauth2/applications/${appId}/assets`);
+      if (resp.status !== 200) {
+        console.log("Failed to fetch assets");
+      }
+      cachedAssets[appId] = resp.body;
+    }
+    const assetId = (_a = cachedAssets[appId].find((a) => a.name === asset)) == null ? void 0 : _a.id;
+    return assetId;
+  });
+  function handleMessage(e) {
+    return __async(this, null, function* () {
+      var _a, _b, _c, _d, _e;
+      const data = JSON.parse(e.data);
+      const assets = (_a = data.activity) == null ? void 0 : _a.assets;
+      if (data.cmd)
+        return handleCmd(data);
+      if (assets == null ? void 0 : assets.large_image)
+        assets.large_image = yield generateAssetId(data.activity.application_id, assets.large_image);
+      if (assets == null ? void 0 : assets.small_image)
+        assets.small_image = yield generateAssetId(data.activity.application_id, assets.small_image);
+      if (data.activity) {
+        const appId = data.activity.application_id;
+        apps[appId] || (apps[appId] = yield lookupApp(appId));
+        const app2 = apps[appId];
+        if (typeof app2 !== "string") {
+          (_b = data.activity).name || (_b.name = app2.name);
+        }
+        store3.currentlyPlaying = data.activity.name;
+        if (!store3.previouslyPlayed)
+          store3.previouslyPlayed = {};
+        if (!(data.activity.name in store3.previouslyPlayed)) {
+          store3.previouslyPlayed[data.activity.name] = {};
+        }
+        store3.previouslyPlayed[data.activity.name].name = data.activity.name;
+        store3.previouslyPlayed[data.activity.name].appid = data.activity.application_id;
+        store3.previouslyPlayed[data.activity.name].lastPlayed = Date.now();
+        store3.previouslyPlayed[data.activity.name].local = data.activity.application_id === "1337";
+      } else {
+        store3.currentlyPlaying = "";
+      }
+      if ((_e = (_d = store3 == null ? void 0 : store3.previouslyPlayed) == null ? void 0 : _d[(_c = data.activity) == null ? void 0 : _c.name]) == null ? void 0 : _e.hide)
+        return;
+      FluxDispatcher.dispatch(__spreadValues({
+        type: "LOCAL_ACTIVITY_UPDATE"
+      }, data));
+    });
+  }
+  var handleCmd = (payload) => __async(void 0, null, function* () {
+    switch (payload.cmd) {
+      case "INVITE_BROWSER":
+    }
+  });
+  var retry = (fn, times = 5, wait = 500) => __async(void 0, null, function* () {
+    let result;
+    for (let i = 0; i < times; i++) {
+      result = yield fn(i);
+      if (result)
+        return result;
+      yield new Promise((r) => setTimeout(r, wait));
+    }
+    return result;
+  });
+  var onLoad = () => __async(void 0, null, function* () {
+    if (ws && (ws == null ? void 0 : ws.close))
+      ws.close();
+    const connected = yield retry((curTry) => __async(void 0, null, function* () {
+      var _a;
+      ws = new WebSocket("ws://127.0.0.1:1337");
+      ws.onmessage = handleMessage;
+      ws.onerror = (e) => {
+        throw e;
+      };
+      yield new Promise((r) => setTimeout(r, 1e3));
+      if (ws.readyState !== WebSocket.OPEN) {
+        (_a = ws == null ? void 0 : ws.close) == null ? void 0 : _a.call(ws);
+        ws = null;
+        showToast({
+          title: "ShelteRPC",
+          content: `Unable to connect to ShelteRPC server (${curTry})`,
+          duration: 2e3
+        });
+        return false;
+      }
+      return true;
+    }), 3, 3e3);
+    maybeUnregisterGameSetting = registerSection("section", "shelterpc", "Registered Games", RegisteredGames_default);
+    if (!connected)
+      return;
+    ws.onclose = () => {
+      showToast({
+        title: "ShelteRPC",
+        content: "ShelteRPC server disconnected",
+        duration: 3e3
+      });
+    };
+    showToast({
+      title: "ShelteRPC",
+      content: "Connected to ShelteRPC server",
+      duration: 3e3
+    });
+  });
+  var onUnload = () => __async(void 0, null, function* () {
+    var _a;
+    if (ws == null ? void 0 : ws.close)
+      (_a = ws.close) == null ? void 0 : _a.call(ws);
+    if (maybeUnregisterGameSetting)
+      maybeUnregisterGameSetting();
+  });
+  return __toCommonJS(shelteRPC_exports);
+})();
