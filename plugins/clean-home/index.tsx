@@ -28,6 +28,13 @@ const components = [
     rules: `
       a[href="/shop"] { display: none; }
     `
+  },
+  {
+    name: 'Apps button',
+    description: 'Removes the Apps button from the text area',
+    rules: `
+      div[class*="channelAppLauncher"] { display: none; }
+    `
   }
 ]
 
