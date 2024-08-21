@@ -38,9 +38,9 @@ Blur images and videos in NSFW channels. Hover to unblur, the click-preview is a
 
 ![blurnsfw](https://github.com/SpikeHD/shelter-plugins/assets/25207995/921f5add-7d3e-4885-9d0b-a95b483caab6)
 
-## Clean Home
+## Declutter
 
-Remove unwanted components, such as the "Store" tab, from the Discord home screen.
+Hide unwanted components, such as the "Store" tab or "Apps" button, from Discord.
 
 `https://spikehd.github.io/shelter-plugins/clean-home`
 
