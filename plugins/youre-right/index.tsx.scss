@@ -28,6 +28,10 @@
     transform: scaleX(1) !important;
   }
 
+  span[class^=repliedTextPlaceholder] {
+    transform: scaleX(-1);
+  }
+
   [id^=message-content-] {
     max-width: 60%;
     text-align: right;
