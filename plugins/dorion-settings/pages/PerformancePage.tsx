@@ -185,7 +185,7 @@ export function PerformancePage() {
       </SwitchItem>
 
       <SwitchItem
-        value={state().client_plugins}
+        value={state().client_plugins || state().client_plugins === null || state().client_plugins === undefined}
         onChange={(v) => {
           if (!state().client_plugins && v) {
             // Just enable
