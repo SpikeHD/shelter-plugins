@@ -601,7 +601,7 @@
       children: "Disable Hardware Acceleration"
     }), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
-        return state().client_plugins;
+        return !!state().client_plugins;
       },
       onChange: (v) => {
         if (!state().client_plugins && v) {
