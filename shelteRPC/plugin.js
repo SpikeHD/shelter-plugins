@@ -680,7 +680,7 @@
         assets.small_image = yield generateAssetId(data.activity.application_id, assets.small_image);
       if (data.activity) {
         const appId = data.activity.application_id;
-        apps[appId] || (apps[appId] = yield lookupApp(appId));
+        apps[appId] || (apps[appId] = yield lookupApp(appId).catch(() => "Unknown"));
         const app2 = apps[appId];
         if (typeof app2 !== "string") {
           (_b = data.activity).name || (_b.name = app2.name);
