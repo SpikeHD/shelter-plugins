@@ -68,7 +68,7 @@ async function handleMessage(e: MessageEvent<string>) {
 
   if (data.activity) {
     const appId = data.activity.application_id
-    apps[appId] ||= await lookupApp(appId)
+    apps[appId] ||= await lookupApp(appId).catch(() => 'Unknown')
 
     const app = apps[appId]
     if (typeof app !== 'string') {
