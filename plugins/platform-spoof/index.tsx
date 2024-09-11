@@ -1,9 +1,14 @@
 import { createApi, webpackChunk } from '@cumjar/websmack'
 import { after } from 'spitroast'
+import { RadioGroup } from '../../components/RadioGroup'
 
 const {
   plugin: {
     store
+  },
+  ui: {
+    Header,
+    HeaderTags
   }
 } = shelter
 
@@ -34,27 +39,27 @@ after('getSuperProperties', s, (args, response) => {
   }
 })
 
-// Apparently this breaks all Shelter dialogs for some reason right now lolol
-// export const settings = () => (
-//   <>
-//     <Header tag={HeaderTags.H1}>Client Type</Header>
-//     <RadioGroup
-//       options={[
-//         {
-//           label: 'Desktop Client',
-//           value: 'desktop',
-//         },
-//         {
-//           label: 'Web',
-//           value: 'web',
-//         },
-//         {
-//           label: 'Mobile',
-//           value: 'mobile',
-//         },
-//       ]}
-//       value={store.clientType}
-//       onChange={(v) => (store.clientType = v)}
-//     />
-//   </>
-// )
+export const settings = () => (
+  <>
+    <Header tag={HeaderTags.H1}>Client Type</Header>
+    <br />
+    <RadioGroup
+      options={[
+        {
+          label: 'Desktop Client',
+          value: 'desktop',
+        },
+        {
+          label: 'Web',
+          value: 'web',
+        },
+        {
+          label: 'Mobile',
+          value: 'mobile',
+        },
+      ]}
+      selected={store.clientType ?? 'desktop'}
+      onChange={(v) => (store.clientType = v)}
+    />
+  </>
+)
