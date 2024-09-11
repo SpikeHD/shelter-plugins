@@ -1,6 +1,10 @@
 (() => {
+  var __create = Object.create;
   var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+  var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __propIsEnum = Object.prototype.propertyIsEnumerable;
   var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
@@ -15,6 +19,46 @@
       }
     return a;
   };
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // shltr-res-ns:solid-js/web
+  var require_web = __commonJS({
+    "shltr-res-ns:solid-js/web"(exports, module) {
+      module.exports = shelter.solidWeb;
+    }
+  });
+
+  // plugins/platform-spoof/index.tsx
+  var platform_spoof_exports = {};
+  __export(platform_spoof_exports, {
+    settings: () => settings
+  });
+  var import_web11 = __toESM(require_web());
+  var import_web12 = __toESM(require_web());
+  var import_web13 = __toESM(require_web());
 
   // node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/raid/webpackChunk.js
   var webpackChunk_default = (key) => {
@@ -254,10 +298,122 @@
   var instead = getPatchFunc_default("i");
   var after = getPatchFunc_default("a");
 
+  // components/RadioGroup.tsx
+  var import_web8 = __toESM(require_web(), 1);
+  var import_web9 = __toESM(require_web(), 1);
+  var import_web10 = __toESM(require_web(), 1);
+
+  // components/Radio.tsx
+  var import_web = __toESM(require_web(), 1);
+  var import_web2 = __toESM(require_web(), 1);
+  var import_web3 = __toESM(require_web(), 1);
+  var import_web4 = __toESM(require_web(), 1);
+  var import_web5 = __toESM(require_web(), 1);
+  var import_web6 = __toESM(require_web(), 1);
+  var import_web7 = __toESM(require_web(), 1);
+
+  // components/Radio.tsx.scss
+  var css = `._radio_1qi40_1{color:var(--interactive-normal);grid-template-columns:auto 1fr;box-sizing:border-box;border-radius:4px;display:grid;grid-gap:8px;align-items:center;padding:8px;background:var(--background-secondary);cursor:pointer}._radio_1qi40_1:not(:last-child){margin-bottom:8px}._radio_1qi40_1 ._radioButton_1qi40_1{height:20px;width:20px;border-radius:50%;border:2px solid var(--interactive-normal);margin:4px;position:relative}._radio_1qi40_1 ._radioButton_1qi40_1 ._radioButtonInner_1qi40_1{position:absolute;height:10px;width:10px;top:50%;left:50%;transform:translate(-50%, -50%);border-radius:50%;background:var(--interactive-normal)}._radio_1qi40_1:hover{background-color:var(--background-modifier-hover)}._radio_1qi40_1._selected_1qi40_1{color:var(--interactive-active);background-color:var(--background-modifier-selected)}._radio_1qi40_1._selected_1qi40_1 ._radioButton_1qi40_1{border-color:var(--interactive-active)}._radio_1qi40_1._selected_1qi40_1 ._radioButton_1qi40_1 ._radioButtonInner_1qi40_1{background:var(--interactive-active)}`;
+  var classes = {
+    "radio": "_radio_1qi40_1",
+    "radioButton": "_radioButton_1qi40_1",
+    "radioButtonInner": "_radioButtonInner_1qi40_1",
+    "selected": "_selected_1qi40_1"
+  };
+
+  // components/Radio.tsx
+  var _tmpl$ = /* @__PURE__ */ (0, import_web.template)(`<div><div></div></div>`, 4);
+  var _tmpl$2 = /* @__PURE__ */ (0, import_web.template)(`<div></div>`, 2);
+  var {
+    ui: {
+      injectCss,
+      Text
+    }
+  } = shelter;
+  var injectedCss = false;
+  var Radio = (props) => {
+    if (!injectedCss) {
+      injectedCss = true;
+      injectCss(css);
+    }
+    const onRadioClick = () => {
+      props.onClick(props.value);
+    };
+    return (() => {
+      const _el$ = _tmpl$.cloneNode(true), _el$2 = _el$.firstChild;
+      _el$.$$click = onRadioClick;
+      (0, import_web6.insert)(_el$2, (() => {
+        const _c$ = (0, import_web7.memo)(() => !!props.selected);
+        return () => _c$() && (() => {
+          const _el$3 = _tmpl$2.cloneNode(true);
+          (0, import_web4.effect)(() => (0, import_web3.className)(_el$3, classes.radioButtonInner));
+          return _el$3;
+        })();
+      })());
+      (0, import_web6.insert)(_el$, (0, import_web5.createComponent)(Text, {
+        get children() {
+          return props.label;
+        }
+      }), null);
+      (0, import_web4.effect)((_p$) => {
+        const _v$ = classes.radio + (props.selected ? ` ${classes.selected}` : ""), _v$2 = classes.radioButton;
+        _v$ !== _p$._v$ && (0, import_web3.className)(_el$, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web3.className)(_el$2, _p$._v$2 = _v$2);
+        return _p$;
+      }, {
+        _v$: void 0,
+        _v$2: void 0
+      });
+      return _el$;
+    })();
+  };
+  (0, import_web2.delegateEvents)(["click"]);
+
+  // components/RadioGroup.tsx
+  var _tmpl$3 = /* @__PURE__ */ (0, import_web8.template)(`<div></div>`, 2);
+  var {
+    ui: {
+      injectCss: injectCss2
+    }
+  } = shelter;
+  var injectedCss2 = false;
+  var RadioGroup = (props) => {
+    if (!injectedCss2) {
+      injectedCss2 = true;
+      injectCss2(css);
+    }
+    return (() => {
+      const _el$ = _tmpl$3.cloneNode(true);
+      (0, import_web10.insert)(_el$, () => props.options.map((o) => (0, import_web9.createComponent)(Radio, {
+        get ["class"]() {
+          return classes.radioGroupItem;
+        },
+        get label() {
+          return o.label;
+        },
+        get value() {
+          return o.value;
+        },
+        get onClick() {
+          return props.onChange;
+        },
+        get selected() {
+          return props.selected === o.value;
+        }
+      })));
+      return _el$;
+    })();
+  };
+
   // plugins/platform-spoof/index.tsx
+  var _tmpl$4 = /* @__PURE__ */ (0, import_web11.template)(`<br>`, 1);
   var {
     plugin: {
       store
+    },
+    ui: {
+      Header,
+      HeaderTags
     }
   } = shelter;
   var chunk = webpackChunk_default();
@@ -280,4 +436,27 @@
       browser: (_b = (_a = window.PlatformSpoof) == null ? void 0 : _a[store.clientType]) != null ? _b : window.PlatformSpoof.desktop
     });
   });
+  var settings = () => [(0, import_web13.createComponent)(Header, {
+    get tag() {
+      return HeaderTags.H1;
+    },
+    children: "Client Type"
+  }), _tmpl$4.cloneNode(true), (0, import_web13.createComponent)(RadioGroup, {
+    options: [{
+      label: "Desktop Client",
+      value: "desktop"
+    }, {
+      label: "Web",
+      value: "web"
+    }, {
+      label: "Mobile",
+      value: "mobile"
+    }],
+    get selected() {
+      var _a;
+      return (_a = store.clientType) != null ? _a : "desktop";
+    },
+    onChange: (v) => store.clientType = v
+  })];
+  return __toCommonJS(platform_spoof_exports);
 })();
