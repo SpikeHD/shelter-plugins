@@ -77,6 +77,12 @@
     rules: `
       div[class*="channelAppLauncher"] { display: none; }
     `
+  }, {
+    name: "Quest popout",
+    description: "Removes the Nitro quest popup",
+    rules: `
+      div[class*="questPromoContent"] { display: none; }
+    `
   }];
   var style = document.createElement("style");
   style.id = "clean-home-style";
