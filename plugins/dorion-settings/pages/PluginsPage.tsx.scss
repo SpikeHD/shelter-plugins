@@ -43,3 +43,18 @@
   margin-top: 16px;
   width: 100% !important;
 }
+
+.pbuttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  margin-top: 16px;
+
+  & button {
+    width: 30%;
+    padding: 18px;
+  }
+}

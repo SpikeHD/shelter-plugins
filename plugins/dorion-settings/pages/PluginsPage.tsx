@@ -23,6 +23,10 @@ export function PluginsPage() {
     invoke('open_plugins')
   }
 
+  const openExtensionsFolder = () => {
+    invoke('open_extensions')
+  }
+
   return (
     <>
       <Header tag={HeaderTags.H1} class={classes.tophead}>Client Mods & Plugins</Header>
@@ -47,7 +51,27 @@ export function PluginsPage() {
         }}
       />
 
-      <Button size={ButtonSizes.MEDIUM} class={classes.openButton} onClick={openPluginsFolder}>Open Plugins Folder</Button>
+      <div class={classes.pbuttons}>
+        <Button
+          size={ButtonSizes.MEDIUM}
+          class={classes.openButton}
+          style={{ width: '100%', padding: '18px' }}
+          grow={true}
+          onClick={openPluginsFolder}
+        >
+          Open Plugins Folder
+        </Button>
+
+        <Button
+          size={ButtonSizes.MEDIUM}
+          class={classes.openButton}
+          style={{ width: '100%', padding: '18px' }}
+          grow={true}
+          onClick={openExtensionsFolder}
+        >
+          Open Extensions Folder
+        </Button>
+      </div>
     </>
   )
 }
