@@ -3501,6 +3501,10 @@ ${content}</tr>
   // plugins/dorion-settings/pages/PluginsPage.tsx
   var import_web63 = __toESM(require_web(), 1);
   var import_web64 = __toESM(require_web(), 1);
+  var import_web65 = __toESM(require_web(), 1);
+  var import_web66 = __toESM(require_web(), 1);
+  var import_web67 = __toESM(require_web(), 1);
+  var import_web68 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/components/ClientModList.tsx
   var import_web49 = __toESM(require_web(), 1);
@@ -3845,19 +3849,21 @@ ${content}</tr>
   }
 
   // plugins/dorion-settings/pages/PluginsPage.tsx.scss
-  var css11 = `._tophead_143fh_1{margin-bottom:16px}._shead_143fh_1{margin-top:16px;margin-bottom:8px}._card_143fh_1{margin-bottom:16px}._fcard_143fh_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;color:var(--text-primary);padding:8px}._pcard_143fh_1{display:flex}._left16_143fh_1{margin-left:16px}._themeRow_143fh_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;height:42px}._openButton_143fh_1{margin-top:16px;width:100% !important}`;
+  var css11 = `._tophead_wetrv_1{margin-bottom:16px}._shead_wetrv_1{margin-top:16px;margin-bottom:8px}._card_wetrv_1{margin-bottom:16px}._fcard_wetrv_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;color:var(--text-primary);padding:8px}._pcard_wetrv_1{display:flex}._left16_wetrv_1{margin-left:16px}._themeRow_wetrv_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;height:42px}._openButton_wetrv_1{margin-top:16px;width:100% !important}._pbuttons_wetrv_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;margin-top:16px}._pbuttons_wetrv_1 button{width:30%;padding:18px}`;
   var classes11 = {
-    "tophead": "_tophead_143fh_1",
-    "shead": "_shead_143fh_1",
-    "card": "_card_143fh_1",
-    "fcard": "_fcard_143fh_1",
-    "pcard": "_pcard_143fh_1",
-    "left16": "_left16_143fh_1",
-    "themeRow": "_themeRow_143fh_1",
-    "openButton": "_openButton_143fh_1"
+    "tophead": "_tophead_wetrv_1",
+    "shead": "_shead_wetrv_1",
+    "card": "_card_wetrv_1",
+    "fcard": "_fcard_wetrv_1",
+    "pcard": "_pcard_wetrv_1",
+    "left16": "_left16_wetrv_1",
+    "themeRow": "_themeRow_wetrv_1",
+    "openButton": "_openButton_wetrv_1",
+    "pbuttons": "_pbuttons_wetrv_1"
   };
 
   // plugins/dorion-settings/pages/PluginsPage.tsx
+  var _tmpl$12 = /* @__PURE__ */ (0, import_web63.template)(`<div></div>`, 2);
   var {
     ui: {
       Header: Header5,
@@ -3880,7 +3886,10 @@ ${content}</tr>
     const openPluginsFolder = () => {
       invoke("open_plugins");
     };
-    return [(0, import_web64.createComponent)(Header5, {
+    const openExtensionsFolder = () => {
+      invoke("open_extensions");
+    };
+    return [(0, import_web68.createComponent)(Header5, {
       get tag() {
         return HeaderTags5.H1;
       },
@@ -3888,45 +3897,70 @@ ${content}</tr>
         return classes11.tophead;
       },
       children: "Client Mods & Plugins"
-    }), (0, import_web63.memo)((() => {
-      const _c$ = (0, import_web63.memo)(() => !!restartRequired());
-      return () => _c$() && (0, import_web64.createComponent)(WarningCard, {});
-    })()), (0, import_web64.createComponent)(Header5, {
+    }), (0, import_web67.memo)((() => {
+      const _c$ = (0, import_web67.memo)(() => !!restartRequired());
+      return () => _c$() && (0, import_web68.createComponent)(WarningCard, {});
+    })()), (0, import_web68.createComponent)(Header5, {
       get ["class"]() {
         return classes11.shead;
       },
       children: "Client Mods"
-    }), (0, import_web64.createComponent)(ClientModList, {
+    }), (0, import_web68.createComponent)(ClientModList, {
       onChange: () => {
         setRestartRequired(true);
       }
-    }), (0, import_web64.createComponent)(Header5, {
+    }), (0, import_web68.createComponent)(Header5, {
       get ["class"]() {
         return classes11.shead;
       },
       children: "Plugins"
-    }), (0, import_web64.createComponent)(PluginList, {
+    }), (0, import_web68.createComponent)(PluginList, {
       onChange: () => {
         setRestartRequired(true);
       }
-    }), (0, import_web64.createComponent)(Button5, {
-      get size() {
-        return ButtonSizes3.MEDIUM;
-      },
-      get ["class"]() {
-        return classes11.openButton;
-      },
-      onClick: openPluginsFolder,
-      children: "Open Plugins Folder"
-    })];
+    }), (() => {
+      const _el$ = _tmpl$12.cloneNode(true);
+      (0, import_web66.insert)(_el$, (0, import_web68.createComponent)(Button5, {
+        get size() {
+          return ButtonSizes3.MEDIUM;
+        },
+        get ["class"]() {
+          return classes11.openButton;
+        },
+        style: {
+          width: "100%",
+          padding: "18px"
+        },
+        grow: true,
+        onClick: openPluginsFolder,
+        children: "Open Plugins Folder"
+      }), null);
+      (0, import_web66.insert)(_el$, (0, import_web68.createComponent)(Button5, {
+        get size() {
+          return ButtonSizes3.MEDIUM;
+        },
+        get ["class"]() {
+          return classes11.openButton;
+        },
+        style: {
+          width: "100%",
+          padding: "18px"
+        },
+        grow: true,
+        onClick: openExtensionsFolder,
+        children: "Open Extensions Folder"
+      }), null);
+      (0, import_web65.effect)(() => (0, import_web64.className)(_el$, classes11.pbuttons));
+      return _el$;
+    })()];
   }
 
   // plugins/dorion-settings/pages/ThemesPage.tsx
-  var import_web70 = __toESM(require_web(), 1);
-  var import_web71 = __toESM(require_web(), 1);
-  var import_web72 = __toESM(require_web(), 1);
-  var import_web73 = __toESM(require_web(), 1);
   var import_web74 = __toESM(require_web(), 1);
+  var import_web75 = __toESM(require_web(), 1);
+  var import_web76 = __toESM(require_web(), 1);
+  var import_web77 = __toESM(require_web(), 1);
+  var import_web78 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ThemesPage.tsx.scss
   var css12 = `._tophead_1m9gf_1{margin-bottom:16px}._shead_1m9gf_1{margin-top:16px;margin-bottom:8px}._pbuttons_1m9gf_1{display:flex;gap:16px;margin-top:16px}._pbuttons_1m9gf_1 button{width:100% !important}`;
@@ -3937,13 +3971,13 @@ ${content}</tr>
   };
 
   // plugins/dorion-settings/util/theme.tsx
-  var import_web67 = __toESM(require_web(), 1);
-  var import_web68 = __toESM(require_web(), 1);
-  var import_web69 = __toESM(require_web(), 1);
+  var import_web71 = __toESM(require_web(), 1);
+  var import_web72 = __toESM(require_web(), 1);
+  var import_web73 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/util/modal.tsx
-  var import_web65 = __toESM(require_web(), 1);
-  var import_web66 = __toESM(require_web(), 1);
+  var import_web69 = __toESM(require_web(), 1);
+  var import_web70 = __toESM(require_web(), 1);
   var {
     ui: {
       ModalRoot,
@@ -3952,20 +3986,20 @@ ${content}</tr>
       ModalConfirmFooter
     }
   } = shelter;
-  var confirmModal = (props) => (0, import_web66.createComponent)(ModalRoot, {
+  var confirmModal = (props) => (0, import_web70.createComponent)(ModalRoot, {
     get children() {
-      return [(0, import_web66.createComponent)(ModalHeader, {
+      return [(0, import_web70.createComponent)(ModalHeader, {
         get close() {
           return props.onCancel;
         },
         get children() {
           return props.header;
         }
-      }), (0, import_web66.createComponent)(ModalBody, {
+      }), (0, import_web70.createComponent)(ModalBody, {
         get children() {
           return props.body;
         }
-      }), (0, import_web66.createComponent)(ModalConfirmFooter, {
+      }), (0, import_web70.createComponent)(ModalConfirmFooter, {
         get onConfirm() {
           return props.onConfirm;
         },
@@ -3986,7 +4020,7 @@ ${content}</tr>
   });
 
   // plugins/dorion-settings/util/theme.tsx
-  var _tmpl$12 = /* @__PURE__ */ (0, import_web67.template)(`<div><div></div></div>`, 4);
+  var _tmpl$13 = /* @__PURE__ */ (0, import_web71.template)(`<div><div></div></div>`, 4);
   var {
     ui: {
       openModal,
@@ -4003,8 +4037,8 @@ ${content}</tr>
     openModal((props) => confirmModal({
       header: "Install Theme",
       body: (() => {
-        const _el$ = _tmpl$12.cloneNode(true), _el$2 = _el$.firstChild;
-        (0, import_web68.insert)(_el$, (0, import_web69.createComponent)(TextBox2, {
+        const _el$ = _tmpl$13.cloneNode(true), _el$2 = _el$.firstChild;
+        (0, import_web72.insert)(_el$, (0, import_web73.createComponent)(TextBox2, {
           get value() {
             return link2();
           },
@@ -4015,7 +4049,7 @@ ${content}</tr>
         _el$2.style.setProperty("justify-content", "center");
         _el$2.style.setProperty("align-items", "center");
         _el$2.style.setProperty("height", "24px");
-        (0, import_web68.insert)(_el$2, (0, import_web69.createComponent)(Text6, {
+        (0, import_web72.insert)(_el$2, (0, import_web73.createComponent)(Text6, {
           get children() {
             return status();
           }
@@ -4065,7 +4099,7 @@ ${content}</tr>
   });
 
   // plugins/dorion-settings/pages/ThemesPage.tsx
-  var _tmpl$13 = /* @__PURE__ */ (0, import_web70.template)(`<div></div>`, 2);
+  var _tmpl$14 = /* @__PURE__ */ (0, import_web74.template)(`<div></div>`, 2);
   var {
     ui: {
       Header: Header6,
@@ -4108,7 +4142,7 @@ ${content}</tr>
     const openThemesFolder = () => {
       invoke("open_themes");
     };
-    return [(0, import_web74.createComponent)(Header6, {
+    return [(0, import_web78.createComponent)(Header6, {
       get tag() {
         return HeaderTags6.H1;
       },
@@ -4116,12 +4150,12 @@ ${content}</tr>
         return classes12.tophead;
       },
       children: "Themes"
-    }), (0, import_web74.createComponent)(Header6, {
+    }), (0, import_web78.createComponent)(Header6, {
       get ["class"]() {
         return classes12.shead;
       },
       children: "Theme"
-    }), (0, import_web74.createComponent)(Dropdown, {
+    }), (0, import_web78.createComponent)(Dropdown, {
       get value() {
         return settings().theme;
       },
@@ -4143,26 +4177,26 @@ ${content}</tr>
       get selected() {
         return settings().theme;
       }
-    }), (0, import_web74.createComponent)(Divider2, {
+    }), (0, import_web78.createComponent)(Divider2, {
       mt: 16,
       mb: 16
     }), (() => {
-      const _el$ = _tmpl$13.cloneNode(true);
-      (0, import_web73.insert)(_el$, (0, import_web74.createComponent)(Button6, {
+      const _el$ = _tmpl$14.cloneNode(true);
+      (0, import_web77.insert)(_el$, (0, import_web78.createComponent)(Button6, {
         get size() {
           return ButtonSizes4.MEDIUM;
         },
         onClick: installThemeModal,
         children: "Install Theme From Link"
       }), null);
-      (0, import_web73.insert)(_el$, (0, import_web74.createComponent)(Button6, {
+      (0, import_web77.insert)(_el$, (0, import_web78.createComponent)(Button6, {
         get size() {
           return ButtonSizes4.MEDIUM;
         },
         onClick: openThemesFolder,
         children: "Open Themes Folder"
       }), null);
-      (0, import_web72.effect)(() => (0, import_web71.className)(_el$, classes12.pbuttons));
+      (0, import_web76.effect)(() => (0, import_web75.className)(_el$, classes12.pbuttons));
       return _el$;
     })()];
   }
