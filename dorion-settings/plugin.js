@@ -3849,17 +3849,17 @@ ${content}</tr>
   }
 
   // plugins/dorion-settings/pages/PluginsPage.tsx.scss
-  var css11 = `._tophead_wetrv_1{margin-bottom:16px}._shead_wetrv_1{margin-top:16px;margin-bottom:8px}._card_wetrv_1{margin-bottom:16px}._fcard_wetrv_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;color:var(--text-primary);padding:8px}._pcard_wetrv_1{display:flex}._left16_wetrv_1{margin-left:16px}._themeRow_wetrv_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;height:42px}._openButton_wetrv_1{margin-top:16px;width:100% !important}._pbuttons_wetrv_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;margin-top:16px}._pbuttons_wetrv_1 button{width:30%;padding:18px}`;
+  var css11 = `._tophead_13ubk_1{margin-bottom:16px}._shead_13ubk_1{margin-top:16px;margin-bottom:8px}._card_13ubk_1{margin-bottom:16px}._fcard_13ubk_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;color:var(--text-primary);padding:8px}._pcard_13ubk_1{display:flex}._left16_13ubk_1{margin-left:16px}._themeRow_13ubk_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;height:42px}._openButton_13ubk_1{margin-top:16px;width:100% !important}._pbuttons_13ubk_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;width:100%;margin-top:16px}`;
   var classes11 = {
-    "tophead": "_tophead_wetrv_1",
-    "shead": "_shead_wetrv_1",
-    "card": "_card_wetrv_1",
-    "fcard": "_fcard_wetrv_1",
-    "pcard": "_pcard_wetrv_1",
-    "left16": "_left16_wetrv_1",
-    "themeRow": "_themeRow_wetrv_1",
-    "openButton": "_openButton_wetrv_1",
-    "pbuttons": "_pbuttons_wetrv_1"
+    "tophead": "_tophead_13ubk_1",
+    "shead": "_shead_13ubk_1",
+    "card": "_card_13ubk_1",
+    "fcard": "_fcard_13ubk_1",
+    "pcard": "_pcard_13ubk_1",
+    "left16": "_left16_13ubk_1",
+    "themeRow": "_themeRow_13ubk_1",
+    "openButton": "_openButton_13ubk_1",
+    "pbuttons": "_pbuttons_13ubk_1"
   };
 
   // plugins/dorion-settings/pages/PluginsPage.tsx
