@@ -1,5 +1,8 @@
 interface DorionSettings {
+  // Deprecated
   theme: string;
+
+  themes: string[];
   zoom: string;
   client_type: string;
   sys_tray: boolean;

@@ -1,5 +1,7 @@
 export const defaultConfig = {
   theme: 'none',
+
+  themes: [],
   zoom: '1.0',
   client_type: 'default',
   sys_tray: false,

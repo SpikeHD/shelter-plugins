@@ -18,8 +18,8 @@ export const Dropdown: Component<{
     label: string;
     value: string;
   }[];
-  selected?: string;
   disabled?: boolean;
+  immutable?: boolean;
 }> = (props) => {
   if (!injectedCss) {
     injectedCss = true
@@ -30,15 +30,22 @@ export const Dropdown: Component<{
     <div class={classes.dcontainer} style={props.style}>
       <select
         class={classes.ddown}
-        value={props.value}
         placeholder={props.placeholder}
         id={props.id}
         aria-label={props['aria-label']}
-        onChange={props.onChange}
+        onChange={(e) => {
+          props.onChange(e)
+          
+          if (props.immutable) {
+            e.preventDefault()
+            e.stopPropagation()
+            e.target.value = props.value
+          }
+        }}
         disabled={props.disabled}
       >
         {props.options?.map((o) => (
-          <option value={o.value} selected={o.value === props?.selected}>
+          <option value={o.value} selected={o.value === props.value}>
             {o.label}
           </option>
         ))}

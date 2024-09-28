@@ -53,6 +53,8 @@ async function handleMessage(e: MessageEvent<string>) {
   const data = JSON.parse(e.data)
   const assets = data.activity?.assets
 
+  console.log(data)
+
   if (data.cmd) return handleCmd(data)
 
   if (assets?.large_image)
