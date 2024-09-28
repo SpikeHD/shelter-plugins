@@ -79,15 +79,15 @@
   __export(dorion_custom_keybinds_exports, {
     onUnload: () => onUnload
   });
-  var import_web34 = __toESM(require_web());
+  var import_web33 = __toESM(require_web());
 
   // plugins/dorion-custom-keybinds/components/Keybinds.tsx
+  var import_web27 = __toESM(require_web());
   var import_web28 = __toESM(require_web());
   var import_web29 = __toESM(require_web());
   var import_web30 = __toESM(require_web());
   var import_web31 = __toESM(require_web());
   var import_web32 = __toESM(require_web());
-  var import_web33 = __toESM(require_web());
 
   // api/dorion.ts
   var dorion_default = {
@@ -237,6 +237,7 @@
   };
 
   // plugins/dorion-custom-keybinds/components/KeybindSection.tsx
+  var import_web19 = __toESM(require_web());
   var import_web20 = __toESM(require_web());
   var import_web21 = __toESM(require_web());
   var import_web22 = __toESM(require_web());
@@ -244,7 +245,6 @@
   var import_web24 = __toESM(require_web());
   var import_web25 = __toESM(require_web());
   var import_web26 = __toESM(require_web());
-  var import_web27 = __toESM(require_web());
 
   // plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
   var css2 = `._keybindRoot_1bqau_1{display:flex;flex-direction:column;width:100%;margin-bottom:16px}._keybindSection_1bqau_1{width:100%;display:flex;flex-direction:row;justify-content:space-between;align-items:center}._actionSection_1bqau_1,._keybindArea_1bqau_1{display:flex;flex-direction:column}._actionSection_1bqau_1{width:50%}._removeButton_1bqau_1{width:10%;height:20px;display:flex;justify-content:center;align-items:center;opacity:0;transition:all .1s ease-in-out;cursor:pointer}._keybindRoot_1bqau_1:hover ._removeButton_1bqau_1{opacity:1}._keybindArea_1bqau_1{width:50%}._note_1bqau_1{margin-top:8px;color:var(--header-secondary) !important;font-size:14px;line-height:20px;font-weight:400}`;
@@ -265,7 +265,6 @@
   var import_web8 = __toESM(require_web(), 1);
   var import_web9 = __toESM(require_web(), 1);
   var import_web10 = __toESM(require_web(), 1);
-  var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
   var css3 = `._ddown_1njos_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_1njos_1{position:relative;width:100%}._dsarrow_1njos_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_1njos_1 path{fill:var(--header-secondary)}`;
@@ -302,23 +301,30 @@
     }
     return (() => {
       const _el$ = _tmpl$2.cloneNode(true), _el$2 = _el$.firstChild;
-      (0, import_web10.addEventListener)(_el$2, "change", props.onChange);
-      (0, import_web9.insert)(_el$2, () => {
+      _el$2.addEventListener("change", (e) => {
+        props.onChange(e);
+        if (props.immutable) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.target.value = props.value;
+        }
+      });
+      (0, import_web10.insert)(_el$2, () => {
         var _a;
         return (_a = props.options) == null ? void 0 : _a.map((o) => (() => {
           const _el$3 = _tmpl$22.cloneNode(true);
-          (0, import_web9.insert)(_el$3, () => o.label);
-          (0, import_web11.effect)(() => _el$3.selected = o.value === (props == null ? void 0 : props.selected));
-          (0, import_web11.effect)(() => _el$3.value = o.value);
+          (0, import_web10.insert)(_el$3, () => o.label);
+          (0, import_web8.effect)(() => _el$3.selected = o.value === props.value);
+          (0, import_web8.effect)(() => _el$3.value = o.value);
           return _el$3;
         })());
       });
-      (0, import_web9.insert)(_el$, (0, import_web8.createComponent)(SelectArrow, {
+      (0, import_web10.insert)(_el$, (0, import_web9.createComponent)(SelectArrow, {
         get ["class"]() {
           return classes3.dsarrow;
         }
       }), null);
-      (0, import_web11.effect)((_p$) => {
+      (0, import_web8.effect)((_p$) => {
         const _v$ = classes3.dcontainer, _v$2 = props.style, _v$3 = classes3.ddown, _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
         _v$ !== _p$._v$ && (0, import_web7.className)(_el$, _p$._v$ = _v$);
         _p$._v$2 = (0, import_web6.style)(_el$, _v$2, _p$._v$2);
@@ -337,12 +343,12 @@
         _v$6: void 0,
         _v$7: void 0
       });
-      (0, import_web11.effect)(() => _el$2.value = props.value);
       return _el$;
     })();
   };
 
   // components/KeybindInput.tsx
+  var import_web11 = __toESM(require_web(), 1);
   var import_web12 = __toESM(require_web(), 1);
   var import_web13 = __toESM(require_web(), 1);
   var import_web14 = __toESM(require_web(), 1);
@@ -350,7 +356,6 @@
   var import_web16 = __toESM(require_web(), 1);
   var import_web17 = __toESM(require_web(), 1);
   var import_web18 = __toESM(require_web(), 1);
-  var import_web19 = __toESM(require_web(), 1);
 
   // components/KeybindInput.tsx.scss
   var css4 = `._keybindContainer_z5eo4_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;height:40px;border-radius:4px;background:var(--input-background);color:var(--text-normal);border:1px solid rgba(0,0,0,0);padding:4px;transition:all .2s}._keybindContainer_z5eo4_1:hover{border:1px solid var(--status-danger)}._recording_z5eo4_1{border:1px solid var(--status-danger);animation:_pulse_z5eo4_1 1s infinite}._recording_z5eo4_1 ._keybindButton_z5eo4_1{background:hsl(var(--red-400-hsl)/0.1);color:var(--status-danger)}._recording_z5eo4_1 ._keybindButton_z5eo4_1:hover{background:hsl(var(--red-400-hsl)/0.2)}._keybindInput_z5eo4_1{background:rgba(0,0,0,0);display:flex;align-items:center}._keybindPlaceholder_z5eo4_1{color:var(--text-muted) !important}._keybindButton_z5eo4_1{height:30px;width:50%;margin:0;padding:4px;border-radius:4px;display:flex;align-items:center;background:var(--button-secondary-background);color:var(--white-500);border:1px solid rgba(0,0,0,0);cursor:pointer;transition:all .2s}._keybindButton_z5eo4_1:hover{background:var(--button-secondary-background-hover)}@keyframes _pulse_z5eo4_1{0%{box-shadow:0 0 10px 0px hsl(var(--red-400-hsl)/0.5)}50%{box-shadow:0 0 10px 4px hsl(var(--red-400-hsl)/0.5)}100%{box-shadow:0 0 10px 0px hsl(var(--red-400-hsl)/0.5)}}`;
@@ -364,7 +369,7 @@
   };
 
   // components/KeybindInput.tsx
-  var _tmpl$3 = /* @__PURE__ */ (0, import_web12.template)(`<div><div></div><div></div></div>`, 6);
+  var _tmpl$3 = /* @__PURE__ */ (0, import_web11.template)(`<div><div></div><div></div></div>`, 6);
   var {
     solid: {
       createSignal,
@@ -434,12 +439,12 @@
     };
     return (() => {
       const _el$ = _tmpl$3.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling;
-      (0, import_web17.insert)(_el$2, (0, import_web18.createComponent)(Text, {
+      (0, import_web16.insert)(_el$2, (0, import_web17.createComponent)(Text, {
         get ["class"]() {
           return !keybind().length ? classes4.keybindPlaceholder : "";
         },
         get children() {
-          return (0, import_web19.memo)(() => !!keybind().length)() ? keybind().map((k, i) => {
+          return (0, import_web18.memo)(() => !!keybind().length)() ? keybind().map((k, i) => {
             return i === keybind().length - 1 ? k.name : k.name + " + ";
           }) : "No Keybind Set";
         }
@@ -449,17 +454,17 @@
           return;
         setRecordingState();
       };
-      (0, import_web17.insert)(_el$3, (0, import_web18.createComponent)(Text, {
+      (0, import_web16.insert)(_el$3, (0, import_web17.createComponent)(Text, {
         get children() {
           return recording() ? "Stop Recording" : "Edit Keybind";
         }
       }));
-      (0, import_web16.effect)((_p$) => {
+      (0, import_web15.effect)((_p$) => {
         const _v$ = classes4.keybindContainer + " " + (recording() ? classes4.recording : null), _v$2 = props.style, _v$3 = classes4.keybindInput, _v$4 = classes4.keybindButton + " " + (props.disabled ? classes4.disabled : "");
-        _v$ !== _p$._v$ && (0, import_web15.className)(_el$, _p$._v$ = _v$);
-        _p$._v$2 = (0, import_web14.style)(_el$, _v$2, _p$._v$2);
-        _v$3 !== _p$._v$3 && (0, import_web15.className)(_el$2, _p$._v$3 = _v$3);
-        _v$4 !== _p$._v$4 && (0, import_web15.className)(_el$3, _p$._v$4 = _v$4);
+        _v$ !== _p$._v$ && (0, import_web14.className)(_el$, _p$._v$ = _v$);
+        _p$._v$2 = (0, import_web13.style)(_el$, _v$2, _p$._v$2);
+        _v$3 !== _p$._v$3 && (0, import_web14.className)(_el$2, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web14.className)(_el$3, _p$._v$4 = _v$4);
         return _p$;
       }, {
         _v$: void 0,
@@ -470,11 +475,11 @@
       return _el$;
     })();
   }
-  (0, import_web13.delegateEvents)(["click"]);
+  (0, import_web12.delegateEvents)(["click"]);
 
   // plugins/dorion-custom-keybinds/components/KeybindSection.tsx
-  var _tmpl$4 = /* @__PURE__ */ (0, import_web20.template)(`<svg width="256" height="256" viewBox="0 0 256 256" style="height: 100%"><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 11 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 c -4.295 -4.296 -4.295 -11.261 0 -15.557 l 68 -68 c 4.297 -4.296 11.26 -4.296 15.557 0 c 4.296 4.296 4.296 11.261 0 15.557 l -68 68 C 16.63 88.926 13.815 90 11 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 79 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 l -68 -68 c -4.295 -4.296 -4.295 -11.261 0 -15.557 c 4.296 -4.296 11.261 -4.296 15.557 0 l 68 68 c 4.296 4.296 4.296 11.261 0 15.557 C 84.63 88.926 81.815 90 79 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>`, 8);
-  var _tmpl$23 = /* @__PURE__ */ (0, import_web20.template)(`<div><div><div></div><div></div><div></div></div></div>`, 10);
+  var _tmpl$4 = /* @__PURE__ */ (0, import_web19.template)(`<svg width="256" height="256" viewBox="0 0 256 256" style="height: 100%"><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 11 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 c -4.295 -4.296 -4.295 -11.261 0 -15.557 l 68 -68 c 4.297 -4.296 11.26 -4.296 15.557 0 c 4.296 4.296 4.296 11.261 0 15.557 l -68 68 C 16.63 88.926 13.815 90 11 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 79 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 l -68 -68 c -4.295 -4.296 -4.295 -11.261 0 -15.557 c 4.296 -4.296 11.261 -4.296 15.557 0 l 68 68 c 4.296 4.296 4.296 11.261 0 15.557 C 84.63 88.926 81.815 90 79 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>`, 8);
+  var _tmpl$23 = /* @__PURE__ */ (0, import_web19.template)(`<div><div><div></div><div></div><div></div></div></div>`, 10);
   var {
     ui: {
       Text: Text2,
@@ -488,7 +493,7 @@
   } = shelter;
   var RemoveIcon = (props) => (() => {
     const _el$ = _tmpl$4.cloneNode(true);
-    (0, import_web27.addEventListener)(_el$, "click", props.onClick, true);
+    (0, import_web26.addEventListener)(_el$, "click", props.onClick, true);
     return _el$;
   })();
   var injectedCss3 = false;
@@ -502,13 +507,13 @@
     const old = props.keybind;
     return (() => {
       const _el$2 = _tmpl$23.cloneNode(true), _el$3 = _el$2.firstChild, _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling, _el$6 = _el$5.nextSibling;
-      (0, import_web24.insert)(_el$4, (0, import_web26.createComponent)(Header, {
+      (0, import_web23.insert)(_el$4, (0, import_web25.createComponent)(Header, {
         get size() {
           return HeaderTags.H5;
         },
         children: "Action"
       }), null);
-      (0, import_web24.insert)(_el$4, (0, import_web26.createComponent)(Dropdown, {
+      (0, import_web23.insert)(_el$4, (0, import_web25.createComponent)(Dropdown, {
         get value() {
           var _a2;
           return props.internalName || ((_a2 = props.keybind) == null ? void 0 : _a2.key) || props.keybindActionTypes[0].value;
@@ -525,13 +530,13 @@
         },
         style: "width: 90%"
       }), null);
-      (0, import_web24.insert)(_el$5, (0, import_web26.createComponent)(Header, {
+      (0, import_web23.insert)(_el$5, (0, import_web25.createComponent)(Header, {
         get size() {
           return HeaderTags.H5;
         },
         children: "Keybind"
       }), null);
-      (0, import_web24.insert)(_el$5, (0, import_web26.createComponent)(KeybindInput, {
+      (0, import_web23.insert)(_el$5, (0, import_web25.createComponent)(KeybindInput, {
         get initialKeybind() {
           return props.keybind.keys || [];
         },
@@ -543,10 +548,10 @@
         },
         style: "width: 100%"
       }), null);
-      (0, import_web24.insert)(_el$6, (0, import_web26.createComponent)(RemoveIcon, {
+      (0, import_web23.insert)(_el$6, (0, import_web25.createComponent)(RemoveIcon, {
         onClick: () => props.onKeybindRemove(old)
       }));
-      (0, import_web24.insert)(_el$2, (0, import_web26.createComponent)(Text2, {
+      (0, import_web23.insert)(_el$2, (0, import_web25.createComponent)(Text2, {
         get ["class"]() {
           return classes2.note;
         },
@@ -554,13 +559,13 @@
           return props.keybindDescriptions[keybindType()];
         }
       }), null);
-      (0, import_web23.effect)((_p$) => {
+      (0, import_web22.effect)((_p$) => {
         const _v$ = classes2.keybindRoot, _v$2 = classes2.keybindSection, _v$3 = classes2.actionSection, _v$4 = classes2.keybindArea, _v$5 = classes2.removeButton;
-        _v$ !== _p$._v$ && (0, import_web22.className)(_el$2, _p$._v$ = _v$);
-        _v$2 !== _p$._v$2 && (0, import_web22.className)(_el$3, _p$._v$2 = _v$2);
-        _v$3 !== _p$._v$3 && (0, import_web22.className)(_el$4, _p$._v$3 = _v$3);
-        _v$4 !== _p$._v$4 && (0, import_web22.className)(_el$5, _p$._v$4 = _v$4);
-        _v$5 !== _p$._v$5 && (0, import_web22.className)(_el$6, _p$._v$5 = _v$5);
+        _v$ !== _p$._v$ && (0, import_web21.className)(_el$2, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web21.className)(_el$3, _p$._v$2 = _v$2);
+        _v$3 !== _p$._v$3 && (0, import_web21.className)(_el$4, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web21.className)(_el$5, _p$._v$4 = _v$4);
+        _v$5 !== _p$._v$5 && (0, import_web21.className)(_el$6, _p$._v$5 = _v$5);
         return _p$;
       }, {
         _v$: void 0,
@@ -572,11 +577,11 @@
       return _el$2;
     })();
   }
-  (0, import_web21.delegateEvents)(["click"]);
+  (0, import_web20.delegateEvents)(["click"]);
 
   // plugins/dorion-custom-keybinds/components/Keybinds.tsx
-  var _tmpl$5 = /* @__PURE__ */ (0, import_web28.template)(`<div><div><div></div></div><div></div></div>`, 8);
-  var _tmpl$24 = /* @__PURE__ */ (0, import_web28.template)(`<div></div>`, 2);
+  var _tmpl$5 = /* @__PURE__ */ (0, import_web27.template)(`<div><div><div></div></div><div></div></div>`, 8);
+  var _tmpl$24 = /* @__PURE__ */ (0, import_web27.template)(`<div></div>`, 2);
   var {
     ui: {
       Button,
@@ -615,14 +620,14 @@
     };
     return (() => {
       const _el$ = _tmpl$5.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$2.nextSibling;
-      (0, import_web31.insert)(_el$, (() => {
-        const _c$ = (0, import_web33.memo)(() => !!keybindEnabledChanged());
+      (0, import_web30.insert)(_el$, (() => {
+        const _c$ = (0, import_web32.memo)(() => !!keybindEnabledChanged());
         return () => _c$() && (() => {
           const _el$5 = _tmpl$24.cloneNode(true);
-          (0, import_web31.insert)(_el$5, (0, import_web32.createComponent)(Text3, {
+          (0, import_web30.insert)(_el$5, (0, import_web31.createComponent)(Text3, {
             children: "Enabling or disabling global keybinds requires a restart to take effect."
           }), null);
-          (0, import_web31.insert)(_el$5, (0, import_web32.createComponent)(Button, {
+          (0, import_web30.insert)(_el$5, (0, import_web31.createComponent)(Button, {
             get ["class"]() {
               return classes.keybindRestartButton;
             },
@@ -632,14 +637,14 @@
             },
             children: "Restart"
           }), null);
-          (0, import_web30.effect)(() => (0, import_web29.className)(_el$5, classes.keybindRestartCard));
+          (0, import_web29.effect)(() => (0, import_web28.className)(_el$5, classes.keybindRestartCard));
           return _el$5;
         })();
       })(), _el$2);
-      (0, import_web31.insert)(_el$3, (0, import_web32.createComponent)(Text3, {
+      (0, import_web30.insert)(_el$3, (0, import_web31.createComponent)(Text3, {
         children: "Global keybinds are an experimental feature!"
       }));
-      (0, import_web31.insert)(_el$2, (0, import_web32.createComponent)(Button, {
+      (0, import_web30.insert)(_el$2, (0, import_web31.createComponent)(Button, {
         get ["class"]() {
           return classes.keybindsButton;
         },
@@ -655,7 +660,7 @@
         },
         children: "Add Keybind"
       }), null);
-      (0, import_web31.insert)(_el$4, (0, import_web32.createComponent)(SwitchItem, {
+      (0, import_web30.insert)(_el$4, (0, import_web31.createComponent)(SwitchItem, {
         get value() {
           return keybindsEnabled();
         },
@@ -671,7 +676,7 @@
         note: "Enable or disable global keybinds. Requires restart.",
         children: "Enable Global Keybinds"
       }));
-      (0, import_web31.insert)(_el$, () => keybindSections().map((section, idx) => (0, import_web32.createComponent)(KeybindSection, {
+      (0, import_web30.insert)(_el$, () => keybindSections().map((section, idx) => (0, import_web31.createComponent)(KeybindSection, {
         key: idx,
         get keybindActionTypes() {
           return (
@@ -705,12 +710,12 @@
           updateKeybinds(keybindSections().filter((bind) => bind.key !== keybind.key));
         }
       })), null);
-      (0, import_web30.effect)((_p$) => {
+      (0, import_web29.effect)((_p$) => {
         const _v$ = classes.keybindSection, _v$2 = classes.keybindsHeader, _v$3 = classes.keybindsBanner, _v$4 = classes.keybindsSwitch;
-        _v$ !== _p$._v$ && (0, import_web29.className)(_el$, _p$._v$ = _v$);
-        _v$2 !== _p$._v$2 && (0, import_web29.className)(_el$2, _p$._v$2 = _v$2);
-        _v$3 !== _p$._v$3 && (0, import_web29.className)(_el$3, _p$._v$3 = _v$3);
-        _v$4 !== _p$._v$4 && (0, import_web29.className)(_el$4, _p$._v$4 = _v$4);
+        _v$ !== _p$._v$ && (0, import_web28.className)(_el$, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web28.className)(_el$2, _p$._v$2 = _v$2);
+        _v$3 !== _p$._v$3 && (0, import_web28.className)(_el$3, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web28.className)(_el$4, _p$._v$4 = _v$4);
         return _p$;
       }, {
         _v$: void 0,
@@ -915,9 +920,9 @@
       divider.style.display = "none";
       const defaultKeybinds = keybindsArea.parentElement.parentElement.querySelector('div[class*="marginTop"]');
       defaultKeybinds.style.marginTop = "0";
-      child = keybindsArea.appendChild((0, import_web34.createComponent)(ReactiveRoot, {
+      child = keybindsArea.appendChild((0, import_web33.createComponent)(ReactiveRoot, {
         get children() {
-          return (0, import_web34.createComponent)(
+          return (0, import_web33.createComponent)(
             Keybinds,
             {
               get keybindActionTypes() {
