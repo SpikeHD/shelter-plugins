@@ -1,11 +1,3 @@
-const {
-  flux: {
-    stores: {
-      UserStore,
-    }
-  }
-} = shelter
-
 export const keybindActions: KeybindActionsInternal = {
   'UNASSIGNED': {},
   'TOGGLE_MUTE': {

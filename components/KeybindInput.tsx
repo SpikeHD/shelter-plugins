@@ -1,4 +1,3 @@
-import { keyToStr, strToKey } from '../util/keyUtil.js'
 import { css, classes } from './KeybindInput.tsx.scss'
 
 const {

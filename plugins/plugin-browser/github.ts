@@ -135,7 +135,7 @@ export async function getAllPlugins() {
       } satisfies RepoInfo
     } catch(e) {
       console.error(e)
-      return null;
+      return null
     }
   }))
 
