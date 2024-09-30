@@ -223,12 +223,12 @@
   var apiWindow = backendObj.apiWindow;
 
   // plugins/dorion-settings/pages/PerformancePage.tsx
-  var import_web17 = __toESM(require_web(), 1);
   var import_web18 = __toESM(require_web(), 1);
   var import_web19 = __toESM(require_web(), 1);
   var import_web20 = __toESM(require_web(), 1);
   var import_web21 = __toESM(require_web(), 1);
   var import_web22 = __toESM(require_web(), 1);
+  var import_web23 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/PerformancePage.tsx.scss
   var css = `._tophead_1k6ld_1{margin-bottom:16px}._shead_1k6ld_1{margin-top:16px;margin-bottom:8px}._stext_1k6ld_1{color:var(--header-secondary) !important;font-size:14px;margin:12px 0}._pbuttons_1k6ld_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;width:100%;margin-top:16px}`;
@@ -247,13 +247,15 @@
   var import_web8 = __toESM(require_web(), 1);
   var import_web9 = __toESM(require_web(), 1);
   var import_web10 = __toESM(require_web(), 1);
+  var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var css2 = `._ddown_1njos_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_1njos_1{position:relative;width:100%}._dsarrow_1njos_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_1njos_1 path{fill:var(--header-secondary)}`;
+  var css2 = `._ddown_9nenk_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_9nenk_1{position:relative;width:100%}._dsarrow_9nenk_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_9nenk_1 path{fill:var(--header-secondary)}._ddownplaceholder_9nenk_1{color:var(--header-secondary)}`;
   var classes2 = {
-    "ddown": "_ddown_1njos_1",
-    "dcontainer": "_dcontainer_1njos_1",
-    "dsarrow": "_dsarrow_1njos_1"
+    "ddown": "_ddown_9nenk_1",
+    "dcontainer": "_dcontainer_9nenk_1",
+    "dsarrow": "_dsarrow_9nenk_1",
+    "ddownplaceholder": "_ddownplaceholder_9nenk_1"
   };
 
   // components/SelectArrow.tsx
@@ -269,7 +271,8 @@
 
   // components/Dropdown.tsx
   var _tmpl$2 = /* @__PURE__ */ (0, import_web4.template)(`<div><select></select></div>`, 4);
-  var _tmpl$22 = /* @__PURE__ */ (0, import_web4.template)(`<option></option>`, 2);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web4.template)(`<option value=""></option>`, 2);
+  var _tmpl$3 = /* @__PURE__ */ (0, import_web4.template)(`<option></option>`, 2);
   var {
     ui: {
       injectCss
@@ -291,23 +294,40 @@
           e.target.value = props.value;
         }
       });
+      (0, import_web10.insert)(_el$2, (() => {
+        const _c$ = (0, import_web11.memo)(() => !!props.placeholder);
+        return () => _c$() && (() => {
+          const _el$3 = _tmpl$22.cloneNode(true);
+          (0, import_web10.insert)(_el$3, () => props.placeholder);
+          (0, import_web8.effect)((_p$) => {
+            const _v$8 = classes2.ddownplaceholder, _v$9 = props.value === "";
+            _v$8 !== _p$._v$8 && (0, import_web7.className)(_el$3, _p$._v$8 = _v$8);
+            _v$9 !== _p$._v$9 && (_el$3.selected = _p$._v$9 = _v$9);
+            return _p$;
+          }, {
+            _v$8: void 0,
+            _v$9: void 0
+          });
+          return _el$3;
+        })();
+      })(), null);
       (0, import_web10.insert)(_el$2, () => {
         var _a;
         return (_a = props.options) == null ? void 0 : _a.map((o) => (() => {
-          const _el$3 = _tmpl$22.cloneNode(true);
-          (0, import_web10.insert)(_el$3, () => o.label);
-          (0, import_web8.effect)(() => _el$3.selected = o.value === props.value);
-          (0, import_web8.effect)(() => _el$3.value = o.value);
-          return _el$3;
+          const _el$4 = _tmpl$3.cloneNode(true);
+          (0, import_web10.insert)(_el$4, () => o.label);
+          (0, import_web8.effect)(() => _el$4.selected = o.value === props.value);
+          (0, import_web8.effect)(() => _el$4.value = o.value);
+          return _el$4;
         })());
-      });
+      }, null);
       (0, import_web10.insert)(_el$, (0, import_web9.createComponent)(SelectArrow, {
         get ["class"]() {
           return classes2.dsarrow;
         }
       }), null);
       (0, import_web8.effect)((_p$) => {
-        const _v$ = classes2.dcontainer, _v$2 = props.style, _v$3 = classes2.ddown, _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
+        const _v$ = classes2.dcontainer, _v$2 = props.style, _v$3 = classes2.ddown + " " + (props.placeholder && props.value === "" ? classes2.ddownplaceholder : ""), _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
         _v$ !== _p$._v$ && (0, import_web7.className)(_el$, _p$._v$ = _v$);
         _p$._v$2 = (0, import_web6.style)(_el$, _v$2, _p$._v$2);
         _v$3 !== _p$._v$3 && (0, import_web7.className)(_el$2, _p$._v$3 = _v$3);
@@ -330,14 +350,14 @@
   };
 
   // plugins/dorion-settings/components/WarningCard.tsx
-  var import_web16 = __toESM(require_web(), 1);
+  var import_web17 = __toESM(require_web(), 1);
 
   // components/Card.tsx
-  var import_web11 = __toESM(require_web(), 1);
   var import_web12 = __toESM(require_web(), 1);
   var import_web13 = __toESM(require_web(), 1);
   var import_web14 = __toESM(require_web(), 1);
   var import_web15 = __toESM(require_web(), 1);
+  var import_web16 = __toESM(require_web(), 1);
 
   // components/Card.tsx.scss
   var css3 = `._card_1uk2u_1{border:1px solid var(--background-tertiary);border-radius:4px}`;
@@ -346,7 +366,7 @@
   };
 
   // components/Card.tsx
-  var _tmpl$3 = /* @__PURE__ */ (0, import_web11.template)(`<div></div>`, 2);
+  var _tmpl$4 = /* @__PURE__ */ (0, import_web12.template)(`<div></div>`, 2);
   var {
     ui: {
       injectCss: injectCss2
@@ -359,12 +379,12 @@
       injectCss2(css3);
     }
     return (() => {
-      const _el$ = _tmpl$3.cloneNode(true);
-      (0, import_web15.insert)(_el$, () => props.children);
-      (0, import_web14.effect)((_p$) => {
+      const _el$ = _tmpl$4.cloneNode(true);
+      (0, import_web16.insert)(_el$, () => props.children);
+      (0, import_web15.effect)((_p$) => {
         const _v$ = classes3.card + ` ${props.class}`, _v$2 = props.style;
-        _v$ !== _p$._v$ && (0, import_web13.className)(_el$, _p$._v$ = _v$);
-        _p$._v$2 = (0, import_web12.style)(_el$, _v$2, _p$._v$2);
+        _v$ !== _p$._v$ && (0, import_web14.className)(_el$, _p$._v$ = _v$);
+        _p$._v$2 = (0, import_web13.style)(_el$, _v$2, _p$._v$2);
         return _p$;
       }, {
         _v$: void 0,
@@ -395,7 +415,7 @@
       injectedCss3 = true;
       injectCss3(css4);
     }
-    return (0, import_web16.createComponent)(Card, {
+    return (0, import_web17.createComponent)(Card, {
       style: {
         marginTop: "1rem"
       },
@@ -403,9 +423,9 @@
         return classes4.restartCard;
       },
       get children() {
-        return [(0, import_web16.createComponent)(Text, {
+        return [(0, import_web17.createComponent)(Text, {
           children: "One or more settings have been changed that require a restart to take effect."
-        }), (0, import_web16.createComponent)(Button, {
+        }), (0, import_web17.createComponent)(Button, {
           onClick: () => process.relaunch(),
           get ["class"]() {
             return classes4.restartButton;
@@ -447,10 +467,10 @@
   };
 
   // plugins/dorion-settings/pages/PerformancePage.tsx
-  var _tmpl$4 = /* @__PURE__ */ (0, import_web17.template)(`<div>The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">the window-vibrancy crate</a>.</div>`, 4);
-  var _tmpl$23 = /* @__PURE__ */ (0, import_web17.template)(`<div></div>`, 2);
-  var _tmpl$32 = /* @__PURE__ */ (0, import_web17.template)(`<p>I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. <!> will have several vital systems removed, such as the <i>entire settings menu</i>.<br><br>This option is intended only for debugging, development, and for running old versions of <!> functionality on old versions of <!>. If you're not doing that, don't touch this.</p>`, 11);
-  var _tmpl$42 = /* @__PURE__ */ (0, import_web17.template)(`<b>DO NOT DISABLE THIS OPTION.</b>`, 2);
+  var _tmpl$5 = /* @__PURE__ */ (0, import_web18.template)(`<div>The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">the window-vibrancy crate</a>.</div>`, 4);
+  var _tmpl$23 = /* @__PURE__ */ (0, import_web18.template)(`<div></div>`, 2);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web18.template)(`<p>I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. <!> will have several vital systems removed, such as the <i>entire settings menu</i>.<br><br>This option is intended only for debugging, development, and for running old versions of <!> functionality on old versions of <!>. If you're not doing that, don't touch this.</p>`, 11);
+  var _tmpl$42 = /* @__PURE__ */ (0, import_web18.template)(`<b>DO NOT DISABLE THIS OPTION.</b>`, 2);
   var {
     ui: {
       injectCss: injectCss4,
@@ -529,7 +549,7 @@
       }).then(() => invoke("set_clear_cache"), () => {
       });
     };
-    return [(0, import_web22.createComponent)(Header, {
+    return [(0, import_web23.createComponent)(Header, {
       get tag() {
         return HeaderTags.H1;
       },
@@ -537,15 +557,15 @@
         return classes.tophead;
       },
       children: "Performance Settings"
-    }), (0, import_web21.memo)((() => {
-      const _c$ = (0, import_web21.memo)(() => !!restartRequired());
-      return () => _c$() && (0, import_web22.createComponent)(WarningCard, {});
-    })()), (0, import_web22.createComponent)(Header, {
+    }), (0, import_web22.memo)((() => {
+      const _c$ = (0, import_web22.memo)(() => !!restartRequired());
+      return () => _c$() && (0, import_web23.createComponent)(WarningCard, {});
+    })()), (0, import_web23.createComponent)(Header, {
       get ["class"]() {
         return classes.shead;
       },
       children: "Cache"
-    }), (0, import_web22.createComponent)(SwitchItem, {
+    }), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
         return state().cache_css;
       },
@@ -554,7 +574,7 @@
       }), true),
       note: "Save CSS to disk that would otherwise be loaded from the web, decreasing load times.",
       children: "Cache CSS"
-    }), (0, import_web22.createComponent)(SwitchItem, {
+    }), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
         return state().auto_clear_cache;
       },
@@ -569,12 +589,12 @@
       },
       note: `Clean out the web-based cache every time you close ${appName}. This is usually cached images, scripts, and other data, and it can build up!`,
       children: "Auto Clear Cache"
-    }), (0, import_web22.createComponent)(Header, {
+    }), (0, import_web23.createComponent)(Header, {
       get ["class"]() {
         return classes.shead;
       },
       children: "Optional Features"
-    }), (0, import_web22.createComponent)(SwitchItem, {
+    }), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
         return state().streamer_mode_detection;
       },
@@ -583,7 +603,7 @@
       }), true),
       note: "Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running.",
       children: "Streamer Mode detection"
-    }), (0, import_web22.createComponent)(SwitchItem, {
+    }), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
         return state().rpc_server;
       },
@@ -593,7 +613,7 @@
       tooltipNote: "This is a work in progress, and won't do EVERYTHING arRPC does quite yet.",
       note: "Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the shelteRPC/arRPC plugin!",
       children: "Integrated rich presence server"
-    }), (0, import_web22.createComponent)(SwitchItem, {
+    }), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
         return state().disable_hardware_accel;
       },
@@ -605,7 +625,7 @@
         return platform() === "macos";
       },
       children: "Disable Hardware Acceleration"
-    }), (0, import_web22.createComponent)(SwitchItem, {
+    }), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
         return state().client_plugins || state().client_plugins === null || state().client_plugins === void 0;
       },
@@ -619,9 +639,9 @@
         openConfirmationModal({
           body: () => (() => {
             const _el$3 = _tmpl$32.cloneNode(true), _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling, _el$6 = _el$5.nextSibling, _el$15 = _el$6.nextSibling, _el$7 = _el$15.nextSibling, _el$8 = _el$7.nextSibling, _el$9 = _el$8.nextSibling, _el$10 = _el$9.nextSibling, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling, _el$16 = _el$12.nextSibling, _el$13 = _el$16.nextSibling, _el$17 = _el$13.nextSibling, _el$14 = _el$17.nextSibling;
-            (0, import_web18.insert)(_el$3, appName, _el$15);
-            (0, import_web18.insert)(_el$3, appName, _el$16);
-            (0, import_web18.insert)(_el$3, appName, _el$17);
+            (0, import_web19.insert)(_el$3, appName, _el$15);
+            (0, import_web19.insert)(_el$3, appName, _el$16);
+            (0, import_web19.insert)(_el$3, appName, _el$17);
             return _el$3;
           })(),
           header: () => "Are you ABSOLUTELY sure?",
@@ -636,12 +656,12 @@
         return [_tmpl$42.cloneNode(true), " If you do, vital functionality will be lost. Only touch this if you know what you're doing."];
       },
       children: "Enable Dorion Plugins"
-    }), (0, import_web22.createComponent)(Header, {
+    }), (0, import_web23.createComponent)(Header, {
       get ["class"]() {
         return classes.shead;
       },
       children: "Blur"
-    }), (0, import_web22.createComponent)(Dropdown, {
+    }), (0, import_web23.createComponent)(Dropdown, {
       get value() {
         return state().blur;
       },
@@ -661,10 +681,10 @@
         return platform() === "linux";
       }
     }), (() => {
-      const _el$ = _tmpl$4.cloneNode(true);
-      (0, import_web20.effect)(() => (0, import_web19.className)(_el$, classes.stext));
+      const _el$ = _tmpl$5.cloneNode(true);
+      (0, import_web21.effect)(() => (0, import_web20.className)(_el$, classes.stext));
       return _el$;
-    })(), (0, import_web22.createComponent)(SwitchItem, {
+    })(), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
         return state().blur_css;
       },
@@ -678,7 +698,7 @@
       children: "Enable builtin background transparency CSS"
     }), (() => {
       const _el$2 = _tmpl$23.cloneNode(true);
-      (0, import_web18.insert)(_el$2, (0, import_web22.createComponent)(Button2, {
+      (0, import_web19.insert)(_el$2, (0, import_web23.createComponent)(Button2, {
         onClick: clearWebCache,
         style: {
           width: "100%",
@@ -687,7 +707,7 @@
         grow: true,
         children: "Wipe all web-based data"
       }), null);
-      (0, import_web18.insert)(_el$2, (0, import_web22.createComponent)(Button2, {
+      (0, import_web19.insert)(_el$2, (0, import_web23.createComponent)(Button2, {
         onClick: clearCSSCache,
         style: {
           width: "100%",
@@ -696,18 +716,18 @@
         grow: true,
         children: "Clear CSS Cache"
       }), null);
-      (0, import_web20.effect)(() => (0, import_web19.className)(_el$2, classes.pbuttons));
+      (0, import_web21.effect)(() => (0, import_web20.className)(_el$2, classes.pbuttons));
       return _el$2;
     })()];
   }
 
   // plugins/dorion-settings/pages/ProfilesPage.tsx
-  var import_web23 = __toESM(require_web(), 1);
   var import_web24 = __toESM(require_web(), 1);
   var import_web25 = __toESM(require_web(), 1);
   var import_web26 = __toESM(require_web(), 1);
   var import_web27 = __toESM(require_web(), 1);
   var import_web28 = __toESM(require_web(), 1);
+  var import_web29 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ProfilesPage.tsx.scss
   var css5 = `._tophead_1fheu_1{margin-bottom:16px}._shead_1fheu_1{margin-top:16px;margin-bottom:8px}._sbutton_1fheu_1{margin-top:16px;padding:18px;width:100%}._splitbutton_1fheu_1{width:100%}._pbuttons_1fheu_1{display:flex;gap:16px;margin-top:16px}._pbuttons_1fheu_1 button{width:100% !important}`;
@@ -720,7 +740,7 @@
   };
 
   // plugins/dorion-settings/pages/ProfilesPage.tsx
-  var _tmpl$5 = /* @__PURE__ */ (0, import_web23.template)(`<div></div>`, 2);
+  var _tmpl$6 = /* @__PURE__ */ (0, import_web24.template)(`<div></div>`, 2);
   var {
     ui: {
       Header: Header2,
@@ -781,7 +801,7 @@
     const handleNewProfileChange = (value) => {
       setNewProfile(value);
     };
-    return [(0, import_web28.createComponent)(Header2, {
+    return [(0, import_web29.createComponent)(Header2, {
       get tag() {
         return HeaderTags2.H1;
       },
@@ -789,7 +809,7 @@
         return classes5.tophead;
       },
       children: "Profiles"
-    }), (0, import_web28.createComponent)(Dropdown, {
+    }), (0, import_web29.createComponent)(Dropdown, {
       get options() {
         return profileList().map((p) => {
           return {
@@ -805,19 +825,19 @@
       get selected() {
         return profile();
       }
-    }), (0, import_web28.createComponent)(Header2, {
+    }), (0, import_web29.createComponent)(Header2, {
       get ["class"]() {
         return classes5.shead;
       },
       children: "Create Profile"
-    }), (0, import_web28.createComponent)(TextBox, {
+    }), (0, import_web29.createComponent)(TextBox, {
       type: "text",
       get value() {
         return newProfile();
       },
       onInput: handleNewProfileChange,
       placeholder: "Enter a name for the new profile..."
-    }), (0, import_web28.createComponent)(Button3, {
+    }), (0, import_web29.createComponent)(Button3, {
       onClick: createProfile,
       get ["class"]() {
         return classes5.sbutton;
@@ -826,19 +846,19 @@
         return newProfile() === "" || profileList().includes(newProfile());
       },
       children: "Create Profile"
-    }), (0, import_web28.createComponent)(Divider, {
+    }), (0, import_web29.createComponent)(Divider, {
       mt: 16,
       mb: 16
     }), (() => {
-      const _el$ = _tmpl$5.cloneNode(true);
-      (0, import_web26.insert)(_el$, (0, import_web28.createComponent)(Button3, {
+      const _el$ = _tmpl$6.cloneNode(true);
+      (0, import_web27.insert)(_el$, (0, import_web29.createComponent)(Button3, {
         onClick: saveProfile,
         get size() {
           return ButtonSizes.MEDIUM;
         },
         children: "Save and Restart"
       }), null);
-      (0, import_web26.insert)(_el$, (0, import_web28.createComponent)(Button3, {
+      (0, import_web27.insert)(_el$, (0, import_web29.createComponent)(Button3, {
         onClick: deleteProfile,
         get disabled() {
           return profile() === "default" || internalProfile() === profile;
@@ -851,15 +871,15 @@
         },
         children: "Delete Selected Profile"
       }), null);
-      (0, import_web25.effect)(() => (0, import_web24.className)(_el$, classes5.pbuttons));
+      (0, import_web26.effect)(() => (0, import_web25.className)(_el$, classes5.pbuttons));
       return _el$;
     })()];
   }
 
   // plugins/dorion-settings/pages/SettingsPage.tsx
-  var import_web39 = __toESM(require_web(), 1);
   var import_web40 = __toESM(require_web(), 1);
   var import_web41 = __toESM(require_web(), 1);
+  var import_web42 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/SettingsPage.tsx.scss
   var css6 = `._tophead_1mnth_1{margin-bottom:16px}._shead_1mnth_1{margin-top:16px;margin-bottom:8px}._fcard_1mnth_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;color:var(--text-primary);padding:8px}._pcard_1mnth_1{display:flex}._left16_1mnth_1{margin-left:16px}._themeRow_1mnth_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;height:42px}`;
@@ -873,18 +893,18 @@
   };
 
   // components/RadioGroup.tsx
-  var import_web36 = __toESM(require_web(), 1);
   var import_web37 = __toESM(require_web(), 1);
   var import_web38 = __toESM(require_web(), 1);
+  var import_web39 = __toESM(require_web(), 1);
 
   // components/Radio.tsx
-  var import_web29 = __toESM(require_web(), 1);
   var import_web30 = __toESM(require_web(), 1);
   var import_web31 = __toESM(require_web(), 1);
   var import_web32 = __toESM(require_web(), 1);
   var import_web33 = __toESM(require_web(), 1);
   var import_web34 = __toESM(require_web(), 1);
   var import_web35 = __toESM(require_web(), 1);
+  var import_web36 = __toESM(require_web(), 1);
 
   // components/Radio.tsx.scss
   var css7 = `._radio_1qi40_1{color:var(--interactive-normal);grid-template-columns:auto 1fr;box-sizing:border-box;border-radius:4px;display:grid;grid-gap:8px;align-items:center;padding:8px;background:var(--background-secondary);cursor:pointer}._radio_1qi40_1:not(:last-child){margin-bottom:8px}._radio_1qi40_1 ._radioButton_1qi40_1{height:20px;width:20px;border-radius:50%;border:2px solid var(--interactive-normal);margin:4px;position:relative}._radio_1qi40_1 ._radioButton_1qi40_1 ._radioButtonInner_1qi40_1{position:absolute;height:10px;width:10px;top:50%;left:50%;transform:translate(-50%, -50%);border-radius:50%;background:var(--interactive-normal)}._radio_1qi40_1:hover{background-color:var(--background-modifier-hover)}._radio_1qi40_1._selected_1qi40_1{color:var(--interactive-active);background-color:var(--background-modifier-selected)}._radio_1qi40_1._selected_1qi40_1 ._radioButton_1qi40_1{border-color:var(--interactive-active)}._radio_1qi40_1._selected_1qi40_1 ._radioButton_1qi40_1 ._radioButtonInner_1qi40_1{background:var(--interactive-active)}`;
@@ -896,8 +916,8 @@
   };
 
   // components/Radio.tsx
-  var _tmpl$6 = /* @__PURE__ */ (0, import_web29.template)(`<div><div></div></div>`, 4);
-  var _tmpl$24 = /* @__PURE__ */ (0, import_web29.template)(`<div></div>`, 2);
+  var _tmpl$7 = /* @__PURE__ */ (0, import_web30.template)(`<div><div></div></div>`, 4);
+  var _tmpl$24 = /* @__PURE__ */ (0, import_web30.template)(`<div></div>`, 2);
   var {
     ui: {
       injectCss: injectCss6,
@@ -914,25 +934,25 @@
       props.onClick(props.value);
     };
     return (() => {
-      const _el$ = _tmpl$6.cloneNode(true), _el$2 = _el$.firstChild;
+      const _el$ = _tmpl$7.cloneNode(true), _el$2 = _el$.firstChild;
       _el$.$$click = onRadioClick;
-      (0, import_web34.insert)(_el$2, (() => {
-        const _c$ = (0, import_web35.memo)(() => !!props.selected);
+      (0, import_web35.insert)(_el$2, (() => {
+        const _c$ = (0, import_web36.memo)(() => !!props.selected);
         return () => _c$() && (() => {
           const _el$3 = _tmpl$24.cloneNode(true);
-          (0, import_web32.effect)(() => (0, import_web31.className)(_el$3, classes7.radioButtonInner));
+          (0, import_web33.effect)(() => (0, import_web32.className)(_el$3, classes7.radioButtonInner));
           return _el$3;
         })();
       })());
-      (0, import_web34.insert)(_el$, (0, import_web33.createComponent)(Text2, {
+      (0, import_web35.insert)(_el$, (0, import_web34.createComponent)(Text2, {
         get children() {
           return props.label;
         }
       }), null);
-      (0, import_web32.effect)((_p$) => {
+      (0, import_web33.effect)((_p$) => {
         const _v$ = classes7.radio + (props.selected ? ` ${classes7.selected}` : ""), _v$2 = classes7.radioButton;
-        _v$ !== _p$._v$ && (0, import_web31.className)(_el$, _p$._v$ = _v$);
-        _v$2 !== _p$._v$2 && (0, import_web31.className)(_el$2, _p$._v$2 = _v$2);
+        _v$ !== _p$._v$ && (0, import_web32.className)(_el$, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web32.className)(_el$2, _p$._v$2 = _v$2);
         return _p$;
       }, {
         _v$: void 0,
@@ -941,10 +961,10 @@
       return _el$;
     })();
   };
-  (0, import_web30.delegateEvents)(["click"]);
+  (0, import_web31.delegateEvents)(["click"]);
 
   // components/RadioGroup.tsx
-  var _tmpl$7 = /* @__PURE__ */ (0, import_web36.template)(`<div></div>`, 2);
+  var _tmpl$8 = /* @__PURE__ */ (0, import_web37.template)(`<div></div>`, 2);
   var {
     ui: {
       injectCss: injectCss7
@@ -957,8 +977,8 @@
       injectCss7(css7);
     }
     return (() => {
-      const _el$ = _tmpl$7.cloneNode(true);
-      (0, import_web38.insert)(_el$, () => props.options.map((o) => (0, import_web37.createComponent)(Radio, {
+      const _el$ = _tmpl$8.cloneNode(true);
+      (0, import_web39.insert)(_el$, () => props.options.map((o) => (0, import_web38.createComponent)(Radio, {
         get ["class"]() {
           return classes7.radioGroupItem;
         },
@@ -980,7 +1000,7 @@
   };
 
   // plugins/dorion-settings/pages/SettingsPage.tsx
-  var _tmpl$8 = /* @__PURE__ */ (0, import_web39.template)(`<a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">SpikeHD/shelter-plugins</a>`, 2);
+  var _tmpl$9 = /* @__PURE__ */ (0, import_web40.template)(`<a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">SpikeHD/shelter-plugins</a>`, 2);
   var {
     ui: {
       SwitchItem: SwitchItem2,
@@ -1016,7 +1036,7 @@
         backendRestartRequired;
       }
     };
-    return [(0, import_web41.createComponent)(Header3, {
+    return [(0, import_web42.createComponent)(Header3, {
       get tag() {
         return HeaderTags3.H1;
       },
@@ -1026,15 +1046,15 @@
       get children() {
         return [appName, " Settings"];
       }
-    }), (0, import_web40.memo)((() => {
-      const _c$ = (0, import_web40.memo)(() => !!restartRequired());
-      return () => _c$() && (0, import_web41.createComponent)(WarningCard, {});
-    })()), (0, import_web41.createComponent)(Header3, {
+    }), (0, import_web41.memo)((() => {
+      const _c$ = (0, import_web41.memo)(() => !!restartRequired());
+      return () => _c$() && (0, import_web42.createComponent)(WarningCard, {});
+    })()), (0, import_web42.createComponent)(Header3, {
       get ["class"]() {
         return classes6.shead;
       },
       children: "Client Type"
-    }), (0, import_web41.createComponent)(RadioGroup, {
+    }), (0, import_web42.createComponent)(RadioGroup, {
       options: [{
         label: "Default",
         value: "default"
@@ -1055,12 +1075,12 @@
       get selected() {
         return settings().client_type;
       }
-    }), (0, import_web41.createComponent)(Header3, {
+    }), (0, import_web42.createComponent)(Header3, {
       get ["class"]() {
         return classes6.shead;
       },
       children: "Window"
-    }), (0, import_web41.createComponent)(Slider, {
+    }), (0, import_web42.createComponent)(Slider, {
       min: 50,
       max: 125,
       get steps() {
@@ -1080,7 +1100,7 @@
           value: parseFloat(v) / 100
         });
       }
-    }), (0, import_web41.createComponent)(SwitchItem2, {
+    }), (0, import_web42.createComponent)(SwitchItem2, {
       get value() {
         return settings().sys_tray;
       },
@@ -1093,7 +1113,7 @@
       },
       note: `Instead of closing, ${appName} will run in the background and will be accessible via the system tray.`,
       children: "Minimize to System Tray"
-    }), (0, import_web41.createComponent)(SwitchItem2, {
+    }), (0, import_web42.createComponent)(SwitchItem2, {
       get value() {
         return settings().start_maximized;
       },
@@ -1105,12 +1125,12 @@
         });
       },
       children: "Start Maximized"
-    }), (0, import_web41.createComponent)(Header3, {
+    }), (0, import_web42.createComponent)(Header3, {
       get ["class"]() {
         return classes6.shead;
       },
       children: "Startup"
-    }), (0, import_web41.createComponent)(SwitchItem2, {
+    }), (0, import_web42.createComponent)(SwitchItem2, {
       get value() {
         return settings().open_on_startup;
       },
@@ -1124,7 +1144,7 @@
       },
       note: `Open ${appName} when your system starts.`,
       children: "Open on Startup"
-    }), (0, import_web41.createComponent)(SwitchItem2, {
+    }), (0, import_web42.createComponent)(SwitchItem2, {
       get value() {
         return settings().startup_minimized;
       },
@@ -1140,12 +1160,12 @@
       },
       note: "Open in the background when your system starts.",
       children: "Start Minimized"
-    }), (0, import_web41.createComponent)(Header3, {
+    }), (0, import_web42.createComponent)(Header3, {
       get ["class"]() {
         return classes6.shead;
       },
       children: "Misc."
-    }), (0, import_web41.createComponent)(SwitchItem2, {
+    }), (0, import_web42.createComponent)(SwitchItem2, {
       get value() {
         return settings().multi_instance;
       },
@@ -1158,7 +1178,7 @@
       },
       note: `Allow multiple instances of ${appName} to be running at the same time.`,
       children: "Allow Multiple Instances"
-    }), (0, import_web41.createComponent)(SwitchItem2, {
+    }), (0, import_web42.createComponent)(SwitchItem2, {
       get value() {
         return settings().use_native_titlebar;
       },
@@ -1171,12 +1191,12 @@
       },
       note: "Disable the custom titlebar and use your systems native one instead.",
       children: "Use Native Titlebar"
-    }), (0, import_web41.createComponent)(Header3, {
+    }), (0, import_web42.createComponent)(Header3, {
       get ["class"]() {
         return classes6.shead;
       },
       children: "Updates"
-    }), (0, import_web41.createComponent)(SwitchItem2, {
+    }), (0, import_web42.createComponent)(SwitchItem2, {
       get value() {
         return settings().autoupdate;
       },
@@ -1189,10 +1209,10 @@
         });
       },
       get note() {
-        return ["Automatically update various ", appName, " components, such as", " ", _tmpl$8.cloneNode(true), "."];
+        return ["Automatically update various ", appName, " components, such as", " ", _tmpl$9.cloneNode(true), "."];
       },
       children: "Autoupdate"
-    }), (0, import_web41.createComponent)(SwitchItem2, {
+    }), (0, import_web42.createComponent)(SwitchItem2, {
       get value() {
         return settings().update_notify === void 0 || settings().update_notify;
       },
@@ -1211,12 +1231,12 @@
   }
 
   // plugins/dorion-settings/pages/ChangelogPage.tsx
-  var import_web42 = __toESM(require_web(), 1);
   var import_web43 = __toESM(require_web(), 1);
   var import_web44 = __toESM(require_web(), 1);
   var import_web45 = __toESM(require_web(), 1);
   var import_web46 = __toESM(require_web(), 1);
   var import_web47 = __toESM(require_web(), 1);
+  var import_web48 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ChangelogPage.tsx.scss
   var css8 = `._tophead_1d3gd_1{margin-bottom:16px}._refresh_1d3gd_1{position:absolute;top:52px;right:40px}._card_1d3gd_1{padding:16px;border-radius:8px;color:var(--text-primary);background:var(--background-secondary);position:relative;min-height:82px}._card_1d3gd_1:not(:last-child){margin-bottom:16px}._card_1d3gd_1 button{margin-top:16px;width:100%}._card_1d3gd_1 ._title_1d3gd_1{margin-bottom:8px;font-size:1.5rem;font-weight:500}._card_1d3gd_1 ._badges_1d3gd_1{position:absolute;top:16px;right:16px;display:flex;flex-direction:row;gap:8px}._card_1d3gd_1 ._badges_1d3gd_1 ._badge_1d3gd_1{padding:0 8px;font-size:.75rem;border-radius:3px;background-color:var(--status-positive-background)}._card_1d3gd_1 ._spinner_1d3gd_1,._card_1d3gd_1 ._contents_1d3gd_1 img[src^=http]::before,._card_1d3gd_1 ._contents_1d3gd_1 img[src^=https]::before{box-sizing:border-box;content:"";position:absolute;top:calc(50% - 25px);left:calc(50% - 25px);width:50px;height:50px;border:10px solid rgba(0,0,0,0);border-top-color:var(--text-secondary);border-radius:50%;animation:_spin_1d3gd_1 1s linear infinite}._card_1d3gd_1 ._contents_1d3gd_1{margin-top:16px}._card_1d3gd_1 ._contents_1d3gd_1 h1,._card_1d3gd_1 ._contents_1d3gd_1 h2{color:var(--header-primary);font-weight:500;margin-bottom:8px}._card_1d3gd_1 ._contents_1d3gd_1 h1:not(:first-child),._card_1d3gd_1 ._contents_1d3gd_1 h2:not(:first-child){margin-top:24px}._card_1d3gd_1 ._contents_1d3gd_1 h1{font-size:1.25rem}._card_1d3gd_1 ._contents_1d3gd_1 h2{font-size:1rem}._card_1d3gd_1 ._contents_1d3gd_1 img{display:block;max-width:100%;margin:0 auto}._card_1d3gd_1 ._contents_1d3gd_1 img[src^=http],._card_1d3gd_1 ._contents_1d3gd_1 img[src^=https]{display:block;font-size:.75rem;margin-top:8px;color:var(--text-secondary);background:var(--background-tertiary);position:relative;border-radius:8px;padding:16px;height:82px}._card_1d3gd_1 ._contents_1d3gd_1 p,._card_1d3gd_1 ._contents_1d3gd_1 ul,._card_1d3gd_1 ._contents_1d3gd_1 ol,._card_1d3gd_1 ._contents_1d3gd_1 summary,._card_1d3gd_1 ._contents_1d3gd_1 img{font-size:.875rem;line-height:1.25rem}._card_1d3gd_1 ._contents_1d3gd_1 p:not(:last-child),._card_1d3gd_1 ._contents_1d3gd_1 ul:not(:last-child),._card_1d3gd_1 ._contents_1d3gd_1 ol:not(:last-child),._card_1d3gd_1 ._contents_1d3gd_1 summary:not(:last-child),._card_1d3gd_1 ._contents_1d3gd_1 img:not(:last-child){margin-bottom:6px}._card_1d3gd_1 ._contents_1d3gd_1 ul,._card_1d3gd_1 ._contents_1d3gd_1 ol{padding-left:32px}._card_1d3gd_1 ._contents_1d3gd_1 ul li,._card_1d3gd_1 ._contents_1d3gd_1 ol li{list-style-type:initial}@keyframes _spin_1d3gd_1{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`;
@@ -3320,11 +3340,11 @@ ${content}</tr>
   }
 
   // plugins/dorion-settings/pages/ChangelogPage.tsx
-  var _tmpl$9 = /* @__PURE__ */ (0, import_web42.template)(`<div><div></div></div>`, 4);
-  var _tmpl$25 = /* @__PURE__ */ (0, import_web42.template)(`<div></div>`, 2);
-  var _tmpl$33 = /* @__PURE__ */ (0, import_web42.template)(`<span></span>`, 2);
-  var _tmpl$43 = /* @__PURE__ */ (0, import_web42.template)(`<span>Current</span>`, 2);
-  var _tmpl$52 = /* @__PURE__ */ (0, import_web42.template)(`<span>Latest</span>`, 2);
+  var _tmpl$10 = /* @__PURE__ */ (0, import_web43.template)(`<div><div></div></div>`, 4);
+  var _tmpl$25 = /* @__PURE__ */ (0, import_web43.template)(`<div></div>`, 2);
+  var _tmpl$33 = /* @__PURE__ */ (0, import_web43.template)(`<span></span>`, 2);
+  var _tmpl$43 = /* @__PURE__ */ (0, import_web43.template)(`<span>Current</span>`, 2);
+  var _tmpl$52 = /* @__PURE__ */ (0, import_web43.template)(`<span>Latest</span>`, 2);
   var PAGE_ID = `${appName.toLowerCase()}-changelog-tab`;
   var {
     ui: {
@@ -3378,7 +3398,7 @@ ${content}</tr>
         yield fixImageLinks(document.getElementById(PAGE_ID));
       });
     }
-    return [(0, import_web47.createComponent)(Header4, {
+    return [(0, import_web48.createComponent)(Header4, {
       get tag() {
         return HeaderTags4.H1;
       },
@@ -3386,7 +3406,7 @@ ${content}</tr>
         return classes8.tophead;
       },
       children: "Changelog"
-    }), (0, import_web47.createComponent)(Button4, {
+    }), (0, import_web48.createComponent)(Button4, {
       onClick: refresh,
       get disabled() {
         return loading();
@@ -3395,25 +3415,25 @@ ${content}</tr>
         return classes8.refresh;
       },
       children: "Refresh"
-    }), (0, import_web46.memo)((() => {
-      const _c$ = (0, import_web46.memo)(() => !!loading());
+    }), (0, import_web47.memo)((() => {
+      const _c$ = (0, import_web47.memo)(() => !!loading());
       return () => _c$() ? (() => {
-        const _el$ = _tmpl$9.cloneNode(true), _el$2 = _el$.firstChild;
-        (0, import_web45.effect)((_p$) => {
+        const _el$ = _tmpl$10.cloneNode(true), _el$2 = _el$.firstChild;
+        (0, import_web46.effect)((_p$) => {
           const _v$ = classes8.card, _v$2 = classes8.spinner;
-          _v$ !== _p$._v$ && (0, import_web44.className)(_el$, _p$._v$ = _v$);
-          _v$2 !== _p$._v$2 && (0, import_web44.className)(_el$2, _p$._v$2 = _v$2);
+          _v$ !== _p$._v$ && (0, import_web45.className)(_el$, _p$._v$ = _v$);
+          _v$2 !== _p$._v$2 && (0, import_web45.className)(_el$2, _p$._v$2 = _v$2);
           return _p$;
         }, {
           _v$: void 0,
           _v$2: void 0
         });
         return _el$;
-      })() : [(0, import_web46.memo)((() => {
-        const _c$2 = (0, import_web46.memo)(() => !!updateCheck().includes("dorion"));
+      })() : [(0, import_web47.memo)((() => {
+        const _c$2 = (0, import_web47.memo)(() => !!updateCheck().includes("dorion"));
         return () => _c$2() && (() => {
           const _el$3 = _tmpl$25.cloneNode(true);
-          (0, import_web43.insert)(_el$3, (0, import_web47.createComponent)(Header4, {
+          (0, import_web44.insert)(_el$3, (0, import_web48.createComponent)(Header4, {
             get tag() {
               return HeaderTags4.H1;
             },
@@ -3422,12 +3442,12 @@ ${content}</tr>
             },
             children: "Update available!"
           }), null);
-          (0, import_web43.insert)(_el$3, (0, import_web47.createComponent)(Text3, {
+          (0, import_web44.insert)(_el$3, (0, import_web48.createComponent)(Text3, {
             get children() {
-              return ["Your current version is ", (0, import_web46.memo)(() => currentVersion())];
+              return ["Your current version is ", (0, import_web47.memo)(() => currentVersion())];
             }
           }), null);
-          (0, import_web43.insert)(_el$3, (0, import_web47.createComponent)(Button4, {
+          (0, import_web44.insert)(_el$3, (0, import_web48.createComponent)(Button4, {
             get size() {
               return ButtonSizes2.LARGE;
             },
@@ -3436,17 +3456,17 @@ ${content}</tr>
             },
             onClick: doUpdate,
             get children() {
-              return ["Update to ", (0, import_web46.memo)(() => latestVersion())];
+              return ["Update to ", (0, import_web47.memo)(() => latestVersion())];
             }
           }), null);
-          (0, import_web45.effect)(() => (0, import_web44.className)(_el$3, classes8.card));
+          (0, import_web46.effect)(() => (0, import_web45.className)(_el$3, classes8.card));
           return _el$3;
         })();
-      })()), (0, import_web46.memo)((() => {
-        const _c$3 = (0, import_web46.memo)(() => !!(releases() != null && releases().length > 0));
+      })()), (0, import_web47.memo)((() => {
+        const _c$3 = (0, import_web47.memo)(() => !!(releases() != null && releases().length > 0));
         return () => _c$3() && releases().map((release) => (() => {
-          const _el$4 = _tmpl$9.cloneNode(true), _el$7 = _el$4.firstChild;
-          (0, import_web43.insert)(_el$4, (0, import_web47.createComponent)(Header4, {
+          const _el$4 = _tmpl$10.cloneNode(true), _el$7 = _el$4.firstChild;
+          (0, import_web44.insert)(_el$4, (0, import_web48.createComponent)(Header4, {
             get tag() {
               return HeaderTags4.H1;
             },
@@ -3456,41 +3476,41 @@ ${content}</tr>
             get children() {
               return [(() => {
                 const _el$5 = _tmpl$33.cloneNode(true);
-                (0, import_web43.insert)(_el$5, () => release.name);
+                (0, import_web44.insert)(_el$5, () => release.name);
                 return _el$5;
               })(), (() => {
                 const _el$6 = _tmpl$25.cloneNode(true);
-                (0, import_web43.insert)(_el$6, (() => {
-                  const _c$4 = (0, import_web46.memo)(() => currentVersion() == release.tag_name);
+                (0, import_web44.insert)(_el$6, (() => {
+                  const _c$4 = (0, import_web47.memo)(() => currentVersion() == release.tag_name);
                   return () => _c$4() && (() => {
                     const _el$8 = _tmpl$43.cloneNode(true);
-                    (0, import_web45.effect)(() => (0, import_web44.className)(_el$8, classes8.badge));
+                    (0, import_web46.effect)(() => (0, import_web45.className)(_el$8, classes8.badge));
                     return _el$8;
                   })();
                 })(), null);
-                (0, import_web43.insert)(_el$6, (() => {
-                  const _c$5 = (0, import_web46.memo)(() => releases()[0].tag_name == release.tag_name);
+                (0, import_web44.insert)(_el$6, (() => {
+                  const _c$5 = (0, import_web47.memo)(() => releases()[0].tag_name == release.tag_name);
                   return () => _c$5() && (() => {
                     const _el$9 = _tmpl$52.cloneNode(true);
-                    (0, import_web45.effect)(() => (0, import_web44.className)(_el$9, classes8.badge));
+                    (0, import_web46.effect)(() => (0, import_web45.className)(_el$9, classes8.badge));
                     return _el$9;
                   })();
                 })(), null);
-                (0, import_web45.effect)(() => (0, import_web44.className)(_el$6, classes8.badges));
+                (0, import_web46.effect)(() => (0, import_web45.className)(_el$6, classes8.badges));
                 return _el$6;
               })()];
             }
           }), _el$7);
-          (0, import_web43.insert)(_el$4, (0, import_web47.createComponent)(LinkButton, {
+          (0, import_web44.insert)(_el$4, (0, import_web48.createComponent)(LinkButton, {
             get href() {
               return release.html_url;
             },
             children: "View on GitHub"
           }), _el$7);
-          (0, import_web45.effect)((_p$) => {
+          (0, import_web46.effect)((_p$) => {
             const _v$3 = classes8.card, _v$4 = classes8.contents, _v$5 = release.body;
-            _v$3 !== _p$._v$3 && (0, import_web44.className)(_el$4, _p$._v$3 = _v$3);
-            _v$4 !== _p$._v$4 && (0, import_web44.className)(_el$7, _p$._v$4 = _v$4);
+            _v$3 !== _p$._v$3 && (0, import_web45.className)(_el$4, _p$._v$3 = _v$3);
+            _v$4 !== _p$._v$4 && (0, import_web45.className)(_el$7, _p$._v$4 = _v$4);
             _v$5 !== _p$._v$5 && (_el$7.innerHTML = _p$._v$5 = _v$5);
             return _p$;
           }, {
@@ -3505,21 +3525,21 @@ ${content}</tr>
   }
 
   // plugins/dorion-settings/pages/PluginsPage.tsx
-  var import_web62 = __toESM(require_web(), 1);
   var import_web63 = __toESM(require_web(), 1);
   var import_web64 = __toESM(require_web(), 1);
   var import_web65 = __toESM(require_web(), 1);
   var import_web66 = __toESM(require_web(), 1);
   var import_web67 = __toESM(require_web(), 1);
+  var import_web68 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/components/ClientModList.tsx
-  var import_web48 = __toESM(require_web(), 1);
   var import_web49 = __toESM(require_web(), 1);
   var import_web50 = __toESM(require_web(), 1);
   var import_web51 = __toESM(require_web(), 1);
   var import_web52 = __toESM(require_web(), 1);
   var import_web53 = __toESM(require_web(), 1);
   var import_web54 = __toESM(require_web(), 1);
+  var import_web55 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/components/ClientModList.tsx.scss
   var css9 = `._shead_mh3lt_1{margin-top:16px;margin-bottom:8px}._plist_mh3lt_1{display:flex;flex-direction:column;align-items:center;justify-content:space-between;font-size:16px}._pheader_mh3lt_1{border-bottom:1px solid var(--background-tertiary);font-weight:bold;padding-bottom:16px}._pbuttons_mh3lt_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;margin-top:16px}._pbuttons_mh3lt_1 button{width:30%;padding:18px}._sbutton_mh3lt_1{margin-top:16px;padding:18px;width:100%}._plistrow_mh3lt_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;padding:16px}._plistrow_mh3lt_1 ._scell_mh3lt_1{display:flex;align-items:center;justify-content:center;width:30%}._plistrow_mh3lt_1 ._mcell_mh3lt_1{display:flex;align-items:center;justify-content:flex-start;width:50%}._left16_mh3lt_1{margin-left:16px}._top16_mh3lt_1{margin-top:16px}._top32_mh3lt_1{margin-top:32px}`;
@@ -3538,9 +3558,9 @@ ${content}</tr>
   };
 
   // plugins/dorion-settings/components/ClientModList.tsx
-  var _tmpl$10 = /* @__PURE__ */ (0, import_web48.template)(`<div><div><div></div><div></div></div></div>`, 8);
-  var _tmpl$26 = /* @__PURE__ */ (0, import_web48.template)(`<div></div>`, 2);
-  var _tmpl$34 = /* @__PURE__ */ (0, import_web48.template)(`<div><div></div><div></div></div>`, 6);
+  var _tmpl$11 = /* @__PURE__ */ (0, import_web49.template)(`<div><div><div></div><div></div></div></div>`, 8);
+  var _tmpl$26 = /* @__PURE__ */ (0, import_web49.template)(`<div></div>`, 2);
+  var _tmpl$34 = /* @__PURE__ */ (0, import_web49.template)(`<div><div></div><div></div></div>`, 6);
   var {
     ui: {
       Switch,
@@ -3603,48 +3623,48 @@ ${content}</tr>
         contents: JSON.stringify(fn(settings()))
       });
     };
-    return (0, import_web54.createComponent)(Card, {
+    return (0, import_web55.createComponent)(Card, {
       style: {
         marginTop: "1rem"
       },
       get children() {
-        const _el$ = _tmpl$10.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling;
-        (0, import_web53.insert)(_el$3, (0, import_web54.createComponent)(Text4, {
+        const _el$ = _tmpl$11.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling;
+        (0, import_web54.insert)(_el$3, (0, import_web55.createComponent)(Text4, {
           get ["class"]() {
             return classes9.left16;
           },
           children: "Client Mod Name"
         }));
-        (0, import_web53.insert)(_el$4, (0, import_web54.createComponent)(Text4, {
+        (0, import_web54.insert)(_el$4, (0, import_web55.createComponent)(Text4, {
           get ["class"]() {
             return classes9.left16;
           },
           children: "Enabled"
         }));
-        (0, import_web53.insert)(_el$, (() => {
-          const _c$ = (0, import_web52.memo)(() => clientMods().length === 0);
+        (0, import_web54.insert)(_el$, (() => {
+          const _c$ = (0, import_web53.memo)(() => clientMods().length === 0);
           return () => _c$() && (() => {
             const _el$5 = _tmpl$26.cloneNode(true);
-            (0, import_web53.insert)(_el$5, (0, import_web54.createComponent)(Text4, {
+            (0, import_web54.insert)(_el$5, (0, import_web55.createComponent)(Text4, {
               get ["class"]() {
                 return classes9.left16;
               },
               children: "Client mods not available. Please update"
             }));
-            (0, import_web51.effect)(() => (0, import_web50.className)(_el$5, classes9.plistrow));
+            (0, import_web52.effect)(() => (0, import_web51.className)(_el$5, classes9.plistrow));
             return _el$5;
           })();
         })(), null);
-        (0, import_web53.insert)(_el$, () => clientMods().map((modName) => (() => {
+        (0, import_web54.insert)(_el$, () => clientMods().map((modName) => (() => {
           const _el$6 = _tmpl$34.cloneNode(true), _el$7 = _el$6.firstChild, _el$8 = _el$7.nextSibling;
-          (0, import_web49.setAttribute)(_el$6, "key", modName);
-          (0, import_web53.insert)(_el$7, (0, import_web54.createComponent)(Text4, {
+          (0, import_web50.setAttribute)(_el$6, "key", modName);
+          (0, import_web54.insert)(_el$7, (0, import_web55.createComponent)(Text4, {
             get ["class"]() {
               return classes9.left16;
             },
             children: modName
           }));
-          (0, import_web53.insert)(_el$8, (0, import_web54.createComponent)(Switch, {
+          (0, import_web54.insert)(_el$8, (0, import_web55.createComponent)(Switch, {
             disabled: modName === "Shelter",
             get checked() {
               var _a;
@@ -3652,11 +3672,11 @@ ${content}</tr>
             },
             onChange: () => onClientModToggle(modName)
           }));
-          (0, import_web51.effect)((_p$) => {
+          (0, import_web52.effect)((_p$) => {
             const _v$5 = classes9.plistrow, _v$6 = classes9.mcell, _v$7 = classes9.scell;
-            _v$5 !== _p$._v$5 && (0, import_web50.className)(_el$6, _p$._v$5 = _v$5);
-            _v$6 !== _p$._v$6 && (0, import_web50.className)(_el$7, _p$._v$6 = _v$6);
-            _v$7 !== _p$._v$7 && (0, import_web50.className)(_el$8, _p$._v$7 = _v$7);
+            _v$5 !== _p$._v$5 && (0, import_web51.className)(_el$6, _p$._v$5 = _v$5);
+            _v$6 !== _p$._v$6 && (0, import_web51.className)(_el$7, _p$._v$6 = _v$6);
+            _v$7 !== _p$._v$7 && (0, import_web51.className)(_el$8, _p$._v$7 = _v$7);
             return _p$;
           }, {
             _v$5: void 0,
@@ -3665,12 +3685,12 @@ ${content}</tr>
           });
           return _el$6;
         })()), null);
-        (0, import_web51.effect)((_p$) => {
+        (0, import_web52.effect)((_p$) => {
           const _v$ = classes9.plist, _v$2 = classes9.pheader + " " + classes9.plistrow, _v$3 = classes9.mcell, _v$4 = classes9.scell;
-          _v$ !== _p$._v$ && (0, import_web50.className)(_el$, _p$._v$ = _v$);
-          _v$2 !== _p$._v$2 && (0, import_web50.className)(_el$2, _p$._v$2 = _v$2);
-          _v$3 !== _p$._v$3 && (0, import_web50.className)(_el$3, _p$._v$3 = _v$3);
-          _v$4 !== _p$._v$4 && (0, import_web50.className)(_el$4, _p$._v$4 = _v$4);
+          _v$ !== _p$._v$ && (0, import_web51.className)(_el$, _p$._v$ = _v$);
+          _v$2 !== _p$._v$2 && (0, import_web51.className)(_el$2, _p$._v$2 = _v$2);
+          _v$3 !== _p$._v$3 && (0, import_web51.className)(_el$3, _p$._v$3 = _v$3);
+          _v$4 !== _p$._v$4 && (0, import_web51.className)(_el$4, _p$._v$4 = _v$4);
           return _p$;
         }, {
           _v$: void 0,
@@ -3684,13 +3704,13 @@ ${content}</tr>
   }
 
   // plugins/dorion-settings/components/PluginList.tsx
-  var import_web55 = __toESM(require_web(), 1);
   var import_web56 = __toESM(require_web(), 1);
   var import_web57 = __toESM(require_web(), 1);
   var import_web58 = __toESM(require_web(), 1);
   var import_web59 = __toESM(require_web(), 1);
   var import_web60 = __toESM(require_web(), 1);
   var import_web61 = __toESM(require_web(), 1);
+  var import_web62 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/components/PluginList.tsx.scss
   var css10 = `._plist_1n17i_1{display:flex;flex-direction:column;align-items:center;justify-content:space-between;font-size:16px}._pheader_1n17i_1{border-bottom:1px solid var(--background-tertiary);font-weight:bold;padding-bottom:16px}._pbuttons_1n17i_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;margin-top:16px}._pbuttons_1n17i_1 button{width:30%;padding:18px}._sbutton_1n17i_1{margin-top:16px;padding:18px;width:100%}._plistrow_1n17i_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;padding:16px}._plistrow_1n17i_1 ._scell_1n17i_1{display:flex;align-items:center;justify-content:center;width:30%}._plistrow_1n17i_1 ._mcell_1n17i_1{display:flex;align-items:center;justify-content:flex-start;width:50%}._left16_1n17i_1{margin-left:16px}._top16_1n17i_1{margin-top:16px}._top32_1n17i_1{margin-top:32px}`;
@@ -3708,9 +3728,9 @@ ${content}</tr>
   };
 
   // plugins/dorion-settings/components/PluginList.tsx
-  var _tmpl$11 = /* @__PURE__ */ (0, import_web55.template)(`<div><div><div></div><div></div><div></div></div></div>`, 10);
-  var _tmpl$27 = /* @__PURE__ */ (0, import_web55.template)(`<div></div>`, 2);
-  var _tmpl$35 = /* @__PURE__ */ (0, import_web55.template)(`<div><div></div><div></div><div></div></div>`, 8);
+  var _tmpl$12 = /* @__PURE__ */ (0, import_web56.template)(`<div><div><div></div><div></div><div></div></div></div>`, 10);
+  var _tmpl$27 = /* @__PURE__ */ (0, import_web56.template)(`<div></div>`, 2);
+  var _tmpl$35 = /* @__PURE__ */ (0, import_web56.template)(`<div><div></div><div></div><div></div></div>`, 8);
   var {
     ui: {
       Switch: Switch2,
@@ -3735,48 +3755,48 @@ ${content}</tr>
     (() => __async(this, null, function* () {
       setPlugins(yield getPlugins());
     }))();
-    return (0, import_web61.createComponent)(Card, {
+    return (0, import_web62.createComponent)(Card, {
       style: {
         marginTop: "1rem"
       },
       get children() {
-        const _el$ = _tmpl$11.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, _el$5 = _el$4.nextSibling;
-        (0, import_web60.insert)(_el$3, (0, import_web61.createComponent)(Text5, {
+        const _el$ = _tmpl$12.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, _el$5 = _el$4.nextSibling;
+        (0, import_web61.insert)(_el$3, (0, import_web62.createComponent)(Text5, {
           get ["class"]() {
             return classes10.left16;
           },
           children: "Plugin Name"
         }));
-        (0, import_web60.insert)(_el$4, (0, import_web61.createComponent)(Text5, {
+        (0, import_web61.insert)(_el$4, (0, import_web62.createComponent)(Text5, {
           get ["class"]() {
             return classes10.left16;
           },
           children: "Enabled"
         }));
-        (0, import_web60.insert)(_el$5, (0, import_web61.createComponent)(Text5, {
+        (0, import_web61.insert)(_el$5, (0, import_web62.createComponent)(Text5, {
           get ["class"]() {
             return classes10.left16;
           },
           children: "Preload"
         }));
-        (0, import_web60.insert)(_el$, (() => {
-          const _c$ = (0, import_web59.memo)(() => Object.entries(plugins()).length === 0);
+        (0, import_web61.insert)(_el$, (() => {
+          const _c$ = (0, import_web60.memo)(() => Object.entries(plugins()).length === 0);
           return () => _c$() && (() => {
             const _el$6 = _tmpl$27.cloneNode(true);
-            (0, import_web60.insert)(_el$6, (0, import_web61.createComponent)(Text5, {
+            (0, import_web61.insert)(_el$6, (0, import_web62.createComponent)(Text5, {
               get ["class"]() {
                 return classes10.left16;
               },
               children: "No plugins found"
             }));
-            (0, import_web58.effect)(() => (0, import_web57.className)(_el$6, classes10.plistrow));
+            (0, import_web59.effect)(() => (0, import_web58.className)(_el$6, classes10.plistrow));
             return _el$6;
           })();
         })(), null);
-        (0, import_web60.insert)(_el$, () => Object.entries(plugins()).map(([filename, plugin]) => (() => {
+        (0, import_web61.insert)(_el$, () => Object.entries(plugins()).map(([filename, plugin]) => (() => {
           const _el$7 = _tmpl$35.cloneNode(true), _el$8 = _el$7.firstChild, _el$9 = _el$8.nextSibling, _el$10 = _el$9.nextSibling;
-          (0, import_web56.setAttribute)(_el$7, "key", filename);
-          (0, import_web60.insert)(_el$8, (0, import_web61.createComponent)(Text5, {
+          (0, import_web57.setAttribute)(_el$7, "key", filename);
+          (0, import_web61.insert)(_el$8, (0, import_web62.createComponent)(Text5, {
             get ["class"]() {
               return classes10.left16;
             },
@@ -3784,7 +3804,7 @@ ${content}</tr>
               return plugin.name;
             }
           }));
-          (0, import_web60.insert)(_el$9, (0, import_web61.createComponent)(Switch2, {
+          (0, import_web61.insert)(_el$9, (0, import_web62.createComponent)(Switch2, {
             get checked() {
               return plugin.enabled;
             },
@@ -3803,7 +3823,7 @@ ${content}</tr>
               flexDirection: "column-reverse"
             }
           }));
-          (0, import_web60.insert)(_el$10, (0, import_web61.createComponent)(Switch2, {
+          (0, import_web61.insert)(_el$10, (0, import_web62.createComponent)(Switch2, {
             get checked() {
               return plugin.preload;
             },
@@ -3819,12 +3839,12 @@ ${content}</tr>
               }));
             }
           }));
-          (0, import_web58.effect)((_p$) => {
+          (0, import_web59.effect)((_p$) => {
             const _v$6 = classes10.plistrow, _v$7 = classes10.mcell, _v$8 = classes10.scell, _v$9 = classes10.scell;
-            _v$6 !== _p$._v$6 && (0, import_web57.className)(_el$7, _p$._v$6 = _v$6);
-            _v$7 !== _p$._v$7 && (0, import_web57.className)(_el$8, _p$._v$7 = _v$7);
-            _v$8 !== _p$._v$8 && (0, import_web57.className)(_el$9, _p$._v$8 = _v$8);
-            _v$9 !== _p$._v$9 && (0, import_web57.className)(_el$10, _p$._v$9 = _v$9);
+            _v$6 !== _p$._v$6 && (0, import_web58.className)(_el$7, _p$._v$6 = _v$6);
+            _v$7 !== _p$._v$7 && (0, import_web58.className)(_el$8, _p$._v$7 = _v$7);
+            _v$8 !== _p$._v$8 && (0, import_web58.className)(_el$9, _p$._v$8 = _v$8);
+            _v$9 !== _p$._v$9 && (0, import_web58.className)(_el$10, _p$._v$9 = _v$9);
             return _p$;
           }, {
             _v$6: void 0,
@@ -3834,13 +3854,13 @@ ${content}</tr>
           });
           return _el$7;
         })()), null);
-        (0, import_web58.effect)((_p$) => {
+        (0, import_web59.effect)((_p$) => {
           const _v$ = classes10.plist, _v$2 = classes10.pheader + " " + classes10.plistrow, _v$3 = classes10.mcell, _v$4 = classes10.scell, _v$5 = classes10.scell;
-          _v$ !== _p$._v$ && (0, import_web57.className)(_el$, _p$._v$ = _v$);
-          _v$2 !== _p$._v$2 && (0, import_web57.className)(_el$2, _p$._v$2 = _v$2);
-          _v$3 !== _p$._v$3 && (0, import_web57.className)(_el$3, _p$._v$3 = _v$3);
-          _v$4 !== _p$._v$4 && (0, import_web57.className)(_el$4, _p$._v$4 = _v$4);
-          _v$5 !== _p$._v$5 && (0, import_web57.className)(_el$5, _p$._v$5 = _v$5);
+          _v$ !== _p$._v$ && (0, import_web58.className)(_el$, _p$._v$ = _v$);
+          _v$2 !== _p$._v$2 && (0, import_web58.className)(_el$2, _p$._v$2 = _v$2);
+          _v$3 !== _p$._v$3 && (0, import_web58.className)(_el$3, _p$._v$3 = _v$3);
+          _v$4 !== _p$._v$4 && (0, import_web58.className)(_el$4, _p$._v$4 = _v$4);
+          _v$5 !== _p$._v$5 && (0, import_web58.className)(_el$5, _p$._v$5 = _v$5);
           return _p$;
         }, {
           _v$: void 0,
@@ -3869,7 +3889,7 @@ ${content}</tr>
   };
 
   // plugins/dorion-settings/pages/PluginsPage.tsx
-  var _tmpl$12 = /* @__PURE__ */ (0, import_web62.template)(`<div></div>`, 2);
+  var _tmpl$13 = /* @__PURE__ */ (0, import_web63.template)(`<div></div>`, 2);
   var {
     ui: {
       Header: Header5,
@@ -3895,7 +3915,7 @@ ${content}</tr>
     const openExtensionsFolder = () => {
       invoke("open_extensions");
     };
-    return [(0, import_web67.createComponent)(Header5, {
+    return [(0, import_web68.createComponent)(Header5, {
       get tag() {
         return HeaderTags5.H1;
       },
@@ -3903,30 +3923,30 @@ ${content}</tr>
         return classes11.tophead;
       },
       children: "Client Mods & Plugins"
-    }), (0, import_web66.memo)((() => {
-      const _c$ = (0, import_web66.memo)(() => !!restartRequired());
-      return () => _c$() && (0, import_web67.createComponent)(WarningCard, {});
-    })()), (0, import_web67.createComponent)(Header5, {
+    }), (0, import_web67.memo)((() => {
+      const _c$ = (0, import_web67.memo)(() => !!restartRequired());
+      return () => _c$() && (0, import_web68.createComponent)(WarningCard, {});
+    })()), (0, import_web68.createComponent)(Header5, {
       get ["class"]() {
         return classes11.shead;
       },
       children: "Client Mods"
-    }), (0, import_web67.createComponent)(ClientModList, {
+    }), (0, import_web68.createComponent)(ClientModList, {
       onChange: () => {
         setRestartRequired(true);
       }
-    }), (0, import_web67.createComponent)(Header5, {
+    }), (0, import_web68.createComponent)(Header5, {
       get ["class"]() {
         return classes11.shead;
       },
       children: "Plugins"
-    }), (0, import_web67.createComponent)(PluginList, {
+    }), (0, import_web68.createComponent)(PluginList, {
       onChange: () => {
         setRestartRequired(true);
       }
     }), (() => {
-      const _el$ = _tmpl$12.cloneNode(true);
-      (0, import_web65.insert)(_el$, (0, import_web67.createComponent)(Button5, {
+      const _el$ = _tmpl$13.cloneNode(true);
+      (0, import_web66.insert)(_el$, (0, import_web68.createComponent)(Button5, {
         get size() {
           return ButtonSizes3.MEDIUM;
         },
@@ -3941,7 +3961,7 @@ ${content}</tr>
         onClick: openPluginsFolder,
         children: "Open Plugins Folder"
       }), null);
-      (0, import_web65.insert)(_el$, (0, import_web67.createComponent)(Button5, {
+      (0, import_web66.insert)(_el$, (0, import_web68.createComponent)(Button5, {
         get size() {
           return ButtonSizes3.MEDIUM;
         },
@@ -3956,18 +3976,18 @@ ${content}</tr>
         onClick: openExtensionsFolder,
         children: "Open Extensions Folder"
       }), null);
-      (0, import_web64.effect)(() => (0, import_web63.className)(_el$, classes11.pbuttons));
+      (0, import_web65.effect)(() => (0, import_web64.className)(_el$, classes11.pbuttons));
       return _el$;
     })()];
   }
 
   // plugins/dorion-settings/pages/ThemesPage.tsx
-  var import_web73 = __toESM(require_web(), 1);
   var import_web74 = __toESM(require_web(), 1);
   var import_web75 = __toESM(require_web(), 1);
   var import_web76 = __toESM(require_web(), 1);
   var import_web77 = __toESM(require_web(), 1);
   var import_web78 = __toESM(require_web(), 1);
+  var import_web79 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ThemesPage.tsx.scss
   var css12 = `._tophead_1m9gf_1{margin-bottom:16px}._shead_1m9gf_1{margin-top:16px;margin-bottom:8px}._pbuttons_1m9gf_1{display:flex;gap:16px;margin-top:16px}._pbuttons_1m9gf_1 button{width:100% !important}`;
@@ -3978,13 +3998,13 @@ ${content}</tr>
   };
 
   // plugins/dorion-settings/util/theme.tsx
-  var import_web70 = __toESM(require_web(), 1);
   var import_web71 = __toESM(require_web(), 1);
   var import_web72 = __toESM(require_web(), 1);
+  var import_web73 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/util/modal.tsx
-  var import_web68 = __toESM(require_web(), 1);
   var import_web69 = __toESM(require_web(), 1);
+  var import_web70 = __toESM(require_web(), 1);
   var {
     ui: {
       ModalRoot,
@@ -3993,20 +4013,20 @@ ${content}</tr>
       ModalConfirmFooter
     }
   } = shelter;
-  var confirmModal = (props) => (0, import_web69.createComponent)(ModalRoot, {
+  var confirmModal = (props) => (0, import_web70.createComponent)(ModalRoot, {
     get children() {
-      return [(0, import_web69.createComponent)(ModalHeader, {
+      return [(0, import_web70.createComponent)(ModalHeader, {
         get close() {
           return props.onCancel;
         },
         get children() {
           return props.header;
         }
-      }), (0, import_web69.createComponent)(ModalBody, {
+      }), (0, import_web70.createComponent)(ModalBody, {
         get children() {
           return props.body;
         }
-      }), (0, import_web69.createComponent)(ModalConfirmFooter, {
+      }), (0, import_web70.createComponent)(ModalConfirmFooter, {
         get onConfirm() {
           return props.onConfirm;
         },
@@ -4027,7 +4047,7 @@ ${content}</tr>
   });
 
   // plugins/dorion-settings/util/theme.tsx
-  var _tmpl$13 = /* @__PURE__ */ (0, import_web70.template)(`<div><div></div></div>`, 4);
+  var _tmpl$14 = /* @__PURE__ */ (0, import_web71.template)(`<div><div></div></div>`, 4);
   var {
     ui: {
       openModal,
@@ -4044,8 +4064,8 @@ ${content}</tr>
     openModal((props) => confirmModal({
       header: "Install Theme",
       body: (() => {
-        const _el$ = _tmpl$13.cloneNode(true), _el$2 = _el$.firstChild;
-        (0, import_web71.insert)(_el$, (0, import_web72.createComponent)(TextBox2, {
+        const _el$ = _tmpl$14.cloneNode(true), _el$2 = _el$.firstChild;
+        (0, import_web72.insert)(_el$, (0, import_web73.createComponent)(TextBox2, {
           get value() {
             return link2();
           },
@@ -4056,7 +4076,7 @@ ${content}</tr>
         _el$2.style.setProperty("justify-content", "center");
         _el$2.style.setProperty("align-items", "center");
         _el$2.style.setProperty("height", "24px");
-        (0, import_web71.insert)(_el$2, (0, import_web72.createComponent)(Text6, {
+        (0, import_web72.insert)(_el$2, (0, import_web73.createComponent)(Text6, {
           get children() {
             return status();
           }
@@ -4124,7 +4144,7 @@ ${content}</tr>
   });
 
   // plugins/dorion-settings/pages/ThemesPage.tsx
-  var _tmpl$14 = /* @__PURE__ */ (0, import_web73.template)(`<div></div>`, 2);
+  var _tmpl$15 = /* @__PURE__ */ (0, import_web74.template)(`<div></div>`, 2);
   var {
     ui: {
       Header: Header6,
@@ -4194,7 +4214,7 @@ ${content}</tr>
         });
       });
     });
-    return [(0, import_web78.createComponent)(Header6, {
+    return [(0, import_web79.createComponent)(Header6, {
       get tag() {
         return HeaderTags6.H1;
       },
@@ -4202,14 +4222,14 @@ ${content}</tr>
         return classes12.tophead;
       },
       children: "Themes"
-    }), (0, import_web78.createComponent)(Header6, {
+    }), (0, import_web79.createComponent)(Header6, {
       get ["class"]() {
         return classes12.shead;
       },
       children: "Theme"
-    }), (0, import_web77.memo)((() => {
-      const _c$ = (0, import_web77.memo)(() => !!supportsMultiTheme());
-      return () => _c$() ? [(0, import_web77.memo)(() => settings().themes.map((theme) => (0, import_web78.createComponent)(Dropdown, {
+    }), (0, import_web78.memo)((() => {
+      const _c$ = (0, import_web78.memo)(() => !!supportsMultiTheme());
+      return () => _c$() ? [(0, import_web78.memo)(() => settings().themes.map((theme) => (0, import_web79.createComponent)(Dropdown, {
         style: "margin-bottom: 8px;",
         key: theme,
         value: theme,
@@ -4217,29 +4237,25 @@ ${content}</tr>
           appendTheme(theme, e.target.value);
           reloadThemes();
         },
-        placeholder: "Select a theme...",
         get options() {
           return [{
             label: "None",
             value: "none"
           }, ...themes()];
         }
-      }))), (0, import_web78.createComponent)(Dropdown, {
+      }))), (0, import_web79.createComponent)(Dropdown, {
         style: "margin-bottom: 8px;",
-        value: "none",
+        value: "",
         onChange: (e) => {
           appendTheme("none", e.target.value);
           reloadThemes();
         },
         placeholder: "Select a theme...",
         get options() {
-          return [{
-            label: "None",
-            value: "none"
-          }, ...themes()];
+          return [...themes()];
         },
         immutable: true
-      })] : (0, import_web78.createComponent)(Dropdown, {
+      })] : (0, import_web79.createComponent)(Dropdown, {
         get value() {
           return settings().theme;
         },
@@ -4262,12 +4278,12 @@ ${content}</tr>
           return settings().theme;
         }
       });
-    })()), (0, import_web78.createComponent)(Divider2, {
+    })()), (0, import_web79.createComponent)(Divider2, {
       mt: 16,
       mb: 16
     }), (() => {
-      const _el$ = _tmpl$14.cloneNode(true);
-      (0, import_web76.insert)(_el$, (0, import_web78.createComponent)(Button6, {
+      const _el$ = _tmpl$15.cloneNode(true);
+      (0, import_web77.insert)(_el$, (0, import_web79.createComponent)(Button6, {
         get size() {
           return ButtonSizes4.MEDIUM;
         },
@@ -4277,14 +4293,14 @@ ${content}</tr>
         },
         children: "Install Theme From Link"
       }), null);
-      (0, import_web76.insert)(_el$, (0, import_web78.createComponent)(Button6, {
+      (0, import_web77.insert)(_el$, (0, import_web79.createComponent)(Button6, {
         get size() {
           return ButtonSizes4.MEDIUM;
         },
         onClick: openThemesFolder,
         children: "Open Themes Folder"
       }), null);
-      (0, import_web75.effect)(() => (0, import_web74.className)(_el$, classes12.pbuttons));
+      (0, import_web76.effect)(() => (0, import_web75.className)(_el$, classes12.pbuttons));
       return _el$;
     })()];
   }

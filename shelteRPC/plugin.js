@@ -80,10 +80,10 @@
   });
 
   // plugins/shelteRPC/components/RegisteredGames.tsx
-  var import_web17 = __toESM(require_web(), 1);
   var import_web18 = __toESM(require_web(), 1);
   var import_web19 = __toESM(require_web(), 1);
   var import_web20 = __toESM(require_web(), 1);
+  var import_web21 = __toESM(require_web(), 1);
 
   // api/dorion.ts
   var dorion_default = {
@@ -373,13 +373,15 @@
   var import_web14 = __toESM(require_web(), 1);
   var import_web15 = __toESM(require_web(), 1);
   var import_web16 = __toESM(require_web(), 1);
+  var import_web17 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var css2 = `._ddown_1njos_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_1njos_1{position:relative;width:100%}._dsarrow_1njos_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_1njos_1 path{fill:var(--header-secondary)}`;
+  var css2 = `._ddown_9nenk_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_9nenk_1{position:relative;width:100%}._dsarrow_9nenk_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_9nenk_1 path{fill:var(--header-secondary)}._ddownplaceholder_9nenk_1{color:var(--header-secondary)}`;
   var classes2 = {
-    "ddown": "_ddown_1njos_1",
-    "dcontainer": "_dcontainer_1njos_1",
-    "dsarrow": "_dsarrow_1njos_1"
+    "ddown": "_ddown_9nenk_1",
+    "dcontainer": "_dcontainer_9nenk_1",
+    "dsarrow": "_dsarrow_9nenk_1",
+    "ddownplaceholder": "_ddownplaceholder_9nenk_1"
   };
 
   // components/SelectArrow.tsx
@@ -395,7 +397,8 @@
 
   // components/Dropdown.tsx
   var _tmpl$7 = /* @__PURE__ */ (0, import_web10.template)(`<div><select></select></div>`, 4);
-  var _tmpl$22 = /* @__PURE__ */ (0, import_web10.template)(`<option></option>`, 2);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web10.template)(`<option value=""></option>`, 2);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web10.template)(`<option></option>`, 2);
   var {
     ui: {
       injectCss: injectCss2
@@ -417,23 +420,40 @@
           e.target.value = props.value;
         }
       });
+      (0, import_web16.insert)(_el$2, (() => {
+        const _c$ = (0, import_web17.memo)(() => !!props.placeholder);
+        return () => _c$() && (() => {
+          const _el$3 = _tmpl$22.cloneNode(true);
+          (0, import_web16.insert)(_el$3, () => props.placeholder);
+          (0, import_web14.effect)((_p$) => {
+            const _v$8 = classes2.ddownplaceholder, _v$9 = props.value === "";
+            _v$8 !== _p$._v$8 && (0, import_web13.className)(_el$3, _p$._v$8 = _v$8);
+            _v$9 !== _p$._v$9 && (_el$3.selected = _p$._v$9 = _v$9);
+            return _p$;
+          }, {
+            _v$8: void 0,
+            _v$9: void 0
+          });
+          return _el$3;
+        })();
+      })(), null);
       (0, import_web16.insert)(_el$2, () => {
         var _a;
         return (_a = props.options) == null ? void 0 : _a.map((o) => (() => {
-          const _el$3 = _tmpl$22.cloneNode(true);
-          (0, import_web16.insert)(_el$3, () => o.label);
-          (0, import_web14.effect)(() => _el$3.selected = o.value === props.value);
-          (0, import_web14.effect)(() => _el$3.value = o.value);
-          return _el$3;
+          const _el$4 = _tmpl$32.cloneNode(true);
+          (0, import_web16.insert)(_el$4, () => o.label);
+          (0, import_web14.effect)(() => _el$4.selected = o.value === props.value);
+          (0, import_web14.effect)(() => _el$4.value = o.value);
+          return _el$4;
         })());
-      });
+      }, null);
       (0, import_web16.insert)(_el$, (0, import_web15.createComponent)(SelectArrow, {
         get ["class"]() {
           return classes2.dsarrow;
         }
       }), null);
       (0, import_web14.effect)((_p$) => {
-        const _v$ = classes2.dcontainer, _v$2 = props.style, _v$3 = classes2.ddown, _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
+        const _v$ = classes2.dcontainer, _v$2 = props.style, _v$3 = classes2.ddown + " " + (props.placeholder && props.value === "" ? classes2.ddownplaceholder : ""), _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
         _v$ !== _p$._v$ && (0, import_web13.className)(_el$, _p$._v$ = _v$);
         _p$._v$2 = (0, import_web12.style)(_el$, _v$2, _p$._v$2);
         _v$3 !== _p$._v$3 && (0, import_web13.className)(_el$2, _p$._v$3 = _v$3);
@@ -466,7 +486,7 @@
   };
 
   // plugins/shelteRPC/components/RegisteredGames.tsx
-  var _tmpl$8 = /* @__PURE__ */ (0, import_web17.template)(`<a target="_blank">Add it!</a>`, 2);
+  var _tmpl$8 = /* @__PURE__ */ (0, import_web18.template)(`<a target="_blank">Add it!</a>`, 2);
   var {
     ui: {
       Divider,
@@ -515,7 +535,7 @@
         markLocals();
       }, 2e3);
     }));
-    return [(0, import_web20.createComponent)(Header, {
+    return [(0, import_web21.createComponent)(Header, {
       get tag() {
         return HeaderTags.H1;
       },
@@ -523,17 +543,17 @@
         return classes3.shead;
       },
       children: "Registered Games"
-    }), (0, import_web20.createComponent)(Text, {
+    }), (0, import_web21.createComponent)(Text, {
       get ["class"]() {
         return classes3.description;
       },
       children: "ShelteRPC will automatically update your status based on the game you're playing (if detectable). You can also manually add games to this list if it isn't being detected."
-    }), (0, import_web20.createComponent)(Divider, {
+    }), (0, import_web21.createComponent)(Divider, {
       mt: 20,
       mb: 20
-    }), (0, import_web19.memo)((() => {
-      const _c$ = (0, import_web19.memo)(() => !!currentlyPlaying());
-      return () => _c$() ? (0, import_web20.createComponent)(GameCard_default, {
+    }), (0, import_web20.memo)((() => {
+      const _c$ = (0, import_web20.memo)(() => !!currentlyPlaying());
+      return () => _c$() ? (0, import_web21.createComponent)(GameCard_default, {
         get name() {
           return currentlyPlaying();
         },
@@ -542,29 +562,29 @@
           var _a;
           return ((_a = Object.values(previouslyPlayed()).find((p) => p.name === currentlyPlaying())) == null ? void 0 : _a.local) || false;
         }
-      }) : (0, import_web20.createComponent)(GameCard_default, {
+      }) : (0, import_web21.createComponent)(GameCard_default, {
         type: "none"
       });
-    })()), (0, import_web20.createComponent)(Text, {
+    })()), (0, import_web21.createComponent)(Text, {
       get ["class"]() {
         return classes3.addIt;
       },
       get children() {
-        return ["Not seeing your game? ", (0, import_web19.memo)(() => (0, import_web19.memo)(() => !!isDorion())() ? (() => {
+        return ["Not seeing your game? ", (0, import_web20.memo)(() => (0, import_web20.memo)(() => !!isDorion())() ? (() => {
           const _el$ = _tmpl$8.cloneNode(true);
           _el$.$$click = addIt;
           return _el$;
         })() : "Adding it is unsupported.")];
       }
-    }), (0, import_web20.createComponent)(Header, {
+    }), (0, import_web21.createComponent)(Header, {
       get ["class"]() {
         return classes3.addhead;
       },
       children: "Added Games"
-    }), (0, import_web19.memo)(() => Object.values(previouslyPlayed()).map((game) => {
+    }), (0, import_web20.memo)(() => Object.values(previouslyPlayed()).map((game) => {
       if (game.name === currentlyPlaying())
         return null;
-      return (0, import_web20.createComponent)(GameCard_default, {
+      return (0, import_web21.createComponent)(GameCard_default, {
         get name() {
           return game.name;
         },
@@ -587,9 +607,9 @@
       setWindows(res);
     }));
     openConfirmationModal({
-      body: () => (0, import_web19.memo)((() => {
-        const _c$2 = (0, import_web19.memo)(() => windows().length > 0);
-        return () => _c$2() ? [(0, import_web20.createComponent)(Dropdown, {
+      body: () => (0, import_web20.memo)((() => {
+        const _c$2 = (0, import_web20.memo)(() => windows().length > 0);
+        return () => _c$2() ? [(0, import_web21.createComponent)(Dropdown, {
           get options() {
             return (
               // Unique
@@ -603,18 +623,18 @@
           maxVisibleItems: 5,
           closeOnSelect: true,
           onChange: (e) => setSelected(Number(e.target.value))
-        }), (0, import_web20.createComponent)(Header, {
+        }), (0, import_web21.createComponent)(Header, {
           get ["class"]() {
             return classes3.modalhead;
           },
           children: "Name to Display"
-        }), (0, import_web20.createComponent)(TextBox, {
+        }), (0, import_web21.createComponent)(TextBox, {
           get value() {
             return name();
           },
           onInput: (v) => setName(v),
           placeholder: "Enter the name to display..."
-        })] : (0, import_web20.createComponent)(Text, {
+        })] : (0, import_web21.createComponent)(Text, {
           children: "Please wait..."
         });
       })()),
@@ -630,7 +650,7 @@
     }, () => {
     });
   }
-  (0, import_web18.delegateEvents)(["click"]);
+  (0, import_web19.delegateEvents)(["click"]);
 
   // plugins/shelteRPC/index.tsx
   var {
