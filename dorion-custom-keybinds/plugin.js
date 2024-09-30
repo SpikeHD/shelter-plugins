@@ -728,13 +728,6 @@
   }
 
   // plugins/dorion-custom-keybinds/util/actionMap.ts
-  var {
-    flux: {
-      stores: {
-        UserStore
-      }
-    }
-  } = shelter;
   var keybindActions = {
     "UNASSIGNED": {},
     "TOGGLE_MUTE": {
