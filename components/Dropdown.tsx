@@ -29,7 +29,9 @@ export const Dropdown: Component<{
   return (
     <div class={classes.dcontainer} style={props.style}>
       <select
-        class={classes.ddown}
+        class={classes.ddown + ' ' + (
+          props.placeholder && props.value === '' ? classes.ddownplaceholder : ''
+        )}
         placeholder={props.placeholder}
         id={props.id}
         aria-label={props['aria-label']}
@@ -44,6 +46,12 @@ export const Dropdown: Component<{
         }}
         disabled={props.disabled}
       >
+        {props.placeholder && (
+          <option class={classes.ddownplaceholder} value="" selected={props.value === ''}>
+            {props.placeholder}
+          </option>
+        )}
+
         {props.options?.map((o) => (
           <option value={o.value} selected={o.value === props.value}>
             {o.label}

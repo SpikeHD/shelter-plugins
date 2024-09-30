@@ -104,7 +104,6 @@ export function ThemesPage() {
                     appendTheme(theme, e.target.value)
                     reloadThemes()
                   }}
-                  placeholder={'Select a theme...'}
                   options={[{ label: 'None', value: 'none' }, ...themes()]}
                 />
               )
@@ -113,13 +112,13 @@ export function ThemesPage() {
 
             <Dropdown
               style={'margin-bottom: 8px;'}
-              value={'none'}
+              value={''}
               onChange={(e) => {
                 appendTheme('none', e.target.value)
                 reloadThemes()
               }}
               placeholder={'Select a theme...'}
-              options={[{ label: 'None', value: 'none' }, ...themes()]}
+              options={[...themes()]}
               immutable={true}
             />
           </>
