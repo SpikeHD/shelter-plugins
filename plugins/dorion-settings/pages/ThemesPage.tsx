@@ -74,7 +74,7 @@ export function ThemesPage() {
       <Header class={classes.shead}>Theme</Header>
 
       {
-        settings().themes.map((theme) => (
+        (settings().themes || []).map((theme) => (
           <Dropdown
             style={'margin-bottom: 8px;'}
             key={theme}
