@@ -668,8 +668,8 @@
     },
     http
   } = shelter;
-  var maybeUnregisterGameSetting = () => {
-  };
+  var maybeUnregisterGameSettings = [() => {
+  }];
   var cachedAssets = {};
   var ws;
   var apps = {};
@@ -697,7 +697,6 @@
       var _a, _b, _c, _d, _e;
       const data = JSON.parse(e.data);
       const assets = (_a = data.activity) == null ? void 0 : _a.assets;
-      console.log(data);
       if (data.cmd)
         return handleCmd(data);
       if (assets == null ? void 0 : assets.large_image)
@@ -769,7 +768,7 @@
       }
       return true;
     }), 3, 3e3);
-    maybeUnregisterGameSetting = registerSection("section", "shelterpc", "Registered Games", RegisteredGames_default);
+    maybeUnregisterGameSettings = [registerSection("divider"), registerSection("header", "shelteRPC"), registerSection("section", "shelterpc", "Registered Games", RegisteredGames_default)];
     if (!connected)
       return;
     ws.onclose = () => {
@@ -789,8 +788,9 @@
     var _a;
     if (ws == null ? void 0 : ws.close)
       (_a = ws.close) == null ? void 0 : _a.call(ws);
-    if (maybeUnregisterGameSetting)
-      maybeUnregisterGameSetting();
+    if (maybeUnregisterGameSettings) {
+      maybeUnregisterGameSettings.forEach((section) => section());
+    }
   });
   return __toCommonJS(shelteRPC_exports);
 })();
