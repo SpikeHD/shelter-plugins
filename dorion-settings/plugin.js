@@ -4093,22 +4093,6 @@ ${content}</tr>
       onCancel: props.close
     }));
   });
-  var deprecated_loadTheme = (theme) => __async(void 0, null, function* () {
-    const themeTag = document.getElementById(`${appName.toLowerCase()}-theme`);
-    if (theme === "none")
-      return themeTag.innerText = "";
-    const themeContents = yield invoke("get_theme", {
-      name: theme
-    });
-    const localized = yield invoke("localize_imports", {
-      css: themeContents,
-      name: theme
-    });
-    console.log("Got the localized theme!");
-    const contents = api.util.cssSanitize(localized);
-    console.log("Sanitized!");
-    themeTag.innerHTML = contents;
-  });
   var reloadThemes = () => __async(void 0, null, function* () {
     const themeTag = document.getElementById(`${appName.toLowerCase()}-theme`);
     const themeContents = yield invoke("get_themes").catch((e) => console.error(e));
@@ -4133,7 +4117,6 @@ ${content}</tr>
     });
     statusUpdater(`Applying ${themeName} ...`);
     const config = JSON.parse(yield invoke("read_config_file"));
-    config.theme = themeName;
     (_a = config == null ? void 0 : config.themes) == null ? void 0 : _a.push(themeName);
     statusUpdater("Saving...");
     yield invoke("write_config_file", {
@@ -4160,15 +4143,6 @@ ${content}</tr>
     }
   } = shelter;
   var injectedCss13 = false;
-  function asMmp(v) {
-    const noLetters = v.replace(/[a-zA-Z]/g, "");
-    const split = noLetters.split(".");
-    return {
-      major: parseInt(split[0], 10),
-      minor: parseInt(split[1], 10),
-      patch: parseInt(split[2], 10)
-    };
-  }
   function ThemesPage() {
     if (!injectedCss13) {
       injectedCss13 = true;
@@ -4176,7 +4150,6 @@ ${content}</tr>
     }
     const [settings, setSettingsState] = createSignal9(defaultConfig);
     const [themes, setThemes] = createSignal9([]);
-    const [supportsMultiTheme, setSupportsMultiTheme] = createSignal9();
     const getThemes = () => __async(this, null, function* () {
       const themes2 = yield invoke("get_theme_names");
       return themes2.map((t) => ({
@@ -4185,10 +4158,8 @@ ${content}</tr>
       }));
     });
     createEffect5(() => __async(this, null, function* () {
-      const version = asMmp(yield app.getVersion());
       setSettingsState(JSON.parse(yield invoke("read_config_file")));
       setThemes(yield getThemes());
-      setSupportsMultiTheme(version.major >= 6 && version.minor >= 1);
     }));
     const setSettings = (fn) => {
       setSettingsState(fn(settings()));
@@ -4227,58 +4198,33 @@ ${content}</tr>
         return classes12.shead;
       },
       children: "Theme"
-    }), (0, import_web78.memo)((() => {
-      const _c$ = (0, import_web78.memo)(() => !!supportsMultiTheme());
-      return () => _c$() ? [(0, import_web78.memo)(() => settings().themes.map((theme) => (0, import_web79.createComponent)(Dropdown, {
-        style: "margin-bottom: 8px;",
-        key: theme,
-        value: theme,
-        onChange: (e) => {
-          appendTheme(theme, e.target.value);
-          reloadThemes();
-        },
-        get options() {
-          return [{
-            label: "None",
-            value: "none"
-          }, ...themes()];
-        }
-      }))), (0, import_web79.createComponent)(Dropdown, {
-        style: "margin-bottom: 8px;",
-        value: "",
-        onChange: (e) => {
-          appendTheme("none", e.target.value);
-          reloadThemes();
-        },
-        placeholder: "Select a theme...",
-        get options() {
-          return [...themes()];
-        },
-        immutable: true
-      })] : (0, import_web79.createComponent)(Dropdown, {
-        get value() {
-          return settings().theme;
-        },
-        onChange: (e) => {
-          setSettings((p) => {
-            return __spreadProps(__spreadValues({}, p), {
-              theme: e.target.value
-            });
-          });
-          deprecated_loadTheme(e.target.value);
-        },
-        placeholder: "Select a theme...",
-        get options() {
-          return [{
-            label: "None",
-            value: "none"
-          }, ...themes()];
-        },
-        get selected() {
-          return settings().theme;
-        }
-      });
-    })()), (0, import_web79.createComponent)(Divider2, {
+    }), (0, import_web78.memo)(() => settings().themes.map((theme) => (0, import_web79.createComponent)(Dropdown, {
+      style: "margin-bottom: 8px;",
+      key: theme,
+      value: theme,
+      onChange: (e) => {
+        appendTheme(theme, e.target.value);
+        reloadThemes();
+      },
+      get options() {
+        return [{
+          label: "None",
+          value: "none"
+        }, ...themes()];
+      }
+    }))), (0, import_web79.createComponent)(Dropdown, {
+      style: "margin-bottom: 8px;",
+      value: "",
+      onChange: (e) => {
+        appendTheme("none", e.target.value);
+        reloadThemes();
+      },
+      placeholder: "Select a theme...",
+      get options() {
+        return [...themes()];
+      },
+      immutable: true
+    }), (0, import_web79.createComponent)(Divider2, {
       mt: 16,
       mb: 16
     }), (() => {
@@ -4288,9 +4234,6 @@ ${content}</tr>
           return ButtonSizes4.MEDIUM;
         },
         onClick: installThemeModal,
-        get disabled() {
-          return !supportsMultiTheme();
-        },
         children: "Install Theme From Link"
       }), null);
       (0, import_web77.insert)(_el$, (0, import_web79.createComponent)(Button6, {
