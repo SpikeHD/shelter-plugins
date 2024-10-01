@@ -4198,7 +4198,7 @@ ${content}</tr>
         return classes12.shead;
       },
       children: "Theme"
-    }), (0, import_web78.memo)(() => settings().themes.map((theme) => (0, import_web79.createComponent)(Dropdown, {
+    }), (0, import_web78.memo)(() => (settings().themes || []).map((theme) => (0, import_web79.createComponent)(Dropdown, {
       style: "margin-bottom: 8px;",
       key: theme,
       value: theme,
