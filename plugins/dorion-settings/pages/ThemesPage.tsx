@@ -29,7 +29,13 @@ export function ThemesPage() {
   }
 
   createEffect(async () => {
-    setSettingsState(JSON.parse(await invoke('read_config_file')))
+    const settings = JSON.parse(await invoke('read_config_file'))
+
+    if (!settings.themes) {
+      settings.themes = []
+    }
+
+    setSettingsState(settings)
     setThemes(await getThemes())
   })
 
@@ -74,7 +80,7 @@ export function ThemesPage() {
       <Header class={classes.shead}>Theme</Header>
 
       {
-        (settings().themes || []).map((theme) => (
+        settings().themes.map((theme) => (
           <Dropdown
             style={'margin-bottom: 8px;'}
             key={theme}
