@@ -47,33 +47,6 @@ export const installThemeModal = async () => {
   }))
 }
 
-// FIXME remove this 
-export const deprecated_loadTheme = async (theme: string) => {
-  // Get the Dorion theme style tag, replace the contents
-  const themeTag = document.getElementById(`${appName.toLowerCase()}-theme`) as HTMLStyleElement
-
-  if (theme === 'none') return themeTag.innerText = ''
-
-  const themeContents = await invoke('get_theme', {
-    name: theme
-  })
-
-  // Localize
-  const localized = await invoke('localize_imports', {
-    css: themeContents,
-    name: theme
-  })
-
-  console.log('Got the localized theme!')
-
-  // Internal Dorion function
-  const contents = api.util.cssSanitize(localized)
-
-  console.log('Sanitized!')
-
-  themeTag.innerHTML = contents
-}
-
 export const reloadThemes = async () => {
   // Get the Dorion theme style tag, replace the contents
   const themeTag = document.getElementById(`${appName.toLowerCase()}-theme`) as HTMLStyleElement
@@ -114,8 +87,6 @@ export const installAndLoad = async (link: string, statusUpdater: (string) => vo
   // Save the theme to the config
   const config = JSON.parse(await invoke('read_config_file'))
 
-  // FIXME Cover both the old and new way of doing things
-  config.theme = themeName
   config?.themes?.push(themeName) 
 
   statusUpdater('Saving...')
