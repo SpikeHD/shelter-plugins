@@ -18,7 +18,7 @@ const {
   http,
 } = shelter
 
-let maybeUnregisterGameSetting = () => {}
+let maybeUnregisterGameSettings = [() => {}]
 
 const cachedAssets: AssetCache = {}
 
@@ -52,8 +52,6 @@ export const generateAssetId = async (appId: string, asset: string) => {
 async function handleMessage(e: MessageEvent<string>) {
   const data = JSON.parse(e.data)
   const assets = data.activity?.assets
-
-  console.log(data)
 
   if (data.cmd) return handleCmd(data)
 
@@ -155,12 +153,16 @@ export const onLoad = async () => {
     3000
   )
 
-  maybeUnregisterGameSetting = registerSection(
-    'section',
-    'shelterpc',
-    'Registered Games',
-    RegisteredGames
-  )
+  maybeUnregisterGameSettings = [
+    registerSection('divider'),
+    registerSection('header', 'shelteRPC'),
+    registerSection(
+      'section',
+      'shelterpc',
+      'Registered Games',
+      RegisteredGames
+    )
+  ]
 
   if (!connected) return
 
@@ -182,5 +184,7 @@ export const onLoad = async () => {
 export const onUnload = async () => {
   if (ws?.close) ws.close?.()
 
-  if (maybeUnregisterGameSetting) maybeUnregisterGameSetting()
+  if (maybeUnregisterGameSettings) {
+    maybeUnregisterGameSettings.forEach((section) => section())
+  }
 }
