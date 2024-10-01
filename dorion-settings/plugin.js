@@ -4158,7 +4158,11 @@ ${content}</tr>
       }));
     });
     createEffect5(() => __async(this, null, function* () {
-      setSettingsState(JSON.parse(yield invoke("read_config_file")));
+      const settings2 = JSON.parse(yield invoke("read_config_file"));
+      if (!settings2.themes) {
+        settings2.themes = [];
+      }
+      setSettingsState(settings2);
       setThemes(yield getThemes());
     }));
     const setSettings = (fn) => {
@@ -4198,7 +4202,7 @@ ${content}</tr>
         return classes12.shead;
       },
       children: "Theme"
-    }), (0, import_web78.memo)(() => (settings().themes || []).map((theme) => (0, import_web79.createComponent)(Dropdown, {
+    }), (0, import_web78.memo)(() => settings().themes.map((theme) => (0, import_web79.createComponent)(Dropdown, {
       style: "margin-bottom: 8px;",
       key: theme,
       value: theme,
