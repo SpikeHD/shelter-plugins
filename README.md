@@ -1,6 +1,18 @@
-# SpikeHD's shelter plugins
+<h1 align="center">
+ SpikeHD's shelter plugins
+</h1>
 
-Shelter plugin repo housing both general-use plugins AND [Dorion](https://github.com/SpikeHD/Dorion)-specific plugins
+<div align="center">
+  <img src="https://img.shields.io/github/actions/workflow/status/SpikeHD/shelter-plugins/deploy.yml" />
+  <img src="https://img.shields.io/github/actions/workflow/status/SpikeHD/shelter-plugins/lint.yml?label=code quality" />
+
+  <br/>
+
+  <span>
+    Shelter plugin repo housing both general-use plugins AND <a href="https://github.com/SpikeHD/Dorion">Dorion</a>-specific plugins
+  </span>
+</div>
+
 
 # Table of Contents
 * [Plugins](#plugins)
