@@ -17,6 +17,7 @@ const {
   observeDom
 } = shelter
 
+// eslint-disable-next-line
 false && tooltip
 
 let injectedCss = false

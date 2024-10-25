@@ -54,15 +54,20 @@ export function PerformancePage() {
     try {
       const availableBlurs = await invoke('available_blurs')
       setBlurOptions(availableBlurs)
+    
+    // eslint-disable-next-line
     } catch(e) { /* this can fail it's fine */ }
 
     try {
       const platform = await invoke('get_platform')
       setPlatform(platform)
+    
+    // eslint-disable-next-line
     } catch(e) { /* this can fail it's fine */ }
 
     try {
       setState(JSON.parse(settings))
+    // eslint-disable-next-line
     } catch (e) {
       setState(JSON.parse(defaultConf))
     }

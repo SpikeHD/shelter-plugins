@@ -33,7 +33,7 @@ export function KeybindInput(props: Props) {
   const [keysPressed, setKeysPressed] = createSignal<KeyStruct[]>([])
 
   onCleanup(() => {
-    window.removeEventListener('keydown', keyDown),
+    window.removeEventListener('keydown', keyDown)
     window.removeEventListener('keyup', keyUp)
   })
 
@@ -85,7 +85,7 @@ export function KeybindInput(props: Props) {
   const setRecordingState = () => {
     if (recording()) {
       // Remove all event listeners
-      window.removeEventListener('keydown', keyDown),
+      window.removeEventListener('keydown', keyDown)
       window.removeEventListener('keyup', keyUp)
 
       // Set the keybind
@@ -100,7 +100,7 @@ export function KeybindInput(props: Props) {
     setKeybind([])
 
     // Create event listeners to set the keybind based on what is being held down
-    window.addEventListener('keydown', keyDown),
+    window.addEventListener('keydown', keyDown)
     window.addEventListener('keyup', keyUp)
 
     setRecording(true)

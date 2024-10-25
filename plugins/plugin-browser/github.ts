@@ -75,6 +75,8 @@ export async function getPluginsLocation(site: string, plugins: string[]) {
         workingPath = path
         break
       }
+    
+    // eslint-disable-next-line
     } catch (e) {
       // If we get an error, its probably because the file doesn't exist
       // So we can just ignore it

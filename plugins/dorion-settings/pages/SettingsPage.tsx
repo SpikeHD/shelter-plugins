@@ -44,7 +44,7 @@ export function SettingsPage() {
     // If a restart is now required, set that
     if (requiresRestart) {
       setRestartRequired(true)
-      backendRestartRequired
+      backendRestartRequired(true)
     }
   }
 

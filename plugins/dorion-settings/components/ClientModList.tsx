@@ -12,6 +12,7 @@ let injectedCss = false
 const getClientMods = async (): Promise<string> => {
   try  {
     return await invoke('available_mods')
+  // eslint-disable-next-line
   } catch (e) {
     // function doesn't exist, version is too old
   }

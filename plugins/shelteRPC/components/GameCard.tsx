@@ -47,10 +47,12 @@ let injectedCss = false
 
 const deleteGame = (name: string) => {
   // Remove from local detectables
-  backend !== 'None' && event.emit('remove_detectable', {
-    name,
-    exe: ''
-  })
+  if (backend !== 'None') {
+    event.emit('remove_detectable', {
+      name,
+      exe: ''
+    })
+  }
 
   // Also remove from the plugin store
   const key = Object.keys(store.previouslyPlayed).find(k => store.previouslyPlayed[k].name === name)
