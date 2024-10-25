@@ -6,7 +6,7 @@
     "@uwu/lune": "^1.4.2",
     "@uwu/shelter-defs": "^1.4.1",
     "globals": "^15.11.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.3"
   },
   "scripts": {
     "lint": "eslint ./plugins ./components",
