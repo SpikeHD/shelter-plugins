@@ -76,8 +76,15 @@
   __export(shelteRPC_exports, {
     generateAssetId: () => generateAssetId,
     onLoad: () => onLoad,
-    onUnload: () => onUnload
+    onUnload: () => onUnload,
+    settings: () => settings
   });
+  var import_web22 = __toESM(require_web(), 1);
+  var import_web23 = __toESM(require_web(), 1);
+  var import_web24 = __toESM(require_web(), 1);
+  var import_web25 = __toESM(require_web(), 1);
+  var import_web26 = __toESM(require_web(), 1);
+  var import_web27 = __toESM(require_web(), 1);
 
   // plugins/shelteRPC/components/RegisteredGames.tsx
   var import_web18 = __toESM(require_web(), 1);
@@ -652,7 +659,15 @@
   }
   (0, import_web19.delegateEvents)(["click"]);
 
+  // plugins/shelteRPC/index.scss
+  var css4 = `._container_1agc2_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;margin-bottom:12px}._container_1agc2_1 input[type=number]{width:30%;flex-grow:0}`;
+  var classes4 = {
+    "container": "_container_1agc2_1"
+  };
+
   // plugins/shelteRPC/index.tsx
+  var _tmpl$9 = /* @__PURE__ */ (0, import_web22.template)(`<br>`, 1);
+  var _tmpl$23 = /* @__PURE__ */ (0, import_web22.template)(`<div></div>`, 2);
   var {
     flux: {
       dispatcher: FluxDispatcher
@@ -661,13 +676,23 @@
       registerSection
     },
     ui: {
-      showToast
+      Header: Header2,
+      HeaderTags: HeaderTags2,
+      TextBox: TextBox2,
+      Text: Text2,
+      showToast,
+      injectCss: injectCss4
     },
     plugin: {
       store: store3
     },
     http
   } = shelter;
+  var injectedCss4 = false;
+  if (!injectedCss4) {
+    injectedCss4 = true;
+    injectCss4(css4);
+  }
   var maybeUnregisterGameSettings = [() => {
   }];
   var cachedAssets = {};
@@ -746,10 +771,11 @@
     return result;
   });
   var onLoad = () => __async(void 0, null, function* () {
+    var _a, _b;
     if (ws && (ws == null ? void 0 : ws.close))
       ws.close();
     const connected = yield retry((curTry) => __async(void 0, null, function* () {
-      var _a;
+      var _a2, _b2;
       ws = new WebSocket("ws://127.0.0.1:1337");
       ws.onmessage = handleMessage;
       ws.onerror = (e) => {
@@ -757,17 +783,17 @@
       };
       yield new Promise((r) => setTimeout(r, 1e3));
       if (ws.readyState !== WebSocket.OPEN) {
-        (_a = ws == null ? void 0 : ws.close) == null ? void 0 : _a.call(ws);
+        (_a2 = ws == null ? void 0 : ws.close) == null ? void 0 : _a2.call(ws);
         ws = null;
         showToast({
           title: "ShelteRPC",
           content: `Unable to connect to ShelteRPC server (${curTry})`,
-          duration: 2e3
+          duration: (_b2 = store3.retryWait) != null ? _b2 : 3e3
         });
         return false;
       }
       return true;
-    }), 3, 3e3);
+    }), (_a = store3.retryCount) != null ? _a : 3, (_b = store3.retryWait) != null ? _b : 3e3);
     maybeUnregisterGameSettings = [registerSection("divider"), registerSection("header", "shelteRPC"), registerSection("section", "shelterpc", "Registered Games", RegisteredGames_default)];
     if (!connected)
       return;
@@ -792,5 +818,41 @@
       maybeUnregisterGameSettings.forEach((section) => section());
     }
   });
+  var settings = () => [(0, import_web27.createComponent)(Header2, {
+    get tag() {
+      return HeaderTags2.H1;
+    },
+    children: "Connection"
+  }), _tmpl$9.cloneNode(true), (() => {
+    const _el$2 = _tmpl$23.cloneNode(true);
+    (0, import_web25.insert)(_el$2, (0, import_web27.createComponent)(Text2, {
+      children: "Connection Retry Count"
+    }), null);
+    (0, import_web25.insert)(_el$2, (0, import_web27.createComponent)(TextBox2, {
+      get value() {
+        var _a;
+        return (_a = store3.retryCount) != null ? _a : 3;
+      },
+      onChange: (v) => store3.retryCount = v,
+      type: "number"
+    }), null);
+    (0, import_web24.effect)(() => (0, import_web23.className)(_el$2, classes4.container));
+    return _el$2;
+  })(), (() => {
+    const _el$3 = _tmpl$23.cloneNode(true);
+    (0, import_web25.insert)(_el$3, (0, import_web27.createComponent)(Text2, {
+      children: "Connection Retry Wait (milliseconds)"
+    }), null);
+    (0, import_web25.insert)(_el$3, (0, import_web27.createComponent)(TextBox2, {
+      get value() {
+        var _a;
+        return (_a = store3.retryWait) != null ? _a : 3e3;
+      },
+      onChange: (v) => store3.retryWait = v,
+      type: "number"
+    }), null);
+    (0, import_web24.effect)(() => (0, import_web23.className)(_el$3, classes4.container));
+    return _el$3;
+  })()];
   return __toCommonJS(shelteRPC_exports);
 })();
