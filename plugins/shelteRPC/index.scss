@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.container input[type=number] {
+  width: 30%;
+  flex-grow: 0;
+}
