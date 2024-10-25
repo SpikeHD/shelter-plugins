@@ -2653,11 +2653,11 @@
   }
 
   // plugins/inline-css/components/Editor.scss
-  var css2 = `._ceditor_60akv_1{padding:12px;margin-top:28px;border-radius:5px;background:var(--input-background);height:80vh !important}._ceditor_60akv_1>div{height:100% !important}._controls_60akv_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;margin-top:24px}._controls_60akv_1 button{width:30%}._popout_60akv_1{width:100% !important;margin-top:12px}._popout_60akv_1 svg{height:50%;width:30px}._ceditor_60akv_1 textarea{height:100% !important;cursor:auto;color:rgba(0,0,0,0)}._ceditor_60akv_1 textarea::-webkit-scrollbar-corner{background:rgba(0,0,0,0)}._ceditor_60akv_1 textarea::-webkit-scrollbar{background:rgba(0,0,0,0)}._ceditor_60akv_1 textarea::-webkit-scrollbar-track{background:none}._ceditor_60akv_1 textarea::-webkit-scrollbar-thumb{background:var(--primary-530);border-radius:4px}._ceditor_60akv_1 textarea::-webkit-scrollbar:horizontal{height:8px}._ceditor_60akv_1 textarea::-webkit-scrollbar:vertical{width:8px}._ceditor_60akv_1 div[class*=styles-]{height:100% !important}`;
+  var css2 = `._ceditor_1kwmh_1{padding:12px;margin-top:28px;border-radius:5px;background:var(--input-background);height:80vh !important}._ceditor_1kwmh_1>div{height:100% !important}._controls_1kwmh_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;margin-top:24px}._controls_1kwmh_1 button{width:30%}._popout_1kwmh_1{width:100% !important;margin-top:12px}._popout_1kwmh_1 svg{height:50%;width:30px}._ceditor_1kwmh_1 textarea{height:100% !important;cursor:auto;color:rgba(0,0,0,0)}._ceditor_1kwmh_1 textarea::-webkit-scrollbar-corner{background:rgba(0,0,0,0)}._ceditor_1kwmh_1 textarea::-webkit-scrollbar{background:rgba(0,0,0,0)}._ceditor_1kwmh_1 textarea::-webkit-scrollbar-track{background:none}._ceditor_1kwmh_1 textarea::-webkit-scrollbar-thumb{background:var(--primary-530);border-radius:4px}._ceditor_1kwmh_1 textarea::-webkit-scrollbar:horizontal{height:8px}._ceditor_1kwmh_1 textarea::-webkit-scrollbar:vertical{width:8px}._ceditor_1kwmh_1 div[class*=styles-]{height:100% !important;width:100% !important}`;
   var classes = {
-    "ceditor": "_ceditor_60akv_1",
-    "controls": "_controls_60akv_1",
-    "popout": "_popout_60akv_1"
+    "ceditor": "_ceditor_1kwmh_1",
+    "controls": "_controls_1kwmh_1",
+    "popout": "_popout_1kwmh_1"
   };
 
   // plugins/inline-css/util.ts
