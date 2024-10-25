@@ -1,4 +1,5 @@
 import RegisteredGames from './components/RegisteredGames'
+import { css, classes } from './index.scss'
 
 interface AssetCache {
   [key: string]: {
@@ -13,10 +14,24 @@ const {
     dispatcher: FluxDispatcher
   },
   settings: { registerSection },
-  ui: { showToast },
+  ui: {
+    Header,
+    HeaderTags,
+    TextBox,
+    Text,
+    showToast,
+    injectCss
+  },
   plugin: { store },
   http,
 } = shelter
+
+let injectedCss = false
+
+if (!injectedCss) {
+  injectedCss = true
+  injectCss(css)
+}
 
 let maybeUnregisterGameSettings = [() => {}]
 
@@ -141,7 +156,7 @@ export const onLoad = async () => {
         showToast({
           title: 'ShelteRPC',
           content: `Unable to connect to ShelteRPC server (${curTry})`,
-          duration: 2000,
+          duration: store.retryWait ?? 3000,
         })
 
         return false
@@ -149,8 +164,8 @@ export const onLoad = async () => {
 
       return true
     },
-    3,
-    3000
+    store.retryCount ?? 3,
+    store.retryWait ?? 3000,
   )
 
   maybeUnregisterGameSettings = [
@@ -188,3 +203,27 @@ export const onUnload = async () => {
     maybeUnregisterGameSettings.forEach((section) => section())
   }
 }
+
+export const settings = () => (
+  <>
+    <Header tag={HeaderTags.H1}>Connection</Header>
+    <br />
+    <div class={classes.container}>
+      <Text>Connection Retry Count</Text>
+      <TextBox
+        value={store.retryCount ?? 3}
+        onChange={(v) => store.retryCount = v}
+        type="number"
+      />
+    </div>
+
+    <div class={classes.container}>
+      <Text>Connection Retry Wait (milliseconds)</Text>
+      <TextBox
+        value={store.retryWait ?? 3000}
+        onChange={(v) => store.retryWait = v}
+        type="number"
+      />
+    </div>
+  </>
+)
