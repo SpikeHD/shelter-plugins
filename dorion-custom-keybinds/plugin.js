@@ -410,7 +410,8 @@
     const [keybind, setKeybind] = createSignal(props.initialKeybind || []);
     const [keysPressed, setKeysPressed] = createSignal([]);
     onCleanup(() => {
-      window.removeEventListener("keydown", keyDown), window.removeEventListener("keyup", keyUp);
+      window.removeEventListener("keydown", keyDown);
+      window.removeEventListener("keyup", keyUp);
     });
     const keyDown = (e) => {
       const keycode = {
@@ -448,13 +449,15 @@
     };
     const setRecordingState = () => {
       if (recording()) {
-        window.removeEventListener("keydown", keyDown), window.removeEventListener("keyup", keyUp);
+        window.removeEventListener("keydown", keyDown);
+        window.removeEventListener("keyup", keyUp);
         props.onKeybindChange(keybind());
         setRecording(false);
         return;
       }
       setKeybind([]);
-      window.addEventListener("keydown", keyDown), window.addEventListener("keyup", keyUp);
+      window.addEventListener("keydown", keyDown);
+      window.addEventListener("keyup", keyUp);
       setRecording(true);
     };
     return (() => {

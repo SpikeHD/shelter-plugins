@@ -292,10 +292,12 @@
   var hideClosed = () => _tmpl$3.cloneNode(true);
   var injectedCss = false;
   var deleteGame = (name) => {
-    backend !== "None" && event.emit("remove_detectable", {
-      name,
-      exe: ""
-    });
+    if (backend !== "None") {
+      event.emit("remove_detectable", {
+        name,
+        exe: ""
+      });
+    }
     const key = Object.keys(store.previouslyPlayed).find((k) => store.previouslyPlayed[k].name === name);
     delete store.previouslyPlayed[key];
     if (store.currentlyPlaying === name) {

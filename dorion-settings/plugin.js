@@ -1033,7 +1033,7 @@
       });
       if (requiresRestart2) {
         setRestartRequired(true);
-        backendRestartRequired;
+        backendRestartRequired(true);
       }
     };
     return [(0, import_web42.createComponent)(Header3, {
