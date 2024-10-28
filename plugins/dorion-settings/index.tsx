@@ -54,7 +54,7 @@ const appendAppVersion = async () => {
   newVersionThing.innerHTML = `${appName} v${await app.getVersion()}`
 
   if (hash) {
-    newVersionThing.innerHTML += ' - ' + hash.slice(0, 7)
+    newVersionThing.innerHTML += ` (${hash.slice(0, 7)})`
   }
 
   // @ts-expect-error This works
