@@ -4268,6 +4268,7 @@ ${content}</tr>
   var appendAppVersion = () => __async(void 0, null, function* () {
     let tries = 0;
     const infoBoxSelector = 'div[class*="side_"] div[class*="info_"]';
+    const hash = (yield invoke("git_hash").catch((e) => console.error(e))) || "";
     while (!document.querySelector(infoBoxSelector)) {
       yield sleep(500);
       tries++;
@@ -4282,6 +4283,9 @@ ${content}</tr>
     if (!firstChild)
       return;
     newVersionThing.innerHTML = `${appName} v${yield app.getVersion()}`;
+    if (hash) {
+      newVersionThing.innerHTML += " - " + hash.slice(0, 7);
+    }
     newVersionThing.classList.add(...firstChild.classList);
     newVersionThing.style.color = firstChild.style.color;
     versionThings.appendChild(newVersionThing);
