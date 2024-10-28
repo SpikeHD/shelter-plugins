@@ -60,6 +60,7 @@ const appendAppVersion = async () => {
   // @ts-expect-error This works
   newVersionThing.classList.add(...firstChild.classList)
   newVersionThing.style.color = firstChild.style.color
+  newVersionThing.style.textTransform = 'none'
 
   versionThings.appendChild(newVersionThing)
 }
