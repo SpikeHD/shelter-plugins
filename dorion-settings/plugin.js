@@ -4288,6 +4288,7 @@ ${content}</tr>
     }
     newVersionThing.classList.add(...firstChild.classList);
     newVersionThing.style.color = firstChild.style.color;
+    newVersionThing.style.textTransform = "none";
     versionThings.appendChild(newVersionThing);
   });
   var checkForUpdates = () => __async(void 0, null, function* () {
