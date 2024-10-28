@@ -32,6 +32,7 @@ const settingsUninjects = [
 const appendAppVersion = async () => {
   let tries = 0
   const infoBoxSelector = 'div[class*="side_"] div[class*="info_"]'
+  const hash = await invoke('git_hash').catch((e) => console.error(e)) || ''
 
   // Wait for infoBox to exist
   while (!document.querySelector(infoBoxSelector)) {
@@ -51,6 +52,11 @@ const appendAppVersion = async () => {
   if (!firstChild) return
 
   newVersionThing.innerHTML = `${appName} v${await app.getVersion()}`
+
+  if (hash) {
+    newVersionThing.innerHTML += ' - ' + hash.slice(0, 7)
+  }
+
   // @ts-expect-error This works
   newVersionThing.classList.add(...firstChild.classList)
   newVersionThing.style.color = firstChild.style.color
