@@ -4284,7 +4284,7 @@ ${content}</tr>
       return;
     newVersionThing.innerHTML = `${appName} v${yield app.getVersion()}`;
     if (hash) {
-      newVersionThing.innerHTML += ` (${hash.slice(0, 7).toLowerCase()})`;
+      newVersionThing.innerHTML += ` (${hash.slice(0, 7)})`;
     }
     newVersionThing.classList.add(...firstChild.classList);
     newVersionThing.style.color = firstChild.style.color;
