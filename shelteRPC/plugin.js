@@ -86,12 +86,6 @@
   var import_web26 = __toESM(require_web(), 1);
   var import_web27 = __toESM(require_web(), 1);
 
-  // plugins/shelteRPC/components/RegisteredGames.tsx
-  var import_web18 = __toESM(require_web(), 1);
-  var import_web19 = __toESM(require_web(), 1);
-  var import_web20 = __toESM(require_web(), 1);
-  var import_web21 = __toESM(require_web(), 1);
-
   // api/dorion.ts
   var dorion_default = {
     name: "Dorion",
@@ -226,6 +220,12 @@
   var app = backendObj.app;
   var process = backendObj.process;
   var apiWindow = backendObj.apiWindow;
+
+  // plugins/shelteRPC/components/RegisteredGames.tsx
+  var import_web18 = __toESM(require_web(), 1);
+  var import_web19 = __toESM(require_web(), 1);
+  var import_web20 = __toESM(require_web(), 1);
+  var import_web21 = __toESM(require_web(), 1);
 
   // plugins/shelteRPC/components/GameCard.tsx
   var import_web = __toESM(require_web(), 1);
@@ -788,6 +788,7 @@
           code,
           invite
         });
+        backend !== "None" && invoke("ultrashow");
     }
   });
   var retry = (fn, times = 5, wait = 500) => __async(void 0, null, function* () {
