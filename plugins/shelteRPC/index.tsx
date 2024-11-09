@@ -212,7 +212,7 @@ export const settings = () => (
       <Text>Connection Retry Count</Text>
       <TextBox
         value={store.retryCount ?? 3}
-        onChange={(v) => store.retryCount = v}
+        onInput={(v) => store.retryCount = v}
         type="number"
       />
     </div>
@@ -221,7 +221,7 @@ export const settings = () => (
       <Text>Connection Retry Wait (milliseconds)</Text>
       <TextBox
         value={store.retryWait ?? 3000}
-        onChange={(v) => store.retryWait = v}
+        onInput={(v) => store.retryWait = v}
         type="number"
       />
     </div>
