@@ -122,7 +122,43 @@ async function handleMessage(e: MessageEvent<string>) {
 const handleCmd = async (payload: any) => {
   switch(payload.cmd) {
   case 'INVITE_BROWSER':
-    // TODO
+    const code = payload.args.code
+
+    if (code === '') {
+      // This should never happen
+      return
+    }
+    
+    // This is mostly to better replicate client behaviour
+    FluxDispatcher.dispatch({
+      type: 'INVITE_RESOLVE',
+      code
+    })
+
+    const resp = await http.get(`/invites/${code}`)
+    const invite = resp.body
+
+    if (resp.status !== 200) {
+      FluxDispatcher.dispatch({
+        type: 'INVITE_RESOLVE_FAILED',
+        code,
+        ...resp.body,
+      })
+      return
+    }
+
+    FluxDispatcher.dispatch({
+      type: 'INVITE_RESOLVE_SUCCESS',
+      code,
+      invite,
+    })
+
+    FluxDispatcher.dispatch({
+      type: 'INVITE_MODAL_OPEN',
+      context: 'APP',
+      code,
+      invite,
+    })
   }
 }
 
