@@ -760,6 +760,34 @@
   var handleCmd = (payload) => __async(void 0, null, function* () {
     switch (payload.cmd) {
       case "INVITE_BROWSER":
+        const code = payload.args.code;
+        if (code === "") {
+          return;
+        }
+        FluxDispatcher.dispatch({
+          type: "INVITE_RESOLVE",
+          code
+        });
+        const resp = yield http.get(`/invites/${code}`);
+        const invite = resp.body;
+        if (resp.status !== 200) {
+          FluxDispatcher.dispatch(__spreadValues({
+            type: "INVITE_RESOLVE_FAILED",
+            code
+          }, resp.body));
+          return;
+        }
+        FluxDispatcher.dispatch({
+          type: "INVITE_RESOLVE_SUCCESS",
+          code,
+          invite
+        });
+        FluxDispatcher.dispatch({
+          type: "INVITE_MODAL_OPEN",
+          context: "APP",
+          code,
+          invite
+        });
     }
   });
   var retry = (fn, times = 5, wait = 500) => __async(void 0, null, function* () {
