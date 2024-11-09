@@ -1,3 +1,4 @@
+import { backend, invoke } from '../../api/api.js';
 import RegisteredGames from './components/RegisteredGames'
 import { css, classes } from './index.scss'
 
@@ -159,6 +160,8 @@ const handleCmd = async (payload: any) => {
       code,
       invite,
     })
+
+    backend !== 'None' && invoke('ultrashow')
   }
 }
 
