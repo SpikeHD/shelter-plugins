@@ -835,7 +835,7 @@
         var _a;
         return (_a = store3.retryCount) != null ? _a : 3;
       },
-      onChange: (v) => store3.retryCount = v,
+      onInput: (v) => store3.retryCount = v,
       type: "number"
     }), null);
     (0, import_web24.effect)(() => (0, import_web23.className)(_el$2, classes4.container));
@@ -850,7 +850,7 @@
         var _a;
         return (_a = store3.retryWait) != null ? _a : 3e3;
       },
-      onChange: (v) => store3.retryWait = v,
+      onInput: (v) => store3.retryWait = v,
       type: "number"
     }), null);
     (0, import_web24.effect)(() => (0, import_web23.className)(_el$3, classes4.container));
