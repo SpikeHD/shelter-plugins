@@ -158,22 +158,6 @@ export function PerformancePage() {
       </SwitchItem>
 
       <SwitchItem
-        value={state().rpc_server}
-        onChange={(v) =>
-          setSettings((settings) => (
-            {
-              ...settings,
-              rpc_server: v,
-            }
-          ), true)
-        }
-        tooltipNote="This is a work in progress, and won't do EVERYTHING arRPC does quite yet."
-        note="Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the shelteRPC/arRPC plugin!"
-      >
-        Integrated rich presence server
-      </SwitchItem>
-
-      <SwitchItem
         value={state().disable_hardware_accel}
         onChange={(v) =>
           setSettings((settings) => (

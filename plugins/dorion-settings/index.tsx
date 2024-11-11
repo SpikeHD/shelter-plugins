@@ -6,6 +6,7 @@ import { SettingsPage } from './pages/SettingsPage.jsx'
 import { ChangelogPage } from './pages/ChangelogPage.jsx'
 import { PluginsPage } from './pages/PluginsPage.jsx'
 import { ThemesPage } from './pages/ThemesPage.jsx'
+import { RPCPage } from './pages/RPC.jsx'
 
 const {
   settings: {
@@ -26,6 +27,7 @@ const settingsUninjects = [
   registerSection('section', `${appName}-plugins`, 'Plugins', PluginsPage),
   registerSection('section', `${appName}-themes`, 'Themes', ThemesPage),
   registerSection('section',  `${appName}-performance`, 'Performance & Extras', PerformancePage),
+  registerSection('section', `${appName}-rpc`, 'Rich Presence', RPCPage),
   registerSection('section', `${appName}-profiles`, 'Profiles', ProfilesPage),
 ]
 
