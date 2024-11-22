@@ -719,6 +719,7 @@
     const assetId = (_a = cachedAssets[appId].find((a) => a.name === asset)) == null ? void 0 : _a.id;
     return assetId;
   });
+  var isProbablyUrl = (str) => str.startsWith("http://") || str.startsWith("https://");
   function handleMessage(e) {
     return __async(this, null, function* () {
       var _a, _b, _c, _d, _e;
@@ -726,9 +727,9 @@
       const assets = (_a = data.activity) == null ? void 0 : _a.assets;
       if (data.cmd)
         return handleCmd(data);
-      if (assets == null ? void 0 : assets.large_image)
+      if ((assets == null ? void 0 : assets.large_image) && !isProbablyUrl(assets.large_image))
         assets.large_image = yield generateAssetId(data.activity.application_id, assets.large_image);
-      if (assets == null ? void 0 : assets.small_image)
+      if ((assets == null ? void 0 : assets.small_image) && !isProbablyUrl(assets.small_image))
         assets.small_image = yield generateAssetId(data.activity.application_id, assets.small_image);
       if (data.activity) {
         const appId = data.activity.application_id;
