@@ -65,18 +65,20 @@ export const generateAssetId = async (appId: string, asset: string) => {
   return assetId
 }
 
+const isProbablyUrl = (str: string) => str.startsWith('http://') || str.startsWith('https://')
+
 async function handleMessage(e: MessageEvent<string>) {
   const data = JSON.parse(e.data)
   const assets = data.activity?.assets
 
   if (data.cmd) return handleCmd(data)
 
-  if (assets?.large_image)
+  if (assets?.large_image && !isProbablyUrl(assets.large_image))
     assets.large_image = await generateAssetId(
       data.activity.application_id,
       assets.large_image
     )
-  if (assets?.small_image)
+  if (assets?.small_image && !isProbablyUrl(assets.small_image))
     assets.small_image = await generateAssetId(
       data.activity.application_id,
       assets.small_image
