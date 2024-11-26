@@ -152,7 +152,11 @@ export function PerformancePage() {
             }
           ), true)
         }
-        note="Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running."
+        note={
+          <>
+            Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running. <b>Requires the integrated RPC Server to be enabled (found in the Rich Presence tab).</b>
+          </>
+        }
         disabled={!state().rpc_server}
       >
         Streamer Mode detection
