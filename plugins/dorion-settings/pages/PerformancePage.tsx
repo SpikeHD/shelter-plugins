@@ -153,6 +153,7 @@ export function PerformancePage() {
           ), true)
         }
         note="Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running."
+        disabled={!state().rpc_server}
       >
         Streamer Mode detection
       </SwitchItem>
