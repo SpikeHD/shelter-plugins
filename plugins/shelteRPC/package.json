@@ -1,0 +1,7 @@
+{
+  "name": "shelterpc",
+  "dependencies": {
+    "@cumjar/websmack": "^1.2.0"
+  },
+  "type": "module"
+}

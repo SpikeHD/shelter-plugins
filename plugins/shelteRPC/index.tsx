@@ -1,14 +1,7 @@
+import { createApi, webpackChunk } from '@cumjar/websmack'
 import { backend, invoke } from '../../api/api.js';
 import RegisteredGames from './components/RegisteredGames'
 import { css, classes } from './index.scss'
-
-interface AssetCache {
-  [key: string]: {
-    id: string;
-    name: string;
-    type: number;
-  }[];
-}
 
 const {
   flux: {
@@ -27,6 +20,11 @@ const {
   http,
 } = shelter
 
+const chunk = webpackChunk()
+const wp = chunk && createApi([undefined, ...chunk])
+const c = wp.findByCode('getAssetImage: ')
+const fetchAssetIds = async (id, asset) => (await c.fetchAssetIds(id, [asset, null]))[0]
+
 let injectedCss = false
 
 if (!injectedCss) {
@@ -35,8 +33,6 @@ if (!injectedCss) {
 }
 
 let maybeUnregisterGameSettings = [() => {}]
-
-const cachedAssets: AssetCache = {}
 
 let ws: WebSocket
 const apps: Record<string, { name: string } | string> = {}
@@ -48,38 +44,19 @@ async function lookupApp(appId: string): Promise<string> {
   return (await http.get(`/oauth2/applications/${appId}/rpc`))?.body || 'Unknown'
 }
 
-export const generateAssetId = async (appId: string, asset: string) => {
-  // get cached assets for the appid if we dont have them already
-  if (!cachedAssets[appId]) {
-    const resp = await http.get(`/oauth2/applications/${appId}/assets`)
-
-    if (resp.status !== 200) {
-      console.log('Failed to fetch assets')
-    }
-
-    cachedAssets[appId] = resp.body as AssetCache[typeof appId]
-  }
-
-  const assetId = cachedAssets[appId].find((a) => a.name === asset)?.id
-
-  return assetId
-}
-
-const isProbablyUrl = (str: string) => str.startsWith('http://') || str.startsWith('https://')
-
 async function handleMessage(e: MessageEvent<string>) {
   const data = JSON.parse(e.data)
   const assets = data.activity?.assets
 
   if (data.cmd) return handleCmd(data)
 
-  if (assets?.large_image && !isProbablyUrl(assets.large_image))
-    assets.large_image = await generateAssetId(
+  if (assets?.large_image)
+    assets.large_image = await fetchAssetIds(
       data.activity.application_id,
       assets.large_image
     )
-  if (assets?.small_image && !isProbablyUrl(assets.small_image))
-    assets.small_image = await generateAssetId(
+  if (assets?.small_image)
+    assets.small_image = await fetchAssetIds(
       data.activity.application_id,
       assets.small_image
     )

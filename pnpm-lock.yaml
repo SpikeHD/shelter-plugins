@@ -73,6 +73,12 @@ importers:
         specifier: ^1.4.4
         version: 1.4.4
 
+  plugins/shelteRPC:
+    dependencies:
+      '@cumjar/websmack':
+        specifier: ^1.2.0
+        version: 1.2.0
+
   plugins/userpfp:
     dependencies:
       '@cumjar/websmack':
