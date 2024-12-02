@@ -1,4 +1,4 @@
-import { appName, backendRestartRequired, invoke } from '../../../api/api.js'
+import { backendRestartRequired, invoke } from '../../../api/api.js'
 import { css, classes } from './RPC.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
 import { defaultConfig } from '../util/settings.js'
@@ -6,7 +6,6 @@ import { defaultConfig } from '../util/settings.js'
 const {
   ui: {
     SwitchItem,
-    Text,
     Header,
     HeaderTags,
     injectCss,
@@ -85,10 +84,10 @@ export function RPCPage() {
         onChange={(v) => {
           setSettings(p => {
             return { ...p, rpc_process_scanner: v, }
-          })
+          }, true)
         }}
         disabled={!settings().rpc_server}
-        note="Enable this if you want Dorion to scan for and detect games running." 
+        note="Enable this if you want Dorion to scan for and detect games running. This is the most potentially performance-heavy component of RPC." 
       >
         Enable Process Scanner
       </SwitchItem>
@@ -98,13 +97,13 @@ export function RPCPage() {
         onChange={(v) => {
           setSettings(p => {
             return { ...p, rpc_ipc_connector: v }
-          })
+          }, true)
         }}
         disabled={!settings().rpc_server}
         note={
           <>
             Enable this if you want Dorion to connect to local sockets.
-            Things such as the <a href="https://github.com/LeonardSSH/vscord">VSCord</a> use this method of connection.
+            Things such as the <a href="https://github.com/LeonardSSH/vscord">VSCord</a> extension use this method of connection.
           </>
         }
       >
@@ -116,7 +115,7 @@ export function RPCPage() {
         onChange={(v) => {
           setSettings(p => {
             return { ...p, rpc_websocket_connector: v }
-          })
+          }, true)
         }}
         disabled={!settings().rpc_server}
         note="Enable this if you want Dorion to accept local websocket connections."
@@ -129,7 +128,7 @@ export function RPCPage() {
         onChange={(v) => {
           setSettings((p) => {
             return { ...p, rpc_secondary_events: v }
-          })
+          }, true)
         }}
         disabled={!settings().rpc_server}
         note="Enable this to allow Dorion to properly handle server invites opened in the browser. Does not work with arRPC."
