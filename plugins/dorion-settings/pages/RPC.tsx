@@ -1,4 +1,4 @@
-import { backendRestartRequired, invoke } from '../../../api/api.js'
+import { appName, backendRestartRequired, invoke } from '../../../api/api.js'
 import { css, classes } from './RPC.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
 import { defaultConfig } from '../util/settings.js'
@@ -87,7 +87,7 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note="Enable this if you want Dorion to scan for and detect games running. This is the most potentially performance-heavy component of RPC." 
+        note={`Enable this if you want ${appName} to scan for running processes and automatically enable streamer mode when they are running.`}
       >
         Enable Process Scanner
       </SwitchItem>
@@ -102,7 +102,7 @@ export function RPCPage() {
         disabled={!settings().rpc_server}
         note={
           <>
-            Enable this if you want Dorion to connect to local sockets.
+            Enable this if you want {appName} to connect to local sockets.
             Things such as the <a href="https://github.com/LeonardSSH/vscord">VSCord</a> extension use this method of connection.
           </>
         }
@@ -118,7 +118,7 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note="Enable this if you want Dorion to accept local websocket connections."
+        note={`Enable this if you want ${appName} to accept local websocket connections.`}
       >
         Enable Websocket Connector
       </SwitchItem>
@@ -131,7 +131,7 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note="Enable this to allow Dorion to properly handle server invites opened in the browser. Does not work with arRPC."
+        note={`Enable this to allow ${appName} to properly handle server invites opened in the browser. Does not work with arRPC.`}
       >
         Enable secondary events
       </SwitchItem>

@@ -1,5 +1,5 @@
 import { createApi, webpackChunk } from '@cumjar/websmack'
-import { backend, invoke } from '../../api/api.js';
+import { backend, invoke } from '../../api/api.js'
 import RegisteredGames from './components/RegisteredGames'
 import { css, classes } from './index.scss'
 

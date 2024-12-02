@@ -27,6 +27,18 @@ interface DorionSettings {
   client_mods: string[];
   unread_badge: boolean;
   client_plugins: boolean;
+
+  tray_icon_enabled: boolean;
+  proxy_uri: string;
+
+  keybinds: Record<string, KeyStruct[]>;
+  keybinds_enabled: boolean;
+
+  // RPC-specific options
+  rpc_process_scanner: boolean;
+  rpc_ipc_connector: boolean;
+  rpc_websocket_connector: boolean;
+  rpc_secondary_events: boolean;
 }
 
 interface DorionTheme {
