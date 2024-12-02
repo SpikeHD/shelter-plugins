@@ -1,6 +1,6 @@
 import { createApi, webpackChunk } from '@cumjar/websmack'
 import { backend, invoke } from '../../api/api.js'
-import RegisteredGames from './components/RegisteredGames'
+import RegisteredGames from './components/RegisteredGames.jsx'
 import { css, classes } from './index.scss'
 
 const {
@@ -101,7 +101,7 @@ async function handleMessage(e: MessageEvent<string>) {
 
 const handleCmd = async (payload: any) => {
   switch(payload.cmd) {
-  case 'INVITE_BROWSER':
+  case 'INVITE_BROWSER': {
     const code = payload.args.code
 
     if (code === '') {
@@ -140,8 +140,8 @@ const handleCmd = async (payload: any) => {
       invite,
     })
 
-    backend !== 'None' && invoke('ultrashow')
-  }
+    if (backend !== 'None') invoke('ultrashow')
+  }}
 }
 
 const retry = async (fn: (curTry: number) => any, times: number = 5, wait: number = 500) => {
