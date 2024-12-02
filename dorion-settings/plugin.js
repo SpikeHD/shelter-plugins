@@ -469,8 +469,9 @@
   // plugins/dorion-settings/pages/PerformancePage.tsx
   var _tmpl$5 = /* @__PURE__ */ (0, import_web18.template)(`<div>The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">the window-vibrancy crate</a>.</div>`, 4);
   var _tmpl$23 = /* @__PURE__ */ (0, import_web18.template)(`<div></div>`, 2);
-  var _tmpl$32 = /* @__PURE__ */ (0, import_web18.template)(`<p>I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. <!> will have several vital systems removed, such as the <i>entire settings menu</i>.<br><br>This option is intended only for debugging, development, and for running old versions of <!> functionality on old versions of <!>. If you're not doing that, don't touch this.</p>`, 11);
-  var _tmpl$42 = /* @__PURE__ */ (0, import_web18.template)(`<b>DO NOT DISABLE THIS OPTION.</b>`, 2);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web18.template)(`<b>Requires the integrated RPC server and RPC process scanning to be enabled (found in the Rich Presence tab).</b>`, 2);
+  var _tmpl$42 = /* @__PURE__ */ (0, import_web18.template)(`<p>I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. <!> will have several vital systems removed, such as the <i>entire settings menu</i>.<br><br>This option is intended only for debugging, development, and for running old versions of <!> functionality on old versions of <!>. If you're not doing that, don't touch this.</p>`, 11);
+  var _tmpl$52 = /* @__PURE__ */ (0, import_web18.template)(`<b>DO NOT DISABLE THIS OPTION.</b>`, 2);
   var {
     ui: {
       injectCss: injectCss4,
@@ -601,18 +602,13 @@
       onChange: (v) => setSettings((settings) => __spreadProps(__spreadValues({}, settings), {
         streamer_mode_detection: v
       }), true),
-      note: "Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running.",
-      children: "Streamer Mode detection"
-    }), (0, import_web23.createComponent)(SwitchItem, {
-      get value() {
-        return state().rpc_server;
+      get note() {
+        return ["Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running. ", _tmpl$32.cloneNode(true)];
       },
-      onChange: (v) => setSettings((settings) => __spreadProps(__spreadValues({}, settings), {
-        rpc_server: v
-      }), true),
-      tooltipNote: "This is a work in progress, and won't do EVERYTHING arRPC does quite yet.",
-      note: "Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the shelteRPC/arRPC plugin!",
-      children: "Integrated rich presence server"
+      get disabled() {
+        return !state().rpc_server;
+      },
+      children: "Streamer Mode detection"
     }), (0, import_web23.createComponent)(SwitchItem, {
       get value() {
         return state().disable_hardware_accel;
@@ -638,11 +634,11 @@
         }
         openConfirmationModal({
           body: () => (() => {
-            const _el$3 = _tmpl$32.cloneNode(true), _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling, _el$6 = _el$5.nextSibling, _el$15 = _el$6.nextSibling, _el$7 = _el$15.nextSibling, _el$8 = _el$7.nextSibling, _el$9 = _el$8.nextSibling, _el$10 = _el$9.nextSibling, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling, _el$16 = _el$12.nextSibling, _el$13 = _el$16.nextSibling, _el$17 = _el$13.nextSibling, _el$14 = _el$17.nextSibling;
-            (0, import_web19.insert)(_el$3, appName, _el$15);
-            (0, import_web19.insert)(_el$3, appName, _el$16);
-            (0, import_web19.insert)(_el$3, appName, _el$17);
-            return _el$3;
+            const _el$4 = _tmpl$42.cloneNode(true), _el$5 = _el$4.firstChild, _el$6 = _el$5.nextSibling, _el$7 = _el$6.nextSibling, _el$16 = _el$7.nextSibling, _el$8 = _el$16.nextSibling, _el$9 = _el$8.nextSibling, _el$10 = _el$9.nextSibling, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling, _el$13 = _el$12.nextSibling, _el$17 = _el$13.nextSibling, _el$14 = _el$17.nextSibling, _el$18 = _el$14.nextSibling, _el$15 = _el$18.nextSibling;
+            (0, import_web19.insert)(_el$4, appName, _el$16);
+            (0, import_web19.insert)(_el$4, appName, _el$17);
+            (0, import_web19.insert)(_el$4, appName, _el$18);
+            return _el$4;
           })(),
           header: () => "Are you ABSOLUTELY sure?",
           type: "neutral",
@@ -653,7 +649,7 @@
         });
       },
       get note() {
-        return [_tmpl$42.cloneNode(true), " If you do, vital functionality will be lost. Only touch this if you know what you're doing."];
+        return [_tmpl$52.cloneNode(true), " If you do, vital functionality will be lost. Only touch this if you know what you're doing."];
       },
       children: "Enable Dorion Plugins"
     }), (0, import_web23.createComponent)(Header, {
@@ -882,14 +878,11 @@
   var import_web42 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/SettingsPage.tsx.scss
-  var css6 = `._tophead_1mnth_1{margin-bottom:16px}._shead_1mnth_1{margin-top:16px;margin-bottom:8px}._fcard_1mnth_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;color:var(--text-primary);padding:8px}._pcard_1mnth_1{display:flex}._left16_1mnth_1{margin-left:16px}._themeRow_1mnth_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;height:42px}`;
+  var css6 = `._tophead_5w74y_1{margin-bottom:16px}._shead_5w74y_1{margin-top:16px;margin-bottom:8px}._left16_5w74y_1{margin-left:16px}`;
   var classes6 = {
-    "tophead": "_tophead_1mnth_1",
-    "shead": "_shead_1mnth_1",
-    "fcard": "_fcard_1mnth_1",
-    "pcard": "_pcard_1mnth_1",
-    "left16": "_left16_1mnth_1",
-    "themeRow": "_themeRow_1mnth_1"
+    "tophead": "_tophead_5w74y_1",
+    "shead": "_shead_5w74y_1",
+    "left16": "_left16_5w74y_1"
   };
 
   // components/RadioGroup.tsx
@@ -3344,7 +3337,7 @@ ${content}</tr>
   var _tmpl$25 = /* @__PURE__ */ (0, import_web43.template)(`<div></div>`, 2);
   var _tmpl$33 = /* @__PURE__ */ (0, import_web43.template)(`<span></span>`, 2);
   var _tmpl$43 = /* @__PURE__ */ (0, import_web43.template)(`<span>Current</span>`, 2);
-  var _tmpl$52 = /* @__PURE__ */ (0, import_web43.template)(`<span>Latest</span>`, 2);
+  var _tmpl$53 = /* @__PURE__ */ (0, import_web43.template)(`<span>Latest</span>`, 2);
   var PAGE_ID = `${appName.toLowerCase()}-changelog-tab`;
   var {
     ui: {
@@ -3491,7 +3484,7 @@ ${content}</tr>
                 (0, import_web44.insert)(_el$6, (() => {
                   const _c$5 = (0, import_web47.memo)(() => releases()[0].tag_name == release.tag_name);
                   return () => _c$5() && (() => {
-                    const _el$9 = _tmpl$52.cloneNode(true);
+                    const _el$9 = _tmpl$53.cloneNode(true);
                     (0, import_web46.effect)(() => (0, import_web45.className)(_el$9, classes8.badge));
                     return _el$9;
                   })();
@@ -3875,17 +3868,14 @@ ${content}</tr>
   }
 
   // plugins/dorion-settings/pages/PluginsPage.tsx.scss
-  var css11 = `._tophead_13ubk_1{margin-bottom:16px}._shead_13ubk_1{margin-top:16px;margin-bottom:8px}._card_13ubk_1{margin-bottom:16px}._fcard_13ubk_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;color:var(--text-primary);padding:8px}._pcard_13ubk_1{display:flex}._left16_13ubk_1{margin-left:16px}._themeRow_13ubk_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;height:42px}._openButton_13ubk_1{margin-top:16px;width:100% !important}._pbuttons_13ubk_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;width:100%;margin-top:16px}`;
+  var css11 = `._tophead_q0cqv_1{margin-bottom:16px}._shead_q0cqv_1{margin-top:16px;margin-bottom:8px}._card_q0cqv_1{margin-bottom:16px}._left16_q0cqv_1{margin-left:16px}._openButton_q0cqv_1{margin-top:16px;width:100% !important}._pbuttons_q0cqv_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;width:100%;margin-top:16px}`;
   var classes11 = {
-    "tophead": "_tophead_13ubk_1",
-    "shead": "_shead_13ubk_1",
-    "card": "_card_13ubk_1",
-    "fcard": "_fcard_13ubk_1",
-    "pcard": "_pcard_13ubk_1",
-    "left16": "_left16_13ubk_1",
-    "themeRow": "_themeRow_13ubk_1",
-    "openButton": "_openButton_13ubk_1",
-    "pbuttons": "_pbuttons_13ubk_1"
+    "tophead": "_tophead_q0cqv_1",
+    "shead": "_shead_q0cqv_1",
+    "card": "_card_q0cqv_1",
+    "left16": "_left16_q0cqv_1",
+    "openButton": "_openButton_q0cqv_1",
+    "pbuttons": "_pbuttons_q0cqv_1"
   };
 
   // plugins/dorion-settings/pages/PluginsPage.tsx
@@ -4252,6 +4242,158 @@ ${content}</tr>
     })()];
   }
 
+  // plugins/dorion-settings/pages/RPC.tsx
+  var import_web80 = __toESM(require_web(), 1);
+  var import_web81 = __toESM(require_web(), 1);
+  var import_web82 = __toESM(require_web(), 1);
+
+  // plugins/dorion-settings/pages/RPC.tsx.scss
+  var css13 = `._shead_tg7tu_1{margin-top:16px;margin-bottom:8px}._bot16_tg7tu_1{margin-bottom:16px}`;
+  var classes13 = {
+    "shead": "_shead_tg7tu_1",
+    "bot16": "_bot16_tg7tu_1"
+  };
+
+  // plugins/dorion-settings/pages/RPC.tsx
+  var _tmpl$16 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>`, 2);
+  var _tmpl$28 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>`, 2);
+  var _tmpl$36 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/LeonardSSH/vscord">VSCord</a>`, 2);
+  var {
+    ui: {
+      SwitchItem: SwitchItem3,
+      Header: Header7,
+      HeaderTags: HeaderTags7,
+      injectCss: injectCss14
+    },
+    solid: {
+      createSignal: createSignal10,
+      createEffect: createEffect6
+    }
+  } = shelter;
+  var injectedCss14 = false;
+  function RPCPage() {
+    const [settings, setSettingsState] = createSignal10(defaultConfig);
+    const [restartRequired, setRestartRequired] = createSignal10(false);
+    if (!injectedCss14) {
+      injectedCss14 = true;
+      injectCss14(css13);
+    }
+    createEffect6(() => __async(this, null, function* () {
+      setSettingsState(JSON.parse(yield invoke("read_config_file")));
+      setRestartRequired((window == null ? void 0 : window.__DORION_RESTART__) === true);
+    }));
+    const setSettings = (fn, requiresRestart2) => {
+      setSettingsState(fn(settings()));
+      invoke("write_config_file", {
+        contents: JSON.stringify(fn(settings()))
+      });
+      if (requiresRestart2) {
+        setRestartRequired(true);
+        backendRestartRequired(true);
+      }
+    };
+    return [(0, import_web82.createComponent)(Header7, {
+      get tag() {
+        return HeaderTags7.H1;
+      },
+      get ["class"]() {
+        return classes13.bot16;
+      },
+      children: "RPC Settings"
+    }), (0, import_web81.memo)((() => {
+      const _c$ = (0, import_web81.memo)(() => !!restartRequired());
+      return () => _c$() && (0, import_web82.createComponent)(WarningCard, {});
+    })()), (0, import_web82.createComponent)(Header7, {
+      get ["class"]() {
+        return classes13.shead;
+      },
+      children: "Server"
+    }), (0, import_web82.createComponent)(SwitchItem3, {
+      get value() {
+        return settings().rpc_server;
+      },
+      onChange: (v) => setSettings((settings2) => __spreadProps(__spreadValues({}, settings2), {
+        rpc_server: v
+      }), true),
+      tooltipNote: "This is a work in progress, and won't do EVERYTHING arRPC does quite yet.",
+      get note() {
+        return ["Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Pairs best with ", _tmpl$16.cloneNode(true), ", also works with ", _tmpl$28.cloneNode(true), "."];
+      },
+      children: "Integrated rich presence server"
+    }), (0, import_web82.createComponent)(Header7, {
+      get ["class"]() {
+        return classes13.shead;
+      },
+      children: "Advanced Settings"
+    }), (0, import_web82.createComponent)(SwitchItem3, {
+      get value() {
+        return settings().rpc_process_scanner;
+      },
+      onChange: (v) => {
+        setSettings((p) => {
+          return __spreadProps(__spreadValues({}, p), {
+            rpc_process_scanner: v
+          });
+        }, true);
+      },
+      get disabled() {
+        return !settings().rpc_server;
+      },
+      note: `Enable this if you want ${appName} to scan for running processes and automatically enable streamer mode when they are running.`,
+      children: "Enable Process Scanner"
+    }), (0, import_web82.createComponent)(SwitchItem3, {
+      get value() {
+        return settings().rpc_ipc_connector;
+      },
+      onChange: (v) => {
+        setSettings((p) => {
+          return __spreadProps(__spreadValues({}, p), {
+            rpc_ipc_connector: v
+          });
+        }, true);
+      },
+      get disabled() {
+        return !settings().rpc_server;
+      },
+      get note() {
+        return ["Enable this if you want ", appName, " to connect to local sockets. Things such as the ", _tmpl$36.cloneNode(true), " extension use this method of connection."];
+      },
+      children: "Enable IPC Connector"
+    }), (0, import_web82.createComponent)(SwitchItem3, {
+      get value() {
+        return settings().rpc_websocket_connector;
+      },
+      onChange: (v) => {
+        setSettings((p) => {
+          return __spreadProps(__spreadValues({}, p), {
+            rpc_websocket_connector: v
+          });
+        }, true);
+      },
+      get disabled() {
+        return !settings().rpc_server;
+      },
+      note: `Enable this if you want ${appName} to accept local websocket connections.`,
+      children: "Enable Websocket Connector"
+    }), (0, import_web82.createComponent)(SwitchItem3, {
+      get value() {
+        return settings().rpc_secondary_events;
+      },
+      onChange: (v) => {
+        setSettings((p) => {
+          return __spreadProps(__spreadValues({}, p), {
+            rpc_secondary_events: v
+          });
+        }, true);
+      },
+      get disabled() {
+        return !settings().rpc_server;
+      },
+      note: `Enable this to allow ${appName} to properly handle server invites opened in the browser. Does not work with arRPC.`,
+      children: "Enable secondary events"
+    })];
+  }
+
   // plugins/dorion-settings/index.tsx
   var {
     settings: {
@@ -4264,7 +4406,7 @@ ${content}</tr>
       sleep
     }
   } = shelter;
-  var settingsUninjects = [registerSection("divider"), registerSection("header", appName), registerSection("section", `${appName}-settings`, `${appName} Settings`, SettingsPage), registerSection("section", `${appName}-plugins`, "Plugins", PluginsPage), registerSection("section", `${appName}-themes`, "Themes", ThemesPage), registerSection("section", `${appName}-performance`, "Performance & Extras", PerformancePage), registerSection("section", `${appName}-profiles`, "Profiles", ProfilesPage)];
+  var settingsUninjects = [registerSection("divider"), registerSection("header", appName), registerSection("section", `${appName}-settings`, `${appName} Settings`, SettingsPage), registerSection("section", `${appName}-plugins`, "Plugins", PluginsPage), registerSection("section", `${appName}-themes`, "Themes", ThemesPage), registerSection("section", `${appName}-performance`, "Performance & Extras", PerformancePage), registerSection("section", `${appName}-rpc`, "Rich Presence", RPCPage), registerSection("section", `${appName}-profiles`, "Profiles", ProfilesPage)];
   var appendAppVersion = () => __async(void 0, null, function* () {
     let tries = 0;
     const infoBoxSelector = 'div[class*="side_"] div[class*="info_"]';

@@ -898,7 +898,7 @@
   }
   var handleCmd = (payload) => __async(void 0, null, function* () {
     switch (payload.cmd) {
-      case "INVITE_BROWSER":
+      case "INVITE_BROWSER": {
         const code = payload.args.code;
         if (code === "") {
           return;
@@ -927,7 +927,9 @@
           code,
           invite
         });
-        backend !== "None" && invoke("ultrashow");
+        if (backend !== "None")
+          invoke("ultrashow");
+      }
     }
   });
   var retry = (fn, times = 5, wait = 500) => __async(void 0, null, function* () {
