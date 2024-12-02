@@ -152,25 +152,14 @@ export function PerformancePage() {
             }
           ), true)
         }
-        note="Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running."
+        note={
+          <>
+            Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running. <b>Requires the integrated RPC server and RPC process scanning to be enabled (found in the Rich Presence tab).</b>
+          </>
+        }
+        disabled={!state().rpc_server}
       >
         Streamer Mode detection
-      </SwitchItem>
-
-      <SwitchItem
-        value={state().rpc_server}
-        onChange={(v) =>
-          setSettings((settings) => (
-            {
-              ...settings,
-              rpc_server: v,
-            }
-          ), true)
-        }
-        tooltipNote="This is a work in progress, and won't do EVERYTHING arRPC does quite yet."
-        note="Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Remember to enable the shelteRPC/arRPC plugin!"
-      >
-        Integrated rich presence server
       </SwitchItem>
 
       <SwitchItem
