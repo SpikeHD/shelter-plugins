@@ -4257,7 +4257,7 @@ ${content}</tr>
   // plugins/dorion-settings/pages/RPC.tsx
   var _tmpl$16 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>`, 2);
   var _tmpl$28 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>`, 2);
-  var _tmpl$36 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/LeonardSSH/vscord">VSCord</a>`, 2);
+  var _tmpl$36 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a>`, 2);
   var {
     ui: {
       SwitchItem: SwitchItem3,
