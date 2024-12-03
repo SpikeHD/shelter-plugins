@@ -103,7 +103,7 @@ export function RPCPage() {
         note={
           <>
             Enable this if you want {appName} to connect to local sockets.
-            Things such as the <a href="https://github.com/LeonardSSH/vscord">VSCord</a> extension use this method of connection.
+            Things such as the <a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a> extension use this method of connection.
           </>
         }
       >
