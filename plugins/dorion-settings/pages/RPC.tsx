@@ -87,7 +87,7 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note={`Enable this if you want ${appName} to scan for running processes and automatically enable streamer mode when they are running.`}
+        note={`Enable this if you want ${appName} to scan for running processes. This is the most performance-heavy component of RPC.`}
       >
         Enable Process Scanner
       </SwitchItem>
