@@ -4248,22 +4248,29 @@ ${content}</tr>
   var import_web82 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/RPC.tsx.scss
-  var css13 = `._shead_tg7tu_1{margin-top:16px;margin-bottom:8px}._bot16_tg7tu_1{margin-bottom:16px}`;
+  var css13 = `._shead_5tw7c_1{margin-top:16px;margin-bottom:8px}._bot16_5tw7c_1{margin-bottom:16px}._customInstallBtn_5tw7c_1{width:100%;margin:20px 0;padding:20px}._customNote_5tw7c_1{color:var(--header-secondary) !important;font-weight:400;font-size:14px}`;
   var classes13 = {
-    "shead": "_shead_tg7tu_1",
-    "bot16": "_bot16_tg7tu_1"
+    "shead": "_shead_5tw7c_1",
+    "bot16": "_bot16_5tw7c_1",
+    "customInstallBtn": "_customInstallBtn_5tw7c_1",
+    "customNote": "_customNote_5tw7c_1"
   };
 
   // plugins/dorion-settings/pages/RPC.tsx
-  var _tmpl$16 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>`, 2);
-  var _tmpl$28 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>`, 2);
-  var _tmpl$36 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a>`, 2);
+  var _tmpl$16 = /* @__PURE__ */ (0, import_web80.template)(`<b>You have already installed shelteRPC!</b>`, 2);
+  var _tmpl$28 = /* @__PURE__ */ (0, import_web80.template)(`<br>`, 1);
+  var _tmpl$36 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>`, 2);
+  var _tmpl$44 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>`, 2);
+  var _tmpl$54 = /* @__PURE__ */ (0, import_web80.template)(`<a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a>`, 2);
   var {
     ui: {
+      Button: Button7,
+      Text: Text7,
       SwitchItem: SwitchItem3,
       Header: Header7,
       HeaderTags: HeaderTags7,
-      injectCss: injectCss14
+      injectCss: injectCss14,
+      showToast: showToast3
     },
     solid: {
       createSignal: createSignal10,
@@ -4273,6 +4280,7 @@ ${content}</tr>
   var injectedCss14 = false;
   function RPCPage() {
     const [settings, setSettingsState] = createSignal10(defaultConfig);
+    const [shelteRPCInstalled, setShelteRPCInstalled] = createSignal10(false);
     const [restartRequired, setRestartRequired] = createSignal10(false);
     if (!injectedCss14) {
       injectedCss14 = true;
@@ -4280,6 +4288,7 @@ ${content}</tr>
     }
     createEffect6(() => __async(this, null, function* () {
       setSettingsState(JSON.parse(yield invoke("read_config_file")));
+      setShelteRPCInstalled(Object.keys(shelter.plugins.installedPlugins()).includes("shelteRPC"));
       setRestartRequired((window == null ? void 0 : window.__DORION_RESTART__) === true);
     }));
     const setSettings = (fn, requiresRestart2) => {
@@ -4292,6 +4301,22 @@ ${content}</tr>
         backendRestartRequired(true);
       }
     };
+    const tryInstallShelteRPC = () => __async(this, null, function* () {
+      yield shelter.plugins.addRemotePlugin("shelteRPC", "https://spikehd.github.io/shelter-plugins/shelteRPC/", true).catch((e) => {
+        showToast3({
+          title: "Dorion RPC",
+          content: "Error installing shelteRPC, check the console for more information",
+          duration: 3e3
+        });
+        throw e;
+      });
+      shelter.plugins.startPlugin("shelteRPC");
+      showToast3({
+        title: "Dorion RPC",
+        content: "Successfully installed shelteRPC!",
+        duration: 3e3
+      });
+    });
     return [(0, import_web82.createComponent)(Header7, {
       get tag() {
         return HeaderTags7.H1;
@@ -4307,6 +4332,27 @@ ${content}</tr>
       get ["class"]() {
         return classes13.shead;
       },
+      children: "Plugin"
+    }), (0, import_web82.createComponent)(Button7, {
+      onClick: tryInstallShelteRPC,
+      get ["class"]() {
+        return classes13.customInstallBtn;
+      },
+      get disabled() {
+        return shelteRPCInstalled();
+      },
+      children: "Install the shelteRPC plugin"
+    }), (0, import_web82.createComponent)(Text7, {
+      get ["class"]() {
+        return classes13.customNote;
+      },
+      get children() {
+        return [(0, import_web81.memo)(() => (0, import_web81.memo)(() => !!shelteRPCInstalled())() && [_tmpl$16.cloneNode(true), _tmpl$28.cloneNode(true), _tmpl$28.cloneNode(true)]), "Installing this is not mandatory, and you may use arRPC plugins (eg. through Vencord) if you'd like, but the shelteRPC plugin has specific extra features that only work in Dorion!"];
+      }
+    }), (0, import_web82.createComponent)(Header7, {
+      get ["class"]() {
+        return classes13.shead;
+      },
       children: "Server"
     }), (0, import_web82.createComponent)(SwitchItem3, {
       get value() {
@@ -4317,7 +4363,7 @@ ${content}</tr>
       }), true),
       tooltipNote: "This is a work in progress, and won't do EVERYTHING arRPC does quite yet.",
       get note() {
-        return ["Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Pairs best with ", _tmpl$16.cloneNode(true), ", also works with ", _tmpl$28.cloneNode(true), "."];
+        return ["Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Pairs best with ", _tmpl$36.cloneNode(true), ", also works with ", _tmpl$44.cloneNode(true), "."];
       },
       children: "Integrated rich presence server"
     }), (0, import_web82.createComponent)(Header7, {
@@ -4356,7 +4402,7 @@ ${content}</tr>
         return !settings().rpc_server;
       },
       get note() {
-        return ["Enable this if you want ", appName, " to connect to local sockets. Things such as the ", _tmpl$36.cloneNode(true), " extension use this method of connection."];
+        return ["Enable this if you want ", appName, " to connect to local sockets. Things such as the ", _tmpl$54.cloneNode(true), " extension use this method of connection."];
       },
       children: "Enable IPC Connector"
     }), (0, import_web82.createComponent)(SwitchItem3, {
