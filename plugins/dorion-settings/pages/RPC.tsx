@@ -5,10 +5,13 @@ import { defaultConfig } from '../util/settings.js'
 
 const {
   ui: {
+    Button,
+    Text,
     SwitchItem,
     Header,
     HeaderTags,
     injectCss,
+    showToast,
   },
   solid: { createSignal, createEffect },
 } = shelter
@@ -17,6 +20,7 @@ let injectedCss = false
 
 export function RPCPage() {
   const [settings, setSettingsState] = createSignal<DorionSettings>(defaultConfig)
+  const [shelteRPCInstalled, setShelteRPCInstalled] = createSignal(false)
   const [restartRequired, setRestartRequired] = createSignal(false)
 
   if (!injectedCss) {
@@ -26,6 +30,7 @@ export function RPCPage() {
 
   createEffect(async () => {
     setSettingsState(JSON.parse(await invoke('read_config_file')))
+    setShelteRPCInstalled(Object.keys(shelter.plugins.installedPlugins()).includes('shelteRPC'))
 
     // @ts-expect-error cry about it
     setRestartRequired(window?.__DORION_RESTART__ === true)
@@ -46,6 +51,26 @@ export function RPCPage() {
     }
   }
 
+  const tryInstallShelteRPC = async () => {
+    await shelter.plugins.addRemotePlugin('shelteRPC', 'https://spikehd.github.io/shelter-plugins/shelteRPC/', true).catch(e => {
+      showToast({
+        title: 'Dorion RPC',
+        content: 'Error installing shelteRPC, check the console for more information',
+        duration: 3000,
+      })
+
+      throw e
+    })
+
+    shelter.plugins.startPlugin('shelteRPC')
+
+    showToast({
+      title: 'Dorion RPC',
+      content: 'Successfully installed shelteRPC!',
+      duration: 3000,
+    })
+  }
+
   return (
     <>
       <Header tag={HeaderTags.H1} class={classes.bot16}>RPC Settings</Header>
@@ -53,6 +78,27 @@ export function RPCPage() {
       {restartRequired() && (
         <WarningCard />
       )}
+
+      <Header class={classes.shead}>Plugin</Header>
+      <Button
+        onClick={tryInstallShelteRPC}
+        class={classes.customInstallBtn}
+        disabled={shelteRPCInstalled()}
+      >
+        Install the shelteRPC plugin
+      </Button>
+      <Text
+        class={classes.customNote}
+      >
+        {shelteRPCInstalled() && (
+          <>
+            <b>You have already installed shelteRPC!</b>
+            <br />
+            <br />
+          </>
+        )}
+        Installing this is not mandatory, and you may use arRPC plugins (eg. through Vencord) if you'd like, but the shelteRPC plugin has specific extra features that only work in Dorion!
+      </Text>
 
       <Header class={classes.shead}>Server</Header>
 
