@@ -16,6 +16,9 @@ const {
   }
 } = shelter
 
+const _removeChild = Element.prototype.removeChild
+const _appendChild = Element.prototype.appendChild
+
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 const optimize = (orig: Function) =>
   function (...args: unknown[]) {
@@ -41,22 +44,33 @@ if (store.append) {
 export const settings = () => (
   <>
     <Text>
-      <b>Changing these settings requires a refresh.</b>
-      <br />
-      <br />
       See <a href="https://github.com/GooseMod/OpenAsar/wiki/DOM-Optimizer">the OpenAsar wiki</a> for more information on how this works!
     </Text>
     <br />
     <br />
     <SwitchItem
       value={store.append}
-      onChange={(v) => (store.append = v)}
+      onChange={(v) => {
+        store.append = v
+        if (v) {
+          Element.prototype.appendChild = optimize(_appendChild)
+        } else {
+          Element.prototype.appendChild = _appendChild
+        }
+      }}
     >
       Apply to Element.appendChild
     </SwitchItem>
     <SwitchItem
       value={store.remove}
-      onChange={(v) => (store.remove = v)}
+      onChange={(v) => {
+        store.remove = v
+        if (v) {
+          Element.prototype.removeChild = optimize(_removeChild)
+        } else {
+          Element.prototype.removeChild = _removeChild
+        }
+      }}
     >
       Apply to Element.removeChild
     </SwitchItem>
