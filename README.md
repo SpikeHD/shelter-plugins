@@ -22,6 +22,7 @@
   * [Inline CSS](#inline-css)
   * [Invisible Typing](#invisible-typing)
   * [No Reply Mention](#no-reply-mention)
+  * [OpenAsar DOM Optimizer](#openasar-dom-optimizer)
   * [Platform Spoofer](#platform-spoofer)
   * [Plugin Browser](#plugin-browser)
   * [shelteRPC](#shelterpc)
@@ -78,6 +79,13 @@ Prevents others from seeing when you are typing.
 Disables mentions on replies by default.
 
 `https://spikehd.github.io/shelter-plugins/no-reply-mention/`
+
+## OpenAsar DOM Optimizer
+
+Port of a neat DOM optimization trick [from OpenAsar](https://github.com/GooseMod/OpenAsar/blob/ef4470849624032a8eb7265eabd23158aa5a2356/src/mainWindow.js#L99).
+See the [OpenAsar wiki](https://github.com/GooseMod/OpenAsar/wiki/DOM-Optimizer) for more information on how this works!
+
+`https://spikehd.github.io/shelter-plugins/openasar-dom-optimizer/`
 
 ## Platform Spoofer
 
