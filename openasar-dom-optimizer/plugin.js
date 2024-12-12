@@ -69,27 +69,11 @@
   if (store.remove) {
     Element.prototype.removeChild = optimize(Element.prototype.removeChild);
   }
-  if (store.append) {
-    Element.prototype.appendChild = optimize(Element.prototype.appendChild);
-  }
   var settings = () => [(0, import_web2.createComponent)(Text, {
     get children() {
       return ["See ", _tmpl$.cloneNode(true), " for more information on how this works!"];
     }
   }), _tmpl$2.cloneNode(true), _tmpl$2.cloneNode(true), (0, import_web2.createComponent)(SwitchItem, {
-    get value() {
-      return store.append;
-    },
-    onChange: (v) => {
-      store.append = v;
-      if (v) {
-        Element.prototype.appendChild = optimize(_appendChild);
-      } else {
-        Element.prototype.appendChild = _appendChild;
-      }
-    },
-    children: "Apply to Element.appendChild"
-  }), (0, import_web2.createComponent)(SwitchItem, {
     get value() {
       return store.remove;
     },
