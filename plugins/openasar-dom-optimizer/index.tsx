@@ -37,9 +37,9 @@ if (store.remove) {
   Element.prototype.removeChild = optimize(Element.prototype.removeChild)
 }
 
-if (store.append) {
-  Element.prototype.appendChild = optimize(Element.prototype.appendChild)
-}
+// if (store.append) {
+//   Element.prototype.appendChild = optimize(Element.prototype.appendChild)
+// }
 
 export const settings = () => (
   <>
@@ -48,6 +48,7 @@ export const settings = () => (
     </Text>
     <br />
     <br />
+    {/*
     <SwitchItem
       value={store.append}
       onChange={(v) => {
@@ -61,6 +62,8 @@ export const settings = () => (
     >
       Apply to Element.appendChild
     </SwitchItem>
+    */}
+
     <SwitchItem
       value={store.remove}
       onChange={(v) => {
