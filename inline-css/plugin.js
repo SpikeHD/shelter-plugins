@@ -1633,13 +1633,13 @@
   });
 
   // plugins/inline-css/components/Editor.tsx
-  var import_web11 = __toESM(require_web());
-  var import_web12 = __toESM(require_web());
-  var import_web13 = __toESM(require_web());
-  var import_web14 = __toESM(require_web());
-  var import_web15 = __toESM(require_web());
-  var import_web16 = __toESM(require_web());
-  var import_web17 = __toESM(require_web());
+  var import_web11 = __toESM(require_web(), 1);
+  var import_web12 = __toESM(require_web(), 1);
+  var import_web13 = __toESM(require_web(), 1);
+  var import_web14 = __toESM(require_web(), 1);
+  var import_web15 = __toESM(require_web(), 1);
+  var import_web16 = __toESM(require_web(), 1);
+  var import_web17 = __toESM(require_web(), 1);
 
   // node_modules/.pnpm/@srsholmes+solid-code-input@0.0.18_@types+highlight.js@9.12.2_@types+prismjs@1.26.0_solid-js@1.8.7/node_modules/@srsholmes/solid-code-input/dist/esm/index.js
   var import_web = __toESM(require_web());
@@ -2660,7 +2660,7 @@
     "popout": "_popout_1kwmh_1"
   };
 
-  // plugins/inline-css/util.ts
+  // util/debounce.ts
   var debounce = (fn, delay) => {
     let timer = null;
     return (...args) => {
@@ -2674,18 +2674,18 @@
   };
 
   // plugins/inline-css/components/Popout.tsx
-  var import_web2 = __toESM(require_web());
+  var import_web2 = __toESM(require_web(), 1);
   var _tmpl$2 = /* @__PURE__ */ (0, import_web2.template)(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 85 35.661 c -2.762 0 -5 -2.239 -5 -5 V 10 H 59.339 c -2.762 0 -5 -2.239 -5 -5 s 2.238 -5 5 -5 H 85 c 2.762 0 5 2.239 5 5 v 25.661 C 90 33.422 87.762 35.661 85 35.661 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 33.678 61.322 c -1.28 0 -2.559 -0.488 -3.536 -1.465 c -1.953 -1.952 -1.953 -5.118 0 -7.07 L 81.465 1.464 c 1.951 -1.952 5.119 -1.952 7.07 0 c 1.953 1.953 1.953 5.119 0 7.071 L 37.214 59.857 C 36.237 60.834 34.958 61.322 33.678 61.322 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 74.394 90 H 15.606 C 7.001 90 0 82.999 0 74.394 V 15.606 C 0 7.001 7.001 0 15.606 0 h 18.072 c 2.761 0 5 2.239 5 5 s -2.239 5 -5 5 H 15.606 C 12.515 10 10 12.515 10 15.606 v 58.787 C 10 77.485 12.515 80 15.606 80 h 58.787 C 77.485 80 80 77.485 80 74.394 V 56.322 c 0 -2.762 2.238 -5 5 -5 s 5 2.238 5 5 v 18.071 C 90 82.999 82.999 90 74.394 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>`, 12);
   var Popout = () => _tmpl$2.cloneNode(true);
 
   // plugins/inline-css/components/Window.tsx
-  var import_web4 = __toESM(require_web());
-  var import_web5 = __toESM(require_web());
-  var import_web6 = __toESM(require_web());
-  var import_web7 = __toESM(require_web());
-  var import_web8 = __toESM(require_web());
-  var import_web9 = __toESM(require_web());
-  var import_web10 = __toESM(require_web());
+  var import_web4 = __toESM(require_web(), 1);
+  var import_web5 = __toESM(require_web(), 1);
+  var import_web6 = __toESM(require_web(), 1);
+  var import_web7 = __toESM(require_web(), 1);
+  var import_web8 = __toESM(require_web(), 1);
+  var import_web9 = __toESM(require_web(), 1);
+  var import_web10 = __toESM(require_web(), 1);
 
   // plugins/inline-css/components/Window.scss
   var css3 = `._window_39sku_1{position:absolute;z-index:99999;min-width:300px;min-height:300px;pointer-events:none;top:50%;left:50%}._resize_39sku_1{cursor:se-resize;position:absolute;bottom:0;right:0;width:16px;height:16px;z-index:-1;pointer-events:all}._content_39sku_1{--inset: 8px;width:calc(100% - 2px - 2*var(--inset));height:calc(100% - 2px - 2*var(--inset));margin:var(--inset);pointer-events:all;background:var(--background-primary);border-radius:6px;border:1px solid var(--background-secondary);box-shadow:0 0 3px 0 #000}._content_39sku_1 ._inner_39sku_1{margin:8px;overflow-y:auto;height:calc(100% - 50px)}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar-corner{background:rgba(0,0,0,0)}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar{background:rgba(0,0,0,0)}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar-track{background:none}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar-thumb{background:var(--input-background);border-radius:4px}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar:horizontal{height:8px}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar:vertical{width:8px}._topbar_39sku_1{height:30px;width:100%;margin-bottom:12px;background:var(--input-background)}._exit_39sku_1{height:100%;width:30px;display:flex;align-items:center;justify-content:center}._exit_39sku_1:hover{cursor:pointer;background:#f23f43}._exit_39sku_1 svg{height:60%;width:100%}._main_39sku_1{margin-right:10px}`;
@@ -2700,7 +2700,7 @@
   };
 
   // plugins/inline-css/components/Close.tsx
-  var import_web3 = __toESM(require_web());
+  var import_web3 = __toESM(require_web(), 1);
   var _tmpl$3 = /* @__PURE__ */ (0, import_web3.template)(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="
       stroke: none;
       stroke-width: 0;
