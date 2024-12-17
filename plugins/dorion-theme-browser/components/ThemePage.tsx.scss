@@ -1,0 +1,29 @@
+.shead {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.bot16 {
+  margin-bottom: 16px;
+}
+
+.themeCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 8px;
+  margin-top: 16px;
+
+  width: 100%;
+}
+
+.sortSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchBox {
+  flex-grow: 0 !important;
+  width: 50%;
+}

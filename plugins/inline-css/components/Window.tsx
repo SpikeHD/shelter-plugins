@@ -1,7 +1,7 @@
 import { css, classes } from './Window.scss'
-import Editor from './Editor'
-import { Close } from './Close'
-import { debounce } from '../util'
+import Editor from './Editor.jsx'
+import { Close } from './Close.jsx'
+import { debounce } from '../../../util/debounce.js'
 
 const {
   ui: { injectCss },

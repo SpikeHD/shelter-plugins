@@ -1,0 +1,51 @@
+.themeCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  text-align: left;
+
+  padding: 0px;
+  margin: 8px;
+
+  color: var(--text-primary);
+  background: var(--background-secondary);
+
+  border-radius: 8px;
+
+  .thumbnail {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    
+    /* TL & TR 8px, others 0px */
+    border-radius: 8px 8px 0px 0px;
+    
+    /* image is set in the background so we can use cover */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 6px;
+    padding: 16px;
+    width: 100%;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    .name,
+    .contents,
+    .installButton {
+      margin-bottom: 8px;
+    }
+
+    .installButton {
+      margin-top: 8px;
+      width: 100%;
+    }
+  }
+}

@@ -3,9 +3,9 @@ import hljs from 'highlight.js/lib/core'
 import cssModule from 'highlight.js/lib/languages/css'
 
 import {css, classes} from './Editor.scss'
-import { debounce } from '../util'
-import { Popout } from './Popout'
-import { Window } from './Window'
+import { debounce } from '../../../util/debounce.js'
+import { Popout } from './Popout.jsx'
+import { Window } from './Window.jsx'
 
 interface Props {
   styleElm?: HTMLStyleElement
