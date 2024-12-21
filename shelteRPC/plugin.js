@@ -860,21 +860,21 @@
   }
   function handleMessage(e) {
     return __async(this, null, function* () {
-      var _a, _b, _c, _d, _e;
+      var _a, _b, _c, _d, _e, _f, _g;
       const data = JSON.parse(e.data);
       const assets = (_a = data.activity) == null ? void 0 : _a.assets;
       if (data.cmd)
         return handleCmd(data);
-      if (assets == null ? void 0 : assets.large_image)
+      if ((assets == null ? void 0 : assets.large_image) && ((_b = data.activity) == null ? void 0 : _b.application_id))
         assets.large_image = yield fetchAssetIds(data.activity.application_id, assets.large_image);
-      if (assets == null ? void 0 : assets.small_image)
+      if ((assets == null ? void 0 : assets.small_image) && ((_c = data.activity) == null ? void 0 : _c.application_id))
         assets.small_image = yield fetchAssetIds(data.activity.application_id, assets.small_image);
       if (data.activity) {
         const appId = data.activity.application_id;
         apps[appId] || (apps[appId] = yield lookupApp(appId).catch(() => "Unknown"));
         const app2 = apps[appId];
         if (typeof app2 !== "string") {
-          (_b = data.activity).name || (_b.name = app2.name);
+          (_d = data.activity).name || (_d.name = app2.name);
         }
         store3.currentlyPlaying = data.activity.name;
         if (!store3.previouslyPlayed)
@@ -889,7 +889,7 @@
       } else {
         store3.currentlyPlaying = "";
       }
-      if ((_e = (_d = store3 == null ? void 0 : store3.previouslyPlayed) == null ? void 0 : _d[(_c = data.activity) == null ? void 0 : _c.name]) == null ? void 0 : _e.hide)
+      if ((_g = (_f = store3 == null ? void 0 : store3.previouslyPlayed) == null ? void 0 : _f[(_e = data.activity) == null ? void 0 : _e.name]) == null ? void 0 : _g.hide)
         return;
       FluxDispatcher.dispatch(__spreadValues({
         type: "LOCAL_ACTIVITY_UPDATE"
