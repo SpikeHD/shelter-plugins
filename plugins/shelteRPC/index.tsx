@@ -50,12 +50,12 @@ async function handleMessage(e: MessageEvent<string>) {
 
   if (data.cmd) return handleCmd(data)
 
-  if (assets?.large_image)
+  if (assets?.large_image && data.activity?.application_id)
     assets.large_image = await fetchAssetIds(
       data.activity.application_id,
       assets.large_image
     )
-  if (assets?.small_image)
+  if (assets?.small_image && data.activity?.application_id)
     assets.small_image = await fetchAssetIds(
       data.activity.application_id,
       assets.small_image
