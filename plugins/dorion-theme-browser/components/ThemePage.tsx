@@ -27,6 +27,7 @@ export function ThemePage() {
   }
 
   const [themeData, setThemeData] = createSignal<any[]>([])
+  const [page, setPage] = createSignal(1)
   const [sort, setSort] = createSignal('popular')
   const [search, setSearch] = createSignal('')
 
@@ -35,7 +36,7 @@ export function ThemePage() {
   })
 
   const loadThemes = async () => {
-    setThemeData(await themeListEndpoint({ page: '1', sort: sort(), filter: search() }))
+    setThemeData(await themeListEndpoint({ page: page().toString(), sort: sort(), filter: search() }))
   }
 
   const doSearch = debounce((v: string) => setSearch(v), 500)
@@ -90,6 +91,28 @@ export function ThemePage() {
             />
           ))
         }
+      </div>
+
+      <div class={classes.pagesOuter}>
+        <div class={classes.pages}>
+          <div
+            class={classes.pageBtn}
+            onClick={() => {
+              setPage(page() - 1)
+              loadThemes()
+            }}
+          >&lt; Previous</div>
+
+          <input type='number' value={page()} onInput={(e) => setPage(parseInt(e.target.value))} />
+
+          <div
+            class={classes.pageBtn}
+            onClick={() => {
+              setPage(page() + 1)
+              loadThemes()
+            }}
+          >Next &gt;</div>
+        </div>
       </div>
     </>
   )

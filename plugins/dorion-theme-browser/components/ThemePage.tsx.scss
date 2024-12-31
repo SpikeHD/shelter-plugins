@@ -27,3 +27,56 @@
   flex-grow: 0 !important;
   width: 50%;
 }
+
+.pagesOuter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 30%;
+
+  margin-top: 16px;
+}
+
+.pageBtn {
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+.pageBtn:hover {
+  text-decoration: underline;
+}
+
+input[type=number] {
+  width: 50px;
+  text-align: center;
+  margin: 0 8px;
+  padding: 4px;
+
+  font-size: 16px;
+
+  background-color: var(--input-background);
+  color: var(--text-normal);
+  border: none;
+  border-radius: 4px;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
