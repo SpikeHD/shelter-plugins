@@ -24,10 +24,69 @@
   });
 
   // plugins/youre-right/index.tsx.scss
-  var css = `._youreRightItem_4o6rk_1{transform:scaleX(-1)}._youreRightItem_4o6rk_1 video,._youreRightItem_4o6rk_1 h3,._youreRightItem_4o6rk_1 [id^=message-content-],._youreRightItem_4o6rk_1 [id^=username]{transform:scaleX(-1);text-align:right;margin:0}._youreRightItem_4o6rk_1 video{transform:scaleX(1)}._youreRightItem_4o6rk_1 img{text-align:right;margin:0}._youreRightItem_4o6rk_1 code{text-align:left}._youreRightItem_4o6rk_1 img[class^=emoji]{transform:scaleX(1) !important}._youreRightItem_4o6rk_1 span[class^=repliedTextPlaceholder]{transform:scaleX(-1)}._youreRightItem_4o6rk_1 [id^=message-content-]{max-width:60%;text-align:right}._youreRightItem_4o6rk_1 [class^=nonVisualMediaItemContainer],._youreRightItem_4o6rk_1 [class^=imageWrapper],._youreRightItem_4o6rk_1 [class^=avatar],._youreRightItem_4o6rk_1 [class^=embedWrapper],._youreRightItem_4o6rk_1 [class^=reaction_],._youreRightItem_4o6rk_1 [class^=buttonsInner]{transform:scaleX(-1)}._youreRightItem_4o6rk_1 [class*=timestampVisible]{transform:scaleX(-1);text-align:left !important}._youreRightItem_4o6rk_1 [id^=message-reply-context-]{justify-content:flex-start}._youreRightItem_4o6rk_1 [id^=message-reply-context-] [class^=username]{transform:scaleX(-1)}._youreRightItem_4o6rk_1 img:active{transform:scaleX(-1) translateY(-1px)}._youreRightItem_4o6rk_1 [role^=textbox]{transform:scaleX(-1);text-align:right}`;
-  var classes = {
-    "youreRightItem": "_youreRightItem_4o6rk_1"
-  };
+  var classes = { "youreRightItem": "CPnQ-q_youreRightItem" };
+  var css = `.CPnQ-q_youreRightItem {
+  transform: scaleX(-1);
+}
+
+.CPnQ-q_youreRightItem video, .CPnQ-q_youreRightItem h3, .CPnQ-q_youreRightItem [id^="message-content-"], .CPnQ-q_youreRightItem [id^="username"] {
+  text-align: right;
+  margin: 0;
+  transform: scaleX(-1);
+}
+
+.CPnQ-q_youreRightItem video {
+  transform: scaleX(1);
+}
+
+.CPnQ-q_youreRightItem img {
+  text-align: right;
+  margin: 0;
+}
+
+.CPnQ-q_youreRightItem code {
+  text-align: left;
+}
+
+.CPnQ-q_youreRightItem img[class^="emoji"] {
+  transform: scaleX(1) !important;
+}
+
+.CPnQ-q_youreRightItem span[class^="repliedTextPlaceholder"] {
+  transform: scaleX(-1);
+}
+
+.CPnQ-q_youreRightItem [id^="message-content-"] {
+  text-align: right;
+  max-width: 60%;
+}
+
+.CPnQ-q_youreRightItem [class^="nonVisualMediaItemContainer"], .CPnQ-q_youreRightItem [class^="imageWrapper"], .CPnQ-q_youreRightItem [class^="avatar"], .CPnQ-q_youreRightItem [class^="embedWrapper"], .CPnQ-q_youreRightItem [class^="reaction_"], .CPnQ-q_youreRightItem [class^="buttonsInner"] {
+  transform: scaleX(-1);
+}
+
+.CPnQ-q_youreRightItem [class*="timestampVisible"] {
+  transform: scaleX(-1);
+  text-align: left !important;
+}
+
+.CPnQ-q_youreRightItem [id^="message-reply-context-"] {
+  justify-content: flex-start;
+}
+
+.CPnQ-q_youreRightItem [id^="message-reply-context-"] [class^="username"] {
+  transform: scaleX(-1);
+}
+
+.CPnQ-q_youreRightItem img:active {
+  transform: scaleX(-1)translateY(-1px);
+}
+
+.CPnQ-q_youreRightItem [role^="textbox"] {
+  text-align: right;
+  transform: scaleX(-1);
+}
+`;
 
   // plugins/youre-right/index.tsx
   var {

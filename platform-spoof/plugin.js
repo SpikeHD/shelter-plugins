@@ -313,13 +313,61 @@
   var import_web7 = __toESM(require_web(), 1);
 
   // components/Radio.tsx.scss
-  var css = `._radio_1qi40_1{color:var(--interactive-normal);grid-template-columns:auto 1fr;box-sizing:border-box;border-radius:4px;display:grid;grid-gap:8px;align-items:center;padding:8px;background:var(--background-secondary);cursor:pointer}._radio_1qi40_1:not(:last-child){margin-bottom:8px}._radio_1qi40_1 ._radioButton_1qi40_1{height:20px;width:20px;border-radius:50%;border:2px solid var(--interactive-normal);margin:4px;position:relative}._radio_1qi40_1 ._radioButton_1qi40_1 ._radioButtonInner_1qi40_1{position:absolute;height:10px;width:10px;top:50%;left:50%;transform:translate(-50%, -50%);border-radius:50%;background:var(--interactive-normal)}._radio_1qi40_1:hover{background-color:var(--background-modifier-hover)}._radio_1qi40_1._selected_1qi40_1{color:var(--interactive-active);background-color:var(--background-modifier-selected)}._radio_1qi40_1._selected_1qi40_1 ._radioButton_1qi40_1{border-color:var(--interactive-active)}._radio_1qi40_1._selected_1qi40_1 ._radioButton_1qi40_1 ._radioButtonInner_1qi40_1{background:var(--interactive-active)}`;
-  var classes = {
-    "radio": "_radio_1qi40_1",
-    "radioButton": "_radioButton_1qi40_1",
-    "radioButtonInner": "_radioButtonInner_1qi40_1",
-    "selected": "_selected_1qi40_1"
-  };
+  var classes = { "radioButtonInner": "Ch7osa_radioButtonInner", "selected": "Ch7osa_selected", "radio": "Ch7osa_radio", "radioButton": "Ch7osa_radioButton" };
+  var css = `.Ch7osa_radio {
+  color: var(--interactive-normal);
+  box-sizing: border-box;
+  grid-gap: 8px;
+  background: var(--background-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  padding: 8px;
+  display: grid;
+}
+
+.Ch7osa_radio:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.Ch7osa_radio .Ch7osa_radioButton {
+  border: 2px solid var(--interactive-normal);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: 4px;
+  position: relative;
+}
+
+.Ch7osa_radio .Ch7osa_radioButton .Ch7osa_radioButtonInner {
+  background: var(--interactive-normal);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Ch7osa_radio:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.Ch7osa_radio.Ch7osa_selected {
+  color: var(--interactive-active);
+  background-color: var(--background-modifier-selected);
+}
+
+.Ch7osa_radio.Ch7osa_selected .Ch7osa_radioButton {
+  border-color: var(--interactive-active);
+}
+
+.Ch7osa_radio.Ch7osa_selected .Ch7osa_radioButton .Ch7osa_radioButtonInner {
+  background: var(--interactive-active);
+}
+`;
 
   // components/Radio.tsx
   var _tmpl$ = /* @__PURE__ */ (0, import_web.template)(`<div><div></div></div>`, 4);

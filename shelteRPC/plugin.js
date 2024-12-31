@@ -402,19 +402,89 @@
   };
 
   // plugins/shelteRPC/components/GameCard.scss
-  var css = `._gameCard_1jztg_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;height:72px;border-radius:5px;color:var(--text-normal);margin:12px 0}._gameCard_1jztg_1._cardNone_1jztg_1{background-color:var(--background-secondary)}._gameCard_1jztg_1._cardPlaying_1jztg_1{background-color:var(--status-positive-background)}._gameCard_1jztg_1._cardPlaying_1jztg_1 ._gameCardIcons_1jztg_1{color:var(--green-230)}._gameCard_1jztg_1._cardPlayed_1jztg_1{background:rgba(0,0,0,0);border-radius:0;border-bottom:1px solid var(--primary-500)}._gameCard_1jztg_1._cardPlayed_1jztg_1 ._gameCardLastPlayed_1jztg_1{color:var(--text-muted)}._gameCard_1jztg_1._cardPlayed_1jztg_1 ._lastPlayedTimestamp_1jztg_1{font-weight:bold}._gameCardInfo_1jztg_1{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:70%;height:100%;padding:0 20px}._gameCardName_1jztg_1{font-weight:bold}._gameCardIcons_1jztg_1{display:flex;flex-direction:row;align-items:center;justify-content:flex-end;height:100%;padding:0 20px;color:var(--primary-400)}._gameCardIcons_1jztg_1 span{margin:4px;width:24px;height:24px;cursor:pointer}._gameCardIcons_1jztg_1 span:hover{color:var(--text-normal)}._gameCardIcons_1jztg_1 span svg{width:100%;height:100%}._trash_1jztg_1:hover{color:var(--status-danger) !important}`;
-  var classes = {
-    "gameCard": "_gameCard_1jztg_1",
-    "cardNone": "_cardNone_1jztg_1",
-    "cardPlaying": "_cardPlaying_1jztg_1",
-    "gameCardIcons": "_gameCardIcons_1jztg_1",
-    "cardPlayed": "_cardPlayed_1jztg_1",
-    "gameCardLastPlayed": "_gameCardLastPlayed_1jztg_1",
-    "lastPlayedTimestamp": "_lastPlayedTimestamp_1jztg_1",
-    "gameCardInfo": "_gameCardInfo_1jztg_1",
-    "gameCardName": "_gameCardName_1jztg_1",
-    "trash": "_trash_1jztg_1"
-  };
+  var classes = { "gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed", "cardPlaying": "zS7Qtq_cardPlaying", "cardNone": "zS7Qtq_cardNone", "cardPlayed": "zS7Qtq_cardPlayed", "gameCardName": "zS7Qtq_gameCardName", "gameCardIcons": "zS7Qtq_gameCardIcons", "gameCardInfo": "zS7Qtq_gameCardInfo", "lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp", "gameCard": "zS7Qtq_gameCard", "trash": "zS7Qtq_trash" };
+  var css = `.zS7Qtq_gameCard {
+  width: 100%;
+  height: 72px;
+  color: var(--text-normal);
+  border-radius: 5px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  display: flex;
+}
+
+.zS7Qtq_gameCard.zS7Qtq_cardNone {
+  background-color: var(--background-secondary);
+}
+
+.zS7Qtq_gameCard.zS7Qtq_cardPlaying {
+  background-color: var(--status-positive-background);
+}
+
+.zS7Qtq_gameCard.zS7Qtq_cardPlaying .zS7Qtq_gameCardIcons {
+  color: var(--green-230);
+}
+
+.zS7Qtq_gameCard.zS7Qtq_cardPlayed {
+  border-bottom: 1px solid var(--primary-500);
+  background: none;
+  border-radius: 0;
+}
+
+.zS7Qtq_gameCard.zS7Qtq_cardPlayed .zS7Qtq_gameCardLastPlayed {
+  color: var(--text-muted);
+}
+
+.zS7Qtq_gameCard.zS7Qtq_cardPlayed .zS7Qtq_lastPlayedTimestamp {
+  font-weight: bold;
+}
+
+.zS7Qtq_gameCardInfo {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70%;
+  height: 100%;
+  padding: 0 20px;
+  display: flex;
+}
+
+.zS7Qtq_gameCardName {
+  font-weight: bold;
+}
+
+.zS7Qtq_gameCardIcons {
+  height: 100%;
+  color: var(--primary-400);
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  display: flex;
+}
+
+.zS7Qtq_gameCardIcons span {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin: 4px;
+}
+
+.zS7Qtq_gameCardIcons span:hover {
+  color: var(--text-normal);
+}
+
+.zS7Qtq_gameCardIcons span svg {
+  width: 100%;
+  height: 100%;
+}
+
+.zS7Qtq_trash:hover {
+  color: var(--status-danger) !important;
+}
+`;
 
   // plugins/shelteRPC/components/GameCard.tsx
   var _tmpl$ = /* @__PURE__ */ (0, import_web.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 3.999V2H9V3.999H3V5.999H21V3.999H15Z"></path><path fill="currentColor" d="M5 6.99902V18.999C5 20.101 5.897 20.999 7 20.999H17C18.103 20.999 19 20.101 19 18.999V6.99902H5ZM11 17H9V11H11V17ZM15 17H13V11H15V17Z"></path></svg>`, 6);
@@ -531,13 +601,42 @@
   var import_web17 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var css2 = `._ddown_9nenk_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_9nenk_1{position:relative;width:100%}._dsarrow_9nenk_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_9nenk_1 path{fill:var(--header-secondary)}._ddownplaceholder_9nenk_1{color:var(--header-secondary)}`;
-  var classes2 = {
-    "ddown": "_ddown_9nenk_1",
-    "dcontainer": "_dcontainer_9nenk_1",
-    "dsarrow": "_dsarrow_9nenk_1",
-    "ddownplaceholder": "_ddownplaceholder_9nenk_1"
-  };
+  var classes2 = { "dsarrow": "sqVpyW_dsarrow", "dcontainer": "sqVpyW_dcontainer", "ddownplaceholder": "sqVpyW_ddownplaceholder", "ddown": "sqVpyW_ddown" };
+  var css2 = `.sqVpyW_ddown {
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--text-normal);
+  background-color: var(--input-background);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  transition: border-color .2s ease-in-out;
+}
+
+.sqVpyW_dcontainer {
+  width: 100%;
+  position: relative;
+}
+
+.sqVpyW_dsarrow {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.sqVpyW_dsarrow path {
+  fill: var(--header-secondary);
+}
+
+.sqVpyW_ddownplaceholder {
+  color: var(--header-secondary);
+}
+`;
 
   // components/SelectArrow.tsx
   var import_web7 = __toESM(require_web(), 1);
@@ -631,14 +730,30 @@
   };
 
   // plugins/shelteRPC/components/RegisteredGames.scss
-  var css3 = `._description_1kj0u_1{margin-top:8px;margin-bottom:8px}._addIt_1kj0u_1{margin-top:8px;margin-bottom:28px}._shead_1kj0u_1{margin-bottom:12px}._addhead_1kj0u_1{margin-top:42px;margin-bottom:12px}._modalhead_1kj0u_1{margin-top:12px}`;
-  var classes3 = {
-    "description": "_description_1kj0u_1",
-    "addIt": "_addIt_1kj0u_1",
-    "shead": "_shead_1kj0u_1",
-    "addhead": "_addhead_1kj0u_1",
-    "modalhead": "_modalhead_1kj0u_1"
-  };
+  var classes3 = { "addhead": "yVnOSq_addhead", "addIt": "yVnOSq_addIt", "description": "yVnOSq_description", "modalhead": "yVnOSq_modalhead", "shead": "yVnOSq_shead" };
+  var css3 = `.yVnOSq_description {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.yVnOSq_addIt {
+  margin-top: 8px;
+  margin-bottom: 28px;
+}
+
+.yVnOSq_shead {
+  margin-bottom: 12px;
+}
+
+.yVnOSq_addhead {
+  margin-top: 42px;
+  margin-bottom: 12px;
+}
+
+.yVnOSq_modalhead {
+  margin-top: 12px;
+}
+`;
 
   // plugins/shelteRPC/components/RegisteredGames.tsx
   var _tmpl$8 = /* @__PURE__ */ (0, import_web18.template)(`<a target="_blank">Add it!</a>`, 2);
@@ -808,10 +923,20 @@
   (0, import_web19.delegateEvents)(["click"]);
 
   // plugins/shelteRPC/index.scss
-  var css4 = `._container_1agc2_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;margin-bottom:12px}._container_1agc2_1 input[type=number]{width:30%;flex-grow:0}`;
-  var classes4 = {
-    "container": "_container_1agc2_1"
-  };
+  var classes4 = { "container": "GAwW_G_container" };
+  var css4 = `.GAwW_G_container {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.GAwW_G_container input[type="number"] {
+  flex-grow: 0;
+  width: 30%;
+}
+`;
 
   // plugins/shelteRPC/index.tsx
   var _tmpl$9 = /* @__PURE__ */ (0, import_web22.template)(`<br>`, 1);

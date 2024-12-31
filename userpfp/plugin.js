@@ -304,10 +304,12 @@
   var after = getPatchFunc_default("a");
 
   // plugins/userpfp/index.scss
-  var css = `._submit_gzseg_1{margin-bottom:10px;display:inline-block}`;
-  var classes = {
-    "submit": "_submit_gzseg_1"
-  };
+  var classes = { "submit": "eTp9Lq_submit" };
+  var css = `.eTp9Lq_submit {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+`;
 
   // plugins/userpfp/index.tsx
   var {

@@ -90,13 +90,33 @@
   var import_web13 = __toESM(require_web(), 1);
 
   // plugins/plugin-browser/components/Plugins.scss
-  var css = `._subtitle_cy731_1{margin-top:12px;display:block}._pluginList_cy731_1{display:grid;grid-template-columns:repeat(2, 1fr);grid-gap:16px;margin-top:16px}._repoHeader_cy731_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center}._loading_cy731_1{display:flex;justify-content:center;align-items:center;height:100%}`;
-  var classes = {
-    "subtitle": "_subtitle_cy731_1",
-    "pluginList": "_pluginList_cy731_1",
-    "repoHeader": "_repoHeader_cy731_1",
-    "loading": "_loading_cy731_1"
-  };
+  var classes = { "pluginList": "L-W60G_pluginList", "subtitle": "L-W60G_subtitle", "loading": "L-W60G_loading", "repoHeader": "L-W60G_repoHeader" };
+  var css = `.L-W60G_subtitle {
+  margin-top: 12px;
+  display: block;
+}
+
+.L-W60G_pluginList {
+  grid-gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 16px;
+  display: grid;
+}
+
+.L-W60G_repoHeader {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.L-W60G_loading {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: flex;
+}
+`;
 
   // plugins/plugin-browser/components/PluginCard.tsx
   var import_web = __toESM(require_web(), 1);
@@ -291,13 +311,38 @@
   }
 
   // plugins/plugin-browser/components/PluginCard.scss
-  var css2 = `._pluginCard_9arrd_1{display:flex;flex-direction:column;justify-content:space-evenly;align-items:flex-start;text-align:left;padding:16px;color:var(--text-primary);background:var(--background-secondary);border-radius:8px}._pluginCard_9arrd_1 ._contents_9arrd_1{margin-top:8px;flex:1}._pluginCard_9arrd_1 ._buttonContainer_9arrd_1{margin-top:8px;width:100%}._pluginCard_9arrd_1 ._buttonContainer_9arrd_1 ._installButton_9arrd_1{flex-grow:1;width:100%}._pluginCard_9arrd_1 ._buttonContainer_9arrd_1 ._installButton_9arrd_1 button P{width:100%}`;
-  var classes2 = {
-    "pluginCard": "_pluginCard_9arrd_1",
-    "contents": "_contents_9arrd_1",
-    "buttonContainer": "_buttonContainer_9arrd_1",
-    "installButton": "_installButton_9arrd_1"
-  };
+  var classes2 = { "installButton": "THQemG_installButton", "contents": "THQemG_contents", "buttonContainer": "THQemG_buttonContainer", "pluginCard": "THQemG_pluginCard" };
+  var css2 = `.THQemG_pluginCard {
+  text-align: left;
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 16px;
+  display: flex;
+}
+
+.THQemG_pluginCard .THQemG_contents {
+  flex: 1;
+  margin-top: 8px;
+}
+
+.THQemG_pluginCard .THQemG_buttonContainer {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.THQemG_pluginCard .THQemG_buttonContainer .THQemG_installButton {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.THQemG_pluginCard .THQemG_buttonContainer .THQemG_installButton button P {
+  width: 100%;
+}
+`;
 
   // plugins/plugin-browser/components/PluginCard.tsx
   var _tmpl$ = /* @__PURE__ */ (0, import_web.template)(`<b></b>`, 2);

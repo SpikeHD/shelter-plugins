@@ -224,17 +224,70 @@
   var apiWindow = backendObj.apiWindow;
 
   // plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
-  var css = `._keybindSection_1rgyd_1{width:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;margin-bottom:20px}._header_1rgyd_1{margin-bottom:20px}._keybindsHeader_1rgyd_1{width:100%;height:40px;margin-bottom:20px;display:flex;flex-direction:row;justify-content:space-between;align-items:center}._keybindsBanner_1rgyd_1{display:flex;flex-direction:column;justify-content:space-around;align-items:flex-start;width:75%;border-radius:4px;border:1px solid var(--status-warning) !important;background-color:var(--info-warning-background);padding:12px}._keybindsButton_1rgyd_1{width:20% !important;height:100%;background-color:var(--brand-500) !important}._keybindsSwitch_1rgyd_1{width:100%}._keybindRestartCard_1rgyd_1{display:flex;flex-direction:column;justify-content:space-around;align-items:center;border:1px solid var(--status-warning) !important;background-color:var(--info-warning-background);padding:16px;width:100%;margin-bottom:20px}._keybindRestartButton_1rgyd_1{width:100% !important;background-color:var(--status-warning) !important;margin-top:8px}`;
-  var classes = {
-    "keybindSection": "_keybindSection_1rgyd_1",
-    "header": "_header_1rgyd_1",
-    "keybindsHeader": "_keybindsHeader_1rgyd_1",
-    "keybindsBanner": "_keybindsBanner_1rgyd_1",
-    "keybindsButton": "_keybindsButton_1rgyd_1",
-    "keybindsSwitch": "_keybindsSwitch_1rgyd_1",
-    "keybindRestartCard": "_keybindRestartCard_1rgyd_1",
-    "keybindRestartButton": "_keybindRestartButton_1rgyd_1"
-  };
+  var classes = { "keybindsHeader": "Zz-Z3G_keybindsHeader", "keybindRestartCard": "Zz-Z3G_keybindRestartCard", "keybindSection": "Zz-Z3G_keybindSection", "keybindsBanner": "Zz-Z3G_keybindsBanner", "header": "Zz-Z3G_header", "keybindRestartButton": "Zz-Z3G_keybindRestartButton", "keybindsButton": "Zz-Z3G_keybindsButton", "keybindsSwitch": "Zz-Z3G_keybindsSwitch" };
+  var css = `.Zz-Z3G_keybindSection {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.Zz-Z3G_header {
+  margin-bottom: 20px;
+}
+
+.Zz-Z3G_keybindsHeader {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.Zz-Z3G_keybindsBanner {
+  background-color: var(--info-warning-background);
+  border-radius: 4px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 75%;
+  padding: 12px;
+  display: flex;
+  border: 1px solid var(--status-warning) !important;
+}
+
+.Zz-Z3G_keybindsButton {
+  height: 100%;
+  background-color: var(--brand-500) !important;
+  width: 20% !important;
+}
+
+.Zz-Z3G_keybindsSwitch {
+  width: 100%;
+}
+
+.Zz-Z3G_keybindRestartCard {
+  background-color: var(--info-warning-background);
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 16px;
+  display: flex;
+  border: 1px solid var(--status-warning) !important;
+}
+
+.Zz-Z3G_keybindRestartButton {
+  margin-top: 8px;
+  background-color: var(--status-warning) !important;
+  width: 100% !important;
+}
+`;
 
   // plugins/dorion-custom-keybinds/components/KeybindSection.tsx
   var import_web20 = __toESM(require_web());
@@ -247,15 +300,58 @@
   var import_web27 = __toESM(require_web());
 
   // plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
-  var css2 = `._keybindRoot_1bqau_1{display:flex;flex-direction:column;width:100%;margin-bottom:16px}._keybindSection_1bqau_1{width:100%;display:flex;flex-direction:row;justify-content:space-between;align-items:center}._actionSection_1bqau_1,._keybindArea_1bqau_1{display:flex;flex-direction:column}._actionSection_1bqau_1{width:50%}._removeButton_1bqau_1{width:10%;height:20px;display:flex;justify-content:center;align-items:center;opacity:0;transition:all .1s ease-in-out;cursor:pointer}._keybindRoot_1bqau_1:hover ._removeButton_1bqau_1{opacity:1}._keybindArea_1bqau_1{width:50%}._note_1bqau_1{margin-top:8px;color:var(--header-secondary) !important;font-size:14px;line-height:20px;font-weight:400}`;
-  var classes2 = {
-    "keybindRoot": "_keybindRoot_1bqau_1",
-    "keybindSection": "_keybindSection_1bqau_1",
-    "actionSection": "_actionSection_1bqau_1",
-    "keybindArea": "_keybindArea_1bqau_1",
-    "removeButton": "_removeButton_1bqau_1",
-    "note": "_note_1bqau_1"
-  };
+  var classes2 = { "actionSection": "QTLdLq_actionSection", "keybindRoot": "QTLdLq_keybindRoot", "keybindSection": "QTLdLq_keybindSection", "keybindArea": "QTLdLq_keybindArea", "removeButton": "QTLdLq_removeButton", "note": "QTLdLq_note" };
+  var css2 = `.QTLdLq_keybindRoot {
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.QTLdLq_keybindSection {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.QTLdLq_actionSection, .QTLdLq_keybindArea {
+  flex-direction: column;
+  display: flex;
+}
+
+.QTLdLq_actionSection {
+  width: 50%;
+}
+
+.QTLdLq_removeButton {
+  opacity: 0;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 20px;
+  transition: all .1s ease-in-out;
+  display: flex;
+}
+
+.QTLdLq_keybindRoot:hover .QTLdLq_removeButton {
+  opacity: 1;
+}
+
+.QTLdLq_keybindArea {
+  width: 50%;
+}
+
+.QTLdLq_note {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--header-secondary) !important;
+}
+`;
 
   // components/Dropdown.tsx
   var import_web4 = __toESM(require_web(), 1);
@@ -268,13 +364,42 @@
   var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var css3 = `._ddown_9nenk_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_9nenk_1{position:relative;width:100%}._dsarrow_9nenk_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_9nenk_1 path{fill:var(--header-secondary)}._ddownplaceholder_9nenk_1{color:var(--header-secondary)}`;
-  var classes3 = {
-    "ddown": "_ddown_9nenk_1",
-    "dcontainer": "_dcontainer_9nenk_1",
-    "dsarrow": "_dsarrow_9nenk_1",
-    "ddownplaceholder": "_ddownplaceholder_9nenk_1"
-  };
+  var classes3 = { "dcontainer": "sqVpyW_dcontainer", "dsarrow": "sqVpyW_dsarrow", "ddown": "sqVpyW_ddown", "ddownplaceholder": "sqVpyW_ddownplaceholder" };
+  var css3 = `.sqVpyW_ddown {
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--text-normal);
+  background-color: var(--input-background);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  transition: border-color .2s ease-in-out;
+}
+
+.sqVpyW_dcontainer {
+  width: 100%;
+  position: relative;
+}
+
+.sqVpyW_dsarrow {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.sqVpyW_dsarrow path {
+  fill: var(--header-secondary);
+}
+
+.sqVpyW_ddownplaceholder {
+  color: var(--header-secondary);
+}
+`;
 
   // components/SelectArrow.tsx
   var import_web = __toESM(require_web(), 1);
@@ -378,15 +503,83 @@
   var import_web19 = __toESM(require_web(), 1);
 
   // components/KeybindInput.tsx.scss
-  var css4 = `._keybindContainer_z5eo4_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;height:40px;border-radius:4px;background:var(--input-background);color:var(--text-normal);border:1px solid rgba(0,0,0,0);padding:4px;transition:all .2s}._keybindContainer_z5eo4_1:hover{border:1px solid var(--status-danger)}._recording_z5eo4_1{border:1px solid var(--status-danger);animation:_pulse_z5eo4_1 1s infinite}._recording_z5eo4_1 ._keybindButton_z5eo4_1{background:hsl(var(--red-400-hsl)/0.1);color:var(--status-danger)}._recording_z5eo4_1 ._keybindButton_z5eo4_1:hover{background:hsl(var(--red-400-hsl)/0.2)}._keybindInput_z5eo4_1{background:rgba(0,0,0,0);display:flex;align-items:center}._keybindPlaceholder_z5eo4_1{color:var(--text-muted) !important}._keybindButton_z5eo4_1{height:30px;width:50%;margin:0;padding:4px;border-radius:4px;display:flex;align-items:center;background:var(--button-secondary-background);color:var(--white-500);border:1px solid rgba(0,0,0,0);cursor:pointer;transition:all .2s}._keybindButton_z5eo4_1:hover{background:var(--button-secondary-background-hover)}@keyframes _pulse_z5eo4_1{0%{box-shadow:0 0 10px 0px hsl(var(--red-400-hsl)/0.5)}50%{box-shadow:0 0 10px 4px hsl(var(--red-400-hsl)/0.5)}100%{box-shadow:0 0 10px 0px hsl(var(--red-400-hsl)/0.5)}}`;
-  var classes4 = {
-    "keybindContainer": "_keybindContainer_z5eo4_1",
-    "recording": "_recording_z5eo4_1",
-    "pulse": "_pulse_z5eo4_1",
-    "keybindButton": "_keybindButton_z5eo4_1",
-    "keybindInput": "_keybindInput_z5eo4_1",
-    "keybindPlaceholder": "_keybindPlaceholder_z5eo4_1"
-  };
+  var classes4 = { "keybindPlaceholder": "N-HDcq_keybindPlaceholder", "pulse": "N-HDcq_pulse", "recording": "N-HDcq_recording", "keybindButton": "N-HDcq_keybindButton", "keybindInput": "N-HDcq_keybindInput", "keybindContainer": "N-HDcq_keybindContainer" };
+  var css4 = `.N-HDcq_keybindContainer {
+  background: var(--input-background);
+  width: 100%;
+  height: 40px;
+  color: var(--text-normal);
+  border: 1px solid #0000;
+  border-radius: 4px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  transition: all .2s;
+  display: flex;
+}
+
+.N-HDcq_keybindContainer:hover {
+  border: 1px solid var(--status-danger);
+}
+
+.N-HDcq_recording {
+  border: 1px solid var(--status-danger);
+  animation: 1s infinite N-HDcq_pulse;
+}
+
+.N-HDcq_recording .N-HDcq_keybindButton {
+  background: hsl(var(--red-400-hsl) / .1);
+  color: var(--status-danger);
+}
+
+.N-HDcq_recording .N-HDcq_keybindButton:hover {
+  background: hsl(var(--red-400-hsl) / .2);
+}
+
+.N-HDcq_keybindInput {
+  background: none;
+  align-items: center;
+  display: flex;
+}
+
+.N-HDcq_keybindPlaceholder {
+  color: var(--text-muted) !important;
+}
+
+.N-HDcq_keybindButton {
+  background: var(--button-secondary-background);
+  width: 50%;
+  height: 30px;
+  color: var(--white-500);
+  cursor: pointer;
+  border: 1px solid #0000;
+  border-radius: 4px;
+  align-items: center;
+  margin: 0;
+  padding: 4px;
+  transition: all .2s;
+  display: flex;
+}
+
+.N-HDcq_keybindButton:hover {
+  background: var(--button-secondary-background-hover);
+}
+
+@keyframes N-HDcq_pulse {
+  0% {
+    box-shadow: 0 0 10px 0px hsl(var(--red-400-hsl) / .5);
+  }
+
+  50% {
+    box-shadow: 0 0 10px 4px hsl(var(--red-400-hsl) / .5);
+  }
+
+  100% {
+    box-shadow: 0 0 10px 0px hsl(var(--red-400-hsl) / .5);
+  }
+}
+`;
 
   // components/KeybindInput.tsx
   var _tmpl$4 = /* @__PURE__ */ (0, import_web12.template)(`<div><div></div><div></div></div>`, 6);

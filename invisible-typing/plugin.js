@@ -51,11 +51,28 @@
   var import_web7 = __toESM(require_web(), 1);
 
   // plugins/invisible-typing/index.scss
-  var css = `._invisContainer_ga1se_1{display:flex;align-items:center;justify-content:center;width:40px;cursor:pointer}._invisContainer_ga1se_1 svg path{fill:var(--interactive-normal) !important}._invisContainer_ga1se_1._notShowing_ga1se_1 svg path{fill:var(--status-danger) !important}._invisContainer_ga1se_1 svg{height:55%;width:100%}`;
-  var classes = {
-    "invisContainer": "_invisContainer_ga1se_1",
-    "notShowing": "_notShowing_ga1se_1"
-  };
+  var classes = { "invisContainer": "KIS_7q_invisContainer", "notShowing": "KIS_7q_notShowing" };
+  var css = `.KIS_7q_invisContainer {
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  display: flex;
+}
+
+.KIS_7q_invisContainer svg path {
+  fill: var(--interactive-normal) !important;
+}
+
+.KIS_7q_invisContainer.KIS_7q_notShowing svg path {
+  fill: var(--status-danger) !important;
+}
+
+.KIS_7q_invisContainer svg {
+  width: 100%;
+  height: 55%;
+}
+`;
 
   // plugins/invisible-typing/index.tsx
   var _tmpl$ = /* @__PURE__ */ (0, import_web.template)(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M64 64C28.7 64 0 92.7 0 128V384c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H64zm16 64h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm80-176c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V144zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zM160 336c0-8.8 7.2-16 16-16H400c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V336zM272 128h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16zM256 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM368 128h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16zM352 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16V240zM464 128h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H464c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16zM448 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H464c-8.8 0-16-7.2-16-16V240zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H464c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16z"></path></svg>`, 4);

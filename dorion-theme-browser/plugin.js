@@ -203,6 +203,7 @@
   var import_web20 = __toESM(require_web(), 1);
   var import_web21 = __toESM(require_web(), 1);
   var import_web22 = __toESM(require_web(), 1);
+  var import_web23 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx
   var import_web4 = __toESM(require_web(), 1);
@@ -215,13 +216,42 @@
   var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var css = `._ddown_9nenk_1{box-sizing:border-box;font-size:16px;width:100%;border-radius:4px;color:var(--text-normal);background-color:var(--input-background);border:none;transition:border-color .2s ease-in-out;padding:10px;appearance:none;cursor:pointer}._dcontainer_9nenk_1{position:relative;width:100%}._dsarrow_9nenk_1{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}._dsarrow_9nenk_1 path{fill:var(--header-secondary)}._ddownplaceholder_9nenk_1{color:var(--header-secondary)}`;
-  var classes = {
-    "ddown": "_ddown_9nenk_1",
-    "dcontainer": "_dcontainer_9nenk_1",
-    "dsarrow": "_dsarrow_9nenk_1",
-    "ddownplaceholder": "_ddownplaceholder_9nenk_1"
-  };
+  var classes = { "ddownplaceholder": "sqVpyW_ddownplaceholder", "ddown": "sqVpyW_ddown", "dsarrow": "sqVpyW_dsarrow", "dcontainer": "sqVpyW_dcontainer" };
+  var css = `.sqVpyW_ddown {
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--text-normal);
+  background-color: var(--input-background);
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  transition: border-color .2s ease-in-out;
+}
+
+.sqVpyW_dcontainer {
+  width: 100%;
+  position: relative;
+}
+
+.sqVpyW_dsarrow {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.sqVpyW_dsarrow path {
+  fill: var(--header-secondary);
+}
+
+.sqVpyW_ddownplaceholder {
+  color: var(--header-secondary);
+}
+`;
 
   // components/SelectArrow.tsx
   var import_web = __toESM(require_web(), 1);
@@ -364,15 +394,48 @@
   var import_web17 = __toESM(require_web(), 1);
 
   // plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
-  var css2 = `._themeCard_16boh_1{display:flex;flex-direction:column;justify-content:space-around;align-items:flex-start;text-align:left;padding:0px;margin:8px;color:var(--text-primary);background:var(--background-secondary);border-radius:8px}._themeCard_16boh_1 ._thumbnail_16boh_1{width:100%;height:160px;overflow:hidden;border-radius:8px 8px 0px 0px;background-size:cover;background-position:center}._themeCard_16boh_1 ._info_16boh_1{display:flex;flex-direction:column;margin-top:6px;padding:16px;width:100%;text-overflow:ellipsis;overflow:hidden}._themeCard_16boh_1 ._info_16boh_1 ._name_16boh_1,._themeCard_16boh_1 ._info_16boh_1 ._contents_16boh_1,._themeCard_16boh_1 ._info_16boh_1 ._installButton_16boh_1{margin-bottom:8px}._themeCard_16boh_1 ._info_16boh_1 ._installButton_16boh_1{margin-top:8px;width:100%}`;
-  var classes2 = {
-    "themeCard": "_themeCard_16boh_1",
-    "thumbnail": "_thumbnail_16boh_1",
-    "info": "_info_16boh_1",
-    "name": "_name_16boh_1",
-    "contents": "_contents_16boh_1",
-    "installButton": "_installButton_16boh_1"
-  };
+  var classes2 = { "themeCard": "JQAzuG_themeCard", "name": "JQAzuG_name", "contents": "JQAzuG_contents", "info": "JQAzuG_info", "thumbnail": "JQAzuG_thumbnail", "installButton": "JQAzuG_installButton" };
+  var css2 = `.JQAzuG_themeCard {
+  text-align: left;
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 8px;
+  padding: 0;
+  display: flex;
+}
+
+.JQAzuG_themeCard .JQAzuG_thumbnail {
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.JQAzuG_themeCard .JQAzuG_info {
+  text-overflow: ellipsis;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 6px;
+  padding: 16px;
+  display: flex;
+  overflow: hidden;
+}
+
+.JQAzuG_themeCard .JQAzuG_info .JQAzuG_name, .JQAzuG_themeCard .JQAzuG_info .JQAzuG_contents, .JQAzuG_themeCard .JQAzuG_info .JQAzuG_installButton {
+  margin-bottom: 8px;
+}
+
+.JQAzuG_themeCard .JQAzuG_info .JQAzuG_installButton {
+  width: 100%;
+  margin-top: 8px;
+}
+`;
 
   // plugins/dorion-theme-browser/components/ThemeCard.tsx
   var _tmpl$4 = /* @__PURE__ */ (0, import_web12.template)(`<b></b>`, 2);
@@ -449,18 +512,85 @@
   }
 
   // plugins/dorion-theme-browser/components/ThemePage.tsx.scss
-  var css3 = `._shead_1ax34_1{margin-top:16px;margin-bottom:8px}._bot16_1ax34_1{margin-bottom:16px}._themeCards_1ax34_1{display:grid;grid-template-columns:repeat(2, 1fr);grid-gap:8px;margin-top:16px;width:100%}._sortSection_1ax34_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center}._searchBox_1ax34_1{flex-grow:0 !important;width:50%}`;
-  var classes3 = {
-    "shead": "_shead_1ax34_1",
-    "bot16": "_bot16_1ax34_1",
-    "themeCards": "_themeCards_1ax34_1",
-    "sortSection": "_sortSection_1ax34_1",
-    "searchBox": "_searchBox_1ax34_1"
-  };
+  var classes3 = { "bot16": "gqruia_bot16", "themeCards": "gqruia_themeCards", "pagesOuter": "gqruia_pagesOuter", "pages": "gqruia_pages", "sortSection": "gqruia_sortSection", "searchBox": "gqruia_searchBox", "pageBtn": "gqruia_pageBtn", "shead": "gqruia_shead" };
+  var css3 = `.gqruia_shead {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.gqruia_bot16 {
+  margin-bottom: 16px;
+}
+
+.gqruia_themeCards {
+  grid-gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  margin-top: 16px;
+  display: grid;
+}
+
+.gqruia_sortSection {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.gqruia_searchBox {
+  width: 50%;
+  flex-grow: 0 !important;
+}
+
+.gqruia_pagesOuter {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.gqruia_pages {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+  margin-top: 16px;
+  display: flex;
+}
+
+.gqruia_pageBtn {
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+.gqruia_pageBtn:hover {
+  text-decoration: underline;
+}
+
+input[type="number"] {
+  text-align: center;
+  background-color: var(--input-background);
+  width: 50px;
+  color: var(--text-normal);
+  -moz-appearance: textfield;
+  appearance: textfield;
+  border: none;
+  border-radius: 4px;
+  margin: 0 8px;
+  padding: 4px;
+  font-size: 16px;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+`;
 
   // plugins/dorion-theme-browser/components/ThemePage.tsx
   var _tmpl$5 = /* @__PURE__ */ (0, import_web18.template)(`<div><span></span></div>`, 4);
   var _tmpl$24 = /* @__PURE__ */ (0, import_web18.template)(`<div></div>`, 2);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web18.template)(`<div><div><div>&lt; Previous</div><input type="number"><div>Next &gt;</div></div></div>`, 9);
   var {
     ui: {
       injectCss: injectCss3,
@@ -481,6 +611,7 @@
       injectedCss3 = true;
     }
     const [themeData, setThemeData] = createSignal2([]);
+    const [page, setPage] = createSignal2(1);
     const [sort, setSort] = createSignal2("popular");
     const [search, setSearch] = createSignal2("");
     createEffect2(() => __async(this, null, function* () {
@@ -488,13 +619,13 @@
     }));
     const loadThemes = () => __async(this, null, function* () {
       setThemeData(yield themeListEndpoint({
-        page: "1",
+        page: page().toString(),
         sort: sort(),
         filter: search()
       }));
     });
     const doSearch = debounce((v) => setSearch(v), 500);
-    return [(0, import_web22.createComponent)(Header, {
+    return [(0, import_web23.createComponent)(Header, {
       get tag() {
         return HeaderTags.H1;
       },
@@ -504,7 +635,7 @@
       children: "Theme Browser"
     }), (() => {
       const _el$ = _tmpl$5.cloneNode(true), _el$2 = _el$.firstChild;
-      (0, import_web21.insert)(_el$, (0, import_web22.createComponent)(Dropdown, {
+      (0, import_web22.insert)(_el$, (0, import_web23.createComponent)(Dropdown, {
         get value() {
           return sort();
         },
@@ -534,29 +665,29 @@
         }],
         placeholder: "Sort by..."
       }), _el$2);
-      (0, import_web21.insert)(_el$2, (0, import_web22.createComponent)(TextBox, {
+      (0, import_web22.insert)(_el$2, (0, import_web23.createComponent)(TextBox, {
         get value() {
           return search();
         },
         onInput: (v) => doSearch(v),
         placeholder: "Search..."
       }));
-      (0, import_web20.effect)((_p$) => {
+      (0, import_web21.effect)((_p$) => {
         const _v$ = classes3.sortSection, _v$2 = classes3.searchBox;
-        _v$ !== _p$._v$ && (0, import_web19.className)(_el$, _p$._v$ = _v$);
-        _v$2 !== _p$._v$2 && (0, import_web19.className)(_el$2, _p$._v$2 = _v$2);
+        _v$ !== _p$._v$ && (0, import_web20.className)(_el$, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web20.className)(_el$2, _p$._v$2 = _v$2);
         return _p$;
       }, {
         _v$: void 0,
         _v$2: void 0
       });
       return _el$;
-    })(), (0, import_web22.createComponent)(Divider, {
+    })(), (0, import_web23.createComponent)(Divider, {
       mt: 16,
       mb: 16
     }), (() => {
       const _el$3 = _tmpl$24.cloneNode(true);
-      (0, import_web21.insert)(_el$3, () => themeData().map((t) => (0, import_web22.createComponent)(ThemeCard, {
+      (0, import_web22.insert)(_el$3, () => themeData().map((t) => (0, import_web23.createComponent)(ThemeCard, {
         get key() {
           return t.name;
         },
@@ -582,10 +713,37 @@
           return t.install_url;
         }
       })));
-      (0, import_web20.effect)(() => (0, import_web19.className)(_el$3, classes3.themeCards));
+      (0, import_web21.effect)(() => (0, import_web20.className)(_el$3, classes3.themeCards));
       return _el$3;
+    })(), (() => {
+      const _el$4 = _tmpl$32.cloneNode(true), _el$5 = _el$4.firstChild, _el$6 = _el$5.firstChild, _el$7 = _el$6.nextSibling, _el$8 = _el$7.nextSibling;
+      _el$6.$$click = () => {
+        setPage(page() - 1);
+        loadThemes();
+      };
+      _el$7.$$input = (e) => setPage(parseInt(e.target.value));
+      _el$8.$$click = () => {
+        setPage(page() + 1);
+        loadThemes();
+      };
+      (0, import_web21.effect)((_p$) => {
+        const _v$3 = classes3.pagesOuter, _v$4 = classes3.pages, _v$5 = classes3.pageBtn, _v$6 = classes3.pageBtn;
+        _v$3 !== _p$._v$3 && (0, import_web20.className)(_el$4, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web20.className)(_el$5, _p$._v$4 = _v$4);
+        _v$5 !== _p$._v$5 && (0, import_web20.className)(_el$6, _p$._v$5 = _v$5);
+        _v$6 !== _p$._v$6 && (0, import_web20.className)(_el$8, _p$._v$6 = _v$6);
+        return _p$;
+      }, {
+        _v$3: void 0,
+        _v$4: void 0,
+        _v$5: void 0,
+        _v$6: void 0
+      });
+      (0, import_web21.effect)(() => _el$7.value = page());
+      return _el$4;
     })()];
   }
+  (0, import_web19.delegateEvents)(["click", "input"]);
 
   // plugins/dorion-theme-browser/index.ts
   var {

@@ -2653,12 +2653,77 @@
   }
 
   // plugins/inline-css/components/Editor.scss
-  var css2 = `._ceditor_1kwmh_1{padding:12px;margin-top:28px;border-radius:5px;background:var(--input-background);height:80vh !important}._ceditor_1kwmh_1>div{height:100% !important}._controls_1kwmh_1{display:flex;flex-direction:row;justify-content:space-between;align-items:center;margin-top:24px}._controls_1kwmh_1 button{width:30%}._popout_1kwmh_1{width:100% !important;margin-top:12px}._popout_1kwmh_1 svg{height:50%;width:30px}._ceditor_1kwmh_1 textarea{height:100% !important;cursor:auto;color:rgba(0,0,0,0)}._ceditor_1kwmh_1 textarea::-webkit-scrollbar-corner{background:rgba(0,0,0,0)}._ceditor_1kwmh_1 textarea::-webkit-scrollbar{background:rgba(0,0,0,0)}._ceditor_1kwmh_1 textarea::-webkit-scrollbar-track{background:none}._ceditor_1kwmh_1 textarea::-webkit-scrollbar-thumb{background:var(--primary-530);border-radius:4px}._ceditor_1kwmh_1 textarea::-webkit-scrollbar:horizontal{height:8px}._ceditor_1kwmh_1 textarea::-webkit-scrollbar:vertical{width:8px}._ceditor_1kwmh_1 div[class*=styles-]{height:100% !important;width:100% !important}`;
-  var classes = {
-    "ceditor": "_ceditor_1kwmh_1",
-    "controls": "_controls_1kwmh_1",
-    "popout": "_popout_1kwmh_1"
-  };
+  var classes = { "popout": "alHKPa_popout", "ceditor": "alHKPa_ceditor", "controls": "alHKPa_controls" };
+  var css2 = `.alHKPa_ceditor {
+  background: var(--input-background);
+  border-radius: 5px;
+  margin-top: 28px;
+  padding: 12px;
+  height: 80vh !important;
+}
+
+.alHKPa_ceditor > div {
+  height: 100% !important;
+}
+
+.alHKPa_controls {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  display: flex;
+}
+
+.alHKPa_controls button {
+  width: 30%;
+}
+
+.alHKPa_popout {
+  margin-top: 12px;
+  width: 100% !important;
+}
+
+.alHKPa_popout svg {
+  width: 30px;
+  height: 50%;
+}
+
+.alHKPa_ceditor textarea {
+  cursor: auto;
+  color: #0000;
+  height: 100% !important;
+}
+
+.alHKPa_ceditor textarea::-webkit-scrollbar-corner {
+  background: none;
+}
+
+.alHKPa_ceditor textarea::-webkit-scrollbar {
+  background: none;
+}
+
+.alHKPa_ceditor textarea::-webkit-scrollbar-track {
+  background: none;
+}
+
+.alHKPa_ceditor textarea::-webkit-scrollbar-thumb {
+  background: var(--primary-530);
+  border-radius: 4px;
+}
+
+.alHKPa_ceditor textarea::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+.alHKPa_ceditor textarea::-webkit-scrollbar:vertical {
+  width: 8px;
+}
+
+.alHKPa_ceditor div[class*="styles-"] {
+  width: 100% !important;
+  height: 100% !important;
+}
+`;
 
   // util/debounce.ts
   var debounce = (fn, delay) => {
@@ -2688,16 +2753,100 @@
   var import_web10 = __toESM(require_web(), 1);
 
   // plugins/inline-css/components/Window.scss
-  var css3 = `._window_39sku_1{position:absolute;z-index:99999;min-width:300px;min-height:300px;pointer-events:none;top:50%;left:50%}._resize_39sku_1{cursor:se-resize;position:absolute;bottom:0;right:0;width:16px;height:16px;z-index:-1;pointer-events:all}._content_39sku_1{--inset: 8px;width:calc(100% - 2px - 2*var(--inset));height:calc(100% - 2px - 2*var(--inset));margin:var(--inset);pointer-events:all;background:var(--background-primary);border-radius:6px;border:1px solid var(--background-secondary);box-shadow:0 0 3px 0 #000}._content_39sku_1 ._inner_39sku_1{margin:8px;overflow-y:auto;height:calc(100% - 50px)}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar-corner{background:rgba(0,0,0,0)}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar{background:rgba(0,0,0,0)}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar-track{background:none}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar-thumb{background:var(--input-background);border-radius:4px}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar:horizontal{height:8px}._content_39sku_1 ._inner_39sku_1::-webkit-scrollbar:vertical{width:8px}._topbar_39sku_1{height:30px;width:100%;margin-bottom:12px;background:var(--input-background)}._exit_39sku_1{height:100%;width:30px;display:flex;align-items:center;justify-content:center}._exit_39sku_1:hover{cursor:pointer;background:#f23f43}._exit_39sku_1 svg{height:60%;width:100%}._main_39sku_1{margin-right:10px}`;
-  var classes2 = {
-    "window": "_window_39sku_1",
-    "resize": "_resize_39sku_1",
-    "content": "_content_39sku_1",
-    "inner": "_inner_39sku_1",
-    "topbar": "_topbar_39sku_1",
-    "exit": "_exit_39sku_1",
-    "main": "_main_39sku_1"
-  };
+  var classes2 = { "resize": "EVeMMG_resize", "inner": "EVeMMG_inner", "topbar": "EVeMMG_topbar", "exit": "EVeMMG_exit", "main": "EVeMMG_main", "window": "EVeMMG_window", "content": "EVeMMG_content" };
+  var css3 = `.EVeMMG_window {
+  z-index: 99999;
+  pointer-events: none;
+  min-width: 300px;
+  min-height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.EVeMMG_resize {
+  cursor: se-resize;
+  z-index: -1;
+  pointer-events: all;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.EVeMMG_content {
+  --inset: 8px;
+  width: calc(100% - 2px - 2 * var(--inset));
+  height: calc(100% - 2px - 2 * var(--inset));
+  margin: var(--inset);
+  pointer-events: all;
+  background: var(--background-primary);
+  border: 1px solid var(--background-secondary);
+  border-radius: 6px;
+  box-shadow: 0 0 3px #000;
+}
+
+.EVeMMG_content .EVeMMG_inner {
+  height: calc(100% - 50px);
+  margin: 8px;
+  overflow-y: auto;
+}
+
+.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar-corner {
+  background: none;
+}
+
+.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar {
+  background: none;
+}
+
+.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar-track {
+  background: none;
+}
+
+.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar-thumb {
+  background: var(--input-background);
+  border-radius: 4px;
+}
+
+.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar:vertical {
+  width: 8px;
+}
+
+.EVeMMG_topbar {
+  background: var(--input-background);
+  width: 100%;
+  height: 30px;
+  margin-bottom: 12px;
+}
+
+.EVeMMG_exit {
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 100%;
+  display: flex;
+}
+
+.EVeMMG_exit:hover {
+  cursor: pointer;
+  background: #f23f43;
+}
+
+.EVeMMG_exit svg {
+  width: 100%;
+  height: 60%;
+}
+
+.EVeMMG_main {
+  margin-right: 10px;
+}
+`;
 
   // plugins/inline-css/components/Close.tsx
   var import_web3 = __toESM(require_web(), 1);
