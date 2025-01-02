@@ -55,7 +55,7 @@ const handleSpeakAction = async (payload) => {
 }
 
 const handleTrayUpdate = async () => {
-  const icon = Object.keys(state).find(k => state[k]) || 'disconnected'
+  const icon = (!state.connected && 'disconnected') || Object.keys(state).find(k => state[k])
   await invoke('set_tray_icon', { event: icon })
 }
 
