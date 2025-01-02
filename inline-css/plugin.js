@@ -2753,7 +2753,7 @@
   var import_web10 = __toESM(require_web(), 1);
 
   // plugins/inline-css/components/Window.scss
-  var classes2 = { "resize": "EVeMMG_resize", "inner": "EVeMMG_inner", "topbar": "EVeMMG_topbar", "exit": "EVeMMG_exit", "main": "EVeMMG_main", "window": "EVeMMG_window", "content": "EVeMMG_content" };
+  var classes2 = { "topbar": "EVeMMG_topbar", "inner": "EVeMMG_inner", "resize": "EVeMMG_resize", "content": "EVeMMG_content", "window": "EVeMMG_window", "exit": "EVeMMG_exit", "main": "EVeMMG_main" };
   var css3 = `.EVeMMG_window {
   z-index: 99999;
   pointer-events: none;

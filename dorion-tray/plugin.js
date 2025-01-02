@@ -221,7 +221,7 @@
     yield handleTrayUpdate();
   });
   var handleTrayUpdate = () => __async(void 0, null, function* () {
-    const icon = Object.keys(state).find((k) => state[k]) || "disconnected";
+    const icon = !state.connected && "disconnected" || Object.keys(state).find((k) => state[k]);
     yield invoke("set_tray_icon", { event: icon });
   });
   dispatcher.subscribe("VOICE_STATE_UPDATES", handleVoiceChannelActions);
