@@ -53,6 +53,8 @@ export function ThemesPage() {
   }
 
   const appendTheme = async (last: string, theme: string) => {
+    if (!theme) return
+
     if (theme === '' || theme === 'none') {
       // Remove the previous entry this used to be
       setSettings(p => {
@@ -110,7 +112,7 @@ export function ThemesPage() {
       <Divider mt={16} mb={16} />
 
       <div class={classes.pbuttons}>
-        <Button size={ButtonSizes.MEDIUM} onClick={installThemeModal}>Install Theme From Link</Button>
+        <Button size={ButtonSizes.MEDIUM} onClick={() => installThemeModal((theme: string) => appendTheme('', theme))}>Install Theme From Link</Button>
         <Button size={ButtonSizes.MEDIUM} onClick={openThemesFolder}>Open Themes Folder</Button>
       </div>
     </>

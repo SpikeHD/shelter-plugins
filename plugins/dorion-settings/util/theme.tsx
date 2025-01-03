@@ -12,7 +12,7 @@ const {
   }
 } = shelter
 
-export const installThemeModal = async () => {
+export const installThemeModal = async (addToList: (string) => void) => {
   const [link, setLink] = createSignal<string>('')
   const [status, setStatus] = createSignal<string>('')
 
@@ -38,10 +38,14 @@ export const installThemeModal = async () => {
     ),
     confirmText: 'Install',
     type: 'neutral',
-    onConfirm: () => {
-      installAndLoad(link(), setStatus).catch(e => {
+    onConfirm: async () => {
+      const themeName = await installAndLoad(link(), setStatus).catch(e => {
         setStatus(e)
-      }).then(props.close)
+      })
+
+      addToList(themeName)
+
+      props.close()
     },
     onCancel: props.close,
   }))
@@ -99,4 +103,6 @@ export const installAndLoad = async (link: string, statusUpdater: (string) => vo
   await reloadThemes()
 
   statusUpdater('Done!')
+
+  return themeName
 }
