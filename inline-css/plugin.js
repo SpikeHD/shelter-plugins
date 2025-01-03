@@ -2653,7 +2653,7 @@
   }
 
   // plugins/inline-css/components/Editor.scss
-  var classes = { "popout": "alHKPa_popout", "ceditor": "alHKPa_ceditor", "controls": "alHKPa_controls" };
+  var classes = { "controls": "alHKPa_controls", "ceditor": "alHKPa_ceditor", "popout": "alHKPa_popout" };
   var css2 = `.alHKPa_ceditor {
   background: var(--input-background);
   border-radius: 5px;
@@ -2753,7 +2753,7 @@
   var import_web10 = __toESM(require_web(), 1);
 
   // plugins/inline-css/components/Window.scss
-  var classes2 = { "topbar": "EVeMMG_topbar", "inner": "EVeMMG_inner", "resize": "EVeMMG_resize", "content": "EVeMMG_content", "window": "EVeMMG_window", "exit": "EVeMMG_exit", "main": "EVeMMG_main" };
+  var classes2 = { "content": "EVeMMG_content", "exit": "EVeMMG_exit", "resize": "EVeMMG_resize", "main": "EVeMMG_main", "window": "EVeMMG_window", "topbar": "EVeMMG_topbar", "inner": "EVeMMG_inner" };
   var css3 = `.EVeMMG_window {
   z-index: 99999;
   pointer-events: none;

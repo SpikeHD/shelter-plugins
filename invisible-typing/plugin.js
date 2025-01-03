@@ -51,7 +51,7 @@
   var import_web7 = __toESM(require_web(), 1);
 
   // plugins/invisible-typing/index.scss
-  var classes = { "notShowing": "KIS_7q_notShowing", "invisContainer": "KIS_7q_invisContainer" };
+  var classes = { "invisContainer": "KIS_7q_invisContainer", "notShowing": "KIS_7q_notShowing" };
   var css = `.KIS_7q_invisContainer {
   cursor: pointer;
   justify-content: center;
