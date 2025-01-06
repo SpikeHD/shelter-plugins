@@ -22,4 +22,20 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  margin-top: 12px;
+}
+
+.split {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 40px;
+}
+
+.split button {
+  height: 100%;
+  width: 10%;
 }

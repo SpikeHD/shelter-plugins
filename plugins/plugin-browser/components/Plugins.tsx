@@ -5,6 +5,7 @@ import { getPluginsCache } from '../storage.js'
 
 const {
   ui: {
+    Button,
     injectCss,
     Header,
     HeaderTags,
@@ -40,7 +41,16 @@ export function Plugins() {
   const [search, setSearch] = createSignal('')
 
   createEffect(async () => {
-    setRepos(getPluginsCache() ||  await getAllPlugins().catch((e) => {
+    const cache = await getPluginsCache()
+    if (cache) {
+      setRepos(cache)
+    } else {
+      loadPlugins()
+    }
+  })
+
+  const loadPlugins = async () => {
+    const plugins = await getAllPlugins().catch((e) => {
       console.error(e)
 
       showToast({
@@ -50,8 +60,10 @@ export function Plugins() {
       })
 
       return []
-    }))
-  })
+    })
+
+    setRepos(plugins)
+  }
 
   return (
     <>
@@ -63,11 +75,23 @@ export function Plugins() {
 
       <Divider mt={16} mb={16} />
 
-      <TextBox
-        value={search()}
-        onInput={debounce((v) => setSearch(v), 100)}
-        placeholder={'Search...'}
-      />
+      <div class={classes.split}>
+        <TextBox
+          value={search()}
+          onInput={debounce((v) => setSearch(v), 100)}
+          placeholder={'Search...'}
+        />
+
+        <Button
+          onClick={() => {
+            setRepos([])
+            loadPlugins()
+          }}
+        >
+          Refresh
+        </Button>
+      </div>
+
 
       {
         repos().length > 0 ? repos().map((repo: RepoInfo) => {
