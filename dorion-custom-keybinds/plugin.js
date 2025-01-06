@@ -224,7 +224,7 @@
   var apiWindow = backendObj.apiWindow;
 
   // plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
-  var classes = { "keybindRestartButton": "Zz-Z3G_keybindRestartButton", "keybindsSwitch": "Zz-Z3G_keybindsSwitch", "keybindsButton": "Zz-Z3G_keybindsButton", "keybindRestartCard": "Zz-Z3G_keybindRestartCard", "keybindSection": "Zz-Z3G_keybindSection", "keybindsBanner": "Zz-Z3G_keybindsBanner", "header": "Zz-Z3G_header", "keybindsHeader": "Zz-Z3G_keybindsHeader" };
+  var classes = { "keybindsSwitch": "Zz-Z3G_keybindsSwitch", "keybindRestartButton": "Zz-Z3G_keybindRestartButton", "keybindRestartCard": "Zz-Z3G_keybindRestartCard", "header": "Zz-Z3G_header", "keybindsButton": "Zz-Z3G_keybindsButton", "keybindsHeader": "Zz-Z3G_keybindsHeader", "keybindsBanner": "Zz-Z3G_keybindsBanner", "keybindSection": "Zz-Z3G_keybindSection" };
   var css = `.Zz-Z3G_keybindSection {
   flex-direction: column;
   justify-content: space-between;
@@ -300,7 +300,7 @@
   var import_web27 = __toESM(require_web());
 
   // plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
-  var classes2 = { "keybindSection": "QTLdLq_keybindSection", "removeButton": "QTLdLq_removeButton", "actionSection": "QTLdLq_actionSection", "keybindArea": "QTLdLq_keybindArea", "note": "QTLdLq_note", "keybindRoot": "QTLdLq_keybindRoot" };
+  var classes2 = { "note": "QTLdLq_note", "removeButton": "QTLdLq_removeButton", "keybindRoot": "QTLdLq_keybindRoot", "actionSection": "QTLdLq_actionSection", "keybindSection": "QTLdLq_keybindSection", "keybindArea": "QTLdLq_keybindArea" };
   var css2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
   width: 100%;
@@ -364,7 +364,7 @@
   var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var classes3 = { "dcontainer": "sqVpyW_dcontainer", "ddown": "sqVpyW_ddown", "dsarrow": "sqVpyW_dsarrow", "ddownplaceholder": "sqVpyW_ddownplaceholder" };
+  var classes3 = { "ddownplaceholder": "sqVpyW_ddownplaceholder", "ddown": "sqVpyW_ddown", "dcontainer": "sqVpyW_dcontainer", "dsarrow": "sqVpyW_dsarrow" };
   var css3 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
@@ -503,7 +503,7 @@
   var import_web19 = __toESM(require_web(), 1);
 
   // components/KeybindInput.tsx.scss
-  var classes4 = { "pulse": "N-HDcq_pulse", "keybindInput": "N-HDcq_keybindInput", "keybindPlaceholder": "N-HDcq_keybindPlaceholder", "keybindContainer": "N-HDcq_keybindContainer", "keybindButton": "N-HDcq_keybindButton", "recording": "N-HDcq_recording" };
+  var classes4 = { "keybindInput": "N-HDcq_keybindInput", "pulse": "N-HDcq_pulse", "recording": "N-HDcq_recording", "keybindContainer": "N-HDcq_keybindContainer", "keybindButton": "N-HDcq_keybindButton", "keybindPlaceholder": "N-HDcq_keybindPlaceholder" };
   var css4 = `.N-HDcq_keybindContainer {
   background: var(--input-background);
   width: 100%;

@@ -90,7 +90,7 @@
   var import_web13 = __toESM(require_web(), 1);
 
   // plugins/plugin-browser/components/Plugins.scss
-  var classes = { "loading": "L-W60G_loading", "pluginList": "L-W60G_pluginList", "repoHeader": "L-W60G_repoHeader", "subtitle": "L-W60G_subtitle" };
+  var classes = { "loading": "L-W60G_loading", "pluginList": "L-W60G_pluginList", "repoHeader": "L-W60G_repoHeader", "subtitle": "L-W60G_subtitle", "split": "L-W60G_split" };
   var css = `.L-W60G_subtitle {
   margin-top: 12px;
   display: block;
@@ -114,7 +114,21 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  margin-top: 12px;
   display: flex;
+}
+
+.L-W60G_split {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  display: flex;
+}
+
+.L-W60G_split button {
+  width: 10%;
+  height: 100%;
 }
 `;
 
@@ -311,7 +325,7 @@
   }
 
   // plugins/plugin-browser/components/PluginCard.scss
-  var classes2 = { "buttonContainer": "THQemG_buttonContainer", "contents": "THQemG_contents", "installButton": "THQemG_installButton", "pluginCard": "THQemG_pluginCard" };
+  var classes2 = { "contents": "THQemG_contents", "installButton": "THQemG_installButton", "buttonContainer": "THQemG_buttonContainer", "pluginCard": "THQemG_pluginCard" };
   var css2 = `.THQemG_pluginCard {
   text-align: left;
   color: var(--text-primary);
@@ -440,10 +454,11 @@
 
   // plugins/plugin-browser/components/Plugins.tsx
   var _tmpl$3 = /* @__PURE__ */ (0, import_web7.template)(`<a href="https://github.com/SpikeHD/shelter-plugins/tree/main/plugins/plugin-browser" target="_blank">Take a look</a>`, 2);
-  var _tmpl$22 = /* @__PURE__ */ (0, import_web7.template)(`<a target="_blank">View Repository</a>`, 2);
-  var _tmpl$32 = /* @__PURE__ */ (0, import_web7.template)(`<div></div>`, 2);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web7.template)(`<div></div>`, 2);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web7.template)(`<a target="_blank">View Repository</a>`, 2);
   var {
     ui: {
+      Button: Button2,
       injectCss: injectCss2,
       Header,
       HeaderTags,
@@ -475,7 +490,15 @@
     const [repos, setRepos] = createSignal2([]);
     const [search, setSearch] = createSignal2("");
     createEffect2(() => __async(this, null, function* () {
-      setRepos(getPluginsCache() || (yield getAllPlugins().catch((e) => {
+      const cache = yield getPluginsCache();
+      if (cache) {
+        setRepos(cache);
+      } else {
+        loadPlugins();
+      }
+    }));
+    const loadPlugins = () => __async(this, null, function* () {
+      const plugins = yield getAllPlugins().catch((e) => {
         console.error(e);
         showToast({
           title: "Plugin Browser",
@@ -483,8 +506,9 @@
           duration: 5e3
         });
         return [];
-      })));
-    }));
+      });
+      setRepos(plugins);
+    });
     return [(0, import_web13.createComponent)(Header, {
       get tag() {
         return HeaderTags.H1;
@@ -500,23 +524,35 @@
     }), (0, import_web13.createComponent)(Divider, {
       mt: 16,
       mb: 16
-    }), (0, import_web13.createComponent)(TextBox, {
-      get value() {
-        return search();
-      },
-      get onInput() {
-        return debounce((v) => setSearch(v), 100);
-      },
-      placeholder: "Search..."
-    }), (0, import_web12.memo)((() => {
-      const _c$ = (0, import_web12.memo)(() => repos().length > 0);
+    }), (() => {
+      const _el$2 = _tmpl$22.cloneNode(true);
+      (0, import_web12.insert)(_el$2, (0, import_web13.createComponent)(TextBox, {
+        get value() {
+          return search();
+        },
+        get onInput() {
+          return debounce((v) => setSearch(v), 100);
+        },
+        placeholder: "Search..."
+      }), null);
+      (0, import_web12.insert)(_el$2, (0, import_web13.createComponent)(Button2, {
+        onClick: () => {
+          setRepos([]);
+          loadPlugins();
+        },
+        children: "Refresh"
+      }), null);
+      (0, import_web11.effect)(() => (0, import_web10.className)(_el$2, classes.split));
+      return _el$2;
+    })(), (0, import_web9.memo)((() => {
+      const _c$ = (0, import_web9.memo)(() => repos().length > 0);
       return () => _c$() ? repos().map((repo) => {
         return [(0, import_web13.createComponent)(Divider, {
           mt: 16,
           mb: 16
         }), (() => {
-          const _el$2 = _tmpl$32.cloneNode(true);
-          (0, import_web9.insert)(_el$2, (0, import_web13.createComponent)(Header, {
+          const _el$3 = _tmpl$22.cloneNode(true);
+          (0, import_web12.insert)(_el$3, (0, import_web13.createComponent)(Header, {
             get tag() {
               return HeaderTags.H2;
             },
@@ -524,23 +560,23 @@
               return repo.repo.owner;
             }
           }), null);
-          (0, import_web9.insert)(_el$2, (0, import_web13.createComponent)(Header, {
+          (0, import_web12.insert)(_el$3, (0, import_web13.createComponent)(Header, {
             get tag() {
               return HeaderTags.H2;
             },
             get children() {
               return [(() => {
-                const _el$3 = _tmpl$22.cloneNode(true);
-                (0, import_web11.effect)(() => (0, import_web10.setAttribute)(_el$3, "href", repo.repo.url));
-                return _el$3;
-              })(), " - ", (0, import_web12.memo)(() => repo.repo.stars), " \u2B50"];
+                const _el$4 = _tmpl$32.cloneNode(true);
+                (0, import_web11.effect)(() => (0, import_web8.setAttribute)(_el$4, "href", repo.repo.url));
+                return _el$4;
+              })(), " - ", (0, import_web9.memo)(() => repo.repo.stars), " \u2B50"];
             }
           }), null);
-          (0, import_web11.effect)(() => (0, import_web8.className)(_el$2, classes.repoHeader));
-          return _el$2;
+          (0, import_web11.effect)(() => (0, import_web10.className)(_el$3, classes.repoHeader));
+          return _el$3;
         })(), (() => {
-          const _el$4 = _tmpl$32.cloneNode(true);
-          (0, import_web9.insert)(_el$4, () => repo.plugins.map((p) => {
+          const _el$5 = _tmpl$22.cloneNode(true);
+          (0, import_web12.insert)(_el$5, () => repo.plugins.map((p) => {
             if (p.toLowerCase().includes("dorion"))
               return null;
             if (!p.toLowerCase().includes(search().toLowerCase()))
@@ -558,16 +594,16 @@
               }
             });
           }));
-          (0, import_web11.effect)(() => (0, import_web8.className)(_el$4, classes.pluginList));
-          return _el$4;
+          (0, import_web11.effect)(() => (0, import_web10.className)(_el$5, classes.pluginList));
+          return _el$5;
         })()];
       }) : (() => {
-        const _el$5 = _tmpl$32.cloneNode(true);
-        (0, import_web9.insert)(_el$5, (0, import_web13.createComponent)(Text2, {
+        const _el$6 = _tmpl$22.cloneNode(true);
+        (0, import_web12.insert)(_el$6, (0, import_web13.createComponent)(Text2, {
           children: "Loading..."
         }));
-        (0, import_web11.effect)(() => (0, import_web8.className)(_el$5, classes.loading));
-        return _el$5;
+        (0, import_web11.effect)(() => (0, import_web10.className)(_el$6, classes.loading));
+        return _el$6;
       })();
     })())];
   }
