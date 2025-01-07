@@ -143,6 +143,22 @@ export function PerformancePage() {
 
       <Header class={classes.shead}>Optional Features</Header>
       <SwitchItem
+        value={state().win7_style_notifications}
+        onChange={(v) =>
+          setSettings((settings) => (
+            {
+              ...settings,
+              win7_style_notifications: v,
+            }
+          ), true)
+        }
+        note="Use the alternative notification style used on Windows 7. This is only supported on Windows."
+        disabled={platform() !== 'windows'}
+      >
+        Alternative Notification Style
+      </SwitchItem>
+
+      <SwitchItem
         value={state().streamer_mode_detection}
         onChange={(v) =>
           setSettings((settings) => (

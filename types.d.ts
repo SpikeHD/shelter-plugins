@@ -34,6 +34,8 @@ interface DorionSettings {
   keybinds: Record<string, KeyStruct[]>;
   keybinds_enabled: boolean;
 
+  win7_style_notifications: boolean;
+
   // RPC-specific options
   rpc_process_scanner: boolean;
   rpc_ipc_connector: boolean;
