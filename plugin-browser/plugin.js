@@ -90,7 +90,7 @@
   var import_web13 = __toESM(require_web(), 1);
 
   // plugins/plugin-browser/components/Plugins.scss
-  var classes = { "loading": "L-W60G_loading", "pluginList": "L-W60G_pluginList", "repoHeader": "L-W60G_repoHeader", "subtitle": "L-W60G_subtitle", "split": "L-W60G_split" };
+  var classes = { "pluginList": "L-W60G_pluginList", "repoHeader": "L-W60G_repoHeader", "loading": "L-W60G_loading", "split": "L-W60G_split", "subtitle": "L-W60G_subtitle" };
   var css = `.L-W60G_subtitle {
   margin-top: 12px;
   display: block;
