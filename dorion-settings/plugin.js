@@ -231,7 +231,7 @@
   var import_web23 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/PerformancePage.tsx.scss
-  var classes = { "stext": "ZN8ggW_stext", "shead": "ZN8ggW_shead", "tophead": "ZN8ggW_tophead", "pbuttons": "ZN8ggW_pbuttons" };
+  var classes = { "shead": "ZN8ggW_shead", "pbuttons": "ZN8ggW_pbuttons", "stext": "ZN8ggW_stext", "tophead": "ZN8ggW_tophead" };
   var css = `.ZN8ggW_tophead {
   margin-bottom: 16px;
 }
@@ -270,7 +270,7 @@
   var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var classes2 = { "dsarrow": "sqVpyW_dsarrow", "ddown": "sqVpyW_ddown", "ddownplaceholder": "sqVpyW_ddownplaceholder", "dcontainer": "sqVpyW_dcontainer" };
+  var classes2 = { "dcontainer": "sqVpyW_dcontainer", "ddown": "sqVpyW_ddown", "ddownplaceholder": "sqVpyW_ddownplaceholder", "dsarrow": "sqVpyW_dsarrow" };
   var css2 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
@@ -676,7 +676,7 @@
       },
       onChange: (v) => setSettings((settings) => __spreadProps(__spreadValues({}, settings), {
         streamer_mode_detection: v
-      }), true),
+      }), false),
       get note() {
         return ["Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running. ", _tmpl$32.cloneNode(true)];
       },
@@ -801,7 +801,7 @@
   var import_web29 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ProfilesPage.tsx.scss
-  var classes5 = { "shead": "_2nPZKq_shead", "tophead": "_2nPZKq_tophead", "pbuttons": "_2nPZKq_pbuttons", "splitbutton": "_2nPZKq_splitbutton", "sbutton": "_2nPZKq_sbutton" };
+  var classes5 = { "splitbutton": "_2nPZKq_splitbutton", "pbuttons": "_2nPZKq_pbuttons", "shead": "_2nPZKq_shead", "tophead": "_2nPZKq_tophead", "sbutton": "_2nPZKq_sbutton" };
   var css5 = `._2nPZKq_tophead {
   margin-bottom: 16px;
 }
@@ -976,7 +976,7 @@
   var import_web42 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/SettingsPage.tsx.scss
-  var classes6 = { "shead": "akYvUa_shead", "left16": "akYvUa_left16", "tophead": "akYvUa_tophead" };
+  var classes6 = { "tophead": "akYvUa_tophead", "shead": "akYvUa_shead", "left16": "akYvUa_left16" };
   var css6 = `.akYvUa_tophead {
   margin-bottom: 16px;
 }
@@ -1007,7 +1007,7 @@
   var import_web36 = __toESM(require_web(), 1);
 
   // components/Radio.tsx.scss
-  var classes7 = { "selected": "Ch7osa_selected", "radioButtonInner": "Ch7osa_radioButtonInner", "radio": "Ch7osa_radio", "radioButton": "Ch7osa_radioButton" };
+  var classes7 = { "radioButtonInner": "Ch7osa_radioButtonInner", "radio": "Ch7osa_radio", "radioButton": "Ch7osa_radioButton", "selected": "Ch7osa_selected" };
   var css7 = `.Ch7osa_radio {
   color: var(--interactive-normal);
   box-sizing: border-box;
@@ -1387,7 +1387,7 @@
   var import_web48 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ChangelogPage.tsx.scss
-  var classes8 = { "refresh": "yPVoxW_refresh", "badges": "yPVoxW_badges", "badge": "yPVoxW_badge", "spin": "yPVoxW_spin", "card": "yPVoxW_card", "spinner": "yPVoxW_spinner", "contents": "yPVoxW_contents", "tophead": "yPVoxW_tophead", "title": "yPVoxW_title" };
+  var classes8 = { "badges": "yPVoxW_badges", "spinner": "yPVoxW_spinner", "title": "yPVoxW_title", "card": "yPVoxW_card", "badge": "yPVoxW_badge", "contents": "yPVoxW_contents", "spin": "yPVoxW_spin", "tophead": "yPVoxW_tophead", "refresh": "yPVoxW_refresh" };
   var css8 = `.yPVoxW_tophead {
   margin-bottom: 16px;
 }
@@ -3810,7 +3810,7 @@ ${content}</tr>
   var import_web55 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/components/ClientModList.tsx.scss
-  var classes9 = { "left16": "XZjauW_left16", "shead": "XZjauW_shead", "scell": "XZjauW_scell", "mcell": "XZjauW_mcell", "pbuttons": "XZjauW_pbuttons", "plistrow": "XZjauW_plistrow", "pheader": "XZjauW_pheader", "top32": "XZjauW_top32", "top16": "XZjauW_top16", "plist": "XZjauW_plist", "sbutton": "XZjauW_sbutton" };
+  var classes9 = { "scell": "XZjauW_scell", "mcell": "XZjauW_mcell", "pheader": "XZjauW_pheader", "left16": "XZjauW_left16", "shead": "XZjauW_shead", "top32": "XZjauW_top32", "plist": "XZjauW_plist", "sbutton": "XZjauW_sbutton", "plistrow": "XZjauW_plistrow", "top16": "XZjauW_top16", "pbuttons": "XZjauW_pbuttons" };
   var css9 = `.XZjauW_shead {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -4042,7 +4042,7 @@ ${content}</tr>
   var import_web62 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/components/PluginList.tsx.scss
-  var classes10 = { "left16": "V6is4W_left16", "top16": "V6is4W_top16", "plistrow": "V6is4W_plistrow", "top32": "V6is4W_top32", "plist": "V6is4W_plist", "pheader": "V6is4W_pheader", "scell": "V6is4W_scell", "mcell": "V6is4W_mcell", "sbutton": "V6is4W_sbutton", "pbuttons": "V6is4W_pbuttons" };
+  var classes10 = { "plist": "V6is4W_plist", "mcell": "V6is4W_mcell", "top32": "V6is4W_top32", "pbuttons": "V6is4W_pbuttons", "plistrow": "V6is4W_plistrow", "pheader": "V6is4W_pheader", "top16": "V6is4W_top16", "sbutton": "V6is4W_sbutton", "scell": "V6is4W_scell", "left16": "V6is4W_left16" };
   var css10 = `.V6is4W_plist {
   flex-direction: column;
   justify-content: space-between;
@@ -4261,7 +4261,7 @@ ${content}</tr>
   }
 
   // plugins/dorion-settings/pages/PluginsPage.tsx.scss
-  var classes11 = { "pbuttons": "X31w8G_pbuttons", "tophead": "X31w8G_tophead", "openButton": "X31w8G_openButton", "card": "X31w8G_card", "shead": "X31w8G_shead", "left16": "X31w8G_left16" };
+  var classes11 = { "shead": "X31w8G_shead", "card": "X31w8G_card", "openButton": "X31w8G_openButton", "tophead": "X31w8G_tophead", "pbuttons": "X31w8G_pbuttons", "left16": "X31w8G_left16" };
   var css11 = `.X31w8G_tophead {
   margin-bottom: 16px;
 }
@@ -4686,7 +4686,7 @@ ${content}</tr>
   var import_web82 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/RPC.tsx.scss
-  var classes13 = { "bot16": "ycw7DW_bot16", "customInstallBtn": "ycw7DW_customInstallBtn", "customNote": "ycw7DW_customNote", "shead": "ycw7DW_shead" };
+  var classes13 = { "bot16": "ycw7DW_bot16", "customInstallBtn": "ycw7DW_customInstallBtn", "shead": "ycw7DW_shead", "customNote": "ycw7DW_customNote" };
   var css13 = `.ycw7DW_shead {
   margin-top: 16px;
   margin-bottom: 8px;

@@ -216,7 +216,7 @@
   var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var classes = { "dsarrow": "sqVpyW_dsarrow", "ddownplaceholder": "sqVpyW_ddownplaceholder", "dcontainer": "sqVpyW_dcontainer", "ddown": "sqVpyW_ddown" };
+  var classes = { "ddown": "sqVpyW_ddown", "ddownplaceholder": "sqVpyW_ddownplaceholder", "dcontainer": "sqVpyW_dcontainer", "dsarrow": "sqVpyW_dsarrow" };
   var css = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
@@ -394,7 +394,7 @@
   var import_web17 = __toESM(require_web(), 1);
 
   // plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
-  var classes2 = { "thumbnail": "JQAzuG_thumbnail", "installButton": "JQAzuG_installButton", "name": "JQAzuG_name", "contents": "JQAzuG_contents", "themeCard": "JQAzuG_themeCard", "info": "JQAzuG_info" };
+  var classes2 = { "thumbnail": "JQAzuG_thumbnail", "info": "JQAzuG_info", "themeCard": "JQAzuG_themeCard", "name": "JQAzuG_name", "contents": "JQAzuG_contents", "installButton": "JQAzuG_installButton" };
   var css2 = `.JQAzuG_themeCard {
   text-align: left;
   color: var(--text-primary);
@@ -512,7 +512,7 @@
   }
 
   // plugins/dorion-theme-browser/components/ThemePage.tsx.scss
-  var classes3 = { "pageBtn": "gqruia_pageBtn", "pages": "gqruia_pages", "shead": "gqruia_shead", "themeCards": "gqruia_themeCards", "pagesOuter": "gqruia_pagesOuter", "searchBox": "gqruia_searchBox", "bot16": "gqruia_bot16", "sortSection": "gqruia_sortSection" };
+  var classes3 = { "pageBtn": "gqruia_pageBtn", "pages": "gqruia_pages", "pagesOuter": "gqruia_pagesOuter", "shead": "gqruia_shead", "bot16": "gqruia_bot16", "searchBox": "gqruia_searchBox", "themeCards": "gqruia_themeCards", "sortSection": "gqruia_sortSection" };
   var css3 = `.gqruia_shead {
   margin-top: 16px;
   margin-bottom: 8px;
