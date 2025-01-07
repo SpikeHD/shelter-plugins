@@ -402,7 +402,7 @@
   };
 
   // plugins/shelteRPC/components/GameCard.scss
-  var classes = { "cardPlaying": "zS7Qtq_cardPlaying", "gameCardIcons": "zS7Qtq_gameCardIcons", "cardPlayed": "zS7Qtq_cardPlayed", "gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed", "cardNone": "zS7Qtq_cardNone", "lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp", "gameCardInfo": "zS7Qtq_gameCardInfo", "gameCard": "zS7Qtq_gameCard", "gameCardName": "zS7Qtq_gameCardName", "trash": "zS7Qtq_trash" };
+  var classes = { "cardPlaying": "zS7Qtq_cardPlaying", "gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed", "gameCard": "zS7Qtq_gameCard", "gameCardInfo": "zS7Qtq_gameCardInfo", "gameCardIcons": "zS7Qtq_gameCardIcons", "trash": "zS7Qtq_trash", "cardPlayed": "zS7Qtq_cardPlayed", "lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp", "cardNone": "zS7Qtq_cardNone", "gameCardName": "zS7Qtq_gameCardName" };
   var css = `.zS7Qtq_gameCard {
   width: 100%;
   height: 72px;
@@ -601,7 +601,7 @@
   var import_web17 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var classes2 = { "dsarrow": "sqVpyW_dsarrow", "ddownplaceholder": "sqVpyW_ddownplaceholder", "ddown": "sqVpyW_ddown", "dcontainer": "sqVpyW_dcontainer" };
+  var classes2 = { "ddown": "sqVpyW_ddown", "dsarrow": "sqVpyW_dsarrow", "dcontainer": "sqVpyW_dcontainer", "ddownplaceholder": "sqVpyW_ddownplaceholder" };
   var css2 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
@@ -730,7 +730,7 @@
   };
 
   // plugins/shelteRPC/components/RegisteredGames.scss
-  var classes3 = { "modalhead": "yVnOSq_modalhead", "addIt": "yVnOSq_addIt", "shead": "yVnOSq_shead", "addhead": "yVnOSq_addhead", "description": "yVnOSq_description" };
+  var classes3 = { "modalhead": "yVnOSq_modalhead", "shead": "yVnOSq_shead", "addIt": "yVnOSq_addIt", "description": "yVnOSq_description", "tophead": "yVnOSq_tophead" };
   var css3 = `.yVnOSq_description {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -741,13 +741,14 @@
   margin-bottom: 28px;
 }
 
-.yVnOSq_shead {
+.yVnOSq_tophead {
   margin-bottom: 12px;
 }
 
-.yVnOSq_addhead {
+.yVnOSq_shead {
   margin-top: 42px;
   margin-bottom: 12px;
+  font-weight: bold;
 }
 
 .yVnOSq_modalhead {
@@ -810,7 +811,7 @@
         return HeaderTags.H1;
       },
       get ["class"]() {
-        return classes3.shead;
+        return classes3.tophead;
       },
       children: "Registered Games"
     }), (0, import_web21.createComponent)(Text, {
@@ -848,7 +849,7 @@
       }
     }), (0, import_web21.createComponent)(Header, {
       get ["class"]() {
-        return classes3.addhead;
+        return classes3.shead;
       },
       children: "Added Games"
     }), (0, import_web20.memo)(() => Object.values(previouslyPlayed()).map((game) => {
