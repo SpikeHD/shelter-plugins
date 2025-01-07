@@ -68,7 +68,7 @@ export default () => {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.shead}>Registered Games</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>Registered Games</Header>
       <Text
         class={classes.description}
       >
@@ -105,7 +105,7 @@ export default () => {
         }
       </Text>
 
-      <Header class={classes.addhead}>Added Games</Header>
+      <Header class={classes.shead}>Added Games</Header>
       {
         Object.values(previouslyPlayed()).map((game: ShelteRPCPreviouslyPlayed) => {
           // If we are playing the game, exclude it
