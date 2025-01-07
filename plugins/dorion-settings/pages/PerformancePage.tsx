@@ -166,7 +166,7 @@ export function PerformancePage() {
               ...settings,
               streamer_mode_detection: v,
             }
-          ), true)
+          ), false)
         }
         note={
           <>
