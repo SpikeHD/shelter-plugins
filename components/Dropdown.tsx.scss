@@ -15,6 +15,12 @@
   cursor: pointer;
 }
 
+.ddown option {
+  /* TODO --input-background doesn't seem to work here (at least on Windows). Oh well. */
+  background: #333;
+  color: var(--text-normal);
+}
+
 .dcontainer {
   position: relative;
   width: 100%;
