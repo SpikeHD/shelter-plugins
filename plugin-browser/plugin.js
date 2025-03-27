@@ -90,7 +90,7 @@
   var import_web13 = __toESM(require_web(), 1);
 
   // plugins/plugin-browser/components/Plugins.scss
-  var classes = { "subtitle": "L-W60G_subtitle", "repoHeader": "L-W60G_repoHeader", "loading": "L-W60G_loading", "pluginList": "L-W60G_pluginList", "split": "L-W60G_split" };
+  var classes = { "subtitle": "L-W60G_subtitle", "split": "L-W60G_split", "pluginList": "L-W60G_pluginList", "loading": "L-W60G_loading", "repoHeader": "L-W60G_repoHeader" };
   var css = `.L-W60G_subtitle {
   margin-top: 12px;
   display: block;
@@ -325,7 +325,7 @@
   }
 
   // plugins/plugin-browser/components/PluginCard.scss
-  var classes2 = { "buttonContainer": "THQemG_buttonContainer", "installButton": "THQemG_installButton", "pluginCard": "THQemG_pluginCard", "contents": "THQemG_contents" };
+  var classes2 = { "pluginCard": "THQemG_pluginCard", "installButton": "THQemG_installButton", "contents": "THQemG_contents", "buttonContainer": "THQemG_buttonContainer" };
   var css2 = `.THQemG_pluginCard {
   text-align: left;
   color: var(--text-primary);

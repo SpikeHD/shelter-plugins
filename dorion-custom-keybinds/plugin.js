@@ -224,7 +224,7 @@
   var apiWindow = backendObj.apiWindow;
 
   // plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
-  var classes = { "header": "Zz-Z3G_header", "keybindsHeader": "Zz-Z3G_keybindsHeader", "keybindsSwitch": "Zz-Z3G_keybindsSwitch", "keybindRestartCard": "Zz-Z3G_keybindRestartCard", "keybindRestartButton": "Zz-Z3G_keybindRestartButton", "keybindsButton": "Zz-Z3G_keybindsButton", "keybindSection": "Zz-Z3G_keybindSection", "keybindsBanner": "Zz-Z3G_keybindsBanner" };
+  var classes = { "keybindSection": "Zz-Z3G_keybindSection", "keybindsSwitch": "Zz-Z3G_keybindsSwitch", "keybindsButton": "Zz-Z3G_keybindsButton", "header": "Zz-Z3G_header", "keybindRestartCard": "Zz-Z3G_keybindRestartCard", "keybindsHeader": "Zz-Z3G_keybindsHeader", "keybindsBanner": "Zz-Z3G_keybindsBanner", "keybindRestartButton": "Zz-Z3G_keybindRestartButton" };
   var css = `.Zz-Z3G_keybindSection {
   flex-direction: column;
   justify-content: space-between;
@@ -300,7 +300,7 @@
   var import_web27 = __toESM(require_web());
 
   // plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
-  var classes2 = { "keybindSection": "QTLdLq_keybindSection", "removeButton": "QTLdLq_removeButton", "keybindArea": "QTLdLq_keybindArea", "actionSection": "QTLdLq_actionSection", "keybindRoot": "QTLdLq_keybindRoot", "note": "QTLdLq_note" };
+  var classes2 = { "note": "QTLdLq_note", "keybindSection": "QTLdLq_keybindSection", "keybindRoot": "QTLdLq_keybindRoot", "keybindArea": "QTLdLq_keybindArea", "actionSection": "QTLdLq_actionSection", "removeButton": "QTLdLq_removeButton" };
   var css2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
   width: 100%;
@@ -364,7 +364,7 @@
   var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var classes3 = { "ddownplaceholder": "sqVpyW_ddownplaceholder", "ddown": "sqVpyW_ddown", "dcontainer": "sqVpyW_dcontainer", "dsarrow": "sqVpyW_dsarrow" };
+  var classes3 = { "ddown": "sqVpyW_ddown", "dsarrow": "sqVpyW_dsarrow", "ddownplaceholder": "sqVpyW_ddownplaceholder", "dcontainer": "sqVpyW_dcontainer" };
   var css3 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
@@ -377,6 +377,11 @@
   padding: 10px;
   font-size: 16px;
   transition: border-color .2s ease-in-out;
+}
+
+.sqVpyW_ddown option {
+  color: var(--text-normal);
+  background: #333;
 }
 
 .sqVpyW_dcontainer {
@@ -503,7 +508,7 @@
   var import_web19 = __toESM(require_web(), 1);
 
   // components/KeybindInput.tsx.scss
-  var classes4 = { "pulse": "N-HDcq_pulse", "keybindContainer": "N-HDcq_keybindContainer", "keybindInput": "N-HDcq_keybindInput", "recording": "N-HDcq_recording", "keybindPlaceholder": "N-HDcq_keybindPlaceholder", "keybindButton": "N-HDcq_keybindButton" };
+  var classes4 = { "keybindContainer": "N-HDcq_keybindContainer", "pulse": "N-HDcq_pulse", "keybindPlaceholder": "N-HDcq_keybindPlaceholder", "keybindInput": "N-HDcq_keybindInput", "recording": "N-HDcq_recording", "keybindButton": "N-HDcq_keybindButton" };
   var css4 = `.N-HDcq_keybindContainer {
   background: var(--input-background);
   width: 100%;

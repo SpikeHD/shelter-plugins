@@ -216,7 +216,7 @@
   var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var classes = { "ddown": "sqVpyW_ddown", "ddownplaceholder": "sqVpyW_ddownplaceholder", "dcontainer": "sqVpyW_dcontainer", "dsarrow": "sqVpyW_dsarrow" };
+  var classes = { "ddownplaceholder": "sqVpyW_ddownplaceholder", "dcontainer": "sqVpyW_dcontainer", "dsarrow": "sqVpyW_dsarrow", "ddown": "sqVpyW_ddown" };
   var css = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
@@ -229,6 +229,11 @@
   padding: 10px;
   font-size: 16px;
   transition: border-color .2s ease-in-out;
+}
+
+.sqVpyW_ddown option {
+  color: var(--text-normal);
+  background: #333;
 }
 
 .sqVpyW_dcontainer {
@@ -394,7 +399,7 @@
   var import_web17 = __toESM(require_web(), 1);
 
   // plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
-  var classes2 = { "thumbnail": "JQAzuG_thumbnail", "info": "JQAzuG_info", "themeCard": "JQAzuG_themeCard", "name": "JQAzuG_name", "contents": "JQAzuG_contents", "installButton": "JQAzuG_installButton" };
+  var classes2 = { "contents": "JQAzuG_contents", "themeCard": "JQAzuG_themeCard", "info": "JQAzuG_info", "thumbnail": "JQAzuG_thumbnail", "installButton": "JQAzuG_installButton", "name": "JQAzuG_name" };
   var css2 = `.JQAzuG_themeCard {
   text-align: left;
   color: var(--text-primary);
@@ -512,7 +517,7 @@
   }
 
   // plugins/dorion-theme-browser/components/ThemePage.tsx.scss
-  var classes3 = { "pageBtn": "gqruia_pageBtn", "pages": "gqruia_pages", "pagesOuter": "gqruia_pagesOuter", "shead": "gqruia_shead", "bot16": "gqruia_bot16", "searchBox": "gqruia_searchBox", "themeCards": "gqruia_themeCards", "sortSection": "gqruia_sortSection" };
+  var classes3 = { "pageBtn": "gqruia_pageBtn", "searchBox": "gqruia_searchBox", "pagesOuter": "gqruia_pagesOuter", "themeCards": "gqruia_themeCards", "bot16": "gqruia_bot16", "sortSection": "gqruia_sortSection", "shead": "gqruia_shead", "pages": "gqruia_pages" };
   var css3 = `.gqruia_shead {
   margin-top: 16px;
   margin-bottom: 8px;
