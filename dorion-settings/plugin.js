@@ -231,7 +231,7 @@
   var import_web23 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/PerformancePage.tsx.scss
-  var classes = { "pbuttons": "ZN8ggW_pbuttons", "shead": "ZN8ggW_shead", "tophead": "ZN8ggW_tophead", "stext": "ZN8ggW_stext" };
+  var classes = { "pbuttons": "ZN8ggW_pbuttons", "tophead": "ZN8ggW_tophead", "shead": "ZN8ggW_shead", "stext": "ZN8ggW_stext" };
   var css = `.ZN8ggW_tophead {
   margin-bottom: 16px;
 }
@@ -270,7 +270,7 @@
   var import_web11 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var classes2 = { "dcontainer": "sqVpyW_dcontainer", "ddown": "sqVpyW_ddown", "ddownplaceholder": "sqVpyW_ddownplaceholder", "dsarrow": "sqVpyW_dsarrow" };
+  var classes2 = { "dsarrow": "sqVpyW_dsarrow", "dcontainer": "sqVpyW_dcontainer", "ddown": "sqVpyW_ddown", "ddownplaceholder": "sqVpyW_ddownplaceholder" };
   var css2 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
@@ -806,7 +806,7 @@
   var import_web29 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ProfilesPage.tsx.scss
-  var classes5 = { "shead": "_2nPZKq_shead", "pbuttons": "_2nPZKq_pbuttons", "sbutton": "_2nPZKq_sbutton", "splitbutton": "_2nPZKq_splitbutton", "tophead": "_2nPZKq_tophead" };
+  var classes5 = { "sbutton": "_2nPZKq_sbutton", "pbuttons": "_2nPZKq_pbuttons", "splitbutton": "_2nPZKq_splitbutton", "shead": "_2nPZKq_shead", "tophead": "_2nPZKq_tophead" };
   var css5 = `._2nPZKq_tophead {
   margin-bottom: 16px;
 }
@@ -981,7 +981,7 @@
   var import_web42 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/SettingsPage.tsx.scss
-  var classes6 = { "shead": "akYvUa_shead", "left16": "akYvUa_left16", "tophead": "akYvUa_tophead" };
+  var classes6 = { "shead": "akYvUa_shead", "tophead": "akYvUa_tophead", "left16": "akYvUa_left16" };
   var css6 = `.akYvUa_tophead {
   margin-bottom: 16px;
 }
@@ -1012,7 +1012,7 @@
   var import_web36 = __toESM(require_web(), 1);
 
   // components/Radio.tsx.scss
-  var classes7 = { "radio": "Ch7osa_radio", "selected": "Ch7osa_selected", "radioButton": "Ch7osa_radioButton", "radioButtonInner": "Ch7osa_radioButtonInner" };
+  var classes7 = { "radioButtonInner": "Ch7osa_radioButtonInner", "selected": "Ch7osa_selected", "radioButton": "Ch7osa_radioButton", "radio": "Ch7osa_radio" };
   var css7 = `.Ch7osa_radio {
   color: var(--interactive-normal);
   box-sizing: border-box;
@@ -1392,7 +1392,7 @@
   var import_web48 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ChangelogPage.tsx.scss
-  var classes8 = { "tophead": "yPVoxW_tophead", "refresh": "yPVoxW_refresh", "badge": "yPVoxW_badge", "spinner": "yPVoxW_spinner", "card": "yPVoxW_card", "badges": "yPVoxW_badges", "contents": "yPVoxW_contents", "title": "yPVoxW_title", "spin": "yPVoxW_spin" };
+  var classes8 = { "badge": "yPVoxW_badge", "badges": "yPVoxW_badges", "card": "yPVoxW_card", "tophead": "yPVoxW_tophead", "title": "yPVoxW_title", "contents": "yPVoxW_contents", "refresh": "yPVoxW_refresh", "spinner": "yPVoxW_spinner", "spin": "yPVoxW_spin" };
   var css8 = `.yPVoxW_tophead {
   margin-bottom: 16px;
 }
@@ -3815,7 +3815,7 @@ ${content}</tr>
   var import_web55 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/components/ClientModList.tsx.scss
-  var classes9 = { "scell": "XZjauW_scell", "pheader": "XZjauW_pheader", "mcell": "XZjauW_mcell", "shead": "XZjauW_shead", "top16": "XZjauW_top16", "left16": "XZjauW_left16", "top32": "XZjauW_top32", "plistrow": "XZjauW_plistrow", "sbutton": "XZjauW_sbutton", "pbuttons": "XZjauW_pbuttons", "plist": "XZjauW_plist" };
+  var classes9 = { "sbutton": "XZjauW_sbutton", "mcell": "XZjauW_mcell", "scell": "XZjauW_scell", "top32": "XZjauW_top32", "top16": "XZjauW_top16", "left16": "XZjauW_left16", "plist": "XZjauW_plist", "shead": "XZjauW_shead", "plistrow": "XZjauW_plistrow", "pbuttons": "XZjauW_pbuttons", "pheader": "XZjauW_pheader" };
   var css9 = `.XZjauW_shead {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -4047,7 +4047,7 @@ ${content}</tr>
   var import_web62 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/components/PluginList.tsx.scss
-  var classes10 = { "plist": "V6is4W_plist", "scell": "V6is4W_scell", "pbuttons": "V6is4W_pbuttons", "plistrow": "V6is4W_plistrow", "left16": "V6is4W_left16", "top16": "V6is4W_top16", "top32": "V6is4W_top32", "mcell": "V6is4W_mcell", "pheader": "V6is4W_pheader", "sbutton": "V6is4W_sbutton" };
+  var classes10 = { "pbuttons": "V6is4W_pbuttons", "sbutton": "V6is4W_sbutton", "pheader": "V6is4W_pheader", "plistrow": "V6is4W_plistrow", "plist": "V6is4W_plist", "scell": "V6is4W_scell", "left16": "V6is4W_left16", "top32": "V6is4W_top32", "top16": "V6is4W_top16", "mcell": "V6is4W_mcell" };
   var css10 = `.V6is4W_plist {
   flex-direction: column;
   justify-content: space-between;
@@ -4266,7 +4266,7 @@ ${content}</tr>
   }
 
   // plugins/dorion-settings/pages/PluginsPage.tsx.scss
-  var classes11 = { "openButton": "X31w8G_openButton", "shead": "X31w8G_shead", "pbuttons": "X31w8G_pbuttons", "left16": "X31w8G_left16", "card": "X31w8G_card", "tophead": "X31w8G_tophead" };
+  var classes11 = { "openButton": "X31w8G_openButton", "card": "X31w8G_card", "shead": "X31w8G_shead", "left16": "X31w8G_left16", "pbuttons": "X31w8G_pbuttons", "tophead": "X31w8G_tophead" };
   var css11 = `.X31w8G_tophead {
   margin-bottom: 16px;
 }
@@ -4403,7 +4403,7 @@ ${content}</tr>
   var import_web79 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/ThemesPage.tsx.scss
-  var classes12 = { "pbuttons": "oAx4fa_pbuttons", "tophead": "oAx4fa_tophead", "shead": "oAx4fa_shead" };
+  var classes12 = { "shead": "oAx4fa_shead", "tophead": "oAx4fa_tophead", "pbuttons": "oAx4fa_pbuttons" };
   var css12 = `.oAx4fa_tophead {
   margin-bottom: 16px;
 }
@@ -4691,7 +4691,7 @@ ${content}</tr>
   var import_web82 = __toESM(require_web(), 1);
 
   // plugins/dorion-settings/pages/RPC.tsx.scss
-  var classes13 = { "bot16": "ycw7DW_bot16", "customInstallBtn": "ycw7DW_customInstallBtn", "customNote": "ycw7DW_customNote", "shead": "ycw7DW_shead" };
+  var classes13 = { "bot16": "ycw7DW_bot16", "customInstallBtn": "ycw7DW_customInstallBtn", "shead": "ycw7DW_shead", "customNote": "ycw7DW_customNote" };
   var css13 = `.ycw7DW_shead {
   margin-top: 16px;
   margin-bottom: 8px;

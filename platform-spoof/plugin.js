@@ -313,7 +313,7 @@
   var import_web7 = __toESM(require_web(), 1);
 
   // components/Radio.tsx.scss
-  var classes = { "radioButton": "Ch7osa_radioButton", "radioButtonInner": "Ch7osa_radioButtonInner", "radio": "Ch7osa_radio", "selected": "Ch7osa_selected" };
+  var classes = { "selected": "Ch7osa_selected", "radio": "Ch7osa_radio", "radioButtonInner": "Ch7osa_radioButtonInner", "radioButton": "Ch7osa_radioButton" };
   var css = `.Ch7osa_radio {
   color: var(--interactive-normal);
   box-sizing: border-box;

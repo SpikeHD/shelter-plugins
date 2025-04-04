@@ -402,7 +402,7 @@
   };
 
   // plugins/shelteRPC/components/GameCard.scss
-  var classes = { "cardPlaying": "zS7Qtq_cardPlaying", "gameCardInfo": "zS7Qtq_gameCardInfo", "cardNone": "zS7Qtq_cardNone", "trash": "zS7Qtq_trash", "cardPlayed": "zS7Qtq_cardPlayed", "gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed", "gameCard": "zS7Qtq_gameCard", "lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp", "gameCardIcons": "zS7Qtq_gameCardIcons", "gameCardName": "zS7Qtq_gameCardName" };
+  var classes = { "gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed", "cardPlaying": "zS7Qtq_cardPlaying", "gameCardIcons": "zS7Qtq_gameCardIcons", "lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp", "gameCard": "zS7Qtq_gameCard", "gameCardInfo": "zS7Qtq_gameCardInfo", "trash": "zS7Qtq_trash", "cardNone": "zS7Qtq_cardNone", "cardPlayed": "zS7Qtq_cardPlayed", "gameCardName": "zS7Qtq_gameCardName" };
   var css = `.zS7Qtq_gameCard {
   width: 100%;
   height: 72px;
@@ -601,7 +601,7 @@
   var import_web17 = __toESM(require_web(), 1);
 
   // components/Dropdown.tsx.scss
-  var classes2 = { "ddown": "sqVpyW_ddown", "dsarrow": "sqVpyW_dsarrow", "dcontainer": "sqVpyW_dcontainer", "ddownplaceholder": "sqVpyW_ddownplaceholder" };
+  var classes2 = { "dsarrow": "sqVpyW_dsarrow", "ddownplaceholder": "sqVpyW_ddownplaceholder", "ddown": "sqVpyW_ddown", "dcontainer": "sqVpyW_dcontainer" };
   var css2 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
@@ -735,7 +735,7 @@
   };
 
   // plugins/shelteRPC/components/RegisteredGames.scss
-  var classes3 = { "addIt": "yVnOSq_addIt", "description": "yVnOSq_description", "modalhead": "yVnOSq_modalhead", "tophead": "yVnOSq_tophead", "shead": "yVnOSq_shead" };
+  var classes3 = { "modalhead": "yVnOSq_modalhead", "shead": "yVnOSq_shead", "description": "yVnOSq_description", "tophead": "yVnOSq_tophead", "addIt": "yVnOSq_addIt" };
   var css3 = `.yVnOSq_description {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -1079,7 +1079,7 @@
       ws.close();
     const connected = yield retry((curTry) => __async(void 0, null, function* () {
       var _a2, _b2;
-      ws = new WebSocket("ws://127.0.0.1:1337");
+      ws = new WebSocket("ws://" + (store3.connAddr || "127.0.0.1:1337"));
       ws.onmessage = handleMessage;
       ws.onerror = (e) => {
         throw e;
@@ -1156,6 +1156,24 @@
     }), null);
     (0, import_web24.effect)(() => (0, import_web23.className)(_el$3, classes4.container));
     return _el$3;
+  })(), (() => {
+    const _el$4 = _tmpl$23.cloneNode(true);
+    (0, import_web25.insert)(_el$4, (0, import_web27.createComponent)(Text2, {
+      children: "Connection Address"
+    }), null);
+    (0, import_web25.insert)(_el$4, (0, import_web27.createComponent)(TextBox2, {
+      get value() {
+        var _a;
+        return (_a = store3.connAddr) != null ? _a : "127.0.0.1:1337";
+      },
+      onInput: (v) => {
+        store3.connAddr = v;
+        onLoad();
+      },
+      type: "text"
+    }), null);
+    (0, import_web24.effect)(() => (0, import_web23.className)(_el$4, classes4.container));
+    return _el$4;
   })()];
   return __toCommonJS(shelteRPC_exports);
 })();
