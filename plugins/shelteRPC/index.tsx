@@ -161,7 +161,7 @@ export const onLoad = async () => {
 
   const connected = await retry(
     async (curTry) => {
-      ws = new WebSocket('ws://127.0.0.1:1337')
+      ws = new WebSocket('ws://' + (store.connAddr || '127.0.0.1:1337'))
       ws.onmessage = handleMessage
       ws.onerror = (e) => { throw e }
 
@@ -241,6 +241,19 @@ export const settings = () => (
         value={store.retryWait ?? 3000}
         onInput={(v) => store.retryWait = v}
         type="number"
+      />
+    </div>
+
+    <div class={classes.container}>
+      <Text>Connection Address</Text>
+      <TextBox
+        value={store.connAddr ?? '127.0.0.1:1337'}
+        onInput={(v) => {
+          store.connAddr = v
+          // Maybe debounce this as onInput is called on every keystroke
+          onLoad()
+        }}
+        type="text"
       />
     </div>
   </>
