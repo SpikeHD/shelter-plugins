@@ -1,31 +1,10 @@
-(() => {
-  var __defProp = Object.defineProperty;
-  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-  var __getOwnPropNames = Object.getOwnPropertyNames;
-  var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __export = (target, all) => {
-    for (var name in all)
-      __defProp(target, name, { get: all[name], enumerable: true });
-  };
-  var __copyProps = (to, from, except, desc) => {
-    if (from && typeof from === "object" || typeof from === "function") {
-      for (let key of __getOwnPropNames(from))
-        if (!__hasOwnProp.call(to, key) && key !== except)
-          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-    }
-    return to;
-  };
-  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+(function(exports) {
 
-  // plugins/youre-right/index.tsx
-  var youre_right_exports = {};
-  __export(youre_right_exports, {
-    onUnload: () => onUnload
-  });
+"use strict";
 
-  // plugins/youre-right/index.tsx.scss
-  var classes = { "youreRightItem": "CPnQ-q_youreRightItem" };
-  var css = `.CPnQ-q_youreRightItem {
+//#region plugins/youre-right/index.tsx.scss
+const classes = { "youreRightItem": "CPnQ-q_youreRightItem" };
+const css = `.CPnQ-q_youreRightItem {
   transform: scaleX(-1);
 }
 
@@ -88,55 +67,40 @@
 }
 `;
 
-  // plugins/youre-right/index.tsx
-  var {
-    flux: {
-      storesFlat: {
-        UserStore,
-        SelectedChannelStore
-      }
-    },
-    util: {
-      getFiber,
-      reactFiberWalker
-    },
-    plugin: {
-      scoped: {
-        flux: {
-          subscribe
-        }
-      }
-    },
-    observeDom
-  } = shelter;
-  var style = document.createElement("style");
-  style.innerHTML = css;
-  style.id = "youre-right-styles";
-  document.head.appendChild(style);
-  function handleElm(elm) {
-    var _a, _b;
-    const message = (_b = (_a = reactFiberWalker(getFiber(elm), "message", true)) == null ? void 0 : _a.pendingProps) == null ? void 0 : _b.message;
-    const id = UserStore.getCurrentUser().id;
-    if (!message || message.author.id !== id || elm.classList.contains(classes.youreRightItem))
-      return;
-    elm.classList.add(classes.youreRightItem);
-  }
-  function handleDispatch(payload) {
-    if (payload.type === "MESSAGE_CREATE" && payload.channelId !== SelectedChannelStore.getChannelId())
-      return;
-    const unObserve = observeDom("li[id^=chat-messages-]", (elem) => {
-      handleElm(elem);
-      unObserve();
-    });
-    setTimeout(unObserve, 500);
-  }
-  var triggers = ["MESSAGE_CREATE", "CHANNEL_SELECT", "LOAD_MESSAGES_SUCCESS", "UPDATE_CHANNEL_DIMENSIONS"];
-  for (const t of triggers)
-    subscribe(t, handleDispatch);
-  var onUnload = () => {
-    style.remove();
-    for (const t of triggers)
-      subscribe(t, handleDispatch);
-  };
-  return __toCommonJS(youre_right_exports);
-})();
+//#endregion
+//#region plugins/youre-right/index.tsx
+const { flux: { storesFlat: { UserStore, SelectedChannelStore } }, util: { getFiber, reactFiberWalker }, plugin: { scoped: { flux: { subscribe } } }, observeDom } = shelter;
+const style = document.createElement("style");
+style.innerHTML = css;
+style.id = "youre-right-styles";
+document.head.appendChild(style);
+function handleElm(elm) {
+	const message = reactFiberWalker(getFiber(elm), "message", true)?.pendingProps?.message;
+	const id = UserStore.getCurrentUser().id;
+	if (!message || message.author.id !== id || elm.classList.contains(classes.youreRightItem)) return;
+	elm.classList.add(classes.youreRightItem);
+}
+function handleDispatch(payload) {
+	if (payload.type === "MESSAGE_CREATE" && payload.channelId !== SelectedChannelStore.getChannelId()) return;
+	const unObserve = observeDom("li[id^=chat-messages-]", (elem) => {
+		handleElm(elem);
+		unObserve();
+	});
+	setTimeout(unObserve, 500);
+}
+const triggers = [
+	"MESSAGE_CREATE",
+	"CHANNEL_SELECT",
+	"LOAD_MESSAGES_SUCCESS",
+	"UPDATE_CHANNEL_DIMENSIONS"
+];
+for (const t of triggers) subscribe(t, handleDispatch);
+const onUnload = () => {
+	style.remove();
+	for (const t of triggers) subscribe(t, handleDispatch);
+};
+
+//#endregion
+exports.onUnload = onUnload
+return exports;
+})({});
