@@ -23,7 +23,7 @@ const {
 const chunk = webpackChunk()
 const wp = chunk && createApi([undefined, ...chunk])
 const c = wp.findByCode('getAssetImage: ')
-const fetchAssetIds = async (id, asset) => (await c.fetchAssetIds(id, [asset, null]))[0]
+const fetchAssetIds = async (id, asset) => (await (c ? c.fetchAssetIds(id, [asset, null]) : () => null))[0]
 
 let injectedCss = false
 
