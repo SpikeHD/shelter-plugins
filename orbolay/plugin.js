@@ -39,6 +39,7 @@ const unintercept = intercept(async (dispatch) => {
 							states: Object.values(voiceStates).map((s) => ({
 								userId: s.userId,
 								username: GuildMemberStore.getNick(guildId, s.userId) || UserStore?.getUser(s.userId)?.globalName,
+								avatarUrl: UserStore?.getUser(s.userId)?.avatar,
 								channelId: s.channelId,
 								deaf: s.deaf || s.selfDeaf,
 								mute: s.mute || s.selfMute,
@@ -58,6 +59,7 @@ const unintercept = intercept(async (dispatch) => {
 					state: {
 						userId: state.userId,
 						username: GuildMemberStore.getNick(guildId, state.userId) || UserStore?.getUser(state.userId)?.globalName,
+						avatarUrl: UserStore?.getUser(state.userId)?.avatar,
 						channelId: state.channelId ? state.channelId : "0",
 						deaf: state.deaf || state.selfDeaf,
 						mute: state.mute || state.selfMute,
@@ -87,6 +89,7 @@ const onLoad = () => {
 			states: Object.values(channelState).map((s) => ({
 				userId: s.userId,
 				username: GuildMemberStore.getNick(guildId, s.userId) || UserStore?.getUser(s.userId)?.globalName,
+				avatarUrl: UserStore?.getUser(s.userId)?.avatar,
 				channelId: s.channelId,
 				deaf: s.deaf || s.selfDeaf,
 				mute: s.mute || s.selfMute,
