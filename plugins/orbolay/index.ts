@@ -66,6 +66,8 @@ const unintercept = intercept(async dispatch => {
               userId: s.userId,
               // @ts-expect-error this exists
               username: GuildMemberStore.getNick(guildId, s.userId) || UserStore?.getUser(s.userId)?.globalName,
+              // @ts-expect-error this exists
+              avatarUrl: UserStore?.getUser(s.userId)?.avatar,
               channelId: s.channelId,
               deaf: s.deaf || s.selfDeaf,
               mute: s.mute || s.selfMute,
@@ -96,6 +98,8 @@ const unintercept = intercept(async dispatch => {
             userId: state.userId,
             // @ts-expect-error this exists
             username: GuildMemberStore.getNick(guildId, state.userId) || UserStore?.getUser(state.userId)?.globalName,
+            // @ts-expect-error this exists
+            avatarUrl: UserStore?.getUser(state.userId)?.avatar,
             channelId: state.channelId ? state.channelId : '0',
             deaf: state.deaf || state.selfDeaf,
             mute: state.mute || state.selfMute,
@@ -133,6 +137,8 @@ export const onLoad = () => {
         userId: s.userId,
         // @ts-expect-error this exists
         username: GuildMemberStore.getNick(guildId, s.userId) || UserStore?.getUser(s.userId)?.globalName,
+        // @ts-expect-error this exists
+        avatarUrl: UserStore?.getUser(s.userId)?.avatar,
         channelId: s.channelId,
         deaf: s.deaf || s.selfDeaf,
         mute: s.mute || s.selfMute,
