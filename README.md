@@ -87,6 +87,12 @@ See the [OpenAsar wiki](https://github.com/GooseMod/OpenAsar/wiki/DOM-Optimizer)
 
 `https://spikehd.github.io/shelter-plugins/openasar-dom-optimizer/`
 
+# Orbolay Bridge
+
+Bridge plugin required to make [Orbolay](https://github.com/SpikeHD/Orbolay) work.
+
+`https://spikehd.github.io/shelter-plugins/orbolay/`
+
 ## Platform Spoofer
 
 Pretend to be on a different platform. Basically only visible to those using a platform indicator plugin.
