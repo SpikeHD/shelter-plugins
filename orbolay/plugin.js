@@ -3,7 +3,7 @@
 "use strict";
 
 //#region plugins/orbolay/index.ts
-const { flux: { intercept, stores: { GuildMemberStore, UserStore, VoiceStateStore } }, plugin: { store } } = shelter;
+const { flux: { intercept, stores: { GuildMemberStore, UserStore, VoiceStateStore } }, plugin: { store }, ui: { showToast } } = shelter;
 let ws;
 let currentChannel = null;
 const waitForPopulate = async (fn) => {
@@ -80,6 +80,11 @@ const onLoad = () => {
 		console.log(e);
 	};
 	ws.onopen = () => {
+		showToast({
+			title: "Orbolay",
+			content: "Connected to Orbolay server",
+			duration: 3e3
+		});
 		const userVoiceState = VoiceStateStore.getVoiceStateForUser(UserStore.getCurrentUser().id);
 		if (!userVoiceState) return;
 		const channelState = VoiceStateStore.getVoiceStatesForChannel(userVoiceState.channelId);
