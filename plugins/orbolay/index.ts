@@ -8,6 +8,9 @@ const {
     }
   },
   plugin: { store },
+  ui: {
+    showToast
+  }
 } = shelter
 
 interface ChannelState {
@@ -119,6 +122,12 @@ export const onLoad = () => {
   ws.onerror = (e) => { throw e }
   ws.onmessage = (e) => { console.log(e) }
   ws.onopen = () => {
+    showToast({
+      title: 'Orbolay',
+      content: 'Connected to Orbolay server',
+      duration: 3000,
+    })
+
     // Send initial channel joined (if the user is in a channel)
     // @ts-expect-error this exists
     const userVoiceState = VoiceStateStore.getVoiceStateForUser(UserStore.getCurrentUser().id)
