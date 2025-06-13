@@ -33,37 +33,16 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 } });
 
 //#endregion
-//#region plugins/dorion-titlebar/actions.ts
-function close() {
-	window.__TAURI__.core.invoke("close");
-}
-function minimize() {
-	window.__TAURI__.core.invoke("minimize");
-}
-function toggleMaximize() {
-	window.__TAURI__.core.invoke("toggle_maximize");
-}
-async function setMaximizeIcon() {
-	if (await window.__TAURI__.webviewWindow.getCurrentWebviewWindow().isMaximized()) {
-		const topmax = document.querySelector("#topmax");
-		topmax.classList.add("maximized");
-	} else {
-		const topmax = document.querySelector("#topmax");
-		topmax.classList.remove("maximized");
-	}
-}
-
-//#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"svgunmax": "e6P4KG_svgunmax",
 	"dorion_topbar": "e6P4KG_dorion_topbar",
-	"topclose": "e6P4KG_topclose",
-	"topright": "e6P4KG_topright",
-	"maximized": "e6P4KG_maximized",
-	"topmax": "e6P4KG_topmax",
 	"topmin": "e6P4KG_topmin",
-	"svgmax": "e6P4KG_svgmax"
+	"svgmax": "e6P4KG_svgmax",
+	"topmax": "e6P4KG_topmax",
+	"svgunmax": "e6P4KG_svgunmax",
+	"topclose": "e6P4KG_topclose",
+	"maximized": "e6P4KG_maximized",
+	"topright": "e6P4KG_topright"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-tertiary);
@@ -124,6 +103,27 @@ const css = `.e6P4KG_dorion_topbar {
   color: var(--white);
 }
 `;
+
+//#endregion
+//#region plugins/dorion-titlebar/actions.ts
+function close() {
+	window.__TAURI__.core.invoke("close");
+}
+function minimize() {
+	window.__TAURI__.core.invoke("minimize");
+}
+function toggleMaximize() {
+	window.__TAURI__.core.invoke("toggle_maximize");
+}
+async function setMaximizeIcon() {
+	if (await window.__TAURI__.webviewWindow.getCurrentWebviewWindow().isMaximized()) {
+		const topmax = document.querySelector(`.${classes.topmax}`);
+		topmax.classList.add(classes.maximized);
+	} else {
+		const topmax = document.querySelector(`.${classes.topmax}`);
+		topmax.classList.remove(classes.maximized);
+	}
+}
 
 //#endregion
 //#region plugins/dorion-titlebar/Titlebar.tsx
