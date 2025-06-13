@@ -44,6 +44,13 @@ const injectControls = async () => {
 
   elm.appendChild(controls)
   setMaximizeIcon()
+
+  const discordBar = document.querySelector('div[class^="title_"]')
+
+  if (discordBar) {
+    discordBar.setAttribute('data-tauri-drag-region', 'true')
+  }
+
   return true
 }
 
