@@ -127,12 +127,12 @@ const handleMessageNotification = (dispatch) => {
   ws.send(
     JSON.stringify({
       cmd: 'MESSAGE_NOTIFICATION',
-      data: {
+      message: {
         title: dispatch.title,
         body: dispatch.body,
         icon: dispatch.icon,
         channelId: dispatch.channelId,
-      },
+      }
     })
   )
 }
