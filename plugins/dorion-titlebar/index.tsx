@@ -54,14 +54,14 @@ const injectControls = async () => {
   return true
 }
 
-const handleFullTitlebar = (dispatch) => {
+const handleFullTitlebar = () => {
   // Append the whole titlebar
   const titlebar = <Titlebar />
   const innerMount = document.querySelector('div[class^=notAppAsidePanel_]')
   innerMount.prepend(titlebar)
 }
 
-const handleControlsOnly = (dispatch) => {
+const handleControlsOnly = () => {
   // Remove the whole titlebar
   document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach(e => e.remove())
 }
@@ -74,7 +74,7 @@ const handleFullscreenExit = (dispatch) => {
 
 export const onLoad = async () => {
   // @ts-expect-error shut up
-  if (window.__DORION_CONFIG__.use_native_titlebar) return
+  if (window?.__DORION_CONFIG__?.use_native_titlebar) return
 
   if (!injectedCss) {
     injectCss(css)
@@ -82,18 +82,18 @@ export const onLoad = async () => {
   }
 
   // @ts-expect-error shut up
-  window.__TAURI__.event.listen(
+  window?.__TAURI__?.event.listen(
     // @ts-expect-error shut up
     window.__TAURI__.event.TauriEvent.WINDOW_RESIZED,
     setMaximizeIcon
   )
 
   // @ts-expect-error shut up
-  window.__TAURI__.core.invoke('remove_top_bar')
+  window?.__TAURI__?.core.invoke('remove_top_bar') 
 
   if (!await injectControls()) {
     // Inject full titlebar if we must
-    handleFullTitlebar({})
+    handleFullTitlebar()
   }
   
   dispatcher.subscribe('LAYER_PUSH', handleFullTitlebar)
