@@ -20,16 +20,23 @@ const {
   },
 } = shelter
 
-const settingsUninjects = [
-  registerSection('divider'),
-  registerSection('header', appName),
-  registerSection('section', `${appName}-settings`, `${appName} Settings`, SettingsPage),
-  registerSection('section', `${appName}-plugins`, 'Plugins', PluginsPage),
-  registerSection('section', `${appName}-themes`, 'Themes', ThemesPage),
-  registerSection('section',  `${appName}-performance`, 'Performance & Extras', PerformancePage),
-  registerSection('section', `${appName}-rpc`, 'Rich Presence', RPCPage),
-  registerSection('section', `${appName}-profiles`, 'Profiles', ProfilesPage),
-]
+let settingsUninjects = []
+
+;(async () => {
+  // @ts-expect-error womp womp
+  const platform = await window.__TAURI__.core.invoke('get_platform')
+
+  settingsUninjects = [
+    registerSection('divider'),
+    registerSection('header', appName),
+    registerSection('section', `${appName}-settings`, `${appName} Settings`, SettingsPage),
+    registerSection('section', `${appName}-plugins`, 'Plugins', PluginsPage),
+    registerSection('section', `${appName}-themes`, 'Themes', ThemesPage),
+    registerSection('section',  `${appName}-performance`, 'Performance & Extras', PerformancePage),
+    platform !== 'macos' && registerSection('section', `${appName}-rpc`, 'Rich Presence', RPCPage),
+    registerSection('section', `${appName}-profiles`, 'Profiles', ProfilesPage),
+  ]
+})()
 
 const appendAppVersion = async () => {
   let tries = 0
@@ -74,7 +81,6 @@ const checkForUpdates = async () => {
   if (updateCheck.includes('dorion')) needsUpdate = true
 
   settingsUninjects.push(
-    // @ts-expect-error Shelter types are wrong? badgeCount does exist on type
     registerSection('section', `${appName}-changelog`, 'Changelog', ChangelogPage, { 
       badgeCount: needsUpdate ? 1 : 0 
     })
@@ -86,6 +92,6 @@ dispatcher.subscribe('USER_SETTINGS_MODAL_OPEN', appendAppVersion)
 checkForUpdates()
 
 export const onUnload = () => {
-  settingsUninjects.forEach((u) => u())
+  settingsUninjects.forEach((u) => u && u())
   dispatcher.unsubscribe('USER_SETTINGS_MODAL_OPEN', appendAppVersion)
 }
