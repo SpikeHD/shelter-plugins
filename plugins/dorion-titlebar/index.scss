@@ -1,0 +1,72 @@
+.dorion_topbar {
+  background-color: var(--background-tertiary);
+  height: 32px;
+  width: calc(100% - 8px);
+  padding-left: 8px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  font-family: 'gg mono', 'Courier New', monospace;
+  font-weight: bolder;
+
+  color: var(--text-normal);
+
+  white-space: nowrap;
+}
+
+.topright {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: calc(-1 * var(--space-12));
+  height: 100%;
+}
+
+.topclose,
+.topmin,
+.topmax {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  width: 44px;
+
+  color: var(--icon-tertiary);
+
+  transition: all 0.1s ease-in-out;
+}
+
+.topclose:hover,
+.topmin:hover,
+.topmax:hover {
+  filter: brightness(0.8);
+  background: var(--background-secondary);
+}
+
+.topmax svg {
+  display: none;
+}
+
+.topclose svg,
+.topmin svg,
+.topmax svg {
+  height: 10px !important;
+  width: 10px !important;
+}
+
+.topmax:not(.maximized) .svgmax,
+.topmax.maximized .svgunmax {
+  display: initial;
+}
+
+.topclose:hover {
+  background: var(--status-danger);
+  color: var(--white);
+}
