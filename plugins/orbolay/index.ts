@@ -1,25 +1,19 @@
 const {
   flux: {
-    intercept,
-    stores: {
-      GuildMemberStore,
-      UserStore,
-      VoiceStateStore,
-    }
+    dispatcher,
+    stores: { GuildMemberStore, UserStore, VoiceStateStore },
   },
   plugin: { store },
-  ui: {
-    showToast
-  }
+  ui: { showToast },
 } = shelter
 
 interface ChannelState {
-  userId: string
-  channelId: string
-  deaf: boolean
-  mute: boolean
-  selfDeaf: boolean
-  selfMute: boolean
+  userId: string;
+  channelId: string;
+  deaf: boolean;
+  mute: boolean;
+  selfDeaf: boolean;
+  selfMute: boolean;
 }
 
 let ws: WebSocket
@@ -34,41 +28,44 @@ const waitForPopulate = async (fn) => {
   }
 }
 
-const unintercept = intercept(async dispatch => {
-  if (ws?.readyState !== WebSocket.OPEN) return dispatch
-
-  switch (dispatch.type) {
-  case 'SPEAKING': {
-    ws.send(JSON.stringify({
+const handleSpeaking = (dispatch) => {
+  ws.send(
+    JSON.stringify({
       cmd: 'VOICE_STATE_UPDATE',
       state: {
         userId: dispatch.userId,
-        speaking: dispatch.speakingFlags === 1
-      }
-    }))
+        speaking: dispatch.speakingFlags === 1,
+      },
+    })
+  )
+}
 
-    break
-  }
-  case 'VOICE_STATE_UPDATES': {
-    // Ensure we are in the channel that the update is for
-    // @ts-expect-error this exists
-    const id = UserStore?.getCurrentUser()?.id
-    
-    for (const state of dispatch.voiceStates) {
-      const ourState = state.userId === id
-      const guildId = state.guildId
+const handleVoiceStateUpdates = async (dispatch) => {
+  // Ensure we are in the channel that the update is for
+  // @ts-expect-error this exists
+  const id = UserStore?.getCurrentUser()?.id
 
-      if (ourState) {
-        if (state.channelId && state.channelId !== currentChannel) {
+  for (const state of dispatch.voiceStates) {
+    const ourState = state.userId === id
+    const guildId = state.guildId
+
+    if (ourState) {
+      if (state.channelId && state.channelId !== currentChannel) {
+        const voiceStates = await waitForPopulate(() =>
           // @ts-expect-error this exists
-          const voiceStates = await waitForPopulate(() => VoiceStateStore?.getVoiceStatesForChannel(state.channelId))
+          VoiceStateStore?.getVoiceStatesForChannel(state.channelId)
+        )
 
-          ws.send(JSON.stringify({
+        ws.send(
+          JSON.stringify({
             cmd: 'CHANNEL_JOINED',
             states: Object.values(voiceStates).map((s: ChannelState) => ({
               userId: s.userId,
-              // @ts-expect-error this exists
-              username: GuildMemberStore.getNick(guildId, s.userId) || UserStore?.getUser(s.userId)?.globalName,
+              username:
+                // @ts-expect-error this exists
+                GuildMemberStore.getNick(guildId, s.userId) ||
+                // @ts-expect-error this exists
+                UserStore?.getUser(s.userId)?.globalName,
               // @ts-expect-error this exists
               avatarUrl: UserStore?.getUser(s.userId)?.avatar,
               channelId: s.channelId,
@@ -76,31 +73,42 @@ const unintercept = intercept(async dispatch => {
               mute: s.mute || s.selfMute,
               // TODO maybe an easy way to get this?
               speaking: false,
-            }))
-          }))
+            })),
+          })
+        )
 
-          currentChannel = state.channelId
+        currentChannel = state.channelId
 
-          break
-        } else if (!state.channelId) {
-          ws.send(JSON.stringify({
+        break
+      } else if (!state.channelId) {
+        ws.send(
+          JSON.stringify({
             cmd: 'CHANNEL_LEFT',
-          }))
+          })
+        )
 
-          currentChannel = null
+        currentChannel = null
 
-          break
-        }
+        break
       }
+    }
 
-      // If this is for the channel we are in, send a VOICE_STATE_UPDATE
-      if (!!currentChannel && (state.channelId === currentChannel || state.oldChannelId === currentChannel)) {
-        ws.send(JSON.stringify({
+    // If this is for the channel we are in, send a VOICE_STATE_UPDATE
+    if (
+      !!currentChannel &&
+      (state.channelId === currentChannel ||
+        state.oldChannelId === currentChannel)
+    ) {
+      ws.send(
+        JSON.stringify({
           cmd: 'VOICE_STATE_UPDATE',
           state: {
             userId: state.userId,
-            // @ts-expect-error this exists
-            username: GuildMemberStore.getNick(guildId, state.userId) || UserStore?.getUser(state.userId)?.globalName,
+            username:
+              // @ts-expect-error this exists
+              GuildMemberStore.getNick(guildId, state.userId) ||
+              // @ts-expect-error this exists
+              UserStore?.getUser(state.userId)?.globalName,
             // @ts-expect-error this exists
             avatarUrl: UserStore?.getUser(state.userId)?.avatar,
             channelId: state.channelId ? state.channelId : '0',
@@ -108,19 +116,35 @@ const unintercept = intercept(async dispatch => {
             mute: state.mute || state.selfMute,
             // TODO maybe an easy way to get this?
             speaking: false,
-          }
-        }))
-      }
+          },
+        })
+      )
     }
+  }
+}
 
-    break
-  }}
-})
+const handleMessageNotification = (dispatch) => {
+  ws.send(
+    JSON.stringify({
+      cmd: 'MESSAGE_NOTIFICATION',
+      data: {
+        title: dispatch.title,
+        body: dispatch.body,
+        icon: dispatch.icon,
+        channelId: dispatch.channelId,
+      },
+    })
+  )
+}
 
 export const onLoad = () => {
   ws = new WebSocket('ws://' + (store.connAddr || '127.0.0.1:6888'))
-  ws.onerror = (e) => { throw e }
-  ws.onmessage = (e) => { console.log(e) }
+  ws.onerror = (e) => {
+    throw e
+  }
+  ws.onmessage = (e) => {
+    console.log(e)
+  }
   ws.onopen = () => {
     showToast({
       title: 'Orbolay',
@@ -130,38 +154,54 @@ export const onLoad = () => {
 
     // Send initial channel joined (if the user is in a channel)
     // @ts-expect-error this exists
-    const userVoiceState = VoiceStateStore.getVoiceStateForUser(UserStore.getCurrentUser().id)
+    const userVoiceState = VoiceStateStore.getVoiceStateForUser(
+      // @ts-expect-error this exists
+      UserStore.getCurrentUser().id
+    )
 
     if (!userVoiceState) {
       return
     }
 
     // @ts-expect-error this exists
-    const channelState = VoiceStateStore.getVoiceStatesForChannel(userVoiceState.channelId)
+    const channelState = VoiceStateStore.getVoiceStatesForChannel(
+      userVoiceState.channelId
+    )
     const guildId = userVoiceState.guildId
 
-    ws.send(JSON.stringify({
-      cmd: 'CHANNEL_JOINED',
-      states: Object.values(channelState).map((s: ChannelState) => ({
-        userId: s.userId,
-        // @ts-expect-error this exists
-        username: GuildMemberStore.getNick(guildId, s.userId) || UserStore?.getUser(s.userId)?.globalName,
-        // @ts-expect-error this exists
-        avatarUrl: UserStore?.getUser(s.userId)?.avatar,
-        channelId: s.channelId,
-        deaf: s.deaf || s.selfDeaf,
-        mute: s.mute || s.selfMute,
-        // TODO maybe an easy way to get this?
-        speaking: false,
-      }))
-    }))
+    ws.send(
+      JSON.stringify({
+        cmd: 'CHANNEL_JOINED',
+        states: Object.values(channelState).map((s: ChannelState) => ({
+          userId: s.userId,
+          username:
+            // @ts-expect-error this exists
+            GuildMemberStore.getNick(guildId, s.userId) ||
+            // @ts-expect-error this exists
+            UserStore?.getUser(s.userId)?.globalName,
+          // @ts-expect-error this exists
+          avatarUrl: UserStore?.getUser(s.userId)?.avatar,
+          channelId: s.channelId,
+          deaf: s.deaf || s.selfDeaf,
+          mute: s.mute || s.selfMute,
+          // TODO maybe an easy way to get this?
+          speaking: false,
+        })),
+      })
+    )
 
     currentChannel = userVoiceState.channelId
   }
+
+  dispatcher.subscribe('SPEAKING', handleSpeaking)
+  dispatcher.subscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
+  dispatcher.subscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
 }
 
 export const onUnload = () => {
-  unintercept()
+  dispatcher.unsubscribe('SPEAKING', handleSpeaking)
+  dispatcher.unsubscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
+  dispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
 
   // Close websocket
   if (ws?.close) ws.close()
