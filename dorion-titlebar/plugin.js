@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
+	"topclose": "e6P4KG_topclose",
+	"topright": "e6P4KG_topright",
+	"topmax": "e6P4KG_topmax",
 	"maximized": "e6P4KG_maximized",
 	"svgmax": "e6P4KG_svgmax",
-	"dorion_topbar": "e6P4KG_dorion_topbar",
-	"topmin": "e6P4KG_topmin",
-	"topmax": "e6P4KG_topmax",
-	"topright": "e6P4KG_topright",
 	"svgunmax": "e6P4KG_svgunmax",
-	"topclose": "e6P4KG_topclose"
+	"dorion_topbar": "e6P4KG_dorion_topbar",
+	"topmin": "e6P4KG_topmin"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-tertiary);
@@ -301,12 +301,12 @@ const injectControls = async () => {
 	if (discordBar) discordBar.setAttribute("data-tauri-drag-region", "true");
 	return true;
 };
-const handleFullTitlebar = (dispatch) => {
+const handleFullTitlebar = () => {
 	const titlebar = (0, import_web.createComponent)(Titlebar, {});
 	const innerMount = document.querySelector("div[class^=notAppAsidePanel_]");
 	innerMount.prepend(titlebar);
 };
-const handleControlsOnly = (dispatch) => {
+const handleControlsOnly = () => {
 	document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach((e) => e.remove());
 };
 const handleFullscreenExit = (dispatch) => {
@@ -314,18 +314,18 @@ const handleFullscreenExit = (dispatch) => {
 	injectControls();
 };
 const onLoad = async () => {
-	if (window.__DORION_CONFIG__.use_native_titlebar) return;
+	if (window?.__DORION_CONFIG__?.use_native_titlebar) return;
 	if (!injectedCss) {
 		injectCss(css);
 		injectedCss = true;
 	}
-	window.__TAURI__.event.listen(
+	window?.__TAURI__?.event.listen(
 		// @ts-expect-error shut up
 		window.__TAURI__.event.TauriEvent.WINDOW_RESIZED,
 		setMaximizeIcon
 );
-	window.__TAURI__.core.invoke("remove_top_bar");
-	if (!await injectControls()) handleFullTitlebar({});
+	window?.__TAURI__?.core.invoke("remove_top_bar");
+	if (!await injectControls()) handleFullTitlebar();
 	dispatcher.subscribe("LAYER_PUSH", handleFullTitlebar);
 	dispatcher.subscribe("LAYER_POP", handleControlsOnly);
 	dispatcher.subscribe("LOGIN_SUCCESS", injectControls);
