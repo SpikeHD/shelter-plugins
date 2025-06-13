@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
+	"maximized": "e6P4KG_maximized",
+	"svgmax": "e6P4KG_svgmax",
 	"dorion_topbar": "e6P4KG_dorion_topbar",
 	"topmin": "e6P4KG_topmin",
-	"svgmax": "e6P4KG_svgmax",
 	"topmax": "e6P4KG_topmax",
+	"topright": "e6P4KG_topright",
 	"svgunmax": "e6P4KG_svgunmax",
-	"topclose": "e6P4KG_topclose",
-	"maximized": "e6P4KG_maximized",
-	"topright": "e6P4KG_topright"
+	"topclose": "e6P4KG_topclose"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-tertiary);
@@ -297,6 +297,8 @@ const injectControls = async () => {
 	const controls = (0, import_web.createComponent)(Controls, { standalone: true });
 	elm.appendChild(controls);
 	setMaximizeIcon();
+	const discordBar = document.querySelector("div[class^=\"title_\"]");
+	if (discordBar) discordBar.setAttribute("data-tauri-drag-region", "true");
 	return true;
 };
 const handleFullTitlebar = (dispatch) => {
