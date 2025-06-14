@@ -37,12 +37,12 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 const classes = {
 	"svgunmax": "e6P4KG_svgunmax",
 	"topclose": "e6P4KG_topclose",
-	"topright": "e6P4KG_topright",
-	"maximized": "e6P4KG_maximized",
 	"topmin": "e6P4KG_topmin",
 	"dorion_topbar": "e6P4KG_dorion_topbar",
 	"svgmax": "e6P4KG_svgmax",
-	"topmax": "e6P4KG_topmax"
+	"maximized": "e6P4KG_maximized",
+	"topmax": "e6P4KG_topmax",
+	"topright": "e6P4KG_topright"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-tertiary);
@@ -304,7 +304,12 @@ const injectControls = async () => {
 const handleFullTitlebar = () => {
 	const titlebar = (0, import_web.createComponent)(Titlebar, {});
 	const innerMount = document.querySelector("div[class^=notAppAsidePanel_]");
-	innerMount.prepend(titlebar);
+	try {
+		innerMount.prepend(titlebar);
+	} catch (e) {
+		console.error(e);
+		document.body.prepend(titlebar);
+	}
 };
 const handleControlsOnly = () => {
 	document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach((e) => e.remove());
