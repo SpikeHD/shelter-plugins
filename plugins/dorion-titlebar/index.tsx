@@ -58,7 +58,14 @@ const handleFullTitlebar = () => {
   // Append the whole titlebar
   const titlebar = <Titlebar />
   const innerMount = document.querySelector('div[class^=notAppAsidePanel_]')
-  innerMount.prepend(titlebar)
+
+  try {
+    innerMount.prepend(titlebar)
+  } catch(e) {
+    console.error(e)
+    // who knows whats going on, just put it in the <body>
+    document.body.prepend(titlebar)
+  }
 }
 
 const handleControlsOnly = () => {
