@@ -162,15 +162,36 @@ const handleMessageNotification = (dispatch) => {
   )
 }
 
+const incoming = (payload) => {
+  switch (payload.cmd) {
+  case 'TOGGLE_MUTE':
+    dispatcher.dispatch({
+      type: 'AUDIO_TOGGLE_SELF_MUTE',
+      syncRemote: true,
+      playSoundEffect: true,
+      context: 'default'
+    })
+    break
+  case 'TOGGLE_DEAF':
+    dispatcher.dispatch({
+      type: 'AUDIO_TOGGLE_SELF_DEAF',
+      syncRemote: true,
+      playSoundEffect: true,
+      context: 'default'
+    })
+    break
+  }
+}
+
 export const onLoad = () => {
   ws = new WebSocket('ws://' + (store?.config?.connAddr || '127.0.0.1:6888'))
   ws.onerror = (e) => {
     throw e
   }
   ws.onmessage = (e) => {
-    console.log(e)
+    incoming(e.data)
   }
-  ws.onopen = () => {
+  ws.onopen = async () => {
     showToast({
       title: 'Orbolay',
       content: 'Connected to Orbolay server',
@@ -185,7 +206,7 @@ export const onLoad = () => {
 
     // Ensure we track the current user id
     // @ts-expect-error this exists
-    config.userId = UserStore?.getCurrentUser()?.id
+    config.userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id)
 
     ws.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', ...config }))
 
