@@ -35,8 +35,8 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddown": "sqVpyW_ddown",
 	"dcontainer": "sqVpyW_dcontainer",
+	"ddown": "sqVpyW_ddown",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dsarrow": "sqVpyW_dsarrow"
 };
@@ -229,7 +229,10 @@ const Settings = (props) => {
 		}));
 	};
 	const set = (key, value) => {
-		store$1.config[key] = value;
+		store$1.config = {
+			...store$1.config,
+			[key]: value
+		};
 		submitSettings();
 	};
 	return [
@@ -240,7 +243,7 @@ const Settings = (props) => {
 				get value() {
 					return store$1.config.port ?? defaultConfig.port;
 				},
-				onInput: (v) => set("port", v),
+				onInput: (v) => set("port", parseInt(v) || defaultConfig.port),
 				type: "number"
 			}), _el$5, _co$2);
 			(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$, classes.container));
