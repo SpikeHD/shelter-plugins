@@ -6,6 +6,18 @@
 const { flux: { dispatcher, stores: { GuildMemberStore, UserStore, VoiceStateStore } }, plugin: { store }, ui: { showToast } } = shelter;
 let ws;
 let currentChannel = null;
+const defaultConfig = {
+	port: 6888,
+	userId: "",
+	messageAlignment: {
+		top: true,
+		left: true
+	},
+	userAlignment: {
+		top: true,
+		left: true
+	}
+};
 const waitForPopulate = async (fn) => {
 	while (true) {
 		const result = await fn();
@@ -76,7 +88,7 @@ const handleMessageNotification = (dispatch) => {
 	}));
 };
 const onLoad = () => {
-	ws = new WebSocket("ws://" + (store.connAddr || "127.0.0.1:6888"));
+	ws = new WebSocket("ws://" + (store?.config?.connAddr || "127.0.0.1:6888"));
 	ws.onerror = (e) => {
 		throw e;
 	};
@@ -89,6 +101,15 @@ const onLoad = () => {
 			content: "Connected to Orbolay server",
 			duration: 3e3
 		});
+		const config = {
+			...defaultConfig,
+			...store?.config
+		};
+		config.userId = UserStore?.getCurrentUser()?.id;
+		ws.send(JSON.stringify({
+			cmd: "REGISTER_CONFIG",
+			...config
+		}));
 		const userVoiceState = VoiceStateStore.getVoiceStateForUser(
 			// @ts-expect-error this exists
 			UserStore.getCurrentUser().id
