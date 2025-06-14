@@ -274,4 +274,4 @@ export const onUnload = () => {
   if (ws?.close) ws.close()
 }
 
-export const settings = Settings
+export const settings = () => <Settings ws={ws} />

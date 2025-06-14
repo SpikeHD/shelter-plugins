@@ -51,8 +51,6 @@ export const Settings = (ws) => {
     submitSettings()
   }
 
-  console.log(store.config)
-
   return (
     <>
       <div class={classes.container}>
