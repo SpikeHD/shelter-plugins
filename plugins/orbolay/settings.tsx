@@ -51,7 +51,10 @@ export const Settings = (props: Props) => {
   }
 
   const set = (key: keyof Config, value: unknown) => {
-    store.config[key] = value
+    store.config = {
+      ...store.config,
+      [key]: value
+    }
     submitSettings()
   }
 
@@ -61,7 +64,7 @@ export const Settings = (props: Props) => {
         <Text>Orbolay Port</Text>
         <TextBox
           value={store.config.port ?? defaultConfig.port}
-          onInput={(v) => set('port', v)}
+          onInput={(v) => set('port', parseInt(v) || defaultConfig.port)}
           type="number"
         />
       </div>
