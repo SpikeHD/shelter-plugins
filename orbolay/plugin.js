@@ -11,7 +11,7 @@ const defaultConfig = {
 	userId: "",
 	messageAlignment: {
 		top: true,
-		left: true
+		left: false
 	},
 	userAlignment: {
 		top: true,
