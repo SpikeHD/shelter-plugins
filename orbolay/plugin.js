@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dcontainer": "sqVpyW_dcontainer",
-	"dsarrow": "sqVpyW_dsarrow",
 	"ddown": "sqVpyW_ddown",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"dcontainer": "sqVpyW_dcontainer",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -217,13 +217,13 @@ const cornerAlignmentToAlignment = (alignment) => {
 	return (alignment.top ? "top" : "bottom") + (alignment.left ? "left" : "right");
 };
 let injectedCss = false;
-const Settings = (ws$1) => {
+const Settings = (props) => {
 	if (!injectedCss) {
 		injectedCss = true;
 		injectCss(css);
 	}
 	const submitSettings = () => {
-		ws$1?.send?.(JSON.stringify({
+		props?.ws?.send?.(JSON.stringify({
 			cmd: "REGISTER_CONFIG",
 			...store$1.config
 		}));
