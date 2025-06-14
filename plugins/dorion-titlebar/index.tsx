@@ -93,7 +93,7 @@ const handleFullscreenExit = (dispatch) => {
 
 export const onLoad = async () => {
   // @ts-expect-error shut up
-  if (window?.__DORION_CONFIG__?.use_native_titlebar) return
+  if (window?.__DORION_CONFIG__?.use_native_titlebar || await window?.__TAURI__?.core.invoke('get_platform') === 'macos') return
 
   if (!injectedCss) {
     injectCss(css)
