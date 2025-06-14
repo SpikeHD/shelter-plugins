@@ -15,6 +15,10 @@ const {
   }
 } = shelter
 
+interface Props {
+  ws?: WebSocket
+}
+
 type Alignment = 'topleft' | 'topright' | 'bottomleft' | 'bottomright'
 
 const alignmentToCornerAlignment = (alignment: Alignment) => {
@@ -33,14 +37,14 @@ const cornerAlignmentToAlignment = (alignment: CornerAlignment) => {
 
 let injectedCss = false
 
-export const Settings = (ws) => {
+export const Settings = (props: Props) => {
   if (!injectedCss) {
     injectedCss = true
     injectCss(css)
   }
 
   const submitSettings = () => {
-    ws?.send?.(JSON.stringify({
+    props?.ws?.send?.(JSON.stringify({
       cmd: 'REGISTER_CONFIG',
       ...store.config
     }))
