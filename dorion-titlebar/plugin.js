@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
+	"dorion_topbar": "e6P4KG_dorion_topbar",
+	"maximized": "e6P4KG_maximized",
+	"topright": "e6P4KG_topright",
 	"svgunmax": "e6P4KG_svgunmax",
+	"svgmax": "e6P4KG_svgmax",
 	"topclose": "e6P4KG_topclose",
 	"topmin": "e6P4KG_topmin",
-	"dorion_topbar": "e6P4KG_dorion_topbar",
-	"svgmax": "e6P4KG_svgmax",
-	"maximized": "e6P4KG_maximized",
-	"topmax": "e6P4KG_topmax",
-	"topright": "e6P4KG_topright"
+	"topmax": "e6P4KG_topmax"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-tertiary);
@@ -116,7 +116,7 @@ function toggleMaximize() {
 	window.__TAURI__.core.invoke("toggle_maximize");
 }
 async function setMaximizeIcon() {
-	if (await window.__TAURI__.webviewWindow.getCurrentWebviewWindow().isMaximized()) {
+	if (await window?.__TAURI__?.webviewWindow.getCurrentWebviewWindow().isMaximized()) {
 		const topmax = document.querySelector(`.${classes.topmax}`);
 		topmax.classList.add(classes.maximized);
 	} else {
@@ -283,6 +283,16 @@ const Controls = (props) => {
 var import_web = __toESM(require_web(), 1);
 const { ui: { injectCss }, util: { sleep }, flux: { dispatcher } } = shelter;
 let injectedCss = false;
+const waitForDefinition = async (fn, maxTries = 10) => {
+	let tries = 0;
+	while (true) {
+		const result = await fn();
+		if (result) return result;
+		await new Promise((r) => setTimeout(r, 500));
+		tries++;
+		if (tries > maxTries) return false;
+	}
+};
 const injectControls = async () => {
 	if (document.querySelector(`.${classes.dorion_topbar}`)) document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach((e) => e.remove());
 	if (document.querySelector(`.${classes.topright}`)) document.querySelectorAll(`.${classes.topright}`)?.forEach((e) => e.remove());
@@ -301,15 +311,11 @@ const injectControls = async () => {
 	if (discordBar) discordBar.setAttribute("data-tauri-drag-region", "true");
 	return true;
 };
-const handleFullTitlebar = () => {
+const handleFullTitlebar = async () => {
 	const titlebar = (0, import_web.createComponent)(Titlebar, {});
+	await waitForDefinition(() => document.querySelector("div[class^=notAppAsidePanel_]"));
 	const innerMount = document.querySelector("div[class^=notAppAsidePanel_]");
-	try {
-		innerMount.prepend(titlebar);
-	} catch (e) {
-		console.error(e);
-		document.body.prepend(titlebar);
-	}
+	innerMount?.prepend(titlebar);
 };
 const handleControlsOnly = () => {
 	document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach((e) => e.remove());
