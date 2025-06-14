@@ -16,8 +16,33 @@ interface ChannelState {
   selfMute: boolean;
 }
 
+interface CornerAlignment {
+  top: boolean;
+  left: boolean;
+}
+
+interface Config {
+  port: number;
+  userId: string;
+  messageAlignment: CornerAlignment;
+  userAlignment: CornerAlignment;
+}
+
 let ws: WebSocket
 let currentChannel = null
+
+const defaultConfig: Config = {
+  port: 6888,
+  userId: '',
+  messageAlignment: {
+    top: true,
+    left: true,
+  },
+  userAlignment: {
+    top: true,
+    left: true,
+  },
+}
 
 const waitForPopulate = async (fn) => {
   // Runt the function until it returns a truthy value
@@ -138,7 +163,7 @@ const handleMessageNotification = (dispatch) => {
 }
 
 export const onLoad = () => {
-  ws = new WebSocket('ws://' + (store.connAddr || '127.0.0.1:6888'))
+  ws = new WebSocket('ws://' + (store?.config?.connAddr || '127.0.0.1:6888'))
   ws.onerror = (e) => {
     throw e
   }
@@ -151,6 +176,18 @@ export const onLoad = () => {
       content: 'Connected to Orbolay server',
       duration: 3000,
     })
+
+    // Send over the config
+    const config = {
+      ...defaultConfig,
+      ...store?.config,
+    }
+
+    // Ensure we track the current user id
+    // @ts-expect-error this exists
+    config.userId = UserStore?.getCurrentUser()?.id
+
+    ws.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', ...config }))
 
     // Send initial channel joined (if the user is in a channel)
     // @ts-expect-error this exists
