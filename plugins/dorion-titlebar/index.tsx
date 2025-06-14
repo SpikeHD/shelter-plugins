@@ -16,6 +16,22 @@ const {
 
 let injectedCss = false
 
+const waitForDefinition = async (fn, maxTries = 10) => {
+  // Run the function until it returns a truthy value
+  let tries = 0
+  while (true) {
+    const result = await fn()
+    if (result) return result
+
+    await new Promise((r) => setTimeout(r, 500))
+
+    tries++
+    if (tries > maxTries) {
+      return false
+    }
+  }
+}
+
 const injectControls = async () => {
   if (document.querySelector(`.${classes.dorion_topbar}`)) {
     // Remove before recreating
@@ -54,18 +70,14 @@ const injectControls = async () => {
   return true
 }
 
-const handleFullTitlebar = () => {
+const handleFullTitlebar = async () => {
   // Append the whole titlebar
   const titlebar = <Titlebar />
-  const innerMount = document.querySelector('div[class^=notAppAsidePanel_]')
 
-  try {
-    innerMount.prepend(titlebar)
-  } catch(e) {
-    console.error(e)
-    // who knows whats going on, just put it in the <body>
-    document.body.prepend(titlebar)
-  }
+  await waitForDefinition(() => document.querySelector('div[class^=notAppAsidePanel_]'))
+
+  const innerMount = document.querySelector('div[class^=notAppAsidePanel_]')
+  innerMount?.prepend(titlebar)
 }
 
 const handleControlsOnly = () => {
