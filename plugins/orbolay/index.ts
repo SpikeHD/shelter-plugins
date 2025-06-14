@@ -1,3 +1,5 @@
+import { Settings } from './settings.jsx'
+
 const {
   flux: {
     dispatcher,
@@ -16,22 +18,24 @@ interface ChannelState {
   selfMute: boolean;
 }
 
-interface CornerAlignment {
+export interface CornerAlignment {
   top: boolean;
   left: boolean;
 }
 
-interface Config {
+export interface Config {
   port: number;
   userId: string;
   messageAlignment: CornerAlignment;
   userAlignment: CornerAlignment;
+  voiceSemitransparent: boolean;
+  messagesSemitransparent: boolean;
 }
 
 let ws: WebSocket
 let currentChannel = null
 
-const defaultConfig: Config = {
+export const defaultConfig: Config = {
   port: 6888,
   userId: '',
   messageAlignment: {
@@ -42,6 +46,8 @@ const defaultConfig: Config = {
     top: true,
     left: true,
   },
+  voiceSemitransparent: true,
+  messagesSemitransparent: false,
 }
 
 const waitForPopulate = async (fn) => {
@@ -184,6 +190,8 @@ const incoming = (payload) => {
 }
 
 export const onLoad = () => {
+  if (!store.config) store.config = defaultConfig
+
   ws = new WebSocket('ws://' + (store?.config?.connAddr || '127.0.0.1:6888'))
   ws.onerror = (e) => {
     throw e
@@ -207,6 +215,7 @@ export const onLoad = () => {
     // Ensure we track the current user id
     // @ts-expect-error this exists
     config.userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id)
+    store.config.userId = config.userId
 
     ws.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', ...config }))
 
@@ -264,3 +273,5 @@ export const onUnload = () => {
   // Close websocket
   if (ws?.close) ws.close()
 }
+
+export const settings = Settings
