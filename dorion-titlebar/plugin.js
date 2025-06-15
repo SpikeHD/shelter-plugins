@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"svgunmax": "e6P4KG_svgunmax",
-	"dorion_topbar": "e6P4KG_dorion_topbar",
-	"maximized": "e6P4KG_maximized",
-	"svgmax": "e6P4KG_svgmax",
-	"topclose": "e6P4KG_topclose",
-	"topright": "e6P4KG_topright",
+	"topmax": "e6P4KG_topmax",
 	"topmin": "e6P4KG_topmin",
-	"topmax": "e6P4KG_topmax"
+	"dorion_topbar": "e6P4KG_dorion_topbar",
+	"svgmax": "e6P4KG_svgmax",
+	"maximized": "e6P4KG_maximized",
+	"topright": "e6P4KG_topright",
+	"svgunmax": "e6P4KG_svgunmax",
+	"topclose": "e6P4KG_topclose"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-tertiary);
@@ -118,10 +118,10 @@ function toggleMaximize() {
 async function setMaximizeIcon() {
 	if (await window?.__TAURI__?.webviewWindow.getCurrentWebviewWindow().isMaximized()) {
 		const topmax = document.querySelector(`.${classes.topmax}`);
-		topmax.classList.add(classes.maximized);
+		topmax?.classList?.add(classes.maximized);
 	} else {
 		const topmax = document.querySelector(`.${classes.topmax}`);
-		topmax.classList.remove(classes.maximized);
+		topmax?.classList?.remove(classes.maximized);
 	}
 }
 
