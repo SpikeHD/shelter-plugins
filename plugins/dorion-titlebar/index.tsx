@@ -16,7 +16,7 @@ const {
 
 let injectedCss = false
 
-const waitForDefinition = async (fn, maxTries = 10) => {
+const waitForDefinition = async (fn, maxTries = 20) => {
   // Run the function until it returns a truthy value
   let tries = 0
   while (true) {
