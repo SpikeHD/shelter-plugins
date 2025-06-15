@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"topmax": "e6P4KG_topmax",
-	"topmin": "e6P4KG_topmin",
 	"dorion_topbar": "e6P4KG_dorion_topbar",
-	"svgmax": "e6P4KG_svgmax",
-	"maximized": "e6P4KG_maximized",
-	"topright": "e6P4KG_topright",
 	"svgunmax": "e6P4KG_svgunmax",
-	"topclose": "e6P4KG_topclose"
+	"topright": "e6P4KG_topright",
+	"topclose": "e6P4KG_topclose",
+	"topmax": "e6P4KG_topmax",
+	"maximized": "e6P4KG_maximized",
+	"svgmax": "e6P4KG_svgmax",
+	"topmin": "e6P4KG_topmin"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-tertiary);
@@ -283,7 +283,7 @@ const Controls = (props) => {
 var import_web = __toESM(require_web(), 1);
 const { ui: { injectCss }, util: { sleep }, flux: { dispatcher } } = shelter;
 let injectedCss = false;
-const waitForDefinition = async (fn, maxTries = 10) => {
+const waitForDefinition = async (fn, maxTries = 20) => {
 	let tries = 0;
 	while (true) {
 		const result = await fn();
