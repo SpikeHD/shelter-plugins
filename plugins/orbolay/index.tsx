@@ -33,6 +33,7 @@ export interface Config {
 }
 
 let ws: WebSocket
+let retryInterval = null
 let currentChannel = null
 
 export const defaultConfig: Config = {
@@ -189,15 +190,32 @@ const incoming = (payload) => {
   }
 }
 
-export const onLoad = () => {
-  if (!store.config) store.config = defaultConfig
+const createWebsocket = () => {
+  console.log('Attempting to connect to Orbolay server')
+
+  // First ensure old connection is closed
+  if (ws?.close) ws.close()
+
+  setTimeout(() => {
+    // If the ws is not ready, kill it and log
+    if (ws?.readyState !== WebSocket.OPEN) {
+      console.log('Orbolay websocket is not ready')
+      ws = null
+      return
+    }
+  }, 1000)
 
   ws = new WebSocket('ws://' + (store?.config?.connAddr || '127.0.0.1:6888'))
   ws.onerror = (e) => {
+    ws?.close?.()
+    ws = null
     throw e
   }
   ws.onmessage = (e) => {
     incoming(e.data)
+  }
+  ws.onclose = () => {
+    ws = null
   }
   ws.onopen = async () => {
     showToast({
@@ -259,6 +277,19 @@ export const onLoad = () => {
 
     currentChannel = userVoiceState.channelId
   }
+}
+
+export const onLoad = () => {
+  if (!store.config) store.config = defaultConfig
+
+  // Start an auto-reconnect loop
+  retryInterval = setInterval(() => {
+    if (ws?.readyState === WebSocket.OPEN) return
+
+    createWebsocket()
+  }, 5000)
+
+  createWebsocket()
 
   dispatcher.subscribe('SPEAKING', handleSpeaking)
   dispatcher.subscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
@@ -269,6 +300,8 @@ export const onUnload = () => {
   dispatcher.unsubscribe('SPEAKING', handleSpeaking)
   dispatcher.unsubscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
   dispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
+
+  clearInterval(retryInterval)
 
   // Close websocket
   if (ws?.close) ws.close()
