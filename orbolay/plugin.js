@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dcontainer": "sqVpyW_dcontainer",
-	"ddown": "sqVpyW_ddown",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow"
+	"dsarrow": "sqVpyW_dsarrow",
+	"dcontainer": "sqVpyW_dcontainer",
+	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -340,6 +340,7 @@ const Settings = (props) => {
 var import_web = __toESM(require_web(), 1);
 const { flux: { dispatcher, stores: { GuildMemberStore, UserStore, VoiceStateStore } }, plugin: { store }, ui: { showToast } } = shelter;
 let ws;
+let retryInterval = null;
 let currentChannel = null;
 const defaultConfig = {
 	port: 6888,
@@ -444,14 +445,27 @@ const incoming = (payload) => {
 			break;
 	}
 };
-const onLoad = () => {
-	if (!store.config) store.config = defaultConfig;
+const createWebsocket = () => {
+	console.log("Attempting to connect to Orbolay server");
+	if (ws?.close) ws.close();
+	setTimeout(() => {
+		if (ws?.readyState !== WebSocket.OPEN) {
+			console.log("Orbolay websocket is not ready");
+			ws = null;
+			return;
+		}
+	}, 1e3);
 	ws = new WebSocket("ws://" + (store?.config?.connAddr || "127.0.0.1:6888"));
 	ws.onerror = (e) => {
+		ws?.close?.();
+		ws = null;
 		throw e;
 	};
 	ws.onmessage = (e) => {
 		incoming(e.data);
+	};
+	ws.onclose = () => {
+		ws = null;
 	};
 	ws.onopen = async () => {
 		showToast({
@@ -490,6 +504,14 @@ const onLoad = () => {
 		}));
 		currentChannel = userVoiceState.channelId;
 	};
+};
+const onLoad = () => {
+	if (!store.config) store.config = defaultConfig;
+	retryInterval = setInterval(() => {
+		if (ws?.readyState === WebSocket.OPEN) return;
+		createWebsocket();
+	}, 5e3);
+	createWebsocket();
 	dispatcher.subscribe("SPEAKING", handleSpeaking);
 	dispatcher.subscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
 	dispatcher.subscribe("RPC_NOTIFICATION_CREATE", handleMessageNotification);
@@ -498,6 +520,7 @@ const onUnload = () => {
 	dispatcher.unsubscribe("SPEAKING", handleSpeaking);
 	dispatcher.unsubscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
 	dispatcher.unsubscribe("RPC_NOTIFICATION_CREATE", handleMessageNotification);
+	clearInterval(retryInterval);
 	if (ws?.close) ws.close();
 };
 const settings = () => (0, import_web.createComponent)(Settings, { ws });
