@@ -3,7 +3,7 @@ import { Settings } from './settings.jsx'
 const {
   flux: {
     dispatcher,
-    stores: { GuildMemberStore, UserStore, VoiceStateStore },
+    stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore },
   },
   plugin: { store },
   ui: { showToast },
@@ -197,7 +197,23 @@ const incoming = (payload) => {
       channelId: null
     })
     break
-  }
+  case 'STOP_STREAM': {
+    // @ts-expect-error i will explode typescript with my mind
+    const userId = UserStore?.getCurrentUser()?.id
+    // @ts-expect-error i will explode typescript with my mind
+    const voiceState = VoiceStateStore?.getVoiceStateForUser(userId)
+    // @ts-expect-error i will explode typescript with my mind
+    const channel = ChannelStore?.getChannel?.(voiceState?.channelId)
+
+    // If any of these are null, we can't do anything
+    if (!userId || !voiceState || !channel) return
+
+    dispatcher.dispatch({
+      type: 'STREAM_STOP',
+      streamKey: `guild:${channel.guild_id}:${voiceState.channelId}:${userId}`,
+      appContext: 'APP'
+    })
+  }}
 }
 
 const createWebsocket = () => {
