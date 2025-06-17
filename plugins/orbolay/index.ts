@@ -189,7 +189,7 @@ export const onLoad = () => {
     throw e
   }
   ws.onmessage = (e) => {
-    incoming(e.data)
+    incoming(JSON.parse(e.data))
   }
   ws.onopen = async () => {
     showToast({
