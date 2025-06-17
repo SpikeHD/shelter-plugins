@@ -16,6 +16,22 @@ const {
 
 let injectedCss = false
 
+const waitForDefinition = async (fn, maxTries = 20) => {
+  // Run the function until it returns a truthy value
+  let tries = 0
+  while (true) {
+    const result = await fn()
+    if (result) return result
+
+    await new Promise((r) => setTimeout(r, 500))
+
+    tries++
+    if (tries > maxTries) {
+      return false
+    }
+  }
+}
+
 const injectControls = async () => {
   if (document.querySelector(`.${classes.dorion_topbar}`)) {
     // Remove before recreating
@@ -54,11 +70,14 @@ const injectControls = async () => {
   return true
 }
 
-const handleFullTitlebar = () => {
+const handleFullTitlebar = async () => {
   // Append the whole titlebar
   const titlebar = <Titlebar />
+
+  await waitForDefinition(() => document.querySelector('div[class^=notAppAsidePanel_]'))
+
   const innerMount = document.querySelector('div[class^=notAppAsidePanel_]')
-  innerMount.prepend(titlebar)
+  innerMount?.prepend(titlebar)
 }
 
 const handleControlsOnly = () => {
@@ -74,7 +93,7 @@ const handleFullscreenExit = (dispatch) => {
 
 export const onLoad = async () => {
   // @ts-expect-error shut up
-  if (window?.__DORION_CONFIG__?.use_native_titlebar) return
+  if (window?.__DORION_CONFIG__?.use_native_titlebar || await window?.__TAURI__?.core.invoke('get_platform') === 'macos') return
 
   if (!injectedCss) {
     injectCss(css)
