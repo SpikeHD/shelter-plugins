@@ -187,6 +187,12 @@ const incoming = (payload) => {
       context: 'default'
     })
     break
+  case 'DISCONNECT':
+    dispatcher.dispatch({
+      type: 'VOICE_CHANNEL_SELECT',
+      channelId: null
+    })
+    break
   }
 }
 
