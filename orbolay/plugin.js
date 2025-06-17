@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dcontainer": "sqVpyW_dcontainer",
-	"ddown": "sqVpyW_ddown",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"ddown": "sqVpyW_ddown",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -389,6 +389,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 						channelId: s.channelId,
 						deaf: s.deaf || s.selfDeaf,
 						mute: s.mute || s.selfMute,
+						streaming: s.selfStream,
 						speaking: false
 					}))
 				}));
@@ -409,6 +410,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 				channelId: state.channelId ? state.channelId : "0",
 				deaf: state.deaf || state.selfDeaf,
 				mute: state.mute || state.selfMute,
+				streaming: state.selfStream,
 				speaking: false
 			}
 		}));
@@ -505,6 +507,7 @@ const createWebsocket = () => {
 				channelId: s.channelId,
 				deaf: s.deaf || s.selfDeaf,
 				mute: s.mute || s.selfMute,
+				streaming: s.selfStream,
 				speaking: false
 			}))
 		}));
