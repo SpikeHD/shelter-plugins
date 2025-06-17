@@ -256,8 +256,8 @@ const after = getPatchFunc_default("a");
 const classes = {
 	"selected": "Ch7osa_selected",
 	"radioButtonInner": "Ch7osa_radioButtonInner",
-	"radio": "Ch7osa_radio",
-	"radioButton": "Ch7osa_radioButton"
+	"radioButton": "Ch7osa_radioButton",
+	"radio": "Ch7osa_radio"
 };
 const css = `.Ch7osa_radio {
   color: var(--interactive-normal);
