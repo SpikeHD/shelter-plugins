@@ -14,8 +14,10 @@ interface ChannelState {
   channelId: string;
   deaf: boolean;
   mute: boolean;
+  stream: boolean;
   selfDeaf: boolean;
   selfMute: boolean;
+  selfStream: boolean;
 }
 
 export interface CornerAlignment {
@@ -103,6 +105,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
               channelId: s.channelId,
               deaf: s.deaf || s.selfDeaf,
               mute: s.mute || s.selfMute,
+              streaming: s.selfStream,
               // TODO maybe an easy way to get this?
               speaking: false,
             })),
@@ -146,6 +149,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
             channelId: state.channelId ? state.channelId : '0',
             deaf: state.deaf || state.selfDeaf,
             mute: state.mute || state.selfMute,
+            streaming: state.selfStream,
             // TODO maybe an easy way to get this?
             speaking: false,
           },
@@ -275,6 +279,7 @@ const createWebsocket = () => {
           channelId: s.channelId,
           deaf: s.deaf || s.selfDeaf,
           mute: s.mute || s.selfMute,
+          streaming: s.selfStream,
           // TODO maybe an easy way to get this?
           speaking: false,
         })),
