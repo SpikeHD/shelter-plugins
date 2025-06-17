@@ -36,9 +36,9 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow",
+	"dcontainer": "sqVpyW_dcontainer",
 	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer"
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -338,7 +338,7 @@ const Settings = (props) => {
 //#endregion
 //#region plugins/orbolay/index.tsx
 var import_web = __toESM(require_web(), 1);
-const { flux: { dispatcher, stores: { GuildMemberStore, UserStore, VoiceStateStore } }, plugin: { store }, ui: { showToast } } = shelter;
+const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore } }, plugin: { store }, ui: { showToast } } = shelter;
 let ws;
 let retryInterval = null;
 let currentChannel = null;
@@ -451,6 +451,17 @@ const incoming = (payload) => {
 				channelId: null
 			});
 			break;
+		case "STOP_STREAM": {
+			const userId = UserStore?.getCurrentUser()?.id;
+			const voiceState = VoiceStateStore?.getVoiceStateForUser(userId);
+			const channel = ChannelStore?.getChannel?.(voiceState?.channelId);
+			if (!userId || !voiceState || !channel) return;
+			dispatcher.dispatch({
+				type: "STREAM_STOP",
+				streamKey: `guild:${channel.guild_id}:${voiceState.channelId}:${userId}`,
+				appContext: "APP"
+			});
+		}
 	}
 };
 const createWebsocket = () => {

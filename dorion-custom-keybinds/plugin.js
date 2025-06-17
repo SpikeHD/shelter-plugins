@@ -124,14 +124,14 @@ const apiWindow = backendObj.apiWindow;
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindSection": "Zz-Z3G_keybindSection",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
 	"header": "Zz-Z3G_header",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"keybindSection": "Zz-Z3G_keybindSection",
 	"keybindsButton": "Zz-Z3G_keybindsButton",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner"
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -200,12 +200,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
-	"keybindRoot": "QTLdLq_keybindRoot",
-	"actionSection": "QTLdLq_actionSection",
-	"keybindArea": "QTLdLq_keybindArea",
-	"removeButton": "QTLdLq_removeButton",
+	"keybindSection": "QTLdLq_keybindSection",
 	"note": "QTLdLq_note",
-	"keybindSection": "QTLdLq_keybindSection"
+	"keybindArea": "QTLdLq_keybindArea",
+	"actionSection": "QTLdLq_actionSection",
+	"keybindRoot": "QTLdLq_keybindRoot",
+	"removeButton": "QTLdLq_removeButton"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -262,10 +262,10 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dsarrow": "sqVpyW_dsarrow",
-	"ddown": "sqVpyW_ddown",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dcontainer": "sqVpyW_dcontainer",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"dsarrow": "sqVpyW_dsarrow",
+	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -404,11 +404,11 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"pulse": "N-HDcq_pulse",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
-	"recording": "N-HDcq_recording",
 	"keybindContainer": "N-HDcq_keybindContainer",
 	"keybindButton": "N-HDcq_keybindButton",
+	"recording": "N-HDcq_recording",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"pulse": "N-HDcq_pulse",
 	"keybindInput": "N-HDcq_keybindInput"
 };
 const css = `.N-HDcq_keybindContainer {

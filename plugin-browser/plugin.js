@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/plugin-browser/components/Plugins.scss
 const classes$1 = {
+	"pluginList": "L-W60G_pluginList",
+	"loading": "L-W60G_loading",
 	"subtitle": "L-W60G_subtitle",
 	"repoHeader": "L-W60G_repoHeader",
-	"loading": "L-W60G_loading",
-	"pluginList": "L-W60G_pluginList",
 	"split": "L-W60G_split"
 };
 const css$1 = `.L-W60G_subtitle {
