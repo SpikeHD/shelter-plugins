@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"ddown": "sqVpyW_ddown",
 	"dsarrow": "sqVpyW_dsarrow",
 	"dcontainer": "sqVpyW_dcontainer",
-	"ddown": "sqVpyW_ddown"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -462,7 +462,7 @@ const createWebsocket = () => {
 		throw e;
 	};
 	ws.onmessage = (e) => {
-		incoming(e.data);
+		incoming(JSON.parse(e.data));
 	};
 	ws.onclose = () => {
 		ws = null;
