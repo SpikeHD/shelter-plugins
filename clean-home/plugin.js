@@ -36,6 +36,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#region plugins/clean-home/index.tsx
 var import_web = __toESM(require_web(), 1);
 var import_web$1 = __toESM(require_web(), 1);
+var import_web$2 = __toESM(require_web(), 1);
+var import_web$3 = __toESM(require_web(), 1);
+var import_web$4 = __toESM(require_web(), 1);
+const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2);
 const { plugin: { store }, ui: { SwitchItem } } = shelter;
 const components = [
 	{
@@ -72,6 +76,22 @@ const components = [
 		rules: `
       div[class*="questPromoContent"] { display: none; }
     `
+	},
+	{
+		name: "Server boost bar",
+		description: "Removes the server boost barn",
+		rules: `
+      div[data-list-item-id^="channels___boosts-"] { display: none; }
+    `
+	},
+	{
+		name: "Gift button",
+		description: "Removes the gift button in the chat bar",
+		rules: `
+      div[class*="sansAttachButton"] > div[class^="buttons__"] > button {
+        display: none;
+      }
+    `
 	}
 ];
 const style = document.createElement("style");
@@ -82,8 +102,11 @@ const setStyle = () => {
 };
 setStyle();
 const settings = () => {
-	return components.map((c) => {
-		return (0, import_web.createComponent)(SwitchItem, {
+	return (() => {
+		const _el$ = (0, import_web$3.getNextElement)(_tmpl$);
+		_el$.style.setProperty("height", "50vh");
+		_el$.style.setProperty("overflow", "auto");
+		(0, import_web$4.insert)(_el$, () => components.map((c) => (0, import_web$1.createComponent)(SwitchItem, {
 			get value() {
 				return !!store[c.name];
 			},
@@ -95,10 +118,11 @@ const settings = () => {
 				return c.description;
 			},
 			get children() {
-				return ["Remove ", (0, import_web$1.memo)(() => c.name)];
+				return ["Remove ", (0, import_web$2.memo)(() => c.name)];
 			}
-		});
-	});
+		})));
+		return _el$;
+	})();
 };
 const onUnload = () => {
 	styleElm.remove();
