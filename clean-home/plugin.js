@@ -101,6 +101,17 @@ const setStyle = () => {
 	styleElm.textContent = components.filter((c) => store[c.name]).map((c) => c.rules).join(" ");
 };
 setStyle();
+if (Object.keys(store).length === 0) {
+	components.forEach((c) => {
+		store[c.name] = true;
+	});
+	setStyle();
+	shelter.ui.showToast({
+		title: "Declutter",
+		content: "All component removals have been enabled. Click the settings icon to disable them selectively.",
+		duration: 3e3
+	});
+}
 const settings = () => {
 	return (() => {
 		const _el$ = (0, import_web$3.getNextElement)(_tmpl$);
