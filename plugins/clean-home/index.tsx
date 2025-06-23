@@ -42,6 +42,22 @@ const components = [
     rules: `
       div[class*="questPromoContent"] { display: none; }
     `
+  },
+  {
+    name: 'Server boost bar',
+    description: 'Removes the server boost barn',
+    rules: `
+      div[data-list-item-id^="channels___boosts-"] { display: none; }
+    `
+  },
+  {
+    name: 'Gift button',
+    description: 'Removes the gift button in the chat bar',
+    rules: `
+      div[class*="sansAttachButton"] > div[class^="buttons__"] > button {
+        display: none;
+      }
+    `
   }
 ]
 
@@ -61,20 +77,23 @@ const setStyle = () => {
 setStyle()
 
 export const settings = () => {
-  return components.map(c => {
-    return (
-      <SwitchItem
-        value={!!store[c.name]}
-        onChange={value => {
-          store[c.name] = value
-          setStyle()
-        }}
-        note={c.description}
-      >
+  return (
+    <div style={{ height: '50vh', overflow: 'auto' }}>
+      {components.map(c => (
+        <SwitchItem
+          value={!!store[c.name]}
+          onChange={value => {
+            store[c.name] = value
+            setStyle()
+          }}
+          note={c.description}
+        >
         Remove {c.name}
-      </SwitchItem>
-    )
-  })
+        </SwitchItem>
+      ))}
+    </div>
+  )
+
 }
 
 export const onUnload = () => {
