@@ -1,5 +1,5 @@
 import { Dropdown } from '../../components/Dropdown.jsx'
-import { Config, CornerAlignment, defaultConfig } from './index.js'
+import { Config, defaultConfig } from './index.js'
 import { classes, css } from './settings.scss'
 
 const {
@@ -17,22 +17,6 @@ const {
 
 interface Props {
   ws?: WebSocket
-}
-
-type Alignment = 'topleft' | 'topright' | 'bottomleft' | 'bottomright'
-
-const alignmentToCornerAlignment = (alignment: Alignment) => {
-  const top = alignment.indexOf('top') !== -1
-  const left = alignment.indexOf('left') !== -1
-
-  return {
-    top,
-    left
-  }
-}
-
-const cornerAlignmentToAlignment = (alignment: CornerAlignment) => {
-  return (alignment.top ? 'top' : 'bottom') + (alignment.left ? 'left' : 'right')
 }
 
 let injectedCss = false
@@ -73,9 +57,9 @@ export const Settings = (props: Props) => {
       <div class={classes.container}>
         <Text>Messages Alignment</Text>
         <Dropdown
-          value={cornerAlignmentToAlignment(store.config.messageAlignment)}
-          selected={cornerAlignmentToAlignment(store.config.messageAlignment)}
-          onChange={(e) => set('messageAlignment', alignmentToCornerAlignment(e.target.value))}
+          value={store.config.messagesAlignment}
+          selected={store.config.messagesAlignment}
+          onChange={(e) => set('messageAlignment', e.target.value)}
           options={[
             { label: 'Top Left', value: 'topleft' },
             { label: 'Top Right', value: 'topright' },
@@ -89,9 +73,9 @@ export const Settings = (props: Props) => {
       <div class={classes.container}>
         <Text>User Alignment</Text>
         <Dropdown
-          value={cornerAlignmentToAlignment(store.config.userAlignment)}
-          selected={cornerAlignmentToAlignment(store.config.userAlignment)}
-          onChange={(e) => set('userAlignment', alignmentToCornerAlignment(e.target.value))}
+          value={store.config.userAlignment}
+          selected={store.config.userAlignment}
+          onChange={(e) => set('userAlignment', e.target.value)}
           options={[
             { label: 'Top Left', value: 'topleft' },
             { label: 'Top Right', value: 'topright' },

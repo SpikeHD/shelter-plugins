@@ -20,16 +20,11 @@ interface ChannelState {
   selfStream: boolean;
 }
 
-export interface CornerAlignment {
-  top: boolean;
-  left: boolean;
-}
-
 export interface Config {
   port: number;
   userId: string;
-  messageAlignment: CornerAlignment;
-  userAlignment: CornerAlignment;
+  messageAlignment: string;
+  userAlignment: string;
   voiceSemitransparent: boolean;
   messagesSemitransparent: boolean;
 }
@@ -41,14 +36,8 @@ let currentChannel = null
 export const defaultConfig: Config = {
   port: 6888,
   userId: '',
-  messageAlignment: {
-    top: true,
-    left: false,
-  },
-  userAlignment: {
-    top: true,
-    left: true,
-  },
+  messageAlignment: 'topright',
+  userAlignment: 'topleft',
   voiceSemitransparent: true,
   messagesSemitransparent: false,
 }
