@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddown": "sqVpyW_ddown",
-	"dsarrow": "sqVpyW_dsarrow",
+	"dcontainer": "sqVpyW_dcontainer",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dcontainer": "sqVpyW_dcontainer"
+	"ddown": "sqVpyW_ddown",
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -205,17 +205,6 @@ var import_web$6 = __toESM(require_web(), 1);
 var import_web$7 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web$1.template)(`<div><!#><!/><!#><!/></div>`, 6);
 const { ui: { injectCss, SwitchItem, Text, TextBox, Divider }, plugin: { store: store$1 } } = shelter;
-const alignmentToCornerAlignment = (alignment) => {
-	const top = alignment.indexOf("top") !== -1;
-	const left = alignment.indexOf("left") !== -1;
-	return {
-		top,
-		left
-	};
-};
-const cornerAlignmentToAlignment = (alignment) => {
-	return (alignment.top ? "top" : "bottom") + (alignment.left ? "left" : "right");
-};
 let injectedCss = false;
 const Settings = (props) => {
 	if (!injectedCss) {
@@ -255,12 +244,12 @@ const Settings = (props) => {
 			(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(Text, { children: "Messages Alignment" }), _el$8, _co$3);
 			(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(Dropdown, {
 				get value() {
-					return cornerAlignmentToAlignment(store$1.config.messageAlignment);
+					return store$1.config.messagesAlignment;
 				},
 				get selected() {
-					return cornerAlignmentToAlignment(store$1.config.messageAlignment);
+					return store$1.config.messagesAlignment;
 				},
-				onChange: (e) => set("messageAlignment", alignmentToCornerAlignment(e.target.value)),
+				onChange: (e) => set("messageAlignment", e.target.value),
 				options: [
 					{
 						label: "Top Left",
@@ -289,12 +278,12 @@ const Settings = (props) => {
 			(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(Text, { children: "User Alignment" }), _el$11, _co$5);
 			(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(Dropdown, {
 				get value() {
-					return cornerAlignmentToAlignment(store$1.config.userAlignment);
+					return store$1.config.userAlignment;
 				},
 				get selected() {
-					return cornerAlignmentToAlignment(store$1.config.userAlignment);
+					return store$1.config.userAlignment;
 				},
-				onChange: (e) => set("userAlignment", alignmentToCornerAlignment(e.target.value)),
+				onChange: (e) => set("userAlignment", e.target.value),
 				options: [
 					{
 						label: "Top Left",
@@ -345,14 +334,8 @@ let currentChannel = null;
 const defaultConfig = {
 	port: 6888,
 	userId: "",
-	messageAlignment: {
-		top: true,
-		left: false
-	},
-	userAlignment: {
-		top: true,
-		left: true
-	},
+	messageAlignment: "topright",
+	userAlignment: "topleft",
 	voiceSemitransparent: true,
 	messagesSemitransparent: false
 };

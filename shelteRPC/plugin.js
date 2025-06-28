@@ -269,16 +269,16 @@ const timestampToRelative = (timestamp) => {
 //#endregion
 //#region plugins/shelteRPC/components/GameCard.scss
 const classes$3 = {
-	"trash": "zS7Qtq_trash",
-	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
-	"gameCard": "zS7Qtq_gameCard",
-	"gameCardIcons": "zS7Qtq_gameCardIcons",
-	"cardPlaying": "zS7Qtq_cardPlaying",
+	"gameCardName": "zS7Qtq_gameCardName",
 	"gameCardInfo": "zS7Qtq_gameCardInfo",
+	"trash": "zS7Qtq_trash",
+	"gameCardIcons": "zS7Qtq_gameCardIcons",
+	"gameCard": "zS7Qtq_gameCard",
 	"cardNone": "zS7Qtq_cardNone",
 	"cardPlayed": "zS7Qtq_cardPlayed",
-	"gameCardName": "zS7Qtq_gameCardName",
-	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp"
+	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
+	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
+	"cardPlaying": "zS7Qtq_cardPlaying"
 };
 const css$3 = `.zS7Qtq_gameCard {
   width: 100%;
@@ -464,8 +464,8 @@ var GameCard_default = (props) => {
 const classes$2 = {
 	"ddown": "sqVpyW_ddown",
 	"dcontainer": "sqVpyW_dcontainer",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow"
+	"dsarrow": "sqVpyW_dsarrow",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -605,9 +605,9 @@ const Dropdown = (props) => {
 //#region plugins/shelteRPC/components/RegisteredGames.scss
 const classes$1 = {
 	"description": "yVnOSq_description",
-	"modalhead": "yVnOSq_modalhead",
-	"tophead": "yVnOSq_tophead",
 	"shead": "yVnOSq_shead",
+	"tophead": "yVnOSq_tophead",
+	"modalhead": "yVnOSq_modalhead",
 	"addIt": "yVnOSq_addIt"
 };
 const css$1 = `.yVnOSq_description {
