@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dcontainer": "sqVpyW_dcontainer",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"ddown": "sqVpyW_ddown",
-	"dsarrow": "sqVpyW_dsarrow"
+	"dsarrow": "sqVpyW_dsarrow",
+	"dcontainer": "sqVpyW_dcontainer",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -339,6 +339,11 @@ const defaultConfig = {
 	voiceSemitransparent: true,
 	messagesSemitransparent: false
 };
+if (typeof store.config.messageAlignment !== "string" || typeof store.config.userAlignment !== "string") {
+	console.log("Restoring settings after API change");
+	store.config.messageAlignment = defaultConfig.messageAlignment;
+	store.config.userAlignment = defaultConfig.userAlignment;
+}
 const waitForPopulate = async (fn) => {
 	while (true) {
 		const result = await fn();
