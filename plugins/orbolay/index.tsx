@@ -42,6 +42,13 @@ export const defaultConfig: Config = {
   messagesSemitransparent: false,
 }
 
+// TODO remove
+if (typeof store.config.messageAlignment !== 'string' || typeof store.config.userAlignment !== 'string') {
+  console.log('Restoring settings after API change')
+  store.config.messageAlignment = defaultConfig.messageAlignment
+  store.config.userAlignment = defaultConfig.userAlignment
+}
+
 const waitForPopulate = async (fn) => {
   // Runt the function until it returns a truthy value
   while (true) {
