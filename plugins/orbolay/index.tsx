@@ -59,7 +59,7 @@ const waitForPopulate = async (fn) => {
 }
 
 const handleSpeaking = (dispatch) => {
-  ws.send(
+  ws?.send?.(
     JSON.stringify({
       cmd: 'VOICE_STATE_UPDATE',
       state: {
@@ -86,7 +86,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
           VoiceStateStore?.getVoiceStatesForChannel(state.channelId)
         )
 
-        ws.send(
+        ws?.send(
           JSON.stringify({
             cmd: 'CHANNEL_JOINED',
             states: Object.values(voiceStates).map((s: ChannelState) => ({
@@ -112,7 +112,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 
         break
       } else if (!state.channelId) {
-        ws.send(
+        ws?.send(
           JSON.stringify({
             cmd: 'CHANNEL_LEFT',
           })
@@ -130,7 +130,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
       (state.channelId === currentChannel ||
         state.oldChannelId === currentChannel)
     ) {
-      ws.send(
+      ws?.send(
         JSON.stringify({
           cmd: 'VOICE_STATE_UPDATE',
           state: {
@@ -156,7 +156,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 }
 
 const handleMessageNotification = (dispatch) => {
-  ws.send(
+  ws?.send(
     JSON.stringify({
       cmd: 'MESSAGE_NOTIFICATION',
       message: {
@@ -216,7 +216,7 @@ const createWebsocket = () => {
   console.log('Attempting to connect to Orbolay server')
 
   // First ensure old connection is closed
-  if (ws?.close) ws.close()
+  if (ws?.close) ws?.close()
 
   setTimeout(() => {
     // If the ws is not ready, kill it and log
@@ -257,7 +257,7 @@ const createWebsocket = () => {
     config.userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id)
     store.config.userId = config.userId
 
-    ws.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', ...config }))
+    ws?.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', ...config }))
 
     // Send initial channel joined (if the user is in a channel)
     // @ts-expect-error this exists
@@ -276,7 +276,7 @@ const createWebsocket = () => {
     )
     const guildId = userVoiceState.guildId
 
-    ws.send(
+    ws?.send(
       JSON.stringify({
         cmd: 'CHANNEL_JOINED',
         states: Object.values(channelState).map((s: ChannelState) => ({
@@ -327,7 +327,7 @@ export const onUnload = () => {
   clearInterval(retryInterval)
 
   // Close websocket
-  if (ws?.close) ws.close()
+  if (ws?.close) ws?.close()
 }
 
 export const settings = () => <Settings ws={ws} />
