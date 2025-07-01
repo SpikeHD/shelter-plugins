@@ -128,10 +128,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-settings/pages/PerformancePage.tsx.scss
 const classes$12 = {
-	"stext": "ZN8ggW_stext",
-	"shead": "ZN8ggW_shead",
 	"tophead": "ZN8ggW_tophead",
-	"pbuttons": "ZN8ggW_pbuttons"
+	"pbuttons": "ZN8ggW_pbuttons",
+	"stext": "ZN8ggW_stext",
+	"shead": "ZN8ggW_shead"
 };
 const css$12 = `.ZN8ggW_tophead {
   margin-bottom: 16px;
@@ -163,10 +163,10 @@ const css$12 = `.ZN8ggW_tophead {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$11 = {
+	"ddown": "sqVpyW_ddown",
 	"dcontainer": "sqVpyW_dcontainer",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddown": "sqVpyW_ddown"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$11 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -698,11 +698,11 @@ function PerformancePage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx.scss
 const classes$8 = {
-	"sbutton": "_2nPZKq_sbutton",
-	"tophead": "_2nPZKq_tophead",
-	"shead": "_2nPZKq_shead",
 	"pbuttons": "_2nPZKq_pbuttons",
-	"splitbutton": "_2nPZKq_splitbutton"
+	"sbutton": "_2nPZKq_sbutton",
+	"shead": "_2nPZKq_shead",
+	"splitbutton": "_2nPZKq_splitbutton",
+	"tophead": "_2nPZKq_tophead"
 };
 const css$8 = `._2nPZKq_tophead {
   margin-bottom: 16px;
@@ -868,9 +868,9 @@ function ProfilesPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/SettingsPage.tsx.scss
 const classes$7 = {
-	"left16": "akYvUa_left16",
+	"tophead": "akYvUa_tophead",
 	"shead": "akYvUa_shead",
-	"tophead": "akYvUa_tophead"
+	"left16": "akYvUa_left16"
 };
 const css$7 = `.akYvUa_tophead {
   margin-bottom: 16px;
@@ -890,10 +890,10 @@ const css$7 = `.akYvUa_tophead {
 //#endregion
 //#region components/Radio.tsx.scss
 const classes$6 = {
-	"radioButtonInner": "Ch7osa_radioButtonInner",
 	"selected": "Ch7osa_selected",
+	"radioButton": "Ch7osa_radioButton",
 	"radio": "Ch7osa_radio",
-	"radioButton": "Ch7osa_radioButton"
+	"radioButtonInner": "Ch7osa_radioButtonInner"
 };
 const css$6 = `.Ch7osa_radio {
   color: var(--interactive-normal);
@@ -1301,15 +1301,15 @@ function SettingsPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx.scss
 const classes$5 = {
-	"refresh": "yPVoxW_refresh",
-	"card": "yPVoxW_card",
-	"title": "yPVoxW_title",
 	"badges": "yPVoxW_badges",
-	"spinner": "yPVoxW_spinner",
-	"contents": "yPVoxW_contents",
-	"spin": "yPVoxW_spin",
+	"card": "yPVoxW_card",
 	"tophead": "yPVoxW_tophead",
-	"badge": "yPVoxW_badge"
+	"contents": "yPVoxW_contents",
+	"spinner": "yPVoxW_spinner",
+	"badge": "yPVoxW_badge",
+	"title": "yPVoxW_title",
+	"refresh": "yPVoxW_refresh",
+	"spin": "yPVoxW_spin"
 };
 const css$5 = `.yPVoxW_tophead {
   margin-bottom: 16px;
@@ -3489,17 +3489,17 @@ function ChangelogPage() {
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx.scss
 const classes$4 = {
-	"pbuttons": "XZjauW_pbuttons",
 	"top32": "XZjauW_top32",
-	"top16": "XZjauW_top16",
-	"plistrow": "XZjauW_plistrow",
-	"plist": "XZjauW_plist",
-	"mcell": "XZjauW_mcell",
-	"pheader": "XZjauW_pheader",
+	"pbuttons": "XZjauW_pbuttons",
 	"shead": "XZjauW_shead",
 	"scell": "XZjauW_scell",
+	"mcell": "XZjauW_mcell",
+	"plistrow": "XZjauW_plistrow",
+	"plist": "XZjauW_plist",
+	"left16": "XZjauW_left16",
 	"sbutton": "XZjauW_sbutton",
-	"left16": "XZjauW_left16"
+	"top16": "XZjauW_top16",
+	"pheader": "XZjauW_pheader"
 };
 const css$4 = `.XZjauW_shead {
   margin-top: 16px;
@@ -3716,16 +3716,16 @@ else newClientMods.push(modName);
 //#endregion
 //#region plugins/dorion-settings/components/PluginList.tsx.scss
 const classes$3 = {
-	"plist": "V6is4W_plist",
-	"mcell": "V6is4W_mcell",
-	"left16": "V6is4W_left16",
-	"pbuttons": "V6is4W_pbuttons",
-	"pheader": "V6is4W_pheader",
+	"plistrow": "V6is4W_plistrow",
 	"sbutton": "V6is4W_sbutton",
-	"scell": "V6is4W_scell",
-	"top16": "V6is4W_top16",
+	"left16": "V6is4W_left16",
+	"mcell": "V6is4W_mcell",
 	"top32": "V6is4W_top32",
-	"plistrow": "V6is4W_plistrow"
+	"scell": "V6is4W_scell",
+	"plist": "V6is4W_plist",
+	"pheader": "V6is4W_pheader",
+	"pbuttons": "V6is4W_pbuttons",
+	"top16": "V6is4W_top16"
 };
 const css$3 = `.V6is4W_plist {
   flex-direction: column;
@@ -3943,11 +3943,11 @@ function PluginList(props) {
 //#region plugins/dorion-settings/pages/PluginsPage.tsx.scss
 const classes$2 = {
 	"shead": "X31w8G_shead",
-	"openButton": "X31w8G_openButton",
-	"left16": "X31w8G_left16",
 	"card": "X31w8G_card",
+	"pbuttons": "X31w8G_pbuttons",
+	"left16": "X31w8G_left16",
 	"tophead": "X31w8G_tophead",
-	"pbuttons": "X31w8G_pbuttons"
+	"openButton": "X31w8G_openButton"
 };
 const css$2 = `.X31w8G_tophead {
   margin-bottom: 16px;
@@ -4082,8 +4082,8 @@ function PluginsPage() {
 //#region plugins/dorion-settings/pages/ThemesPage.tsx.scss
 const classes$1 = {
 	"shead": "oAx4fa_shead",
-	"pbuttons": "oAx4fa_pbuttons",
-	"tophead": "oAx4fa_tophead"
+	"tophead": "oAx4fa_tophead",
+	"pbuttons": "oAx4fa_pbuttons"
 };
 const css$1 = `.oAx4fa_tophead {
   margin-bottom: 16px;
@@ -4347,8 +4347,8 @@ function ThemesPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/RPC.tsx.scss
 const classes = {
-	"bot16": "ycw7DW_bot16",
 	"shead": "ycw7DW_shead",
+	"bot16": "ycw7DW_bot16",
 	"customNote": "ycw7DW_customNote",
 	"customInstallBtn": "ycw7DW_customInstallBtn"
 };

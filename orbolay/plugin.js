@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddown": "sqVpyW_ddown",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dsarrow": "sqVpyW_dsarrow",
 	"dcontainer": "sqVpyW_dcontainer",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -352,7 +352,7 @@ const waitForPopulate = async (fn) => {
 	}
 };
 const handleSpeaking = (dispatch) => {
-	ws.send(JSON.stringify({
+	ws?.send?.(JSON.stringify({
 		cmd: "VOICE_STATE_UPDATE",
 		state: {
 			userId: dispatch.userId,
@@ -368,7 +368,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 		if (ourState) {
 			if (state.channelId && state.channelId !== currentChannel) {
 				const voiceStates = await waitForPopulate(() => VoiceStateStore?.getVoiceStatesForChannel(state.channelId));
-				ws.send(JSON.stringify({
+				ws?.send(JSON.stringify({
 					cmd: "CHANNEL_JOINED",
 					states: Object.values(voiceStates).map((s) => ({
 						userId: s.userId,
@@ -384,12 +384,12 @@ const handleVoiceStateUpdates = async (dispatch) => {
 				currentChannel = state.channelId;
 				break;
 			} else if (!state.channelId) {
-				ws.send(JSON.stringify({ cmd: "CHANNEL_LEFT" }));
+				ws?.send(JSON.stringify({ cmd: "CHANNEL_LEFT" }));
 				currentChannel = null;
 				break;
 			}
 		}
-		if (!!currentChannel && (state.channelId === currentChannel || state.oldChannelId === currentChannel)) ws.send(JSON.stringify({
+		if (!!currentChannel && (state.channelId === currentChannel || state.oldChannelId === currentChannel)) ws?.send(JSON.stringify({
 			cmd: "VOICE_STATE_UPDATE",
 			state: {
 				userId: state.userId,
@@ -405,7 +405,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 	}
 };
 const handleMessageNotification = (dispatch) => {
-	ws.send(JSON.stringify({
+	ws?.send(JSON.stringify({
 		cmd: "MESSAGE_NOTIFICATION",
 		message: {
 			title: dispatch.title,
@@ -454,7 +454,7 @@ const incoming = (payload) => {
 };
 const createWebsocket = () => {
 	console.log("Attempting to connect to Orbolay server");
-	if (ws?.close) ws.close();
+	if (ws?.close) ws?.close();
 	setTimeout(() => {
 		if (ws?.readyState !== WebSocket.OPEN) {
 			console.log("Orbolay websocket is not ready");
@@ -486,7 +486,7 @@ const createWebsocket = () => {
 		};
 		config.userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id);
 		store.config.userId = config.userId;
-		ws.send(JSON.stringify({
+		ws?.send(JSON.stringify({
 			cmd: "REGISTER_CONFIG",
 			...config
 		}));
@@ -497,7 +497,7 @@ const createWebsocket = () => {
 		if (!userVoiceState) return;
 		const channelState = VoiceStateStore.getVoiceStatesForChannel(userVoiceState.channelId);
 		const guildId = userVoiceState.guildId;
-		ws.send(JSON.stringify({
+		ws?.send(JSON.stringify({
 			cmd: "CHANNEL_JOINED",
 			states: Object.values(channelState).map((s) => ({
 				userId: s.userId,
@@ -529,7 +529,7 @@ const onUnload = () => {
 	dispatcher.unsubscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
 	dispatcher.unsubscribe("RPC_NOTIFICATION_CREATE", handleMessageNotification);
 	clearInterval(retryInterval);
-	if (ws?.close) ws.close();
+	if (ws?.close) ws?.close();
 };
 const settings = () => (0, import_web.createComponent)(Settings, { ws });
 
