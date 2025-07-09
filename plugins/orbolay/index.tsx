@@ -3,7 +3,7 @@ import { Settings } from './settings.jsx'
 const {
   flux: {
     dispatcher,
-    stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore },
+    stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore, StreamerModeStore },
   },
   plugin: { store },
   ui: { showToast },
@@ -43,10 +43,10 @@ export const defaultConfig: Config = {
 }
 
 // TODO remove
-if (typeof store.config.messageAlignment !== 'string' || typeof store.config.userAlignment !== 'string') {
+if (typeof store?.config?.messageAlignment !== 'string' || typeof store?.config?.userAlignment !== 'string') {
   console.log('Restoring settings after API change')
-  store.config.messageAlignment = defaultConfig.messageAlignment
-  store.config.userAlignment = defaultConfig.userAlignment
+  store.messageAlignment = defaultConfig.messageAlignment
+  store.userAlignment = defaultConfig.userAlignment
 }
 
 const waitForPopulate = async (fn) => {
@@ -169,6 +169,10 @@ const handleMessageNotification = (dispatch) => {
   )
 }
 
+const handleStreamerModeUpdate = (dispatch) => {
+  ws?.send(JSON.stringify({ cmd: 'STREAMER_MODE', enabled: dispatch.value }))
+}
+
 const incoming = (payload) => {
   switch (payload.cmd) {
   case 'TOGGLE_MUTE':
@@ -255,7 +259,7 @@ const createWebsocket = () => {
     // Ensure we track the current user id
     // @ts-expect-error this exists
     config.userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id)
-    store.config.userId = config.userId
+    store.userId = config.userId
 
     ws?.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', ...config }))
 
@@ -298,12 +302,16 @@ const createWebsocket = () => {
       })
     )
 
+    // Also tell the overlay whether we are in streamer mode
+    // @ts-expect-error this exists
+    ws?.send(JSON.stringify({ cmd: 'STREAMER_MODE', enabled: StreamerModeStore?.enabled }))
+
     currentChannel = userVoiceState.channelId
   }
 }
 
 export const onLoad = () => {
-  if (!store.config) store.config = defaultConfig
+  if (!store) Object.keys(defaultConfig).forEach((key) => store[key] = defaultConfig[key])
 
   // Start an auto-reconnect loop
   retryInterval = setInterval(() => {
@@ -317,12 +325,14 @@ export const onLoad = () => {
   dispatcher.subscribe('SPEAKING', handleSpeaking)
   dispatcher.subscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
   dispatcher.subscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
+  dispatcher.subscribe('STREAMER_MODE_UPDATE', handleStreamerModeUpdate)
 }
 
 export const onUnload = () => {
   dispatcher.unsubscribe('SPEAKING', handleSpeaking)
   dispatcher.unsubscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
   dispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
+  dispatcher.unsubscribe('STREAMER_MODE_UPDATE', handleStreamerModeUpdate)
 
   clearInterval(retryInterval)
 

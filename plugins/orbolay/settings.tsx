@@ -30,15 +30,12 @@ export const Settings = (props: Props) => {
   const submitSettings = () => {
     props?.ws?.send?.(JSON.stringify({
       cmd: 'REGISTER_CONFIG',
-      ...store.config
+      ...store
     }))
   }
 
   const set = (key: keyof Config, value: unknown) => {
-    store.config = {
-      ...store.config,
-      [key]: value
-    }
+    store[key] = value
     submitSettings()
   }
 
@@ -47,7 +44,7 @@ export const Settings = (props: Props) => {
       <div class={classes.container}>
         <Text>Orbolay Port</Text>
         <TextBox
-          value={store.config.port ?? defaultConfig.port}
+          value={store.port ?? defaultConfig.port}
           onInput={(v) => set('port', parseInt(v) || defaultConfig.port)}
           type="number"
         />
@@ -57,8 +54,8 @@ export const Settings = (props: Props) => {
       <div class={classes.container}>
         <Text>Messages Alignment</Text>
         <Dropdown
-          value={store.config.messagesAlignment}
-          selected={store.config.messagesAlignment}
+          value={store.messagesAlignment}
+          selected={store.messagesAlignment}
           onChange={(e) => set('messageAlignment', e.target.value)}
           options={[
             { label: 'Top Left', value: 'topleft' },
@@ -73,8 +70,8 @@ export const Settings = (props: Props) => {
       <div class={classes.container}>
         <Text>User Alignment</Text>
         <Dropdown
-          value={store.config.userAlignment}
-          selected={store.config.userAlignment}
+          value={store.userAlignment}
+          selected={store.userAlignment}
           onChange={(e) => set('userAlignment', e.target.value)}
           options={[
             { label: 'Top Left', value: 'topleft' },
@@ -87,14 +84,14 @@ export const Settings = (props: Props) => {
       <Divider mb={12} />
 
       <SwitchItem
-        value={store.config.voiceSemitransparent}
+        value={store.voiceSemitransparent}
         onChange={(v) => set('voiceSemitransparent', v)}
       >
         VC Members Semi-Transparent
       </SwitchItem>
 
       <SwitchItem
-        value={store.config.messagesSemitransparent}
+        value={store.messagesSemitransparent}
         onChange={(v) => set('messagesSemitransparent', v)}
       >
         Message Notifications Semi-Transparent
