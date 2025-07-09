@@ -4,7 +4,7 @@
   font-size: 16px;
   width: 100%;
   border-radius: 4px;
-  color: var(--text-normal);
+  color: var(--text-default);
   background-color: var(--input-background);
   border: none;
   transition: border-color 0.2s ease-in-out;
@@ -18,7 +18,7 @@
 .ddown option {
   /* TODO --input-background doesn't seem to work here (at least on Windows). Oh well. */
   background: #333;
-  color: var(--text-normal);
+  color: var(--text-default);
 }
 
 .dcontainer {

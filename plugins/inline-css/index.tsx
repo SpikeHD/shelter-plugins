@@ -13,7 +13,7 @@ let styleElm: HTMLStyleElement | null = null
 
 // Silly little styling tweak for the code editor
 const style = document.createElement('style')
-style.textContent = '.code-highlighted { color: var(--text-normal) }'
+style.textContent = '.code-highlighted { color: var(--text-default) }'
 styleElm = document.body.appendChild(style)
 
 // Also create another style element to contain the CSS

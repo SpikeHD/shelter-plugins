@@ -9,7 +9,7 @@
 
   border-radius: 5px;
 
-  color: var(--text-normal);
+  color: var(--text-default);
 
   margin: 12px 0;
 
@@ -77,7 +77,7 @@
     cursor: pointer;
 
     &:hover {
-      color: var(--text-normal);
+      color: var(--text-default);
     }
 
     & svg {

@@ -237,7 +237,7 @@ export function PerformancePage() {
         Enable Dorion Plugins
       </SwitchItem>
 
-      <Header class={classes.shead}>Blur</Header>
+      <Header class={classes.shead}>Blur & Transparency</Header>
 
       <Dropdown
         value={state().blur}
@@ -254,7 +254,6 @@ export function PerformancePage() {
           label: capitalize(b),
           value: b,
         }))}
-        disabled={platform() === 'linux'}
       />
 
       <div class={classes.stext}>
