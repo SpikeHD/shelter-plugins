@@ -35,15 +35,15 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dcontainer": "sqVpyW_dcontainer",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddown": "sqVpyW_ddown"
+	"ddown": "sqVpyW_ddown",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
-  color: var(--text-normal);
+  color: var(--text-default);
   background-color: var(--input-background);
   appearance: none;
   cursor: pointer;
@@ -55,7 +55,7 @@ const css$1 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_ddown option {
-  color: var(--text-normal);
+  color: var(--text-default);
   background: #333;
 }
 

@@ -124,15 +124,15 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
+	"dsarrow": "sqVpyW_dsarrow",
 	"dcontainer": "sqVpyW_dcontainer",
 	"ddown": "sqVpyW_ddown",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
-  color: var(--text-normal);
+  color: var(--text-default);
   background-color: var(--input-background);
   appearance: none;
   cursor: pointer;
@@ -144,7 +144,7 @@ const css$2 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_ddown option {
-  color: var(--text-normal);
+  color: var(--text-default);
   background: #333;
 }
 
@@ -302,12 +302,12 @@ const themeListEndpoint = async (options) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
-	"name": "JQAzuG_name",
-	"contents": "JQAzuG_contents",
 	"themeCard": "JQAzuG_themeCard",
+	"contents": "JQAzuG_contents",
+	"info": "JQAzuG_info",
 	"thumbnail": "JQAzuG_thumbnail",
 	"installButton": "JQAzuG_installButton",
-	"info": "JQAzuG_info"
+	"name": "JQAzuG_name"
 };
 const css$1 = `.JQAzuG_themeCard {
   text-align: left;
@@ -429,14 +429,14 @@ function ThemeCard(props) {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
+	"bot16": "gqruia_bot16",
 	"shead": "gqruia_shead",
-	"themeCards": "gqruia_themeCards",
-	"pageBtn": "gqruia_pageBtn",
-	"pages": "gqruia_pages",
 	"pagesOuter": "gqruia_pagesOuter",
-	"searchBox": "gqruia_searchBox",
 	"sortSection": "gqruia_sortSection",
-	"bot16": "gqruia_bot16"
+	"searchBox": "gqruia_searchBox",
+	"pages": "gqruia_pages",
+	"themeCards": "gqruia_themeCards",
+	"pageBtn": "gqruia_pageBtn"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
@@ -485,7 +485,7 @@ const css = `.gqruia_shead {
 }
 
 .gqruia_pageBtn {
-  color: var(--text-normal);
+  color: var(--text-default);
   cursor: pointer;
 }
 
@@ -497,7 +497,7 @@ input[type="number"] {
   text-align: center;
   background-color: var(--input-background);
   width: 50px;
-  color: var(--text-normal);
+  color: var(--text-default);
   -moz-appearance: textfield;
   appearance: textfield;
   border: none;

@@ -269,21 +269,21 @@ const timestampToRelative = (timestamp) => {
 //#endregion
 //#region plugins/shelteRPC/components/GameCard.scss
 const classes$3 = {
-	"gameCard": "zS7Qtq_gameCard",
-	"trash": "zS7Qtq_trash",
-	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
+	"cardNone": "zS7Qtq_cardNone",
 	"cardPlayed": "zS7Qtq_cardPlayed",
 	"gameCardIcons": "zS7Qtq_gameCardIcons",
-	"gameCardName": "zS7Qtq_gameCardName",
 	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
+	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
 	"gameCardInfo": "zS7Qtq_gameCardInfo",
 	"cardPlaying": "zS7Qtq_cardPlaying",
-	"cardNone": "zS7Qtq_cardNone"
+	"gameCardName": "zS7Qtq_gameCardName",
+	"trash": "zS7Qtq_trash",
+	"gameCard": "zS7Qtq_gameCard"
 };
 const css$3 = `.zS7Qtq_gameCard {
   width: 100%;
   height: 72px;
-  color: var(--text-normal);
+  color: var(--text-default);
   border-radius: 5px;
   flex-direction: row;
   justify-content: space-between;
@@ -350,7 +350,7 @@ const css$3 = `.zS7Qtq_gameCard {
 }
 
 .zS7Qtq_gameCardIcons span:hover {
-  color: var(--text-normal);
+  color: var(--text-default);
 }
 
 .zS7Qtq_gameCardIcons span svg {
@@ -462,15 +462,15 @@ var GameCard_default = (props) => {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
-	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow"
+	"dsarrow": "sqVpyW_dsarrow",
+	"ddown": "sqVpyW_ddown",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
-  color: var(--text-normal);
+  color: var(--text-default);
   background-color: var(--input-background);
   appearance: none;
   cursor: pointer;
@@ -482,7 +482,7 @@ const css$2 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_ddown option {
-  color: var(--text-normal);
+  color: var(--text-default);
   background: #333;
 }
 
@@ -604,10 +604,10 @@ const Dropdown = (props) => {
 //#endregion
 //#region plugins/shelteRPC/components/RegisteredGames.scss
 const classes$1 = {
-	"addIt": "yVnOSq_addIt",
-	"shead": "yVnOSq_shead",
-	"description": "yVnOSq_description",
 	"modalhead": "yVnOSq_modalhead",
+	"addIt": "yVnOSq_addIt",
+	"description": "yVnOSq_description",
+	"shead": "yVnOSq_shead",
 	"tophead": "yVnOSq_tophead"
 };
 const css$1 = `.yVnOSq_description {
