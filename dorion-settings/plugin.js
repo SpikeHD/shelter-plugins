@@ -128,10 +128,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-settings/pages/PerformancePage.tsx.scss
 const classes$12 = {
-	"tophead": "ZN8ggW_tophead",
-	"pbuttons": "ZN8ggW_pbuttons",
 	"stext": "ZN8ggW_stext",
-	"shead": "ZN8ggW_shead"
+	"tophead": "ZN8ggW_tophead",
+	"shead": "ZN8ggW_shead",
+	"pbuttons": "ZN8ggW_pbuttons"
 };
 const css$12 = `.ZN8ggW_tophead {
   margin-bottom: 16px;
@@ -163,9 +163,9 @@ const css$12 = `.ZN8ggW_tophead {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$11 = {
-	"ddown": "sqVpyW_ddown",
 	"dcontainer": "sqVpyW_dcontainer",
 	"dsarrow": "sqVpyW_dsarrow",
+	"ddown": "sqVpyW_ddown",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$11 = `.sqVpyW_ddown {
@@ -698,11 +698,11 @@ function PerformancePage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx.scss
 const classes$8 = {
-	"pbuttons": "_2nPZKq_pbuttons",
 	"sbutton": "_2nPZKq_sbutton",
 	"shead": "_2nPZKq_shead",
+	"tophead": "_2nPZKq_tophead",
 	"splitbutton": "_2nPZKq_splitbutton",
-	"tophead": "_2nPZKq_tophead"
+	"pbuttons": "_2nPZKq_pbuttons"
 };
 const css$8 = `._2nPZKq_tophead {
   margin-bottom: 16px;
@@ -868,9 +868,9 @@ function ProfilesPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/SettingsPage.tsx.scss
 const classes$7 = {
-	"tophead": "akYvUa_tophead",
+	"left16": "akYvUa_left16",
 	"shead": "akYvUa_shead",
-	"left16": "akYvUa_left16"
+	"tophead": "akYvUa_tophead"
 };
 const css$7 = `.akYvUa_tophead {
   margin-bottom: 16px;
@@ -890,9 +890,9 @@ const css$7 = `.akYvUa_tophead {
 //#endregion
 //#region components/Radio.tsx.scss
 const classes$6 = {
-	"selected": "Ch7osa_selected",
-	"radioButton": "Ch7osa_radioButton",
 	"radio": "Ch7osa_radio",
+	"radioButton": "Ch7osa_radioButton",
+	"selected": "Ch7osa_selected",
 	"radioButtonInner": "Ch7osa_radioButtonInner"
 };
 const css$6 = `.Ch7osa_radio {
@@ -1301,15 +1301,15 @@ function SettingsPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx.scss
 const classes$5 = {
-	"badges": "yPVoxW_badges",
-	"card": "yPVoxW_card",
-	"tophead": "yPVoxW_tophead",
 	"contents": "yPVoxW_contents",
+	"spin": "yPVoxW_spin",
 	"spinner": "yPVoxW_spinner",
+	"tophead": "yPVoxW_tophead",
 	"badge": "yPVoxW_badge",
 	"title": "yPVoxW_title",
 	"refresh": "yPVoxW_refresh",
-	"spin": "yPVoxW_spin"
+	"card": "yPVoxW_card",
+	"badges": "yPVoxW_badges"
 };
 const css$5 = `.yPVoxW_tophead {
   margin-bottom: 16px;
@@ -3489,17 +3489,17 @@ function ChangelogPage() {
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx.scss
 const classes$4 = {
+	"plist": "XZjauW_plist",
+	"sbutton": "XZjauW_sbutton",
+	"left16": "XZjauW_left16",
 	"top32": "XZjauW_top32",
-	"pbuttons": "XZjauW_pbuttons",
 	"shead": "XZjauW_shead",
+	"pheader": "XZjauW_pheader",
 	"scell": "XZjauW_scell",
 	"mcell": "XZjauW_mcell",
-	"plistrow": "XZjauW_plistrow",
-	"plist": "XZjauW_plist",
-	"left16": "XZjauW_left16",
-	"sbutton": "XZjauW_sbutton",
 	"top16": "XZjauW_top16",
-	"pheader": "XZjauW_pheader"
+	"plistrow": "XZjauW_plistrow",
+	"pbuttons": "XZjauW_pbuttons"
 };
 const css$4 = `.XZjauW_shead {
   margin-top: 16px;
@@ -3717,15 +3717,15 @@ else newClientMods.push(modName);
 //#region plugins/dorion-settings/components/PluginList.tsx.scss
 const classes$3 = {
 	"plistrow": "V6is4W_plistrow",
-	"sbutton": "V6is4W_sbutton",
-	"left16": "V6is4W_left16",
-	"mcell": "V6is4W_mcell",
-	"top32": "V6is4W_top32",
-	"scell": "V6is4W_scell",
-	"plist": "V6is4W_plist",
 	"pheader": "V6is4W_pheader",
 	"pbuttons": "V6is4W_pbuttons",
-	"top16": "V6is4W_top16"
+	"top32": "V6is4W_top32",
+	"top16": "V6is4W_top16",
+	"scell": "V6is4W_scell",
+	"mcell": "V6is4W_mcell",
+	"left16": "V6is4W_left16",
+	"plist": "V6is4W_plist",
+	"sbutton": "V6is4W_sbutton"
 };
 const css$3 = `.V6is4W_plist {
   flex-direction: column;
@@ -3942,12 +3942,12 @@ function PluginList(props) {
 //#endregion
 //#region plugins/dorion-settings/pages/PluginsPage.tsx.scss
 const classes$2 = {
-	"shead": "X31w8G_shead",
-	"card": "X31w8G_card",
+	"openButton": "X31w8G_openButton",
 	"pbuttons": "X31w8G_pbuttons",
-	"left16": "X31w8G_left16",
+	"shead": "X31w8G_shead",
 	"tophead": "X31w8G_tophead",
-	"openButton": "X31w8G_openButton"
+	"card": "X31w8G_card",
+	"left16": "X31w8G_left16"
 };
 const css$2 = `.X31w8G_tophead {
   margin-bottom: 16px;

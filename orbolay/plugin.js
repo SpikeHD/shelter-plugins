@@ -36,8 +36,8 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow",
 	"dcontainer": "sqVpyW_dcontainer",
+	"dsarrow": "sqVpyW_dsarrow",
 	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
@@ -214,14 +214,11 @@ const Settings = (props) => {
 	const submitSettings = () => {
 		props?.ws?.send?.(JSON.stringify({
 			cmd: "REGISTER_CONFIG",
-			...store$1.config
+			...store$1
 		}));
 	};
 	const set = (key, value) => {
-		store$1.config = {
-			...store$1.config,
-			[key]: value
-		};
+		store$1[key] = value;
 		submitSettings();
 	};
 	return [
@@ -230,7 +227,7 @@ const Settings = (props) => {
 			(0, import_web$6.insert)(_el$, (0, import_web$7.createComponent)(Text, { children: "Orbolay Port" }), _el$3, _co$);
 			(0, import_web$6.insert)(_el$, (0, import_web$7.createComponent)(TextBox, {
 				get value() {
-					return store$1.config.port ?? defaultConfig.port;
+					return store$1.port ?? defaultConfig.port;
 				},
 				onInput: (v) => set("port", parseInt(v) || defaultConfig.port),
 				type: "number"
@@ -244,10 +241,10 @@ const Settings = (props) => {
 			(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(Text, { children: "Messages Alignment" }), _el$8, _co$3);
 			(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(Dropdown, {
 				get value() {
-					return store$1.config.messagesAlignment;
+					return store$1.messagesAlignment;
 				},
 				get selected() {
-					return store$1.config.messagesAlignment;
+					return store$1.messagesAlignment;
 				},
 				onChange: (e) => set("messageAlignment", e.target.value),
 				options: [
@@ -278,10 +275,10 @@ const Settings = (props) => {
 			(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(Text, { children: "User Alignment" }), _el$11, _co$5);
 			(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(Dropdown, {
 				get value() {
-					return store$1.config.userAlignment;
+					return store$1.userAlignment;
 				},
 				get selected() {
-					return store$1.config.userAlignment;
+					return store$1.userAlignment;
 				},
 				onChange: (e) => set("userAlignment", e.target.value),
 				options: [
@@ -309,14 +306,14 @@ const Settings = (props) => {
 		(0, import_web$7.createComponent)(Divider, { mb: 12 }),
 		(0, import_web$7.createComponent)(SwitchItem, {
 			get value() {
-				return store$1.config.voiceSemitransparent;
+				return store$1.voiceSemitransparent;
 			},
 			onChange: (v) => set("voiceSemitransparent", v),
 			children: "VC Members Semi-Transparent"
 		}),
 		(0, import_web$7.createComponent)(SwitchItem, {
 			get value() {
-				return store$1.config.messagesSemitransparent;
+				return store$1.messagesSemitransparent;
 			},
 			onChange: (v) => set("messagesSemitransparent", v),
 			children: "Message Notifications Semi-Transparent"
@@ -327,7 +324,7 @@ const Settings = (props) => {
 //#endregion
 //#region plugins/orbolay/index.tsx
 var import_web = __toESM(require_web(), 1);
-const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore } }, plugin: { store }, ui: { showToast } } = shelter;
+const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore, StreamerModeStore } }, plugin: { store }, ui: { showToast } } = shelter;
 let ws;
 let retryInterval = null;
 let currentChannel = null;
@@ -339,10 +336,10 @@ const defaultConfig = {
 	voiceSemitransparent: true,
 	messagesSemitransparent: false
 };
-if (typeof store.config.messageAlignment !== "string" || typeof store.config.userAlignment !== "string") {
+if (typeof store?.config?.messageAlignment !== "string" || typeof store?.config?.userAlignment !== "string") {
 	console.log("Restoring settings after API change");
-	store.config.messageAlignment = defaultConfig.messageAlignment;
-	store.config.userAlignment = defaultConfig.userAlignment;
+	store.messageAlignment = defaultConfig.messageAlignment;
+	store.userAlignment = defaultConfig.userAlignment;
 }
 const waitForPopulate = async (fn) => {
 	while (true) {
@@ -415,6 +412,12 @@ const handleMessageNotification = (dispatch) => {
 		}
 	}));
 };
+const handleStreamerModeUpdate = (dispatch) => {
+	ws?.send(JSON.stringify({
+		cmd: "STREAMER_MODE",
+		enabled: dispatch.value
+	}));
+};
 const incoming = (payload) => {
 	switch (payload.cmd) {
 		case "TOGGLE_MUTE":
@@ -485,7 +488,7 @@ const createWebsocket = () => {
 			...store?.config
 		};
 		config.userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id);
-		store.config.userId = config.userId;
+		store.userId = config.userId;
 		ws?.send(JSON.stringify({
 			cmd: "REGISTER_CONFIG",
 			...config
@@ -510,11 +513,15 @@ const createWebsocket = () => {
 				speaking: false
 			}))
 		}));
+		ws?.send(JSON.stringify({
+			cmd: "STREAMER_MODE",
+			enabled: StreamerModeStore?.enabled
+		}));
 		currentChannel = userVoiceState.channelId;
 	};
 };
 const onLoad = () => {
-	if (!store.config) store.config = defaultConfig;
+	if (!store) Object.keys(defaultConfig).forEach((key) => store[key] = defaultConfig[key]);
 	retryInterval = setInterval(() => {
 		if (ws?.readyState === WebSocket.OPEN) return;
 		createWebsocket();
@@ -523,11 +530,13 @@ const onLoad = () => {
 	dispatcher.subscribe("SPEAKING", handleSpeaking);
 	dispatcher.subscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
 	dispatcher.subscribe("RPC_NOTIFICATION_CREATE", handleMessageNotification);
+	dispatcher.subscribe("STREAMER_MODE_UPDATE", handleStreamerModeUpdate);
 };
 const onUnload = () => {
 	dispatcher.unsubscribe("SPEAKING", handleSpeaking);
 	dispatcher.unsubscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
 	dispatcher.unsubscribe("RPC_NOTIFICATION_CREATE", handleMessageNotification);
+	dispatcher.unsubscribe("STREAMER_MODE_UPDATE", handleStreamerModeUpdate);
 	clearInterval(retryInterval);
 	if (ws?.close) ws?.close();
 };
