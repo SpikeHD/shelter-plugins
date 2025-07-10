@@ -88,6 +88,8 @@ Bridge plugin required to make [Orbolay](https://github.com/SpikeHD/Orbolay) wor
 
 `https://spikehd.github.io/shelter-plugins/orbolay/`
 
+<img width="80%" alt="image" src="https://github.com/user-attachments/assets/39162923-b704-42da-af6c-ba8ec8844f23" />
+
 ## Platform Spoofer
 
 Pretend to be on a different platform. Basically only visible to those using a platform indicator plugin.
