@@ -51,7 +51,7 @@ export function ThemeCard(props: Props) {
         <div class={classes.buttonContainer}>
           <Button
             class={classes.installButton}
-            onClick={() => themeInstallationModel(props.install_url)}
+            onClick={() => themeInstallationModel(props.install_url, props.theme)}
           >
             Install
           </Button>
@@ -61,7 +61,7 @@ export function ThemeCard(props: Props) {
   )
 }
 
-export const themeInstallationModel = async (link: string) => {
+export const themeInstallationModel = async (link: string, name: string) => {
   const [status, setStatus] = createSignal<string>('')
   const [closeFn, setCloseFn] = createSignal<() => void>(() => {})
 
@@ -69,7 +69,7 @@ export const themeInstallationModel = async (link: string) => {
     await installAndLoad(link, (s) => {
       setStatus(s)
       console.log(s)
-    }).catch(e => {
+    }, name).catch(e => {
       setStatus(e)
     })
 

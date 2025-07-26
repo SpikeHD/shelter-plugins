@@ -1,10 +1,11 @@
 import { appName, api, invoke } from '../api/api.js'
 
-export const installAndLoad = async (link: string, statusUpdater: (string) => void) => {
+export const installAndLoad = async (link: string, statusUpdater: (string) => void, filename?: string) => {
   statusUpdater('Fetching...')
 
   const themeName = await invoke('theme_from_link', {
-    link
+    link,
+    filename
   })
 
   statusUpdater(`Applying ${themeName} ...`)
