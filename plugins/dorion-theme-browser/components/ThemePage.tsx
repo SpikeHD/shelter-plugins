@@ -73,7 +73,6 @@ export function ThemePage() {
         </span>
       </div>
 
-
       <Divider mt={16} mb={16} />
 
       <div class={classes.themeCards}>

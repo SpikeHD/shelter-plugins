@@ -76,6 +76,11 @@ interface ProcessWindow {
   process_name: string
 }
 
+interface BasicModalProps {
+  header: string
+  body: string
+}
+
 interface ConfirmationModalProps {
   header: string
   body: string

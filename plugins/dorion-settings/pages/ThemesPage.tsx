@@ -1,7 +1,8 @@
 import { invoke } from '../../../api/api.js'
-import { css, classes } from './ThemesPage.tsx.scss'
-import { installThemeModal, reloadThemes } from '../util/theme.jsx'
+import { reloadThemes } from '../../../util/theme.js'
 import { Dropdown } from '../../../components/Dropdown.jsx'
+import { css, classes } from './ThemesPage.tsx.scss'
+import { installThemeModal } from '../util/theme.jsx'
 import { defaultConfig } from '../util/settings.js'
 
 const {

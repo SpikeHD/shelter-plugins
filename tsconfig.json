@@ -7,5 +7,5 @@
     "module": "nodenext",
     "moduleResolution": "nodenext"
   },
-  "include": ["plugins/**/*.ts", "plugins/**/*.tsx", "node_modules/@uwu/shelter-defs/**/*.d.ts", "plugins/clean-home/index.tsx", "util/keyUtil.ts"]
+  "include": ["plugins/**/*.ts", "plugins/**/*.tsx", "node_modules/@uwu/shelter-defs/**/*.d.ts", "plugins/clean-home/index.tsx", "util/keyUtil.ts", "util/modal.tsx"]
 }

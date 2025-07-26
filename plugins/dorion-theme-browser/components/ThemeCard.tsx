@@ -1,3 +1,6 @@
+import { installAndLoad } from '../../../util/theme.js'
+import { basicModal } from '../../../util/modal.jsx'
+
 import { css, classes } from './ThemeCard.tsx.scss'
 
 interface Props {
@@ -15,12 +18,13 @@ const {
   ui: {
     injectCss,
     Button,
-    Text
+    Text,
+    openModal,
   },
   solid: {
     createSignal,
     createEffect,
-  },
+  }
 } = shelter
 
 let injectedCss = false
@@ -31,9 +35,7 @@ export function ThemeCard(props: Props) {
     injectedCss = true
   }
 
-  const installTheme = () => {
-    // TODO
-  }
+  console.log(props)
 
   return (
     <div class={classes.themeCard}>
@@ -49,7 +51,7 @@ export function ThemeCard(props: Props) {
         <div class={classes.buttonContainer}>
           <Button
             class={classes.installButton}
-            onClick={installTheme}
+            onClick={() => themeInstallationModel(props.install_url)}
           >
             Install
           </Button>
@@ -57,4 +59,40 @@ export function ThemeCard(props: Props) {
       </div>
     </div>
   )
+}
+
+export const themeInstallationModel = async (link: string) => {
+  const [status, setStatus] = createSignal<string>('')
+  const [closeFn, setCloseFn] = createSignal<() => void>(() => {})
+
+  createEffect(async () => {
+    await installAndLoad(link, (s) => {
+      setStatus(s)
+      console.log(s)
+    }).catch(e => {
+      setStatus(e)
+    })
+
+    closeFn()
+  })
+
+  openModal((props) => {
+    setCloseFn(props.close)
+
+    return basicModal({
+      header: 'Install Theme',
+      body: (
+        <div>
+          <div style={{
+            display: 'flex',
+            'justify-content': 'center',
+            'align-items': 'center',
+            height: '24px',
+          }}>
+            <Text>{status()}</Text>
+          </div>
+        </div>
+      ),
+    })
+  })
 }

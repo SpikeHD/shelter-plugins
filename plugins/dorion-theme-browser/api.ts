@@ -1,3 +1,5 @@
+import { api } from '../../api/api.js'
+
 interface ThemeOptions {
   filter?: string
   page?: string
@@ -23,14 +25,15 @@ export const themeListEndpoint = async (options: ThemeOptions) => {
   const parser = new DOMParser()
   const dom = parser.parseFromString(await resp.text(), 'text/html')
 
-  const themes = Array.from(dom.querySelectorAll('.card-wrap')).map((e: Element) => ({
-    thumbnail: `${BASE}${e.querySelector('.card-image')?.getAttribute('src')}`,
+  const themes = await Promise.all(Array.from(dom.querySelectorAll('.card-wrap')).map(async (e: Element) => ({
+    thumbnail: await api.util.fetchImage(`${BASE}${e.querySelector('.card-image')?.getAttribute('src')}`),
     name: e.querySelector('.card-title')?.textContent?.trim(),
     author: e.querySelector('.author-link')?.textContent?.trim(),
     description: e.querySelector('.card-description')?.textContent?.trim(),
     likes: e.querySelector('#addon-likes')?.textContent?.trim(),
     downloads: e.querySelector('#addon-downloads')?.textContent?.trim(),
-  }))
+    install_url: `${BASE}${e.querySelector('.btn-primary')?.getAttribute('href')}`,
+  })))
 
   return themes
 }
