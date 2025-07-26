@@ -124,10 +124,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
+	"dcontainer": "sqVpyW_dcontainer",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow",
 	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer"
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -302,9 +302,12 @@ const themeListEndpoint = async (options) => {
 
 //#endregion
 //#region util/theme.ts
-const installAndLoad = async (link, statusUpdater) => {
+const installAndLoad = async (link, statusUpdater, filename) => {
 	statusUpdater("Fetching...");
-	const themeName = await invoke("theme_from_link", { link });
+	const themeName = await invoke("theme_from_link", {
+		link,
+		filename
+	});
 	statusUpdater(`Applying ${themeName} ...`);
 	const config = JSON.parse(await invoke("read_config_file"));
 	config?.themes?.push(themeName);
@@ -346,12 +349,12 @@ const basicModal = (props) => (0, import_web$17.createComponent)(ModalRoot, { ge
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
-	"themeCard": "JQAzuG_themeCard",
 	"installButton": "JQAzuG_installButton",
-	"thumbnail": "JQAzuG_thumbnail",
-	"contents": "JQAzuG_contents",
 	"info": "JQAzuG_info",
-	"name": "JQAzuG_name"
+	"themeCard": "JQAzuG_themeCard",
+	"name": "JQAzuG_name",
+	"thumbnail": "JQAzuG_thumbnail",
+	"contents": "JQAzuG_contents"
 };
 const css$1 = `.JQAzuG_themeCard {
   text-align: left;
@@ -448,7 +451,7 @@ function ThemeCard(props) {
 			get ["class"]() {
 				return classes$1.installButton;
 			},
-			onClick: () => themeInstallationModel(props.install_url),
+			onClick: () => themeInstallationModel(props.install_url, props.theme),
 			children: "Install"
 		}));
 		(0, import_web$12.effect)((_p$) => {
@@ -469,14 +472,14 @@ function ThemeCard(props) {
 		return _el$;
 	})();
 }
-const themeInstallationModel = async (link) => {
+const themeInstallationModel = async (link, name) => {
 	const [status, setStatus] = createSignal$1("");
 	const [closeFn, setCloseFn] = createSignal$1(() => {});
 	createEffect$1(async () => {
 		await installAndLoad(link, (s) => {
 			setStatus(s);
 			console.log(s);
-		}).catch((e) => {
+		}, name).catch((e) => {
 			setStatus(e);
 		});
 		closeFn();
@@ -503,14 +506,14 @@ const themeInstallationModel = async (link) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
-	"bot16": "gqruia_bot16",
-	"sortSection": "gqruia_sortSection",
-	"pageBtn": "gqruia_pageBtn",
-	"pagesOuter": "gqruia_pagesOuter",
-	"pages": "gqruia_pages",
-	"searchBox": "gqruia_searchBox",
 	"themeCards": "gqruia_themeCards",
-	"shead": "gqruia_shead"
+	"searchBox": "gqruia_searchBox",
+	"pagesOuter": "gqruia_pagesOuter",
+	"sortSection": "gqruia_sortSection",
+	"bot16": "gqruia_bot16",
+	"shead": "gqruia_shead",
+	"pages": "gqruia_pages",
+	"pageBtn": "gqruia_pageBtn"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
