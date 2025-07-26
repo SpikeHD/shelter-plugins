@@ -124,10 +124,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
-	"dcontainer": "sqVpyW_dcontainer",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddown": "sqVpyW_ddown"
+	"ddown": "sqVpyW_ddown",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -172,20 +172,19 @@ const css$2 = `.sqVpyW_ddown {
 
 //#endregion
 //#region components/SelectArrow.tsx
-var import_web$27 = __toESM(require_web(), 1);
 var import_web$28 = __toESM(require_web(), 1);
 var import_web$29 = __toESM(require_web(), 1);
 var import_web$30 = __toESM(require_web(), 1);
-const _tmpl$$3 = /*#__PURE__*/ (0, import_web$27.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
+var import_web$31 = __toESM(require_web(), 1);
+const _tmpl$$3 = /*#__PURE__*/ (0, import_web$28.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
 const SelectArrow = (props) => (() => {
-	const _el$ = (0, import_web$30.getNextElement)(_tmpl$$3);
-	(0, import_web$29.effect)(() => (0, import_web$28.setAttribute)(_el$, "class", props.class));
+	const _el$ = (0, import_web$31.getNextElement)(_tmpl$$3);
+	(0, import_web$30.effect)(() => (0, import_web$29.setAttribute)(_el$, "class", props.class));
 	return _el$;
 })();
 
 //#endregion
 //#region components/Dropdown.tsx
-var import_web$17 = __toESM(require_web(), 1);
 var import_web$18 = __toESM(require_web(), 1);
 var import_web$19 = __toESM(require_web(), 1);
 var import_web$20 = __toESM(require_web(), 1);
@@ -195,7 +194,8 @@ var import_web$23 = __toESM(require_web(), 1);
 var import_web$24 = __toESM(require_web(), 1);
 var import_web$25 = __toESM(require_web(), 1);
 var import_web$26 = __toESM(require_web(), 1);
-const _tmpl$$2 = /*#__PURE__*/ (0, import_web$17.template)(`<div><select><!#><!/><!#><!/></select><!#><!/></div>`, 10), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$17.template)(`<option value=""></option>`, 2), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$17.template)(`<option></option>`, 2);
+var import_web$27 = __toESM(require_web(), 1);
+const _tmpl$$2 = /*#__PURE__*/ (0, import_web$18.template)(`<div><select><!#><!/><!#><!/></select><!#><!/></div>`, 10), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$18.template)(`<option value=""></option>`, 2), _tmpl$3$2 = /*#__PURE__*/ (0, import_web$18.template)(`<option></option>`, 2);
 const { ui: { injectCss: injectCss$2 } } = shelter;
 let injectedCss$2 = false;
 const Dropdown = (props) => {
@@ -204,7 +204,7 @@ const Dropdown = (props) => {
 		injectCss$2(css$2);
 	}
 	return (() => {
-		const _el$ = (0, import_web$22.getNextElement)(_tmpl$$2), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$24.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$24.getNextMarker)(_el$5.nextSibling), _el$7 = _el$2.nextSibling, [_el$8, _co$3] = (0, import_web$24.getNextMarker)(_el$7.nextSibling);
+		const _el$ = (0, import_web$23.getNextElement)(_tmpl$$2), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$25.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$25.getNextMarker)(_el$5.nextSibling), _el$7 = _el$2.nextSibling, [_el$8, _co$3] = (0, import_web$25.getNextMarker)(_el$7.nextSibling);
 		_el$2.addEventListener("change", (e) => {
 			props.onChange(e);
 			if (props.immutable) {
@@ -213,14 +213,14 @@ const Dropdown = (props) => {
 				e.target.value = props.value;
 			}
 		});
-		(0, import_web$25.insert)(_el$2, (() => {
-			const _c$ = (0, import_web$26.memo)(() => !!props.placeholder);
+		(0, import_web$26.insert)(_el$2, (() => {
+			const _c$ = (0, import_web$27.memo)(() => !!props.placeholder);
 			return () => _c$() && (() => {
-				const _el$9 = (0, import_web$22.getNextElement)(_tmpl$2$2);
-				(0, import_web$25.insert)(_el$9, () => props.placeholder);
-				(0, import_web$21.effect)((_p$) => {
+				const _el$9 = (0, import_web$23.getNextElement)(_tmpl$2$2);
+				(0, import_web$26.insert)(_el$9, () => props.placeholder);
+				(0, import_web$22.effect)((_p$) => {
 					const _v$8 = classes$2.ddownplaceholder, _v$9 = props.value === "";
-					_v$8 !== _p$._v$8 && (0, import_web$20.className)(_el$9, _p$._v$8 = _v$8);
+					_v$8 !== _p$._v$8 && (0, import_web$21.className)(_el$9, _p$._v$8 = _v$8);
 					_v$9 !== _p$._v$9 && (_el$9.selected = _p$._v$9 = _v$9);
 					return _p$;
 				}, {
@@ -230,24 +230,24 @@ const Dropdown = (props) => {
 				return _el$9;
 			})();
 		})(), _el$4, _co$);
-		(0, import_web$25.insert)(_el$2, () => props.options?.map((o) => (() => {
-			const _el$0 = (0, import_web$22.getNextElement)(_tmpl$3$1);
-			(0, import_web$25.insert)(_el$0, () => o.label);
-			(0, import_web$21.effect)(() => _el$0.selected = o.value === props.value);
-			(0, import_web$21.effect)(() => _el$0.value = o.value);
+		(0, import_web$26.insert)(_el$2, () => props.options?.map((o) => (() => {
+			const _el$0 = (0, import_web$23.getNextElement)(_tmpl$3$2);
+			(0, import_web$26.insert)(_el$0, () => o.label);
+			(0, import_web$22.effect)(() => _el$0.selected = o.value === props.value);
+			(0, import_web$22.effect)(() => _el$0.value = o.value);
 			return _el$0;
 		})()), _el$6, _co$2);
-		(0, import_web$25.insert)(_el$, (0, import_web$23.createComponent)(SelectArrow, { get ["class"]() {
+		(0, import_web$26.insert)(_el$, (0, import_web$24.createComponent)(SelectArrow, { get ["class"]() {
 			return classes$2.dsarrow;
 		} }), _el$8, _co$3);
-		(0, import_web$21.effect)((_p$) => {
+		(0, import_web$22.effect)((_p$) => {
 			const _v$ = classes$2.dcontainer, _v$2 = props.style, _v$3 = classes$2.ddown + " " + (props.placeholder && props.value === "" ? classes$2.ddownplaceholder : ""), _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
-			_v$ !== _p$._v$ && (0, import_web$20.className)(_el$, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$19.style)(_el$, _v$2, _p$._v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$20.className)(_el$2, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$18.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$18.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
-			_v$6 !== _p$._v$6 && (0, import_web$18.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
+			_v$ !== _p$._v$ && (0, import_web$21.className)(_el$, _p$._v$ = _v$);
+			_p$._v$2 = (0, import_web$20.style)(_el$, _v$2, _p$._v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$21.className)(_el$2, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$19.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
+			_v$5 !== _p$._v$5 && (0, import_web$19.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
+			_v$6 !== _p$._v$6 && (0, import_web$19.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
 			_v$7 !== _p$._v$7 && (_el$2.disabled = _p$._v$7 = _v$7);
 			return _p$;
 		}, {
@@ -288,31 +288,75 @@ const themeListEndpoint = async (options) => {
 	if (!resp.ok) throw new Error("Failed to fetch themes");
 	const parser = new DOMParser();
 	const dom = parser.parseFromString(await resp.text(), "text/html");
-	const themes = Array.from(dom.querySelectorAll(".card-wrap")).map((e) => ({
-		thumbnail: `${BASE}${e.querySelector(".card-image")?.getAttribute("src")}`,
+	const themes = await Promise.all(Array.from(dom.querySelectorAll(".card-wrap")).map(async (e) => ({
+		thumbnail: await api.util.fetchImage(`${BASE}${e.querySelector(".card-image")?.getAttribute("src")}`),
 		name: e.querySelector(".card-title")?.textContent?.trim(),
 		author: e.querySelector(".author-link")?.textContent?.trim(),
 		description: e.querySelector(".card-description")?.textContent?.trim(),
 		likes: e.querySelector("#addon-likes")?.textContent?.trim(),
-		downloads: e.querySelector("#addon-downloads")?.textContent?.trim()
-	}));
+		downloads: e.querySelector("#addon-downloads")?.textContent?.trim(),
+		install_url: `${BASE}${e.querySelector(".btn-primary")?.getAttribute("href")}`
+	})));
 	return themes;
 };
+
+//#endregion
+//#region util/theme.ts
+const installAndLoad = async (link, statusUpdater) => {
+	statusUpdater("Fetching...");
+	const themeName = await invoke("theme_from_link", { link });
+	statusUpdater(`Applying ${themeName} ...`);
+	const config = JSON.parse(await invoke("read_config_file"));
+	config?.themes?.push(themeName);
+	statusUpdater("Saving...");
+	await invoke("write_config_file", { contents: JSON.stringify(config) });
+	await reloadThemes();
+	statusUpdater("Done!");
+	return themeName;
+};
+const reloadThemes = async () => {
+	const themeTag = document.getElementById(`${appName.toLowerCase()}-theme`);
+	const themeContents = await invoke("get_themes").catch((e) => console.error(e));
+	const themeNames = await invoke("get_enabled_themes").catch((e) => console.error(e)) || [];
+	const themeName = themeNames.join("").substring(0, 254);
+	if (themeName === "") {
+		themeTag.innerHTML = "";
+		return;
+	}
+	const localized = await invoke("localize_imports", {
+		css: themeContents,
+		name: themeName
+	});
+	const contents = api.util.cssSanitize(localized);
+	themeTag.innerHTML = contents;
+};
+
+//#endregion
+//#region util/modal.tsx
+var import_web$17 = __toESM(require_web(), 1);
+const { ui: { ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter } } = shelter;
+const basicModal = (props) => (0, import_web$17.createComponent)(ModalRoot, { get children() {
+	return [(0, import_web$17.createComponent)(ModalHeader, { get children() {
+		return props.header;
+	} }), (0, import_web$17.createComponent)(ModalBody, { get children() {
+		return props.body;
+	} })];
+} });
 
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
 	"themeCard": "JQAzuG_themeCard",
+	"installButton": "JQAzuG_installButton",
 	"thumbnail": "JQAzuG_thumbnail",
-	"info": "JQAzuG_info",
-	"name": "JQAzuG_name",
 	"contents": "JQAzuG_contents",
-	"installButton": "JQAzuG_installButton"
+	"info": "JQAzuG_info",
+	"name": "JQAzuG_name"
 };
 const css$1 = `.JQAzuG_themeCard {
   text-align: left;
-  color: var(--text-primary);
-  background: var(--background-secondary);
+  color: var(--text-default);
+  background: var(--background-surface-highest);
   border-radius: 8px;
   flex-direction: column;
   justify-content: space-around;
@@ -361,15 +405,15 @@ var import_web$13 = __toESM(require_web(), 1);
 var import_web$14 = __toESM(require_web(), 1);
 var import_web$15 = __toESM(require_web(), 1);
 var import_web$16 = __toESM(require_web(), 1);
-const _tmpl$$1 = /*#__PURE__*/ (0, import_web$9.template)(`<b></b>`, 2), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$9.template)(`<div><div></div><div><!#><!/><!#><!/><div></div></div></div>`, 12);
-const { ui: { injectCss: injectCss$1, Button, Text }, solid: { createSignal: createSignal$1, createEffect: createEffect$1 } } = shelter;
+const _tmpl$$1 = /*#__PURE__*/ (0, import_web$9.template)(`<b></b>`, 2), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$9.template)(`<div><div></div><div><!#><!/><!#><!/><div></div></div></div>`, 12), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$9.template)(`<div><div></div></div>`, 4);
+const { ui: { injectCss: injectCss$1, Button, Text, openModal }, solid: { createSignal: createSignal$1, createEffect: createEffect$1 } } = shelter;
 let injectedCss$1 = false;
 function ThemeCard(props) {
 	if (!injectedCss$1) {
 		injectCss$1(css$1);
 		injectedCss$1 = true;
 	}
-	const installTheme = () => {};
+	console.log(props);
 	return (() => {
 		const _el$ = (0, import_web$15.getNextElement)(_tmpl$2$1), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, _el$7 = _el$3.firstChild, [_el$8, _co$] = (0, import_web$13.getNextMarker)(_el$7.nextSibling), _el$9 = _el$8.nextSibling, [_el$0, _co$2] = (0, import_web$13.getNextMarker)(_el$9.nextSibling), _el$6 = _el$0.nextSibling;
 		(0, import_web$16.insert)(_el$3, (0, import_web$14.createComponent)(Text, {
@@ -404,7 +448,7 @@ function ThemeCard(props) {
 			get ["class"]() {
 				return classes$1.installButton;
 			},
-			onClick: installTheme,
+			onClick: () => themeInstallationModel(props.install_url),
 			children: "Install"
 		}));
 		(0, import_web$12.effect)((_p$) => {
@@ -425,18 +469,48 @@ function ThemeCard(props) {
 		return _el$;
 	})();
 }
+const themeInstallationModel = async (link) => {
+	const [status, setStatus] = createSignal$1("");
+	const [closeFn, setCloseFn] = createSignal$1(() => {});
+	createEffect$1(async () => {
+		await installAndLoad(link, (s) => {
+			setStatus(s);
+			console.log(s);
+		}).catch((e) => {
+			setStatus(e);
+		});
+		closeFn();
+	});
+	openModal((props) => {
+		setCloseFn(props.close);
+		return basicModal({
+			header: "Install Theme",
+			body: (() => {
+				const _el$1 = (0, import_web$15.getNextElement)(_tmpl$3$1), _el$10 = _el$1.firstChild;
+				_el$10.style.setProperty("display", "flex");
+				_el$10.style.setProperty("justify-content", "center");
+				_el$10.style.setProperty("align-items", "center");
+				_el$10.style.setProperty("height", "24px");
+				(0, import_web$16.insert)(_el$10, (0, import_web$14.createComponent)(Text, { get children() {
+					return status();
+				} }));
+				return _el$1;
+			})()
+		});
+	});
+};
 
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
-	"pageBtn": "gqruia_pageBtn",
-	"shead": "gqruia_shead",
-	"sortSection": "gqruia_sortSection",
-	"themeCards": "gqruia_themeCards",
 	"bot16": "gqruia_bot16",
-	"pages": "gqruia_pages",
+	"sortSection": "gqruia_sortSection",
+	"pageBtn": "gqruia_pageBtn",
 	"pagesOuter": "gqruia_pagesOuter",
-	"searchBox": "gqruia_searchBox"
+	"pages": "gqruia_pages",
+	"searchBox": "gqruia_searchBox",
+	"themeCards": "gqruia_themeCards",
+	"shead": "gqruia_shead"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
