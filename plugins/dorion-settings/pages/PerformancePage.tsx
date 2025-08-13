@@ -271,7 +271,7 @@ export function PerformancePage() {
           ), true)
         }
         note="Enable this if you are not using a theme designed to take advantage of transparent windows."
-        disabled={platform() === 'linux' || state().blur === 'none'}
+        disabled={state().blur === 'none'}
       >
         Enable builtin background transparency CSS
       </SwitchItem>
