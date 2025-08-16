@@ -87,7 +87,7 @@ export function SettingsPage() {
       />
 
       <Header class={classes.shead}>Window</Header>
-      <Header tag={HeaderTags.H3} class={classes.shead}>Zoom Level</Header>
+      <Header tag={HeaderTags.H4} style="" class={classes.ohead}>Zoom Level</Header>
       <Slider
         min={50}
         max={125}
