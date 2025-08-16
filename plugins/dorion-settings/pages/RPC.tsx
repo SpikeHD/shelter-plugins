@@ -52,7 +52,7 @@ export function RPCPage() {
   }
 
   const tryInstallShelteRPC = async () => {
-    await shelter.plugins.addRemotePlugin('shelteRPC', 'https://spikehd.github.io/shelter-plugins/shelteRPC/', true).catch(e => {
+    await shelter.plugins.addRemotePlugin('shelteRPC', 'https://spikehd.dev/shelter-plugins/shelteRPC/', true).catch(e => {
       showToast({
         title: 'Dorion RPC',
         content: 'Error installing shelteRPC, check the console for more information',
