@@ -101,7 +101,7 @@ const settingsHandler = async (payload) => {
 
 const notifHandler = (payload) => {
   // @ts-expect-error this is added by Dorion
-  if (!settings()?.desktop_notifications || window.Notification?.__IS_STUBBED__) return
+  if (!settings()?.desktop_notifications || !window.Notification?.__IS_STUBBED__) return
 
   const { title, body, icon } = payload
 
