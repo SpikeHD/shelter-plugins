@@ -10,7 +10,6 @@ const {
     Header,
     HeaderTags,
     Slider,
-    Text,
     injectCss,
   },
   solid: { createSignal, createEffect },
