@@ -180,7 +180,7 @@ else api.util.applyNotificationCount();
 	newSettingInjected = true;
 };
 const notifHandler = (payload) => {
-	if (!settings()?.desktop_notifications || window.Notification?.__IS_STUBBED__) return;
+	if (!settings()?.desktop_notifications || !window.Notification?.__IS_STUBBED__) return;
 	const { title, body, icon } = payload;
 	invoke("send_notification", {
 		title,
