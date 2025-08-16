@@ -2798,8 +2798,8 @@ function css$2(hljs) {
 //#endregion
 //#region plugins/inline-css/components/Editor.scss
 const classes$1 = {
-	"popout": "alHKPa_popout",
 	"controls": "alHKPa_controls",
+	"popout": "alHKPa_popout",
 	"ceditor": "alHKPa_ceditor"
 };
 const css$1 = `.alHKPa_ceditor {
@@ -2895,13 +2895,13 @@ const Popout = () => (0, import_web$21.getNextElement)(_tmpl$$3);
 //#endregion
 //#region plugins/inline-css/components/Window.scss
 const classes = {
-	"main": "EVeMMG_main",
-	"exit": "EVeMMG_exit",
-	"inner": "EVeMMG_inner",
-	"window": "EVeMMG_window",
 	"content": "EVeMMG_content",
+	"main": "EVeMMG_main",
+	"resize": "EVeMMG_resize",
+	"inner": "EVeMMG_inner",
 	"topbar": "EVeMMG_topbar",
-	"resize": "EVeMMG_resize"
+	"window": "EVeMMG_window",
+	"exit": "EVeMMG_exit"
 };
 const css = `.EVeMMG_window {
   z-index: 99999;
@@ -2930,7 +2930,7 @@ const css = `.EVeMMG_window {
   height: calc(100% - 2px - 2 * var(--inset));
   margin: var(--inset);
   pointer-events: all;
-  background: var(--background-primary);
+  background: var(--background-base-low);
   border: 1px solid var(--background-surface-highest);
   border-radius: 6px;
   box-shadow: 0 0 3px #000;
