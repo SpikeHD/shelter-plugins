@@ -91,7 +91,6 @@ export function SettingsPage() {
       <Slider
         min={50}
         max={125}
-        tick
         steps={
           Array.from(Array(16).keys()).map(i => (i * 5 + 50) + '%')
         }
