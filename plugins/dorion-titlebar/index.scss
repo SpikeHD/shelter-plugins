@@ -1,5 +1,5 @@
 .dorion_topbar {
-  background-color: var(--background-tertiary);
+  background-color: var(--background-base-lowest);
   height: 32px;
   width: calc(100% - 8px);
   padding-left: 8px;
@@ -47,7 +47,7 @@
 .topmin:hover,
 .topmax:hover {
   filter: brightness(0.8);
-  background: var(--background-secondary);
+  background: var(--background-surface-highest);
 }
 
 .topmax svg {
