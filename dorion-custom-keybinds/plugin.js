@@ -124,14 +124,14 @@ const apiWindow = backendObj.apiWindow;
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"keybindsButton": "Zz-Z3G_keybindsButton",
-	"keybindSection": "Zz-Z3G_keybindSection",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"header": "Zz-Z3G_header",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
+	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner"
+	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"header": "Zz-Z3G_header"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -200,12 +200,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
-	"keybindRoot": "QTLdLq_keybindRoot",
 	"keybindArea": "QTLdLq_keybindArea",
 	"note": "QTLdLq_note",
 	"keybindSection": "QTLdLq_keybindSection",
 	"removeButton": "QTLdLq_removeButton",
-	"actionSection": "QTLdLq_actionSection"
+	"actionSection": "QTLdLq_actionSection",
+	"keybindRoot": "QTLdLq_keybindRoot"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -263,9 +263,9 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
 	"dsarrow": "sqVpyW_dsarrow",
+	"dcontainer": "sqVpyW_dcontainer",
 	"ddown": "sqVpyW_ddown",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dcontainer": "sqVpyW_dcontainer"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -404,12 +404,12 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"recording": "N-HDcq_recording",
 	"keybindInput": "N-HDcq_keybindInput",
+	"keybindContainer": "N-HDcq_keybindContainer",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"pulse": "N-HDcq_pulse",
 	"keybindButton": "N-HDcq_keybindButton",
-	"keybindContainer": "N-HDcq_keybindContainer",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder"
+	"recording": "N-HDcq_recording"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--input-background);
