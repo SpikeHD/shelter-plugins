@@ -99,7 +99,21 @@ const settingsHandler = async (payload) => {
   newSettingInjected = true
 }
 
+const notifHandler = (payload) => {
+  // @ts-expect-error this is added by Dorion
+  if (!settings()?.desktop_notifications || window.Notification?.__IS_STUBBED__) return
+
+  const { title, body, icon } = payload
+
+  invoke('send_notification', {
+    title,
+    body,
+    icon,
+  })
+}
+
 FluxDispatcher.subscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
+FluxDispatcher.subscribe('RPC_NOTIFICATION_CREATE', notifHandler)
 
 export const onLoad = async () => {
   const cfg = JSON.parse(await invoke('read_config_file'))
@@ -112,4 +126,5 @@ export const onLoad = async () => {
 
 export const onUnload = () => {
   FluxDispatcher.unsubscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
+  FluxDispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', notifHandler)
 }
