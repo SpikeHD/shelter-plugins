@@ -10,6 +10,7 @@ const {
     Header,
     HeaderTags,
     Slider,
+    Text,
     injectCss,
   },
   solid: { createSignal, createEffect },
@@ -87,9 +88,11 @@ export function SettingsPage() {
       />
 
       <Header class={classes.shead}>Window</Header>
+      <Header tag={HeaderTags.H3} class={classes.shead}>
       <Slider
         min={50}
         max={125}
+        tick
         steps={
           Array.from(Array(16).keys()).map(i => (i * 5 + 50) + '%')
         }
