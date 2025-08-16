@@ -179,7 +179,17 @@ else api.util.applyNotificationCount();
 	for (const newNotif of newNotifs) node.parentElement.prepend(newNotif);
 	newSettingInjected = true;
 };
+const notifHandler = (payload) => {
+	if (!settings()?.desktop_notifications || window.Notification?.__IS_STUBBED__) return;
+	const { title, body, icon } = payload;
+	invoke("send_notification", {
+		title,
+		body,
+		icon
+	});
+};
 FluxDispatcher.subscribe("USER_SETTINGS_MODAL_SET_SECTION", settingsHandler);
+FluxDispatcher.subscribe("RPC_NOTIFICATION_CREATE", notifHandler);
 const onLoad = async () => {
 	const cfg = JSON.parse(await invoke("read_config_file"));
 	setSettings(cfg);
@@ -187,6 +197,7 @@ const onLoad = async () => {
 };
 const onUnload = () => {
 	FluxDispatcher.unsubscribe("USER_SETTINGS_MODAL_SET_SECTION", settingsHandler);
+	FluxDispatcher.unsubscribe("RPC_NOTIFICATION_CREATE", notifHandler);
 };
 
 //#endregion
