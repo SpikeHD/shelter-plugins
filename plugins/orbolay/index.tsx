@@ -219,7 +219,6 @@ const incoming = (payload) => {
     break
   }
   case 'NAVIGATE': {
-    console.log(payload)
     // If any of this isn't defined then we can't do anything anyways, so just break
     if (!payload.guild_id || !payload.channel_id || !payload.message_id) break
 
