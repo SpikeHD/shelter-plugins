@@ -163,7 +163,9 @@ const handleMessageNotification = (dispatch) => {
         title: dispatch.title,
         body: dispatch.body,
         icon: dispatch.icon,
-        channelId: dispatch.channelId,
+        guildId: dispatch.message.guild_id,
+        channelId: dispatch.message.channel_id,
+        messageId: dispatch.message.id,
       }
     })
   )
@@ -206,14 +208,32 @@ const incoming = (payload) => {
     const channel = ChannelStore?.getChannel?.(voiceState?.channelId)
 
     // If any of these are null, we can't do anything
-    if (!userId || !voiceState || !channel) return
+    if (!userId || !voiceState || !channel) break
 
     dispatcher.dispatch({
       type: 'STREAM_STOP',
       streamKey: `guild:${channel.guild_id}:${voiceState.channelId}:${userId}`,
       appContext: 'APP'
     })
-  }}
+
+    break
+  }
+  case 'NAVIGATE': {
+    console.log(payload)
+    // If any of this isn't defined then we can't do anything anyways, so just break
+    if (!payload.guild_id || !payload.channel_id || !payload.message_id) break
+
+    const { guild_id, channel_id, message_id } = payload
+    dispatcher.dispatch({
+      type: 'CHANNEL_SELECT',
+      guildId: String(guild_id),
+      channelId: String(channel_id),
+      messageId: String(message_id),
+    })
+
+    break
+  }
+  }
 }
 
 const createWebsocket = () => {
