@@ -37,8 +37,8 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 const classes$1 = {
 	"dcontainer": "sqVpyW_dcontainer",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"ddown": "sqVpyW_ddown"
+	"ddown": "sqVpyW_ddown",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -408,7 +408,9 @@ const handleMessageNotification = (dispatch) => {
 			title: dispatch.title,
 			body: dispatch.body,
 			icon: dispatch.icon,
-			channelId: dispatch.channelId
+			guildId: dispatch.message.guild_id,
+			channelId: dispatch.message.channel_id,
+			messageId: dispatch.message.id
 		}
 	}));
 };
@@ -446,12 +448,24 @@ const incoming = (payload) => {
 			const userId = UserStore?.getCurrentUser()?.id;
 			const voiceState = VoiceStateStore?.getVoiceStateForUser(userId);
 			const channel = ChannelStore?.getChannel?.(voiceState?.channelId);
-			if (!userId || !voiceState || !channel) return;
+			if (!userId || !voiceState || !channel) break;
 			dispatcher.dispatch({
 				type: "STREAM_STOP",
 				streamKey: `guild:${channel.guild_id}:${voiceState.channelId}:${userId}`,
 				appContext: "APP"
 			});
+			break;
+		}
+		case "NAVIGATE": {
+			if (!payload.guild_id || !payload.channel_id || !payload.message_id) break;
+			const { guild_id, channel_id, message_id } = payload;
+			dispatcher.dispatch({
+				type: "CHANNEL_SELECT",
+				guildId: String(guild_id),
+				channelId: String(channel_id),
+				messageId: String(message_id)
+			});
+			break;
 		}
 	}
 };
