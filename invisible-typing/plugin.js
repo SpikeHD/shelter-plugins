@@ -39,10 +39,11 @@ const classes = {
 	"invisContainer": "KIS_7q_invisContainer"
 };
 const css = `.KIS_7q_invisContainer {
+  width: var(--space-32);
+  height: var(--space-32);
   cursor: pointer;
   justify-content: center;
   align-items: center;
-  width: 40px;
   display: flex;
 }
 
