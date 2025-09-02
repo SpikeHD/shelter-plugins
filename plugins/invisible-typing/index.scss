@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 40px;
+  width: var(--space-32);
+  height: var(--space-32);
 
   cursor: pointer;
 
