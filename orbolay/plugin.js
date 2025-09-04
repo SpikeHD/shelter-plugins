@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddown": "sqVpyW_ddown",
 	"dcontainer": "sqVpyW_dcontainer",
-	"dsarrow": "sqVpyW_dsarrow",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"ddown": "sqVpyW_ddown",
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -236,6 +236,13 @@ const Settings = (props) => {
 			return _el$;
 		})(),
 		(0, import_web$7.createComponent)(Divider, {}),
+		(0, import_web$7.createComponent)(SwitchItem, {
+			get value() {
+				return store$1.isKeybindEnabled;
+			},
+			onChange: (v) => set("keybindIsEnabled", v),
+			children: "Enable Global Keybind"
+		}),
 		(() => {
 			const _el$6 = (0, import_web$4.getNextElement)(_tmpl$), _el$7 = _el$6.firstChild, [_el$8, _co$3] = (0, import_web$5.getNextMarker)(_el$7.nextSibling), _el$9 = _el$8.nextSibling, [_el$0, _co$4] = (0, import_web$5.getNextMarker)(_el$9.nextSibling);
 			(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(Text, { children: "Messages Alignment" }), _el$8, _co$3);
@@ -334,7 +341,8 @@ const defaultConfig = {
 	messageAlignment: "topright",
 	userAlignment: "topleft",
 	voiceSemitransparent: true,
-	messagesSemitransparent: false
+	messagesSemitransparent: false,
+	keybindIsEnabled: true
 };
 if (typeof store?.config?.messageAlignment !== "string" || typeof store?.config?.userAlignment !== "string") {
 	console.log("Restoring settings after API change");
