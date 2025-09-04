@@ -51,6 +51,13 @@ export const Settings = (props: Props) => {
       </div>
       <Divider />
 
+      <SwitchItem
+        value={store.isKeybindEnabled}
+        onChange={(v) => set('keybindIsEnabled', v)}
+      >
+        Enable Global Keybind
+      </SwitchItem>
+
       <div class={classes.container}>
         <Text>Messages Alignment</Text>
         <Dropdown

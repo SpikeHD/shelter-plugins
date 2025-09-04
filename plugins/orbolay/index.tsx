@@ -27,6 +27,7 @@ export interface Config {
   userAlignment: string;
   voiceSemitransparent: boolean;
   messagesSemitransparent: boolean;
+  keybindIsEnabled: boolean;
 }
 
 let ws: WebSocket
@@ -40,6 +41,7 @@ export const defaultConfig: Config = {
   userAlignment: 'topleft',
   voiceSemitransparent: true,
   messagesSemitransparent: false,
+  keybindIsEnabled: true,
 }
 
 // TODO remove
