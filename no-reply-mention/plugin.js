@@ -35,10 +35,11 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/no-reply-mention/index.tsx
 var import_web = __toESM(require_web(), 1);
-const { flux: { intercept }, ui: { SwitchItem }, plugin: { store } } = shelter;
+const { flux: { intercept, stores: { UserStore } }, ui: { SwitchItem }, plugin: { store } } = shelter;
 const unintercept = intercept((dispatch) => {
 	if (dispatch.type !== "CREATE_PENDING_REPLY") return;
-	dispatch.shouldMention = store.shiftToInvert ? !dispatch.shouldMention : false;
+	const userIsAuthor = dispatch?.message?.author?.id === UserStore.getCurrentUser()?.id;
+	dispatch.shouldMention = store.shiftToInvert && !userIsAuthor ? !dispatch.shouldMention : false;
 });
 const onUnload = () => {
 	unintercept();
