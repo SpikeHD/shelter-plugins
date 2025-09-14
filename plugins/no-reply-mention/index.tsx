@@ -1,6 +1,9 @@
 const {
   flux: {
-    intercept
+    intercept,
+    stores: {
+      UserStore
+    }
   },
   ui: {
     SwitchItem
@@ -13,7 +16,10 @@ const {
 const unintercept = intercept(dispatch => {
   if (dispatch.type !== 'CREATE_PENDING_REPLY') return
 
-  dispatch.shouldMention = store.shiftToInvert ? !dispatch.shouldMention : false
+  // @ts-expect-error cry about it
+  const userIsAuthor = dispatch?.message?.author?.id === UserStore.getCurrentUser()?.id
+
+  dispatch.shouldMention = (store.shiftToInvert && !userIsAuthor) ? !dispatch.shouldMention : false
 })
 
 export const onUnload = () => {
