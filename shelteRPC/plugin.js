@@ -269,16 +269,16 @@ const timestampToRelative = (timestamp) => {
 //#endregion
 //#region plugins/shelteRPC/components/GameCard.scss
 const classes$3 = {
-	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
-	"cardPlaying": "zS7Qtq_cardPlaying",
-	"cardNone": "zS7Qtq_cardNone",
-	"gameCard": "zS7Qtq_gameCard",
-	"gameCardInfo": "zS7Qtq_gameCardInfo",
-	"trash": "zS7Qtq_trash",
-	"gameCardIcons": "zS7Qtq_gameCardIcons",
 	"cardPlayed": "zS7Qtq_cardPlayed",
-	"gameCardName": "zS7Qtq_gameCardName",
-	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp"
+	"gameCardInfo": "zS7Qtq_gameCardInfo",
+	"gameCard": "zS7Qtq_gameCard",
+	"cardNone": "zS7Qtq_cardNone",
+	"cardPlaying": "zS7Qtq_cardPlaying",
+	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
+	"trash": "zS7Qtq_trash",
+	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
+	"gameCardIcons": "zS7Qtq_gameCardIcons",
+	"gameCardName": "zS7Qtq_gameCardName"
 };
 const css$3 = `.zS7Qtq_gameCard {
   width: 100%;
@@ -604,11 +604,11 @@ const Dropdown = (props) => {
 //#endregion
 //#region plugins/shelteRPC/components/RegisteredGames.scss
 const classes$1 = {
-	"shead": "yVnOSq_shead",
-	"addIt": "yVnOSq_addIt",
-	"description": "yVnOSq_description",
+	"tophead": "yVnOSq_tophead",
 	"modalhead": "yVnOSq_modalhead",
-	"tophead": "yVnOSq_tophead"
+	"description": "yVnOSq_description",
+	"addIt": "yVnOSq_addIt",
+	"shead": "yVnOSq_shead"
 };
 const css$1 = `.yVnOSq_description {
   margin-top: 8px;
