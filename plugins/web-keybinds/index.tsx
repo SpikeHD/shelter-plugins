@@ -13,7 +13,7 @@ const {
 const isMac = navigator.userAgent.includes('Mac OS X')
 
 // @ts-expect-error this is defined (sometimes)
-if (Vencord?.Plugins?.plugins?.WebKeybinds?.started) {
+if (window?.Vencord?.Plugins?.plugins?.WebKeybinds?.started) {
   throw new Error('Web Keybinds: plugin incompatibility (cannot run Vencord WebKeybinds alongside shelter Web Keybinds)')
 }
 
@@ -50,6 +50,13 @@ const handleKeyDown = (e: KeyboardEvent) => {
 
   case ',':
     e.preventDefault()
+
+    dispatcher.dispatch({
+      'type': 'USER_SETTINGS_MODAL_OPEN',
+      'section': 'My Account',
+      'subsection': null,
+      'openWithoutBackstack': false
+    })
 
     dispatcher.dispatch({
       type: 'LAYER_PUSH',
