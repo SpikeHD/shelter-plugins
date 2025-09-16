@@ -17,6 +17,17 @@ if (window?.Vencord?.Plugins?.plugins?.WebKeybinds?.started) {
   throw new Error('Web Keybinds: plugin incompatibility (cannot run Vencord WebKeybinds alongside shelter Web Keybinds)')
 }
 
+// If this is the first time using this plugin, check if we are being used in a custom client and set desktopOnlyKeybinds accordingly
+if (store.desktopOnlyKeybinds === undefined) {
+  const isCustomClient = [
+    window?.Dorion,
+    // @ts-expect-error could exist
+    window?.legcord,
+  ].some(v => !!v)
+
+  store.desktopOnlyKeybinds = isCustomClient
+}
+
 const handleKeyDown = (e: KeyboardEvent) => {
   const ctrl = e.ctrlKey || (isMac && e.metaKey)
   const key = e.key.toLowerCase()
