@@ -270,15 +270,15 @@ const timestampToRelative = (timestamp) => {
 //#region plugins/shelteRPC/components/GameCard.scss
 const classes$3 = {
 	"cardPlayed": "zS7Qtq_cardPlayed",
-	"gameCardInfo": "zS7Qtq_gameCardInfo",
-	"gameCard": "zS7Qtq_gameCard",
-	"cardNone": "zS7Qtq_cardNone",
-	"cardPlaying": "zS7Qtq_cardPlaying",
-	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
-	"trash": "zS7Qtq_trash",
-	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
 	"gameCardIcons": "zS7Qtq_gameCardIcons",
-	"gameCardName": "zS7Qtq_gameCardName"
+	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
+	"cardPlaying": "zS7Qtq_cardPlaying",
+	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
+	"gameCardInfo": "zS7Qtq_gameCardInfo",
+	"gameCardName": "zS7Qtq_gameCardName",
+	"trash": "zS7Qtq_trash",
+	"cardNone": "zS7Qtq_cardNone",
+	"gameCard": "zS7Qtq_gameCard"
 };
 const css$3 = `.zS7Qtq_gameCard {
   width: 100%;
@@ -463,9 +463,9 @@ var GameCard_default = (props) => {
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
 	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -604,11 +604,11 @@ const Dropdown = (props) => {
 //#endregion
 //#region plugins/shelteRPC/components/RegisteredGames.scss
 const classes$1 = {
-	"tophead": "yVnOSq_tophead",
 	"modalhead": "yVnOSq_modalhead",
-	"description": "yVnOSq_description",
+	"shead": "yVnOSq_shead",
+	"tophead": "yVnOSq_tophead",
 	"addIt": "yVnOSq_addIt",
-	"shead": "yVnOSq_shead"
+	"description": "yVnOSq_description"
 };
 const css$1 = `.yVnOSq_description {
   margin-top: 8px;
