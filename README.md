@@ -28,6 +28,7 @@
   * [Plugin Browser](#plugin-browser)
   * [shelteRPC](#shelterpc)
   * [UserPFP](#userpfp)
+  * [Web keybinds](#web-keybinds)
   * [You're Right](#youre-right)
 * [Dorion Plugins](#dorion-plugins)
 
@@ -118,6 +119,12 @@ View and use animated profile pictures without Nitro. See the [UserPFP README](h
 
 `https://spikehd.dev/shelter-plugins/userpfp/`
 
+## Web Keybinds
+
+(Incomplete) port of Vencord's `WebKeybinds` plugin.
+
+`https://spikehd.dev/shelter-plugins/web-keybinds/`
+
 ## You're Right
 
 (Experimental) Float your messages to the right instead of the left. Like a texting app. Or something.
@@ -127,4 +134,3 @@ View and use animated profile pictures without Nitro. See the [UserPFP README](h
 # Dorion Plugins
 
 **DO NOT INSTALL DORION PLUGINS**, they are for the [Dorion client](https://github.com/SpikeHD/Dorion) only and will not work for you
-
