@@ -3,6 +3,7 @@ import { api, invoke } from '../../api/api.js'
 const {
   ui: {
     SwitchItem,
+    ReactiveRoot
   },
   flux: {
     dispatcher: FluxDispatcher
@@ -10,39 +11,68 @@ const {
   solid: {
     createSignal,
   },
+  observeDom,
 } = shelter
 
 const [settings, setSettings] = createSignal<DorionSettings>(null)
-const notifSelector = 'div[class*="contentColumn"] div[class*="container"]'
 
-let isOnNotifSection = false
-let newSettingInjected = false
+let child: Element = null
 
-const settingsHandler = async (payload) => {
+const settingsHandler = (payload) => {
   if (payload.section !== 'Notifications') {
-    // This removes the CSS
-    isOnNotifSection = false
-    newSettingInjected = false
+    if (child) {
+      child.remove()
+      child = null
+    }
     return
   }
-  else if (isOnNotifSection) return
-  isOnNotifSection = true
 
-  // Wait for notif tab to load
-  await window.Dorion.util.waitForElm('#notifications-tab')
+  const unsub = observeDom('#notifications-tab', () => {
+    unsub()
 
-  const node = document.querySelector(notifSelector) as HTMLElement
+    const notifSelector = 'div[class*="contentColumn"] div[class*="container"]'
+    const node = document.querySelector(notifSelector) as HTMLElement
 
-  node.style.display = 'none'
+    if (!node) return
 
-  // The next node after should also be hidden
-  const next = node.nextElementSibling as HTMLDivElement
-  if (next) next.style.display = 'none'
+    // Hide the original notification settings
+    node.style.display = 'none'
 
-  if (newSettingInjected) return
+    // The next node after should also be hidden
+    const next = node.nextElementSibling as HTMLDivElement
+    if (next) next.style.display = 'none'
 
-  const newNotifs = [
-    (
+    const NotificationSettings = () => [
+      <SwitchItem
+        note="If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings."
+        value={settings()?.desktop_notifications}
+        onChange={(value) => {
+          setSettings({
+            ...settings(),
+            desktop_notifications: value
+          })
+
+          // If enabling, dispatch the flux event as well
+          FluxDispatcher.dispatch({
+            type: 'NOTIFICATIONS_SET_PERMISSION_STATE',
+            enabled: value ? 'ENABLED' : 'DISABLED'
+          })
+
+          invoke('write_config_file', {
+            contents: JSON.stringify(settings())
+          })
+
+          if (value) {
+            invoke('send_notification', {
+              title: 'Desktop Notifications Enabled',
+              body: 'You will now receive desktop notifications!',
+              icon: '',
+            })
+          }
+        }}
+      >
+        Enable Desktop Notifications
+      </SwitchItem>,
       <SwitchItem
         note="Shows a red badge on the app icon when you have unread messages."
         value={settings()?.unread_badge}
@@ -64,39 +94,16 @@ const settingsHandler = async (payload) => {
         }}
       >
           Enable Unread Message Badge
-      </SwitchItem>
-    ),
-    (
-      <SwitchItem
-        note="If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings."
-        value={settings()?.desktop_notifications}
-        onChange={async (value) => {
-          setSettings({
-            ...settings(),
-            desktop_notifications: value
-          })
+      </SwitchItem>,
+    ]
 
-          // If enabling, dispatch the flux event as well
-          FluxDispatcher.dispatch({
-            type: 'NOTIFICATIONS_SET_PERMISSION_STATE',
-            enabled: value ? 'ENABLED' : 'DISABLED'
-          })
-
-          await invoke('write_config_file', {
-            contents: JSON.stringify(settings())
-          })
-        }}
-      >
-        Enable Desktop Notifications
-      </SwitchItem>
+    child = node.parentElement.insertBefore(
+      <ReactiveRoot>
+        <NotificationSettings />
+      </ReactiveRoot>,
+      node.parentElement.firstChild
     )
-  ]
-
-  for (const newNotif of newNotifs) {
-    node.parentElement.prepend(newNotif)
-  }
-
-  newSettingInjected = true
+  })
 }
 
 const notifHandler = (payload) => {
