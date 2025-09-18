@@ -124,60 +124,68 @@ const apiWindow = backendObj.apiWindow;
 //#endregion
 //#region plugins/dorion-notifications/index.tsx
 var import_web = __toESM(require_web(), 1);
-const { ui: { SwitchItem }, flux: { dispatcher: FluxDispatcher }, solid: { createSignal } } = shelter;
+const { ui: { SwitchItem, ReactiveRoot }, flux: { dispatcher: FluxDispatcher }, solid: { createSignal }, observeDom } = shelter;
 const [settings, setSettings] = createSignal(null);
-const notifSelector = "div[class*=\"contentColumn\"] div[class*=\"container\"]";
-let isOnNotifSection = false;
-let newSettingInjected = false;
-const settingsHandler = async (payload) => {
+let child = null;
+const settingsHandler = (payload) => {
 	if (payload.section !== "Notifications") {
-		isOnNotifSection = false;
-		newSettingInjected = false;
+		if (child) {
+			child.remove();
+			child = null;
+		}
 		return;
-	} else if (isOnNotifSection) return;
-	isOnNotifSection = true;
-	await window.Dorion.util.waitForElm("#notifications-tab");
-	const node = document.querySelector(notifSelector);
-	node.style.display = "none";
-	const next = node.nextElementSibling;
-	if (next) next.style.display = "none";
-	if (newSettingInjected) return;
-	const newNotifs = [(0, import_web.createComponent)(SwitchItem, {
-		note: "Shows a red badge on the app icon when you have unread messages.",
-		get value() {
-			return settings()?.unread_badge;
-		},
-		onChange: async (value) => {
-			setSettings({
-				...settings(),
-				unread_badge: value
-			});
-			await invoke("write_config_file", { contents: JSON.stringify(settings()) });
-			api.shouldShowUnreadBadge = value;
-			if (!value) invoke("notif_count", { amount: 0 });
+	}
+	const unsub = observeDom("#notifications-tab", () => {
+		unsub();
+		const notifSelector = "div[class*=\"contentColumn\"] div[class*=\"container\"]";
+		const node = document.querySelector(notifSelector);
+		if (!node) return;
+		node.style.display = "none";
+		const next = node.nextElementSibling;
+		if (next) next.style.display = "none";
+		const NotificationSettings = () => [(0, import_web.createComponent)(SwitchItem, {
+			note: "If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings.",
+			get value() {
+				return settings()?.desktop_notifications;
+			},
+			onChange: (value) => {
+				setSettings({
+					...settings(),
+					desktop_notifications: value
+				});
+				FluxDispatcher.dispatch({
+					type: "NOTIFICATIONS_SET_PERMISSION_STATE",
+					enabled: value ? "ENABLED" : "DISABLED"
+				});
+				invoke("write_config_file", { contents: JSON.stringify(settings()) });
+				if (value) invoke("send_notification", {
+					title: "Desktop Notifications Enabled",
+					body: "You will now receive desktop notifications!",
+					icon: ""
+				});
+			},
+			children: "Enable Desktop Notifications"
+		}), (0, import_web.createComponent)(SwitchItem, {
+			note: "Shows a red badge on the app icon when you have unread messages.",
+			get value() {
+				return settings()?.unread_badge;
+			},
+			onChange: async (value) => {
+				setSettings({
+					...settings(),
+					unread_badge: value
+				});
+				await invoke("write_config_file", { contents: JSON.stringify(settings()) });
+				api.shouldShowUnreadBadge = value;
+				if (!value) invoke("notif_count", { amount: 0 });
 else api.util.applyNotificationCount();
-		},
-		children: "Enable Unread Message Badge"
-	}), (0, import_web.createComponent)(SwitchItem, {
-		note: "If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings.",
-		get value() {
-			return settings()?.desktop_notifications;
-		},
-		onChange: async (value) => {
-			setSettings({
-				...settings(),
-				desktop_notifications: value
-			});
-			FluxDispatcher.dispatch({
-				type: "NOTIFICATIONS_SET_PERMISSION_STATE",
-				enabled: value ? "ENABLED" : "DISABLED"
-			});
-			await invoke("write_config_file", { contents: JSON.stringify(settings()) });
-		},
-		children: "Enable Desktop Notifications"
-	})];
-	for (const newNotif of newNotifs) node.parentElement.prepend(newNotif);
-	newSettingInjected = true;
+			},
+			children: "Enable Unread Message Badge"
+		})];
+		child = node.parentElement.insertBefore((0, import_web.createComponent)(ReactiveRoot, { get children() {
+			return (0, import_web.createComponent)(NotificationSettings, {});
+		} }), node.parentElement.firstChild);
+	});
 };
 const notifHandler = (payload) => {
 	if (!settings()?.desktop_notifications || !window.Notification?.__IS_STUBBED__) return;
