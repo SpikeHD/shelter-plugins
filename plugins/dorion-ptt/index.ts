@@ -14,7 +14,7 @@ const {
 const events = []
 const subscriptions = []
 const unobserves = []
-const warningSelector = 'div[class*="pttToolsMessage_"]'
+const warningSelector = 'div[class*="warning__"]'
 const radiobarSelector = 'div[class*="radioBar_"]'
 const popupSelector = 'div[class*="layerContainer_"] div[class*="layer_"]'
 
@@ -27,7 +27,7 @@ const settingsHandler = async (payload) => {
     return
   }
 
-  // This gets rid of the warning messages, as they donto apply anymore
+  // This gets rid of the warning messages, as they dont apply anymore
   unobserves.push(
     observeDom(warningSelector, (node: HTMLDivElement) => {
       node.remove()
@@ -39,7 +39,7 @@ const settingsHandler = async (payload) => {
       node.innerHTML = ''
 
       // Click the backdrop
-      const unobserveBackdrop = observeDom('div[class*="backdrop_"]', (backdrop: HTMLDivElement) => {
+      const unobserveBackdrop = observeDom('div[class*="scrim_"]', (backdrop: HTMLDivElement) => {
         backdrop.click()
         unobserveBackdrop()
       })
