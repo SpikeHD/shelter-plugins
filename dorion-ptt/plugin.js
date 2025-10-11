@@ -173,7 +173,7 @@ const { flux: { dispatcher: FluxDispatcher, stores: { MediaEngineStore } }, obse
 const events = [];
 const subscriptions = [];
 const unobserves = [];
-const warningSelector = "div[class*=\"pttToolsMessage_\"]";
+const warningSelector = "div[class*=\"warning__\"]";
 const radiobarSelector = "div[class*=\"radioBar_\"]";
 const popupSelector = "div[class*=\"layerContainer_\"] div[class*=\"layer_\"]";
 const unobserveAll = () => unobserves.forEach((unobserve) => unobserve());
@@ -187,7 +187,7 @@ const settingsHandler = async (payload) => {
 	}), observeDom(popupSelector, (node) => {
 		if (node.id) return;
 		node.innerHTML = "";
-		const unobserveBackdrop = observeDom("div[class*=\"backdrop_\"]", (backdrop) => {
+		const unobserveBackdrop = observeDom("div[class*=\"scrim_\"]", (backdrop) => {
 			backdrop.click();
 			unobserveBackdrop();
 		});
