@@ -43,6 +43,29 @@ const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2);
 const { plugin: { store }, ui: { SwitchItem } } = shelter;
 const components = [
 	{
+		name: "Nitro usernames",
+		description: "Removes the fancy username effects from users that have them enabled",
+		rules: `
+      div:has(> span[data-username-with-effects]) { all: unset !important; }
+      span[data-username-with-effects] { all: unset !important; }
+      span[class*=dnsFont] { all: unset !important; }
+    `
+	},
+	{
+		name: "Nitro member backgrounds",
+		description: "Removes the member list background effects from users that have them enabled",
+		rules: `
+      div[class*=nameplated__] > div[class*=container] { display: none !important; }
+    `
+	},
+	{
+		name: "Nitro profile effects",
+		description: "Removes the profile card effects from users that have them enabled",
+		rules: `
+      div[class*=profileEffects__] { display: none !important; }
+    `
+	},
+	{
 		name: "Active Now section",
 		description: "Removes the \"Active Now\" section from the home page",
 		rules: `
@@ -61,6 +84,13 @@ const components = [
 		description: "Removes the \"Store\" tab from the home page",
 		rules: `
       a[href="/shop"] { display: none; }
+    `
+	},
+	{
+		name: "Quests tab",
+		description: "Removes the \"Quests\" tab from the home page",
+		rules: `
+      a[href="/quest-home"] { display: none; }
     `
 	},
 	{
@@ -109,7 +139,7 @@ if (Object.keys(store).length === 0) {
 	shelter.ui.showToast({
 		title: "Declutter",
 		content: "All component removals have been enabled. Click the settings icon to disable them selectively.",
-		duration: 3e3
+		duration: 5e3
 	});
 }
 const settings = () => {
