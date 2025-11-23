@@ -2798,9 +2798,9 @@ function css$2(hljs) {
 //#endregion
 //#region plugins/inline-css/components/Editor.scss
 const classes$1 = {
-	"ceditor": "alHKPa_ceditor",
 	"controls": "alHKPa_controls",
-	"popout": "alHKPa_popout"
+	"popout": "alHKPa_popout",
+	"ceditor": "alHKPa_ceditor"
 };
 const css$1 = `.alHKPa_ceditor {
   background: var(--input-background);
@@ -2896,12 +2896,12 @@ const Popout = () => (0, import_web$21.getNextElement)(_tmpl$$3);
 //#region plugins/inline-css/components/Window.scss
 const classes = {
 	"topbar": "EVeMMG_topbar",
-	"resize": "EVeMMG_resize",
 	"exit": "EVeMMG_exit",
-	"window": "EVeMMG_window",
+	"resize": "EVeMMG_resize",
 	"main": "EVeMMG_main",
 	"content": "EVeMMG_content",
-	"inner": "EVeMMG_inner"
+	"inner": "EVeMMG_inner",
+	"window": "EVeMMG_window"
 };
 const css = `.EVeMMG_window {
   z-index: 99999;
