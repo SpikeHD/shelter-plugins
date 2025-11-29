@@ -94,11 +94,23 @@ export const keybindActions: KeybindActionsInternal = {
       type: 'SPEAKING',
       context: 'default',
       speakingFlags: 4
+    },
+    {
+      type: 'PUSH_TO_TALK_STATE_CHANGE',
+      isActive: true,
+      isPriority: true,
+      isLatched: true,
     }],
     release: [{
       type: 'SPEAKING',
       context: 'default',
       speakingFlags: 0
+    },
+    {
+      type: 'PUSH_TO_TALK_STATE_CHANGE',
+      isActive: false,
+      isPriority: false,
+      isLatched: false,
     }]
   },
   'PUSH_TO_MUTE': {
