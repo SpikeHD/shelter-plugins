@@ -53,7 +53,7 @@ export const keybindActions: KeybindActionsInternal = {
       key: '',
       eventKey: 'userId',
       modify: (event, store) => {
-        event['userId'] = store['getCurrentUser']().id
+        if (event.type === 'SPEAKING') event['userId'] = store['getCurrentUser']().id
         return event
       }
     },
