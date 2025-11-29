@@ -1,3 +1,9 @@
+const {
+  flux: {
+    stores,
+  }
+} = shelter
+
 export const keybindActions: KeybindActionsInternal = {
   'UNASSIGNED': {},
   'TOGGLE_MUTE': {
@@ -54,6 +60,13 @@ export const keybindActions: KeybindActionsInternal = {
       eventKey: 'userId',
       modify: (event, store) => {
         if (event.type === 'SPEAKING') event['userId'] = store['getCurrentUser']().id
+
+        if (event.type === 'PUSH_TO_TALK_STATE_CHANGE') {
+          // We also have to do some manual stuff
+          // @ts-expect-error i will explode the typescript checker with my mind
+          stores.MediaEngineStore?.getMediaEngine().eachConnection(c => c.setForceAudioInput(event.isActive, event.isPriority, false))
+        }
+
         return event
       }
     },
