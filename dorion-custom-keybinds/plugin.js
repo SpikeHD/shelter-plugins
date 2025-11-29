@@ -124,14 +124,14 @@ const apiWindow = backendObj.apiWindow;
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindSection": "Zz-Z3G_keybindSection",
 	"keybindsBanner": "Zz-Z3G_keybindsBanner",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
 	"header": "Zz-Z3G_header",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
 	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch"
+	"keybindsButton": "Zz-Z3G_keybindsButton"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -201,11 +201,11 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
 	"keybindRoot": "QTLdLq_keybindRoot",
-	"keybindArea": "QTLdLq_keybindArea",
-	"removeButton": "QTLdLq_removeButton",
 	"note": "QTLdLq_note",
 	"keybindSection": "QTLdLq_keybindSection",
-	"actionSection": "QTLdLq_actionSection"
+	"keybindArea": "QTLdLq_keybindArea",
+	"actionSection": "QTLdLq_actionSection",
+	"removeButton": "QTLdLq_removeButton"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -404,12 +404,12 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
+	"keybindButton": "N-HDcq_keybindButton",
 	"keybindContainer": "N-HDcq_keybindContainer",
 	"recording": "N-HDcq_recording",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindInput": "N-HDcq_keybindInput",
-	"pulse": "N-HDcq_pulse",
-	"keybindButton": "N-HDcq_keybindButton",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder"
+	"pulse": "N-HDcq_pulse"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--input-background);
@@ -827,6 +827,7 @@ function Keybinds(props) {
 
 //#endregion
 //#region plugins/dorion-custom-keybinds/util/actionMap.ts
+const { flux: { stores } } = shelter;
 const keybindActions = {
 	"UNASSIGNED": {},
 	"TOGGLE_MUTE": { press: [{
@@ -878,6 +879,7 @@ const keybindActions = {
 			eventKey: "userId",
 			modify: (event$1, store) => {
 				if (event$1.type === "SPEAKING") event$1["userId"] = store["getCurrentUser"]().id;
+				if (event$1.type === "PUSH_TO_TALK_STATE_CHANGE") stores.MediaEngineStore?.getMediaEngine().eachConnection((c) => c.setForceAudioInput(event$1.isActive, event$1.isPriority, false));
 				return event$1;
 			}
 		},
@@ -953,11 +955,6 @@ const keybindActions = {
 //#region plugins/dorion-custom-keybinds/util/events.ts
 const { flux: { dispatcher: FluxDispatcher$1 } } = shelter;
 const events = [];
-const spam = (fn, interval = 50) => {
-	fn();
-	return setInterval(fn, interval);
-};
-const eventSpamIntervals = {};
 const register = () => {
 	events.push(event.listen("keybind_pressed", (e) => {
 		const key = e.payload;
@@ -970,12 +967,7 @@ const register = () => {
 				const storeInstance = shelter.flux.stores[store];
 				e$1 = modify(e$1, storeInstance);
 			}
-			if (press.type === "PUSH_TO_TALK_STATE_CHANGE") {
-				if (eventSpamIntervals[key]) clearInterval(eventSpamIntervals[key]);
-				eventSpamIntervals[key] = spam(() => {
-					FluxDispatcher$1.dispatch(e$1);
-				}, 50);
-			} else FluxDispatcher$1.dispatch(e$1);
+			FluxDispatcher$1.dispatch(e$1);
 		}
 	}));
 	events.push(event.listen("keybind_released", (e) => {
@@ -988,12 +980,6 @@ const register = () => {
 				const { store, modify } = action.storeValue;
 				const storeInstance = shelter.flux.stores[store];
 				e$1 = modify(e$1, storeInstance);
-			}
-			if (release.type === "PUSH_TO_TALK_STATE_CHANGE") {
-				if (eventSpamIntervals[key]) {
-					clearInterval(eventSpamIntervals[key]);
-					delete eventSpamIntervals[key];
-				}
 			}
 			FluxDispatcher$1.dispatch(release);
 		}
