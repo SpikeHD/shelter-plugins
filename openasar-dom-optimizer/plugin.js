@@ -41,13 +41,12 @@ const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<a href="https://github.c
 /**
 * OpenAsar has this cool little optimization technique that delays some operations when
 * switching channels or servers, so that the switch is faster.
-* 
+*
 * https://github.com/GooseMod/OpenAsar/blob/ef4470849624032a8eb7265eabd23158aa5a2356/src/mainWindow.js#L99
 * https://github.com/GooseMod/OpenAsar/wiki/DOM-Optimizer
 */
 const { plugin: { store }, ui: { SwitchItem, Text } } = shelter;
 const _removeChild = Element.prototype.removeChild;
-const _appendChild = Element.prototype.appendChild;
 const optimize = (orig) => function(...args) {
 	if (typeof args[0].className === "string" && args[0].className.indexOf("activity") !== -1) return setTimeout(() => orig.apply(this, args), 100);
 	return orig.apply(this, args);
