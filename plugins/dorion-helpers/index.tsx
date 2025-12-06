@@ -31,3 +31,6 @@ const updateNotificationBadge = () => {
 GuildReadStateStore.addChangeListener(updateNotificationBadge)
 // @ts-expect-error cry
 RelationshipStore.addChangeListener(updateNotificationBadge)
+
+// Initial update
+updateNotificationBadge()
