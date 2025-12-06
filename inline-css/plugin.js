@@ -2895,13 +2895,13 @@ const Popout = () => (0, import_web$21.getNextElement)(_tmpl$$3);
 //#endregion
 //#region plugins/inline-css/components/Window.scss
 const classes = {
-	"topbar": "EVeMMG_topbar",
-	"resize": "EVeMMG_resize",
 	"inner": "EVeMMG_inner",
-	"content": "EVeMMG_content",
 	"exit": "EVeMMG_exit",
+	"resize": "EVeMMG_resize",
+	"main": "EVeMMG_main",
 	"window": "EVeMMG_window",
-	"main": "EVeMMG_main"
+	"topbar": "EVeMMG_topbar",
+	"content": "EVeMMG_content"
 };
 const css = `.EVeMMG_window {
   z-index: 99999;

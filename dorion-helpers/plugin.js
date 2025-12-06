@@ -16,6 +16,7 @@ const updateNotificationBadge = () => {
 };
 GuildReadStateStore.addChangeListener(updateNotificationBadge);
 RelationshipStore.addChangeListener(updateNotificationBadge);
+updateNotificationBadge();
 
 //#endregion
 })();
