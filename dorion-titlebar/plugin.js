@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"dorion_topbar": "e6P4KG_dorion_topbar",
-	"topclose": "e6P4KG_topclose",
-	"svgunmax": "e6P4KG_svgunmax",
 	"topmax": "e6P4KG_topmax",
-	"maximized": "e6P4KG_maximized",
+	"topright": "e6P4KG_topright",
+	"dorion_topbar": "e6P4KG_dorion_topbar",
+	"svgunmax": "e6P4KG_svgunmax",
 	"svgmax": "e6P4KG_svgmax",
-	"topmin": "e6P4KG_topmin",
-	"topright": "e6P4KG_topright"
+	"maximized": "e6P4KG_maximized",
+	"topclose": "e6P4KG_topclose",
+	"topmin": "e6P4KG_topmin"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-base-lowest);
@@ -73,7 +73,7 @@ const css = `.e6P4KG_dorion_topbar {
 .e6P4KG_topclose, .e6P4KG_topmin, .e6P4KG_topmax {
   width: 44px;
   height: 100%;
-  color: var(--icon-tertiary);
+  color: var(--interactive-text-default);
   justify-content: center;
   align-items: center;
   transition: all .1s ease-in-out;
