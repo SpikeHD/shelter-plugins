@@ -6,9 +6,6 @@ const {
   ui: {
     injectCss
   },
-  util: {
-    sleep
-  },
   flux: {
     dispatcher
   }
@@ -35,64 +32,62 @@ let injectedCss = false
  * });
  */
 function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: T) => void) => boolean): Promise<T> {
-  return new Promise(async (resolve) => {
+  return new Promise((resolve) => {
     const observer = new MutationObserver((mutations, observer) => {
       for (const mutation of mutations) {
         if (mutation.type === 'childList') {
-          const addedNodes = Array.from(mutation.addedNodes);
+          const addedNodes = Array.from(mutation.addedNodes)
           for (const node of addedNodes) {
             if (!callbackFn(node, resolve)) {
-              observer.disconnect();
-              return;
+              observer.disconnect()
+              return
             };
           }
         }
       }
-    });
+    })
     observer.observe(rootElm, {
       childList: true,
       subtree: true
-    });
-  });
-}
-
-// Ensure at least one element on the parent chain or even document body would return
-const querySelectorWaitLast = (query: Array<string> | string, root: Element = document.body, timeout = 10000): Promise<Element> => {
-  return new Promise(async (resolve) => {
-    const fullQuery = (Array.isArray(query)) ? query.join(' ') : query;
-    const elm = root.querySelector(fullQuery);
-    if (elm) { resolve(elm); return; }
-    let stop = false;
-    setTimeout(() => { stop = true; resolve(root) }, timeout);
-    if (!Array.isArray(query)) query = [query];
-    while (!stop && query.length) {
-      let q = query.shift();
-      const elm = root.querySelector(q);
-      if (elm) { root = elm; continue; }
-      root = await observeDom(root, (node, res) => {
-        if (stop) return false;
-        if (node.nodeType !== Node.ELEMENT_NODE) return true;
-        const e = node as Element;
-        if (e.matches(q)) {
-          res(e);
-          return false;
-        }
-        const elm: Element = e.querySelector(q);
-        if (elm) {
-          res(elm);
-          return false;
-        }
-        return true;
-      }) as Element;
-    }
-    resolve(root);
+    })
   })
 }
 
+// Ensure at least one element on the parent chain or even document body would return
+const querySelectorWaitLast = async (query: Array<string> | string, root: Element = document.body, timeout = 10000): Promise<Element> => {
+  const fullQuery = (Array.isArray(query)) ? query.join(' ') : query
+  const elm = root.querySelector(fullQuery)
+  if (elm) { return elm }
+  let stop = false
+  setTimeout(() => { stop = true }, timeout)
+  if (!Array.isArray(query)) query = [query]
+  while (!stop && query.length) {
+    const q = query.shift()
+    const elm = root.querySelector(q)
+    if (elm) { root = elm; continue }
+    root = await observeDom(root, (node, res) => {
+      if (stop) return false
+      if (node.nodeType !== Node.ELEMENT_NODE) return true
+      const e = node as Element
+      if (e.matches(q)) {
+        res(e)
+        return false
+      }
+      const elm: Element = e.querySelector(q)
+      if (elm) {
+        res(elm)
+        return false
+      }
+      return true
+    }) as Element
+  }
+  return root
+}
+
 const insertOne = (className: string, callbackFn: () => void) => {
-  const existElms = document.querySelectorAll(`div.${className}`);
-  if (existElms.length > 1) existElms.forEach(e => { e.remove() });
-  else if (!existElms.length) callbackFn();
+  const existElms = document.querySelectorAll(`div.${className}`)
+  if (existElms.length > 1) existElms.forEach(e => { e.remove() })
+  else if (!existElms.length) callbackFn()
 }
 
 const insertTitleBar = (parent: Element) => {
@@ -104,31 +99,31 @@ const insertStandaloneControl = (parent: Element) => {
 }
 
 const injectControls = async () => {
-  const discordPanel = await querySelectorWaitLast(['div#app-mount', 'div[class*=appAsidePanelWrapper]', 'div[class*=notAppAsidePanel]']);
-  if (!discordPanel.className.match('notAppAsidePanel')) return insertTitleBar(discordPanel);
-  const discordBar = discordPanel.querySelector('div[data-layer=base][class*=baseLayer] div[class*=base] div[class*=bar]');
-  if (!discordBar) return insertTitleBar(discordPanel);
-  const discordBarTrailing = discordBar.querySelector('div[class*=trailing]');
-  if (!discordBarTrailing) return insertTitleBar(discordPanel);
+  const discordPanel = await querySelectorWaitLast(['div#app-mount', 'div[class*=appAsidePanelWrapper]', 'div[class*=notAppAsidePanel]'])
+  if (!discordPanel.className.match('notAppAsidePanel')) return insertTitleBar(discordPanel)
+  const discordBar = discordPanel.querySelector('div[data-layer=base][class*=baseLayer] div[class*=base] div[class*=bar]')
+  if (!discordBar) return insertTitleBar(discordPanel)
+  const discordBarTrailing = discordBar.querySelector('div[class*=trailing]')
+  if (!discordBarTrailing) return insertTitleBar(discordPanel)
 
-  insertStandaloneControl(discordBarTrailing);
-  setMaximizeIcon();
+  insertStandaloneControl(discordBarTrailing)
+  setMaximizeIcon()
 
-  const discordBarTitle = discordBar.querySelector('div[class*=title]');
-  if (discordBarTitle) discordBarTitle.setAttribute('data-tauri-drag-region', 'true');
+  const discordBarTitle = discordBar.querySelector('div[class*=title]')
+  if (discordBarTitle) discordBarTitle.setAttribute('data-tauri-drag-region', 'true')
 }
 
 const handleFullTitlebar = async () => {
-  const discordPanel = await querySelectorWaitLast('div[class*=notAppAsidePanel]');
-  insertTitleBar(discordPanel);
+  const discordPanel = await querySelectorWaitLast('div[class*=notAppAsidePanel]')
+  insertTitleBar(discordPanel)
 }
 
 const handleControlsOnly = async () => {
-  const discordPanel = document.querySelector('div[class*=notAppAsidePanel]');
-  if (!discordPanel.className.match('notAppAsidePanel')) return;
-  const dorionControl = discordPanel.querySelector(`div[data-layer=base][class*=baseLayer] div[class*=base] div[class*=bar] div[class*=trailing] div.${classes.topright}`);
+  const discordPanel = document.querySelector('div[class*=notAppAsidePanel]')
+  if (!discordPanel.className.match('notAppAsidePanel')) return
+  const dorionControl = discordPanel.querySelector(`div[data-layer=base][class*=baseLayer] div[class*=base] div[class*=bar] div[class*=trailing] div.${classes.topright}`)
   // Remove the whole titlebar
-  if (dorionControl) document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach(e => e.remove());
+  if (dorionControl) document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach(e => e.remove())
 }
 
 const handleFullscreenExit = (dispatch) => {
