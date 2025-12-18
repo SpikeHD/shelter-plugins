@@ -91,10 +91,10 @@ const waitDom = async (queries: Array<string> | string, callbackFn: (elm: Elemen
   return root
 }
 
-const insertOne = (className: string, callbackFn: () => void) => {
-  const existElms = document.querySelectorAll(`div.${className}`)
-  if (existElms.length > 1) existElms.forEach(e => { e.remove() })
-  else if (!existElms.length) callbackFn()
+const insertOne = (classNames: Array<string> | string, callbackFn: () => void) => {
+  if (!Array.isArray(classNames)) classNames = [classNames]
+  classNames.forEach(className => { document.querySelectorAll(`div.${className}`).forEach(e => { e.remove() }) })
+  callbackFn()
 }
 
 const insertTitleBar = (parent: Element) => {
@@ -102,8 +102,7 @@ const insertTitleBar = (parent: Element) => {
 }
 
 const insertStandaloneControl = (parent: Element) => {
-  document.querySelectorAll(`div.${classes.dorion_topbar}`).forEach(e => { e.remove() })
-  insertOne(classes.topright, () => parent.appendChild(<Controls standalone />))
+  insertOne([classes.dorion_topbar, classes.topright], () => parent.appendChild(<Controls standalone />))
   setMaximizeIcon()
 }
 
