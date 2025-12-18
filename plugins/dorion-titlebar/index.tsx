@@ -60,14 +60,19 @@ function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: 
 // Ensure at least one element on the chain would callback
 const waitDom = async (queries: Array<string> | string, callbackFn: (elm: Element) => void = () => { }, root: Element = document.body): Promise<Element> => {
   if (!Array.isArray(queries)) queries = [queries]
-  while (queries.length) {
-    // prepare next query
-    let query = queries.shift()
-    const subtree = query[0] === '>'
-    if (subtree) query = query.slice(1)
-    // fast exit if next query already exist
-    const elm = subtree ? Array.from(root.children).find(e => e.matches(query)) : root.querySelector(query)
-    if (elm) { root = elm; callbackFn(root); continue }
+  loop: while (queries.length) {
+    // prepare query
+    let query: string
+    let subtree: boolean
+    // fast exit if remaining queries already exist
+    for (let i = queries.length; i > 0; i--) {
+      query = queries.slice(0, i).join(' ')
+      subtree = query[0] === '>'
+      if (subtree) query = query.slice(1)
+      const elm = root.querySelector(query)
+      if (elm) { root = elm; callbackFn(root); queries = queries.slice(i); continue loop }
+    }
+    queries.shift() // remove the query that same as last query above
     // start observer
     root = await observeDom(root, (node, res) => {
       if (node.nodeType !== Node.ELEMENT_NODE) return true
