@@ -62,17 +62,14 @@ const waitDom = async (queries: Array<string> | string, callbackFn: (elm: Elemen
   if (!Array.isArray(queries)) queries = [queries]
   loop: while (queries.length) {
     // prepare query
-    let query: string
-    let subtree: boolean
+    let query = queries.shift()
+    const subtree = query[0] === '>'
+    if (subtree) query = query.slice(1)
     // fast exit if remaining queries already exist
     for (let i = queries.length; i > 0; i--) {
-      query = queries.slice(0, i).join(' ')
-      subtree = query[0] === '>'
-      if (subtree) query = query.slice(1)
-      const elm = root.querySelector(query)
+      const elm = root.querySelector(`${query} ${queries.slice(0, i).join(' ')}`)
       if (elm) { root = elm; callbackFn(root); queries = queries.slice(i); continue loop }
     }
-    queries.shift() // remove the query that same as last query above
     // start observer
     root = await observeDom(root, (node, res) => {
       if (node.nodeType !== Node.ELEMENT_NODE) return true
