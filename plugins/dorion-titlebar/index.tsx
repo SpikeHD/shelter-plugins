@@ -65,8 +65,8 @@ const waitDom = async (queries: Array<string> | string, callbackFn: (elm: Elemen
     let query = queries.shift()
     const subtree = query[0] === '>'
     if (subtree) query = query.slice(1)
-    // fast exit if remaining queries already exist
-    for (let i = queries.length; i > 0; i--) {
+    // no observe if remaining queries already exist
+    for (let i = queries.length; i >= 0; i--) {
       const elm = root.querySelector(`${query} ${queries.slice(0, i).join(' ')}`)
       if (elm) { root = elm; callbackFn(root); queries = queries.slice(i); continue loop }
     }
