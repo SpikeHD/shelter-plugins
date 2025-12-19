@@ -62,6 +62,7 @@ function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: 
 
 // Ensure at least one element on the chain would callback
 type query = Array<string> | string;
+// biome-ignore lint/suspicious/noExplicitAny: flavor for type checker
 const isString = (v: any) => (typeof v === 'string' || v instanceof String)
 const subtreeFind = (p: Element, q: Array<string>) => Array.from(p.children).find(c => q.some(q => c.matches(q)))
 const queryFind = (p: Element, query: Array<string>) => {
@@ -79,7 +80,6 @@ const waitDom = async (queries: Array<query> | query, callbackFn: (elm: Element)
   startTimeout()
 
   if (!Array.isArray(queries)) queries = [queries]
-  queries.forEach((q: query) => { return isString(q) ? [q] : q })
   loop: while (queries.length) {
     // prepare query
     const q: query = queries.shift()
@@ -156,6 +156,7 @@ const handleFullTitlebar = async () => {
 const handleControlsOnly = async () => {
   // use querySelector, do nothing while observer still injecting elms
   const dorionControl = document.querySelector(`div[class*=notAppAsidePanel] div[data-layer=base][class*=baseLayer] div[class*=base]>div[class*=bar]>div[class*=trailing] div.${classes.topright}`)
+  // biome-ignore lint/suspicious/useIterableCallbackReturn: the return value is undefined
   if (dorionControl) document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach(e => e.remove())
 }
 
