@@ -189,11 +189,16 @@ else api.util.applyNotificationCount();
 };
 const notifHandler = (payload) => {
 	if (!settings()?.desktop_notifications || !window.Notification?.__IS_STUBBED__) return;
-	const { title, body, icon } = payload;
+	const { title, body, icon, message } = payload;
 	invoke("send_notification", {
 		title,
 		body,
-		icon
+		icon,
+		additionalData: {
+			guild_id: message?.guild_id || null,
+			channel_id: message?.channel_id || null,
+			message_id: message?.id || null
+		}
 	});
 };
 FluxDispatcher.subscribe("USER_SETTINGS_MODAL_SET_SECTION", settingsHandler);
