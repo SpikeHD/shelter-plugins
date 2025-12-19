@@ -110,12 +110,17 @@ const notifHandler = (payload) => {
   // @ts-expect-error this is added by Dorion
   if (!settings()?.desktop_notifications || !window.Notification?.__IS_STUBBED__) return
 
-  const { title, body, icon } = payload
+  const { title, body, icon, message } = payload
 
   invoke('send_notification', {
     title,
     body,
     icon,
+    additionalData: {
+      guild_id: message?.guild_id || null,
+      channel_id: message?.channel_id || null,
+      message_id: message?.id || null,
+    },
   })
 }
 
@@ -125,7 +130,7 @@ FluxDispatcher.subscribe('RPC_NOTIFICATION_CREATE', notifHandler)
 export const onLoad = async () => {
   const cfg = JSON.parse(await invoke('read_config_file'))
   setSettings(cfg)
-  
+
   if (cfg.desktop_notifications) {
     Notification.requestPermission()
   }
