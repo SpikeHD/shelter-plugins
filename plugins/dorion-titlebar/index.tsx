@@ -8,6 +8,9 @@ const {
   },
   flux: {
     dispatcher
+  },
+  util: {
+    log
   }
 } = shelter
 
@@ -58,36 +61,58 @@ function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: 
 }
 
 // Ensure at least one element on the chain would callback
-const waitDom = async (queries: Array<string> | string, callbackFn: (elm: Element) => void = () => { }, root: Element = document.body): Promise<Element> => {
+type query = Array<string> | string;
+const isString = (v: any) => (typeof v === 'string' || v instanceof String)
+const subtreeFind = (p: Element, q: Array<string>) => Array.from(p.children).find(c => q.some(q => c.matches(q)))
+const queryFind = (p: Element, query: Array<string>) => {
+  for (let q of query) {
+    const subtree = q[0] === '>'
+    if (subtree) q = q.slice(1)
+    const elm = subtree ? subtreeFind(p, [q]) : p.querySelector(q)
+    if (elm) return elm
+  }
+}
+const waitDom = async (queries: Array<query> | query, callbackFn: (elm: Element) => void = () => { }, root: Element = document.body): Promise<Element> => {
+  let query: string[]
+  let timeout = () => { if (observer) { log(['The observer seems stuck at', root, 'looking for', query, 'with remaining queries:', queries], 'warn') } }
+  const startTimeout = () => setTimeout(() => { timeout(); startTimeout() }, 100000)
+  startTimeout()
+
   if (!Array.isArray(queries)) queries = [queries]
+  queries.forEach((q: query) => { return isString(q) ? [q] : q })
   loop: while (queries.length) {
     // prepare query
-    let query = queries.shift()
-    const subtree = query[0] === '>'
-    if (subtree) query = query.slice(1)
-    // no observe if remaining queries already exist
-    for (let i = queries.length; i >= 0; i--) {
-      const elm = root.querySelector(`${query} ${queries.slice(0, i).join(' ')}`)
-      if (elm) { root = elm; callbackFn(root); queries = queries.slice(i); continue loop }
-    }
+    const q: query = queries.shift()
+    query = isString(q) ? [q] : q
+    const subtree = query.every(q => q[0] === '>')
+    if (subtree) query = query.map(q => q.slice(1))
+    // no observe if this elm already exist
+    const elm = subtree ? subtreeFind(root, query) : queryFind(root, query)
+    if (elm) { root = elm; callbackFn(root); continue loop }
     // start observer
     root = await observeDom(root, (node, res) => {
       if (node.nodeType !== Node.ELEMENT_NODE) return true
       const e = node as Element
-      if (e.matches(query)) {
-        res(e)
-        return false
-      }
-      const elm: Element = e.querySelector(query)
-      if (elm) {
-        res(elm)
-        return false
+      for (let q of query) {
+        if (!subtree) {
+          const s = q[0] === '>'
+          if (s) q = q.slice(1)
+        }
+        let ret = e.matches(q) ? e : null
+        if (!ret) {
+          ret = e.querySelector(q)
+        }
+        if (ret) {
+          res(e)
+          return false
+        }
       }
       return true
     }, subtree) as Element
     // callback after found
     callbackFn(root)
   }
+  timeout = () => { }
   return root
 }
 
@@ -108,14 +133,14 @@ const insertStandaloneControl = (parent: Element) => {
 
 const waitDiscordPanel = (callbackFn: (elm: Element) => void) => waitDom(['>div#app-mount', '>div[class*=appAsidePanelWrapper]', '>div[class*=notAppAsidePanel]'], callbackFn)
 
-// if titlebar injected at `document.body`, `div#app-mount`, `div[class*=appAsidePanelWrapper]`
-// would be worst case with overflow or content covered
+// if titlebar injected at `document.body`, `div#app-mount`, `div[class*=appAsidePanelWrapper]`, `div[class*=notAppAsidePanel]`
+// would be worst case with overflow or some contents covered causing some parts Discord cannot be seen
 const injectControls = async () => {
   // always keep a title bar available if following elms not available
   insertTitleBar(document.body)
   // cancel old observer to inject new controls
   const discordPanel = await waitDiscordPanel(elm => insertTitleBar(elm))
-  const discordBar = await waitDom(['div[class*=baseLayer]', '>div[class*=container]', '>div[class*=base]', '>div[class*=bar]'], () => { }, discordPanel)
+  const discordBar = await waitDom(['div[data-layer=base]', '>div[class*=container]', '>div[class*=base]', ['>div[class*=bar_]', '>div[class*=-bar]']], () => { }, discordPanel)
   waitDom('>div[class*=trailing]', elm => {
     insertStandaloneControl(elm)
     const discordBarTitle = discordBar.querySelector('div[class*=title]')
@@ -130,10 +155,7 @@ const handleFullTitlebar = async () => {
 
 const handleControlsOnly = async () => {
   // use querySelector, do nothing while observer still injecting elms
-  const discordPanel = document.querySelector('div[class*=notAppAsidePanel]')
-  if (!discordPanel) return
-  // Remove the whole titlebar
-  const dorionControl = discordPanel.querySelector(`div[data-layer=base][class*=baseLayer] div[class*=base]>div[class*=bar]>div[class*=trailing] div.${classes.topright}`)
+  const dorionControl = document.querySelector(`div[class*=notAppAsidePanel] div[data-layer=base][class*=baseLayer] div[class*=base]>div[class*=bar]>div[class*=trailing] div.${classes.topright}`)
   if (dorionControl) document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach(e => e.remove())
 }
 
