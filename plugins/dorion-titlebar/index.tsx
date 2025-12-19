@@ -74,8 +74,8 @@ const queryFind = (p: Element, query: Array<string>) => {
 }
 const waitDom = async (queries: Array<query> | query, callbackFn: (elm: Element) => void = () => { }, root: Element = document.body): Promise<Element> => {
   let query: string[]
-  let timeout = () => { log(['The observer seems stuck at', root, 'looking for', query, 'with remaining queries:', queries], 'warn') }
-  const startTimeout = () => setTimeout(() => { if (timeout) { timeout(); startTimeout() } }, 100000)
+  let timeout = () => log(['The observer seems stuck at', root, 'looking for', query, 'with remaining queries:', queries], 'warn')
+  const startTimeout = () => setTimeout(() => { if (timeout) { timeout(); startTimeout() } }, 10000)
   startTimeout()
 
   if (!Array.isArray(queries)) queries = [queries]
