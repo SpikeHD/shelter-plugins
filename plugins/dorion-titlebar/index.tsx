@@ -3,15 +3,9 @@ import { setMaximizeIcon } from './actions.js'
 import { css, classes } from './index.scss'
 
 const {
-  ui: {
-    injectCss
-  },
-  flux: {
-    dispatcher
-  },
-  util: {
-    log
-  }
+  ui: { injectCss },
+  flux: { dispatcher },
+  util: { log }
 } = shelter
 
 let injectedCss = false
@@ -22,7 +16,7 @@ let observer: MutationObserver | null = null // keep only one observer working
  * Observes the DOM for newly added nodes and executes a callback for each.
  * @template T - The type of the value that the Promise will eventually resolve to.
  * @param {Node} rootElm - The DOM node to start observing from (e.g., document.body).
- * @param {(Node, resolve(T)) => boolean} callbackFn - A function executed for every added node. 
+ * @param {(Node, resolve(T)) => boolean} callbackFn - A function executed for every added node.
  * - Call `resolve(value)` to fulfill the promise.
  * - Return `false` to disconnect the observer and stop listening.
  * - Return `true` to continue observing for more nodes.
@@ -48,7 +42,7 @@ function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: 
               observer.disconnect()
               observer = null
               return
-            };
+            }
           }
         }
       }
@@ -61,9 +55,8 @@ function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: 
 }
 
 // Ensure at least one element on the chain would callback
-type query = Array<string> | string;
-// biome-ignore lint/suspicious/noExplicitAny: flavor for type checker
-const isString = (v: any) => (typeof v === 'string' || v instanceof String)
+type query = Array<string> | string
+const isString = (v: any) => typeof v === 'string' || v instanceof String
 const subtreeFind = (p: Element, q: Array<string>) => Array.from(p.children).find(c => q.some(q => c.matches(q)))
 const queryFind = (p: Element, query: Array<string>) => {
   for (let q of query) {
@@ -73,7 +66,7 @@ const queryFind = (p: Element, query: Array<string>) => {
     if (elm) return elm
   }
 }
-const waitDom = async (queries: Array<query> | query, callbackFn: (elm: Element) => void = () => { }, root: Element = document.body): Promise<Element> => {
+const waitDom = async (queries: Array<query> | query, callbackFn: (elm: Element) => void = null, root: Element = document.body): Promise<Element> => {
   let query: string[]
   let timeout = () => log(['The observer seems stuck at', root, 'looking for', query, 'with remaining queries:', queries], 'warn')
   const startTimeout = () => setTimeout(() => { if (timeout) { timeout(); startTimeout() } }, 10000)
@@ -88,7 +81,7 @@ const waitDom = async (queries: Array<query> | query, callbackFn: (elm: Element)
     if (subtree) query = query.map(q => q.slice(1))
     // no observe if this elm already exist
     const elm = subtree ? subtreeFind(root, query) : queryFind(root, query)
-    if (elm) { root = elm; callbackFn(root); continue loop }
+    if (elm) { root = elm; if (callbackFn) callbackFn(root); continue loop }
     // start observer
     root = await observeDom(root, (node, res) => {
       if (node.nodeType !== Node.ELEMENT_NODE) return true
@@ -110,7 +103,7 @@ const waitDom = async (queries: Array<query> | query, callbackFn: (elm: Element)
       return true
     }, subtree) as Element
     // callback after found
-    callbackFn(root)
+    if (callbackFn) callbackFn(root)
   }
   timeout = null
   return root
@@ -118,7 +111,11 @@ const waitDom = async (queries: Array<query> | query, callbackFn: (elm: Element)
 
 const insertOne = (classNames: Array<string> | string, callbackFn: () => void) => {
   if (!Array.isArray(classNames)) classNames = [classNames]
-  classNames.forEach(className => { document.querySelectorAll(`div.${className}`).forEach(e => { e.remove() }) })
+  classNames.forEach(className => {
+    document.querySelectorAll(`div.${className}`).forEach(e => {
+      e.remove()
+    })
+  })
   callbackFn()
 }
 
@@ -140,7 +137,7 @@ const injectControls = async () => {
   insertTitleBar(document.body)
   // cancel old observer to inject new controls
   const discordPanel = await waitDiscordPanel(elm => insertTitleBar(elm))
-  const discordBar = await waitDom(['div[data-layer=base]', '>div[class*=container]', '>div[class*=base]', ['>div[class*=bar_]', '>div[class*=-bar]']], () => { }, discordPanel)
+  const discordBar = await waitDom(['div[data-layer=base]', '>div[class*=container]', '>div[class*=base]', ['>div[class*=bar_]', '>div[class*=-bar]']], null, discordPanel)
   waitDom('>div[class*=trailing]', elm => {
     insertStandaloneControl(elm)
     const discordBarTitle = discordBar.querySelector('div[class*=title]')
@@ -156,7 +153,6 @@ const handleFullTitlebar = async () => {
 const handleControlsOnly = async () => {
   // use querySelector, do nothing while observer still injecting elms
   const dorionControl = document.querySelector(`div[class*=notAppAsidePanel] div[data-layer=base][class*=baseLayer] div[class*=base]>div[class*=bar]>div[class*=trailing] div.${classes.topright}`)
-  // biome-ignore lint/suspicious/useIterableCallbackReturn: the return value is undefined
   if (dorionControl) document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach(e => e.remove())
 }
 
