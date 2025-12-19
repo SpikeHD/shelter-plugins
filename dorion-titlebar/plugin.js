@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"svgmax": "e6P4KG_svgmax",
+	"topmin": "e6P4KG_topmin",
+	"dorion_topbar": "e6P4KG_dorion_topbar",
 	"topmax": "e6P4KG_topmax",
 	"topclose": "e6P4KG_topclose",
-	"svgunmax": "e6P4KG_svgunmax",
-	"topright": "e6P4KG_topright",
-	"topmin": "e6P4KG_topmin",
 	"maximized": "e6P4KG_maximized",
-	"dorion_topbar": "e6P4KG_dorion_topbar"
+	"svgmax": "e6P4KG_svgmax",
+	"svgunmax": "e6P4KG_svgunmax",
+	"topright": "e6P4KG_topright"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-base-lowest);
@@ -279,46 +279,136 @@ const Controls = (props) => {
 (0, import_web$2.delegateEvents)(["click"]);
 
 //#endregion
+//#region plugins/dorion-titlebar/waitElm.ts
+const { util: { log } } = shelter;
+let observer = null;
+function observeDom(rootElm, callbackFn, subtree) {
+	return new Promise((resolve) => {
+		if (observer) observer.disconnect();
+		observer = new MutationObserver((mutations) => {
+			for (const mutation of mutations) if (mutation.type === "childList") {
+				const addedNodes = Array.from(mutation.addedNodes);
+				for (const node of addedNodes) if (!callbackFn(node, resolve)) {
+					observer.disconnect();
+					observer = null;
+					return;
+				}
+			}
+		});
+		observer.observe(rootElm, {
+			childList: true,
+			subtree
+		});
+	});
+}
+const subtreeFind = (p, q) => Array.from(p.children).find((c) => q.some((q$1) => c.matches(q$1)));
+const queryFind = (p, query) => {
+	for (let q of query) {
+		const subtree = q[0] === ">";
+		if (subtree) q = q.slice(1);
+		const elm = subtree ? subtreeFind(p, [q]) : p.querySelector(q);
+		if (elm) return elm;
+	}
+};
+const waitForElm = async (queries, callbackFn = null, root = document.body) => {
+	let query;
+	let timeout = true;
+	const startTimeout = () => setTimeout(() => {
+		if (timeout) {
+			log([
+				"The observer seems stuck at",
+				root,
+				"looking for",
+				query,
+				"with remaining queries:",
+				queries
+			], "warn");
+			startTimeout();
+		}
+	}, 1e4);
+	startTimeout();
+	if (!Array.isArray(queries)) queries = [queries];
+	while (queries.length) {
+		const q = queries.shift();
+		query = typeof q === "string" ? [q] : q;
+		const subtree = query.every((q$1) => q$1[0] === ">");
+		if (subtree) query = query.map((q$1) => q$1.slice(1));
+		const elm = subtree ? subtreeFind(root, query) : queryFind(root, query);
+		if (elm) {
+			root = elm;
+			if (callbackFn) callbackFn(root);
+			continue;
+		}
+		root = await observeDom(root, (node, res) => {
+			if (node.nodeType !== Node.ELEMENT_NODE) return true;
+			const e = node;
+			for (let q$1 of query) {
+				if (!subtree) {
+					const s = q$1[0] === ">";
+					if (s) q$1 = q$1.slice(1);
+				}
+				let ret = e.matches(q$1) ? e : null;
+				if (!ret) ret = e.querySelector(q$1);
+				if (ret) {
+					res(e);
+					return false;
+				}
+			}
+			return true;
+		}, subtree);
+		if (callbackFn) callbackFn(root);
+	}
+	timeout = false;
+	return root;
+};
+
+//#endregion
 //#region plugins/dorion-titlebar/index.tsx
 var import_web = __toESM(require_web(), 1);
-const { ui: { injectCss }, util: { sleep }, flux: { dispatcher } } = shelter;
+const { ui: { injectCss }, flux: { dispatcher } } = shelter;
 let injectedCss = false;
-const waitForDefinition = async (fn, maxTries = 20) => {
-	let tries = 0;
-	while (true) {
-		const result = await fn();
-		if (result) return result;
-		await new Promise((r) => setTimeout(r, 500));
-		tries++;
-		if (tries > maxTries) return false;
-	}
+const insertOne = (classNames, callbackFn) => {
+	if (!Array.isArray(classNames)) classNames = [classNames];
+	classNames.forEach((className) => {
+		document.querySelectorAll(`div.${className}`).forEach((e) => {
+			e.remove();
+		});
+	});
+	callbackFn();
 };
-const injectControls = async () => {
-	if (document.querySelector(`.${classes.dorion_topbar}`)) document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach((e) => e.remove());
-	if (document.querySelector(`.${classes.topright}`)) document.querySelectorAll(`.${classes.topright}`)?.forEach((e) => e.remove());
-	const sel = "div[class^=\"bar_\"] div[class^=\"trailing_\"]";
-	let elm;
-	let tries = 0;
-	while (!(elm = document.querySelector(sel))) {
-		await sleep(300);
-		tries++;
-		if (tries > 10) return false;
-	}
-	const controls = (0, import_web.createComponent)(Controls, { standalone: true });
-	elm.appendChild(controls);
+const insertTitleBar = (parent) => {
+	insertOne(classes.dorion_topbar, () => parent.prepend((0, import_web.createComponent)(Titlebar, {})));
+};
+const insertStandaloneControl = (parent) => {
+	insertOne([classes.dorion_topbar, classes.topright], () => parent.appendChild((0, import_web.createComponent)(Controls, { standalone: true })));
 	setMaximizeIcon();
-	const discordBar = document.querySelector("div[class^=\"title_\"]");
-	if (discordBar) discordBar.setAttribute("data-tauri-drag-region", "true");
-	return true;
+};
+const waitDiscordPanel = (callbackFn) => waitForElm([
+	">div#app-mount",
+	">div[class*=appAsidePanelWrapper]",
+	">div[class*=notAppAsidePanel]"
+], callbackFn);
+const injectControls = async () => {
+	insertTitleBar(document.body);
+	const discordPanel = await waitDiscordPanel((elm) => insertTitleBar(elm));
+	const discordBar = await waitForElm([
+		"div[data-layer=base]",
+		">div[class*=container]",
+		">div[class*=base]",
+		[">div[class*=bar_]", ">div[class*=-bar]"]
+	], null, discordPanel);
+	waitForElm(">div[class*=trailing]", (elm) => {
+		insertStandaloneControl(elm);
+		const discordBarTitle = discordBar.querySelector("div[class*=title]");
+		if (discordBarTitle) discordBarTitle.setAttribute("data-tauri-drag-region", "true");
+	}, discordBar);
 };
 const handleFullTitlebar = async () => {
-	const titlebar = (0, import_web.createComponent)(Titlebar, {});
-	await waitForDefinition(() => document.querySelector("div[class^=notAppAsidePanel_]"));
-	const innerMount = document.querySelector("div[class^=notAppAsidePanel_]");
-	innerMount?.prepend(titlebar);
+	waitDiscordPanel((elm) => insertTitleBar(elm));
 };
-const handleControlsOnly = () => {
-	document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach((e) => e.remove());
+const handleControlsOnly = async () => {
+	const dorionControl = document.querySelector(`div[class*=notAppAsidePanel] div[data-layer=base][class*=baseLayer] div[class*=base]>div[class*=bar]>div[class*=trailing] div.${classes.topright}`);
+	if (dorionControl) document.querySelectorAll(`.${classes.dorion_topbar}`)?.forEach((e) => e.remove());
 };
 const handleFullscreenExit = (dispatch) => {
 	if (dispatch.isElementFullscreen) return;
@@ -336,7 +426,7 @@ const onLoad = async () => {
 		setMaximizeIcon
 );
 	window?.__TAURI__?.core.invoke("remove_top_bar");
-	if (!await injectControls()) handleFullTitlebar();
+	injectControls();
 	dispatcher.subscribe("LAYER_PUSH", handleFullTitlebar);
 	dispatcher.subscribe("LAYER_POP", handleControlsOnly);
 	dispatcher.subscribe("LOGIN_SUCCESS", injectControls);
