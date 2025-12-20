@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"topmin": "e6P4KG_topmin",
-	"dorion_topbar": "e6P4KG_dorion_topbar",
+	"topright": "e6P4KG_topright",
 	"topmax": "e6P4KG_topmax",
-	"topclose": "e6P4KG_topclose",
 	"maximized": "e6P4KG_maximized",
-	"svgmax": "e6P4KG_svgmax",
 	"svgunmax": "e6P4KG_svgunmax",
-	"topright": "e6P4KG_topright"
+	"svgmax": "e6P4KG_svgmax",
+	"topclose": "e6P4KG_topclose",
+	"topmin": "e6P4KG_topmin",
+	"dorion_topbar": "e6P4KG_dorion_topbar"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-base-lowest);
@@ -310,7 +310,9 @@ const queryFind = (p, query) => {
 		if (elm) return elm;
 	}
 };
-const waitForElm = async (queries, callbackFn = null, root = document.body) => {
+const waitForElm = async (queries, cfg) => {
+	let root = cfg.root || document.body;
+	const callbackFn = cfg.callbackFn;
 	let query;
 	let timeout = true;
 	const startTimeout = () => setTimeout(() => {
@@ -331,9 +333,9 @@ const waitForElm = async (queries, callbackFn = null, root = document.body) => {
 	while (queries.length) {
 		const q = queries.shift();
 		query = typeof q === "string" ? [q] : q;
-		const subtree = query.every((q$1) => q$1[0] === ">");
-		if (subtree) query = query.map((q$1) => q$1.slice(1));
-		const elm = subtree ? subtreeFind(root, query) : queryFind(root, query);
+		const directChild = query.every((q$1) => q$1[0] === ">");
+		if (directChild) query = query.map((q$1) => q$1.slice(1));
+		const elm = directChild ? subtreeFind(root, query) : queryFind(root, query);
 		if (elm) {
 			root = elm;
 			if (callbackFn) callbackFn(root);
@@ -343,7 +345,7 @@ const waitForElm = async (queries, callbackFn = null, root = document.body) => {
 			if (node.nodeType !== Node.ELEMENT_NODE) return true;
 			const e = node;
 			for (let q$1 of query) {
-				if (!subtree) {
+				if (!directChild) {
 					const s = q$1[0] === ">";
 					if (s) q$1 = q$1.slice(1);
 				}
@@ -355,7 +357,7 @@ const waitForElm = async (queries, callbackFn = null, root = document.body) => {
 				}
 			}
 			return true;
-		}, subtree);
+		}, !directChild);
 		if (callbackFn) callbackFn(root);
 	}
 	timeout = false;
@@ -387,7 +389,7 @@ const waitDiscordPanel = (callbackFn) => waitForElm([
 	">div#app-mount",
 	">div[class*=appAsidePanelWrapper]",
 	">div[class*=notAppAsidePanel]"
-], callbackFn);
+], { callbackFn });
 const injectControls = async () => {
 	insertTitleBar(document.body);
 	const discordPanel = await waitDiscordPanel((elm) => insertTitleBar(elm));
@@ -396,12 +398,15 @@ const injectControls = async () => {
 		">div[class*=container]",
 		">div[class*=base]",
 		[">div[class*=bar_]", ">div[class*=-bar]"]
-	], null, discordPanel);
-	waitForElm(">div[class*=trailing]", (elm) => {
-		insertStandaloneControl(elm);
-		const discordBarTitle = discordBar.querySelector("div[class*=title]");
-		if (discordBarTitle) discordBarTitle.setAttribute("data-tauri-drag-region", "true");
-	}, discordBar);
+	], { root: discordPanel });
+	waitForElm(">div[class*=trailing]", {
+		callbackFn: (elm) => {
+			insertStandaloneControl(elm);
+			const discordBarTitle = discordBar.querySelector("div[class*=title]");
+			if (discordBarTitle) discordBarTitle.setAttribute("data-tauri-drag-region", "true");
+		},
+		root: discordBar
+	});
 };
 const handleFullTitlebar = async () => {
 	waitDiscordPanel((elm) => insertTitleBar(elm));
