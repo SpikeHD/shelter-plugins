@@ -32,6 +32,7 @@ function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: 
 }
 
 type Query = Array<string> | string
+type WaitCfg = { callbackFn: null | ((elm: Element) => void), root: Element }
 const subtreeFind = (p: Element, q: Array<string>) => Array.from(p.children).find(c => q.some(q => c.matches(q)))
 const queryFind = (p: Element, query: Array<string>) => {
   for (let q of query) {
@@ -42,7 +43,10 @@ const queryFind = (p: Element, query: Array<string>) => {
   }
 }
 
-export const waitForElm = async (queries: Array<Query> | Query, callbackFn: (elm: Element) => void = null, root: Element = document.body): Promise<Element> => {
+export const waitForElm = async (queries: Array<Query> | Query, cfg: Partial<WaitCfg>): Promise<Element> => {
+  let root = cfg.root || document.body
+  const callbackFn = cfg.callbackFn
+
   let query: string[]
   let timeout = true
   const startTimeout = () => setTimeout(() => {
@@ -60,12 +64,12 @@ export const waitForElm = async (queries: Array<Query> | Query, callbackFn: (elm
     // prepare query
     const q: Query = queries.shift()
     query = typeof q === 'string' ? [q] : q
-    const subtree = query.every(q => q[0] === '>')
+    const directChild = query.every(q => q[0] === '>')
 
-    if (subtree) query = query.map(q => q.slice(1))
+    if (directChild) query = query.map(q => q.slice(1))
 
     // no observe if this elm already exist
-    const elm = subtree ? subtreeFind(root, query) : queryFind(root, query)
+    const elm = directChild ? subtreeFind(root, query) : queryFind(root, query)
 
     if (elm) {
       root = elm
@@ -80,7 +84,7 @@ export const waitForElm = async (queries: Array<Query> | Query, callbackFn: (elm
       const e = node as Element
 
       for (let q of query) {
-        if (!subtree) {
+        if (!directChild) {
           const s = q[0] === '>'
           if (s) q = q.slice(1)
         }
@@ -98,7 +102,7 @@ export const waitForElm = async (queries: Array<Query> | Query, callbackFn: (elm
       }
 
       return true
-    }, subtree) as Element
+    }, !directChild) as Element
 
     // callback after found
     if (callbackFn) callbackFn(root)

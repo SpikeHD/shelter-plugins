@@ -29,7 +29,7 @@ const insertStandaloneControl = (parent: Element) => {
   setMaximizeIcon()
 }
 
-const waitDiscordPanel = (callbackFn: (elm: Element) => void) => waitForElm(['>div#app-mount', '>div[class*=appAsidePanelWrapper]', '>div[class*=notAppAsidePanel]'], callbackFn)
+const waitDiscordPanel = (callbackFn: (elm: Element) => void) => waitForElm(['>div#app-mount', '>div[class*=appAsidePanelWrapper]', '>div[class*=notAppAsidePanel]'], {callbackFn})
 
 // if titlebar injected at `document.body`, `div#app-mount`, `div[class*=appAsidePanelWrapper]`, `div[class*=notAppAsidePanel]`
 // would be worst case with overflow or some contents covered causing some parts Discord cannot be seen
@@ -38,12 +38,12 @@ const injectControls = async () => {
   insertTitleBar(document.body)
   // cancel old observer to inject new controls
   const discordPanel = await waitDiscordPanel(elm => insertTitleBar(elm))
-  const discordBar = await waitForElm(['div[data-layer=base]', '>div[class*=container]', '>div[class*=base]', ['>div[class*=bar_]', '>div[class*=-bar]']], null, discordPanel)
-  waitForElm('>div[class*=trailing]', elm => {
+  const discordBar = await waitForElm(['div[data-layer=base]', '>div[class*=container]', '>div[class*=base]', ['>div[class*=bar_]', '>div[class*=-bar]']], {root:discordPanel})
+  waitForElm('>div[class*=trailing]', {callbackFn: elm => {
     insertStandaloneControl(elm)
     const discordBarTitle = discordBar.querySelector('div[class*=title]')
     if (discordBarTitle) discordBarTitle.setAttribute('data-tauri-drag-region', 'true')
-  }, discordBar)
+  }, root: discordBar})
 }
 
 const handleFullTitlebar = async () => {
