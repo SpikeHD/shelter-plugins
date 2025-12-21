@@ -124,14 +124,14 @@ const apiWindow = backendObj.apiWindow;
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
 	"header": "Zz-Z3G_header",
 	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindSection": "Zz-Z3G_keybindSection",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindsButton": "Zz-Z3G_keybindsButton"
+	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -200,12 +200,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
-	"actionSection": "QTLdLq_actionSection",
 	"keybindSection": "QTLdLq_keybindSection",
+	"keybindArea": "QTLdLq_keybindArea",
 	"removeButton": "QTLdLq_removeButton",
 	"keybindRoot": "QTLdLq_keybindRoot",
 	"note": "QTLdLq_note",
-	"keybindArea": "QTLdLq_keybindArea"
+	"actionSection": "QTLdLq_actionSection"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -262,10 +262,10 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dcontainer": "sqVpyW_dcontainer",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddown": "sqVpyW_ddown"
+	"ddown": "sqVpyW_ddown",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -404,12 +404,12 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindInput": "N-HDcq_keybindInput",
 	"keybindContainer": "N-HDcq_keybindContainer",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
-	"pulse": "N-HDcq_pulse",
+	"keybindButton": "N-HDcq_keybindButton",
 	"recording": "N-HDcq_recording",
-	"keybindButton": "N-HDcq_keybindButton"
+	"keybindInput": "N-HDcq_keybindInput",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"pulse": "N-HDcq_pulse"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
@@ -1004,11 +1004,11 @@ const viewedKeybindsCallback = (e) => {
 	}
 	const unsub = observeDom("#keybinds-tab", () => {
 		unsub();
-		const oldElm = document.querySelector("div[class*=\"browserNotice_\"");
+		const oldElm = document.querySelector("div[class*=\"-browserNotice\"");
 		const owner = shelter.util.getFiberOwner(oldElm);
 		const keybindsArea = oldElm.parentElement;
 		oldElm.style.display = "none";
-		const divider = keybindsArea.parentElement.parentElement.querySelector("div[class*=\"divider_\"]");
+		const divider = keybindsArea.parentElement.parentElement.querySelector("div[class*=\"-divider\"]");
 		if (divider) divider.style.display = "none";
 		const defaultKeybinds = keybindsArea.parentElement.parentElement.querySelector("div[class*=\"marginTop\"]");
 		if (defaultKeybinds) defaultKeybinds.style.marginTop = "0";
