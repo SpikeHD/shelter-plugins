@@ -89,6 +89,7 @@ export function PluginList(props: Props) {
               }}
               style={{
                 flexDirection: 'column-reverse',
+                marginRight: '4px'
               }}
             />
           </div>
@@ -96,6 +97,7 @@ export function PluginList(props: Props) {
           <div class={classes.scell}>
             <Switch
               checked={plugin.preload}
+              disabled={!plugin.enabled}
               onChange={() => {
                 props.onChange()
 
@@ -112,6 +114,9 @@ export function PluginList(props: Props) {
                     },
                   }
                 )
+              }}
+              style={{
+                marginRight: '4px'
               }}
             />
           </div>
