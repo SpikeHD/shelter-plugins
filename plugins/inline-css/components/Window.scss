@@ -54,7 +54,7 @@
     }
   
     &::-webkit-scrollbar-thumb {
-      background: var(--input-background);
+      background: var(--background-base-lowest);
       border-radius: 4px;
     }
   
@@ -72,7 +72,7 @@
   height: 30px;
   width: 100%;
   margin-bottom: 12px;
-  background: var(--input-background);
+  background: var(--background-base-lowest);
 }
 
 .exit {

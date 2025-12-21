@@ -5,7 +5,7 @@
   width: 100%;
   border-radius: 4px;
   color: var(--text-default);
-  background-color: var(--input-background);
+  background-color: var(--background-base-lowest);
   border: none;
   transition: border-color 0.2s ease-in-out;
   padding: 10px;
@@ -16,7 +16,7 @@
 }
 
 .ddown option {
-  /* TODO --input-background doesn't seem to work here (at least on Windows). Oh well. */
+  /* TODO --background-base-lowest doesn't seem to work here (at least on Windows). Oh well. */
   background: #333;
   color: var(--text-default);
 }
