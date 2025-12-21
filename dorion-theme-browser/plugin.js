@@ -124,10 +124,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
-	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow"
+	"dsarrow": "sqVpyW_dsarrow",
+	"dcontainer": "sqVpyW_dcontainer",
+	"ddown": "sqVpyW_ddown"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -349,11 +349,11 @@ const basicModal = (props) => (0, import_web$17.createComponent)(ModalRoot, { ge
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
-	"themeCard": "JQAzuG_themeCard",
 	"info": "JQAzuG_info",
-	"name": "JQAzuG_name",
 	"thumbnail": "JQAzuG_thumbnail",
 	"contents": "JQAzuG_contents",
+	"themeCard": "JQAzuG_themeCard",
+	"name": "JQAzuG_name",
 	"installButton": "JQAzuG_installButton"
 };
 const css$1 = `.JQAzuG_themeCard {
@@ -506,14 +506,14 @@ const themeInstallationModel = async (link, name) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
-	"bot16": "gqruia_bot16",
-	"searchBox": "gqruia_searchBox",
-	"sortSection": "gqruia_sortSection",
-	"shead": "gqruia_shead",
 	"themeCards": "gqruia_themeCards",
-	"pagesOuter": "gqruia_pagesOuter",
+	"searchBox": "gqruia_searchBox",
+	"shead": "gqruia_shead",
+	"pages": "gqruia_pages",
 	"pageBtn": "gqruia_pageBtn",
-	"pages": "gqruia_pages"
+	"bot16": "gqruia_bot16",
+	"sortSection": "gqruia_sortSection",
+	"pagesOuter": "gqruia_pagesOuter"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
