@@ -7,7 +7,7 @@
     grid-gap: 8px;
     align-items: center;
     padding: 8px;
-    background: var(--background-surface-highest);
+    background: transparent;
 
     cursor: pointer;
 
@@ -46,8 +46,6 @@
         background-color: var(--background-mod-subtle);
 
         .radioButton {
-            border-color: var(--interactive-active);
-
             .radioButtonInner {
                 background: var(--background-brand);
             }
