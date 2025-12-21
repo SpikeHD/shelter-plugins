@@ -26,7 +26,7 @@ const viewedKeybindsCallback = (e) => {
   const unsub = observeDom('#keybinds-tab', () => {
     unsub()
 
-    const oldElm = document.querySelector('div[class*="browserNotice_"')
+    const oldElm = document.querySelector('div[class*="-browserNotice"')
     const owner = shelter.util.getFiberOwner(oldElm)
     const keybindsArea = oldElm.parentElement
 
@@ -35,11 +35,11 @@ const viewedKeybindsCallback = (e) => {
     oldElm.style.display = 'none'
 
     // Find the divider in the keybinds area
-    const divider = keybindsArea.parentElement.parentElement.querySelector('div[class*="divider_"]')
+    const divider = keybindsArea.parentElement.parentElement.querySelector('div[class*="-divider"]')
     if (divider)
       // @ts-expect-error this is real
       divider.style.display = 'none'
-    
+
     // Remove big margin on the default keybinds bit
     const defaultKeybinds = keybindsArea.parentElement.parentElement.querySelector('div[class*="marginTop"]')
     if (defaultKeybinds)
@@ -74,6 +74,3 @@ export const onUnload = () => {
 
   unregister()
 }
-
-
-
