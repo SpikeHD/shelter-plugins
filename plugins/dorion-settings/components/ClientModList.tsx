@@ -78,11 +78,9 @@ export function ClientModList(props: Props) {
 
   return <>
     {clientMods().length === 0 && (
-      <div class={classes.plistrow}>
-        <Text class={classes.left16}>
-          Client mods not available. Please update
-        </Text>
-      </div>
+      <Text class={classes.left16}>
+        Client mods not available. Please update
+      </Text>
     )}
 
     {clientMods().map((modName: string) => (
