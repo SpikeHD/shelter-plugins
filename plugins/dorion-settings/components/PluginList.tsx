@@ -37,17 +37,17 @@ export function PluginList(props: Props) {
         }
       >
         <div class={classes.mcell}>
-          <Text class={classes.left16}></Text>
+          <Text></Text>
         </div>
 
         <div class={classes.scell}>
-          <Text class={classes.left16}>
+          <Text >
               Enabled
           </Text>
         </div>
 
         <div class={classes.scell}>
-          <Text class={classes.left16}>
+          <Text>
               Preload
           </Text>
         </div>
