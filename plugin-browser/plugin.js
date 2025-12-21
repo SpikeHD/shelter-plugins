@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/plugin-browser/components/Plugins.scss
 const classes$1 = {
-	"loading": "L-W60G_loading",
 	"pluginList": "L-W60G_pluginList",
-	"subtitle": "L-W60G_subtitle",
 	"split": "L-W60G_split",
+	"loading": "L-W60G_loading",
+	"subtitle": "L-W60G_subtitle",
 	"repoHeader": "L-W60G_repoHeader"
 };
 const css$1 = `.L-W60G_subtitle {
@@ -235,10 +235,10 @@ async function getAllPlugins() {
 //#endregion
 //#region plugins/plugin-browser/components/PluginCard.scss
 const classes = {
-	"installButton": "THQemG_installButton",
-	"buttonContainer": "THQemG_buttonContainer",
 	"pluginCard": "THQemG_pluginCard",
-	"contents": "THQemG_contents"
+	"contents": "THQemG_contents",
+	"buttonContainer": "THQemG_buttonContainer",
+	"installButton": "THQemG_installButton"
 };
 const css = `.THQemG_pluginCard {
   text-align: left;

@@ -124,16 +124,16 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
-	"dsarrow": "sqVpyW_dsarrow",
 	"dcontainer": "sqVpyW_dcontainer",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"ddown": "sqVpyW_ddown"
+	"ddown": "sqVpyW_ddown",
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
   color: var(--text-default);
-  background-color: var(--input-background);
+  background-color: var(--background-base-lowest);
   appearance: none;
   cursor: pointer;
   border: none;
@@ -349,12 +349,12 @@ const basicModal = (props) => (0, import_web$17.createComponent)(ModalRoot, { ge
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
+	"name": "JQAzuG_name",
 	"contents": "JQAzuG_contents",
-	"thumbnail": "JQAzuG_thumbnail",
-	"themeCard": "JQAzuG_themeCard",
-	"info": "JQAzuG_info",
 	"installButton": "JQAzuG_installButton",
-	"name": "JQAzuG_name"
+	"thumbnail": "JQAzuG_thumbnail",
+	"info": "JQAzuG_info",
+	"themeCard": "JQAzuG_themeCard"
 };
 const css$1 = `.JQAzuG_themeCard {
   text-align: left;
@@ -506,14 +506,14 @@ const themeInstallationModel = async (link, name) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
-	"pagesOuter": "gqruia_pagesOuter",
-	"shead": "gqruia_shead",
-	"themeCards": "gqruia_themeCards",
 	"bot16": "gqruia_bot16",
-	"pages": "gqruia_pages",
 	"sortSection": "gqruia_sortSection",
+	"pagesOuter": "gqruia_pagesOuter",
 	"pageBtn": "gqruia_pageBtn",
-	"searchBox": "gqruia_searchBox"
+	"shead": "gqruia_shead",
+	"searchBox": "gqruia_searchBox",
+	"themeCards": "gqruia_themeCards",
+	"pages": "gqruia_pages"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
@@ -572,7 +572,7 @@ const css = `.gqruia_shead {
 
 input[type="number"] {
   text-align: center;
-  background-color: var(--input-background);
+  background-color: var(--background-base-lowest);
   width: 50px;
   color: var(--text-default);
   -moz-appearance: textfield;

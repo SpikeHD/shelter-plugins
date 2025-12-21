@@ -37,14 +37,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 const classes$1 = {
 	"ddown": "sqVpyW_ddown",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow",
-	"dcontainer": "sqVpyW_dcontainer"
+	"dcontainer": "sqVpyW_dcontainer",
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
   color: var(--text-default);
-  background-color: var(--input-background);
+  background-color: var(--background-base-lowest);
   appearance: none;
   cursor: pointer;
   border: none;

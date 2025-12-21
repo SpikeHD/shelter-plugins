@@ -2803,7 +2803,7 @@ const classes$1 = {
 	"controls": "alHKPa_controls"
 };
 const css$1 = `.alHKPa_ceditor {
-  background: var(--input-background);
+  background: var(--background-base-lowest);
   border-radius: 5px;
   margin-top: 28px;
   padding: 12px;
@@ -2895,12 +2895,12 @@ const Popout = () => (0, import_web$21.getNextElement)(_tmpl$$3);
 //#endregion
 //#region plugins/inline-css/components/Window.scss
 const classes = {
-	"window": "EVeMMG_window",
-	"main": "EVeMMG_main",
-	"exit": "EVeMMG_exit",
 	"resize": "EVeMMG_resize",
-	"inner": "EVeMMG_inner",
 	"topbar": "EVeMMG_topbar",
+	"inner": "EVeMMG_inner",
+	"exit": "EVeMMG_exit",
+	"main": "EVeMMG_main",
+	"window": "EVeMMG_window",
 	"content": "EVeMMG_content"
 };
 const css = `.EVeMMG_window {
@@ -2955,7 +2955,7 @@ const css = `.EVeMMG_window {
 }
 
 .EVeMMG_content .EVeMMG_inner::-webkit-scrollbar-thumb {
-  background: var(--input-background);
+  background: var(--background-base-lowest);
   border-radius: 4px;
 }
 
@@ -2968,7 +2968,7 @@ const css = `.EVeMMG_window {
 }
 
 .EVeMMG_topbar {
-  background: var(--input-background);
+  background: var(--background-base-lowest);
   width: 100%;
   height: 30px;
   margin-bottom: 12px;
