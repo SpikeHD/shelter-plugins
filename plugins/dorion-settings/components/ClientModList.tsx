@@ -3,7 +3,7 @@ import { css, classes } from './ClientModList.tsx.scss'
 import { Card } from '../../../components/Card.jsx'
 
 const {
-  ui: { Switch, Text, injectCss },
+  ui: { SwitchItem, Text, injectCss },
   solid: { createSignal },
 } = shelter
 
@@ -106,19 +106,15 @@ export function ClientModList(props: Props) {
       )}
 
       {clientMods().map((modName: string) => (
-        <div key={modName} class={classes.plistrow}>
-          <div class={classes.mcell}>
-            <Text class={classes.left16}>{modName}</Text>
-          </div>
-
-          <div class={classes.scell}>
-            <Switch
-              disabled={modName === 'Shelter'}
-              checked={settings().client_mods?.includes(modName) || false}
-              onChange={() => onClientModToggle(modName)}
-            />
-          </div>
-        </div>
+        <SwitchItem
+          disabled={modName === 'Shelter'}
+          value={settings().client_mods?.includes(modName) || false}
+          onChange={() =>
+            onClientModToggle(modName)
+          }
+        >
+          {modName}
+        </SwitchItem>
       ))}
     </div>
   </Card>
