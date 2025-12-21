@@ -269,16 +269,16 @@ const timestampToRelative = (timestamp) => {
 //#endregion
 //#region plugins/shelteRPC/components/GameCard.scss
 const classes$3 = {
-	"gameCardInfo": "zS7Qtq_gameCardInfo",
-	"gameCardName": "zS7Qtq_gameCardName",
-	"gameCardIcons": "zS7Qtq_gameCardIcons",
 	"cardNone": "zS7Qtq_cardNone",
 	"cardPlaying": "zS7Qtq_cardPlaying",
+	"gameCardIcons": "zS7Qtq_gameCardIcons",
+	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
+	"gameCardInfo": "zS7Qtq_gameCardInfo",
 	"gameCard": "zS7Qtq_gameCard",
 	"cardPlayed": "zS7Qtq_cardPlayed",
-	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
+	"trash": "zS7Qtq_trash",
 	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
-	"trash": "zS7Qtq_trash"
+	"gameCardName": "zS7Qtq_gameCardName"
 };
 const css$3 = `.zS7Qtq_gameCard {
   width: 100%;
@@ -462,15 +462,15 @@ var GameCard_default = (props) => {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
-	"dsarrow": "sqVpyW_dsarrow",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer"
+	"dcontainer": "sqVpyW_dcontainer",
+	"dsarrow": "sqVpyW_dsarrow",
+	"ddown": "sqVpyW_ddown"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
-  color: var(--text-default);
+  color: var(--text-interactive);
   background-color: var(--background-base-lowest);
   appearance: none;
   cursor: pointer;
@@ -482,7 +482,7 @@ const css$2 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_ddown option {
-  color: var(--text-default);
+  color: var(--text-interactive);
   background: #333;
 }
 
@@ -500,11 +500,11 @@ const css$2 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_dsarrow path {
-  fill: var(--header-secondary);
+  fill: var(--text-subtle);
 }
 
 .sqVpyW_ddownplaceholder {
-  color: var(--header-secondary);
+  color: var(--text-subtle);
 }
 `;
 
@@ -604,11 +604,11 @@ const Dropdown = (props) => {
 //#endregion
 //#region plugins/shelteRPC/components/RegisteredGames.scss
 const classes$1 = {
-	"modalhead": "yVnOSq_modalhead",
-	"description": "yVnOSq_description",
 	"tophead": "yVnOSq_tophead",
+	"description": "yVnOSq_description",
 	"addIt": "yVnOSq_addIt",
-	"shead": "yVnOSq_shead"
+	"shead": "yVnOSq_shead",
+	"modalhead": "yVnOSq_modalhead"
 };
 const css$1 = `.yVnOSq_description {
   margin-top: 8px;

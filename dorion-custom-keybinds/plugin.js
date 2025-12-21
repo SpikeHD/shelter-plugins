@@ -124,13 +124,13 @@ const apiWindow = backendObj.apiWindow;
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindsButton": "Zz-Z3G_keybindsButton",
-	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"header": "Zz-Z3G_header",
 	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"header": "Zz-Z3G_header",
+	"keybindsHeader": "Zz-Z3G_keybindsHeader",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
 	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
+	"keybindsButton": "Zz-Z3G_keybindsButton",
 	"keybindSection": "Zz-Z3G_keybindSection"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
@@ -200,12 +200,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
+	"removeButton": "QTLdLq_removeButton",
+	"actionSection": "QTLdLq_actionSection",
 	"keybindSection": "QTLdLq_keybindSection",
 	"note": "QTLdLq_note",
 	"keybindRoot": "QTLdLq_keybindRoot",
-	"actionSection": "QTLdLq_actionSection",
-	"keybindArea": "QTLdLq_keybindArea",
-	"removeButton": "QTLdLq_removeButton"
+	"keybindArea": "QTLdLq_keybindArea"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -255,22 +255,22 @@ const css$2 = `.QTLdLq_keybindRoot {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--header-secondary) !important;
+  color: var(--text-subtle) !important;
 }
 `;
 
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"ddown": "sqVpyW_ddown",
 	"dcontainer": "sqVpyW_dcontainer",
-	"dsarrow": "sqVpyW_dsarrow"
+	"dsarrow": "sqVpyW_dsarrow",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
-  color: var(--text-default);
+  color: var(--text-interactive);
   background-color: var(--background-base-lowest);
   appearance: none;
   cursor: pointer;
@@ -282,7 +282,7 @@ const css$1 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_ddown option {
-  color: var(--text-default);
+  color: var(--text-interactive);
   background: #333;
 }
 
@@ -300,11 +300,11 @@ const css$1 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_dsarrow path {
-  fill: var(--header-secondary);
+  fill: var(--text-subtle);
 }
 
 .sqVpyW_ddownplaceholder {
-  color: var(--header-secondary);
+  color: var(--text-subtle);
 }
 `;
 
@@ -404,11 +404,11 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindContainer": "N-HDcq_keybindContainer",
-	"recording": "N-HDcq_recording",
 	"keybindButton": "N-HDcq_keybindButton",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindInput": "N-HDcq_keybindInput",
+	"recording": "N-HDcq_recording",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"keybindContainer": "N-HDcq_keybindContainer",
 	"pulse": "N-HDcq_pulse"
 };
 const css = `.N-HDcq_keybindContainer {
