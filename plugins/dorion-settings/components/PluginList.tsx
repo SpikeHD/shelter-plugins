@@ -39,9 +39,7 @@ export function PluginList(props: Props) {
           }
         >
           <div class={classes.mcell}>
-            <Text class={classes.left16}>
-              Plugin Name
-            </Text>
+            <Text class={classes.left16}></Text>
           </div>
 
           <div class={classes.scell}>

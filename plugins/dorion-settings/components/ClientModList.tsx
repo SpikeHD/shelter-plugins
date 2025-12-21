@@ -77,27 +77,25 @@ export function ClientModList(props: Props) {
     })
   }
 
-  return <Card style={{ marginTop: '1rem' }}>
-    <div class={classes.plist}>
-      {clientMods().length === 0 && (
-        <div class={classes.plistrow}>
-          <Text class={classes.left16}>
-            Client mods not available. Please update
-          </Text>
-        </div>
-      )}
+  return <>
+    {clientMods().length === 0 && (
+      <div class={classes.plistrow}>
+        <Text class={classes.left16}>
+          Client mods not available. Please update
+        </Text>
+      </div>
+    )}
 
-      {clientMods().map((modName: string) => (
-        <SwitchItem
-          disabled={modName === 'Shelter'}
-          value={settings().client_mods?.includes(modName) || false}
-          onChange={() =>
-            onClientModToggle(modName)
-          }
-        >
-          {modName}
-        </SwitchItem>
-      ))}
-    </div>
-  </Card>
+    {clientMods().map((modName: string) => (
+      <SwitchItem
+        disabled={modName === 'Shelter'}
+        value={settings().client_mods?.includes(modName) || false}
+        onChange={() =>
+          onClientModToggle(modName)
+        }
+      >
+        {modName}
+      </SwitchItem>
+    ))}
+  </>
 }
