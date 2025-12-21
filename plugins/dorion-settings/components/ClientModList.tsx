@@ -79,24 +79,6 @@ export function ClientModList(props: Props) {
 
   return <Card style={{ marginTop: '1rem' }}>
     <div class={classes.plist}>
-      <div
-        class={
-          classes.pheader + ' ' + classes.plistrow
-        }
-      >
-        <div class={classes.mcell}>
-          <Text class={classes.left16}>
-            Client Mod Name
-          </Text>
-        </div>
-
-        <div class={classes.scell}>
-          <Text class={classes.left16}>
-            Enabled
-          </Text>
-        </div>
-      </div>
-
       {clientMods().length === 0 && (
         <div class={classes.plistrow}>
           <Text class={classes.left16}>
