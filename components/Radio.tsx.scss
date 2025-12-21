@@ -43,9 +43,10 @@
 
     &.selected {
         color: var(--interactive-active);
-        background-color: var(--background-brand);
+        background-color: var(--background-mod-subtle);
 
         .radioButton {
+            background-color: var(--background-brand);
             .radioButtonInner {
                 background: #fff;
             }
