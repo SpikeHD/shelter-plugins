@@ -26,7 +26,7 @@
   border: 1px solid var(--status-danger);
 
   animation: pulse 1s infinite;
-  
+
   .keybindButton {
     background: hsl(var(--red-400-hsl)/.1);
     color: var(--status-danger);
@@ -39,7 +39,7 @@
 
 .keybindInput {
   background: transparent;
-  
+
   display: flex;
   align-items: center;
 }
@@ -60,7 +60,7 @@
   display: flex;
   align-items: center;
 
-  background: var(--button-secondary-background);
+  background: var(--control-secondary-background-default);
   color: var(--white-500);
 
   border: 1px solid transparent;
@@ -71,7 +71,7 @@
 }
 
 .keybindButton:hover {
-  background: var(--button-secondary-background-hover);
+  background: var(--control-secondary-background-hover);
 }
 
 /* animation to pulse shadow intensity */
