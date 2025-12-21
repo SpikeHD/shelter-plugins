@@ -1,6 +1,5 @@
 import { invoke } from '../../../api/api.js'
 import { css, classes } from './ClientModList.tsx.scss'
-import { Card } from '../../../components/Card.jsx'
 
 const {
   ui: { SwitchItem, Text, injectCss },
