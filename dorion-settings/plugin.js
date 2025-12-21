@@ -163,15 +163,15 @@ const css$12 = `.ZN8ggW_tophead {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$11 = {
-	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer",
+	"dsarrow": "sqVpyW_dsarrow",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow"
+	"ddown": "sqVpyW_ddown",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$11 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
-  color: var(--text-interactive);
+  color: var(--text-primary);
   background-color: var(--background-base-lowest);
   appearance: none;
   cursor: pointer;
@@ -183,7 +183,7 @@ const css$11 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_ddown option {
-  color: var(--text-interactive);
+  color: var(--text-primary);
   background: #333;
 }
 
@@ -211,19 +211,20 @@ const css$11 = `.sqVpyW_ddown {
 
 //#endregion
 //#region components/SelectArrow.tsx
+var import_web$102 = __toESM(require_web(), 1);
 var import_web$103 = __toESM(require_web(), 1);
 var import_web$104 = __toESM(require_web(), 1);
 var import_web$105 = __toESM(require_web(), 1);
-var import_web$106 = __toESM(require_web(), 1);
-const _tmpl$$14 = /*#__PURE__*/ (0, import_web$103.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
+const _tmpl$$14 = /*#__PURE__*/ (0, import_web$102.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
 const SelectArrow = (props) => (() => {
-	const _el$ = (0, import_web$106.getNextElement)(_tmpl$$14);
-	(0, import_web$105.effect)(() => (0, import_web$104.setAttribute)(_el$, "class", props.class));
+	const _el$ = (0, import_web$105.getNextElement)(_tmpl$$14);
+	(0, import_web$104.effect)(() => (0, import_web$103.setAttribute)(_el$, "class", props.class));
 	return _el$;
 })();
 
 //#endregion
 //#region components/Dropdown.tsx
+var import_web$92 = __toESM(require_web(), 1);
 var import_web$93 = __toESM(require_web(), 1);
 var import_web$94 = __toESM(require_web(), 1);
 var import_web$95 = __toESM(require_web(), 1);
@@ -233,8 +234,7 @@ var import_web$98 = __toESM(require_web(), 1);
 var import_web$99 = __toESM(require_web(), 1);
 var import_web$100 = __toESM(require_web(), 1);
 var import_web$101 = __toESM(require_web(), 1);
-var import_web$102 = __toESM(require_web(), 1);
-const _tmpl$$13 = /*#__PURE__*/ (0, import_web$93.template)(`<div><select><!#><!/><!#><!/></select><!#><!/></div>`, 10), _tmpl$2$6 = /*#__PURE__*/ (0, import_web$93.template)(`<option value=""></option>`, 2), _tmpl$3$5 = /*#__PURE__*/ (0, import_web$93.template)(`<option></option>`, 2);
+const _tmpl$$13 = /*#__PURE__*/ (0, import_web$92.template)(`<div><select><!#><!/><!#><!/></select><!#><!/></div>`, 10), _tmpl$2$6 = /*#__PURE__*/ (0, import_web$92.template)(`<option value=""></option>`, 2), _tmpl$3$4 = /*#__PURE__*/ (0, import_web$92.template)(`<option></option>`, 2);
 const { ui: { injectCss: injectCss$13 } } = shelter;
 let injectedCss$13 = false;
 const Dropdown = (props) => {
@@ -243,7 +243,7 @@ const Dropdown = (props) => {
 		injectCss$13(css$11);
 	}
 	return (() => {
-		const _el$ = (0, import_web$98.getNextElement)(_tmpl$$13), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$100.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$100.getNextMarker)(_el$5.nextSibling), _el$7 = _el$2.nextSibling, [_el$8, _co$3] = (0, import_web$100.getNextMarker)(_el$7.nextSibling);
+		const _el$ = (0, import_web$97.getNextElement)(_tmpl$$13), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$99.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$99.getNextMarker)(_el$5.nextSibling), _el$7 = _el$2.nextSibling, [_el$8, _co$3] = (0, import_web$99.getNextMarker)(_el$7.nextSibling);
 		_el$2.addEventListener("change", (e) => {
 			props.onChange(e);
 			if (props.immutable) {
@@ -252,14 +252,14 @@ const Dropdown = (props) => {
 				e.target.value = props.value;
 			}
 		});
-		(0, import_web$101.insert)(_el$2, (() => {
-			const _c$ = (0, import_web$102.memo)(() => !!props.placeholder);
+		(0, import_web$100.insert)(_el$2, (() => {
+			const _c$ = (0, import_web$101.memo)(() => !!props.placeholder);
 			return () => _c$() && (() => {
-				const _el$9 = (0, import_web$98.getNextElement)(_tmpl$2$6);
-				(0, import_web$101.insert)(_el$9, () => props.placeholder);
-				(0, import_web$97.effect)((_p$) => {
+				const _el$9 = (0, import_web$97.getNextElement)(_tmpl$2$6);
+				(0, import_web$100.insert)(_el$9, () => props.placeholder);
+				(0, import_web$96.effect)((_p$) => {
 					const _v$8 = classes$11.ddownplaceholder, _v$9 = props.value === "";
-					_v$8 !== _p$._v$8 && (0, import_web$96.className)(_el$9, _p$._v$8 = _v$8);
+					_v$8 !== _p$._v$8 && (0, import_web$95.className)(_el$9, _p$._v$8 = _v$8);
 					_v$9 !== _p$._v$9 && (_el$9.selected = _p$._v$9 = _v$9);
 					return _p$;
 				}, {
@@ -269,24 +269,24 @@ const Dropdown = (props) => {
 				return _el$9;
 			})();
 		})(), _el$4, _co$);
-		(0, import_web$101.insert)(_el$2, () => props.options?.map((o) => (() => {
-			const _el$0 = (0, import_web$98.getNextElement)(_tmpl$3$5);
-			(0, import_web$101.insert)(_el$0, () => o.label);
-			(0, import_web$97.effect)(() => _el$0.selected = o.value === props.value);
-			(0, import_web$97.effect)(() => _el$0.value = o.value);
+		(0, import_web$100.insert)(_el$2, () => props.options?.map((o) => (() => {
+			const _el$0 = (0, import_web$97.getNextElement)(_tmpl$3$4);
+			(0, import_web$100.insert)(_el$0, () => o.label);
+			(0, import_web$96.effect)(() => _el$0.selected = o.value === props.value);
+			(0, import_web$96.effect)(() => _el$0.value = o.value);
 			return _el$0;
 		})()), _el$6, _co$2);
-		(0, import_web$101.insert)(_el$, (0, import_web$99.createComponent)(SelectArrow, { get ["class"]() {
+		(0, import_web$100.insert)(_el$, (0, import_web$98.createComponent)(SelectArrow, { get ["class"]() {
 			return classes$11.dsarrow;
 		} }), _el$8, _co$3);
-		(0, import_web$97.effect)((_p$) => {
+		(0, import_web$96.effect)((_p$) => {
 			const _v$ = classes$11.dcontainer, _v$2 = props.style, _v$3 = classes$11.ddown + " " + (props.placeholder && props.value === "" ? classes$11.ddownplaceholder : ""), _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
-			_v$ !== _p$._v$ && (0, import_web$96.className)(_el$, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$95.style)(_el$, _v$2, _p$._v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$96.className)(_el$2, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$94.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$94.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
-			_v$6 !== _p$._v$6 && (0, import_web$94.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
+			_v$ !== _p$._v$ && (0, import_web$95.className)(_el$, _p$._v$ = _v$);
+			_p$._v$2 = (0, import_web$94.style)(_el$, _v$2, _p$._v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$95.className)(_el$2, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$93.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
+			_v$5 !== _p$._v$5 && (0, import_web$93.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
+			_v$6 !== _p$._v$6 && (0, import_web$93.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
 			_v$7 !== _p$._v$7 && (_el$2.disabled = _p$._v$7 = _v$7);
 			return _p$;
 		}, {
@@ -313,13 +313,13 @@ const css$10 = `.iitjua_card {
 
 //#endregion
 //#region components/Card.tsx
+var import_web$86 = __toESM(require_web(), 1);
 var import_web$87 = __toESM(require_web(), 1);
 var import_web$88 = __toESM(require_web(), 1);
 var import_web$89 = __toESM(require_web(), 1);
 var import_web$90 = __toESM(require_web(), 1);
 var import_web$91 = __toESM(require_web(), 1);
-var import_web$92 = __toESM(require_web(), 1);
-const _tmpl$$12 = /*#__PURE__*/ (0, import_web$87.template)(`<div></div>`, 2);
+const _tmpl$$12 = /*#__PURE__*/ (0, import_web$86.template)(`<div></div>`, 2);
 const { ui: { injectCss: injectCss$12 } } = shelter;
 let injectedCss$12 = false;
 const Card = (props) => {
@@ -328,12 +328,12 @@ const Card = (props) => {
 		injectCss$12(css$10);
 	}
 	return (() => {
-		const _el$ = (0, import_web$91.getNextElement)(_tmpl$$12);
-		(0, import_web$92.insert)(_el$, () => props.children);
-		(0, import_web$90.effect)((_p$) => {
+		const _el$ = (0, import_web$90.getNextElement)(_tmpl$$12);
+		(0, import_web$91.insert)(_el$, () => props.children);
+		(0, import_web$89.effect)((_p$) => {
 			const _v$ = classes$10.card + ` ${props.class}`, _v$2 = props.style;
-			_v$ !== _p$._v$ && (0, import_web$89.className)(_el$, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$88.style)(_el$, _v$2, _p$._v$2);
+			_v$ !== _p$._v$ && (0, import_web$88.className)(_el$, _p$._v$ = _v$);
+			_p$._v$2 = (0, import_web$87.style)(_el$, _v$2, _p$._v$2);
 			return _p$;
 		}, {
 			_v$: undefined,
@@ -346,8 +346,8 @@ const Card = (props) => {
 //#endregion
 //#region plugins/dorion-settings/components/WarningCard.tsx.scss
 const classes$9 = {
-	"restartCard": "_3UjfSq_restartCard",
-	"restartButton": "_3UjfSq_restartButton"
+	"restartButton": "_3UjfSq_restartButton",
+	"restartCard": "_3UjfSq_restartCard"
 };
 const css$9 = `._3UjfSq_restartCard {
   background-color: var(--info-warning-background);
@@ -368,7 +368,7 @@ const css$9 = `._3UjfSq_restartCard {
 
 //#endregion
 //#region plugins/dorion-settings/components/WarningCard.tsx
-var import_web$86 = __toESM(require_web(), 1);
+var import_web$85 = __toESM(require_web(), 1);
 const { ui: { injectCss: injectCss$11, Text: Text$6, Button: Button$6 } } = shelter;
 let injectedCss$11 = false;
 function WarningCard() {
@@ -376,13 +376,13 @@ function WarningCard() {
 		injectedCss$11 = true;
 		injectCss$11(css$9);
 	}
-	return (0, import_web$86.createComponent)(Card, {
+	return (0, import_web$85.createComponent)(Card, {
 		style: { marginTop: "1rem" },
 		get ["class"]() {
 			return classes$9.restartCard;
 		},
 		get children() {
-			return [(0, import_web$86.createComponent)(Text$6, { children: "One or more settings have been changed that require a restart to take effect." }), (0, import_web$86.createComponent)(Button$6, {
+			return [(0, import_web$85.createComponent)(Text$6, { children: "One or more settings have been changed that require a restart to take effect." }), (0, import_web$85.createComponent)(Button$6, {
 				onClick: () => process.relaunch(),
 				get ["class"]() {
 					return classes$9.restartButton;
@@ -426,6 +426,7 @@ const defaultConfig = {
 
 //#endregion
 //#region plugins/dorion-settings/pages/PerformancePage.tsx
+var import_web$77 = __toESM(require_web(), 1);
 var import_web$78 = __toESM(require_web(), 1);
 var import_web$79 = __toESM(require_web(), 1);
 var import_web$80 = __toESM(require_web(), 1);
@@ -433,9 +434,8 @@ var import_web$81 = __toESM(require_web(), 1);
 var import_web$82 = __toESM(require_web(), 1);
 var import_web$83 = __toESM(require_web(), 1);
 var import_web$84 = __toESM(require_web(), 1);
-var import_web$85 = __toESM(require_web(), 1);
-const _tmpl$$11 = /*#__PURE__*/ (0, import_web$78.template)(`<div>The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">the window-vibrancy crate</a>.</div>`, 4), _tmpl$2$5 = /*#__PURE__*/ (0, import_web$78.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$3$4 = /*#__PURE__*/ (0, import_web$78.template)(`<b>Requires the integrated RPC server and RPC process scanning to be enabled (found in the Rich Presence tab).</b>`, 2), _tmpl$4$2 = /*#__PURE__*/ (0, import_web$78.template)(`<p>I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. <!#><!/> will have several vital systems removed, such as the <i>entire settings menu</i>.<br><br>This option is intended only for debugging, development, and for running old versions of <!#><!/> functionality on old versions of <!#><!/>. If you're not doing that, don't touch this.</p>`, 14), _tmpl$5$2 = /*#__PURE__*/ (0, import_web$78.template)(`<b>DO NOT DISABLE THIS OPTION.</b>`, 2);
-const { ui: { injectCss: injectCss$10, openConfirmationModal, SwitchItem: SwitchItem$2, Button: Button$5, Header: Header$6, HeaderTags: HeaderTags$6, showToast: showToast$2 }, solid: { createSignal: createSignal$9, createEffect: createEffect$5 } } = shelter;
+const _tmpl$$11 = /*#__PURE__*/ (0, import_web$77.template)(`<div>The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">the window-vibrancy crate</a>.</div>`, 4), _tmpl$2$5 = /*#__PURE__*/ (0, import_web$77.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$3$3 = /*#__PURE__*/ (0, import_web$77.template)(`<b>Requires the integrated RPC server and RPC process scanning to be enabled (found in the Rich Presence tab).</b>`, 2), _tmpl$4$2 = /*#__PURE__*/ (0, import_web$77.template)(`<p>I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. <!#><!/> will have several vital systems removed, such as the <i>entire settings menu</i>.<br><br>This option is intended only for debugging, development, and for running old versions of <!#><!/> functionality on old versions of <!#><!/>. If you're not doing that, don't touch this.</p>`, 14), _tmpl$5$2 = /*#__PURE__*/ (0, import_web$77.template)(`<b>DO NOT DISABLE THIS OPTION.</b>`, 2);
+const { ui: { injectCss: injectCss$10, openConfirmationModal, SwitchItem: SwitchItem$3, Button: Button$5, Header: Header$6, HeaderTags: HeaderTags$6, showToast: showToast$2 }, solid: { createSignal: createSignal$9, createEffect: createEffect$5 } } = shelter;
 let injectedCss$10 = false;
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 function PerformancePage() {
@@ -493,7 +493,7 @@ function PerformancePage() {
 		}).then(() => invoke("set_clear_cache"), () => {});
 	};
 	return [
-		(0, import_web$85.createComponent)(Header$6, {
+		(0, import_web$84.createComponent)(Header$6, {
 			get tag() {
 				return HeaderTags$6.H1;
 			},
@@ -502,17 +502,17 @@ function PerformancePage() {
 			},
 			children: "Performance Settings"
 		}),
-		(0, import_web$84.memo)((() => {
-			const _c$ = (0, import_web$84.memo)(() => !!restartRequired());
-			return () => _c$() && (0, import_web$85.createComponent)(WarningCard, {});
+		(0, import_web$83.memo)((() => {
+			const _c$ = (0, import_web$83.memo)(() => !!restartRequired());
+			return () => _c$() && (0, import_web$84.createComponent)(WarningCard, {});
 		})()),
-		(0, import_web$85.createComponent)(Header$6, {
+		(0, import_web$84.createComponent)(Header$6, {
 			get ["class"]() {
 				return classes$12.shead;
 			},
 			children: "Cache"
 		}),
-		(0, import_web$85.createComponent)(SwitchItem$2, {
+		(0, import_web$84.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().cache_css;
 			},
@@ -523,7 +523,7 @@ function PerformancePage() {
 			note: "Save CSS to disk that would otherwise be loaded from the web, decreasing load times.",
 			children: "Cache CSS"
 		}),
-		(0, import_web$85.createComponent)(SwitchItem$2, {
+		(0, import_web$84.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().auto_clear_cache;
 			},
@@ -540,13 +540,13 @@ function PerformancePage() {
 			note: `Clean out the web-based cache every time you close ${appName}. This is usually cached images, scripts, and other data, and it can build up!`,
 			children: "Auto Clear Cache"
 		}),
-		(0, import_web$85.createComponent)(Header$6, {
+		(0, import_web$84.createComponent)(Header$6, {
 			get ["class"]() {
 				return classes$12.shead;
 			},
 			children: "Optional Features"
 		}),
-		(0, import_web$85.createComponent)(SwitchItem$2, {
+		(0, import_web$84.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().win7_style_notifications;
 			},
@@ -560,7 +560,7 @@ function PerformancePage() {
 			},
 			children: "Alternative Notification Style"
 		}),
-		(0, import_web$85.createComponent)(SwitchItem$2, {
+		(0, import_web$84.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().streamer_mode_detection;
 			},
@@ -569,14 +569,14 @@ function PerformancePage() {
 				streamer_mode_detection: v
 			}), false),
 			get note() {
-				return ["Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running. ", (0, import_web$83.getNextElement)(_tmpl$3$4)];
+				return ["Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running. ", (0, import_web$82.getNextElement)(_tmpl$3$3)];
 			},
 			get disabled() {
 				return !state().rpc_server;
 			},
 			children: "Streamer Mode detection"
 		}),
-		(0, import_web$85.createComponent)(SwitchItem$2, {
+		(0, import_web$84.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().disable_hardware_accel;
 			},
@@ -590,7 +590,7 @@ function PerformancePage() {
 			},
 			children: "Disable Hardware Acceleration"
 		}),
-		(0, import_web$85.createComponent)(SwitchItem$2, {
+		(0, import_web$84.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().client_plugins || state().client_plugins === null || state().client_plugins === undefined;
 			},
@@ -604,10 +604,10 @@ function PerformancePage() {
 				}
 				openConfirmationModal({
 					body: () => (() => {
-						const _el$8 = (0, import_web$83.getNextElement)(_tmpl$4$2), _el$9 = _el$8.firstChild, _el$0 = _el$9.nextSibling, _el$1 = _el$0.nextSibling, _el$18 = _el$1.nextSibling, [_el$19, _co$3] = (0, import_web$79.getNextMarker)(_el$18.nextSibling), _el$10 = _el$19.nextSibling, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling, _el$13 = _el$12.nextSibling, _el$14 = _el$13.nextSibling, _el$15 = _el$14.nextSibling, _el$20 = _el$15.nextSibling, [_el$21, _co$4] = (0, import_web$79.getNextMarker)(_el$20.nextSibling), _el$16 = _el$21.nextSibling, _el$22 = _el$16.nextSibling, [_el$23, _co$5] = (0, import_web$79.getNextMarker)(_el$22.nextSibling), _el$17 = _el$23.nextSibling;
-						(0, import_web$80.insert)(_el$8, appName, _el$19, _co$3);
-						(0, import_web$80.insert)(_el$8, appName, _el$21, _co$4);
-						(0, import_web$80.insert)(_el$8, appName, _el$23, _co$5);
+						const _el$8 = (0, import_web$82.getNextElement)(_tmpl$4$2), _el$9 = _el$8.firstChild, _el$0 = _el$9.nextSibling, _el$1 = _el$0.nextSibling, _el$18 = _el$1.nextSibling, [_el$19, _co$3] = (0, import_web$78.getNextMarker)(_el$18.nextSibling), _el$10 = _el$19.nextSibling, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling, _el$13 = _el$12.nextSibling, _el$14 = _el$13.nextSibling, _el$15 = _el$14.nextSibling, _el$20 = _el$15.nextSibling, [_el$21, _co$4] = (0, import_web$78.getNextMarker)(_el$20.nextSibling), _el$16 = _el$21.nextSibling, _el$22 = _el$16.nextSibling, [_el$23, _co$5] = (0, import_web$78.getNextMarker)(_el$22.nextSibling), _el$17 = _el$23.nextSibling;
+						(0, import_web$79.insert)(_el$8, appName, _el$19, _co$3);
+						(0, import_web$79.insert)(_el$8, appName, _el$21, _co$4);
+						(0, import_web$79.insert)(_el$8, appName, _el$23, _co$5);
 						return _el$8;
 					})(),
 					header: () => "Are you ABSOLUTELY sure?",
@@ -619,17 +619,17 @@ function PerformancePage() {
 				}), true), () => {});
 			},
 			get note() {
-				return [(0, import_web$83.getNextElement)(_tmpl$5$2), " If you do, vital functionality will be lost. Only touch this if you know what you're doing."];
+				return [(0, import_web$82.getNextElement)(_tmpl$5$2), " If you do, vital functionality will be lost. Only touch this if you know what you're doing."];
 			},
 			children: "Enable Dorion Plugins"
 		}),
-		(0, import_web$85.createComponent)(Header$6, {
+		(0, import_web$84.createComponent)(Header$6, {
 			get ["class"]() {
 				return classes$12.shead;
 			},
 			children: "Blur & Transparency"
 		}),
-		(0, import_web$85.createComponent)(Dropdown, {
+		(0, import_web$84.createComponent)(Dropdown, {
 			get value() {
 				return state().blur;
 			},
@@ -648,11 +648,11 @@ function PerformancePage() {
 			}
 		}),
 		(() => {
-			const _el$ = (0, import_web$83.getNextElement)(_tmpl$$11);
-			(0, import_web$82.effect)(() => (0, import_web$81.className)(_el$, classes$12.stext));
+			const _el$ = (0, import_web$82.getNextElement)(_tmpl$$11);
+			(0, import_web$81.effect)(() => (0, import_web$80.className)(_el$, classes$12.stext));
 			return _el$;
 		})(),
-		(0, import_web$85.createComponent)(SwitchItem$2, {
+		(0, import_web$84.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().blur_css;
 			},
@@ -667,8 +667,8 @@ function PerformancePage() {
 			children: "Enable builtin background transparency CSS"
 		}),
 		(() => {
-			const _el$2 = (0, import_web$83.getNextElement)(_tmpl$2$5), _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$79.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$79.getNextMarker)(_el$5.nextSibling);
-			(0, import_web$80.insert)(_el$2, (0, import_web$85.createComponent)(Button$5, {
+			const _el$2 = (0, import_web$82.getNextElement)(_tmpl$2$5), _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$78.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$78.getNextMarker)(_el$5.nextSibling);
+			(0, import_web$79.insert)(_el$2, (0, import_web$84.createComponent)(Button$5, {
 				onClick: clearWebCache,
 				style: {
 					width: "100%",
@@ -677,7 +677,7 @@ function PerformancePage() {
 				grow: true,
 				children: "Wipe all web-based data"
 			}), _el$4, _co$);
-			(0, import_web$80.insert)(_el$2, (0, import_web$85.createComponent)(Button$5, {
+			(0, import_web$79.insert)(_el$2, (0, import_web$84.createComponent)(Button$5, {
 				onClick: clearCSSCache,
 				style: {
 					width: "100%",
@@ -686,7 +686,7 @@ function PerformancePage() {
 				grow: true,
 				children: "Clear CSS Cache"
 			}), _el$6, _co$2);
-			(0, import_web$82.effect)(() => (0, import_web$81.className)(_el$2, classes$12.pbuttons));
+			(0, import_web$81.effect)(() => (0, import_web$80.className)(_el$2, classes$12.pbuttons));
 			return _el$2;
 		})()
 	];
@@ -695,11 +695,11 @@ function PerformancePage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx.scss
 const classes$8 = {
-	"shead": "_2nPZKq_shead",
+	"pbuttons": "_2nPZKq_pbuttons",
 	"splitbutton": "_2nPZKq_splitbutton",
 	"sbutton": "_2nPZKq_sbutton",
 	"tophead": "_2nPZKq_tophead",
-	"pbuttons": "_2nPZKq_pbuttons"
+	"shead": "_2nPZKq_shead"
 };
 const css$8 = `._2nPZKq_tophead {
   margin-bottom: 16px;
@@ -734,14 +734,14 @@ const css$8 = `._2nPZKq_tophead {
 
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx
+var import_web$70 = __toESM(require_web(), 1);
 var import_web$71 = __toESM(require_web(), 1);
 var import_web$72 = __toESM(require_web(), 1);
 var import_web$73 = __toESM(require_web(), 1);
 var import_web$74 = __toESM(require_web(), 1);
 var import_web$75 = __toESM(require_web(), 1);
 var import_web$76 = __toESM(require_web(), 1);
-var import_web$77 = __toESM(require_web(), 1);
-const _tmpl$$10 = /*#__PURE__*/ (0, import_web$71.template)(`<div><!#><!/><!#><!/></div>`, 6);
+const _tmpl$$10 = /*#__PURE__*/ (0, import_web$70.template)(`<div><!#><!/><!#><!/></div>`, 6);
 const { ui: { Header: Header$5, Button: Button$4, HeaderTags: HeaderTags$5, TextBox: TextBox$1, injectCss: injectCss$9, Divider: Divider$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$3 }, solid: { createSignal: createSignal$8, createEffect: createEffect$4 } } = shelter;
 let injectedCss$9 = false;
 function ProfilesPage() {
@@ -780,7 +780,7 @@ function ProfilesPage() {
 		setNewProfile(value);
 	};
 	return [
-		(0, import_web$77.createComponent)(Header$5, {
+		(0, import_web$76.createComponent)(Header$5, {
 			get tag() {
 				return HeaderTags$5.H1;
 			},
@@ -789,7 +789,7 @@ function ProfilesPage() {
 			},
 			children: "Profiles"
 		}),
-		(0, import_web$77.createComponent)(Dropdown, {
+		(0, import_web$76.createComponent)(Dropdown, {
 			get options() {
 				return profileList().map((p) => {
 					return {
@@ -806,13 +806,13 @@ function ProfilesPage() {
 				return profile();
 			}
 		}),
-		(0, import_web$77.createComponent)(Header$5, {
+		(0, import_web$76.createComponent)(Header$5, {
 			get ["class"]() {
 				return classes$8.shead;
 			},
 			children: "Create Profile"
 		}),
-		(0, import_web$77.createComponent)(TextBox$1, {
+		(0, import_web$76.createComponent)(TextBox$1, {
 			type: "text",
 			get value() {
 				return newProfile();
@@ -820,7 +820,7 @@ function ProfilesPage() {
 			onInput: handleNewProfileChange,
 			placeholder: "Enter a name for the new profile..."
 		}),
-		(0, import_web$77.createComponent)(Button$4, {
+		(0, import_web$76.createComponent)(Button$4, {
 			onClick: createProfile,
 			get ["class"]() {
 				return classes$8.sbutton;
@@ -830,20 +830,20 @@ function ProfilesPage() {
 			},
 			children: "Create Profile"
 		}),
-		(0, import_web$77.createComponent)(Divider$1, {
+		(0, import_web$76.createComponent)(Divider$1, {
 			mt: 16,
 			mb: 16
 		}),
 		(() => {
-			const _el$ = (0, import_web$74.getNextElement)(_tmpl$$10), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$75.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$75.getNextMarker)(_el$4.nextSibling);
-			(0, import_web$76.insert)(_el$, (0, import_web$77.createComponent)(Button$4, {
+			const _el$ = (0, import_web$73.getNextElement)(_tmpl$$10), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$74.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$74.getNextMarker)(_el$4.nextSibling);
+			(0, import_web$75.insert)(_el$, (0, import_web$76.createComponent)(Button$4, {
 				onClick: saveProfile,
 				get size() {
 					return ButtonSizes$3.MEDIUM;
 				},
 				children: "Save and Restart"
 			}), _el$3, _co$);
-			(0, import_web$76.insert)(_el$, (0, import_web$77.createComponent)(Button$4, {
+			(0, import_web$75.insert)(_el$, (0, import_web$76.createComponent)(Button$4, {
 				onClick: deleteProfile,
 				get disabled() {
 					return profile() === "default" || internalProfile() === profile;
@@ -856,7 +856,7 @@ function ProfilesPage() {
 				},
 				children: "Delete Selected Profile"
 			}), _el$5, _co$2);
-			(0, import_web$73.effect)(() => (0, import_web$72.className)(_el$, classes$8.pbuttons));
+			(0, import_web$72.effect)(() => (0, import_web$71.className)(_el$, classes$8.pbuttons));
 			return _el$;
 		})()
 	];
@@ -866,9 +866,9 @@ function ProfilesPage() {
 //#region plugins/dorion-settings/pages/SettingsPage.tsx.scss
 const classes$7 = {
 	"tophead": "akYvUa_tophead",
-	"ohead": "akYvUa_ohead",
 	"shead": "akYvUa_shead",
-	"left16": "akYvUa_left16"
+	"left16": "akYvUa_left16",
+	"ohead": "akYvUa_ohead"
 };
 const css$7 = `.akYvUa_tophead {
   margin-bottom: 16px;
@@ -895,9 +895,9 @@ const css$7 = `.akYvUa_tophead {
 //#region components/Radio.tsx.scss
 const classes$6 = {
 	"radioButton": "Ch7osa_radioButton",
+	"radioButtonInner": "Ch7osa_radioButtonInner",
 	"selected": "Ch7osa_selected",
-	"radio": "Ch7osa_radio",
-	"radioButtonInner": "Ch7osa_radioButtonInner"
+	"radio": "Ch7osa_radio"
 };
 const css$6 = `.Ch7osa_radio {
   color: var(--interactive-normal);
@@ -942,16 +942,17 @@ const css$6 = `.Ch7osa_radio {
 
 .Ch7osa_radio.Ch7osa_selected {
   color: var(--interactive-active);
-  background-color: var(--background-mod-subtle);
+  background-color: var(--background-brand);
 }
 
 .Ch7osa_radio.Ch7osa_selected .Ch7osa_radioButton .Ch7osa_radioButtonInner {
-  background: var(--background-brand);
+  background: #fff;
 }
 `;
 
 //#endregion
 //#region components/Radio.tsx
+var import_web$60 = __toESM(require_web(), 1);
 var import_web$61 = __toESM(require_web(), 1);
 var import_web$62 = __toESM(require_web(), 1);
 var import_web$63 = __toESM(require_web(), 1);
@@ -961,8 +962,7 @@ var import_web$66 = __toESM(require_web(), 1);
 var import_web$67 = __toESM(require_web(), 1);
 var import_web$68 = __toESM(require_web(), 1);
 var import_web$69 = __toESM(require_web(), 1);
-var import_web$70 = __toESM(require_web(), 1);
-const _tmpl$$9 = /*#__PURE__*/ (0, import_web$61.template)(`<div><div></div><!#><!/></div>`, 6), _tmpl$2$4 = /*#__PURE__*/ (0, import_web$61.template)(`<div></div>`, 2);
+const _tmpl$$9 = /*#__PURE__*/ (0, import_web$60.template)(`<div><div></div><!#><!/></div>`, 6), _tmpl$2$4 = /*#__PURE__*/ (0, import_web$60.template)(`<div></div>`, 2);
 const { ui: { injectCss: injectCss$8, Text: Text$5 } } = shelter;
 let injectedCss$8 = false;
 const Radio = (props) => {
@@ -974,41 +974,41 @@ const Radio = (props) => {
 		props.onClick(props.value);
 	};
 	return (() => {
-		const _el$ = (0, import_web$65.getNextElement)(_tmpl$$9), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, [_el$4, _co$] = (0, import_web$67.getNextMarker)(_el$3.nextSibling);
+		const _el$ = (0, import_web$64.getNextElement)(_tmpl$$9), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, [_el$4, _co$] = (0, import_web$66.getNextMarker)(_el$3.nextSibling);
 		_el$.$$click = onRadioClick;
-		(0, import_web$69.insert)(_el$2, (() => {
-			const _c$ = (0, import_web$70.memo)(() => !!props.selected);
+		(0, import_web$68.insert)(_el$2, (() => {
+			const _c$ = (0, import_web$69.memo)(() => !!props.selected);
 			return () => _c$() && (() => {
-				const _el$5 = (0, import_web$65.getNextElement)(_tmpl$2$4);
-				(0, import_web$64.effect)(() => (0, import_web$63.className)(_el$5, classes$6.radioButtonInner));
+				const _el$5 = (0, import_web$64.getNextElement)(_tmpl$2$4);
+				(0, import_web$63.effect)(() => (0, import_web$62.className)(_el$5, classes$6.radioButtonInner));
 				return _el$5;
 			})();
 		})());
-		(0, import_web$69.insert)(_el$, (0, import_web$68.createComponent)(Text$5, { get children() {
+		(0, import_web$68.insert)(_el$, (0, import_web$67.createComponent)(Text$5, { get children() {
 			return props.label;
 		} }), _el$4, _co$);
-		(0, import_web$64.effect)((_p$) => {
+		(0, import_web$63.effect)((_p$) => {
 			const _v$ = classes$6.radio + (props.selected ? ` ${classes$6.selected}` : ""), _v$2 = classes$6.radioButton;
-			_v$ !== _p$._v$ && (0, import_web$63.className)(_el$, _p$._v$ = _v$);
-			_v$2 !== _p$._v$2 && (0, import_web$63.className)(_el$2, _p$._v$2 = _v$2);
+			_v$ !== _p$._v$ && (0, import_web$62.className)(_el$, _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$62.className)(_el$2, _p$._v$2 = _v$2);
 			return _p$;
 		}, {
 			_v$: undefined,
 			_v$2: undefined
 		});
-		(0, import_web$66.runHydrationEvents)();
+		(0, import_web$65.runHydrationEvents)();
 		return _el$;
 	})();
 };
-(0, import_web$62.delegateEvents)(["click"]);
+(0, import_web$61.delegateEvents)(["click"]);
 
 //#endregion
 //#region components/RadioGroup.tsx
+var import_web$56 = __toESM(require_web(), 1);
 var import_web$57 = __toESM(require_web(), 1);
 var import_web$58 = __toESM(require_web(), 1);
 var import_web$59 = __toESM(require_web(), 1);
-var import_web$60 = __toESM(require_web(), 1);
-const _tmpl$$8 = /*#__PURE__*/ (0, import_web$57.template)(`<div></div>`, 2);
+const _tmpl$$8 = /*#__PURE__*/ (0, import_web$56.template)(`<div></div>`, 2);
 const { ui: { injectCss: injectCss$7 } } = shelter;
 let injectedCss$7 = false;
 const RadioGroup = (props) => {
@@ -1017,8 +1017,8 @@ const RadioGroup = (props) => {
 		injectCss$7(css$6);
 	}
 	return (() => {
-		const _el$ = (0, import_web$59.getNextElement)(_tmpl$$8);
-		(0, import_web$60.insert)(_el$, () => props.options.map((o) => (0, import_web$58.createComponent)(Radio, {
+		const _el$ = (0, import_web$58.getNextElement)(_tmpl$$8);
+		(0, import_web$59.insert)(_el$, () => props.options.map((o) => (0, import_web$57.createComponent)(Radio, {
 			get ["class"]() {
 				return classes$6.radioGroupItem;
 			},
@@ -1041,12 +1041,12 @@ const RadioGroup = (props) => {
 
 //#endregion
 //#region plugins/dorion-settings/pages/SettingsPage.tsx
+var import_web$52 = __toESM(require_web(), 1);
 var import_web$53 = __toESM(require_web(), 1);
 var import_web$54 = __toESM(require_web(), 1);
 var import_web$55 = __toESM(require_web(), 1);
-var import_web$56 = __toESM(require_web(), 1);
-const _tmpl$$7 = /*#__PURE__*/ (0, import_web$53.template)(`<a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">SpikeHD/shelter-plugins</a>`, 2);
-const { ui: { SwitchItem: SwitchItem$1, Header: Header$4, HeaderTags: HeaderTags$4, Slider, injectCss: injectCss$6 }, solid: { createSignal: createSignal$7, createEffect: createEffect$3 } } = shelter;
+const _tmpl$$7 = /*#__PURE__*/ (0, import_web$52.template)(`<a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">SpikeHD/shelter-plugins</a>`, 2);
+const { ui: { SwitchItem: SwitchItem$2, Header: Header$4, HeaderTags: HeaderTags$4, Slider, injectCss: injectCss$6 }, solid: { createSignal: createSignal$7, createEffect: createEffect$3 } } = shelter;
 let injectedCss$6 = false;
 function SettingsPage() {
 	const [settings, setSettingsState] = createSignal$7(defaultConfig);
@@ -1068,7 +1068,7 @@ function SettingsPage() {
 		}
 	};
 	return [
-		(0, import_web$56.createComponent)(Header$4, {
+		(0, import_web$55.createComponent)(Header$4, {
 			get tag() {
 				return HeaderTags$4.H1;
 			},
@@ -1079,17 +1079,17 @@ function SettingsPage() {
 				return [appName, " Settings"];
 			}
 		}),
-		(0, import_web$55.memo)((() => {
-			const _c$ = (0, import_web$55.memo)(() => !!restartRequired());
-			return () => _c$() && (0, import_web$56.createComponent)(WarningCard, {});
+		(0, import_web$54.memo)((() => {
+			const _c$ = (0, import_web$54.memo)(() => !!restartRequired());
+			return () => _c$() && (0, import_web$55.createComponent)(WarningCard, {});
 		})()),
-		(0, import_web$56.createComponent)(Header$4, {
+		(0, import_web$55.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
 			children: "Client Type"
 		}),
-		(0, import_web$56.createComponent)(RadioGroup, {
+		(0, import_web$55.createComponent)(RadioGroup, {
 			options: [
 				{
 					label: "Default",
@@ -1116,13 +1116,13 @@ function SettingsPage() {
 				return settings().client_type;
 			}
 		}),
-		(0, import_web$56.createComponent)(Header$4, {
+		(0, import_web$55.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
 			children: "Window"
 		}),
-		(0, import_web$56.createComponent)(Header$4, {
+		(0, import_web$55.createComponent)(Header$4, {
 			get tag() {
 				return HeaderTags$4.H4;
 			},
@@ -1132,7 +1132,7 @@ function SettingsPage() {
 			},
 			children: "Zoom Level"
 		}),
-		(0, import_web$56.createComponent)(Slider, {
+		(0, import_web$55.createComponent)(Slider, {
 			min: 50,
 			max: 125,
 			get steps() {
@@ -1152,7 +1152,7 @@ function SettingsPage() {
 				invoke("window_zoom_level", { value: parseFloat(v) / 100 });
 			}
 		}),
-		(0, import_web$56.createComponent)(SwitchItem$1, {
+		(0, import_web$55.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().sys_tray;
 			},
@@ -1167,7 +1167,7 @@ function SettingsPage() {
 			note: `Instead of closing, ${appName} will run in the background and will be accessible via the system tray.`,
 			children: "Minimize to System Tray"
 		}),
-		(0, import_web$56.createComponent)(SwitchItem$1, {
+		(0, import_web$55.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().start_maximized;
 			},
@@ -1181,13 +1181,13 @@ function SettingsPage() {
 			},
 			children: "Start Maximized"
 		}),
-		(0, import_web$56.createComponent)(Header$4, {
+		(0, import_web$55.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
 			children: "Startup"
 		}),
-		(0, import_web$56.createComponent)(SwitchItem$1, {
+		(0, import_web$55.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().open_on_startup;
 			},
@@ -1203,7 +1203,7 @@ function SettingsPage() {
 			note: `Open ${appName} when your system starts.`,
 			children: "Open on Startup"
 		}),
-		(0, import_web$56.createComponent)(SwitchItem$1, {
+		(0, import_web$55.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().startup_minimized;
 			},
@@ -1221,13 +1221,13 @@ function SettingsPage() {
 			note: "Open in the background when your system starts.",
 			children: "Start Minimized"
 		}),
-		(0, import_web$56.createComponent)(Header$4, {
+		(0, import_web$55.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
 			children: "Misc."
 		}),
-		(0, import_web$56.createComponent)(SwitchItem$1, {
+		(0, import_web$55.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().multi_instance;
 			},
@@ -1242,7 +1242,7 @@ function SettingsPage() {
 			note: `Allow multiple instances of ${appName} to be running at the same time.`,
 			children: "Allow Multiple Instances"
 		}),
-		(0, import_web$56.createComponent)(SwitchItem$1, {
+		(0, import_web$55.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().use_native_titlebar;
 			},
@@ -1257,13 +1257,13 @@ function SettingsPage() {
 			note: "Disable the custom titlebar and use your systems native one instead.",
 			children: "Use Native Titlebar"
 		}),
-		(0, import_web$56.createComponent)(Header$4, {
+		(0, import_web$55.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
 			children: "Updates"
 		}),
-		(0, import_web$56.createComponent)(SwitchItem$1, {
+		(0, import_web$55.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().autoupdate;
 			},
@@ -1282,13 +1282,13 @@ function SettingsPage() {
 					appName,
 					" components, such as",
 					" ",
-					(0, import_web$54.getNextElement)(_tmpl$$7),
+					(0, import_web$53.getNextElement)(_tmpl$$7),
 					"."
 				];
 			},
 			children: "Autoupdate"
 		}),
-		(0, import_web$56.createComponent)(SwitchItem$1, {
+		(0, import_web$55.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().update_notify === undefined || settings().update_notify;
 			},
@@ -1311,15 +1311,15 @@ function SettingsPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx.scss
 const classes$5 = {
-	"title": "yPVoxW_title",
-	"refresh": "yPVoxW_refresh",
-	"spinner": "yPVoxW_spinner",
-	"badges": "yPVoxW_badges",
-	"spin": "yPVoxW_spin",
-	"contents": "yPVoxW_contents",
 	"tophead": "yPVoxW_tophead",
+	"refresh": "yPVoxW_refresh",
+	"title": "yPVoxW_title",
+	"contents": "yPVoxW_contents",
+	"badge": "yPVoxW_badge",
+	"spin": "yPVoxW_spin",
+	"spinner": "yPVoxW_spinner",
 	"card": "yPVoxW_card",
-	"badge": "yPVoxW_badge"
+	"badges": "yPVoxW_badges"
 };
 const css$5 = `.yPVoxW_tophead {
   margin-bottom: 16px;
@@ -3328,6 +3328,7 @@ async function fixImageLinks(scope) {
 
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx
+var import_web$43 = __toESM(require_web(), 1);
 var import_web$44 = __toESM(require_web(), 1);
 var import_web$45 = __toESM(require_web(), 1);
 var import_web$46 = __toESM(require_web(), 1);
@@ -3336,8 +3337,7 @@ var import_web$48 = __toESM(require_web(), 1);
 var import_web$49 = __toESM(require_web(), 1);
 var import_web$50 = __toESM(require_web(), 1);
 var import_web$51 = __toESM(require_web(), 1);
-var import_web$52 = __toESM(require_web(), 1);
-const _tmpl$$6 = /*#__PURE__*/ (0, import_web$44.template)(`<div><div></div></div>`, 4), _tmpl$2$3 = /*#__PURE__*/ (0, import_web$44.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$3$3 = /*#__PURE__*/ (0, import_web$44.template)(`<span></span>`, 2), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$44.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$5$1 = /*#__PURE__*/ (0, import_web$44.template)(`<div><!#><!/><!#><!/><div></div></div>`, 8), _tmpl$6 = /*#__PURE__*/ (0, import_web$44.template)(`<span>Current</span>`, 2), _tmpl$7 = /*#__PURE__*/ (0, import_web$44.template)(`<span>Latest</span>`, 2);
+const _tmpl$$6 = /*#__PURE__*/ (0, import_web$43.template)(`<div><div></div></div>`, 4), _tmpl$2$3 = /*#__PURE__*/ (0, import_web$43.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$3$2 = /*#__PURE__*/ (0, import_web$43.template)(`<span></span>`, 2), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$43.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$5$1 = /*#__PURE__*/ (0, import_web$43.template)(`<div><!#><!/><!#><!/><div></div></div>`, 8), _tmpl$6 = /*#__PURE__*/ (0, import_web$43.template)(`<span>Current</span>`, 2), _tmpl$7 = /*#__PURE__*/ (0, import_web$43.template)(`<span>Latest</span>`, 2);
 const PAGE_ID = `${appName.toLowerCase()}-changelog-tab`;
 const { ui: { injectCss: injectCss$5, Header: Header$3, HeaderTags: HeaderTags$3, Button: Button$3, ButtonSizes: ButtonSizes$2, ButtonColors, Text: Text$4, LinkButton }, solid: { createSignal: createSignal$6, createEffect: createEffect$2 } } = shelter;
 let injectedCss$5 = false;
@@ -3369,7 +3369,7 @@ function ChangelogPage() {
 		await fixImageLinks(document.getElementById(PAGE_ID));
 	}
 	return [
-		(0, import_web$52.createComponent)(Header$3, {
+		(0, import_web$51.createComponent)(Header$3, {
 			get tag() {
 				return HeaderTags$3.H1;
 			},
@@ -3378,7 +3378,7 @@ function ChangelogPage() {
 			},
 			children: "Changelog"
 		}),
-		(0, import_web$52.createComponent)(Button$3, {
+		(0, import_web$51.createComponent)(Button$3, {
 			onClick: refresh,
 			get disabled() {
 				return loading();
@@ -3388,25 +3388,25 @@ function ChangelogPage() {
 			},
 			children: "Refresh"
 		}),
-		(0, import_web$51.memo)((() => {
-			const _c$ = (0, import_web$51.memo)(() => !!loading());
+		(0, import_web$50.memo)((() => {
+			const _c$ = (0, import_web$50.memo)(() => !!loading());
 			return () => _c$() ? (() => {
-				const _el$ = (0, import_web$50.getNextElement)(_tmpl$$6), _el$2 = _el$.firstChild;
-				(0, import_web$49.effect)((_p$) => {
+				const _el$ = (0, import_web$49.getNextElement)(_tmpl$$6), _el$2 = _el$.firstChild;
+				(0, import_web$48.effect)((_p$) => {
 					const _v$ = classes$5.card, _v$2 = classes$5.spinner;
-					_v$ !== _p$._v$ && (0, import_web$48.className)(_el$, _p$._v$ = _v$);
-					_v$2 !== _p$._v$2 && (0, import_web$48.className)(_el$2, _p$._v$2 = _v$2);
+					_v$ !== _p$._v$ && (0, import_web$47.className)(_el$, _p$._v$ = _v$);
+					_v$2 !== _p$._v$2 && (0, import_web$47.className)(_el$2, _p$._v$2 = _v$2);
 					return _p$;
 				}, {
 					_v$: undefined,
 					_v$2: undefined
 				});
 				return _el$;
-			})() : [(0, import_web$51.memo)((() => {
-				const _c$2 = (0, import_web$51.memo)(() => !!updateCheck().includes("dorion"));
+			})() : [(0, import_web$50.memo)((() => {
+				const _c$2 = (0, import_web$50.memo)(() => !!updateCheck().includes("dorion"));
 				return () => _c$2() && (() => {
-					const _el$3 = (0, import_web$50.getNextElement)(_tmpl$2$3), _el$4 = _el$3.firstChild, [_el$5, _co$] = (0, import_web$46.getNextMarker)(_el$4.nextSibling), _el$6 = _el$5.nextSibling, [_el$7, _co$2] = (0, import_web$46.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$3] = (0, import_web$46.getNextMarker)(_el$8.nextSibling);
-					(0, import_web$47.insert)(_el$3, (0, import_web$52.createComponent)(Header$3, {
+					const _el$3 = (0, import_web$49.getNextElement)(_tmpl$2$3), _el$4 = _el$3.firstChild, [_el$5, _co$] = (0, import_web$45.getNextMarker)(_el$4.nextSibling), _el$6 = _el$5.nextSibling, [_el$7, _co$2] = (0, import_web$45.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$3] = (0, import_web$45.getNextMarker)(_el$8.nextSibling);
+					(0, import_web$46.insert)(_el$3, (0, import_web$51.createComponent)(Header$3, {
 						get tag() {
 							return HeaderTags$3.H1;
 						},
@@ -3415,10 +3415,10 @@ function ChangelogPage() {
 						},
 						children: "Update available!"
 					}), _el$5, _co$);
-					(0, import_web$47.insert)(_el$3, (0, import_web$52.createComponent)(Text$4, { get children() {
-						return ["Your current version is ", (0, import_web$51.memo)(() => currentVersion())];
+					(0, import_web$46.insert)(_el$3, (0, import_web$51.createComponent)(Text$4, { get children() {
+						return ["Your current version is ", (0, import_web$50.memo)(() => currentVersion())];
 					} }), _el$7, _co$2);
-					(0, import_web$47.insert)(_el$3, (0, import_web$52.createComponent)(Button$3, {
+					(0, import_web$46.insert)(_el$3, (0, import_web$51.createComponent)(Button$3, {
 						get size() {
 							return ButtonSizes$2.LARGE;
 						},
@@ -3427,17 +3427,17 @@ function ChangelogPage() {
 						},
 						onClick: doUpdate,
 						get children() {
-							return ["Update to ", (0, import_web$51.memo)(() => latestVersion())];
+							return ["Update to ", (0, import_web$50.memo)(() => latestVersion())];
 						}
 					}), _el$9, _co$3);
-					(0, import_web$49.effect)(() => (0, import_web$48.className)(_el$3, classes$5.card));
+					(0, import_web$48.effect)(() => (0, import_web$47.className)(_el$3, classes$5.card));
 					return _el$3;
 				})();
-			})()), (0, import_web$51.memo)((() => {
-				const _c$3 = (0, import_web$51.memo)(() => !!(releases() != null && releases().length > 0));
+			})()), (0, import_web$50.memo)((() => {
+				const _c$3 = (0, import_web$50.memo)(() => !!(releases() != null && releases().length > 0));
 				return () => _c$3() && releases().map((release) => (() => {
-					const _el$0 = (0, import_web$50.getNextElement)(_tmpl$5$1), _el$16 = _el$0.firstChild, [_el$17, _co$6] = (0, import_web$46.getNextMarker)(_el$16.nextSibling), _el$18 = _el$17.nextSibling, [_el$19, _co$7] = (0, import_web$46.getNextMarker)(_el$18.nextSibling), _el$15 = _el$19.nextSibling;
-					(0, import_web$47.insert)(_el$0, (0, import_web$52.createComponent)(Header$3, {
+					const _el$0 = (0, import_web$49.getNextElement)(_tmpl$5$1), _el$16 = _el$0.firstChild, [_el$17, _co$6] = (0, import_web$45.getNextMarker)(_el$16.nextSibling), _el$18 = _el$17.nextSibling, [_el$19, _co$7] = (0, import_web$45.getNextMarker)(_el$18.nextSibling), _el$15 = _el$19.nextSibling;
+					(0, import_web$46.insert)(_el$0, (0, import_web$51.createComponent)(Header$3, {
 						get tag() {
 							return HeaderTags$3.H1;
 						},
@@ -3446,43 +3446,43 @@ function ChangelogPage() {
 						},
 						get children() {
 							return [(() => {
-								const _el$1 = (0, import_web$50.getNextElement)(_tmpl$3$3);
-								(0, import_web$47.insert)(_el$1, () => release.name);
+								const _el$1 = (0, import_web$49.getNextElement)(_tmpl$3$2);
+								(0, import_web$46.insert)(_el$1, () => release.name);
 								return _el$1;
 							})(), (() => {
-								const _el$10 = (0, import_web$50.getNextElement)(_tmpl$4$1), _el$11 = _el$10.firstChild, [_el$12, _co$4] = (0, import_web$46.getNextMarker)(_el$11.nextSibling), _el$13 = _el$12.nextSibling, [_el$14, _co$5] = (0, import_web$46.getNextMarker)(_el$13.nextSibling);
-								(0, import_web$47.insert)(_el$10, (() => {
-									const _c$4 = (0, import_web$51.memo)(() => currentVersion() == release.tag_name);
+								const _el$10 = (0, import_web$49.getNextElement)(_tmpl$4$1), _el$11 = _el$10.firstChild, [_el$12, _co$4] = (0, import_web$45.getNextMarker)(_el$11.nextSibling), _el$13 = _el$12.nextSibling, [_el$14, _co$5] = (0, import_web$45.getNextMarker)(_el$13.nextSibling);
+								(0, import_web$46.insert)(_el$10, (() => {
+									const _c$4 = (0, import_web$50.memo)(() => currentVersion() == release.tag_name);
 									return () => _c$4() && (() => {
-										const _el$20 = (0, import_web$50.getNextElement)(_tmpl$6);
-										(0, import_web$49.effect)(() => (0, import_web$48.className)(_el$20, classes$5.badge));
+										const _el$20 = (0, import_web$49.getNextElement)(_tmpl$6);
+										(0, import_web$48.effect)(() => (0, import_web$47.className)(_el$20, classes$5.badge));
 										return _el$20;
 									})();
 								})(), _el$12, _co$4);
-								(0, import_web$47.insert)(_el$10, (() => {
-									const _c$5 = (0, import_web$51.memo)(() => releases()[0].tag_name == release.tag_name);
+								(0, import_web$46.insert)(_el$10, (() => {
+									const _c$5 = (0, import_web$50.memo)(() => releases()[0].tag_name == release.tag_name);
 									return () => _c$5() && (() => {
-										const _el$21 = (0, import_web$50.getNextElement)(_tmpl$7);
-										(0, import_web$49.effect)(() => (0, import_web$48.className)(_el$21, classes$5.badge));
+										const _el$21 = (0, import_web$49.getNextElement)(_tmpl$7);
+										(0, import_web$48.effect)(() => (0, import_web$47.className)(_el$21, classes$5.badge));
 										return _el$21;
 									})();
 								})(), _el$14, _co$5);
-								(0, import_web$49.effect)(() => (0, import_web$48.className)(_el$10, classes$5.badges));
+								(0, import_web$48.effect)(() => (0, import_web$47.className)(_el$10, classes$5.badges));
 								return _el$10;
 							})()];
 						}
 					}), _el$17, _co$6);
-					(0, import_web$47.insert)(_el$0, (0, import_web$52.createComponent)(LinkButton, {
+					(0, import_web$46.insert)(_el$0, (0, import_web$51.createComponent)(LinkButton, {
 						get href() {
 							return release.html_url;
 						},
 						children: "View on GitHub"
 					}), _el$19, _co$7);
-					(0, import_web$49.effect)((_p$) => {
+					(0, import_web$48.effect)((_p$) => {
 						const _v$3 = classes$5.card, _v$4 = classes$5.contents, _v$5 = release.body;
-						_v$3 !== _p$._v$3 && (0, import_web$48.className)(_el$0, _p$._v$3 = _v$3);
-						_v$4 !== _p$._v$4 && (0, import_web$48.className)(_el$15, _p$._v$4 = _v$4);
-						_v$5 !== _p$._v$5 && (0, import_web$45.innerHTML)(_el$15, _p$._v$5 = _v$5);
+						_v$3 !== _p$._v$3 && (0, import_web$47.className)(_el$0, _p$._v$3 = _v$3);
+						_v$4 !== _p$._v$4 && (0, import_web$47.className)(_el$15, _p$._v$4 = _v$4);
+						_v$5 !== _p$._v$5 && (0, import_web$44.innerHTML)(_el$15, _p$._v$5 = _v$5);
 						return _p$;
 					}, {
 						_v$3: undefined,
@@ -3499,17 +3499,17 @@ function ChangelogPage() {
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx.scss
 const classes$4 = {
-	"left16": "XZjauW_left16",
-	"plistrow": "XZjauW_plistrow",
-	"scell": "XZjauW_scell",
 	"shead": "XZjauW_shead",
-	"plist": "XZjauW_plist",
+	"top16": "XZjauW_top16",
+	"left16": "XZjauW_left16",
+	"top32": "XZjauW_top32",
+	"scell": "XZjauW_scell",
 	"sbutton": "XZjauW_sbutton",
 	"mcell": "XZjauW_mcell",
 	"pbuttons": "XZjauW_pbuttons",
-	"top32": "XZjauW_top32",
-	"top16": "XZjauW_top16",
-	"pheader": "XZjauW_pheader"
+	"pheader": "XZjauW_pheader",
+	"plist": "XZjauW_plist",
+	"plistrow": "XZjauW_plistrow"
 };
 const css$4 = `.XZjauW_shead {
   margin-top: 16px;
@@ -3596,9 +3596,8 @@ var import_web$39 = __toESM(require_web(), 1);
 var import_web$40 = __toESM(require_web(), 1);
 var import_web$41 = __toESM(require_web(), 1);
 var import_web$42 = __toESM(require_web(), 1);
-var import_web$43 = __toESM(require_web(), 1);
-const _tmpl$$5 = /*#__PURE__*/ (0, import_web$35.template)(`<div><div><div></div><div></div></div><!#><!/><!#><!/></div>`, 12), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$35.template)(`<div></div>`, 2), _tmpl$3$2 = /*#__PURE__*/ (0, import_web$35.template)(`<div><div></div><div></div></div>`, 6);
-const { ui: { Switch: Switch$1, Text: Text$3, injectCss: injectCss$4 }, solid: { createSignal: createSignal$5 } } = shelter;
+const _tmpl$$5 = /*#__PURE__*/ (0, import_web$35.template)(`<div><div><div></div><div></div></div><!#><!/><!#><!/></div>`, 12), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$35.template)(`<div></div>`, 2);
+const { ui: { SwitchItem: SwitchItem$1, Text: Text$3, injectCss: injectCss$4 }, solid: { createSignal: createSignal$5 } } = shelter;
 let injectedCss$4 = false;
 const getClientMods = async () => {
 	try {
@@ -3646,71 +3645,50 @@ else newClientMods.push(modName);
 		setSettingsState(fn(settings()));
 		invoke("write_config_file", { contents: JSON.stringify(fn(settings())) });
 	};
-	return (0, import_web$43.createComponent)(Card, {
+	return (0, import_web$42.createComponent)(Card, {
 		style: { marginTop: "1rem" },
 		get children() {
-			const _el$ = (0, import_web$39.getNextElement)(_tmpl$$5), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, _el$5 = _el$2.nextSibling, [_el$6, _co$] = (0, import_web$40.getNextMarker)(_el$5.nextSibling), _el$7 = _el$6.nextSibling, [_el$8, _co$2] = (0, import_web$40.getNextMarker)(_el$7.nextSibling);
-			(0, import_web$42.insert)(_el$3, (0, import_web$43.createComponent)(Text$3, {
+			const _el$ = (0, import_web$38.getNextElement)(_tmpl$$5), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, _el$5 = _el$2.nextSibling, [_el$6, _co$] = (0, import_web$39.getNextMarker)(_el$5.nextSibling), _el$7 = _el$6.nextSibling, [_el$8, _co$2] = (0, import_web$39.getNextMarker)(_el$7.nextSibling);
+			(0, import_web$41.insert)(_el$3, (0, import_web$42.createComponent)(Text$3, {
 				get ["class"]() {
 					return classes$4.left16;
 				},
 				children: "Client Mod Name"
 			}));
-			(0, import_web$42.insert)(_el$4, (0, import_web$43.createComponent)(Text$3, {
+			(0, import_web$41.insert)(_el$4, (0, import_web$42.createComponent)(Text$3, {
 				get ["class"]() {
 					return classes$4.left16;
 				},
 				children: "Enabled"
 			}));
-			(0, import_web$42.insert)(_el$, (() => {
-				const _c$ = (0, import_web$41.memo)(() => clientMods().length === 0);
+			(0, import_web$41.insert)(_el$, (() => {
+				const _c$ = (0, import_web$40.memo)(() => clientMods().length === 0);
 				return () => _c$() && (() => {
-					const _el$9 = (0, import_web$39.getNextElement)(_tmpl$2$2);
-					(0, import_web$42.insert)(_el$9, (0, import_web$43.createComponent)(Text$3, {
+					const _el$9 = (0, import_web$38.getNextElement)(_tmpl$2$2);
+					(0, import_web$41.insert)(_el$9, (0, import_web$42.createComponent)(Text$3, {
 						get ["class"]() {
 							return classes$4.left16;
 						},
 						children: "Client mods not available. Please update"
 					}));
-					(0, import_web$38.effect)(() => (0, import_web$37.className)(_el$9, classes$4.plistrow));
+					(0, import_web$37.effect)(() => (0, import_web$36.className)(_el$9, classes$4.plistrow));
 					return _el$9;
 				})();
 			})(), _el$6, _co$);
-			(0, import_web$42.insert)(_el$, () => clientMods().map((modName) => (() => {
-				const _el$0 = (0, import_web$39.getNextElement)(_tmpl$3$2), _el$1 = _el$0.firstChild, _el$10 = _el$1.nextSibling;
-				(0, import_web$36.setAttribute)(_el$0, "key", modName);
-				(0, import_web$42.insert)(_el$1, (0, import_web$43.createComponent)(Text$3, {
-					get ["class"]() {
-						return classes$4.left16;
-					},
-					children: modName
-				}));
-				(0, import_web$42.insert)(_el$10, (0, import_web$43.createComponent)(Switch$1, {
-					disabled: modName === "Shelter",
-					get checked() {
-						return settings().client_mods?.includes(modName) || false;
-					},
-					onChange: () => onClientModToggle(modName)
-				}));
-				(0, import_web$38.effect)((_p$) => {
-					const _v$5 = classes$4.plistrow, _v$6 = classes$4.mcell, _v$7 = classes$4.scell;
-					_v$5 !== _p$._v$5 && (0, import_web$37.className)(_el$0, _p$._v$5 = _v$5);
-					_v$6 !== _p$._v$6 && (0, import_web$37.className)(_el$1, _p$._v$6 = _v$6);
-					_v$7 !== _p$._v$7 && (0, import_web$37.className)(_el$10, _p$._v$7 = _v$7);
-					return _p$;
-				}, {
-					_v$5: undefined,
-					_v$6: undefined,
-					_v$7: undefined
-				});
-				return _el$0;
-			})()), _el$8, _co$2);
-			(0, import_web$38.effect)((_p$) => {
+			(0, import_web$41.insert)(_el$, () => clientMods().map((modName) => (0, import_web$42.createComponent)(SwitchItem$1, {
+				disabled: modName === "Shelter",
+				get value() {
+					return settings().client_mods?.includes(modName) || false;
+				},
+				onChange: () => onClientModToggle(modName),
+				children: modName
+			})), _el$8, _co$2);
+			(0, import_web$37.effect)((_p$) => {
 				const _v$ = classes$4.plist, _v$2 = classes$4.pheader + " " + classes$4.plistrow, _v$3 = classes$4.mcell, _v$4 = classes$4.scell;
-				_v$ !== _p$._v$ && (0, import_web$37.className)(_el$, _p$._v$ = _v$);
-				_v$2 !== _p$._v$2 && (0, import_web$37.className)(_el$2, _p$._v$2 = _v$2);
-				_v$3 !== _p$._v$3 && (0, import_web$37.className)(_el$3, _p$._v$3 = _v$3);
-				_v$4 !== _p$._v$4 && (0, import_web$37.className)(_el$4, _p$._v$4 = _v$4);
+				_v$ !== _p$._v$ && (0, import_web$36.className)(_el$, _p$._v$ = _v$);
+				_v$2 !== _p$._v$2 && (0, import_web$36.className)(_el$2, _p$._v$2 = _v$2);
+				_v$3 !== _p$._v$3 && (0, import_web$36.className)(_el$3, _p$._v$3 = _v$3);
+				_v$4 !== _p$._v$4 && (0, import_web$36.className)(_el$4, _p$._v$4 = _v$4);
 				return _p$;
 			}, {
 				_v$: undefined,
@@ -3726,16 +3704,16 @@ else newClientMods.push(modName);
 //#endregion
 //#region plugins/dorion-settings/components/PluginList.tsx.scss
 const classes$3 = {
-	"top16": "V6is4W_top16",
 	"pheader": "V6is4W_pheader",
-	"scell": "V6is4W_scell",
-	"plistrow": "V6is4W_plistrow",
-	"pbuttons": "V6is4W_pbuttons",
-	"left16": "V6is4W_left16",
+	"top16": "V6is4W_top16",
+	"top32": "V6is4W_top32",
 	"mcell": "V6is4W_mcell",
 	"plist": "V6is4W_plist",
+	"scell": "V6is4W_scell",
 	"sbutton": "V6is4W_sbutton",
-	"top32": "V6is4W_top32"
+	"pbuttons": "V6is4W_pbuttons",
+	"plistrow": "V6is4W_plistrow",
+	"left16": "V6is4W_left16"
 };
 const css$3 = `.V6is4W_plist {
   flex-direction: column;
@@ -3952,12 +3930,12 @@ function PluginList(props) {
 //#endregion
 //#region plugins/dorion-settings/pages/PluginsPage.tsx.scss
 const classes$2 = {
+	"card": "X31w8G_card",
+	"left16": "X31w8G_left16",
 	"openButton": "X31w8G_openButton",
 	"pbuttons": "X31w8G_pbuttons",
-	"card": "X31w8G_card",
-	"tophead": "X31w8G_tophead",
 	"shead": "X31w8G_shead",
-	"left16": "X31w8G_left16"
+	"tophead": "X31w8G_tophead"
 };
 const css$2 = `.X31w8G_tophead {
   margin-bottom: 16px;
@@ -4125,8 +4103,8 @@ const reloadThemes = async () => {
 //#endregion
 //#region plugins/dorion-settings/pages/ThemesPage.tsx.scss
 const classes$1 = {
-	"pbuttons": "oAx4fa_pbuttons",
 	"shead": "oAx4fa_shead",
+	"pbuttons": "oAx4fa_pbuttons",
 	"tophead": "oAx4fa_tophead"
 };
 const css$1 = `.oAx4fa_tophead {
@@ -4364,9 +4342,9 @@ function ThemesPage() {
 //#region plugins/dorion-settings/pages/RPC.tsx.scss
 const classes = {
 	"customNote": "ycw7DW_customNote",
-	"shead": "ycw7DW_shead",
 	"bot16": "ycw7DW_bot16",
-	"customInstallBtn": "ycw7DW_customInstallBtn"
+	"customInstallBtn": "ycw7DW_customInstallBtn",
+	"shead": "ycw7DW_shead"
 };
 const css = `.ycw7DW_shead {
   margin-top: 16px;

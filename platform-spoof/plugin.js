@@ -255,8 +255,8 @@ const after = getPatchFunc_default("a");
 //#region components/Radio.tsx.scss
 const classes = {
 	"radioButtonInner": "Ch7osa_radioButtonInner",
-	"radio": "Ch7osa_radio",
 	"radioButton": "Ch7osa_radioButton",
+	"radio": "Ch7osa_radio",
 	"selected": "Ch7osa_selected"
 };
 const css = `.Ch7osa_radio {
@@ -302,11 +302,11 @@ const css = `.Ch7osa_radio {
 
 .Ch7osa_radio.Ch7osa_selected {
   color: var(--interactive-active);
-  background-color: var(--background-mod-subtle);
+  background-color: var(--background-brand);
 }
 
 .Ch7osa_radio.Ch7osa_selected .Ch7osa_radioButton .Ch7osa_radioButtonInner {
-  background: var(--background-brand);
+  background: #fff;
 }
 `;
 

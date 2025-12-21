@@ -124,14 +124,14 @@ const apiWindow = backendObj.apiWindow;
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"keybindsButton": "Zz-Z3G_keybindsButton",
 	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
 	"header": "Zz-Z3G_header",
-	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
 	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindsButton": "Zz-Z3G_keybindsButton",
-	"keybindSection": "Zz-Z3G_keybindSection"
+	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindsHeader": "Zz-Z3G_keybindsHeader",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -200,12 +200,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
-	"removeButton": "QTLdLq_removeButton",
+	"keybindRoot": "QTLdLq_keybindRoot",
+	"note": "QTLdLq_note",
+	"keybindArea": "QTLdLq_keybindArea",
 	"actionSection": "QTLdLq_actionSection",
 	"keybindSection": "QTLdLq_keybindSection",
-	"note": "QTLdLq_note",
-	"keybindRoot": "QTLdLq_keybindRoot",
-	"keybindArea": "QTLdLq_keybindArea"
+	"removeButton": "QTLdLq_removeButton"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -262,15 +262,15 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"dcontainer": "sqVpyW_dcontainer",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
   width: 100%;
-  color: var(--text-interactive);
+  color: var(--text-primary);
   background-color: var(--background-base-lowest);
   appearance: none;
   cursor: pointer;
@@ -282,7 +282,7 @@ const css$1 = `.sqVpyW_ddown {
 }
 
 .sqVpyW_ddown option {
-  color: var(--text-interactive);
+  color: var(--text-primary);
   background: #333;
 }
 
@@ -404,12 +404,12 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindButton": "N-HDcq_keybindButton",
-	"keybindInput": "N-HDcq_keybindInput",
-	"recording": "N-HDcq_recording",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindContainer": "N-HDcq_keybindContainer",
-	"pulse": "N-HDcq_pulse"
+	"recording": "N-HDcq_recording",
+	"pulse": "N-HDcq_pulse",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"keybindInput": "N-HDcq_keybindInput",
+	"keybindButton": "N-HDcq_keybindButton"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
