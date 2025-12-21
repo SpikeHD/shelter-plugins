@@ -90,8 +90,9 @@ export function ClientModList(props: Props) {
         onChange={() =>
           onClientModToggle(modName)
         }
+        note={modName === 'Shelter' ? 'Shelter is required for Dorion to function properly.' : ''}
       >
-        {modName}
+        Enable {modName}
       </SwitchItem>
     ))}
   </>
