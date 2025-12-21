@@ -21,7 +21,7 @@
         height: $size;
         width: $size;
         border-radius: 50%;
-        border: 2px solid var(--interactive-normal);
+        border: 2px solid var(--checkbox-border-default);
         margin: 4px;
         position: relative;
 
@@ -38,18 +38,18 @@
     }
 
     &:hover {
-        background-color: var(--background-modifier-hover);
+        background-color: var(--background-mod-subtle);
     }
-    
+
     &.selected {
         color: var(--interactive-active);
-        background-color: var(--background-modifier-selected);
+        background-color: var(--background-mod-subtle);
 
         .radioButton {
             border-color: var(--interactive-active);
-    
+
             .radioButtonInner {
-                background: var(--interactive-active);
+                background: var(--background-brand);
             }
         }
     }
