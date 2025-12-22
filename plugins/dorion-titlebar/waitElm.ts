@@ -4,10 +4,15 @@ const {
 
 let observer: MutationObserver | null = null // keep only one observer working
 
+export function disobserve() {
+  observer.disconnect()
+  observer = null
+}
+
 // Observes the DOM for newly added nodes and executes a callback for each.
 function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: T) => void) => boolean, subtree: boolean): Promise<T> {
   return new Promise(resolve => {
-    if (observer) observer.disconnect() // disconnnect old one
+    if (observer) disobserve() // disconnnect old one
 
     observer = new MutationObserver(mutations => {
       for (const mutation of mutations) {
@@ -15,9 +20,7 @@ function observeDom<T>(rootElm: Node, callbackFn: (node: Node, resolve: (value: 
           const addedNodes = Array.from(mutation.addedNodes)
           for (const node of addedNodes) {
             if (!callbackFn(node, resolve)) {
-              observer.disconnect()
-              observer = null
-              return
+              return disobserve()
             }
           }
         }

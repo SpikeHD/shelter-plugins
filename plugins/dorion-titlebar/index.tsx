@@ -1,7 +1,7 @@
 import { Controls, Titlebar } from './Titlebar.jsx'
 import { setMaximizeIcon } from './actions.js'
 import { css, classes } from './index.scss'
-import { waitForElm } from './waitElm.js'
+import { disobserve, waitForElm } from './waitElm.js'
 
 const {
   ui: { injectCss },
@@ -38,11 +38,12 @@ const injectControls = async () => {
   insertTitleBar(document.body)
   // cancel old observer to inject new controls
   const discordPanel = await waitDiscordPanel(elm => insertTitleBar(elm))
-  const discordBar = await waitForElm(['div[data-layer=base]', '>div[class*=container]', '>div[class*=base]', ['>div[class*=bar_]', '>div[class*=-bar]']], {root:discordPanel})
+  const discordBar = await waitForElm(['div[data-layer=base]>div[class*=container]', '>div[class*=base]', ['>div[class*=bar_]', '>div[class*=-bar]']], {root:discordPanel})
   waitForElm('>div[class*=trailing]', {callbackFn: elm => {
     insertStandaloneControl(elm)
-    const discordBarTitle = discordBar.querySelector('div[class*=title]')
-    if (discordBarTitle) discordBarTitle.setAttribute('data-tauri-drag-region', 'true')
+  }, root: discordBar})
+  waitForElm('>div[class*=title]', {callbackFn: elm => {
+    elm.setAttribute('data-tauri-drag-region', 'true')
   }, root: discordBar})
 }
 
@@ -91,6 +92,7 @@ export const onLoad = async () => {
 }
 
 export const onUnload = () => {
+  disobserve()
   dispatcher.unsubscribe('LAYER_PUSH', handleFullTitlebar)
   dispatcher.unsubscribe('LAYER_POP', handleControlsOnly)
   dispatcher.unsubscribe('LOGIN_SUCCESS', injectControls)
