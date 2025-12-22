@@ -35,13 +35,13 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"topright": "e6P4KG_topright",
 	"topclose": "e6P4KG_topclose",
-	"maximized": "e6P4KG_maximized",
-	"dorion_topbar": "e6P4KG_dorion_topbar",
-	"svgunmax": "e6P4KG_svgunmax",
-	"topmax": "e6P4KG_topmax",
 	"svgmax": "e6P4KG_svgmax",
+	"svgunmax": "e6P4KG_svgunmax",
+	"maximized": "e6P4KG_maximized",
+	"topright": "e6P4KG_topright",
+	"topmax": "e6P4KG_topmax",
+	"dorion_topbar": "e6P4KG_dorion_topbar",
 	"topmin": "e6P4KG_topmin"
 };
 const css = `.e6P4KG_dorion_topbar {
@@ -282,17 +282,17 @@ const Controls = (props) => {
 //#region plugins/dorion-titlebar/waitElm.ts
 const { util: { log } } = shelter;
 let observer = null;
-function disobserve() {
-	observer.disconnect();
-	observer = null;
-}
 function observeDom(rootElm, callbackFn, subtree) {
 	return new Promise((resolve) => {
-		if (observer) disobserve();
+		if (observer) observer.disconnect();
 		observer = new MutationObserver((mutations) => {
 			for (const mutation of mutations) if (mutation.type === "childList") {
 				const addedNodes = Array.from(mutation.addedNodes);
-				for (const node of addedNodes) if (!callbackFn(node, resolve)) return disobserve();
+				for (const node of addedNodes) if (!callbackFn(node, resolve)) {
+					observer.disconnect();
+					observer = null;
+					return;
+				}
 			}
 		});
 		observer.observe(rootElm, {
@@ -394,19 +394,16 @@ const injectControls = async () => {
 	insertTitleBar(document.body);
 	const discordPanel = await waitDiscordPanel((elm) => insertTitleBar(elm));
 	const discordBar = await waitForElm([
-		"div[data-layer=base]>div[class*=container]",
+		"div[data-layer=base]",
+		">div[class*=container]",
 		">div[class*=base]",
 		[">div[class*=bar_]", ">div[class*=-bar]"]
 	], { root: discordPanel });
 	waitForElm(">div[class*=trailing]", {
 		callbackFn: (elm) => {
 			insertStandaloneControl(elm);
-		},
-		root: discordBar
-	});
-	waitForElm(">div[class*=title]", {
-		callbackFn: (elm) => {
-			elm.setAttribute("data-tauri-drag-region", "true");
+			const discordBarTitle = discordBar.querySelector("div[class*=title]");
+			if (discordBarTitle) discordBarTitle.setAttribute("data-tauri-drag-region", "true");
 		},
 		root: discordBar
 	});
@@ -441,7 +438,6 @@ const onLoad = async () => {
 	dispatcher.subscribe("WINDOW_FULLSCREEN_CHANGE", handleFullscreenExit);
 };
 const onUnload = () => {
-	disobserve();
 	dispatcher.unsubscribe("LAYER_PUSH", handleFullTitlebar);
 	dispatcher.unsubscribe("LAYER_POP", handleControlsOnly);
 	dispatcher.unsubscribe("LOGIN_SUCCESS", injectControls);
