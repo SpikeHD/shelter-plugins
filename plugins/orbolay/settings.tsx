@@ -89,6 +89,10 @@ export const Settings = (props: Props) => {
             { label: 'Top Right', value: 'topright' },
             { label: 'Bottom Left', value: 'bottomleft' },
             { label: 'Bottom Right', value: 'bottomright' },
+            { label: 'Top Center', value: 'topcenter' },
+            { label: 'Bottom Center', value: 'bottomcenter' },
+            { label: 'Center Left', value: 'centerleft' },
+            { label: 'Center Right', value: 'centerright' },
           ]}
         />
       </div>
