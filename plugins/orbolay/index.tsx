@@ -44,13 +44,6 @@ export const defaultConfig: Config = {
   keybindIsEnabled: true,
 }
 
-// TODO remove
-if (typeof store?.config?.messageAlignment !== 'string' || typeof store?.config?.userAlignment !== 'string') {
-  console.log('Restoring settings after API change')
-  store.messageAlignment = defaultConfig.messageAlignment
-  store.userAlignment = defaultConfig.userAlignment
-}
-
 const waitForPopulate = async (fn) => {
   // Runt the function until it returns a truthy value
   while (true) {
@@ -274,7 +267,7 @@ const createWebsocket = () => {
     // Send over the config
     const config = {
       ...defaultConfig,
-      ...store?.config,
+      ...store,
     }
 
     // Ensure we track the current user id
