@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
+	"dcontainer": "sqVpyW_dcontainer",
 	"dsarrow": "sqVpyW_dsarrow",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer"
+	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -270,6 +270,22 @@ const Settings = (props) => {
 					{
 						label: "Bottom Right",
 						value: "bottomright"
+					},
+					{
+						label: "Top Center",
+						value: "topcenter"
+					},
+					{
+						label: "Bottom Center",
+						value: "bottomcenter"
+					},
+					{
+						label: "Center Left",
+						value: "centerleft"
+					},
+					{
+						label: "Center Right",
+						value: "centerright"
 					}
 				]
 			}), _el$0, _co$4);
@@ -344,11 +360,6 @@ const defaultConfig = {
 	messagesSemitransparent: false,
 	keybindIsEnabled: true
 };
-if (typeof store?.config?.messageAlignment !== "string" || typeof store?.config?.userAlignment !== "string") {
-	console.log("Restoring settings after API change");
-	store.messageAlignment = defaultConfig.messageAlignment;
-	store.userAlignment = defaultConfig.userAlignment;
-}
 const waitForPopulate = async (fn) => {
 	while (true) {
 		const result = await fn();
@@ -507,7 +518,7 @@ const createWebsocket = () => {
 		});
 		const config = {
 			...defaultConfig,
-			...store?.config
+			...store
 		};
 		config.userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id);
 		store.userId = config.userId;
