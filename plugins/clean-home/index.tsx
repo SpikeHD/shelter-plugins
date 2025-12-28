@@ -91,7 +91,7 @@ const components = [
     name: 'Gift button',
     description: 'Removes the gift button in the chat bar',
     rules: `
-      div[class*="sansAttachButton"] > div[class^="buttons__"] > button {
+      div[class*="sansAttachButton"] > div[class*="buttons"] > div[class*="-container"] {
         display: none;
       }
     `
