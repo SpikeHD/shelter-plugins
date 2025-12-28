@@ -8,6 +8,7 @@ const {
 } = shelter
 
 const components = [
+  // user effects
   {
     name: 'Nitro usernames',
     description: 'Removes the fancy username effects from users that have them enabled',
@@ -18,19 +19,28 @@ const components = [
     `
   },
   {
+    name: 'Nitro avatar decorations',
+    description: 'Removes the member list and profile card avatar decoration from users that have them enabled',
+    rules: `
+      svg[class*=avatarDecoration] { display: none !important; }
+    `
+  },
+  {
     name: 'Nitro member backgrounds',
     description: 'Removes the member list background effects from users that have them enabled',
     rules: `
-      div[class*=nameplated__] > div[class*=container] { display: none !important; }
+      div[class*=nameplated] > div[class*=container] { display: none !important; }
     `
   },
   {
     name: 'Nitro profile effects',
     description: 'Removes the profile card effects from users that have them enabled',
     rules: `
-      div[class*=profileEffects__] { display: none !important; }
+      div[class*=profileEffects] { display: none !important; }
     `
   },
+
+  // home page
   {
     name: 'Active Now section',
     description: 'Removes the "Active Now" section from the home page',
@@ -59,34 +69,39 @@ const components = [
       a[href="/quest-home"] { display: none; }
     `
   },
+
+  // chat area
   {
     name: 'Apps button',
     description: 'Removes the Apps button from the text area',
     rules: `
-      div[class*="channelAppLauncher"] { display: none; }
-    `
-  },
-  {
-    name: 'Quest popout',
-    description: 'Removes the Nitro quest popup',
-    rules: `
-      div[class*="questPromoContent"] { display: none; }
-    `
-  },
-  {
-    name: 'Server boost bar',
-    description: 'Removes the server boost barn',
-    rules: `
-      div[data-list-item-id^="channels___boosts-"] { display: none; }
+      div[class*="app-launcher-entrypoint"] { display: none; }
     `
   },
   {
     name: 'Gift button',
     description: 'Removes the gift button in the chat bar',
     rules: `
-      div[class*="sansAttachButton"] > div[class^="buttons__"] > button {
+      div[class*="sansAttachButton"] > div[class*="buttons"] > div[class*="-container"] {
         display: none;
       }
+    `
+  },
+  {
+    name: 'Server boost bar',
+    description: 'Removes the server boost bar',
+    rules: `
+      div[data-list-item-id^="channels___skill-"] ~ div { display: none; }
+      div[class*="containerWithMargin"][role="button"] { display: none; }
+    `
+  },
+
+  // misc
+  {
+    name: 'Quest popout',
+    description: 'Removes the Nitro quest popup',
+    rules: `
+      div[class*="questPromoContent"] { display: none; }
     `
   }
 ]
