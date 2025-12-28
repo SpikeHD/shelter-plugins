@@ -28,7 +28,7 @@ const components = [
     name: 'Nitro profile effects',
     description: 'Removes the profile card effects from users that have them enabled',
     rules: `
-      div[class*=profileEffects__] { display: none !important; }
+      div[class*=profileEffects] { display: none !important; }
     `
   },
   {
