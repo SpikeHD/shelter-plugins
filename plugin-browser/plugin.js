@@ -35,9 +35,9 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/plugin-browser/components/Plugins.scss
 const classes$1 = {
-	"split": "L-W60G_split",
 	"pluginList": "L-W60G_pluginList",
 	"loading": "L-W60G_loading",
+	"split": "L-W60G_split",
 	"repoHeader": "L-W60G_repoHeader",
 	"subtitle": "L-W60G_subtitle"
 };
@@ -235,10 +235,10 @@ async function getAllPlugins() {
 //#endregion
 //#region plugins/plugin-browser/components/PluginCard.scss
 const classes = {
-	"buttonContainer": "THQemG_buttonContainer",
+	"contents": "THQemG_contents",
 	"installButton": "THQemG_installButton",
 	"pluginCard": "THQemG_pluginCard",
-	"contents": "THQemG_contents"
+	"buttonContainer": "THQemG_buttonContainer"
 };
 const css = `.THQemG_pluginCard {
   text-align: left;
