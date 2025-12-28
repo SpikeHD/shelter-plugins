@@ -18,6 +18,13 @@ const components = [
     `
   },
   {
+    name: 'Nitro avatar decorations',
+    description: 'Removes the member list and profile card avatar decoration from users that have them enabled',
+    rules: `
+      svg[class*=avatarDecoration] { display: none !important; }
+    `
+  },
+  {
     name: 'Nitro member backgrounds',
     description: 'Removes the member list background effects from users that have them enabled',
     rules: `
