@@ -21,7 +21,7 @@ const components = [
     name: 'Nitro member backgrounds',
     description: 'Removes the member list background effects from users that have them enabled',
     rules: `
-      div[class*=nameplated__] > div[class*=container] { display: none !important; }
+      div[class*=nameplated] > div[class*=container] { display: none !important; }
     `
   },
   {
