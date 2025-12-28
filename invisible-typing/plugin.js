@@ -35,8 +35,8 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/invisible-typing/index.scss
 const classes = {
-	"invisContainer": "KIS_7q_invisContainer",
-	"notShowing": "KIS_7q_notShowing"
+	"notShowing": "KIS_7q_notShowing",
+	"invisContainer": "KIS_7q_invisContainer"
 };
 const css = `.KIS_7q_invisContainer {
   width: var(--space-32);
@@ -83,7 +83,7 @@ const keyboardSvg = (0, import_web$8.getNextElement)(_tmpl$);
 const unintercept = intercept((dispatch) => {
 	if (dispatch.type === "TYPING_START_LOCAL") return store.enabled ? false : null;
 });
-const unobserve = observeDom("[class^=\"channelTextArea\"] [class^=\"buttons\"]", (node) => {
+const unobserve = observeDom("[class*=\"channelTextArea\"] [class*=\"buttons\"]", (node) => {
 	if (document.querySelector("#invis-icon")) return;
 	const [enabled, setEnabled] = createSignal(!!store.enabled);
 	const toggleEnabled = () => {
