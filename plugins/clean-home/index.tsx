@@ -70,7 +70,7 @@ const components = [
     name: 'Apps button',
     description: 'Removes the Apps button from the text area',
     rules: `
-      div[class*="channelAppLauncher"] { display: none; }
+      div[class*="app-launcher-entrypoint"] { display: none; }
     `
   },
   {
