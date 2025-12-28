@@ -91,6 +91,7 @@ const components = [
     name: 'Server boost bar',
     description: 'Removes the server boost bar',
     rules: `
+      div[data-list-item-id^="channels___skill-"] ~ div { display: none; }
       div[class*="containerWithMargin"][role="button"] { display: none; }
     `
   },
