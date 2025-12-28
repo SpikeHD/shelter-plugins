@@ -14,23 +14,24 @@
 </div>
 
 
-# Table of Contents
-* [Plugins](#plugins)
-  * [Always Trust](#always-trust)
-  * [Blur NSFW](#blur-nsfw)
-  * [Declutter](#declutter)
-  * [Inline CSS](#inline-css)
-  * [Invisible Typing](#invisible-typing)
-  * [No Reply Mention](#no-reply-mention)
-  * [OpenAsar DOM Optimizer](#openasar-dom-optimizer)
-  * [Orbolay Bridge](#orbolay-bridge)
-  * [Platform Spoofer](#platform-spoofer)
-  * [Plugin Browser](#plugin-browser)
-  * [shelteRPC](#shelterpc)
-  * [UserPFP](#userpfp)
-  * [Web keybinds](#web-keybinds)
-  * [You're Right](#youre-right)
-* [Dorion Plugins](#dorion-plugins)
+## Table of Contents
+- [Plugins](#plugins)
+  - [Always Trust](#always-trust)
+  - [Blur NSFW](#blur-nsfw)
+  - [Declutter](#declutter)
+  - [Disable F1](#disable-f1)
+  - [Inline CSS](#inline-css)
+  - [Invisible Typing](#invisible-typing)
+  - [No Reply Mention](#no-reply-mention)
+  - [OpenAsar DOM Optimizer](#openasar-dom-optimizer)
+  - [Orbolay Bridge](#orbolay-bridge)
+  - [Platform Spoofer](#platform-spoofer)
+  - [Plugin Browser](#plugin-browser)
+  - [shelteRPC](#shelterpc)
+  - [UserPFP](#userpfp)
+  - [Web Keybinds](#web-keybinds)
+  - [You're Right](#youre-right)
+- [Dorion Plugins](#dorion-plugins)
 
 # Plugins
 
@@ -53,6 +54,12 @@ Blur images and videos in NSFW channels. Hover to unblur, the click-preview is a
 Hide/disable unwanted or distracting components, such as Nitro effects, Store/Nitro tabs, and much more.
 
 `https://spikehd.dev/shelter-plugins/clean-home`
+
+## Disable F1
+
+Disables the F1 key to prevent accidental opening of the Discord help.
+
+`https://spikehd.dev/shelter-plugins/disable-f1/`
 
 ## Inline CSS
 
