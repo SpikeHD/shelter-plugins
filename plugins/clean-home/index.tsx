@@ -8,6 +8,7 @@ const {
 } = shelter
 
 const components = [
+  // user effects
   {
     name: 'Nitro usernames',
     description: 'Removes the fancy username effects from users that have them enabled',
@@ -38,6 +39,8 @@ const components = [
       div[class*=profileEffects] { display: none !important; }
     `
   },
+
+  // home page
   {
     name: 'Active Now section',
     description: 'Removes the "Active Now" section from the home page',
@@ -66,25 +69,13 @@ const components = [
       a[href="/quest-home"] { display: none; }
     `
   },
+
+  // chat area
   {
     name: 'Apps button',
     description: 'Removes the Apps button from the text area',
     rules: `
       div[class*="app-launcher-entrypoint"] { display: none; }
-    `
-  },
-  {
-    name: 'Quest popout',
-    description: 'Removes the Nitro quest popup',
-    rules: `
-      div[class*="questPromoContent"] { display: none; }
-    `
-  },
-  {
-    name: 'Server boost bar',
-    description: 'Removes the server boost bar',
-    rules: `
-      div[class*="containerWithMargin"][role="button"] { display: none; }
     `
   },
   {
@@ -94,6 +85,22 @@ const components = [
       div[class*="sansAttachButton"] > div[class*="buttons"] > div[class*="-container"] {
         display: none;
       }
+    `
+  },
+  {
+    name: 'Server boost bar',
+    description: 'Removes the server boost bar',
+    rules: `
+      div[class*="containerWithMargin"][role="button"] { display: none; }
+    `
+  },
+
+  // misc
+  {
+    name: 'Quest popout',
+    description: 'Removes the Nitro quest popup',
+    rules: `
+      div[class*="questPromoContent"] { display: none; }
     `
   }
 ]
