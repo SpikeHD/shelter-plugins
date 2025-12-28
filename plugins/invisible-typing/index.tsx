@@ -38,7 +38,7 @@ const unintercept = intercept(dispatch => {
   if (dispatch.type === 'TYPING_START_LOCAL') return store.enabled ? false : null
 })
 
-const unobserve = observeDom('[class^="channelTextArea"] [class^="buttons"]', (node) => {
+const unobserve = observeDom('[class*="channelTextArea"] [class*="buttons"]', (node) => {
   if (document.querySelector('#invis-icon')) return
 
   const [enabled, setEnabled] = createSignal(!!store.enabled)
