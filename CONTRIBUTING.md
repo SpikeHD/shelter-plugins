@@ -3,21 +3,26 @@
 ## Requirements
 
 - Node - version specified in `.nvmrc`
-- PNPM - version specified in `package.json`'s `packageManager`
+- PNPM - version specified in `package.json`
 
 ## Development
 
-Want to contribute or run locally? Here's how:
+To develop a plugin locally:
 
-```bash
+```sh
 # Install dependencies
 pnpm install
 
 # Start development server with live preview
-pnpm lune dev plugins/disable-f1
-
-# Build for production
-pnpm lune ci
+pnpm lune dev plugins/<plugin-folder>
 ```
 
-Next, you just need to enable `Lune Dev Mode` in `Shelter` settings.
+Then, enable `Lune Dev Mode` in `Shelter` settings.
+
+## Building
+
+To build, just run:
+
+```sh
+pnpm lune ci
+```
