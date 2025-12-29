@@ -1,11 +1,8 @@
-import { getPluginJson } from '../github.js'
+import { PluginData } from '../api.js'
 import { css, classes } from './PluginCard.scss'
 
 interface Props {
-  plugin: string
-  site: string
-  author: string
-  install_url: string
+  plugin: PluginData
 }
 
 const {
@@ -26,40 +23,37 @@ const {
 
 let injectedCss = false
 
-export function PluginCard(props: Props) {
+export function PluginCard({ plugin }: Props) {
   if (!injectedCss) {
     injectCss(css)
     injectedCss = true
   }
 
-  const [info, setInfo] = createSignal({})
   const [installed, setInstalled] = createSignal(false)
 
   createEffect(async () => {
-    setInfo(await getPluginJson(props.site, props.plugin))
-
-    const installed = Object.values(installedPlugins?.() || {}).some((p: any) => p.manifest.name === info()?.name && p.manifest.author === info()?.author)
+    const installed = Object.values(installedPlugins?.() || {}).some((p: any) => p.manifest.name === plugin.name && p.manifest.author === plugin.author)
     setInstalled(installed)
   })
 
   const installPlugin = () => {
-    addRemotePlugin(props.plugin, props.install_url, true)
+    addRemotePlugin(plugin.name, plugin.url, true)
     setInstalled(true)
   }
 
   return (
     <div class={classes.pluginCard}>
       <Text class={classes.name}>
-        <b>{info()?.name || props.plugin}</b> by <b>{props.author}</b>
+        <b>{plugin.name}</b> by <b>{plugin.author}</b>
       </Text>
 
-      <Text class={classes.contents}>{info()?.description}</Text>
+      <Text class={classes.contents}>{plugin.description}</Text>
 
       <div class={classes.buttonContainer}>
         <Button
           class={classes.installButton}
           onClick={installPlugin}
-          disabled={installed() || !info()?.name}
+          disabled={installed() || !plugin.name}
         >
           {
             installed() ? 'Installed' : 'Install'

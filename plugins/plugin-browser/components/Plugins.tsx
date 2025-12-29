@@ -1,7 +1,6 @@
 import { css, classes } from './Plugins.scss'
-import { PluginCard } from './PluginCard'
-import { getAllPlugins } from '../github.js'
-import { getPluginsCache } from '../storage.js'
+import { getAllPlugins, PluginData, PluginRepo } from '../api.js'
+import { PluginCard } from './PluginCard.jsx'
 
 const {
   ui: {
@@ -37,17 +36,8 @@ export function Plugins() {
     injectedCss = true
   }
 
-  const [repos, setRepos] = createSignal<RepoInfo[]>([])
+  const [repos, setRepos] = createSignal<PluginRepo[]>([])
   const [search, setSearch] = createSignal('')
-
-  createEffect(async () => {
-    const cache = await getPluginsCache()
-    if (cache) {
-      setRepos(cache)
-    } else {
-      loadPlugins()
-    }
-  })
 
   const loadPlugins = async () => {
     const plugins = await getAllPlugins().catch((e) => {
@@ -59,19 +49,19 @@ export function Plugins() {
         duration: 5000,
       })
 
-      return []
+      return [] as PluginRepo[]
     })
 
     setRepos(plugins)
   }
 
+  createEffect(() => {
+    loadPlugins()
+  })
+
   return (
     <>
       <Header tag={HeaderTags.H1}>Plugins</Header>
-
-      <Text class={classes.subtitle}>
-        Not seeing your plugin repo? <a href="https://github.com/SpikeHD/shelter-plugins/tree/main/plugins/plugin-browser" target="_blank">Take a look</a> at how this plugin finds repos!
-      </Text>
 
       <Divider mt={16} mb={16} />
 
@@ -94,29 +84,26 @@ export function Plugins() {
 
 
       {
-        repos().length > 0 ? repos().map((repo: RepoInfo) => {
+        repos()?.length > 0 ? repos().map((repo: PluginRepo) => {
           return (
             <>
               <Divider mt={16} mb={16} />
               <div class={classes.repoHeader}>
-                <Header tag={HeaderTags.H2}>{repo.repo.owner}</Header>
+                <Header tag={HeaderTags.H2}>{repo.name}</Header>
                 <Header tag={HeaderTags.H2}>
-                  <a href={repo.repo.url} target="_blank">View Repository</a> - {repo.repo.stars} ⭐
+                  <a href={repo.url} target="_blank">View Repository</a>
                 </Header>
               </div>
 
               <div class={classes.pluginList}>
                 {
-                  repo.plugins.map((p: string) => {
-                    if (p.toLowerCase().includes('dorion')) return null
-                    if (!p.toLowerCase().includes(search().toLowerCase())) return null
+                  repo.plugins.map((p: PluginData) => {
+                    if (p.name.toLowerCase().includes('dorion')) return null
+                    if (!p.name.toLowerCase().includes(search().toLowerCase())) return null
 
                     return (
                       <PluginCard
                         plugin={p}
-                        site={repo.site}
-                        author={repo.repo.owner}
-                        install_url={`${repo.site}/${p}`}
                       />
                     )
                   })
