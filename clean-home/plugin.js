@@ -55,6 +55,7 @@ const components = [
 		name: "Nitro avatar decorations",
 		description: "Removes the member list and profile card avatar decoration from users that have them enabled",
 		rules: `
+      img[class*=avatarDecoration] { display: none !important; }
       svg[class*=avatarDecoration] { display: none !important; }
     `
 	},
