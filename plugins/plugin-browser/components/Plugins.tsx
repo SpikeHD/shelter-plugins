@@ -1,3 +1,4 @@
+import fuzzysort from 'fuzzysort'
 import { css, classes } from './Plugins.scss'
 import { getAllPlugins, PluginData, PluginRepo } from '../api.js'
 import { PluginCard } from './PluginCard.jsx'
@@ -38,6 +39,7 @@ export function Plugins() {
 
   const [repos, setRepos] = createSignal<PluginRepo[]>([])
   const [search, setSearch] = createSignal('')
+  const [filteredRepos, setFilteredRepos] = createSignal<PluginRepo[]>([])
 
   const loadPlugins = async () => {
     const plugins = await getAllPlugins().catch((e) => {
@@ -53,10 +55,40 @@ export function Plugins() {
     })
 
     setRepos(plugins)
+    setFilteredRepos(plugins)
   }
 
   createEffect(() => {
     loadPlugins()
+  })
+
+  createEffect(() => {
+    const searchTerm = search()
+    const allRepos = repos()
+
+    if (!searchTerm) {
+      setFilteredRepos(allRepos)
+      return
+    }
+
+    const filteredReposList = allRepos.map((repo) => {
+      const allPlugins = repo.plugins.filter(p => !p.name.toLowerCase().includes('dorion'))
+
+      if (allPlugins.length === 0) {
+        return { ...repo, plugins: [] }
+      }
+
+      const results = fuzzysort.go(searchTerm, allPlugins, {
+        keys: ['name', 'description'],
+        threshold: 0
+      })
+
+      const filteredPlugins = results.map(result => result.obj)
+
+      return { ...repo, plugins: filteredPlugins }
+    }).filter(repo => repo.plugins.length > 0)
+
+    setFilteredRepos(filteredReposList)
   })
 
   return (
@@ -84,7 +116,7 @@ export function Plugins() {
 
 
       {
-        repos()?.length > 0 ? repos().map((repo: PluginRepo) => {
+        repos()?.length > 0 ? filteredRepos().map((repo: PluginRepo) => {
           return (
             <>
               <Divider mt={16} mb={16} />
@@ -98,9 +130,6 @@ export function Plugins() {
               <div class={classes.pluginList}>
                 {
                   repo.plugins.map((p: PluginData) => {
-                    if (p.name.toLowerCase().includes('dorion')) return null
-                    if (!p.name.toLowerCase().includes(search().toLowerCase())) return null
-
                     return (
                       <PluginCard
                         plugin={p}
