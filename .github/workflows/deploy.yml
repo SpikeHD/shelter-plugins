@@ -13,19 +13,21 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: '18'
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
-      - name: Deps
-        run: |
-          npm install --global pnpm
-          pnpm i
+      - name: Install dependencies
+        run: pnpm install
 
-      - name: Build plugin(s)
+      - name: Build plugins
         run: pnpm lune ci
 
       - name: Copy additional files
@@ -38,7 +40,7 @@ jobs:
 
         # Documentation: https://github.com/peaceiris/actions-gh-pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist

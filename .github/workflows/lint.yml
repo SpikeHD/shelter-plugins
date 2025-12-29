@@ -34,7 +34,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run tsc
+      - name: Build plugins
         run: pnpm lune ci
 
       - name: Run ESLint
