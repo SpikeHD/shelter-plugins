@@ -670,11 +670,11 @@ else {
 //#endregion
 //#region plugins/plugin-browser/components/Plugins.scss
 const classes$1 = {
-	"pluginList": "L-W60G_pluginList",
 	"loading": "L-W60G_loading",
-	"split": "L-W60G_split",
+	"repoHeader": "L-W60G_repoHeader",
 	"subtitle": "L-W60G_subtitle",
-	"repoHeader": "L-W60G_repoHeader"
+	"split": "L-W60G_split",
+	"pluginList": "L-W60G_pluginList"
 };
 const css$1 = `.L-W60G_subtitle {
   margin-top: 12px;
@@ -729,8 +729,8 @@ async function getAllPlugins() {
 //#region plugins/plugin-browser/components/PluginCard.scss
 const classes = {
 	"pluginCard": "THQemG_pluginCard",
-	"installButton": "THQemG_installButton",
 	"buttonContainer": "THQemG_buttonContainer",
+	"installButton": "THQemG_installButton",
 	"contents": "THQemG_contents"
 };
 const css = `.THQemG_pluginCard {
@@ -898,11 +898,18 @@ function Plugins() {
 		const searchTerm = search();
 		const allRepos = repos();
 		if (!searchTerm) {
-			setFilteredRepos(allRepos);
+			setFilteredRepos(allRepos.map((repo) => {
+				const allPlugins = repo.plugins.filter((p) => !p.name.toLowerCase().includes("dorion") && repo.name === "SpikeHD/shelter-plugins");
+				return {
+					...repo,
+					plugins: allPlugins
+				};
+			}));
 			return;
 		}
 		const filteredReposList = allRepos.map((repo) => {
-			const allPlugins = repo.plugins.filter((p) => !p.name.toLowerCase().includes("dorion"));
+			console.log(repo.plugins);
+			const allPlugins = repo.plugins.filter((p) => !p.name.toLowerCase().includes("dorion") && repo.name === "SpikeHD/shelter-plugins");
 			if (allPlugins.length === 0) return {
 				...repo,
 				plugins: []
