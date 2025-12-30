@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddown": "sqVpyW_ddown",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"dsarrow": "sqVpyW_dsarrow",
 	"dcontainer": "sqVpyW_dcontainer",
-	"dsarrow": "sqVpyW_dsarrow"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
