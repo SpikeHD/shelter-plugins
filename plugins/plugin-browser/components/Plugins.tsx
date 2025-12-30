@@ -68,15 +68,14 @@ export function Plugins() {
 
     if (!searchTerm) {
       setFilteredRepos(allRepos.map((repo: PluginRepo) => {
-        const allPlugins = repo.plugins.filter(p => !p.name.toLowerCase().includes('dorion') && repo.name === 'SpikeHD/shelter-plugins')
+        const allPlugins = repo.plugins.filter(p => !(p.name.toLowerCase().includes('dorion') && repo.name === 'SpikeHD/shelter-plugins'))
         return { ...repo, plugins: allPlugins }
       }))
       return
     }
 
     const filteredReposList = allRepos.map((repo: PluginRepo) => {
-      console.log(repo.plugins)
-      const allPlugins = repo.plugins.filter(p => !p.name.toLowerCase().includes('dorion') && repo.name === 'SpikeHD/shelter-plugins')
+      const allPlugins = repo.plugins.filter(p => !(p.name.toLowerCase().includes('dorion') && repo.name === 'SpikeHD/shelter-plugins'))
 
       if (allPlugins.length === 0) {
         return { ...repo, plugins: [] }
