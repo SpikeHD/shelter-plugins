@@ -55,7 +55,6 @@ export function Plugins() {
     })
 
     setRepos(plugins)
-    setFilteredRepos(plugins)
   }
 
   createEffect(() => {
