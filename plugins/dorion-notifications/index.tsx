@@ -94,7 +94,7 @@ const settingsHandler = (payload) => {
           else api.util.applyNotificationCount()
         }}
       >
-          {t('dorion_notifications.enable_unread_badge')}
+        {t('dorion_notifications.enable_unread_badge')}
       </SwitchItem>,
     ]
 

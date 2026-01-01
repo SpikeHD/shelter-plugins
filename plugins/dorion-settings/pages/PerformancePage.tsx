@@ -209,7 +209,7 @@ export function PerformancePage() {
           openConfirmationModal({
             body: () => (
               <p>
-              {t('dorion_performance.disable_plugins_warning').replace(/{{appName}}/g, appName)}
+                {t('dorion_performance.disable_plugins_warning').replace(/{{appName}}/g, appName)}
               </p>
             ),
             header: () => t('dorion_performance.absolutely_sure'),

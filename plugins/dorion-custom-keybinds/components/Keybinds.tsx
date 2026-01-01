@@ -60,7 +60,7 @@ export function Keybinds(props: Props) {
         keybindEnabledChanged() && (
           <div class={classes.keybindRestartCard}>
             <Text>
-                {t('dorion_keybinds.keybinds_restart_required')}
+              {t('dorion_keybinds.keybinds_restart_required')}
             </Text>
 
             <Button
@@ -70,7 +70,7 @@ export function Keybinds(props: Props) {
                 process.relaunch()
               }}
             >
-                {t('dorion_keybinds.restart')}
+              {t('dorion_keybinds.restart')}
             </Button>
           </div>
         )
