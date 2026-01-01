@@ -146,3 +146,15 @@ interface KeybindActionsInternal {
     }[]
   }
 }
+
+// Global window types for Dorion
+declare global {
+  interface Window {
+    __DORION_LANG?: string
+    __DORION_TRANSLATIONS?: {
+      [key: string]: Record<string, unknown>
+    }
+    __DORION_RESTART?: boolean
+    __DORION_CONFIG__?: DorionSettings
+  }
+}

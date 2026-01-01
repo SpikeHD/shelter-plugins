@@ -1,4 +1,5 @@
 import { api, invoke } from '../../api/api.js'
+import { t } from '../../util/i18n.js'
 
 const {
   ui: {
@@ -44,7 +45,7 @@ const settingsHandler = (payload) => {
 
     const NotificationSettings = () => [
       <SwitchItem
-        note="If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings."
+        note={t('dorion_notifications.desktop_notifications_note')}
         value={settings()?.desktop_notifications}
         onChange={(value) => {
           setSettings({
@@ -64,17 +65,17 @@ const settingsHandler = (payload) => {
 
           if (value) {
             invoke('send_notification', {
-              title: 'Desktop Notifications Enabled',
-              body: 'You will now receive desktop notifications!',
+              title: t('dorion_notifications.desktop_notifications_enabled_title'),
+              body: t('dorion_notifications.desktop_notifications_enabled_body'),
               icon: '',
             })
           }
         }}
       >
-        Enable Desktop Notifications
+        {t('dorion_notifications.enable_desktop_notifications')}
       </SwitchItem>,
       <SwitchItem
-        note="Shows a red badge on the app icon when you have unread messages."
+        note={t('dorion_notifications.unread_badge_note')}
         value={settings()?.unread_badge}
         onChange={async (value) => {
           setSettings({
@@ -93,7 +94,7 @@ const settingsHandler = (payload) => {
           else api.util.applyNotificationCount()
         }}
       >
-          Enable Unread Message Badge
+        {t('dorion_notifications.enable_unread_badge')}
       </SwitchItem>,
     ]
 

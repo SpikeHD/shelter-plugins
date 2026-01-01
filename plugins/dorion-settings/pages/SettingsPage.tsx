@@ -1,4 +1,5 @@
 import { appName, backendRestartRequired, invoke } from '../../../api/api.js'
+import { t } from '../../../util/i18n.js'
 import { css, classes } from './SettingsPage.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
 import { RadioGroup } from '../../../components/RadioGroup.jsx'
@@ -50,25 +51,25 @@ export function SettingsPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>{appName} Settings</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_settings.title').replace('{{appName}}', appName)}</Header>
 
       {restartRequired() && (
         <WarningCard />
       )}
 
-      <Header class={classes.shead}>Client Type</Header>
+      <Header class={classes.shead}>{t('dorion_settings.client_type')}</Header>
       <RadioGroup 
         options={[
           {
-            label: 'Default',
+            label: t('dorion_settings.client_type_default'),
             value: 'default',
           },
           {
-            label: 'PTB',
+            label: t('dorion_settings.client_type_ptb'),
             value: 'ptb',
           },
           {
-            label: 'Canary',
+            label: t('dorion_settings.client_type_canary'),
             value: 'canary',
           },
         ]}
@@ -86,8 +87,8 @@ export function SettingsPage() {
         selected={settings().client_type} 
       />
 
-      <Header class={classes.shead}>Window</Header>
-      <Header tag={HeaderTags.H4} style="" class={classes.ohead}>Zoom Level</Header>
+      <Header class={classes.shead}>{t('dorion_settings.window')}</Header>
+      <Header tag={HeaderTags.H4} style="" class={classes.ohead}>{t('dorion_settings.zoom_level')}</Header>
       <Slider
         min={50}
         max={125}
@@ -122,9 +123,9 @@ export function SettingsPage() {
             true
           )
         }}
-        note={`Instead of closing, ${appName} will run in the background and will be accessible via the system tray.`}
+        note={t('dorion_settings.sys_tray_note').replace('{{appName}}', appName)}
       >
-        Minimize to System Tray
+        {t('dorion_settings.sys_tray')}
       </SwitchItem>
 
       <SwitchItem
@@ -138,10 +139,10 @@ export function SettingsPage() {
           })
         }}
       >
-        Start Maximized
+        {t('dorion_settings.start_maximized')}
       </SwitchItem>
 
-      <Header class={classes.shead}>Startup</Header>
+      <Header class={classes.shead}>{t('dorion_settings.startup')}</Header>
       <SwitchItem
         value={settings().open_on_startup}
         onChange={(v) => {
@@ -153,9 +154,9 @@ export function SettingsPage() {
             }
           })
         }}
-        note={`Open ${appName} when your system starts.`}
+        note={t('dorion_settings.open_on_startup_note').replace('{{appName}}', appName)}
       >
-        Open on Startup
+        {t('dorion_settings.open_on_startup')}
       </SwitchItem>
 
       <SwitchItem
@@ -169,12 +170,12 @@ export function SettingsPage() {
             }
           })
         }}
-        note="Open in the background when your system starts."
+        note={t('dorion_settings.start_minimized_note')}
       >
-        Start Minimized
+        {t('dorion_settings.start_minimized')}
       </SwitchItem>
 
-      <Header class={classes.shead}>Misc.</Header>
+      <Header class={classes.shead}>{t('dorion_settings.misc')}</Header>
       <SwitchItem
         value={settings().multi_instance}
         onChange={(v) => {
@@ -188,9 +189,9 @@ export function SettingsPage() {
             true
           )
         }}
-        note={`Allow multiple instances of ${appName} to be running at the same time.`}
+        note={t('dorion_settings.multi_instance_note').replace('{{appName}}', appName)}
       >
-        Allow Multiple Instances
+        {t('dorion_settings.multi_instance')}
       </SwitchItem>
 
       <SwitchItem
@@ -206,12 +207,12 @@ export function SettingsPage() {
             true
           )
         }}
-        note="Disable the custom titlebar and use your systems native one instead."
+        note={t('dorion_settings.use_native_titlebar_note')}
       >
-        Use Native Titlebar
+        {t('dorion_settings.use_native_titlebar')}
       </SwitchItem>
 
-      <Header class={classes.shead}>Updates</Header>
+      <Header class={classes.shead}>{t('dorion_settings.updates')}</Header>
       <SwitchItem
         value={settings().autoupdate}
         onChange={(v) => {
@@ -225,7 +226,8 @@ export function SettingsPage() {
         }}
         note={
           <>
-            Automatically update various {appName} components, such as{' '}
+            {t('dorion_settings.autoupdate_note').replace('{{appName}}', appName)}
+            {' '}
             <a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">
               SpikeHD/shelter-plugins
             </a>
@@ -233,7 +235,7 @@ export function SettingsPage() {
           </>
         }
       >
-        Autoupdate
+        {t('dorion_settings.autoupdate')}
       </SwitchItem>
 
       <SwitchItem
@@ -250,7 +252,7 @@ export function SettingsPage() {
         }}
         disabled={settings().autoupdate}
       >
-        Notify me of updates
+        {t('dorion_settings.update_notify')}
       </SwitchItem>
     </>
   )

@@ -1,4 +1,5 @@
 import { app, appName, invoke } from '../../api/api.js'
+import { t } from '../../util/i18n.js'
 
 import { PerformancePage } from './pages/PerformancePage.jsx'
 import { ProfilesPage } from './pages/ProfilesPage.jsx'
@@ -29,12 +30,12 @@ let settingsUninjects = []
   settingsUninjects = [
     registerSection('divider'),
     registerSection('header', appName),
-    registerSection('section', `${appName}-settings`, `${appName} Settings`, SettingsPage),
-    registerSection('section', `${appName}-plugins`, 'Plugins', PluginsPage),
-    registerSection('section', `${appName}-themes`, 'Themes', ThemesPage),
-    registerSection('section',  `${appName}-performance`, 'Performance & Extras', PerformancePage),
-    platform !== 'macos' && registerSection('section', `${appName}-rpc`, 'Rich Presence', RPCPage),
-    registerSection('section', `${appName}-profiles`, 'Profiles', ProfilesPage),
+    registerSection('section', `${appName}-settings`, t('dorion_settings.title').replace('{{appName}}', appName), SettingsPage),
+    registerSection('section', `${appName}-plugins`, t('common.plugins'), PluginsPage),
+    registerSection('section', `${appName}-themes`, t('common.themes'), ThemesPage),
+    registerSection('section',  `${appName}-performance`, t('dorion_performance.title'), PerformancePage),
+    platform !== 'macos' && registerSection('section', `${appName}-rpc`, t('dorion_rpc.title'), RPCPage),
+    registerSection('section', `${appName}-profiles`, t('dorion_profiles.title'), ProfilesPage),
   ]
 })()
 
@@ -81,7 +82,7 @@ const checkForUpdates = async () => {
   if (updateCheck.includes('dorion')) needsUpdate = true
 
   settingsUninjects.push(
-    registerSection('section', `${appName}-changelog`, 'Changelog', ChangelogPage, { 
+    registerSection('section', `${appName}-changelog`, t('dorion_changelog.title'), ChangelogPage, { 
       badgeCount: needsUpdate ? 1 : 0 
     })
   )

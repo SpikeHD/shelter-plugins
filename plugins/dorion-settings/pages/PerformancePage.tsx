@@ -1,4 +1,5 @@
 import { appName, backendRestartRequired, invoke } from '../../../api/api.js'
+import { t } from '../../../util/i18n.js'
 import { css, classes } from './PerformancePage.tsx.scss'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 import { WarningCard } from '../components/WarningCard.jsx'
@@ -79,21 +80,17 @@ export function PerformancePage() {
   const clearCSSCache = async () => {
     await invoke('clear_css_cache')
     showToast({
-      title: 'CSS Cache Cleared',
+      title: t('dorion_performance.css_cache_cleared'),
       duration: 3000
     })
   }
 
   const clearWebCache = () => {
     openConfirmationModal({
-      body: () => `
-      Clearing web cache will log you out and reset your settings, but can often help solve permission-based issues.
-      \n\n
-      Do you want to proceed?
-      `,
-      header: () => 'Are you sure?',
+      body: () => t('dorion_performance.clear_web_cache_warning'),
+      header: () => t('common.confirm'),
       type: 'neutral',
-      confirmText: 'Confirm',
+      confirmText: t('common.confirm'),
     }).then(
       () => invoke('set_clear_cache'),
       () => {},
@@ -102,13 +99,13 @@ export function PerformancePage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Performance Settings</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_performance.title')}</Header>
 
       {restartRequired() && (
         <WarningCard />
       )}
 
-      <Header class={classes.shead}>Cache</Header>
+      <Header class={classes.shead}>{t('dorion_performance.cache')}</Header>
       <SwitchItem
         value={state().cache_css}
         onChange={(v) =>
@@ -119,9 +116,9 @@ export function PerformancePage() {
             }
           ), true)
         }
-        note="Save CSS to disk that would otherwise be loaded from the web, decreasing load times."
+        note={t('dorion_performance.cache_css_note')}
       >
-        Cache CSS
+        {t('dorion_performance.cache_css')}
       </SwitchItem>
 
       <SwitchItem
@@ -135,13 +132,13 @@ export function PerformancePage() {
           ), true)
         }
         disabled={platform() !== 'windows'}
-        tooltipNote={platform() !== 'windows' && 'This is only supported on Windows right now.'}
-        note={`Clean out the web-based cache every time you close ${appName}. This is usually cached images, scripts, and other data, and it can build up!`}
+        tooltipNote={platform() !== 'windows' && t('dorion_performance.windows_only')}
+        note={t('dorion_performance.auto_clear_cache_note').replace('{{appName}}', appName)}
       >
-        Auto Clear Cache
+        {t('dorion_performance.auto_clear_cache')}
       </SwitchItem>
 
-      <Header class={classes.shead}>Optional Features</Header>
+      <Header class={classes.shead}>{t('dorion_performance.optional_features')}</Header>
       <SwitchItem
         value={state().win7_style_notifications}
         onChange={(v) =>
@@ -152,10 +149,10 @@ export function PerformancePage() {
             }
           ), true)
         }
-        note="Use the alternative notification style used on Windows 7. This is only supported on Windows."
+        note={t('dorion_performance.win7_notifications_note')}
         disabled={platform() !== 'windows'}
       >
-        Alternative Notification Style
+        {t('dorion_performance.win7_notifications')}
       </SwitchItem>
 
       <SwitchItem
@@ -170,12 +167,12 @@ export function PerformancePage() {
         }
         note={
           <>
-            Detect OBS and Streamlabs OBS and automatically enable streamer mode when they are running. <b>Requires the integrated RPC server and RPC process scanning to be enabled (found in the Rich Presence tab).</b>
+            {t('dorion_performance.streamer_mode_detection_note')} <b>{t('dorion_performance.streamer_mode_detection_requirement')}</b>
           </>
         }
         disabled={!state().rpc_server}
       >
-        Streamer Mode detection
+        {t('dorion_performance.streamer_mode_detection')}
       </SwitchItem>
 
       <SwitchItem
@@ -188,10 +185,10 @@ export function PerformancePage() {
             }
           ), true)
         }
-        note="Disable hardware acceleration, which may cause issues on some systems. Disabling this can also cause performance issues on some systems. Unsupported on macOS."
+        note={t('dorion_performance.disable_hardware_accel_note')}
         disabled={platform() === 'macos'}
       >
-        Disable Hardware Acceleration
+        {t('dorion_performance.disable_hardware_accel')}
       </SwitchItem>
 
       <SwitchItem
@@ -212,16 +209,12 @@ export function PerformancePage() {
           openConfirmationModal({
             body: () => (
               <p>
-              I know the big bold <b>"DON'T DISABLE THIS"</b> text makes it really tempting to disable, but you shouldn't. {appName} will have several vital systems removed,
-              such as the <i>entire settings menu</i>.
-                <br />
-                <br />
-              This option is intended only for debugging, development, and for running old versions of {appName} functionality on old versions of {appName}. If you're not doing that, don't touch this.
+                {t('dorion_performance.disable_plugins_warning').replace(/{{appName}}/g, appName)}
               </p>
             ),
-            header: () => 'Are you ABSOLUTELY sure?',
+            header: () => t('dorion_performance.absolutely_sure'),
             type: 'neutral',
-            confirmText: 'Confirm',
+            confirmText: t('common.confirm'),
           }).then(
             () => setSettings((settings) => (
               {
@@ -232,12 +225,12 @@ export function PerformancePage() {
             () => { /* do nothing */ }
           )
         }}
-        note={<><b>DO NOT DISABLE THIS OPTION.</b> If you do, vital functionality will be lost. Only touch this if you know what you're doing.</>}
+        note={<><b>{t('dorion_performance.do_not_disable')}</b> {t('dorion_performance.disable_plugins_note')}</>}
       >
-        Enable Dorion Plugins
+        {t('dorion_performance.enable_dorion_plugins')}
       </SwitchItem>
 
-      <Header class={classes.shead}>Blur & Transparency</Header>
+      <Header class={classes.shead}>{t('dorion_performance.blur_transparency')}</Header>
 
       <Dropdown
         value={state().blur}
@@ -257,7 +250,7 @@ export function PerformancePage() {
       />
 
       <div class={classes.stext}>
-        The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">the window-vibrancy crate</a>.
+        {t('dorion_performance.blur_warning')} <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">{t('dorion_performance.window_vibrancy_crate')}</a>.
       </div>
 
       <SwitchItem
@@ -270,10 +263,10 @@ export function PerformancePage() {
             }
           ), true)
         }
-        note="Enable this if you are not using a theme designed to take advantage of transparent windows."
+        note={t('dorion_performance.blur_css_note')}
         disabled={state().blur === 'none'}
       >
-        Enable builtin background transparency CSS
+        {t('dorion_performance.blur_css')}
       </SwitchItem>
 
       <div class={classes.pbuttons}>
@@ -282,7 +275,7 @@ export function PerformancePage() {
           style={{ width: '100%', padding: '18px' }}
           grow={true}
         >
-          Wipe all web-based data
+          {t('dorion_performance.wipe_web_data')}
         </Button>
 
         <Button
@@ -290,7 +283,7 @@ export function PerformancePage() {
           style={{ width: '100%', padding: '18px' }}
           grow={true}
         >
-          Clear CSS Cache
+          {t('dorion_performance.clear_css_cache')}
         </Button>
       </div>
     </>

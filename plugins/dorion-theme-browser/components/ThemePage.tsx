@@ -3,6 +3,7 @@ import { debounce } from '../../../util/debounce.js'
 import { themeListEndpoint } from '../api.js'
 import { ThemeCard } from './ThemeCard.jsx'
 import { css, classes } from './ThemePage.tsx.scss'
+import { t } from '../../../util/i18n.js'
 
 const {
   ui: {
@@ -43,7 +44,7 @@ export function ThemePage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Theme Browser</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_themes.title')}</Header>
 
       <div class={classes.sortSection}>
         <Dropdown
@@ -54,21 +55,21 @@ export function ThemePage() {
           }}
           style='width: 30%;'
           options={[
-            { label: 'Popular', value: 'popular' },
-            { label: 'Creation Date', value: 'creationdate' },
-            { label: 'Name', value: 'name' },
-            { label: 'Likes', value: 'likes' },
-            { label: 'Downloads', value: 'downloads' },
-            { label: 'Recently Updated', value: 'recentlyupdated' },
+            { label: t('dorion_themes.popular'), value: 'popular' },
+            { label: t('dorion_themes.creation_date'), value: 'creationdate' },
+            { label: t('dorion_themes.name'), value: 'name' },
+            { label: t('dorion_themes.likes'), value: 'likes' },
+            { label: t('dorion_themes.downloads'), value: 'downloads' },
+            { label: t('dorion_themes.recently_updated'), value: 'recentlyupdated' },
           ]}
-          placeholder={'Sort by...'}
+          placeholder={t('dorion_themes.sort_by')}
         />
 
         <span class={classes.searchBox}>
           <TextBox
             value={search()}
             onInput={(v) => doSearch(v)}
-            placeholder={'Search...'}
+            placeholder={t('dorion_themes.search_placeholder')}
           />
         </span>
       </div>
@@ -100,7 +101,7 @@ export function ThemePage() {
               setPage(page() - 1)
               loadThemes()
             }}
-          >&lt; Previous</div>
+          >&lt; {t('common.previous')}</div>
 
           <input type='number' value={page()} onInput={(e) => setPage(parseInt(e.target.value))} />
 
@@ -110,7 +111,7 @@ export function ThemePage() {
               setPage(page() + 1)
               loadThemes()
             }}
-          >Next &gt;</div>
+          >{t('common.next')} &gt;</div>
         </div>
       </div>
     </>

@@ -1,4 +1,5 @@
 import { appName, backendRestartRequired, invoke } from '../../../api/api.js'
+import { t } from '../../../util/i18n.js'
 import { css, classes } from './RPC.tsx.scss'
 import { WarningCard } from '../components/WarningCard.jsx'
 import { defaultConfig } from '../util/settings.js'
@@ -54,8 +55,8 @@ export function RPCPage() {
   const tryInstallShelteRPC = async () => {
     await shelter.plugins.addRemotePlugin('shelteRPC', 'https://spikehd.dev/shelter-plugins/shelteRPC/', true).catch(e => {
       showToast({
-        title: 'Dorion RPC',
-        content: 'Error installing shelteRPC, check the console for more information',
+        title: t('dorion_rpc.title'),
+        content: t('dorion_rpc.error_installing'),
         duration: 3000,
       })
 
@@ -65,42 +66,42 @@ export function RPCPage() {
     shelter.plugins.startPlugin('shelteRPC')
 
     showToast({
-      title: 'Dorion RPC',
-      content: 'Successfully installed shelteRPC!',
+      title: t('dorion_rpc.title'),
+      content: t('dorion_rpc.successfully_installed'),
       duration: 3000,
     })
   }
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.bot16}>RPC Settings</Header>
+      <Header tag={HeaderTags.H1} class={classes.bot16}>{t('dorion_rpc.title')}</Header>
 
       {restartRequired() && (
         <WarningCard />
       )}
 
-      <Header class={classes.shead}>Plugin</Header>
+      <Header class={classes.shead}>{t('dorion_rpc.plugin')}</Header>
       <Button
         onClick={tryInstallShelteRPC}
         class={classes.customInstallBtn}
         disabled={shelteRPCInstalled()}
       >
-        Install the shelteRPC plugin
+        {t('dorion_rpc.install_shelterpc')}
       </Button>
       <Text
         class={classes.customNote}
       >
         {shelteRPCInstalled() && (
           <>
-            <b>You have already installed shelteRPC!</b>
+            <b>{t('dorion_rpc.already_installed')}</b>
             <br />
             <br />
           </>
         )}
-        Installing this is not mandatory, and you may use arRPC plugins (eg. through Vencord) if you'd like, but the shelteRPC plugin has specific extra features that only work in Dorion!
+        {t('dorion_rpc.install_note')}
       </Text>
 
-      <Header class={classes.shead}>Server</Header>
+      <Header class={classes.shead}>{t('dorion_rpc.server')}</Header>
 
       <SwitchItem
         value={settings().rpc_server}
@@ -112,18 +113,18 @@ export function RPCPage() {
             }
           ), true)
         }
-        tooltipNote="This is a work in progress, and won't do EVERYTHING arRPC does quite yet."
+        tooltipNote={t('dorion_rpc.work_in_progress')}
         note={
           <>
-            Enable the integrated RPC server, eliminating the need for a separate arRPC server running.
-            Pairs best with <a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>, also works with <a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>.
+            {t('dorion_rpc.integrated_server_note')}
+            {' '}<a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>, {t('dorion_rpc.also_works_with')} <a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>.
           </>
         }
       >
-        Integrated rich presence server
+        {t('dorion_rpc.integrated_server')}
       </SwitchItem>
 
-      <Header class={classes.shead}>Advanced Settings</Header>
+      <Header class={classes.shead}>{t('dorion_rpc.advanced_settings')}</Header>
 
       <SwitchItem
         value={settings().rpc_process_scanner}
@@ -133,9 +134,9 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note={`Enable this if you want ${appName} to scan for running processes. This is the most performance-heavy component of RPC.`}
+        note={t('dorion_rpc.process_scanner_note').replace('{{appName}}', appName)}
       >
-        Enable Process Scanner
+        {t('dorion_rpc.enable_process_scanner')}
       </SwitchItem>
 
       <SwitchItem
@@ -148,12 +149,12 @@ export function RPCPage() {
         disabled={!settings().rpc_server}
         note={
           <>
-            Enable this if you want {appName} to connect to local sockets.
-            Things such as the <a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a> extension use this method of connection.
+            {t('dorion_rpc.ipc_connector_note').replace('{{appName}}', appName)}
+            {' '}<a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a> {t('dorion_rpc.extension_connection')}.
           </>
         }
       >
-        Enable IPC Connector
+        {t('dorion_rpc.enable_ipc_connector')}
       </SwitchItem>
 
       <SwitchItem
@@ -164,9 +165,9 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note={`Enable this if you want ${appName} to accept local websocket connections.`}
+        note={t('dorion_rpc.websocket_connector_note').replace('{{appName}}', appName)}
       >
-        Enable Websocket Connector
+        {t('dorion_rpc.enable_websocket_connector')}
       </SwitchItem>
 
       <SwitchItem
@@ -177,9 +178,9 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note={`Enable this to allow ${appName} to properly handle server invites opened in the browser. Does not work with arRPC.`}
+        note={t('dorion_rpc.secondary_events_note').replace('{{appName}}', appName)}
       >
-        Enable secondary events
+        {t('dorion_rpc.enable_secondary_events')}
       </SwitchItem>
     </>
   )

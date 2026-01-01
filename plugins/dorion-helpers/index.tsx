@@ -1,3 +1,5 @@
+import { initializeTranslations } from './i18n.js'
+
 const {
   flux: {
     stores: {
@@ -32,5 +34,7 @@ GuildReadStateStore.addChangeListener(updateNotificationBadge)
 // @ts-expect-error cry
 RelationshipStore.addChangeListener(updateNotificationBadge)
 
-// Initial update
-updateNotificationBadge()
+export const onLoad = () => {
+  initializeTranslations()
+  updateNotificationBadge()
+}
