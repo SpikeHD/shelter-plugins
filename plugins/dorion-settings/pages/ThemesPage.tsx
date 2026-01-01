@@ -1,4 +1,5 @@
 import { invoke } from '../../../api/api.js'
+import { t } from '../../../util/i18n.js'
 import { reloadThemes } from '../../../util/theme.js'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 import { css, classes } from './ThemesPage.tsx.scss'
@@ -78,9 +79,9 @@ export function ThemesPage() {
   }
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Themes</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_themes.title')}</Header>
 
-      <Header class={classes.shead}>Theme</Header>
+      <Header class={classes.shead}>{t('dorion_themes.theme')}</Header>
 
       {
         settings().themes.map((theme) => (
@@ -92,7 +93,7 @@ export function ThemesPage() {
               appendTheme(theme, e.target.value)
               reloadThemes()
             }}
-            options={[{ label: 'None', value: 'none' }, ...themes()]}
+            options={[{ label: t('dorion_themes.none'), value: 'none' }, ...themes()]}
           />
         )
         )
@@ -105,7 +106,7 @@ export function ThemesPage() {
           appendTheme('none', e.target.value)
           reloadThemes()
         }}
-        placeholder={'Select a theme...'}
+        placeholder={t('dorion_themes.select_theme')}
         options={[...themes()]}
         immutable={true}
       />
@@ -113,8 +114,8 @@ export function ThemesPage() {
       <Divider mt={16} mb={16} />
 
       <div class={classes.pbuttons}>
-        <Button size={ButtonSizes.MEDIUM} onClick={() => installThemeModal((theme: string) => appendTheme('', theme))}>Install Theme From Link</Button>
-        <Button size={ButtonSizes.MEDIUM} onClick={openThemesFolder}>Open Themes Folder</Button>
+        <Button size={ButtonSizes.MEDIUM} onClick={() => installThemeModal((theme: string) => appendTheme('', theme))}>{t('dorion_themes.install_from_link')}</Button>
+        <Button size={ButtonSizes.MEDIUM} onClick={openThemesFolder}>{t('dorion_themes.open_folder')}</Button>
       </div>
     </>
   )

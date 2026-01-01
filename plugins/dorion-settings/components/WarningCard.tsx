@@ -1,4 +1,5 @@
 import { process } from '../../../api/api.js'
+import { t } from '../../../util/i18n.js'
 import { Card } from '../../../components/Card.jsx'
 import { css, classes } from './WarningCard.tsx.scss'
 
@@ -21,14 +22,14 @@ export function WarningCard() {
   return (
     <Card style={{ marginTop: '1rem' }} class={classes.restartCard}>
       <Text>
-        One or more settings have been changed that require a restart to take effect.
+        {t('dorion_warning_card.restart_message')}
       </Text>
       <Button
         onClick={() => process.relaunch()}
         class={classes.restartButton}
         grow={true}
       >
-        Restart
+        {t('common.restart')}
       </Button>
     </Card>
   )

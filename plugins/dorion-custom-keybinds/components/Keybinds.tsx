@@ -1,4 +1,5 @@
 import { event, invoke, process } from '../../../api/api'
+import { t } from '../../../util/i18n.js'
 import { css, classes } from './Keybinds.tsx.scss'
 import { KeybindSection } from './KeybindSection'
 
@@ -59,7 +60,7 @@ export function Keybinds(props: Props) {
         keybindEnabledChanged() && (
           <div class={classes.keybindRestartCard}>
             <Text>
-                Enabling or disabling global keybinds requires a restart to take effect.
+                {t('dorion_keybinds.keybinds_restart_required')}
             </Text>
 
             <Button
@@ -69,7 +70,7 @@ export function Keybinds(props: Props) {
                 process.relaunch()
               }}
             >
-                Restart
+                {t('dorion_keybinds.restart')}
             </Button>
           </div>
         )
@@ -78,8 +79,8 @@ export function Keybinds(props: Props) {
       <div class={classes.keybindsHeader}>
         <div class={classes.keybindsBanner}>
           <Text>
-            Global keybinds are an experimental feature!
-          </Text>  
+            {t('dorion_keybinds.global_keybinds_experimental')}
+          </Text>
         </div>
 
         <Button
@@ -97,7 +98,7 @@ export function Keybinds(props: Props) {
             }])
           }}
         >
-          Add Keybind
+          {t('dorion_keybinds.add_keybind')}
         </Button>
       </div>
 
@@ -114,9 +115,9 @@ export function Keybinds(props: Props) {
               }
             })
           }}
-          note="Enable or disable global keybinds. Requires restart."
+          note={t('dorion_keybinds.enable_global_keybinds_note')}
         >
-          Enable Global Keybinds
+          {t('dorion_keybinds.enable_global_keybinds')}
         </SwitchItem>
       </div>
 

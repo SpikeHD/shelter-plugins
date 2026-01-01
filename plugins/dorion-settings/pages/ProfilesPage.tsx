@@ -1,4 +1,5 @@
 import { invoke, process } from '../../../api/api.js'
+import { t } from '../../../util/i18n.js'
 import { Dropdown } from '../../../components/Dropdown.jsx'
 import { css, classes } from './ProfilesPage.tsx.scss'
 
@@ -74,7 +75,7 @@ export function ProfilesPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Profiles</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_profiles.title')}</Header>
       <Dropdown
         options={profileList().map((p: string) => {
           return {
@@ -82,19 +83,19 @@ export function ProfilesPage() {
             value: p,
           }
         })}
-        placeholder={'Select profile...'}
+        placeholder={t('dorion_profiles.select_profile')}
         maxVisibleItems={5}
         closeOnSelect={true}
         onChange={(e) => setProfile(e.target.value)}
         selected={profile()}
       />
 
-      <Header class={classes.shead}>Create Profile</Header>
+      <Header class={classes.shead}>{t('dorion_profiles.create_profile')}</Header>
       <TextBox
         type="text"
         value={newProfile()}
         onInput={handleNewProfileChange}
-        placeholder={'Enter a name for the new profile...'}
+        placeholder={t('dorion_profiles.profile_name_placeholder')}
       />
 
       <Button
@@ -102,7 +103,7 @@ export function ProfilesPage() {
         class={classes.sbutton}
         disabled={newProfile() === '' || profileList().includes(newProfile())}
       >
-        Create Profile
+        {t('dorion_profiles.create_profile')}
       </Button>
 
       <Divider mt={16} mb={16} />
@@ -112,7 +113,7 @@ export function ProfilesPage() {
           onClick={saveProfile}
           size={ButtonSizes.MEDIUM} 
         >
-          Save and Restart
+          {t('dorion_profiles.save_and_restart')}
         </Button>
 
         <Button
@@ -121,7 +122,7 @@ export function ProfilesPage() {
           color={ButtonColors.RED}
           size={ButtonSizes.MEDIUM} 
         >
-          Delete Selected Profile
+          {t('dorion_profiles.delete_profile')}
         </Button>
       </div>
     </>

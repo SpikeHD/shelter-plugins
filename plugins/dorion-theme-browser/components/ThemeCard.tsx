@@ -1,5 +1,6 @@
 import { installAndLoad } from '../../../util/theme.js'
 import { basicModal } from '../../../util/modal.jsx'
+import { t } from '../../../util/i18n.js'
 
 import { css, classes } from './ThemeCard.tsx.scss'
 
@@ -53,7 +54,7 @@ export function ThemeCard(props: Props) {
             class={classes.installButton}
             onClick={() => themeInstallationModel(props.install_url, props.theme)}
           >
-            Install
+            {t('dorion_theme_card.install')}
           </Button>
         </div>
       </div>
@@ -80,7 +81,7 @@ export const themeInstallationModel = async (link: string, name: string) => {
     setCloseFn(props.close)
 
     return basicModal({
-      header: 'Install Theme',
+      header: t('dorion_theme_card.install'),
       body: (
         <div>
           <div style={{

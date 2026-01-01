@@ -1,4 +1,5 @@
 import { invoke } from '../../../api/api.js'
+import { t } from '../../../util/i18n.js'
 import { ClientModList } from '../components/ClientModList.jsx'
 import { PluginList } from '../components/PluginList.jsx'
 import { css, classes } from './PluginsPage.tsx.scss'
@@ -29,13 +30,13 @@ export function PluginsPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Client Mods & Plugins</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_plugins.title')}</Header>
 
       {restartRequired() && (
         <WarningCard />
       )}
 
-      <Header class={classes.shead}>Client Mods</Header>
+      <Header class={classes.shead}>{t('dorion_plugins.client_mods')}</Header>
 
       <ClientModList
         onChange={() => {
@@ -43,7 +44,7 @@ export function PluginsPage() {
         }}
       />
       
-      <Header class={classes.shead}>Plugins</Header>
+      <Header class={classes.shead}>{t('dorion_plugins.plugins')}</Header>
 
       <PluginList
         onChange={() => {
@@ -59,7 +60,7 @@ export function PluginsPage() {
           grow={true}
           onClick={openPluginsFolder}
         >
-          Open Plugins Folder
+          {t('dorion_plugins.open_plugins_folder')}
         </Button>
 
         <Button
@@ -69,7 +70,7 @@ export function PluginsPage() {
           grow={true}
           onClick={openExtensionsFolder}
         >
-          Open Extensions Folder
+          {t('dorion_plugins.open_extensions_folder')}
         </Button>
       </div>
     </>

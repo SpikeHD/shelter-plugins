@@ -1,4 +1,5 @@
 import { invoke,app, appName } from '../../../api/api.js'
+import { t } from '../../../util/i18n.js'
 import type { IRelease, TReleases } from '../types/release.js'
 import { css, classes } from './ChangelogPage.tsx.scss'
 import { processReleaseBodies, loadChangelog, fixImageLinks } from '../util/changelog.js'
@@ -71,8 +72,8 @@ export function ChangelogPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>Changelog</Header>
-      <Button onClick={refresh} disabled={loading()} class={classes.refresh}>Refresh</Button>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_changelog.title')}</Header>
+      <Button onClick={refresh} disabled={loading()} class={classes.refresh}>{t('dorion_changelog.refresh')}</Button>
       {loading() ? (
         <div class={classes.card}>
           <div class={classes.spinner} />
@@ -81,9 +82,9 @@ export function ChangelogPage() {
         <>  
           {updateCheck().includes('dorion') && (
             <div class={classes.card}>
-              <Header tag={HeaderTags.H1} class={classes.title}>Update available!</Header>
-              <Text>Your current version is {currentVersion()}</Text>
-              <Button size={ButtonSizes.LARGE} color={ButtonColors.GREEN} onClick={doUpdate}>Update to {latestVersion()}</Button>
+              <Header tag={HeaderTags.H1} class={classes.title}>{t('dorion_changelog.update_available')}</Header>
+              <Text>{t('dorion_changelog.current_version').replace('{{version}}', currentVersion())}</Text>
+              <Button size={ButtonSizes.LARGE} color={ButtonColors.GREEN} onClick={doUpdate}>{t('dorion_changelog.update_to').replace('{{version}}', latestVersion())}</Button>
             </div>
           )}
           {releases() != null && releases().length > 0 && releases().map((release: IRelease) => (
@@ -94,12 +95,12 @@ export function ChangelogPage() {
                 </span>
                 <div class={classes.badges}>
                   {currentVersion() == release.tag_name && 
-                    <span class={classes.badge}>Current</span>}
+                    <span class={classes.badge}>{t('dorion_changelog.current')}</span>}
                   {releases()[0].tag_name == release.tag_name && 
-                    <span class={classes.badge}>Latest</span>}
+                    <span class={classes.badge}>{t('dorion_changelog.latest')}</span>}
                 </div>
               </Header>
-              <LinkButton href={release.html_url}>View on GitHub</LinkButton>
+              <LinkButton href={release.html_url}>{t('dorion_changelog.view_on_github')}</LinkButton>
               <div class={classes.contents} innerHTML={release.body} />
             </div>
           ))}
