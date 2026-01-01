@@ -13,7 +13,8 @@ export function t(key: string): string {
   const translations = window.__DORION_TRANSLATIONS
 
   if (!translations || !translations[lang]) {
-    return key // Fallback to key if translations not available
+    // Fallback to key
+    return key
   }
 
   const keys = key.split('.')
@@ -23,7 +24,8 @@ export function t(key: string): string {
     if (result && k in result) {
       result = result[k]
     } else {
-      return key // Fallback to key if translation not found
+      // Fallback to key
+      return key
     }
   }
 

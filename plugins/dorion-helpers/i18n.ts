@@ -16,7 +16,6 @@ const languages: {
   en,
 }
 
-// Initialize global translations
 export const initializeTranslations = () => {
   try {
     const browserLang = navigator.language?.split('-')[0] || 'en'

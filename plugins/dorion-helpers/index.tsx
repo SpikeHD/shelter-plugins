@@ -35,9 +35,6 @@ GuildReadStateStore.addChangeListener(updateNotificationBadge)
 RelationshipStore.addChangeListener(updateNotificationBadge)
 
 export const onLoad = () => {
-  // Initialize translations first
   initializeTranslations()
-
-  // Then update notification badge
   updateNotificationBadge()
 }
