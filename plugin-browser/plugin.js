@@ -670,10 +670,10 @@ else {
 //#endregion
 //#region plugins/plugin-browser/components/Plugins.scss
 const classes$1 = {
-	"repoHeader": "L-W60G_repoHeader",
 	"split": "L-W60G_split",
-	"pluginList": "L-W60G_pluginList",
+	"repoHeader": "L-W60G_repoHeader",
 	"subtitle": "L-W60G_subtitle",
+	"pluginList": "L-W60G_pluginList",
 	"loading": "L-W60G_loading"
 };
 const css$1 = `.L-W60G_subtitle {

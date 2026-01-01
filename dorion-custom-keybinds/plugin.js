@@ -122,16 +122,29 @@ const process = backendObj.process;
 const apiWindow = backendObj.apiWindow;
 
 //#endregion
+//#region util/i18n.ts
+function t(key) {
+	const lang = window.__DORION_LANG || "en";
+	const translations = window.__DORION_TRANSLATIONS;
+	if (!translations || !translations[lang]) return key;
+	const keys = key.split(".");
+	let result = translations[lang];
+	for (const k of keys) if (result && k in result) result = result[k];
+else return key;
+	return typeof result === "string" ? result : key;
+}
+
+//#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
 	"keybindSection": "Zz-Z3G_keybindSection",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
 	"header": "Zz-Z3G_header",
-	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner"
+	"keybindsButton": "Zz-Z3G_keybindsButton"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -200,12 +213,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
+	"removeButton": "QTLdLq_removeButton",
 	"keybindRoot": "QTLdLq_keybindRoot",
 	"keybindSection": "QTLdLq_keybindSection",
 	"keybindArea": "QTLdLq_keybindArea",
-	"removeButton": "QTLdLq_removeButton",
-	"note": "QTLdLq_note",
-	"actionSection": "QTLdLq_actionSection"
+	"actionSection": "QTLdLq_actionSection",
+	"note": "QTLdLq_note"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -262,8 +275,8 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"ddown": "sqVpyW_ddown",
 	"dsarrow": "sqVpyW_dsarrow",
+	"ddown": "sqVpyW_ddown",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dcontainer": "sqVpyW_dcontainer"
 };
@@ -404,12 +417,12 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
+	"keybindContainer": "N-HDcq_keybindContainer",
+	"keybindInput": "N-HDcq_keybindInput",
 	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"pulse": "N-HDcq_pulse",
 	"recording": "N-HDcq_recording",
-	"keybindButton": "N-HDcq_keybindButton",
-	"keybindContainer": "N-HDcq_keybindContainer",
-	"keybindInput": "N-HDcq_keybindInput"
+	"keybindButton": "N-HDcq_keybindButton"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
@@ -735,7 +748,9 @@ function Keybinds(props) {
 			const _c$ = (0, import_web$8.memo)(() => !!keybindEnabledChanged());
 			return () => _c$() && (() => {
 				const _el$1 = (0, import_web$4.getNextElement)(_tmpl$2), _el$10 = _el$1.firstChild, [_el$11, _co$4] = (0, import_web$5.getNextMarker)(_el$10.nextSibling), _el$12 = _el$11.nextSibling, [_el$13, _co$5] = (0, import_web$5.getNextMarker)(_el$12.nextSibling);
-				(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(Text, { children: "Enabling or disabling global keybinds requires a restart to take effect." }), _el$11, _co$4);
+				(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(Text, { get children() {
+					return t("dorion_keybinds.keybinds_restart_required");
+				} }), _el$11, _co$4);
 				(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(Button, {
 					get ["class"]() {
 						return classes$3.keybindRestartButton;
@@ -744,13 +759,17 @@ function Keybinds(props) {
 					onClick: () => {
 						process.relaunch();
 					},
-					children: "Restart"
+					get children() {
+						return t("dorion_keybinds.restart");
+					}
 				}), _el$13, _co$5);
 				(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$1, classes$3.keybindRestartCard));
 				return _el$1;
 			})();
 		})(), _el$8, _co$2);
-		(0, import_web$6.insert)(_el$3, (0, import_web$7.createComponent)(Text, { children: "Global keybinds are an experimental feature!" }));
+		(0, import_web$6.insert)(_el$3, (0, import_web$7.createComponent)(Text, { get children() {
+			return t("dorion_keybinds.global_keybinds_experimental");
+		} }));
 		(0, import_web$6.insert)(_el$2, (0, import_web$7.createComponent)(Button, {
 			get ["class"]() {
 				return classes$3.keybindsButton;
@@ -763,7 +782,9 @@ function Keybinds(props) {
 					keys: []
 				}]);
 			},
-			children: "Add Keybind"
+			get children() {
+				return t("dorion_keybinds.add_keybind");
+			}
 		}), _el$5, _co$);
 		(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(SwitchItem, {
 			get value() {
@@ -777,8 +798,12 @@ function Keybinds(props) {
 					keybinds_enabled: value
 				} });
 			},
-			note: "Enable or disable global keybinds. Requires restart.",
-			children: "Enable Global Keybinds"
+			get note() {
+				return t("dorion_keybinds.enable_global_keybinds_note");
+			},
+			get children() {
+				return t("dorion_keybinds.enable_global_keybinds");
+			}
 		}));
 		(0, import_web$6.insert)(_el$, () => keybindSections().map((section, idx) => (0, import_web$7.createComponent)(KeybindSection, {
 			key: idx,

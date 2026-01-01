@@ -122,6 +122,19 @@ const process = backendObj.process;
 const apiWindow = backendObj.apiWindow;
 
 //#endregion
+//#region util/i18n.ts
+function t(key) {
+	const lang = window.__DORION_LANG || "en";
+	const translations = window.__DORION_TRANSLATIONS;
+	if (!translations || !translations[lang]) return key;
+	const keys = key.split(".");
+	let result = translations[lang];
+	for (const k of keys) if (result && k in result) result = result[k];
+else return key;
+	return typeof result === "string" ? result : key;
+}
+
+//#endregion
 //#region plugins/dorion-notifications/index.tsx
 var import_web = __toESM(require_web(), 1);
 const { ui: { SwitchItem, ReactiveRoot }, flux: { dispatcher: FluxDispatcher }, solid: { createSignal }, observeDom } = shelter;
@@ -144,7 +157,9 @@ const settingsHandler = (payload) => {
 		const next = node.nextElementSibling;
 		if (next) next.style.display = "none";
 		const NotificationSettings = () => [(0, import_web.createComponent)(SwitchItem, {
-			note: "If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings.",
+			get note() {
+				return t("dorion_notifications.desktop_notifications_note");
+			},
 			get value() {
 				return settings()?.desktop_notifications;
 			},
@@ -159,14 +174,18 @@ const settingsHandler = (payload) => {
 				});
 				invoke("write_config_file", { contents: JSON.stringify(settings()) });
 				if (value) invoke("send_notification", {
-					title: "Desktop Notifications Enabled",
-					body: "You will now receive desktop notifications!",
+					title: t("dorion_notifications.desktop_notifications_enabled_title"),
+					body: t("dorion_notifications.desktop_notifications_enabled_body"),
 					icon: ""
 				});
 			},
-			children: "Enable Desktop Notifications"
+			get children() {
+				return t("dorion_notifications.enable_desktop_notifications");
+			}
 		}), (0, import_web.createComponent)(SwitchItem, {
-			note: "Shows a red badge on the app icon when you have unread messages.",
+			get note() {
+				return t("dorion_notifications.unread_badge_note");
+			},
 			get value() {
 				return settings()?.unread_badge;
 			},
@@ -180,7 +199,9 @@ const settingsHandler = (payload) => {
 				if (!value) invoke("notif_count", { amount: 0 });
 else api.util.applyNotificationCount();
 			},
-			children: "Enable Unread Message Badge"
+			get children() {
+				return t("dorion_notifications.enable_unread_badge");
+			}
 		})];
 		child = node.parentElement.insertBefore((0, import_web.createComponent)(ReactiveRoot, { get children() {
 			return (0, import_web.createComponent)(NotificationSettings, {});

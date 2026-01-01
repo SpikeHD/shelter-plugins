@@ -122,6 +122,19 @@ const process = backendObj.process;
 const apiWindow = backendObj.apiWindow;
 
 //#endregion
+//#region util/i18n.ts
+function t(key) {
+	const lang = window.__DORION_LANG || "en";
+	const translations = window.__DORION_TRANSLATIONS;
+	if (!translations || !translations[lang]) return key;
+	const keys = key.split(".");
+	let result = translations[lang];
+	for (const k of keys) if (result && k in result) result = result[k];
+else return key;
+	return typeof result === "string" ? result : key;
+}
+
+//#endregion
 //#region plugins/dorion-updater/index.tsx
 var import_web = __toESM(require_web(), 1);
 const { ui: { openModal, ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter } } = shelter;
@@ -169,9 +182,9 @@ const load = async () => {
 	if (updateCheck.includes("dorion")) {
 		if (config.autoupdate) {
 			openModal((props) => confirmModal({
-				header: `${appName} Update`,
-				body: `A ${appName} update has been fetched, and ${appName} will restart momentarily.`,
-				confirmText: "Got it!",
+				header: t("dorion_updater.update_title").replace("{{appName}}", appName),
+				body: t("dorion_updater.update_body").replace(/{{appName}}/g, appName),
+				confirmText: t("common.got_it"),
 				type: "neutral",
 				onConfirm: () => doUpdate(),
 				onCancel: props.close
@@ -180,10 +193,10 @@ const load = async () => {
 			return;
 		}
 		openModal((props) => confirmModal({
-			header: "Updates Available!",
-			body: `There are ${appName} updates available. Would you like to apply them? This notification can be disabled in ${appName} Settings`,
-			confirmText: "Yes please!",
-			cancelText: "Nope!",
+			header: t("dorion_updater.updates_available"),
+			body: t("dorion_updater.updates_available_body").replace(/{{appName}}/g, appName),
+			confirmText: t("common.yes_please"),
+			cancelText: t("common.nope"),
 			type: "neutral",
 			onConfirm: () => doUpdate(),
 			onCancel: props.close
@@ -191,9 +204,9 @@ const load = async () => {
 	}
 	event.once("update_complete", () => {
 		openModal((props) => confirmModal({
-			header: "Update Complete!",
-			body: "The update has been applied! Please restart to apply the changes.",
-			confirmText: "Okay!",
+			header: t("dorion_updater.update_complete"),
+			body: t("dorion_updater.update_complete_body"),
+			confirmText: t("common.okay"),
 			type: "neutral",
 			onConfirm: () => process.relaunch(),
 			onCancel: props.close

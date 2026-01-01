@@ -126,8 +126,8 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 const classes$2 = {
 	"ddown": "sqVpyW_ddown",
 	"dsarrow": "sqVpyW_dsarrow",
-	"dcontainer": "sqVpyW_dcontainer",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -347,14 +347,27 @@ const basicModal = (props) => (0, import_web$17.createComponent)(ModalRoot, { ge
 } });
 
 //#endregion
+//#region util/i18n.ts
+function t(key) {
+	const lang = window.__DORION_LANG || "en";
+	const translations = window.__DORION_TRANSLATIONS;
+	if (!translations || !translations[lang]) return key;
+	const keys = key.split(".");
+	let result = translations[lang];
+	for (const k of keys) if (result && k in result) result = result[k];
+else return key;
+	return typeof result === "string" ? result : key;
+}
+
+//#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
+	"installButton": "JQAzuG_installButton",
 	"thumbnail": "JQAzuG_thumbnail",
-	"name": "JQAzuG_name",
 	"themeCard": "JQAzuG_themeCard",
+	"name": "JQAzuG_name",
 	"info": "JQAzuG_info",
-	"contents": "JQAzuG_contents",
-	"installButton": "JQAzuG_installButton"
+	"contents": "JQAzuG_contents"
 };
 const css$1 = `.JQAzuG_themeCard {
   text-align: left;
@@ -452,7 +465,9 @@ function ThemeCard(props) {
 				return classes$1.installButton;
 			},
 			onClick: () => themeInstallationModel(props.install_url, props.theme),
-			children: "Install"
+			get children() {
+				return t("dorion_theme_card.install");
+			}
 		}));
 		(0, import_web$12.effect)((_p$) => {
 			const _v$ = classes$1.themeCard, _v$2 = classes$1.thumbnail, _v$3 = `background-image: url(${props.thumbnail})`, _v$4 = classes$1.info, _v$5 = classes$1.buttonContainer;
@@ -487,7 +502,7 @@ const themeInstallationModel = async (link, name) => {
 	openModal((props) => {
 		setCloseFn(props.close);
 		return basicModal({
-			header: "Install Theme",
+			header: t("dorion_theme_card.install"),
 			body: (() => {
 				const _el$1 = (0, import_web$15.getNextElement)(_tmpl$3$1), _el$10 = _el$1.firstChild;
 				_el$10.style.setProperty("display", "flex");
@@ -506,14 +521,14 @@ const themeInstallationModel = async (link, name) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
-	"bot16": "gqruia_bot16",
-	"pages": "gqruia_pages",
 	"themeCards": "gqruia_themeCards",
-	"pageBtn": "gqruia_pageBtn",
+	"bot16": "gqruia_bot16",
+	"pagesOuter": "gqruia_pagesOuter",
 	"shead": "gqruia_shead",
+	"pageBtn": "gqruia_pageBtn",
 	"searchBox": "gqruia_searchBox",
-	"sortSection": "gqruia_sortSection",
-	"pagesOuter": "gqruia_pagesOuter"
+	"pages": "gqruia_pages",
+	"sortSection": "gqruia_sortSection"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
@@ -600,7 +615,7 @@ var import_web$5 = __toESM(require_web(), 1);
 var import_web$6 = __toESM(require_web(), 1);
 var import_web$7 = __toESM(require_web(), 1);
 var import_web$8 = __toESM(require_web(), 1);
-const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><span></span></div>`, 6), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<div><div><div>&lt; Previous</div><input type="number"><div>Next &gt;</div></div></div>`, 9);
+const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><span></span></div>`, 6), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<div><div><div>&lt; <!#><!/></div><input type="number"><div><!#><!/> &gt;</div></div></div>`, 13);
 const { ui: { injectCss, Divider, Header, HeaderTags, TextBox }, solid: { createSignal, createEffect } } = shelter;
 let injectedCss = false;
 function ThemePage() {
@@ -631,7 +646,9 @@ function ThemePage() {
 			get ["class"]() {
 				return classes.tophead;
 			},
-			children: "Theme Browser"
+			get children() {
+				return t("dorion_themes.title");
+			}
 		}),
 		(() => {
 			const _el$ = (0, import_web$5.getNextElement)(_tmpl$), _el$3 = _el$.firstChild, [_el$4, _co$] = (0, import_web$6.getNextMarker)(_el$3.nextSibling), _el$2 = _el$4.nextSibling;
@@ -644,40 +661,46 @@ function ThemePage() {
 					loadThemes();
 				},
 				style: "width: 30%;",
-				options: [
-					{
-						label: "Popular",
-						value: "popular"
-					},
-					{
-						label: "Creation Date",
-						value: "creationdate"
-					},
-					{
-						label: "Name",
-						value: "name"
-					},
-					{
-						label: "Likes",
-						value: "likes"
-					},
-					{
-						label: "Downloads",
-						value: "downloads"
-					},
-					{
-						label: "Recently Updated",
-						value: "recentlyupdated"
-					}
-				],
-				placeholder: "Sort by..."
+				get options() {
+					return [
+						{
+							label: t("dorion_themes.popular"),
+							value: "popular"
+						},
+						{
+							label: t("dorion_themes.creation_date"),
+							value: "creationdate"
+						},
+						{
+							label: t("dorion_themes.name"),
+							value: "name"
+						},
+						{
+							label: t("dorion_themes.likes"),
+							value: "likes"
+						},
+						{
+							label: t("dorion_themes.downloads"),
+							value: "downloads"
+						},
+						{
+							label: t("dorion_themes.recently_updated"),
+							value: "recentlyupdated"
+						}
+					];
+				},
+				get placeholder() {
+					return t("dorion_themes.sort_by");
+				}
 			}), _el$4, _co$);
 			(0, import_web$7.insert)(_el$2, (0, import_web$8.createComponent)(TextBox, {
 				get value() {
 					return search();
 				},
 				onInput: (v) => doSearch(v),
-				placeholder: "Search..."
+				get placeholder() {
+					return t("dorion_themes.search_placeholder");
+				}
 			}));
 			(0, import_web$4.effect)((_p$) => {
 				const _v$ = classes.sortSection, _v$2 = classes.searchBox;
@@ -696,52 +719,54 @@ function ThemePage() {
 		}),
 		(() => {
 			const _el$5 = (0, import_web$5.getNextElement)(_tmpl$2);
-			(0, import_web$7.insert)(_el$5, () => themeData().map((t) => (0, import_web$8.createComponent)(ThemeCard, {
+			(0, import_web$7.insert)(_el$5, () => themeData().map((t$1) => (0, import_web$8.createComponent)(ThemeCard, {
 				get key() {
-					return t.name;
+					return t$1.name;
 				},
 				get thumbnail() {
-					return t.thumbnail;
+					return t$1.thumbnail;
 				},
 				get likes() {
-					return t.likes;
+					return t$1.likes;
 				},
 				get downloads() {
-					return t.downloads;
+					return t$1.downloads;
 				},
 				get theme() {
-					return t.name;
+					return t$1.name;
 				},
 				get description() {
-					return t.description;
+					return t$1.description;
 				},
 				get author() {
-					return t.author;
+					return t$1.author;
 				},
 				get install_url() {
-					return t.install_url;
+					return t$1.install_url;
 				}
 			})));
 			(0, import_web$4.effect)(() => (0, import_web$3.className)(_el$5, classes.themeCards));
 			return _el$5;
 		})(),
 		(() => {
-			const _el$6 = (0, import_web$5.getNextElement)(_tmpl$3), _el$7 = _el$6.firstChild, _el$8 = _el$7.firstChild, _el$9 = _el$8.nextSibling, _el$0 = _el$9.nextSibling;
+			const _el$6 = (0, import_web$5.getNextElement)(_tmpl$3), _el$7 = _el$6.firstChild, _el$8 = _el$7.firstChild, _el$9 = _el$8.firstChild, _el$0 = _el$9.nextSibling, [_el$1, _co$2] = (0, import_web$6.getNextMarker)(_el$0.nextSibling), _el$10 = _el$8.nextSibling, _el$11 = _el$10.nextSibling, _el$13 = _el$11.firstChild, [_el$14, _co$3] = (0, import_web$6.getNextMarker)(_el$13.nextSibling), _el$12 = _el$14.nextSibling;
 			_el$8.$$click = () => {
 				setPage(page() - 1);
 				loadThemes();
 			};
-			_el$9.$$input = (e) => setPage(parseInt(e.target.value));
-			_el$0.$$click = () => {
+			(0, import_web$7.insert)(_el$8, () => t("common.previous"), _el$1, _co$2);
+			_el$10.$$input = (e) => setPage(parseInt(e.target.value));
+			_el$11.$$click = () => {
 				setPage(page() + 1);
 				loadThemes();
 			};
+			(0, import_web$7.insert)(_el$11, () => t("common.next"), _el$14, _co$3);
 			(0, import_web$4.effect)((_p$) => {
 				const _v$3 = classes.pagesOuter, _v$4 = classes.pages, _v$5 = classes.pageBtn, _v$6 = classes.pageBtn;
 				_v$3 !== _p$._v$3 && (0, import_web$3.className)(_el$6, _p$._v$3 = _v$3);
 				_v$4 !== _p$._v$4 && (0, import_web$3.className)(_el$7, _p$._v$4 = _v$4);
 				_v$5 !== _p$._v$5 && (0, import_web$3.className)(_el$8, _p$._v$5 = _v$5);
-				_v$6 !== _p$._v$6 && (0, import_web$3.className)(_el$0, _p$._v$6 = _v$6);
+				_v$6 !== _p$._v$6 && (0, import_web$3.className)(_el$11, _p$._v$6 = _v$6);
 				return _p$;
 			}, {
 				_v$3: undefined,
@@ -749,7 +774,7 @@ function ThemePage() {
 				_v$5: undefined,
 				_v$6: undefined
 			});
-			(0, import_web$4.effect)(() => _el$9.value = page());
+			(0, import_web$4.effect)(() => _el$10.value = page());
 			(0, import_web$2.runHydrationEvents)();
 			return _el$6;
 		})()
