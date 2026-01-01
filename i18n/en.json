@@ -129,7 +129,7 @@
     "enable_dorion_plugins": "Enable Dorion Plugins",
     "do_not_disable": "DO NOT DISABLE THIS OPTION.",
     "disable_plugins_note": "If you do, vital functionality will be lost. Only touch this if you know what you're doing.",
-    "disable_plugins_warning": "I know the big bold \"DON'T DISABLE THIS\" text makes it really tempting to disable, but you shouldn't. {{appName}} will have several vital systems removed, such as the entire settings menu.\n\nThis option is intended only for debugging, development, and for running old versions of {{appName}} functionality on old versions of {{appName}}. If you're not doing that, don't touch this.",
+    "disable_plugins_warning": "I know the big bold \"DON'T DISABLE THIS\" text makes it really tempting to disable, but you shouldn't. {{appName}} will have several vital systems removed, such as the entire settings menu.\\n\\nThis option is intended only for debugging, development, and for running old versions of {{appName}} functionality on old versions of {{appName}}. If you're not doing that, don't touch this.",
     "absolutely_sure": "Are you ABSOLUTELY sure?",
     "blur_transparency": "Blur & Transparency",
     "blur_warning": "The blurring effect can be unreliable, semi-broken, and extremely slow, depending on what OS and version you are on. For more context, see",
@@ -139,7 +139,7 @@
     "wipe_web_data": "Wipe all web-based data",
     "clear_css_cache": "Clear CSS Cache",
     "css_cache_cleared": "CSS Cache Cleared",
-    "clear_web_cache_warning": "Clearing web cache will log you out and reset your settings, but can often help solve permission-based issues.\n\nDo you want to proceed?"
+    "clear_web_cache_warning": "Clearing web cache will log you out and reset your settings, but can often help solve permission-based issues.\\n\\nDo you want to proceed?"
   },
   "dorion_rpc": {
     "title": "Rich Presence",
