@@ -117,8 +117,8 @@ export function RPCPage() {
         note={
           <>
             {t('dorion_rpc.integrated_server_note', {
-              shelteRPCLink: <a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>,
-              arRPCLink: <a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>
+              shelteRPCLink: <a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">{t('common.shelterpc')}</a>,
+              arRPCLink: <a href="https://github.com/OpenAsar/arRPC" target="_blank">{t('common.arrpc')}</a>
             })}
           </>
         }
@@ -151,7 +151,7 @@ export function RPCPage() {
         disabled={!settings().rpc_server}
         note={
           <>
-            {t('dorion_rpc.ipc_connector_note', { appName, vscordLink: <a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a> })}
+            {t('dorion_rpc.ipc_connector_note', { appName, vscordLink: <a href="https://github.com/LeonardSSH/vscord" target="_blank">{t('common.vscord')}</a> })}
           </>
         }
       >

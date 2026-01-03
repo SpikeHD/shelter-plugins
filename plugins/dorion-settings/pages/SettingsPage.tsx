@@ -229,7 +229,7 @@ export function SettingsPage() {
             {t('dorion_settings.autoupdate_note', {
               appName,
               shelterPluginsLink: <a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">
-                SpikeHD/shelter-plugins
+                {t('common.spikehd_shelter_plugins')}
               </a>
             })}
           </>
