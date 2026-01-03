@@ -55,14 +55,14 @@ export function PerformancePage() {
     try {
       const availableBlurs = await invoke('available_blurs')
       setBlurOptions(availableBlurs)
-    
+
     // eslint-disable-next-line
     } catch(e) { /* this can fail it's fine */ }
 
     try {
       const platform = await invoke('get_platform')
       setPlatform(platform)
-    
+
     // eslint-disable-next-line
     } catch(e) { /* this can fail it's fine */ }
 
@@ -133,7 +133,7 @@ export function PerformancePage() {
         }
         disabled={platform() !== 'windows'}
         tooltipNote={platform() !== 'windows' && t('dorion_performance.windows_only')}
-        note={t('dorion_performance.auto_clear_cache_note').replace('{{appName}}', appName)}
+        note={t('dorion_performance.auto_clear_cache_note', { appName })}
       >
         {t('dorion_performance.auto_clear_cache')}
       </SwitchItem>
@@ -209,7 +209,7 @@ export function PerformancePage() {
           openConfirmationModal({
             body: () => (
               <p>
-                {t('dorion_performance.disable_plugins_warning').replace(/{{appName}}/g, appName)}
+                {t('dorion_performance.disable_plugins_warning', { appName })}
               </p>
             ),
             header: () => t('dorion_performance.absolutely_sure'),
@@ -250,7 +250,9 @@ export function PerformancePage() {
       />
 
       <div class={classes.stext}>
-        {t('dorion_performance.blur_warning')} <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">{t('dorion_performance.window_vibrancy_crate')}</a>.
+        {t('dorion_performance.blur_warning', {
+          windowVibrancyLink: <a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank">{t('dorion_performance.window_vibrancy_crate')}.</a>
+        })}
       </div>
 
       <SwitchItem

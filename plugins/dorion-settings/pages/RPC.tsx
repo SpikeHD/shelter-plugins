@@ -116,8 +116,10 @@ export function RPCPage() {
         tooltipNote={t('dorion_rpc.work_in_progress')}
         note={
           <>
-            {t('dorion_rpc.integrated_server_note')}
-            {' '}<a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>, {t('dorion_rpc.also_works_with')} <a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>.
+            {t('dorion_rpc.integrated_server_note', {
+              shelteRPCLink: <a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank">shelteRPC</a>,
+              arRPCLink: <a href="https://github.com/OpenAsar/arRPC" target="_blank">arRPC</a>
+            })}
           </>
         }
       >
@@ -134,7 +136,7 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note={t('dorion_rpc.process_scanner_note').replace('{{appName}}', appName)}
+        note={t('dorion_rpc.process_scanner_note', { appName })}
       >
         {t('dorion_rpc.enable_process_scanner')}
       </SwitchItem>
@@ -149,8 +151,7 @@ export function RPCPage() {
         disabled={!settings().rpc_server}
         note={
           <>
-            {t('dorion_rpc.ipc_connector_note').replace('{{appName}}', appName)}
-            {' '}<a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a> {t('dorion_rpc.extension_connection')}.
+            {t('dorion_rpc.ipc_connector_note', { appName, vscordLink: <a href="https://github.com/LeonardSSH/vscord" target="_blank">VSCord</a> })}
           </>
         }
       >
@@ -165,7 +166,7 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note={t('dorion_rpc.websocket_connector_note').replace('{{appName}}', appName)}
+        note={t('dorion_rpc.websocket_connector_note', { appName })}
       >
         {t('dorion_rpc.enable_websocket_connector')}
       </SwitchItem>
@@ -178,7 +179,7 @@ export function RPCPage() {
           }, true)
         }}
         disabled={!settings().rpc_server}
-        note={t('dorion_rpc.secondary_events_note').replace('{{appName}}', appName)}
+        note={t('dorion_rpc.secondary_events_note', { appName })}
       >
         {t('dorion_rpc.enable_secondary_events')}
       </SwitchItem>

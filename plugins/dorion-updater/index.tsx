@@ -48,7 +48,7 @@ const load = async () => {
     if (config.autoupdate) {
       // We should still warn that Dorion is going to restart
       openModal((props) => confirmModal({
-        header: t('dorion_updater.update_title').replace('{{appName}}', appName),
+        header: t('dorion_updater.update_title', { appName }),
         body: t('dorion_updater.update_body').replace(/{{appName}}/g, appName),
         confirmText: t('common.got_it'),
         type: 'neutral',

@@ -51,14 +51,14 @@ export function SettingsPage() {
 
   return (
     <>
-      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_settings.title').replace('{{appName}}', appName)}</Header>
+      <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_settings.title', { appName })}</Header>
 
       {restartRequired() && (
         <WarningCard />
       )}
 
       <Header class={classes.shead}>{t('dorion_settings.client_type')}</Header>
-      <RadioGroup 
+      <RadioGroup
         options={[
           {
             label: t('dorion_settings.client_type_default'),
@@ -84,7 +84,7 @@ export function SettingsPage() {
             true
           )
         }}
-        selected={settings().client_type} 
+        selected={settings().client_type}
       />
 
       <Header class={classes.shead}>{t('dorion_settings.window')}</Header>
@@ -123,7 +123,7 @@ export function SettingsPage() {
             true
           )
         }}
-        note={t('dorion_settings.sys_tray_note').replace('{{appName}}', appName)}
+        note={t('dorion_settings.sys_tray_note', { appName })}
       >
         {t('dorion_settings.sys_tray')}
       </SwitchItem>
@@ -154,7 +154,7 @@ export function SettingsPage() {
             }
           })
         }}
-        note={t('dorion_settings.open_on_startup_note').replace('{{appName}}', appName)}
+        note={t('dorion_settings.open_on_startup_note', { appName })}
       >
         {t('dorion_settings.open_on_startup')}
       </SwitchItem>
@@ -189,7 +189,7 @@ export function SettingsPage() {
             true
           )
         }}
-        note={t('dorion_settings.multi_instance_note').replace('{{appName}}', appName)}
+        note={t('dorion_settings.multi_instance_note', { appName })}
       >
         {t('dorion_settings.multi_instance')}
       </SwitchItem>
@@ -226,12 +226,12 @@ export function SettingsPage() {
         }}
         note={
           <>
-            {t('dorion_settings.autoupdate_note').replace('{{appName}}', appName)}
-            {' '}
-            <a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">
-              SpikeHD/shelter-plugins
-            </a>
-            .
+            {t('dorion_settings.autoupdate_note', {
+              appName,
+              shelterPluginsLink: <a href="https://github.com/SpikeHD/shelter-plugins" target="_blank">
+                SpikeHD/shelter-plugins
+              </a>
+            })}
           </>
         }
       >
