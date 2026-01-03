@@ -37,11 +37,11 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 const classes = {
 	"topright": "e6P4KG_topright",
 	"topclose": "e6P4KG_topclose",
-	"topmin": "e6P4KG_topmin",
-	"topmax": "e6P4KG_topmax",
 	"svgunmax": "e6P4KG_svgunmax",
-	"maximized": "e6P4KG_maximized",
+	"topmax": "e6P4KG_topmax",
 	"dorion_topbar": "e6P4KG_dorion_topbar",
+	"maximized": "e6P4KG_maximized",
+	"topmin": "e6P4KG_topmin",
 	"svgmax": "e6P4KG_svgmax"
 };
 const css = `.e6P4KG_dorion_topbar {
