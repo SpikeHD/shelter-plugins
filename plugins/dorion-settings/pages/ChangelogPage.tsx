@@ -7,15 +7,15 @@ import { processReleaseBodies, loadChangelog, fixImageLinks } from '../util/chan
 const PAGE_ID = `${appName.toLowerCase()}-changelog-tab`
 
 const {
-  ui: { 
-    injectCss, 
-    Header, 
-    HeaderTags, 
-    Button, 
-    ButtonSizes, 
-    ButtonColors, 
-    Text, 
-    LinkButton 
+  ui: {
+    injectCss,
+    Header,
+    HeaderTags,
+    Button,
+    ButtonSizes,
+    ButtonColors,
+    Text,
+    LinkButton
   },
   solid: { createSignal, createEffect },
 } = shelter
@@ -37,7 +37,7 @@ export function ChangelogPage() {
   createEffect(async () => {
     // Load changelog from GitHub
     setReleases(await processReleaseBodies(await loadChangelog()))
-    
+
     // Set current version
     setCurrentVersion(`v${await app.getVersion()}`)
 
@@ -52,7 +52,7 @@ export function ChangelogPage() {
     // Done loading except for images
     // Show page as soon as possible to prevent loading page for a long time
     setLoading(false)
-    
+
     // Fix image links
     await fixImageLinks(document.getElementById(PAGE_ID))
   }, [])
@@ -79,12 +79,12 @@ export function ChangelogPage() {
           <div class={classes.spinner} />
         </div>
       ) : (
-        <>  
+        <>
           {updateCheck().includes('dorion') && (
             <div class={classes.card}>
               <Header tag={HeaderTags.H1} class={classes.title}>{t('dorion_changelog.update_available')}</Header>
-              <Text>{t('dorion_changelog.current_version').replace('{{version}}', currentVersion())}</Text>
-              <Button size={ButtonSizes.LARGE} color={ButtonColors.GREEN} onClick={doUpdate}>{t('dorion_changelog.update_to').replace('{{version}}', latestVersion())}</Button>
+              <Text>{t('dorion_changelog.current_version', { version: currentVersion() })}</Text>
+              <Button size={ButtonSizes.LARGE} color={ButtonColors.GREEN} onClick={doUpdate}>{t('dorion_changelog.update_to', { version: latestVersion() } )}</Button>
             </div>
           )}
           {releases() != null && releases().length > 0 && releases().map((release: IRelease) => (
@@ -94,9 +94,9 @@ export function ChangelogPage() {
                   {release.name}
                 </span>
                 <div class={classes.badges}>
-                  {currentVersion() == release.tag_name && 
+                  {currentVersion() == release.tag_name &&
                     <span class={classes.badge}>{t('dorion_changelog.current')}</span>}
-                  {releases()[0].tag_name == release.tag_name && 
+                  {releases()[0].tag_name == release.tag_name &&
                     <span class={classes.badge}>{t('dorion_changelog.latest')}</span>}
                 </div>
               </Header>
@@ -109,4 +109,3 @@ export function ChangelogPage() {
     </>
   )
 }
-

@@ -30,7 +30,7 @@ let settingsUninjects = []
   settingsUninjects = [
     registerSection('divider'),
     registerSection('header', appName),
-    registerSection('section', `${appName}-settings`, t('dorion_settings.title').replace('{{appName}}', appName), SettingsPage),
+    registerSection('section', `${appName}-settings`, t('dorion_settings.title', { appName }), SettingsPage),
     registerSection('section', `${appName}-plugins`, t('common.plugins'), PluginsPage),
     registerSection('section', `${appName}-themes`, t('common.themes'), ThemesPage),
     registerSection('section',  `${appName}-performance`, t('dorion_performance.title'), PerformancePage),
@@ -75,15 +75,15 @@ const appendAppVersion = async () => {
   versionThings.appendChild(newVersionThing)
 }
 
-const checkForUpdates = async () => {    
+const checkForUpdates = async () => {
   const updateCheck = await invoke('update_check')
   let needsUpdate = false
 
   if (updateCheck.includes('dorion')) needsUpdate = true
 
   settingsUninjects.push(
-    registerSection('section', `${appName}-changelog`, t('dorion_changelog.title'), ChangelogPage, { 
-      badgeCount: needsUpdate ? 1 : 0 
+    registerSection('section', `${appName}-changelog`, t('dorion_changelog.title'), ChangelogPage, {
+      badgeCount: needsUpdate ? 1 : 0
     })
   )
 }
