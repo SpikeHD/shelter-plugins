@@ -122,16 +122,33 @@ const process = backendObj.process;
 const apiWindow = backendObj.apiWindow;
 
 //#endregion
-//#region util/i18n.ts
-function t(key) {
-	const lang = window.__DORION_LANG || "en";
+//#region util/i18n.tsx
+function t(key, replace) {
+	const lang = window.__DORION_LANG ?? "en";
 	const translations = window.__DORION_TRANSLATIONS;
-	if (!translations || !translations[lang]) return key;
-	const keys = key.split(".");
-	let result = translations[lang];
-	for (const k of keys) if (result && k in result) result = result[k];
-else return key;
-	return typeof result === "string" ? result : key;
+	let value = translations?.[lang];
+	for (const k of key.split(".")) {
+		value = value?.[k];
+		if (value == null) return key;
+	}
+	if (!replace) return value;
+	const parts = [];
+	const regex = /\{\{\s*(\w+)\s*\}\}/g;
+	let lastIndex = 0;
+	let hasNode = false;
+	for (const match of value.matchAll(regex)) {
+		const [raw, name] = match;
+		const index = match.index;
+		if (index > lastIndex) parts.push(value.slice(lastIndex, index));
+		const replacement = replace[name];
+		if (replacement !== undefined) {
+			parts.push(replacement);
+			if (typeof replacement !== "string") hasNode = true;
+		} else parts.push(raw);
+		lastIndex = index + raw.length;
+	}
+	if (lastIndex < value.length) parts.push(value.slice(lastIndex));
+	return hasNode ? parts : parts.join("");
 }
 
 //#endregion
@@ -182,7 +199,7 @@ const load = async () => {
 	if (updateCheck.includes("dorion")) {
 		if (config.autoupdate) {
 			openModal((props) => confirmModal({
-				header: t("dorion_updater.update_title").replace("{{appName}}", appName),
+				header: t("dorion_updater.update_title", { appName }),
 				body: t("dorion_updater.update_body").replace(/{{appName}}/g, appName),
 				confirmText: t("common.got_it"),
 				type: "neutral",

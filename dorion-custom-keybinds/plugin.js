@@ -122,29 +122,46 @@ const process = backendObj.process;
 const apiWindow = backendObj.apiWindow;
 
 //#endregion
-//#region util/i18n.ts
-function t(key) {
-	const lang = window.__DORION_LANG || "en";
+//#region util/i18n.tsx
+function t(key, replace) {
+	const lang = window.__DORION_LANG ?? "en";
 	const translations = window.__DORION_TRANSLATIONS;
-	if (!translations || !translations[lang]) return key;
-	const keys = key.split(".");
-	let result = translations[lang];
-	for (const k of keys) if (result && k in result) result = result[k];
-else return key;
-	return typeof result === "string" ? result : key;
+	let value = translations?.[lang];
+	for (const k of key.split(".")) {
+		value = value?.[k];
+		if (value == null) return key;
+	}
+	if (!replace) return value;
+	const parts = [];
+	const regex = /\{\{\s*(\w+)\s*\}\}/g;
+	let lastIndex = 0;
+	let hasNode = false;
+	for (const match of value.matchAll(regex)) {
+		const [raw, name] = match;
+		const index = match.index;
+		if (index > lastIndex) parts.push(value.slice(lastIndex, index));
+		const replacement = replace[name];
+		if (replacement !== undefined) {
+			parts.push(replacement);
+			if (typeof replacement !== "string") hasNode = true;
+		} else parts.push(raw);
+		lastIndex = index + raw.length;
+	}
+	if (lastIndex < value.length) parts.push(value.slice(lastIndex));
+	return hasNode ? parts : parts.join("");
 }
 
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"header": "Zz-Z3G_header",
-	"keybindSection": "Zz-Z3G_keybindSection",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindsButton": "Zz-Z3G_keybindsButton",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton"
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"header": "Zz-Z3G_header",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -213,11 +230,11 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
-	"keybindArea": "QTLdLq_keybindArea",
 	"note": "QTLdLq_note",
-	"keybindRoot": "QTLdLq_keybindRoot",
 	"actionSection": "QTLdLq_actionSection",
+	"keybindRoot": "QTLdLq_keybindRoot",
 	"keybindSection": "QTLdLq_keybindSection",
+	"keybindArea": "QTLdLq_keybindArea",
 	"removeButton": "QTLdLq_removeButton"
 };
 const css$2 = `.QTLdLq_keybindRoot {
@@ -275,9 +292,9 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dsarrow": "sqVpyW_dsarrow",
 	"dcontainer": "sqVpyW_dcontainer",
 	"ddown": "sqVpyW_ddown",
+	"dsarrow": "sqVpyW_dsarrow",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$1 = `.sqVpyW_ddown {
@@ -418,11 +435,11 @@ const Dropdown = (props) => {
 //#region components/KeybindInput.tsx.scss
 const classes = {
 	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
-	"keybindButton": "N-HDcq_keybindButton",
+	"keybindInput": "N-HDcq_keybindInput",
+	"keybindContainer": "N-HDcq_keybindContainer",
 	"recording": "N-HDcq_recording",
 	"pulse": "N-HDcq_pulse",
-	"keybindContainer": "N-HDcq_keybindContainer",
-	"keybindInput": "N-HDcq_keybindInput"
+	"keybindButton": "N-HDcq_keybindButton"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);

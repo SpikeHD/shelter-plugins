@@ -125,9 +125,9 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
 	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -347,27 +347,44 @@ const basicModal = (props) => (0, import_web$17.createComponent)(ModalRoot, { ge
 } });
 
 //#endregion
-//#region util/i18n.ts
-function t(key) {
-	const lang = window.__DORION_LANG || "en";
+//#region util/i18n.tsx
+function t(key, replace) {
+	const lang = window.__DORION_LANG ?? "en";
 	const translations = window.__DORION_TRANSLATIONS;
-	if (!translations || !translations[lang]) return key;
-	const keys = key.split(".");
-	let result = translations[lang];
-	for (const k of keys) if (result && k in result) result = result[k];
-else return key;
-	return typeof result === "string" ? result : key;
+	let value = translations?.[lang];
+	for (const k of key.split(".")) {
+		value = value?.[k];
+		if (value == null) return key;
+	}
+	if (!replace) return value;
+	const parts = [];
+	const regex = /\{\{\s*(\w+)\s*\}\}/g;
+	let lastIndex = 0;
+	let hasNode = false;
+	for (const match of value.matchAll(regex)) {
+		const [raw, name] = match;
+		const index = match.index;
+		if (index > lastIndex) parts.push(value.slice(lastIndex, index));
+		const replacement = replace[name];
+		if (replacement !== undefined) {
+			parts.push(replacement);
+			if (typeof replacement !== "string") hasNode = true;
+		} else parts.push(raw);
+		lastIndex = index + raw.length;
+	}
+	if (lastIndex < value.length) parts.push(value.slice(lastIndex));
+	return hasNode ? parts : parts.join("");
 }
 
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
-	"info": "JQAzuG_info",
 	"contents": "JQAzuG_contents",
-	"thumbnail": "JQAzuG_thumbnail",
 	"installButton": "JQAzuG_installButton",
-	"name": "JQAzuG_name",
-	"themeCard": "JQAzuG_themeCard"
+	"thumbnail": "JQAzuG_thumbnail",
+	"themeCard": "JQAzuG_themeCard",
+	"info": "JQAzuG_info",
+	"name": "JQAzuG_name"
 };
 const css$1 = `.JQAzuG_themeCard {
   text-align: left;
@@ -521,14 +538,14 @@ const themeInstallationModel = async (link, name) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
+	"shead": "gqruia_shead",
+	"bot16": "gqruia_bot16",
+	"searchBox": "gqruia_searchBox",
+	"pages": "gqruia_pages",
 	"sortSection": "gqruia_sortSection",
 	"pagesOuter": "gqruia_pagesOuter",
-	"pageBtn": "gqruia_pageBtn",
-	"bot16": "gqruia_bot16",
-	"shead": "gqruia_shead",
 	"themeCards": "gqruia_themeCards",
-	"searchBox": "gqruia_searchBox",
-	"pages": "gqruia_pages"
+	"pageBtn": "gqruia_pageBtn"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
