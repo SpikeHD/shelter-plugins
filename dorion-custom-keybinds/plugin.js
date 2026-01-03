@@ -154,13 +154,13 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"header": "Zz-Z3G_header",
+	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindSection": "Zz-Z3G_keybindSection",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
 	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
 	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindSection": "Zz-Z3G_keybindSection",
-	"keybindsButton": "Zz-Z3G_keybindsButton",
-	"header": "Zz-Z3G_header",
 	"keybindsBanner": "Zz-Z3G_keybindsBanner"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
@@ -230,11 +230,11 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
-	"note": "QTLdLq_note",
-	"actionSection": "QTLdLq_actionSection",
 	"keybindRoot": "QTLdLq_keybindRoot",
 	"keybindSection": "QTLdLq_keybindSection",
+	"actionSection": "QTLdLq_actionSection",
 	"keybindArea": "QTLdLq_keybindArea",
+	"note": "QTLdLq_note",
 	"removeButton": "QTLdLq_removeButton"
 };
 const css$2 = `.QTLdLq_keybindRoot {
@@ -293,8 +293,8 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
 	"dcontainer": "sqVpyW_dcontainer",
-	"ddown": "sqVpyW_ddown",
 	"dsarrow": "sqVpyW_dsarrow",
+	"ddown": "sqVpyW_ddown",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$1 = `.sqVpyW_ddown {
@@ -434,12 +434,12 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindInput": "N-HDcq_keybindInput",
-	"keybindContainer": "N-HDcq_keybindContainer",
 	"recording": "N-HDcq_recording",
+	"keybindContainer": "N-HDcq_keybindContainer",
 	"pulse": "N-HDcq_pulse",
-	"keybindButton": "N-HDcq_keybindButton"
+	"keybindButton": "N-HDcq_keybindButton",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);

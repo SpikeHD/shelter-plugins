@@ -37,7 +37,11 @@ var common = {
 	"nope": "Nope!",
 	"okay": "Okay!",
 	"previous": "Previous",
-	"next": "Next"
+	"next": "Next",
+	"spikehd_shelter_plugins": "SpikeHD/shelter-plugins",
+	"vscord": "VSCord",
+	"arrpc": "arRPC",
+	"shelterpc": "shelteRPC"
 };
 var dorion_settings = {
 	"title": "{{appName}} Settings",
