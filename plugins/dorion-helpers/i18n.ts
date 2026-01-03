@@ -1,4 +1,5 @@
 import en from '../../i18n/en.json' with { type: 'json' }
+import ru from '../../i18n/ru.json' with { type: 'json' }
 
 // Global window types for translations
 declare global {
@@ -14,6 +15,7 @@ const languages: {
   [key: string]: Record<string, unknown>
 } = {
   en,
+  ru,
 }
 
 export const initializeTranslations = () => {
