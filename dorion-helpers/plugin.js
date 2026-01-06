@@ -3,8 +3,8 @@
 "use strict";
 
 //#region i18n/en.json
-var _lang$1 = "English";
-var common$1 = {
+var _lang$2 = "English";
+var common$2 = {
 	"settings": "Settings",
 	"plugins": "Plugins",
 	"themes": "Themes",
@@ -43,7 +43,7 @@ var common$1 = {
 	"arrpc": "arRPC",
 	"shelterpc": "shelteRPC"
 };
-var dorion_settings$1 = {
+var dorion_settings$2 = {
 	"title": "{{appName}} Settings",
 	"restart_required": "Restart Required",
 	"restart_warning": "Some changes require a restart to take effect.",
@@ -71,14 +71,14 @@ var dorion_settings$1 = {
 	"autoupdate_note": "Automatically update various {{appName}} components, such as {{shelterPluginsLink}}.",
 	"update_notify": "Notify me of updates"
 };
-var dorion_plugins$1 = {
+var dorion_plugins$2 = {
 	"title": "Client Mods & Plugins",
 	"client_mods": "Client Mods",
 	"plugins": "Plugins",
 	"open_plugins_folder": "Open Plugins Folder",
 	"open_extensions_folder": "Open Extensions Folder"
 };
-var dorion_themes$1 = {
+var dorion_themes$2 = {
 	"title": "Theme Browser",
 	"theme": "Theme",
 	"none": "None",
@@ -94,7 +94,7 @@ var dorion_themes$1 = {
 	"recently_updated": "Recently Updated",
 	"search_placeholder": "Search..."
 };
-var dorion_notifications$1 = {
+var dorion_notifications$2 = {
 	"enable_desktop_notifications": "Enable Desktop Notifications",
 	"desktop_notifications_note": "If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings.",
 	"enable_unread_badge": "Enable Unread Message Badge",
@@ -102,7 +102,7 @@ var dorion_notifications$1 = {
 	"desktop_notifications_enabled_title": "Desktop Notifications Enabled",
 	"desktop_notifications_enabled_body": "You will now receive desktop notifications!"
 };
-var dorion_keybinds$1 = {
+var dorion_keybinds$2 = {
 	"global_keybinds_experimental": "Global keybinds are an experimental feature!",
 	"add_keybind": "Add Keybind",
 	"enable_global_keybinds": "Enable Global Keybinds",
@@ -110,7 +110,7 @@ var dorion_keybinds$1 = {
 	"keybinds_restart_required": "Enabling or disabling global keybinds requires a restart to take effect.",
 	"restart": "Restart"
 };
-var dorion_updater$1 = {
+var dorion_updater$2 = {
 	"update_title": "{{appName}} Update",
 	"update_body": "A {{appName}} update has been fetched, and {{appName}} will restart momentarily.",
 	"updates_available": "Updates Available!",
@@ -118,7 +118,7 @@ var dorion_updater$1 = {
 	"update_complete": "Update Complete!",
 	"update_complete_body": "The update has been applied! Please restart to apply the changes."
 };
-var dorion_performance$1 = {
+var dorion_performance$2 = {
 	"title": "Performance & Extras",
 	"cache": "Cache",
 	"cache_css": "Cache CSS",
@@ -149,7 +149,7 @@ var dorion_performance$1 = {
 	"css_cache_cleared": "CSS Cache Cleared",
 	"clear_web_cache_warning": "Clearing web cache will log you out and reset your settings, but can often help solve permission-based issues.\n\nDo you want to proceed?"
 };
-var dorion_rpc$1 = {
+var dorion_rpc$2 = {
 	"title": "Rich Presence",
 	"plugin": "Plugin",
 	"install_shelterpc": "Install the shelteRPC plugin",
@@ -171,7 +171,7 @@ var dorion_rpc$1 = {
 	"enable_secondary_events": "Enable secondary events",
 	"secondary_events_note": "Enable this to allow {{appName}} to properly handle server invites opened in the browser. Does not work with arRPC."
 };
-var dorion_profiles$1 = {
+var dorion_profiles$2 = {
 	"title": "Profiles",
 	"create_profile": "Create Profile",
 	"select_profile": "Select profile...",
@@ -179,7 +179,7 @@ var dorion_profiles$1 = {
 	"save_and_restart": "Save and Restart",
 	"delete_profile": "Delete Selected Profile"
 };
-var dorion_changelog$1 = {
+var dorion_changelog$2 = {
 	"title": "Changelog",
 	"refresh": "Refresh",
 	"update_available": "Update available!",
@@ -189,19 +189,236 @@ var dorion_changelog$1 = {
 	"latest": "Latest",
 	"view_on_github": "View on GitHub"
 };
-var dorion_theme_card$1 = {
+var dorion_theme_card$2 = {
 	"install": "Install",
 	"installed": "Installed",
 	"likes": "{{count}} likes",
 	"downloads": "{{count}} downloads"
 };
-var dorion_warning_card$1 = {
+var dorion_warning_card$2 = {
 	"restart_required": "Restart Required",
 	"restart_message": "One or more settings have been changed that require a restart to take effect.",
 	"restart_now": "Restart Now",
 	"restart_later": "Restart Later"
 };
 var en_default = {
+	_lang: _lang$2,
+	common: common$2,
+	dorion_settings: dorion_settings$2,
+	dorion_plugins: dorion_plugins$2,
+	dorion_themes: dorion_themes$2,
+	dorion_notifications: dorion_notifications$2,
+	dorion_keybinds: dorion_keybinds$2,
+	dorion_updater: dorion_updater$2,
+	dorion_performance: dorion_performance$2,
+	dorion_rpc: dorion_rpc$2,
+	dorion_profiles: dorion_profiles$2,
+	dorion_changelog: dorion_changelog$2,
+	dorion_theme_card: dorion_theme_card$2,
+	dorion_warning_card: dorion_warning_card$2
+};
+
+//#endregion
+//#region i18n/id.json
+var _lang$1 = "Bahasa Indonesia";
+var common$1 = {
+	"settings": "Pengaturan",
+	"plugins": "Plugin",
+	"themes": "Tema",
+	"enable": "Aktifkan",
+	"disable": "Nonaktifkan",
+	"restart": "Restart",
+	"save": "Simpan",
+	"cancel": "Batal",
+	"confirm": "Konfirmasi",
+	"open": "Buka",
+	"close": "Tutup",
+	"add": "Tambah",
+	"remove": "Hapus",
+	"delete": "Hapus",
+	"install": "Pasang",
+	"uninstall": "Lepas",
+	"update": "Perbarui",
+	"download": "Unduh",
+	"search": "Cari",
+	"loading": "Memuat",
+	"error": "Eror",
+	"success": "Sukses",
+	"warning": "Peringatan",
+	"info": "Info",
+	"yes": "Ya",
+	"no": "Tidak",
+	"ok": "OK",
+	"got_it": "Mengerti!",
+	"yes_please": "Ya, silahkan!",
+	"nope": "Tidak!",
+	"okay": "Oke!",
+	"previous": "Sebelumnya",
+	"next": "Selanjutnya",
+	"spikehd_shelter_plugins": "SpikeHD/shelter-plugins",
+	"vscord": "VSCord",
+	"arrpc": "arRPC",
+	"shelterpc": "shelteRPC"
+};
+var dorion_settings$1 = {
+	"title": "Pengaturan {{appName}}",
+	"restart_required": "Membutuhkan restart",
+	"restart_warning": "Beberapa perubahan mengharuskan restart untuk berefek.",
+	"client_type": "Tipe Klien",
+	"client_type_default": "Default",
+	"client_type_ptb": "PTB",
+	"client_type_canary": "Canary",
+	"window": "Jendela",
+	"zoom_level": "Tingkat Pembesaran",
+	"sys_tray": "Ciutkan ke Bilah Sistem",
+	"sys_tray_note": "Alih-alih menutup, {{appName}} akan berjalan di latar belakang dan bisa diakses melalui bilah sistem.",
+	"start_maximized": "Mulai Layar Penuh",
+	"startup": "Permulaan",
+	"open_on_startup": "Buka di Permulaan",
+	"open_on_startup_note": "Buka {{appName}} saat sistem mulai.",
+	"start_minimized": "Mulai Layar Ciut",
+	"start_minimized_note": "Buka di latar belakang saat sistem mulai.",
+	"misc": "Lain-lain",
+	"multi_instance": "Izinkan Banyak Instance",
+	"multi_instance_note": "Izinkan beberapa instance dari {{appName}} berjalan bersamaan.",
+	"use_native_titlebar": "Gunakan Bilah Judul Asli",
+	"use_native_titlebar_note": "Nonaktifkan bilah judul kustom dan gunakan bilah judul dari sistem Anda.",
+	"updates": "Pembaruan",
+	"autoupdate": "Pembaruan Otomatis",
+	"autoupdate_note": "Perbarui berbagai komponen {{appName}} secara otomatis, seperti {{shelterPluginsLink}}.",
+	"update_notify": "Beritahu saya tentang pembaruan"
+};
+var dorion_plugins$1 = {
+	"title": "Modifikasi & Plugin Klien",
+	"client_mods": "Modifikasi Klien",
+	"plugins": "Plugin",
+	"open_plugins_folder": "Buka Berkas Plugin",
+	"open_extensions_folder": "Buka Berkas Ekstensi"
+};
+var dorion_themes$1 = {
+	"title": "Peramban Tema",
+	"theme": "Tema",
+	"none": "Kosong",
+	"select_theme": "Pilih sebuah tema...",
+	"install_from_link": "Pasang Tema Dari Tautan",
+	"open_folder": "Buka Berkas Tema",
+	"sort_by": "Urutkan dari...",
+	"popular": "Populer",
+	"creation_date": "Tanggal Pembuatan",
+	"name": "Nama",
+	"likes": "Suka",
+	"downloads": "Unduhan",
+	"recently_updated": "Baru Diperbarui",
+	"search_placeholder": "Cari..."
+};
+var dorion_notifications$1 = {
+	"enable_desktop_notifications": "Izinkan Notifikasi Desktop",
+	"desktop_notifications_note": "Jika Anda mencari notifikasi per-saluran atau per-server, klik kanan ikon server yang diinginkan dan pilih Pengaturan Notifikasi.",
+	"enable_unread_badge": "Izinkan Lambang Pesan Tak Terbaca",
+	"unread_badge_note": "Tampilkan lambang merah di ikon server dengan pesan-pesan belum terbaca.",
+	"desktop_notifications_enabled_title": "Notifikasi Desktop Diaktifkan",
+	"desktop_notifications_enabled_body": "Anda sekarang akan menerima notifikasi desktop!"
+};
+var dorion_keybinds$1 = {
+	"global_keybinds_experimental": "Pengaturan tombol keyboard global adalah fitur eksperimental!",
+	"add_keybind": "Tambah Pengaturan Tombol",
+	"enable_global_keybinds": "Izinkan Pengaturan Tombol Global",
+	"enable_global_keybinds_note": "Aktifkan atau nonaktifkan pengaturan tombol global. Membutuhkan restart.",
+	"keybinds_restart_required": "Mengaktifkan atau menonaktifkan pengaturan tombol global membutuhkan restart untuk berefek.",
+	"restart": "Restart"
+};
+var dorion_updater$1 = {
+	"update_title": "Pembaruan {{appName}}",
+	"update_body": "Sebuah pembaruan {{appName}} telah di ambil, dan {{appName}} akan restart sebentar.",
+	"updates_available": "Pembaruan Tersedia!",
+	"updates_available_body": "Terdapat pembaruan untuk {{appName}} tersedia. Apakah Anda ingin memasangnya? Notifikasi ini dapat dinonaktifkan melalui pengaturan {{appName}}",
+	"update_complete": "Pembaruan Tuntas!",
+	"update_complete_body": "Pembaruan telah terpasang! Mohon restart untuk memasang perubahan."
+};
+var dorion_performance$1 = {
+	"title": "Performa & Tambahan",
+	"cache": "Tembolok",
+	"cache_css": "Tembolok CSS",
+	"cache_css_note": "Simpan CSS dalam diska yang akan dimuat dari jaringan, mengurangi waktu pemuatan.",
+	"auto_clear_cache": "Otomatis Kosongkan Tembolok",
+	"auto_clear_cache_note": "Membersihkan tembolok jaringan setiap {{appName}} ditutup. Ini berupa gambar, skrip, dan data lain, dan dapat menumpuk!",
+	"windows_only": "Ini hanya didukung dalam Windows pada saat ini.",
+	"optional_features": "Fitur Opsional",
+	"win7_notifications": "Gaya Notifikasi Alternatif",
+	"win7_notifications_note": "Gunakan gaya notifikasi alternatif yang digunakan dalam Windows 7. Ini hanya didukung dalam Windows.",
+	"streamer_mode_detection": "Deteksi Mode Streamer",
+	"streamer_mode_detection_note": "Mendeteksi OBS dan Streamlabs dan secara otomatis mengaktifkan mode streamer saat mereka berjalan.",
+	"streamer_mode_detection_requirement": "Membutuhkan server RPC dan pemindaian proses RPC untuk diaktifkan (berada dalam bilah Kehadiran Kaya).",
+	"disable_hardware_accel": "Nonaktifkan Akselerasi Perangkat Keras",
+	"disable_hardware_accel_note": "Nonaktifkan akselerasi perangkat keras, yang mungkin mengakibatkan masalah dalam beberapa sistem. Menonaktifkan pengaturan ini juga dapat mengakibatkan masalah performa dalam beberapa sistem. Tidak didukung dalam macOS.",
+	"enable_dorion_plugins": "Aktifkan Plugin Dorion",
+	"do_not_disable": "JANGAN NONAKTIFKAN PENGATURAN INI.",
+	"disable_plugins_note": "Jika Anda melakukannya, fungsionalitas penting akan hilang. Sentuh ini hanya jika Anda mengetahui apa yang Anda lakukan.",
+	"disable_plugins_warning": "Saya tahu teks \"JANGAN NONAKTIFKAN PENGATURAN INI\" yang tebal dan besar membuatnya sangat menggiurkan untuk dinonaktifkan, tetapi sebaiknya jangan. {{appName}} akan kehilangan beberapa sistem vital, seperti seluruh menu pengaturan.\n\nPengaturan ini hanya diperuntukkan untuk debugging, pengembangan, dan untuk menjalankan versi-versi fungsionalitas lampau dari {{appName}} dalam fitur-fitur lampau dari {{appName}}. Jika Anda tidak melakukan hal-hal tersebut, jangan sentuh pilihan ini.",
+	"absolutely_sure": "Apakah Anda BENAR-BENAR yakin?",
+	"blur_transparency": "Keburaman & Transparansi",
+	"blur_warning": "Efek pemburaman bisa tidak dapat diandalkan, setengah rusak, dan sangat lambat, tergantung dari versi dan sistem operasi yang Anda jalankan. Untuk konteks lebih lanjut, lihat {{windowVibrancyLink}}",
+	"window_vibrancy_crate": "crate window-vibrancy",
+	"blur_css": "Aktifkan CSS pemburam latar belakang bawaan",
+	"blur_css_note": "Aktifkan ini jika Anda tidak menggunakan sebuah tema yang didesain untuk memanfaatkan jendela transparan.",
+	"wipe_web_data": "Hapus semua data berbasis web",
+	"clear_css_cache": "Bersihkan Tembolok CSS",
+	"css_cache_cleared": "Tembolok CSS Dibersihkan",
+	"clear_web_cache_warning": "Menghapus semua tembolok berbasis web akan mengeluarkan Anda dari akun dan mengatur ulang pengaturan Anda, tapi umumnya dapat memecahkan masalah terkait perizinan.\n\nApakah Anda ingin melanjutkan?"
+};
+var dorion_rpc$1 = {
+	"title": "Kehadiran Kaya",
+	"plugin": "Plugin",
+	"install_shelterpc": "Pasang plugin shelteRPC",
+	"already_installed": "Anda telah memasang plugin shelteRPC!",
+	"install_note": "Memasang ini tidak wajib, dan Anda bisa menggunakan plugin-plugn arRPC (mislanya, melalui Vencord) jika anda menginginkannya, tetapi plugin shelteRPC memiliki beberapa fitur tambahan yang hanya bekerja dalam Dorion!",
+	"error_installing": "Eror memasang shelteRPC, cek konsol untuk informasi lebih lanjut",
+	"successfully_installed": "Sukses memasang shelteRPC!",
+	"server": "Peladen",
+	"integrated_server": "Peladen kehadiran kaya terintegrasi",
+	"work_in_progress": "Ini masih dalam proses pengerjaan, dan tidak dapat melakukan SEMUA yang arRPC dapat lakukan.",
+	"integrated_server_note": "Aktifkan peladen RPC terintegrasi, menghilangkan kebutuhan dari berjalannya peladen arRPC terpisah. Cocok dengan {{shelteRPCLink}}, bisa juga bekerja dengan {{arRPCLink}}.",
+	"advanced_settings": "Pengaturan Lanjutan",
+	"enable_process_scanner": "Aktifkan Pemindai Proses",
+	"process_scanner_note": "Aktifkan ini jika Anda ingin {{appName}} memindai proses-proses berjalan. Ini adalah komponen paling memberatkan performa dari RPC.",
+	"enable_ipc_connector": "Aktifkan Konektor IPC",
+	"ipc_connector_note": "Aktifkan ini jika Anda ingin {{appName}} untuk terhubung ke soket lokal. Hal-hal seperti ektensi {{vscordLink}} membutuhkan metode koneksi ini",
+	"enable_websocket_connector": "Aktifkan Konektor Websocket",
+	"websocket_connector_note": "Aktifkan ini jika Anda ingin {{appName}} menerima koneksi Websocket lokal.",
+	"enable_secondary_events": "Aktifkan peristiwa sekunder",
+	"secondary_events_note": "Aktifkan ini untuk mengizinkan {{appName}} mengatur undangan server yang dibuka dalam peramban. Tidak bekerja dengan arRPC."
+};
+var dorion_profiles$1 = {
+	"title": "Profil-profil",
+	"create_profile": "Buat Profile",
+	"select_profile": "Pilih profile...",
+	"profile_name_placeholder": "Masukkan nama untuk profil baru...",
+	"save_and_restart": "Simpan dan Restart",
+	"delete_profile": "Hapus Profil Terpilih"
+};
+var dorion_changelog$1 = {
+	"title": "Daftar Perubahan",
+	"refresh": "Segarkan",
+	"update_available": "Pembaruan tersedia!",
+	"current_version": "Versi Anda sekarang adalah {{version}}",
+	"update_to": "Perbarui ke {{version}}",
+	"current": "Saat Ini",
+	"latest": "Terbaru",
+	"view_on_github": "Lihat di GitHub"
+};
+var dorion_theme_card$1 = {
+	"install": "Pasang",
+	"installed": "Terpasang",
+	"likes": "{{count}} suka",
+	"downloads": "{{count}} unduhan"
+};
+var dorion_warning_card$1 = {
+	"restart_required": "Restart Dibutuhkan",
+	"restart_message": "Satu atau lebih pengaturan yang telah diubah membuhkan restart untuk berefek.",
+	"restart_now": "Restart Sekarang",
+	"restart_later": "Restart Nanti"
+};
+var id_default = {
 	_lang: _lang$1,
 	common: common$1,
 	dorion_settings: dorion_settings$1,
@@ -439,6 +656,7 @@ var ru_default = {
 //#region plugins/dorion-helpers/i18n.ts
 const languages = {
 	en: en_default,
+	id: id_default,
 	ru: ru_default
 };
 const initializeTranslations = () => {
