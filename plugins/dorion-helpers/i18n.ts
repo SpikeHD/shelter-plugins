@@ -1,4 +1,5 @@
 import en from '../../i18n/en.json' with { type: 'json' }
+import id from '../../i18n/id.json' with { type: 'json' }
 import ru from '../../i18n/ru.json' with { type: 'json' }
 
 // Global window types for translations
