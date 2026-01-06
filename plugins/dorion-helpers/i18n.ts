@@ -16,6 +16,7 @@ const languages: {
   [key: string]: Record<string, unknown>
 } = {
   en,
+  id,
   ru,
 }
 
