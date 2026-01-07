@@ -27,7 +27,7 @@ export interface Config {
   userAlignment: string;
   voiceSemitransparent: boolean;
   messagesSemitransparent: boolean;
-  keybindIsEnabled: boolean;
+  isKeybindEnabled: boolean;
 }
 
 let ws: WebSocket
@@ -41,7 +41,7 @@ export const defaultConfig: Config = {
   userAlignment: 'topleft',
   voiceSemitransparent: true,
   messagesSemitransparent: false,
-  keybindIsEnabled: true,
+  isKeybindEnabled: true,
 }
 
 const waitForPopulate = async (fn) => {

@@ -53,7 +53,7 @@ export const Settings = (props: Props) => {
 
       <SwitchItem
         value={store.isKeybindEnabled}
-        onChange={(v) => set('keybindIsEnabled', v)}
+        onChange={(v) => set('isKeybindEnabled', v)}
       >
         Enable Global Keybind
       </SwitchItem>
