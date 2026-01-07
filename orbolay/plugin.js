@@ -35,10 +35,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dcontainer": "sqVpyW_dcontainer",
+	"dsarrow": "sqVpyW_dsarrow",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"ddown": "sqVpyW_ddown",
-	"dsarrow": "sqVpyW_dsarrow"
+	"dcontainer": "sqVpyW_dcontainer",
+	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -240,7 +240,7 @@ const Settings = (props) => {
 			get value() {
 				return store$1.isKeybindEnabled;
 			},
-			onChange: (v) => set("keybindIsEnabled", v),
+			onChange: (v) => set("isKeybindEnabled", v),
 			children: "Enable Global Keybind"
 		}),
 		(() => {
@@ -374,7 +374,7 @@ const defaultConfig = {
 	userAlignment: "topleft",
 	voiceSemitransparent: true,
 	messagesSemitransparent: false,
-	keybindIsEnabled: true
+	isKeybindEnabled: true
 };
 const waitForPopulate = async (fn) => {
 	while (true) {
