@@ -31,7 +31,6 @@ export interface Config {
 }
 
 let ws: WebSocket
-let retryInterval = null
 let currentChannel = null
 
 export const defaultConfig: Config = {
@@ -240,6 +239,11 @@ const createWebsocket = () => {
     // If the ws is not ready, kill it and log
     if (ws?.readyState !== WebSocket.OPEN) {
       console.log('Orbolay websocket is not ready')
+      showToast({
+        title: 'Orbolay',
+        content: 'Failed to connect to Orbolay server. Make sure Orbolay is opened before refreshing Discord.',
+        duration: 5000,
+      })
       ws = null
       return
     }
@@ -327,13 +331,6 @@ const createWebsocket = () => {
 export const onLoad = () => {
   if (!store) Object.keys(defaultConfig).forEach((key) => store[key] = defaultConfig[key])
 
-  // Start an auto-reconnect loop
-  retryInterval = setInterval(() => {
-    if (ws?.readyState === WebSocket.OPEN) return
-
-    createWebsocket()
-  }, 5000)
-
   createWebsocket()
 
   dispatcher.subscribe('SPEAKING', handleSpeaking)
@@ -347,8 +344,6 @@ export const onUnload = () => {
   dispatcher.unsubscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
   dispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
   dispatcher.unsubscribe('STREAMER_MODE_UPDATE', handleStreamerModeUpdate)
-
-  clearInterval(retryInterval)
 
   // Close websocket
   if (ws?.close) ws?.close()
