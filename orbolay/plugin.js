@@ -35,9 +35,9 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dsarrow": "sqVpyW_dsarrow",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dcontainer": "sqVpyW_dcontainer",
+	"dsarrow": "sqVpyW_dsarrow",
 	"ddown": "sqVpyW_ddown"
 };
 const css$1 = `.sqVpyW_ddown {
@@ -365,7 +365,6 @@ const Settings = (props) => {
 var import_web = __toESM(require_web(), 1);
 const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore, StreamerModeStore } }, plugin: { store }, ui: { showToast } } = shelter;
 let ws;
-let retryInterval = null;
 let currentChannel = null;
 const defaultConfig = {
 	port: 6888,
@@ -510,6 +509,11 @@ const createWebsocket = () => {
 	setTimeout(() => {
 		if (ws?.readyState !== WebSocket.OPEN) {
 			console.log("Orbolay websocket is not ready");
+			showToast({
+				title: "Orbolay",
+				content: "Failed to connect to Orbolay server. Make sure Orbolay is opened before refreshing Discord.",
+				duration: 5e3
+			});
 			ws = null;
 			return;
 		}
@@ -571,10 +575,6 @@ const createWebsocket = () => {
 };
 const onLoad = () => {
 	if (!store) Object.keys(defaultConfig).forEach((key) => store[key] = defaultConfig[key]);
-	retryInterval = setInterval(() => {
-		if (ws?.readyState === WebSocket.OPEN) return;
-		createWebsocket();
-	}, 5e3);
 	createWebsocket();
 	dispatcher.subscribe("SPEAKING", handleSpeaking);
 	dispatcher.subscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
@@ -586,7 +586,6 @@ const onUnload = () => {
 	dispatcher.unsubscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
 	dispatcher.unsubscribe("RPC_NOTIFICATION_CREATE", handleMessageNotification);
 	dispatcher.unsubscribe("STREAMER_MODE_UPDATE", handleStreamerModeUpdate);
-	clearInterval(retryInterval);
 	if (ws?.close) ws?.close();
 };
 const settings = () => (0, import_web.createComponent)(Settings, { ws });
