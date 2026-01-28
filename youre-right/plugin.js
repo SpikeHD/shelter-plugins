@@ -28,23 +28,31 @@ const css = `.CPnQ-q_youreRightItem {
   float: right;
 }
 
-.CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] [class^="contents"] {
+.CPnQ-q_youreRightItem [id^="message-reply-context"] {
+  justify-content: flex-end;
+}
+
+.CPnQ-q_youreRightItem [class^="repliedMessageClickableSpine"] {
+  display: none;
+}
+
+.CPnQ-q_youreRightItem [aria-labelledby^="message-reply-"] [class^="contents"], .CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] [class^="contents"] {
   flex-direction: column;
   display: flex;
 }
 
-.CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] [class^="contents"] h3 {
+.CPnQ-q_youreRightItem [aria-labelledby^="message-reply-"] [class^="contents"] h3, .CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] [class^="contents"] h3 {
   margin-left: auto;
   display: flex;
 }
 
-.CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] img[class^="avatar"] {
+.CPnQ-q_youreRightItem [aria-labelledby^="message-reply-"] img[class^="avatar"], .CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] img[class^="avatar"] {
   right: 0;
   left: unset;
   position: absolute;
 }
 
-.CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] h3 {
+.CPnQ-q_youreRightItem [aria-labelledby^="message-reply-"] h3, .CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] h3 {
   float: right;
 }
 `;
