@@ -23,6 +23,16 @@
     float: right;
   }
 
+  [id^=message-reply-context] {
+    justify-content: flex-end;
+  }
+
+  [class^=repliedMessageClickableSpine] {
+    /* TODO this is annoying */
+    display: none;
+  }
+
+  [aria-labelledby^=message-reply-],
   [aria-labelledby^=message-username-] {
     [class^=contents] {
       display: flex;
