@@ -1,74 +1,47 @@
 .youreRightItem {
-  transform: scaleX(-1);
+  --content-padding-right: 3.25rem !important;
+  --content-padding-left: 4rem !important;
 
-  /* text within the container should be double-flipped */
-  video,
-  h3,
-  [id^=message-content-],
-  [id^=username] {
-    transform: scaleX(-1);
-    text-align: right;
-    margin: 0;
-  }
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
 
-  video {
-    transform: scaleX(1);
-  }
-
-  img {
-    text-align: right;
-    margin: 0;
-  }
-
-  code {
-    text-align: left;
-  }
-
-  img[class^=emoji] {
-    transform: scaleX(1) !important;
-  }
-
-  span[class^=repliedTextPlaceholder] {
-    transform: scaleX(-1);
-  }
+  width: 100%;
+  padding-left: auto !important;
 
   [id^=message-content-] {
-    max-width: 60%;
     text-align: right;
   }
 
-  [class^=nonVisualMediaItemContainer],
-  [class^=imageWrapper],
-  [class^=avatar],
-  [class^=embedWrapper],
-  [class^=reaction_],
-  [class^=buttonsInner] {
-    transform: scaleX(-1);
-  }
-  
-  [class*=timestampVisible] {
-    transform: scaleX(-1);
-    text-align: left !important;
+  [class^=message__] {
+    width: calc(100% - (var(--content-padding-right) + var(--content-padding-left))) !important;
+    padding-right: var(--content-padding-right) !important;
+    padding-left: var(--content-padding-left) !important;
   }
 
-  [id^=message-reply-context-] {
-    // /* revert */
-    // transform: scaleX(-1);
+  [id^=message-accessories] {
+    float: right;
+  }
 
-    /* bring to the right */
-    justify-content: flex-start;
+  [aria-labelledby^=message-username-] {
+    [class^=contents] {
+      display: flex;
+      flex-direction: column;
 
-    [class^=username] {
-      transform: scaleX(-1);
+      h3 {
+        margin-left: auto;
+        display: flex;
+      }
     }
-  }
 
-  img:active {
-    transform: scaleX(-1) translateY(-1px);
-  }
+    img[class^=avatar] {
+      position: absolute;
+      right: 0;
+      left: unset;
+    }
 
-  [role^=textbox] {
-    transform: scaleX(-1);
-    text-align: right;
+    h3 {
+      float: right;
+    }
   }
 }
