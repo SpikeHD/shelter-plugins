@@ -5,65 +5,47 @@
 //#region plugins/youre-right/index.tsx.scss
 const classes = { "youreRightItem": "CPnQ-q_youreRightItem" };
 const css = `.CPnQ-q_youreRightItem {
-  transform: scaleX(-1);
-}
-
-.CPnQ-q_youreRightItem video, .CPnQ-q_youreRightItem h3, .CPnQ-q_youreRightItem [id^="message-content-"], .CPnQ-q_youreRightItem [id^="username"] {
-  text-align: right;
-  margin: 0;
-  transform: scaleX(-1);
-}
-
-.CPnQ-q_youreRightItem video {
-  transform: scaleX(1);
-}
-
-.CPnQ-q_youreRightItem img {
-  text-align: right;
-  margin: 0;
-}
-
-.CPnQ-q_youreRightItem code {
-  text-align: left;
-}
-
-.CPnQ-q_youreRightItem img[class^="emoji"] {
-  transform: scaleX(1) !important;
-}
-
-.CPnQ-q_youreRightItem span[class^="repliedTextPlaceholder"] {
-  transform: scaleX(-1);
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  width: 100%;
+  display: flex;
+  --content-padding-right: 3.25rem !important;
+  --content-padding-left: 4rem !important;
+  padding-left: auto !important;
 }
 
 .CPnQ-q_youreRightItem [id^="message-content-"] {
   text-align: right;
-  max-width: 60%;
 }
 
-.CPnQ-q_youreRightItem [class^="nonVisualMediaItemContainer"], .CPnQ-q_youreRightItem [class^="imageWrapper"], .CPnQ-q_youreRightItem [class^="avatar"], .CPnQ-q_youreRightItem [class^="embedWrapper"], .CPnQ-q_youreRightItem [class^="reaction_"], .CPnQ-q_youreRightItem [class^="buttonsInner"] {
-  transform: scaleX(-1);
+.CPnQ-q_youreRightItem [class^="message__"] {
+  width: calc(100% - (var(--content-padding-right)  + var(--content-padding-left))) !important;
+  padding-right: var(--content-padding-right) !important;
+  padding-left: var(--content-padding-left) !important;
 }
 
-.CPnQ-q_youreRightItem [class*="timestampVisible"] {
-  transform: scaleX(-1);
-  text-align: left !important;
+.CPnQ-q_youreRightItem [id^="message-accessories"] {
+  float: right;
 }
 
-.CPnQ-q_youreRightItem [id^="message-reply-context-"] {
-  justify-content: flex-start;
+.CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] [class^="contents"] {
+  flex-direction: column;
+  display: flex;
 }
 
-.CPnQ-q_youreRightItem [id^="message-reply-context-"] [class^="username"] {
-  transform: scaleX(-1);
+.CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] [class^="contents"] h3 {
+  margin-left: auto;
+  display: flex;
 }
 
-.CPnQ-q_youreRightItem img:active {
-  transform: scaleX(-1)translateY(-1px);
+.CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] img[class^="avatar"] {
+  right: 0;
+  left: unset;
+  position: absolute;
 }
 
-.CPnQ-q_youreRightItem [role^="textbox"] {
-  text-align: right;
-  transform: scaleX(-1);
+.CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] h3 {
+  float: right;
 }
 `;
 
