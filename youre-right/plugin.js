@@ -33,7 +33,10 @@ const css = `.CPnQ-q_youreRightItem {
 }
 
 .CPnQ-q_youreRightItem [class^="repliedMessageClickableSpine"] {
-  display: none;
+  right: -2.25rem;
+  left: unset;
+  width: 1.75rem;
+  transform: scaleX(-1);
 }
 
 .CPnQ-q_youreRightItem [aria-labelledby^="message-reply-"] [class^="contents"], .CPnQ-q_youreRightItem [aria-labelledby^="message-username-"] [class^="contents"] {
