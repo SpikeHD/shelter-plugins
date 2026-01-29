@@ -28,8 +28,10 @@
   }
 
   [class^=repliedMessageClickableSpine] {
-    /* TODO this is annoying */
-    display: none;
+    transform: scaleX(-1);
+    right: -2.25rem;
+    left: unset;
+    width: 1.75rem;
   }
 
   [aria-labelledby^=message-reply-],
