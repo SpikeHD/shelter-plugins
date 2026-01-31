@@ -13,6 +13,25 @@
     text-align: right;
   }
 
+  [class^=blockquoteContainer] {
+    justify-content: flex-end;
+    text-align: left !important;
+  }
+
+  pre:has([class^=codeContainer]) {
+    text-align: left !important;
+    margin-left: auto !important;
+  }
+
+  ol,
+  ul {
+    margin-left: auto !important;
+    list-style-position: outside;
+
+    width: fit-content;
+    text-align: left !important;
+  }
+
   [class^=message__] {
     width: calc(100% - (var(--content-padding-right) + var(--content-padding-left))) !important;
     padding-right: var(--content-padding-right) !important;
