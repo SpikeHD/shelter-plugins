@@ -18,6 +18,23 @@ const css = `.CPnQ-q_youreRightItem {
   text-align: right;
 }
 
+.CPnQ-q_youreRightItem [class^="blockquoteContainer"] {
+  justify-content: flex-end;
+  text-align: left !important;
+}
+
+.CPnQ-q_youreRightItem pre:has([class^="codeContainer"]) {
+  text-align: left !important;
+  margin-left: auto !important;
+}
+
+.CPnQ-q_youreRightItem ol, .CPnQ-q_youreRightItem ul {
+  width: fit-content;
+  list-style-position: outside;
+  text-align: left !important;
+  margin-left: auto !important;
+}
+
 .CPnQ-q_youreRightItem [class^="message__"] {
   width: calc(100% - (var(--content-padding-right)  + var(--content-padding-left))) !important;
   padding-right: var(--content-padding-right) !important;
