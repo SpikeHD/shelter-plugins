@@ -40,8 +40,12 @@ var import_web$2 = __toESM(require_web(), 1);
 var import_web$3 = __toESM(require_web(), 1);
 var import_web$4 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2);
-const { plugin: { store }, ui: { SwitchItem } } = shelter;
+const { plugin: { store }, ui: { SwitchItem, Header, HeaderTags, Text } } = shelter;
 const components = [
+	{
+		name: "User Effects",
+		rules: null
+	},
 	{
 		name: "Nitro usernames",
 		description: "Removes the fancy username effects from users that have them enabled",
@@ -75,6 +79,10 @@ const components = [
     `
 	},
 	{
+		name: "Home Page",
+		rules: null
+	},
+	{
 		name: "Active Now section",
 		description: "Removes the \"Active Now\" section from the home page",
 		rules: `
@@ -103,6 +111,10 @@ const components = [
     `
 	},
 	{
+		name: "Chat Area",
+		rules: null
+	},
+	{
 		name: "Apps button",
 		description: "Removes the Apps button from the text area",
 		rules: `
@@ -127,10 +139,27 @@ const components = [
     `
 	},
 	{
+		name: "Miscellaneous",
+		rules: null
+	},
+	{
 		name: "Quest popout",
 		description: "Removes the Nitro quest popup",
 		rules: `
       div[class*="questPromoContent"] { display: none; }
+    `
+	},
+	{
+		name: "Super Reactions",
+		description: "Removes super reaction effects and styling. The hover effect still happens but the glow and border are removed. The counter stays colored so you know it's a super reaction.",
+		rules: `
+      div[class^=reaction__] {
+      background: var(--background-mod-subtle) !important;
+        border: 1px solid var(--interactive-hover);
+      }
+      div[class^=burstGlow] {
+        display: none !important;
+      }
     `
 	}
 ];
@@ -157,7 +186,7 @@ const settings = () => {
 		const _el$ = (0, import_web$3.getNextElement)(_tmpl$);
 		_el$.style.setProperty("height", "50vh");
 		_el$.style.setProperty("overflow", "auto");
-		(0, import_web$4.insert)(_el$, () => components.map((c) => (0, import_web$1.createComponent)(SwitchItem, {
+		(0, import_web$4.insert)(_el$, () => components.map((c) => c.rules ? (0, import_web$1.createComponent)(SwitchItem, {
 			get value() {
 				return !!store[c.name];
 			},
@@ -170,6 +199,17 @@ const settings = () => {
 			},
 			get children() {
 				return ["Remove ", (0, import_web$2.memo)(() => c.name)];
+			}
+		}) : (0, import_web$1.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H2;
+			},
+			style: {
+				marginTop: "1rem",
+				marginBottom: "0"
+			},
+			get children() {
+				return c.name;
 			}
 		})));
 		return _el$;
