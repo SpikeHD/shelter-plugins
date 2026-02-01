@@ -3,12 +3,19 @@ const {
     store
   },
   ui: {
-    SwitchItem
+    SwitchItem,
+    Header,
+    HeaderTags,
+    Text
   }
 } = shelter
 
 const components = [
   // user effects
+  {
+    name: 'User Effects',
+    rules: null
+  },
   {
     name: 'Nitro usernames',
     description: 'Removes the fancy username effects from users that have them enabled',
@@ -46,6 +53,10 @@ const components = [
 
   // home page
   {
+    name: 'Home Page',
+    rules: null
+  },
+  {
     name: 'Active Now section',
     description: 'Removes the "Active Now" section from the home page',
     rules: `
@@ -76,6 +87,10 @@ const components = [
 
   // chat area
   {
+    name: 'Chat Area',
+    rules: null
+  },
+  {
     name: 'Apps button',
     description: 'Removes the Apps button from the text area',
     rules: `
@@ -102,10 +117,27 @@ const components = [
 
   // misc
   {
+    name: 'Miscellaneous',
+    rules: null
+  },
+  {
     name: 'Quest popout',
     description: 'Removes the Nitro quest popup',
     rules: `
       div[class*="questPromoContent"] { display: none; }
+    `
+  },
+  {
+    name: 'Super Reactions',
+    description: 'Removes super reaction effects and styling. The hover effect still happens but the glow and border are removed. The counter stays colored so you know it\'s a super reaction.',
+    rules: `
+      div[class^=reaction__] {
+      background: var(--background-mod-subtle) !important;
+        border: 1px solid var(--interactive-hover);
+      }
+      div[class^=burstGlow] {
+        display: none !important;
+      }
     `
   }
 ]
@@ -143,16 +175,21 @@ export const settings = () => {
   return (
     <div style={{ height: '50vh', overflow: 'auto' }}>
       {components.map(c => (
-        <SwitchItem
-          value={!!store[c.name]}
-          onChange={value => {
-            store[c.name] = value
-            setStyle()
-          }}
-          note={c.description}
-        >
-        Remove {c.name}
-        </SwitchItem>
+        c.rules ? (
+          <SwitchItem
+            value={!!store[c.name]}
+            onChange={value => {
+              store[c.name] = value
+              setStyle()
+            }}
+            note={c.description}
+          >
+          Remove {c.name}
+          </SwitchItem>
+        ) : (
+          <Header tag={HeaderTags.H2} style={{ marginTop: '1rem', marginBottom: '0' }}>{c.name}</Header>
+        )
+
       ))}
     </div>
   )
