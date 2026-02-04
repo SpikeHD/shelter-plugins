@@ -49,8 +49,6 @@ export function ClientModList(props: Props) {
   ;(async () => {
     setSettingsState(JSON.parse(await invoke('read_config_file')))
     setClientMods(await getClientMods())
-
-    console.log(settings())
   })()
 
   function onClientModToggle(modName: string) {
@@ -59,6 +57,13 @@ export function ClientModList(props: Props) {
     if (newClientMods.includes(modName)) {
       newClientMods.splice(newClientMods.indexOf(modName), 1)
     } else {
+      // vencord and equicord are mutually exclusive
+      if (modName === 'Vencord' && newClientMods.includes('Equicord')) {
+        newClientMods.splice(newClientMods.indexOf('Equicord'), 1)
+      } else if (modName === 'Equicord' && newClientMods.includes('Vencord')) {
+        newClientMods.splice(newClientMods.indexOf('Vencord'), 1)
+      }
+
       newClientMods.push(modName)
     }
 
@@ -79,21 +84,35 @@ export function ClientModList(props: Props) {
   return <>
     {clientMods().length === 0 && (
       <Text class={classes.left16}>
-        Client mods not available. Please update
+        Client mods not available. Please update.
       </Text>
     )}
 
-    {clientMods().map((modName: string) => (
-      <SwitchItem
-        disabled={modName === 'Shelter'}
-        value={settings().client_mods?.includes(modName) || false}
-        onChange={() =>
-          onClientModToggle(modName)
-        }
-        note={modName === 'Shelter' ? 'Shelter is required for Dorion to function properly.' : ''}
-      >
-        Enable {modName}
-      </SwitchItem>
-    ))}
+    {clientMods().map((modName: string) => {
+      const isVencordOrEquicord = modName === 'Vencord' || modName === 'Equicord'
+      const isMutuallyExcluded = isVencordOrEquicord && (
+        (modName === 'Vencord' && settings().client_mods?.includes('Equicord')) ||
+        (modName === 'Equicord' && settings().client_mods?.includes('Vencord'))
+      )
+
+      let note = ''
+
+      if (modName === 'Shelter') {
+        note = 'Shelter is required for Dorion to function properly.'
+      }
+
+      return (
+        <SwitchItem
+          disabled={modName === 'Shelter' || isMutuallyExcluded}
+          value={settings().client_mods?.includes(modName) || false}
+          onChange={() =>
+            onClientModToggle(modName)
+          }
+          note={note}
+        >
+          Enable {modName}
+        </SwitchItem>
+      )
+    })}
   </>
 }
