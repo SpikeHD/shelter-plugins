@@ -35,14 +35,14 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"svgmax": "e6P4KG_svgmax",
-	"topmin": "e6P4KG_topmin",
-	"topmax": "e6P4KG_topmax",
-	"svgunmax": "e6P4KG_svgunmax",
-	"dorion_topbar": "e6P4KG_dorion_topbar",
-	"topright": "e6P4KG_topright",
 	"maximized": "e6P4KG_maximized",
-	"topclose": "e6P4KG_topclose"
+	"topright": "e6P4KG_topright",
+	"topclose": "e6P4KG_topclose",
+	"svgmax": "e6P4KG_svgmax",
+	"dorion_topbar": "e6P4KG_dorion_topbar",
+	"svgunmax": "e6P4KG_svgunmax",
+	"topmax": "e6P4KG_topmax",
+	"topmin": "e6P4KG_topmin"
 };
 const css = `.e6P4KG_dorion_topbar {
   background-color: var(--background-base-lowest);
@@ -282,86 +282,86 @@ const Controls = (props) => {
 //#region plugins/dorion-titlebar/waitElm.ts
 const { util: { log } } = shelter;
 let observer = null;
-function disobserve() {
-	observer.disconnect();
-	observer = null;
-}
-function observeDom(rootElm, callbackFn, subtree) {
-	return new Promise((resolve) => {
-		if (observer) disobserve();
-		observer = new MutationObserver((mutations) => {
-			for (const mutation of mutations) if (mutation.type === "childList") {
-				const addedNodes = Array.from(mutation.addedNodes);
-				for (const node of addedNodes) if (!callbackFn(node, resolve)) return disobserve();
-			}
-		});
-		observer.observe(rootElm, {
-			childList: true,
-			subtree
-		});
-	});
-}
-const subtreeFind = (p, q) => Array.from(p.children).find((c) => q.some((q$1) => c.matches(q$1)));
-const queryFind = (p, query) => {
-	for (let q of query) {
-		const subtree = q[0] === ">";
-		if (subtree) q = q.slice(1);
-		const elm = subtree ? subtreeFind(p, [q]) : p.querySelector(q);
-		if (elm) return elm;
+const pendingRequests = new Set();
+const findInRoot = (root, q) => {
+	const selectors = Array.isArray(q) ? q : [q];
+	for (const selector of selectors) {
+		const isDirect = selector.startsWith(">");
+		const s = isDirect ? selector.slice(1) : selector;
+		const found = isDirect ? Array.from(root.children).find((c) => c.matches(s)) : root.querySelector(s);
+		if (found) return found;
 	}
+	return null;
 };
-const waitForElm = async (queries, cfg) => {
-	let root = cfg.root || document.body;
-	const callbackFn = cfg.callbackFn;
-	let query;
-	let timeout = true;
-	const startTimeout = () => setTimeout(() => {
-		if (timeout) {
-			log([
-				"The observer seems stuck at",
-				root,
-				"looking for",
-				query,
-				"with remaining queries:",
-				queries
-			], "warn");
-			startTimeout();
+const processRequest = (req) => {
+	let currentRoot = req.cfg.root || document.body;
+	if (!currentRoot) return false;
+	let latestFound = null;
+	let stepIndex = 0;
+	for (const q of req.path) {
+		const found = findInRoot(currentRoot, q);
+		if (!found) break;
+		latestFound = found;
+		if (stepIndex > req.lastNotifiedIndex) {
+			req.cfg.callbackFn?.(found);
+			req.lastNotifiedIndex = stepIndex;
 		}
-	}, 1e4);
-	startTimeout();
-	if (!Array.isArray(queries)) queries = [queries];
-	while (queries.length) {
-		const q = queries.shift();
-		query = typeof q === "string" ? [q] : q;
-		const directChild = query.every((q$1) => q$1[0] === ">");
-		if (directChild) query = query.map((q$1) => q$1.slice(1));
-		const elm = directChild ? subtreeFind(root, query) : queryFind(root, query);
-		if (elm) {
-			root = elm;
-			if (callbackFn) callbackFn(root);
-			continue;
-		}
-		root = await observeDom(root, (node, res) => {
-			if (node.nodeType !== Node.ELEMENT_NODE) return true;
-			const e = node;
-			for (let q$1 of query) {
-				if (!directChild) {
-					const s = q$1[0] === ">";
-					if (s) q$1 = q$1.slice(1);
-				}
-				let ret = e.matches(q$1) ? e : null;
-				if (!ret) ret = e.querySelector(q$1);
-				if (ret) {
-					res(e);
-					return false;
-				}
-			}
-			return true;
-		}, !directChild);
-		if (callbackFn) callbackFn(root);
+		currentRoot = found;
+		stepIndex++;
 	}
-	timeout = false;
-	return root;
+	if (stepIndex === req.path.length) {
+		req.resolve(latestFound || currentRoot);
+		return true;
+	}
+	return false;
+};
+const processAll = () => {
+	for (const req of pendingRequests) if (processRequest(req)) pendingRequests.delete(req);
+	if (pendingRequests.size === 0) stopObserver();
+};
+const startObserver = () => {
+	if (observer || !document.body) return;
+	observer = new MutationObserver(processAll);
+	observer.observe(document.body, {
+		childList: true,
+		subtree: true,
+		attributes: true,
+		attributeFilter: ["class", "id"]
+	});
+};
+const stopObserver = () => {
+	observer?.disconnect();
+	observer = null;
+};
+function disobserve() {
+	pendingRequests.clear();
+	stopObserver();
+}
+const waitForElm = async (queries, cfg = {}) => {
+	const path = Array.isArray(queries) && (queries.length === 0 || typeof queries[0] === "string" || Array.isArray(queries[0])) ? queries : [queries];
+	return new Promise((resolve) => {
+		const req = {
+			path,
+			cfg,
+			resolve,
+			lastNotifiedIndex: -1
+		};
+		if (processRequest(req)) return;
+		pendingRequests.add(req);
+		startObserver();
+		const checkLogged = () => {
+			if (pendingRequests.has(req)) {
+				log([
+					"The observer seems stuck looking for:",
+					path,
+					"at root:",
+					cfg.root || document.body
+				], "warn");
+				setTimeout(checkLogged, 1e4);
+			}
+		};
+		setTimeout(checkLogged, 1e4);
+	});
 };
 
 //#endregion
