@@ -29,12 +29,12 @@ const updateNotificationBadge = () => {
   invoke('notification_count', { amount: total })
 }
 
-// @ts-expect-error cry
-GuildReadStateStore.addChangeListener(updateNotificationBadge)
-// @ts-expect-error cry
-RelationshipStore.addChangeListener(updateNotificationBadge)
-
 export const onLoad = () => {
   initializeTranslations()
   updateNotificationBadge()
+
+  // @ts-expect-error cry
+  GuildReadStateStore.addChangeListener(updateNotificationBadge)
+  // @ts-expect-error cry
+  RelationshipStore.addChangeListener(updateNotificationBadge)
 }
