@@ -685,11 +685,11 @@ const updateNotificationBadge = () => {
 	if (!total && unread) invoke("notification_count", { amount: -1 });
 	invoke("notification_count", { amount: total });
 };
-GuildReadStateStore.addChangeListener(updateNotificationBadge);
-RelationshipStore.addChangeListener(updateNotificationBadge);
 const onLoad = () => {
 	initializeTranslations();
 	updateNotificationBadge();
+	GuildReadStateStore.addChangeListener(updateNotificationBadge);
+	RelationshipStore.addChangeListener(updateNotificationBadge);
 };
 
 //#endregion
