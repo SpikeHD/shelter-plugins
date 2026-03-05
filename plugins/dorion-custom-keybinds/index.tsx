@@ -13,8 +13,8 @@ const {
 
 let child: Element = null
 
-const viewedKeybindsCallback = (e) => {
-  if (e.section !== 'Keybinds') {
+const viewedKeybindsCallback = (payload) => {
+  if (payload.section !== 'Keybinds') {
     if (child) {
       child.remove()
       child = null
@@ -23,27 +23,42 @@ const viewedKeybindsCallback = (e) => {
     return
   }
 
-  const unsub = observeDom('#keybinds-tab', () => {
+  const unsub = observeDom('[data-debug-key="keybinds_setting"], [data-debug-key="keybinds_category"]', () => {
     unsub()
 
-    const oldElm = document.querySelector('div[class*="-browserNotice"')
+    if (child?.isConnected) {
+      return
+    }
+
+    const oldElm = document.querySelector('[data-debug-key="keybinds_setting"] [class*="browserNotice"]')
+    if (!oldElm) {
+      return
+    }
+
     const owner = shelter.util.getFiberOwner(oldElm)
     const keybindsArea = oldElm.parentElement
+    if (!owner || !keybindsArea) {
+      return
+    }
 
     // hide browser notice
     // @ts-expect-error this is real
     oldElm.style.display = 'none'
 
+    const keybindsContainer = keybindsArea.parentElement?.parentElement
+    if (!keybindsContainer) {
+      return
+    }
+
     // Find the divider in the keybinds area
-    const divider = keybindsArea.parentElement.parentElement.querySelector('div[class*="-divider"]')
+    const divider = keybindsContainer.querySelector(':scope > div[class*="divider"]')
     if (divider)
       // @ts-expect-error this is real
       divider.style.display = 'none'
 
     // Remove big margin on the default keybinds bit
-    const defaultKeybinds = keybindsArea.parentElement.parentElement.querySelector('div[class*="marginTop"]')
+    const defaultKeybinds = keybindsContainer.querySelector('fieldset')?.parentElement
     if (defaultKeybinds)
-      // @ts-expect-error this is real
       defaultKeybinds.style.marginTop = '0'
 
     child = keybindsArea.appendChild(
@@ -61,8 +76,16 @@ const viewedKeybindsCallback = (e) => {
   })
 }
 
+const trackSettingsViewedCallback = (payload) => {
+  if (payload.event !== 'settings_pane_viewed') return
+
+  viewedKeybindsCallback({
+    section: payload.properties?.destination_pane,
+  })
+}
+
 const subscriptions = [
-  FluxDispatcher.subscribe('USER_SETTINGS_MODAL_SET_SECTION', viewedKeybindsCallback)
+  FluxDispatcher.subscribe('TRACK', trackSettingsViewedCallback)
 ]
 
 register()
