@@ -23,14 +23,13 @@ const viewedKeybindsCallback = (payload) => {
     return
   }
 
-  const unsub = observeDom('[data-debug-key="keybinds_setting"], [data-debug-key="keybinds_category"]', () => {
-    unsub()
-
+  const el = document.querySelector('[data-nav-anchor-key="keybinds_setting"]')
+  if (el) {
     if (child?.isConnected) {
       return
     }
 
-    const browserNotice = document.querySelector('[data-debug-key="keybinds_setting"] [class*="browserNotice"]')
+    const browserNotice = el.querySelector('[class*="browserNotice"]')
     if (!browserNotice) {
       return
     }
@@ -50,12 +49,6 @@ const viewedKeybindsCallback = (payload) => {
       return
     }
 
-    // Find the divider in the keybinds area
-    const divider = keybindsContainer.querySelector(':scope > div[class*="divider"]')
-    if (divider)
-      // @ts-expect-error this is real
-      divider.style.display = 'none'
-
     // Remove big margin on the default keybinds bit
     const defaultKeybinds = keybindsContainer.querySelector('fieldset')?.parentElement
     if (defaultKeybinds)
@@ -73,7 +66,7 @@ const viewedKeybindsCallback = (payload) => {
         />
       </ReactiveRoot>
     )
-  })
+  }
 }
 
 const trackSettingsViewedCallback = (payload) => {

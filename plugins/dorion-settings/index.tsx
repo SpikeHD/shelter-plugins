@@ -41,7 +41,7 @@ let settingsUninjects = []
 
 const appendAppVersion = async () => {
   let tries = 0
-  const infoBoxSelector = 'div[class*="side_"] div[class*="info_"]'
+  const infoBoxSelector = 'div[class*="sidebar_"] div[class*="compactInfo_"]'
   const hash = await invoke('git_hash').catch((e) => console.error(e)) || ''
 
   // Wait for infoBox to exist
