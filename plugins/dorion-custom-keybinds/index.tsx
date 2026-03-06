@@ -30,20 +30,20 @@ const viewedKeybindsCallback = (payload) => {
       return
     }
 
-    const oldElm = document.querySelector('[data-debug-key="keybinds_setting"] [class*="browserNotice"]')
-    if (!oldElm) {
+    const browserNotice = document.querySelector('[data-debug-key="keybinds_setting"] [class*="browserNotice"]')
+    if (!browserNotice) {
       return
     }
 
-    const owner = shelter.util.getFiberOwner(oldElm)
-    const keybindsArea = oldElm.parentElement
+    const owner = shelter.util.getFiberOwner(browserNotice)
+    const keybindsArea = browserNotice.parentElement
     if (!owner || !keybindsArea) {
       return
     }
 
     // hide browser notice
     // @ts-expect-error this is real
-    oldElm.style.display = 'none'
+    browserNotice.style.display = 'none'
 
     const keybindsContainer = keybindsArea.parentElement?.parentElement
     if (!keybindsContainer) {
