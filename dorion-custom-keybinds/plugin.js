@@ -154,14 +154,14 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"header": "Zz-Z3G_header",
 	"keybindSection": "Zz-Z3G_keybindSection",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner",
-	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"header": "Zz-Z3G_header"
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
+	"keybindsHeader": "Zz-Z3G_keybindsHeader",
+	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -230,12 +230,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
-	"actionSection": "QTLdLq_actionSection",
-	"removeButton": "QTLdLq_removeButton",
-	"keybindArea": "QTLdLq_keybindArea",
-	"note": "QTLdLq_note",
+	"keybindSection": "QTLdLq_keybindSection",
 	"keybindRoot": "QTLdLq_keybindRoot",
-	"keybindSection": "QTLdLq_keybindSection"
+	"actionSection": "QTLdLq_actionSection",
+	"note": "QTLdLq_note",
+	"removeButton": "QTLdLq_removeButton",
+	"keybindArea": "QTLdLq_keybindArea"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -292,10 +292,10 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
+	"dsarrow": "sqVpyW_dsarrow",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"ddown": "sqVpyW_ddown",
-	"dcontainer": "sqVpyW_dcontainer",
-	"dsarrow": "sqVpyW_dsarrow"
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -435,11 +435,11 @@ const Dropdown = (props) => {
 //#region components/KeybindInput.tsx.scss
 const classes = {
 	"keybindContainer": "N-HDcq_keybindContainer",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"keybindButton": "N-HDcq_keybindButton",
 	"recording": "N-HDcq_recording",
 	"pulse": "N-HDcq_pulse",
 	"keybindInput": "N-HDcq_keybindInput",
-	"keybindButton": "N-HDcq_keybindButton"
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
@@ -1124,7 +1124,7 @@ const unregister = () => {
 //#endregion
 //#region plugins/dorion-custom-keybinds/index.tsx
 var import_web = __toESM(require_web());
-const { flux: { dispatcher: FluxDispatcher }, observeDom, ui: { ReactiveRoot } } = shelter;
+const { flux: { dispatcher: FluxDispatcher }, ui: { ReactiveRoot } } = shelter;
 let child = null;
 const viewedKeybindsCallback = (payload) => {
 	if (payload.section !== "Keybinds") {
@@ -1134,10 +1134,10 @@ const viewedKeybindsCallback = (payload) => {
 		}
 		return;
 	}
-	const unsub = observeDom("[data-debug-key=\"keybinds_setting\"], [data-debug-key=\"keybinds_category\"]", () => {
-		unsub();
+	const el = document.querySelector("[data-nav-anchor-key=\"keybinds_setting\"]");
+	if (el) {
 		if (child?.isConnected) return;
-		const browserNotice = document.querySelector("[data-debug-key=\"keybinds_setting\"] [class*=\"browserNotice\"]");
+		const browserNotice = el.querySelector("[class*=\"browserNotice\"]");
 		if (!browserNotice) return;
 		const owner = shelter.util.getFiberOwner(browserNotice);
 		const keybindsArea = browserNotice.parentElement;
@@ -1145,8 +1145,6 @@ const viewedKeybindsCallback = (payload) => {
 		browserNotice.style.display = "none";
 		const keybindsContainer = keybindsArea.parentElement?.parentElement;
 		if (!keybindsContainer) return;
-		const divider = keybindsContainer.querySelector(":scope > div[class*=\"divider\"]");
-		if (divider) divider.style.display = "none";
 		const defaultKeybinds = keybindsContainer.querySelector("fieldset")?.parentElement;
 		if (defaultKeybinds) defaultKeybinds.style.marginTop = "0";
 		child = keybindsArea.appendChild((0, import_web.createComponent)(ReactiveRoot, { get children() {
@@ -1159,7 +1157,7 @@ const viewedKeybindsCallback = (payload) => {
 				}
 			});
 		} }));
-	});
+	}
 };
 const trackSettingsViewedCallback = (payload) => {
 	if (payload.event !== "settings_pane_viewed") return;
