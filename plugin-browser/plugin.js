@@ -670,11 +670,11 @@ else {
 //#endregion
 //#region plugins/plugin-browser/components/Plugins.scss
 const classes$1 = {
-	"pluginList": "L-W60G_pluginList",
 	"subtitle": "L-W60G_subtitle",
 	"split": "L-W60G_split",
-	"loading": "L-W60G_loading",
-	"repoHeader": "L-W60G_repoHeader"
+	"repoHeader": "L-W60G_repoHeader",
+	"pluginList": "L-W60G_pluginList",
+	"loading": "L-W60G_loading"
 };
 const css$1 = `.L-W60G_subtitle {
   margin-top: 12px;
@@ -728,9 +728,9 @@ async function getAllPlugins() {
 //#endregion
 //#region plugins/plugin-browser/components/PluginCard.scss
 const classes = {
+	"buttonContainer": "THQemG_buttonContainer",
 	"contents": "THQemG_contents",
 	"pluginCard": "THQemG_pluginCard",
-	"buttonContainer": "THQemG_buttonContainer",
 	"installButton": "THQemG_installButton"
 };
 const css = `.THQemG_pluginCard {

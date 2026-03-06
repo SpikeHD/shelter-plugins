@@ -155,13 +155,13 @@ function t(key, replace) {
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
 	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindSection": "Zz-Z3G_keybindSection",
-	"header": "Zz-Z3G_header",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner"
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"header": "Zz-Z3G_header"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -230,12 +230,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
+	"actionSection": "QTLdLq_actionSection",
 	"removeButton": "QTLdLq_removeButton",
 	"keybindArea": "QTLdLq_keybindArea",
 	"note": "QTLdLq_note",
-	"keybindSection": "QTLdLq_keybindSection",
 	"keybindRoot": "QTLdLq_keybindRoot",
-	"actionSection": "QTLdLq_actionSection"
+	"keybindSection": "QTLdLq_keybindSection"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -294,8 +294,8 @@ const css$2 = `.QTLdLq_keybindRoot {
 const classes$1 = {
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"ddown": "sqVpyW_ddown",
-	"dsarrow": "sqVpyW_dsarrow",
-	"dcontainer": "sqVpyW_dcontainer"
+	"dcontainer": "sqVpyW_dcontainer",
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -434,12 +434,12 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"recording": "N-HDcq_recording",
-	"keybindButton": "N-HDcq_keybindButton",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindContainer": "N-HDcq_keybindContainer",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"recording": "N-HDcq_recording",
 	"pulse": "N-HDcq_pulse",
-	"keybindInput": "N-HDcq_keybindInput"
+	"keybindInput": "N-HDcq_keybindInput",
+	"keybindButton": "N-HDcq_keybindButton"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
@@ -742,22 +742,22 @@ function Keybinds(props) {
 		injectedCss = true;
 		injectCss(css$3);
 	}
-	const [keybindsEnabled, setKeybindsEnabled] = createSignal(false);
+	const [keybindsEnabled$1, setKeybindsEnabled] = createSignal(false);
 	const [keybindEnabledChanged, setKeybindEnabledChanged] = createSignal(false);
 	const [keybindSections, setKeybindSections] = createSignal([]);
 	createEffect(async () => {
-		const keybinds = await invoke("get_keybinds");
+		const keybinds$1 = await invoke("get_keybinds");
 		const config = await invoke("get_config");
-		const sections = Object.keys(keybinds).map((key) => ({
+		const sections = Object.keys(keybinds$1).map((key) => ({
 			key,
-			keys: keybinds[key]
+			keys: keybinds$1[key]
 		}));
 		setKeybindSections(sections);
 		setKeybindsEnabled(config.keybinds_enabled ?? false);
 	}, []);
-	const updateKeybinds = (keybinds) => {
-		setKeybindSections(keybinds);
-		event.emit("keybinds_changed", keybinds);
+	const updateKeybinds = (keybinds$1) => {
+		setKeybindSections(keybinds$1);
+		event.emit("keybinds_changed", keybinds$1);
 	};
 	return (() => {
 		const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$7 = _el$.firstChild, [_el$8, _co$2] = (0, import_web$5.getNextMarker)(_el$7.nextSibling), _el$2 = _el$8.nextSibling, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, [_el$5, _co$] = (0, import_web$5.getNextMarker)(_el$4.nextSibling), _el$6 = _el$2.nextSibling, _el$9 = _el$6.nextSibling, [_el$0, _co$3] = (0, import_web$5.getNextMarker)(_el$9.nextSibling);
@@ -805,7 +805,7 @@ function Keybinds(props) {
 		}), _el$5, _co$);
 		(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(SwitchItem, {
 			get value() {
-				return keybindsEnabled();
+				return keybindsEnabled$1();
 			},
 			onChange: async (value) => {
 				setKeybindsEnabled(value);
@@ -876,12 +876,13 @@ const keybindActions = {
 		type: "AUDIO_TOGGLE_SELF_MUTE",
 		context: "default",
 		syncRemote: true,
-		skipMuteUnmuteSoundEffect: false
+		playSoundEffect: true
 	}] },
 	"TOGGLE_DEAFEN": { press: [{
 		type: "AUDIO_TOGGLE_SELF_DEAF",
 		context: "default",
-		syncRemote: true
+		syncRemote: true,
+		playSoundEffect: true
 	}] },
 	"TOGGLE_STREAMER_MODE": {
 		storeValue: {
@@ -996,39 +997,128 @@ const keybindActions = {
 //#endregion
 //#region plugins/dorion-custom-keybinds/util/events.ts
 const { flux: { dispatcher: FluxDispatcher$1 } } = shelter;
-const events = [];
+const unsubs = [];
+const activeActions = new Set();
+const pressedCodes = new Set();
+const pressedNames = new Set();
+let keybindsEnabled = false;
+let keybinds = {};
+const normalizeName = (name) => {
+	if (name.length === 1) return name.toUpperCase();
+	return name;
+};
+const isCodePressed = (code) => {
+	if (pressedCodes.has(code)) return true;
+	if (code === "Control") return [...pressedCodes].some((k) => k.startsWith("Control"));
+	if (code === "Shift") return [...pressedCodes].some((k) => k.startsWith("Shift"));
+	if (code === "Alt") return [...pressedCodes].some((k) => k.startsWith("Alt"));
+	if (code === "Meta") return [...pressedCodes].some((k) => k.startsWith("Meta"));
+	return false;
+};
+const keybindMatches = (bind) => {
+	if (!bind || bind.length === 0) return false;
+	if (pressedCodes.size !== bind.length) return false;
+	return bind.every((part) => {
+		if (part.code && isCodePressed(part.code)) return true;
+		if (part.name && pressedNames.has(normalizeName(part.name))) return true;
+		return false;
+	});
+};
+const dispatchActionEvents = (key, eventType) => {
+	const action = keybindActions?.[key];
+	const events = action?.[eventType];
+	if (!action || !events) return;
+	for (const baseEvent of events) {
+		let evt = baseEvent;
+		if (action.storeValue) {
+			const { store, modify } = action.storeValue;
+			const storeInstance = shelter.flux.stores[store];
+			evt = modify(evt, storeInstance);
+		}
+		FluxDispatcher$1.dispatch(evt);
+	}
+};
+const releaseActiveActions = () => {
+	for (const action of activeActions) dispatchActionEvents(action, "release");
+	activeActions.clear();
+};
+const keydownListener = (e) => {
+	pressedCodes.add(e.code);
+	pressedNames.add(normalizeName(e.key));
+	if (!keybindsEnabled || e.repeat) return;
+	for (const [action, bind] of Object.entries(keybinds)) {
+		if (action === "UNASSIGNED" || activeActions.has(action)) continue;
+		if (!keybindMatches(bind)) continue;
+		activeActions.add(action);
+		dispatchActionEvents(action, "press");
+	}
+};
+const keyupListener = (e) => {
+	pressedCodes.delete(e.code);
+	pressedNames.delete(normalizeName(e.key));
+	if (!keybindsEnabled || activeActions.size === 0) return;
+	for (const action of [...activeActions]) {
+		const bind = keybinds[action];
+		if (bind && keybindMatches(bind)) continue;
+		activeActions.delete(action);
+		dispatchActionEvents(action, "release");
+	}
+};
+const blurListener = () => {
+	pressedCodes.clear();
+	pressedNames.clear();
+	releaseActiveActions();
+};
+const applyKeybindsPayload = (payload) => {
+	if (Array.isArray(payload)) {
+		keybinds = payload.reduce((acc, bind) => {
+			if (bind.key !== "UNASSIGNED") acc[bind.key] = bind.keys;
+			return acc;
+		}, {});
+		return;
+	}
+	keybinds = payload || {};
+};
+const syncKeybinds = async () => {
+	const [binds, config] = await Promise.all([invoke("get_keybinds"), invoke("get_config")]);
+	applyKeybindsPayload(binds);
+	keybindsEnabled = config?.keybinds_enabled ?? false;
+};
 const register = () => {
-	events.push(event.listen("keybind_pressed", (e) => {
-		const key = e.payload;
-		const action = keybindActions?.[key];
-		if (!action || !action.press) return;
-		for (const press of action.press) {
-			let e$1 = press;
-			if (action.storeValue) {
-				const { store, modify } = action.storeValue;
-				const storeInstance = shelter.flux.stores[store];
-				e$1 = modify(e$1, storeInstance);
-			}
-			FluxDispatcher$1.dispatch(e$1);
-		}
+	syncKeybinds();
+	window.addEventListener("keydown", keydownListener);
+	window.addEventListener("keyup", keyupListener);
+	window.addEventListener("blur", blurListener);
+	unsubs.push(event.listen("keybinds_changed", (e) => {
+		const updated = e.payload || [];
+		applyKeybindsPayload(updated);
+		releaseActiveActions();
 	}));
-	events.push(event.listen("keybind_released", (e) => {
+	unsubs.push(event.listen("keybind_pressed", (e) => {
+		if (document.hasFocus()) return;
 		const key = e.payload;
-		const action = keybindActions?.[key];
-		if (!action || !action.release) return;
-		for (const release of action.release) {
-			let e$1 = release;
-			if (action.storeValue) {
-				const { store, modify } = action.storeValue;
-				const storeInstance = shelter.flux.stores[store];
-				e$1 = modify(e$1, storeInstance);
-			}
-			FluxDispatcher$1.dispatch(release);
-		}
+		dispatchActionEvents(key, "press");
+	}));
+	unsubs.push(event.listen("keybind_released", (e) => {
+		if (document.hasFocus()) return;
+		const key = e.payload;
+		dispatchActionEvents(key, "release");
 	}));
 };
 const unregister = () => {
-	events.forEach((e) => e());
+	window.removeEventListener("keydown", keydownListener);
+	window.removeEventListener("keyup", keyupListener);
+	window.removeEventListener("blur", blurListener);
+	releaseActiveActions();
+	unsubs.forEach((entry) => {
+		if (typeof entry === "function") {
+			entry();
+			return;
+		}
+		entry?.then?.((unlisten) => {
+			if (typeof unlisten === "function") unlisten();
+		});
+	});
 };
 
 //#endregion
@@ -1036,23 +1126,28 @@ const unregister = () => {
 var import_web = __toESM(require_web());
 const { flux: { dispatcher: FluxDispatcher }, observeDom, ui: { ReactiveRoot } } = shelter;
 let child = null;
-const viewedKeybindsCallback = (e) => {
-	if (e.section !== "Keybinds") {
+const viewedKeybindsCallback = (payload) => {
+	if (payload.section !== "Keybinds") {
 		if (child) {
 			child.remove();
 			child = null;
 		}
 		return;
 	}
-	const unsub = observeDom("#keybinds-tab", () => {
+	const unsub = observeDom("[data-debug-key=\"keybinds_setting\"], [data-debug-key=\"keybinds_category\"]", () => {
 		unsub();
-		const oldElm = document.querySelector("div[class*=\"-browserNotice\"");
-		const owner = shelter.util.getFiberOwner(oldElm);
-		const keybindsArea = oldElm.parentElement;
-		oldElm.style.display = "none";
-		const divider = keybindsArea.parentElement.parentElement.querySelector("div[class*=\"-divider\"]");
+		if (child?.isConnected) return;
+		const browserNotice = document.querySelector("[data-debug-key=\"keybinds_setting\"] [class*=\"browserNotice\"]");
+		if (!browserNotice) return;
+		const owner = shelter.util.getFiberOwner(browserNotice);
+		const keybindsArea = browserNotice.parentElement;
+		if (!owner || !keybindsArea) return;
+		browserNotice.style.display = "none";
+		const keybindsContainer = keybindsArea.parentElement?.parentElement;
+		if (!keybindsContainer) return;
+		const divider = keybindsContainer.querySelector(":scope > div[class*=\"divider\"]");
 		if (divider) divider.style.display = "none";
-		const defaultKeybinds = keybindsArea.parentElement.parentElement.querySelector("div[class*=\"marginTop\"]");
+		const defaultKeybinds = keybindsContainer.querySelector("fieldset")?.parentElement;
 		if (defaultKeybinds) defaultKeybinds.style.marginTop = "0";
 		child = keybindsArea.appendChild((0, import_web.createComponent)(ReactiveRoot, { get children() {
 			return (0, import_web.createComponent)(Keybinds, {
@@ -1066,7 +1161,11 @@ const viewedKeybindsCallback = (e) => {
 		} }));
 	});
 };
-const subscriptions = [FluxDispatcher.subscribe("USER_SETTINGS_MODAL_SET_SECTION", viewedKeybindsCallback)];
+const trackSettingsViewedCallback = (payload) => {
+	if (payload.event !== "settings_pane_viewed") return;
+	viewedKeybindsCallback({ section: payload.properties?.destination_pane });
+};
+const subscriptions = [FluxDispatcher.subscribe("TRACK", trackSettingsViewedCallback)];
 register();
 const onUnload = () => {
 	for (const unsub of subscriptions) unsub();
