@@ -5,7 +5,6 @@ const {
   flux: {
     dispatcher: FluxDispatcher,
   },
-  observeDom,
   ui: {
     ReactiveRoot
   }
