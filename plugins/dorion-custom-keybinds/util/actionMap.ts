@@ -11,14 +11,15 @@ export const keybindActions: KeybindActionsInternal = {
       type: 'AUDIO_TOGGLE_SELF_MUTE',
       context: 'default',
       syncRemote: true,
-      skipMuteUnmuteSoundEffect: false
+      playSoundEffect: true
     }]
   },
   'TOGGLE_DEAFEN': {
     press: [{
       type: 'AUDIO_TOGGLE_SELF_DEAF',
       context: 'default',
-      syncRemote: true
+      syncRemote: true,
+      playSoundEffect: true
     }]
   },
   'TOGGLE_STREAMER_MODE': {
