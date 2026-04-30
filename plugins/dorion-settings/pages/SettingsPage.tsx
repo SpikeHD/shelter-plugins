@@ -57,7 +57,7 @@ export function SettingsPage() {
         <WarningCard />
       )}
 
-      <Header class={classes.shead}>{t('dorion_settings.client_type')}</Header>
+      <Header class={classes.shead}>{t('dorion_settings.client_type')} test</Header>
       <RadioGroup
         options={[
           {
@@ -89,27 +89,35 @@ export function SettingsPage() {
 
       <Header class={classes.shead}>{t('dorion_settings.window')}</Header>
       <Header tag={HeaderTags.H4} style="" class={classes.ohead}>{t('dorion_settings.zoom_level')}</Header>
-      <Slider
-        min={50}
-        max={125}
-        steps={
-          Array.from(Array(16).keys()).map(i => (i * 5 + 50) + '%')
-        }
-        step={5}
-        value={parseFloat(settings().zoom) * 100}
-        onInput={(v) => {
-          setSettings(p => {
-            return {
-              ...p,
-              zoom: (parseFloat(v) / 100).toString(),
-            }
-          })
+      <div class={classes.zoomContainer}>
+        <Slider
+          min={50}
+          max={125}
+          steps={
+            Array.from(Array(16).keys()).map(i => (i * 5 + 50) + '%')
+          }
+          step={5}
+          value={parseFloat(settings().zoom) * 100}
+          onInput={(v) => {
+            setSettings(p => {
+              return {
+                ...p,
+                zoom: (parseFloat(v) / 100).toString(),
+              }
+            })
 
-          invoke('window_zoom_level', {
-            value: parseFloat(v) / 100,
-          })
-        }}
-      />
+            invoke('window_zoom_level', {
+              value: parseFloat(v) / 100,
+            })
+          }}
+        />
+        <div class={classes.zoomTicks}>
+          <div class={classes.tick} style="left: 0%"><span>50%</span></div>
+          <div class={classes.tick} style="left: 33.33%"><span>75%</span></div>
+          <div class={classes.tick} style="left: 66.67%"><span>100%</span></div>
+          <div class={classes.tick} style="left: 100%"><span>125%</span></div>
+        </div>
+      </div>
       <SwitchItem
         value={settings().sys_tray}
         onChange={(v) => {
