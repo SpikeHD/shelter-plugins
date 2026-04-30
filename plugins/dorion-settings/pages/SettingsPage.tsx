@@ -57,7 +57,7 @@ export function SettingsPage() {
         <WarningCard />
       )}
 
-      <Header class={classes.shead}>{t('dorion_settings.client_type')} test</Header>
+      <Header class={classes.shead}>{t('dorion_settings.client_type')}</Header>
       <RadioGroup
         options={[
           {
