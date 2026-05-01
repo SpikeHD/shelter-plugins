@@ -35,8 +35,8 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/invisible-typing/index.scss
 const classes = {
-	"invisContainer": "KIS_7q_invisContainer",
-	"notShowing": "KIS_7q_notShowing"
+	"notShowing": "KIS_7q_notShowing",
+	"invisContainer": "KIS_7q_invisContainer"
 };
 const css = `.KIS_7q_invisContainer {
   width: var(--space-32);

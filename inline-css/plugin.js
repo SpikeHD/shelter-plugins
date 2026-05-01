@@ -40,7 +40,7 @@ var require_solid_js = __commonJS({ "solid-js"(exports, module) {
 
 //#endregion
 //#region node_modules/.pnpm/@srsholmes+solid-code-input@0.0.18_@types+highlight.js@9.12.2_@types+prismjs@1.26.0_solid-js@1.8.7/node_modules/@srsholmes/solid-code-input/dist/esm/index.js
-var import_web$22 = __toESM(require_web());
+var import_web$23 = __toESM(require_web());
 var import_solid_js = __toESM(require_solid_js());
 function handleTabKey(event, input_element, code) {
 	event.preventDefault();
@@ -131,7 +131,7 @@ var styles = {
 	"resize-vertical": "styles-module_resize-vertical__eZhdp"
 };
 styleInject(css_248z);
-const _tmpl$$4 = /*#__PURE__*/ (0, import_web$22.template)(`<div style="padding: 1rem; box-sizing: border-box;"><div><textarea></textarea><pre><div class="code-highlighted"></div></pre></div></div>`, 10);
+const _tmpl$$4 = /*#__PURE__*/ (0, import_web$23.template)(`<div style="padding: 1rem; box-sizing: border-box;"><div><textarea></textarea><pre><div class="code-highlighted"></div></pre></div></div>`, 10);
 const CodeInput = (props) => {
 	const merged = (0, import_solid_js.mergeProps)({ autoHeight: true }, props);
 	const language = () => merged.language || "typescript";
@@ -229,27 +229,27 @@ else if (merged.highlightjs) {
 	return (() => {
 		const _el$ = _tmpl$$4.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, _el$5 = _el$4.firstChild;
 		const _ref$ = outerElement;
-		typeof _ref$ === "function" ? (0, import_web$22.use)(_ref$, _el$) : outerElement = _el$;
+		typeof _ref$ === "function" ? (0, import_web$23.use)(_ref$, _el$) : outerElement = _el$;
 		const _ref$2 = wrapperElement;
-		typeof _ref$2 === "function" ? (0, import_web$22.use)(_ref$2, _el$2) : wrapperElement = _el$2;
+		typeof _ref$2 === "function" ? (0, import_web$23.use)(_ref$2, _el$2) : wrapperElement = _el$2;
 		_el$2.$$mouseup = handleMouseUp;
 		_el$2.$$mousedown = handleMouseDown;
 		const _ref$3 = textAreaElement;
-		typeof _ref$3 === "function" ? (0, import_web$22.use)(_ref$3, _el$3) : textAreaElement = _el$3;
+		typeof _ref$3 === "function" ? (0, import_web$23.use)(_ref$3, _el$3) : textAreaElement = _el$3;
 		_el$3.addEventListener("scroll", syncScroll);
 		_el$3.$$input = handleInput;
 		_el$3.$$keydown = handleKeyDown;
-		(0, import_web$22.setAttribute)(_el$3, "spellcheck", false);
+		(0, import_web$23.setAttribute)(_el$3, "spellcheck", false);
 		const _ref$4 = preElement;
-		typeof _ref$4 === "function" ? (0, import_web$22.use)(_ref$4, _el$4) : preElement = _el$4;
-		(0, import_web$22.setAttribute)(_el$4, "aria-hidden", true);
-		(0, import_web$22.effect)((_p$) => {
+		typeof _ref$4 === "function" ? (0, import_web$23.use)(_ref$4, _el$4) : preElement = _el$4;
+		(0, import_web$23.setAttribute)(_el$4, "aria-hidden", true);
+		(0, import_web$23.effect)((_p$) => {
 			const _v$ = styles["outer-wrapper"], _v$2 = styles.wrap, _v$3 = `${merged.resize ? styles[`resize-${merged.resize}`] : ""}`, _v$4 = merged.placeholder || "Type code here...", _v$5 = `language-${language()}`, _v$6 = codeTokens();
-			_v$ !== _p$._v$ && (0, import_web$22.className)(_el$, _p$._v$ = _v$);
-			_v$2 !== _p$._v$2 && (0, import_web$22.className)(_el$2, _p$._v$2 = _v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$22.className)(_el$3, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$22.setAttribute)(_el$3, "placeholder", _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$22.className)(_el$4, _p$._v$5 = _v$5);
+			_v$ !== _p$._v$ && (0, import_web$23.className)(_el$, _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$23.className)(_el$2, _p$._v$2 = _v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$23.className)(_el$3, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$23.setAttribute)(_el$3, "placeholder", _p$._v$4 = _v$4);
+			_v$5 !== _p$._v$5 && (0, import_web$23.className)(_el$4, _p$._v$5 = _v$5);
 			_v$6 !== _p$._v$6 && (_el$5.innerHTML = _p$._v$6 = _v$6);
 			return _p$;
 		}, {
@@ -260,11 +260,11 @@ else if (merged.highlightjs) {
 			_v$5: undefined,
 			_v$6: undefined
 		});
-		(0, import_web$22.effect)(() => _el$3.value = value());
+		(0, import_web$23.effect)(() => _el$3.value = value());
 		return _el$;
 	})();
 };
-(0, import_web$22.delegateEvents)([
+(0, import_web$23.delegateEvents)([
 	"mousedown",
 	"mouseup",
 	"keydown",
@@ -2798,20 +2798,37 @@ function css$2(hljs) {
 //#endregion
 //#region plugins/inline-css/components/Editor.scss
 const classes$1 = {
-	"controls": "alHKPa_controls",
 	"ceditor": "alHKPa_ceditor",
+	"controls": "alHKPa_controls",
 	"popout": "alHKPa_popout"
 };
 const css$1 = `.alHKPa_ceditor {
   background: var(--background-base-lowest);
   border-radius: 5px;
-  margin-top: 28px;
   padding: 12px;
   height: 80vh !important;
 }
 
+.alHKPa_ceditor[data-popout="true"] {
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  margin-top: 0;
+  margin-bottom: 12px;
+  display: flex;
+  height: auto !important;
+}
+
 .alHKPa_ceditor > div {
   height: 100% !important;
+}
+
+.alHKPa_ceditor[data-popout="true"] > div {
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  height: auto !important;
 }
 
 .alHKPa_controls {
@@ -2824,6 +2841,11 @@ const css$1 = `.alHKPa_ceditor {
 
 .alHKPa_controls button {
   width: 30%;
+}
+
+.alHKPa_ceditor[data-popout="true"] .alHKPa_controls {
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .alHKPa_popout {
@@ -2867,9 +2889,24 @@ const css$1 = `.alHKPa_ceditor {
   width: 8px;
 }
 
+.alHKPa_ceditor[data-popout="true"] textarea {
+  flex: 1;
+  min-height: 100%;
+  overflow-y: auto;
+  height: auto !important;
+}
+
 .alHKPa_ceditor div[class*="styles-"] {
   width: 100% !important;
   height: 100% !important;
+}
+
+.alHKPa_ceditor[data-popout="true"] div[class*="styles-"] {
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  height: auto !important;
 }
 `;
 
@@ -2887,21 +2924,21 @@ const debounce = (fn, delay) => {
 
 //#endregion
 //#region plugins/inline-css/components/Popout.tsx
-var import_web$20 = __toESM(require_web(), 1);
 var import_web$21 = __toESM(require_web(), 1);
-const _tmpl$$3 = /*#__PURE__*/ (0, import_web$20.template)(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 85 35.661 c -2.762 0 -5 -2.239 -5 -5 V 10 H 59.339 c -2.762 0 -5 -2.239 -5 -5 s 2.238 -5 5 -5 H 85 c 2.762 0 5 2.239 5 5 v 25.661 C 90 33.422 87.762 35.661 85 35.661 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 33.678 61.322 c -1.28 0 -2.559 -0.488 -3.536 -1.465 c -1.953 -1.952 -1.953 -5.118 0 -7.07 L 81.465 1.464 c 1.951 -1.952 5.119 -1.952 7.07 0 c 1.953 1.953 1.953 5.119 0 7.071 L 37.214 59.857 C 36.237 60.834 34.958 61.322 33.678 61.322 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 74.394 90 H 15.606 C 7.001 90 0 82.999 0 74.394 V 15.606 C 0 7.001 7.001 0 15.606 0 h 18.072 c 2.761 0 5 2.239 5 5 s -2.239 5 -5 5 H 15.606 C 12.515 10 10 12.515 10 15.606 v 58.787 C 10 77.485 12.515 80 15.606 80 h 58.787 C 77.485 80 80 77.485 80 74.394 V 56.322 c 0 -2.762 2.238 -5 5 -5 s 5 2.238 5 5 v 18.071 C 90 82.999 82.999 90 74.394 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>`, 12);
-const Popout = () => (0, import_web$21.getNextElement)(_tmpl$$3);
+var import_web$22 = __toESM(require_web(), 1);
+const _tmpl$$3 = /*#__PURE__*/ (0, import_web$21.template)(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 85 35.661 c -2.762 0 -5 -2.239 -5 -5 V 10 H 59.339 c -2.762 0 -5 -2.239 -5 -5 s 2.238 -5 5 -5 H 85 c 2.762 0 5 2.239 5 5 v 25.661 C 90 33.422 87.762 35.661 85 35.661 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 33.678 61.322 c -1.28 0 -2.559 -0.488 -3.536 -1.465 c -1.953 -1.952 -1.953 -5.118 0 -7.07 L 81.465 1.464 c 1.951 -1.952 5.119 -1.952 7.07 0 c 1.953 1.953 1.953 5.119 0 7.071 L 37.214 59.857 C 36.237 60.834 34.958 61.322 33.678 61.322 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 74.394 90 H 15.606 C 7.001 90 0 82.999 0 74.394 V 15.606 C 0 7.001 7.001 0 15.606 0 h 18.072 c 2.761 0 5 2.239 5 5 s -2.239 5 -5 5 H 15.606 C 12.515 10 10 12.515 10 15.606 v 58.787 C 10 77.485 12.515 80 15.606 80 h 58.787 C 77.485 80 80 77.485 80 74.394 V 56.322 c 0 -2.762 2.238 -5 5 -5 s 5 2.238 5 5 v 18.071 C 90 82.999 82.999 90 74.394 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>`, 12);
+const Popout = () => (0, import_web$22.getNextElement)(_tmpl$$3);
 
 //#endregion
 //#region plugins/inline-css/components/Window.scss
 const classes = {
-	"window": "EVeMMG_window",
-	"resize": "EVeMMG_resize",
 	"exit": "EVeMMG_exit",
-	"inner": "EVeMMG_inner",
+	"content": "EVeMMG_content",
 	"topbar": "EVeMMG_topbar",
-	"main": "EVeMMG_main",
-	"content": "EVeMMG_content"
+	"resize": "EVeMMG_resize",
+	"window": "EVeMMG_window",
+	"inner": "EVeMMG_inner",
+	"main": "EVeMMG_main"
 };
 const css = `.EVeMMG_window {
   z-index: 99999;
@@ -2933,38 +2970,18 @@ const css = `.EVeMMG_window {
   background: var(--background-base-low);
   border: 1px solid var(--background-surface-highest);
   border-radius: 6px;
+  flex-direction: column;
+  display: flex;
   box-shadow: 0 0 3px #000;
 }
 
 .EVeMMG_content .EVeMMG_inner {
-  height: calc(100% - 50px);
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   margin: 8px;
-  overflow-y: auto;
-}
-
-.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar-corner {
-  background: none;
-}
-
-.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar {
-  background: none;
-}
-
-.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar-track {
-  background: none;
-}
-
-.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar-thumb {
-  background: var(--background-base-lowest);
-  border-radius: 4px;
-}
-
-.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar:horizontal {
-  height: 8px;
-}
-
-.EVeMMG_content .EVeMMG_inner::-webkit-scrollbar:vertical {
-  width: 8px;
+  display: flex;
+  overflow: hidden;
 }
 
 .EVeMMG_topbar {
@@ -2993,15 +3010,19 @@ const css = `.EVeMMG_window {
 }
 
 .EVeMMG_main {
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   margin-right: 10px;
+  display: flex;
 }
 `;
 
 //#endregion
 //#region plugins/inline-css/components/Close.tsx
-var import_web$18 = __toESM(require_web(), 1);
 var import_web$19 = __toESM(require_web(), 1);
-const _tmpl$$2 = /*#__PURE__*/ (0, import_web$18.template)(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="
+var import_web$20 = __toESM(require_web(), 1);
+const _tmpl$$2 = /*#__PURE__*/ (0, import_web$19.template)(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="
       stroke: none;
       stroke-width: 0;
       stroke-dasharray: none;
@@ -3032,11 +3053,10 @@ const _tmpl$$2 = /*#__PURE__*/ (0, import_web$18.template)(`<svg xmlns="http://w
         fill-rule: nonzero;
         opacity: 1;
       " transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>`, 10);
-const Close = () => (0, import_web$19.getNextElement)(_tmpl$$2);
+const Close = () => (0, import_web$20.getNextElement)(_tmpl$$2);
 
 //#endregion
 //#region plugins/inline-css/components/Window.tsx
-var import_web$9 = __toESM(require_web(), 1);
 var import_web$10 = __toESM(require_web(), 1);
 var import_web$11 = __toESM(require_web(), 1);
 var import_web$12 = __toESM(require_web(), 1);
@@ -3045,7 +3065,8 @@ var import_web$14 = __toESM(require_web(), 1);
 var import_web$15 = __toESM(require_web(), 1);
 var import_web$16 = __toESM(require_web(), 1);
 var import_web$17 = __toESM(require_web(), 1);
-const _tmpl$$1 = /*#__PURE__*/ (0, import_web$9.template)(`<div><div></div><div><div><div></div></div><div><div></div></div></div></div>`, 14);
+var import_web$18 = __toESM(require_web(), 1);
+const _tmpl$$1 = /*#__PURE__*/ (0, import_web$10.template)(`<div><div></div><div><div><div></div></div><div><div></div></div></div></div>`, 14);
 const { ui: { injectCss: injectCss$1 } } = shelter;
 let injectedCss$1 = false;
 const getClientCoordinates = ({ touches, clientX, clientY }) => {
@@ -3104,30 +3125,30 @@ const Window = () => {
 		});
 	};
 	return (() => {
-		const _el$ = (0, import_web$13.getNextElement)(_tmpl$$1), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, _el$4 = _el$3.firstChild, _el$5 = _el$4.firstChild, _el$6 = _el$4.nextSibling, _el$7 = _el$6.firstChild;
+		const _el$ = (0, import_web$14.getNextElement)(_tmpl$$1), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, _el$4 = _el$3.firstChild, _el$5 = _el$4.firstChild, _el$6 = _el$4.nextSibling, _el$7 = _el$6.firstChild;
 		const _ref$ = ref;
-		typeof _ref$ === "function" ? (0, import_web$17.use)(_ref$, _el$) : ref = _el$;
+		typeof _ref$ === "function" ? (0, import_web$18.use)(_ref$, _el$) : ref = _el$;
 		_el$.style.setProperty("height", "400px");
 		_el$.style.setProperty("width", "30vw");
 		_el$2.$$mousedown = resizeMouseDown;
 		_el$4.$$mousedown = topbarMouseDown;
 		_el$5.$$click = close;
-		(0, import_web$15.insert)(_el$5, (0, import_web$16.createComponent)(Close, {}));
-		(0, import_web$15.insert)(_el$7, (0, import_web$16.createComponent)(Editor_default, {
+		(0, import_web$16.insert)(_el$5, (0, import_web$17.createComponent)(Close, {}));
+		(0, import_web$16.insert)(_el$7, (0, import_web$17.createComponent)(Editor_default, {
 			get styleElm() {
 				return document.getElementById("inline-css-output");
 			},
 			popout: true
 		}));
-		(0, import_web$12.effect)((_p$) => {
+		(0, import_web$13.effect)((_p$) => {
 			const _v$ = classes.window, _v$2 = classes.resize, _v$3 = classes.content, _v$4 = classes.topbar, _v$5 = classes.exit, _v$6 = classes.inner, _v$7 = classes.main;
-			_v$ !== _p$._v$ && (0, import_web$11.className)(_el$, _p$._v$ = _v$);
-			_v$2 !== _p$._v$2 && (0, import_web$11.className)(_el$2, _p$._v$2 = _v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$11.className)(_el$3, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$11.className)(_el$4, _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$11.className)(_el$5, _p$._v$5 = _v$5);
-			_v$6 !== _p$._v$6 && (0, import_web$11.className)(_el$6, _p$._v$6 = _v$6);
-			_v$7 !== _p$._v$7 && (0, import_web$11.className)(_el$7, _p$._v$7 = _v$7);
+			_v$ !== _p$._v$ && (0, import_web$12.className)(_el$, _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$12.className)(_el$2, _p$._v$2 = _v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$12.className)(_el$3, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$12.className)(_el$4, _p$._v$4 = _v$4);
+			_v$5 !== _p$._v$5 && (0, import_web$12.className)(_el$5, _p$._v$5 = _v$5);
+			_v$6 !== _p$._v$6 && (0, import_web$12.className)(_el$6, _p$._v$6 = _v$6);
+			_v$7 !== _p$._v$7 && (0, import_web$12.className)(_el$7, _p$._v$7 = _v$7);
 			return _p$;
 		}, {
 			_v$: undefined,
@@ -3138,11 +3159,11 @@ const Window = () => {
 			_v$6: undefined,
 			_v$7: undefined
 		});
-		(0, import_web$14.runHydrationEvents)();
+		(0, import_web$15.runHydrationEvents)();
 		return _el$;
 	})();
 };
-(0, import_web$10.delegateEvents)(["mousedown", "click"]);
+(0, import_web$11.delegateEvents)(["mousedown", "click"]);
 
 //#endregion
 //#region plugins/inline-css/components/Editor.tsx
@@ -3155,6 +3176,7 @@ var import_web$5 = __toESM(require_web(), 1);
 var import_web$6 = __toESM(require_web(), 1);
 var import_web$7 = __toESM(require_web(), 1);
 var import_web$8 = __toESM(require_web(), 1);
+var import_web$9 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2);
 core_default.registerLanguage("css", css$2);
 const { ui: { injectCss, Header, HeaderTags, Button, CheckboxItem }, plugin: { store: store$1 }, solid: { createSignal, createEffect }, flux: { dispatcher } } = shelter;
@@ -3183,15 +3205,15 @@ function Editor_default(props) {
 		saveCss(css$3, props.styleElm);
 	};
 	return [
-		(0, import_web$8.createComponent)(Header, {
+		(0, import_web$9.createComponent)(Header, {
 			get tag() {
 				return HeaderTags.H1;
 			},
 			children: "CSS Editor"
 		}),
-		(0, import_web$7.memo)((() => {
-			const _c$ = (0, import_web$7.memo)(() => !!!props.popout);
-			return () => _c$() && (0, import_web$8.createComponent)(Button, {
+		(0, import_web$8.memo)((() => {
+			const _c$ = (0, import_web$8.memo)(() => !!!props.popout);
+			return () => _c$() && (0, import_web$9.createComponent)(Button, {
 				get ["class"]() {
 					return classes$1.popout;
 				},
@@ -3200,20 +3222,20 @@ function Editor_default(props) {
 					dispatcher.dispatch({ type: "LAYER_POP" });
 				},
 				get children() {
-					return ["Pop Out ", (0, import_web$8.createComponent)(Popout, {})];
+					return ["Pop Out ", (0, import_web$9.createComponent)(Popout, {})];
 				}
 			});
 		})()),
 		(() => {
-			const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$5.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$5.getNextMarker)(_el$4.nextSibling);
-			(0, import_web$6.insert)(_el$, (0, import_web$8.createComponent)(CheckboxItem, {
+			const _el$ = (0, import_web$5.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$6.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$6.getNextMarker)(_el$4.nextSibling);
+			(0, import_web$7.insert)(_el$, (0, import_web$9.createComponent)(CheckboxItem, {
 				get checked() {
 					return hotReload();
 				},
 				onChange: setHotReload,
 				children: "Hot Reload"
 			}), _el$3, _co$);
-			(0, import_web$6.insert)(_el$, (0, import_web$8.createComponent)(Button, {
+			(0, import_web$7.insert)(_el$, (0, import_web$9.createComponent)(Button, {
 				onClick: () => {
 					setCss(inlineCss());
 				},
@@ -3222,14 +3244,14 @@ function Editor_default(props) {
 				},
 				children: "Save & Apply"
 			}), _el$5, _co$2);
-			(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$, classes$1.controls));
+			(0, import_web$4.effect)(() => (0, import_web$3.className)(_el$, classes$1.controls));
 			return _el$;
 		})(),
 		(() => {
-			const _el$6 = (0, import_web$4.getNextElement)(_tmpl$2);
+			const _el$6 = (0, import_web$5.getNextElement)(_tmpl$2);
 			const _ref$ = ref;
-			typeof _ref$ === "function" ? (0, import_web$1.use)(_ref$, _el$6) : ref = _el$6;
-			(0, import_web$6.insert)(_el$6, (0, import_web$8.createComponent)(CodeInput, {
+			typeof _ref$ === "function" ? (0, import_web$2.use)(_ref$, _el$6) : ref = _el$6;
+			(0, import_web$7.insert)(_el$6, (0, import_web$9.createComponent)(CodeInput, {
 				highlightjs: core_default,
 				autoHeight: false,
 				resize: "none",
@@ -3242,7 +3264,15 @@ function Editor_default(props) {
 				},
 				language: "css"
 			}));
-			(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$6, classes$1.ceditor));
+			(0, import_web$4.effect)((_p$) => {
+				const _v$ = classes$1.ceditor, _v$2 = props.popout ? "true" : "false";
+				_v$ !== _p$._v$ && (0, import_web$3.className)(_el$6, _p$._v$ = _v$);
+				_v$2 !== _p$._v$2 && (0, import_web$1.setAttribute)(_el$6, "data-popout", _p$._v$2 = _v$2);
+				return _p$;
+			}, {
+				_v$: undefined,
+				_v$2: undefined
+			});
 			return _el$6;
 		})()
 	];

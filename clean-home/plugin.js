@@ -40,7 +40,7 @@ var import_web$2 = __toESM(require_web(), 1);
 var import_web$3 = __toESM(require_web(), 1);
 var import_web$4 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2);
-const { plugin: { store }, ui: { SwitchItem, Header, HeaderTags, Text } } = shelter;
+const { plugin: { store }, ui: { SwitchItem, Header, HeaderTags } } = shelter;
 const components = [
 	{
 		name: "User Effects",
