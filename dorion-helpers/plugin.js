@@ -675,6 +675,19 @@ const initializeTranslations = () => {
 //#endregion
 //#region plugins/dorion-helpers/index.tsx
 const { flux: { stores: { GuildReadStateStore, RelationshipStore } } } = shelter;
+function createLocalStorage() {
+	const iframe = document.createElement("iframe");
+	const interval = setInterval(() => {
+		if (!document.head || window.localStorage) return;
+		document.head.append(iframe);
+		const pd = Object.getOwnPropertyDescriptor(iframe.contentWindow, "localStorage");
+		iframe.remove();
+		if (!pd) return;
+		Object.defineProperty(window, "localStorage", pd);
+		console.log("[Dorion Helpers] Done creating localStorage!");
+		clearInterval(interval);
+	}, 50);
+}
 const updateNotificationBadge = () => {
 	if (!window?.Dorion?.shouldShowUnreadBadge) return;
 	const { invoke } = window.__TAURI__.core;
@@ -686,6 +699,7 @@ const updateNotificationBadge = () => {
 	invoke("notification_count", { amount: total });
 };
 const onLoad = () => {
+	createLocalStorage();
 	initializeTranslations();
 	updateNotificationBadge();
 	GuildReadStateStore.addChangeListener(updateNotificationBadge);
@@ -693,6 +707,7 @@ const onLoad = () => {
 };
 
 //#endregion
+exports.createLocalStorage = createLocalStorage
 exports.onLoad = onLoad
 return exports;
 })({});
