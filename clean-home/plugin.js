@@ -125,7 +125,7 @@ const components = [
 		name: "Gift button",
 		description: "Removes the gift button in the chat bar",
 		rules: `
-      div[class*="sansAttachButton"] > div[class*="buttons"] > div[class*="-container"] {
+      div[class*="sansAttachButton"] > div[class*="buttons"] > div[aria-haspopup="dialog"] {
         display: none;
       }
     `
