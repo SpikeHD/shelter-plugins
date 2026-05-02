@@ -79,6 +79,13 @@ const components = [
     `
 	},
 	{
+		name: "Server tags",
+		description: "Removes the server tags that appear next to people's names",
+		rules: `
+      div[class*=nameAndDecorators] span[class*=clanTag] { display: none !important; }
+    `
+	},
+	{
 		name: "Home Page",
 		rules: null
 	},
@@ -136,6 +143,13 @@ const components = [
 		rules: `
       div[data-list-item-id^="channels___skill-"] ~ div { display: none; }
       div[class*="containerWithMargin"][role="button"] { display: none; }
+    `
+	},
+	{
+		name: "New friend wave button",
+		description: "Removes the \"Wave\" button beside new friends in the DM list",
+		rules: `
+      div[class*="waveButton"] { display: none; }
     `
 	},
 	{
