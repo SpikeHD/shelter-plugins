@@ -253,18 +253,31 @@ const after = getPatchFunc_default("a");
 
 //#endregion
 //#region plugins/userpfp/index.scss
-const classes = { "submit": "eTp9Lq_submit" };
+const classes = {
+	"settingItem": "eTp9Lq_settingItem",
+	"submit": "eTp9Lq_submit"
+};
 const css = `.eTp9Lq_submit {
   margin-bottom: 10px;
   display: inline-block;
+}
+
+.eTp9Lq_settingItem {
+  margin: 10px 0;
 }
 `;
 
 //#endregion
 //#region plugins/userpfp/index.tsx
 var import_web = __toESM(require_web());
-const { ui: { SwitchItem, LinkButton, injectCss }, plugin: { store } } = shelter;
-const DATA_URL = "https://userpfp.github.io/UserPFP/source/data.json";
+var import_web$1 = __toESM(require_web());
+var import_web$2 = __toESM(require_web());
+var import_web$3 = __toESM(require_web());
+var import_web$4 = __toESM(require_web());
+var import_web$5 = __toESM(require_web());
+const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2);
+const { ui: { SwitchItem, LinkButton, injectCss, TextBox }, plugin: { store } } = shelter;
+const DEFAULT_DATA_URL = "https://userpfp.github.io/UserPFP/source/data.json";
 const chunk = webpackChunk_default();
 const wp = chunk && api_default([undefined, ...chunk]);
 const c = wp.findByPropsAll("getUserAvatarURL");
@@ -276,22 +289,39 @@ if (!injectedCss) {
 	injectedCss = true;
 	injectCss(css);
 }
-const settings = () => [(0, import_web.createComponent)(LinkButton, {
-	href: "https://userpfp.github.io/UserPFP/#how-to-request-a-profile-picture-pfp",
-	get ["class"]() {
-		return classes.submit;
-	},
-	children: "Submit your PFP here!"
-}), (0, import_web.createComponent)(SwitchItem, {
-	get value() {
-		return store.preferNitro;
-	},
-	onChange: (v) => store.preferNitro = v,
-	tooltip: "If the user has Nitro but also has a custom UserPFP, prefer the Nitro one.",
-	children: "Prefer Nitro"
-})];
+const settings = () => [
+	(0, import_web$5.createComponent)(LinkButton, {
+		href: "https://userpfp.github.io/UserPFP/#how-to-request-a-profile-picture-pfp",
+		get ["class"]() {
+			return classes.submit;
+		},
+		children: "Submit your PFP here!"
+	}),
+	(() => {
+		const _el$ = (0, import_web$3.getNextElement)(_tmpl$);
+		(0, import_web$4.insert)(_el$, (0, import_web$5.createComponent)(TextBox, {
+			type: "text",
+			get value() {
+				return store.databaseUrl || "";
+			},
+			onInput: (v) => store.databaseUrl = v,
+			placeholder: "Custom database URL (optional)"
+		}));
+		(0, import_web$2.effect)(() => (0, import_web$1.className)(_el$, classes.settingItem));
+		return _el$;
+	})(),
+	(0, import_web$5.createComponent)(SwitchItem, {
+		get value() {
+			return store.preferNitro;
+		},
+		onChange: (v) => store.preferNitro = v,
+		tooltip: "If the user has Nitro but also has a custom UserPFP, prefer the Nitro one.",
+		children: "Prefer Nitro"
+	})
+];
 const onLoad = async () => {
-	const resp = await fetch(DATA_URL);
+	const dataUrl = store.databaseUrl || DEFAULT_DATA_URL;
+	const resp = await fetch(dataUrl);
 	window.userpfp = await resp.json();
 	window.userpfp.getUrl = (id) => window.userpfp.avatars[id] ?? null;
 };
