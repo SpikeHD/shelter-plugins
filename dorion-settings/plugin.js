@@ -158,10 +158,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-settings/pages/PerformancePage.tsx.scss
 const classes$12 = {
-	"tophead": "ZN8ggW_tophead",
+	"pbuttons": "ZN8ggW_pbuttons",
 	"shead": "ZN8ggW_shead",
 	"stext": "ZN8ggW_stext",
-	"pbuttons": "ZN8ggW_pbuttons"
+	"tophead": "ZN8ggW_tophead"
 };
 const css$12 = `.ZN8ggW_tophead {
   margin-bottom: 16px;
@@ -193,10 +193,10 @@ const css$12 = `.ZN8ggW_tophead {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$11 = {
-	"dsarrow": "sqVpyW_dsarrow",
-	"ddown": "sqVpyW_ddown",
 	"dcontainer": "sqVpyW_dcontainer",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"ddown": "sqVpyW_ddown",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$11 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -781,9 +781,9 @@ function PerformancePage() {
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx.scss
 const classes$8 = {
 	"pbuttons": "_2nPZKq_pbuttons",
-	"shead": "_2nPZKq_shead",
 	"tophead": "_2nPZKq_tophead",
 	"sbutton": "_2nPZKq_sbutton",
+	"shead": "_2nPZKq_shead",
 	"splitbutton": "_2nPZKq_splitbutton"
 };
 const css$8 = `._2nPZKq_tophead {
@@ -964,10 +964,10 @@ function ProfilesPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/SettingsPage.tsx.scss
 const classes$7 = {
-	"shead": "akYvUa_shead",
-	"left16": "akYvUa_left16",
 	"tophead": "akYvUa_tophead",
-	"ohead": "akYvUa_ohead"
+	"shead": "akYvUa_shead",
+	"ohead": "akYvUa_ohead",
+	"left16": "akYvUa_left16"
 };
 const css$7 = `.akYvUa_tophead {
   margin-bottom: 16px;
@@ -993,10 +993,10 @@ const css$7 = `.akYvUa_tophead {
 //#endregion
 //#region components/Radio.tsx.scss
 const classes$6 = {
-	"radioButton": "Ch7osa_radioButton",
-	"selected": "Ch7osa_selected",
 	"radio": "Ch7osa_radio",
-	"radioButtonInner": "Ch7osa_radioButtonInner"
+	"radioButton": "Ch7osa_radioButton",
+	"radioButtonInner": "Ch7osa_radioButtonInner",
+	"selected": "Ch7osa_selected"
 };
 const css$6 = `.Ch7osa_radio {
   color: var(--interactive-normal);
@@ -1455,24 +1455,20 @@ function SettingsPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx.scss
 const classes$5 = {
-	"refresh": "yPVoxW_refresh",
-	"badges": "yPVoxW_badges",
-	"badge": "yPVoxW_badge",
 	"spinner": "yPVoxW_spinner",
-	"tophead": "yPVoxW_tophead",
-	"contents": "yPVoxW_contents",
-	"card": "yPVoxW_card",
 	"title": "yPVoxW_title",
-	"spin": "yPVoxW_spin"
+	"contents": "yPVoxW_contents",
+	"spin": "yPVoxW_spin",
+	"card": "yPVoxW_card",
+	"badges": "yPVoxW_badges",
+	"tophead": "yPVoxW_tophead",
+	"badge": "yPVoxW_badge"
 };
 const css$5 = `.yPVoxW_tophead {
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 16px;
-}
-
-.yPVoxW_refresh {
-  position: absolute;
-  top: 52px;
-  right: 40px;
+  display: flex;
 }
 
 .yPVoxW_card {
@@ -3512,158 +3508,151 @@ function ChangelogPage() {
 		setLoading(false);
 		await fixImageLinks(document.getElementById(PAGE_ID));
 	}
-	return [
-		(0, import_web$46.createComponent)(Header$3, {
-			get tag() {
-				return HeaderTags$3.H1;
-			},
-			get ["class"]() {
-				return classes$5.tophead;
-			},
-			get children() {
-				return t("dorion_changelog.title");
-			}
-		}),
-		(0, import_web$46.createComponent)(Button$3, {
-			onClick: refresh,
-			get disabled() {
-				return loading();
-			},
-			get ["class"]() {
-				return classes$5.refresh;
-			},
-			get children() {
-				return t("dorion_changelog.refresh");
-			}
-		}),
-		(0, import_web$45.memo)((() => {
-			const _c$ = (0, import_web$45.memo)(() => !!loading());
-			return () => _c$() ? (() => {
-				const _el$ = (0, import_web$44.getNextElement)(_tmpl$$5), _el$2 = _el$.firstChild;
+	return [(0, import_web$45.createComponent)(Header$3, {
+		get tag() {
+			return HeaderTags$3.H1;
+		},
+		get ["class"]() {
+			return classes$5.tophead;
+		},
+		get children() {
+			return [(0, import_web$46.memo)(() => t("dorion_changelog.title")), (0, import_web$45.createComponent)(Button$3, {
+				onClick: refresh,
+				get disabled() {
+					return loading();
+				},
+				get children() {
+					return t("dorion_changelog.refresh");
+				}
+			})];
+		}
+	}), (0, import_web$46.memo)((() => {
+		const _c$ = (0, import_web$46.memo)(() => !!loading());
+		return () => _c$() ? (() => {
+			const _el$ = (0, import_web$44.getNextElement)(_tmpl$$5), _el$2 = _el$.firstChild;
+			(0, import_web$43.effect)((_p$) => {
+				const _v$ = classes$5.card, _v$2 = classes$5.spinner;
+				_v$ !== _p$._v$ && (0, import_web$42.className)(_el$, _p$._v$ = _v$);
+				_v$2 !== _p$._v$2 && (0, import_web$42.className)(_el$2, _p$._v$2 = _v$2);
+				return _p$;
+			}, {
+				_v$: undefined,
+				_v$2: undefined
+			});
+			return _el$;
+		})() : [(0, import_web$46.memo)((() => {
+			const _c$2 = (0, import_web$46.memo)(() => !!updateCheck().includes("dorion"));
+			return () => _c$2() && (() => {
+				const _el$3 = (0, import_web$44.getNextElement)(_tmpl$2$2), _el$4 = _el$3.firstChild, [_el$5, _co$] = (0, import_web$40.getNextMarker)(_el$4.nextSibling), _el$6 = _el$5.nextSibling, [_el$7, _co$2] = (0, import_web$40.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$3] = (0, import_web$40.getNextMarker)(_el$8.nextSibling);
+				(0, import_web$41.insert)(_el$3, (0, import_web$45.createComponent)(Header$3, {
+					get tag() {
+						return HeaderTags$3.H1;
+					},
+					get ["class"]() {
+						return classes$5.title;
+					},
+					get children() {
+						return t("dorion_changelog.update_available");
+					}
+				}), _el$5, _co$);
+				(0, import_web$41.insert)(_el$3, (0, import_web$45.createComponent)(Text$4, { get children() {
+					return t("dorion_changelog.current_version", { version: currentVersion() });
+				} }), _el$7, _co$2);
+				(0, import_web$41.insert)(_el$3, (0, import_web$45.createComponent)(Button$3, {
+					get size() {
+						return ButtonSizes$2.LARGE;
+					},
+					get color() {
+						return ButtonColors.GREEN;
+					},
+					onClick: doUpdate,
+					get children() {
+						return t("dorion_changelog.update_to", { version: latestVersion() });
+					}
+				}), _el$9, _co$3);
+				(0, import_web$43.effect)(() => (0, import_web$42.className)(_el$3, classes$5.card));
+				return _el$3;
+			})();
+		})()), (0, import_web$46.memo)((() => {
+			const _c$3 = (0, import_web$46.memo)(() => !!(releases() != null && releases().length > 0));
+			return () => _c$3() && releases().map((release) => (() => {
+				const _el$0 = (0, import_web$44.getNextElement)(_tmpl$5$1), _el$16 = _el$0.firstChild, [_el$17, _co$6] = (0, import_web$40.getNextMarker)(_el$16.nextSibling), _el$18 = _el$17.nextSibling, [_el$19, _co$7] = (0, import_web$40.getNextMarker)(_el$18.nextSibling), _el$15 = _el$19.nextSibling;
+				(0, import_web$41.insert)(_el$0, (0, import_web$45.createComponent)(Header$3, {
+					get tag() {
+						return HeaderTags$3.H1;
+					},
+					get ["class"]() {
+						return classes$5.title;
+					},
+					get children() {
+						return [(() => {
+							const _el$1 = (0, import_web$44.getNextElement)(_tmpl$3$2);
+							(0, import_web$41.insert)(_el$1, () => release.name);
+							return _el$1;
+						})(), (() => {
+							const _el$10 = (0, import_web$44.getNextElement)(_tmpl$4$1), _el$11 = _el$10.firstChild, [_el$12, _co$4] = (0, import_web$40.getNextMarker)(_el$11.nextSibling), _el$13 = _el$12.nextSibling, [_el$14, _co$5] = (0, import_web$40.getNextMarker)(_el$13.nextSibling);
+							(0, import_web$41.insert)(_el$10, (() => {
+								const _c$4 = (0, import_web$46.memo)(() => currentVersion() == release.tag_name);
+								return () => _c$4() && (() => {
+									const _el$20 = (0, import_web$44.getNextElement)(_tmpl$3$2);
+									(0, import_web$41.insert)(_el$20, () => t("dorion_changelog.current"));
+									(0, import_web$43.effect)(() => (0, import_web$42.className)(_el$20, classes$5.badge));
+									return _el$20;
+								})();
+							})(), _el$12, _co$4);
+							(0, import_web$41.insert)(_el$10, (() => {
+								const _c$5 = (0, import_web$46.memo)(() => releases()[0].tag_name == release.tag_name);
+								return () => _c$5() && (() => {
+									const _el$21 = (0, import_web$44.getNextElement)(_tmpl$3$2);
+									(0, import_web$41.insert)(_el$21, () => t("dorion_changelog.latest"));
+									(0, import_web$43.effect)(() => (0, import_web$42.className)(_el$21, classes$5.badge));
+									return _el$21;
+								})();
+							})(), _el$14, _co$5);
+							(0, import_web$43.effect)(() => (0, import_web$42.className)(_el$10, classes$5.badges));
+							return _el$10;
+						})()];
+					}
+				}), _el$17, _co$6);
+				(0, import_web$41.insert)(_el$0, (0, import_web$45.createComponent)(LinkButton, {
+					get href() {
+						return release.html_url;
+					},
+					get children() {
+						return t("dorion_changelog.view_on_github");
+					}
+				}), _el$19, _co$7);
 				(0, import_web$43.effect)((_p$) => {
-					const _v$ = classes$5.card, _v$2 = classes$5.spinner;
-					_v$ !== _p$._v$ && (0, import_web$42.className)(_el$, _p$._v$ = _v$);
-					_v$2 !== _p$._v$2 && (0, import_web$42.className)(_el$2, _p$._v$2 = _v$2);
+					const _v$3 = classes$5.card, _v$4 = classes$5.contents, _v$5 = release.body;
+					_v$3 !== _p$._v$3 && (0, import_web$42.className)(_el$0, _p$._v$3 = _v$3);
+					_v$4 !== _p$._v$4 && (0, import_web$42.className)(_el$15, _p$._v$4 = _v$4);
+					_v$5 !== _p$._v$5 && (0, import_web$39.innerHTML)(_el$15, _p$._v$5 = _v$5);
 					return _p$;
 				}, {
-					_v$: undefined,
-					_v$2: undefined
+					_v$3: undefined,
+					_v$4: undefined,
+					_v$5: undefined
 				});
-				return _el$;
-			})() : [(0, import_web$45.memo)((() => {
-				const _c$2 = (0, import_web$45.memo)(() => !!updateCheck().includes("dorion"));
-				return () => _c$2() && (() => {
-					const _el$3 = (0, import_web$44.getNextElement)(_tmpl$2$2), _el$4 = _el$3.firstChild, [_el$5, _co$] = (0, import_web$40.getNextMarker)(_el$4.nextSibling), _el$6 = _el$5.nextSibling, [_el$7, _co$2] = (0, import_web$40.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$3] = (0, import_web$40.getNextMarker)(_el$8.nextSibling);
-					(0, import_web$41.insert)(_el$3, (0, import_web$46.createComponent)(Header$3, {
-						get tag() {
-							return HeaderTags$3.H1;
-						},
-						get ["class"]() {
-							return classes$5.title;
-						},
-						get children() {
-							return t("dorion_changelog.update_available");
-						}
-					}), _el$5, _co$);
-					(0, import_web$41.insert)(_el$3, (0, import_web$46.createComponent)(Text$4, { get children() {
-						return t("dorion_changelog.current_version", { version: currentVersion() });
-					} }), _el$7, _co$2);
-					(0, import_web$41.insert)(_el$3, (0, import_web$46.createComponent)(Button$3, {
-						get size() {
-							return ButtonSizes$2.LARGE;
-						},
-						get color() {
-							return ButtonColors.GREEN;
-						},
-						onClick: doUpdate,
-						get children() {
-							return t("dorion_changelog.update_to", { version: latestVersion() });
-						}
-					}), _el$9, _co$3);
-					(0, import_web$43.effect)(() => (0, import_web$42.className)(_el$3, classes$5.card));
-					return _el$3;
-				})();
-			})()), (0, import_web$45.memo)((() => {
-				const _c$3 = (0, import_web$45.memo)(() => !!(releases() != null && releases().length > 0));
-				return () => _c$3() && releases().map((release) => (() => {
-					const _el$0 = (0, import_web$44.getNextElement)(_tmpl$5$1), _el$16 = _el$0.firstChild, [_el$17, _co$6] = (0, import_web$40.getNextMarker)(_el$16.nextSibling), _el$18 = _el$17.nextSibling, [_el$19, _co$7] = (0, import_web$40.getNextMarker)(_el$18.nextSibling), _el$15 = _el$19.nextSibling;
-					(0, import_web$41.insert)(_el$0, (0, import_web$46.createComponent)(Header$3, {
-						get tag() {
-							return HeaderTags$3.H1;
-						},
-						get ["class"]() {
-							return classes$5.title;
-						},
-						get children() {
-							return [(() => {
-								const _el$1 = (0, import_web$44.getNextElement)(_tmpl$3$2);
-								(0, import_web$41.insert)(_el$1, () => release.name);
-								return _el$1;
-							})(), (() => {
-								const _el$10 = (0, import_web$44.getNextElement)(_tmpl$4$1), _el$11 = _el$10.firstChild, [_el$12, _co$4] = (0, import_web$40.getNextMarker)(_el$11.nextSibling), _el$13 = _el$12.nextSibling, [_el$14, _co$5] = (0, import_web$40.getNextMarker)(_el$13.nextSibling);
-								(0, import_web$41.insert)(_el$10, (() => {
-									const _c$4 = (0, import_web$45.memo)(() => currentVersion() == release.tag_name);
-									return () => _c$4() && (() => {
-										const _el$20 = (0, import_web$44.getNextElement)(_tmpl$3$2);
-										(0, import_web$41.insert)(_el$20, () => t("dorion_changelog.current"));
-										(0, import_web$43.effect)(() => (0, import_web$42.className)(_el$20, classes$5.badge));
-										return _el$20;
-									})();
-								})(), _el$12, _co$4);
-								(0, import_web$41.insert)(_el$10, (() => {
-									const _c$5 = (0, import_web$45.memo)(() => releases()[0].tag_name == release.tag_name);
-									return () => _c$5() && (() => {
-										const _el$21 = (0, import_web$44.getNextElement)(_tmpl$3$2);
-										(0, import_web$41.insert)(_el$21, () => t("dorion_changelog.latest"));
-										(0, import_web$43.effect)(() => (0, import_web$42.className)(_el$21, classes$5.badge));
-										return _el$21;
-									})();
-								})(), _el$14, _co$5);
-								(0, import_web$43.effect)(() => (0, import_web$42.className)(_el$10, classes$5.badges));
-								return _el$10;
-							})()];
-						}
-					}), _el$17, _co$6);
-					(0, import_web$41.insert)(_el$0, (0, import_web$46.createComponent)(LinkButton, {
-						get href() {
-							return release.html_url;
-						},
-						get children() {
-							return t("dorion_changelog.view_on_github");
-						}
-					}), _el$19, _co$7);
-					(0, import_web$43.effect)((_p$) => {
-						const _v$3 = classes$5.card, _v$4 = classes$5.contents, _v$5 = release.body;
-						_v$3 !== _p$._v$3 && (0, import_web$42.className)(_el$0, _p$._v$3 = _v$3);
-						_v$4 !== _p$._v$4 && (0, import_web$42.className)(_el$15, _p$._v$4 = _v$4);
-						_v$5 !== _p$._v$5 && (0, import_web$39.innerHTML)(_el$15, _p$._v$5 = _v$5);
-						return _p$;
-					}, {
-						_v$3: undefined,
-						_v$4: undefined,
-						_v$5: undefined
-					});
-					return _el$0;
-				})());
-			})())];
-		})())
-	];
+				return _el$0;
+			})());
+		})())];
+	})())];
 }
 
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx.scss
 const classes$4 = {
 	"shead": "XZjauW_shead",
-	"scell": "XZjauW_scell",
 	"plist": "XZjauW_plist",
-	"left16": "XZjauW_left16",
+	"sbutton": "XZjauW_sbutton",
+	"mcell": "XZjauW_mcell",
 	"plistrow": "XZjauW_plistrow",
+	"top16": "XZjauW_top16",
 	"top32": "XZjauW_top32",
 	"pheader": "XZjauW_pheader",
 	"pbuttons": "XZjauW_pbuttons",
-	"top16": "XZjauW_top16",
-	"mcell": "XZjauW_mcell",
-	"sbutton": "XZjauW_sbutton"
+	"scell": "XZjauW_scell",
+	"left16": "XZjauW_left16"
 };
 const css$4 = `.XZjauW_shead {
   margin-top: 16px;
@@ -3826,15 +3815,15 @@ else if (modName === "Equicord" && newClientMods.includes("Vencord")) newClientM
 //#region plugins/dorion-settings/components/PluginList.tsx.scss
 const classes$3 = {
 	"left16": "V6is4W_left16",
-	"plist": "V6is4W_plist",
-	"top16": "V6is4W_top16",
 	"top32": "V6is4W_top32",
 	"scell": "V6is4W_scell",
-	"plistrow": "V6is4W_plistrow",
+	"plist": "V6is4W_plist",
 	"pbuttons": "V6is4W_pbuttons",
+	"plistrow": "V6is4W_plistrow",
+	"pheader": "V6is4W_pheader",
+	"top16": "V6is4W_top16",
 	"sbutton": "V6is4W_sbutton",
-	"mcell": "V6is4W_mcell",
-	"pheader": "V6is4W_pheader"
+	"mcell": "V6is4W_mcell"
 };
 const css$3 = `.V6is4W_plist {
   flex-direction: column;
@@ -4040,11 +4029,11 @@ function PluginList(props) {
 //#endregion
 //#region plugins/dorion-settings/pages/PluginsPage.tsx.scss
 const classes$2 = {
-	"pbuttons": "X31w8G_pbuttons",
 	"tophead": "X31w8G_tophead",
 	"shead": "X31w8G_shead",
-	"card": "X31w8G_card",
 	"openButton": "X31w8G_openButton",
+	"pbuttons": "X31w8G_pbuttons",
+	"card": "X31w8G_card",
 	"left16": "X31w8G_left16"
 };
 const css$2 = `.X31w8G_tophead {
@@ -4472,9 +4461,9 @@ function ThemesPage() {
 //#region plugins/dorion-settings/pages/RPC.tsx.scss
 const classes = {
 	"customNote": "ycw7DW_customNote",
+	"customInstallBtn": "ycw7DW_customInstallBtn",
 	"shead": "ycw7DW_shead",
-	"bot16": "ycw7DW_bot16",
-	"customInstallBtn": "ycw7DW_customInstallBtn"
+	"bot16": "ycw7DW_bot16"
 };
 const css = `.ycw7DW_shead {
   margin-top: 16px;
