@@ -538,14 +538,14 @@ const themeInstallationModel = async (link, name) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
-	"pageBtn": "gqruia_pageBtn",
 	"pagesOuter": "gqruia_pagesOuter",
-	"sortSection": "gqruia_sortSection",
-	"shead": "gqruia_shead",
 	"bot16": "gqruia_bot16",
-	"searchBox": "gqruia_searchBox",
+	"sortSection": "gqruia_sortSection",
+	"pages": "gqruia_pages",
+	"pageBtn": "gqruia_pageBtn",
 	"themeCards": "gqruia_themeCards",
-	"pages": "gqruia_pages"
+	"searchBox": "gqruia_searchBox",
+	"shead": "gqruia_shead"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
