@@ -89,26 +89,13 @@ export function ClientModList(props: Props) {
     )}
 
     {clientMods().map((modName: string) => {
-      const isVencordOrEquicord = modName === 'Vencord' || modName === 'Equicord'
-      const isMutuallyExcluded = isVencordOrEquicord && (
-        (modName === 'Vencord' && settings().client_mods?.includes('Equicord')) ||
-        (modName === 'Equicord' && settings().client_mods?.includes('Vencord'))
-      )
-
-      let note = ''
-
       if (modName === 'Shelter') {
-        note = 'Shelter is required for Dorion to function properly.'
+        return null
       }
 
       return (
         <SwitchItem
-          disabled={modName === 'Shelter' || isMutuallyExcluded}
-          value={settings().client_mods?.includes(modName) || false}
-          onChange={() =>
-            onClientModToggle(modName)
-          }
-          note={note}
+          onChange={() => onClientModToggle(modName)}
         >
           Enable {modName}
         </SwitchItem>
