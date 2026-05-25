@@ -36,7 +36,7 @@ const css = `.CPnQ-q_youreRightItem {
 }
 
 .CPnQ-q_youreRightItem [class^="message__"] {
-  width: calc(100% - (var(--content-padding-right)  + var(--content-padding-left))) !important;
+  width: calc(100% - (var(--content-padding-right) + var(--content-padding-left))) !important;
   padding-right: var(--content-padding-right) !important;
   padding-left: var(--content-padding-left) !important;
 }
