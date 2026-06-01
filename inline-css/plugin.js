@@ -522,12 +522,12 @@ var loader = {
 //#endregion
 //#region plugins/inline-css/components/Editor.scss
 const classes$1 = {
-	"ceditor": "alHKPa_ceditor",
-	"line-numbers": "alHKPa_line-numbers",
-	"controls": "alHKPa_controls",
-	"popout": "alHKPa_popout",
 	"monaco-editor": "alHKPa_monaco-editor",
-	"glyph-margin": "alHKPa_glyph-margin"
+	"line-numbers": "alHKPa_line-numbers",
+	"glyph-margin": "alHKPa_glyph-margin",
+	"controls": "alHKPa_controls",
+	"ceditor": "alHKPa_ceditor",
+	"popout": "alHKPa_popout"
 };
 const css$1 = `.alHKPa_ceditor {
   border-radius: 5px;
@@ -626,13 +626,13 @@ const Popout = () => (0, import_web$22.getNextElement)(_tmpl$$3);
 //#endregion
 //#region plugins/inline-css/components/Window.scss
 const classes = {
-	"exit": "EVeMMG_exit",
-	"content": "EVeMMG_content",
 	"topbar": "EVeMMG_topbar",
 	"resize": "EVeMMG_resize",
-	"window": "EVeMMG_window",
+	"content": "EVeMMG_content",
+	"exit": "EVeMMG_exit",
+	"main": "EVeMMG_main",
 	"inner": "EVeMMG_inner",
-	"main": "EVeMMG_main"
+	"window": "EVeMMG_window"
 };
 const css = `.EVeMMG_window {
   z-index: 99999;
