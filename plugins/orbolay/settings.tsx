@@ -1,11 +1,9 @@
-import { Dropdown } from '../../components/Dropdown.jsx'
 import { Config, defaultConfig } from './index.js'
 import { classes, css } from './settings.scss'
 
 const {
   ui: {
     injectCss,
-    SwitchItem,
     Text,
     TextBox,
     Divider
@@ -28,14 +26,15 @@ export const Settings = (props: Props) => {
   }
 
   const submitSettings = () => {
-    props?.ws?.send?.(JSON.stringify({
-      cmd: 'REGISTER_CONFIG',
-      ...store
-    }))
+    // Only send the user ID via REGISTER_CONFIG; do not send any client-side-only settings (like port)
+    if (props?.ws?.send && store?.userId) {
+      props.ws.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', userId: store.userId }))
+    }
   }
 
   const set = (key: keyof Config, value: unknown) => {
-    store[key] = value
+    store[key] = value as any
+    // Don't send the port to the remote; only re-send the userId if a connection exists
     submitSettings()
   }
 
@@ -50,67 +49,6 @@ export const Settings = (props: Props) => {
         />
       </div>
       <Divider />
-
-      <SwitchItem
-        value={store.isKeybindEnabled}
-        onChange={(v) => set('isKeybindEnabled', v)}
-      >
-        Enable Global Keybind
-      </SwitchItem>
-
-      <div class={classes.container}>
-        <Text>Messages Alignment</Text>
-        <Dropdown
-          value={store.messagesAlignment}
-          selected={store.messagesAlignment}
-          onChange={(e) => set('messageAlignment', e.target.value)}
-          options={[
-            { label: 'Top Left', value: 'topleft' },
-            { label: 'Top Right', value: 'topright' },
-            { label: 'Bottom Left', value: 'bottomleft' },
-            { label: 'Bottom Right', value: 'bottomright' },
-            { label: 'Top Center', value: 'topcenter' },
-            { label: 'Bottom Center', value: 'bottomcenter' },
-            { label: 'Center Left', value: 'centerleft' },
-            { label: 'Center Right', value: 'centerright' },
-          ]}
-        />
-      </div>
-      <Divider />
-
-      <div class={classes.container}>
-        <Text>User Alignment</Text>
-        <Dropdown
-          value={store.userAlignment}
-          selected={store.userAlignment}
-          onChange={(e) => set('userAlignment', e.target.value)}
-          options={[
-            { label: 'Top Left', value: 'topleft' },
-            { label: 'Top Right', value: 'topright' },
-            { label: 'Bottom Left', value: 'bottomleft' },
-            { label: 'Bottom Right', value: 'bottomright' },
-            { label: 'Top Center', value: 'topcenter' },
-            { label: 'Bottom Center', value: 'bottomcenter' },
-            { label: 'Center Left', value: 'centerleft' },
-            { label: 'Center Right', value: 'centerright' },
-          ]}
-        />
-      </div>
-      <Divider mb={12} />
-
-      <SwitchItem
-        value={store.voiceSemitransparent}
-        onChange={(v) => set('voiceSemitransparent', v)}
-      >
-        VC Members Semi-Transparent
-      </SwitchItem>
-
-      <SwitchItem
-        value={store.messagesSemitransparent}
-        onChange={(v) => set('messagesSemitransparent', v)}
-      >
-        Message Notifications Semi-Transparent
-      </SwitchItem>
     </>
   )
 }

@@ -22,12 +22,6 @@ interface ChannelState {
 
 export interface Config {
   port: number;
-  userId: string;
-  messageAlignment: string;
-  userAlignment: string;
-  voiceSemitransparent: boolean;
-  messagesSemitransparent: boolean;
-  isKeybindEnabled: boolean;
 }
 
 let ws: WebSocket
@@ -35,12 +29,6 @@ let currentChannel = null
 
 export const defaultConfig: Config = {
   port: 6888,
-  userId: '',
-  messageAlignment: 'topright',
-  userAlignment: 'topleft',
-  voiceSemitransparent: true,
-  messagesSemitransparent: false,
-  isKeybindEnabled: true,
 }
 
 const waitForPopulate = async (fn) => {
@@ -249,7 +237,8 @@ const createWebsocket = () => {
     }
   }, 1000)
 
-  ws = new WebSocket('ws://' + (store?.config?.connAddr || '127.0.0.1:6888'))
+  const port = (store && typeof store.port === 'number') ? store.port : defaultConfig.port
+  ws = new WebSocket('ws://127.0.0.1:' + String(port))
   ws.onerror = (e) => {
     ws?.close?.()
     ws = null
@@ -268,18 +257,13 @@ const createWebsocket = () => {
       duration: 3000,
     })
 
-    // Send over the config
-    const config = {
-      ...defaultConfig,
-      ...store,
-    }
-
     // Ensure we track the current user id
     // @ts-expect-error this exists
-    config.userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id)
-    store.userId = config.userId
+    const userId = await waitForPopulate(() => UserStore?.getCurrentUser()?.id)
+    if (userId) store.userId = userId
 
-    ws?.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', ...config }))
+    // Register only the user id with the remote server
+    ws?.send(JSON.stringify({ cmd: 'REGISTER_CONFIG', userId }))
 
     // Send initial channel joined (if the user is in a channel)
     // @ts-expect-error this exists
@@ -329,7 +313,8 @@ const createWebsocket = () => {
 }
 
 export const onLoad = () => {
-  if (!store) Object.keys(defaultConfig).forEach((key) => store[key] = defaultConfig[key])
+  // Ensure the store has a port value; keep all other configuration out of the plugin store
+  if (store && store.port === undefined) store.port = defaultConfig.port
 
   createWebsocket()
 
