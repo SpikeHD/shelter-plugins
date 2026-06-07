@@ -154,13 +154,13 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"header": "Zz-Z3G_header",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"keybindSection": "Zz-Z3G_keybindSection",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
 	"keybindsButton": "Zz-Z3G_keybindsButton",
 	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
+	"header": "Zz-Z3G_header",
 	"keybindsBanner": "Zz-Z3G_keybindsBanner"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
@@ -230,12 +230,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
+	"note": "QTLdLq_note",
 	"keybindRoot": "QTLdLq_keybindRoot",
-	"keybindSection": "QTLdLq_keybindSection",
 	"removeButton": "QTLdLq_removeButton",
 	"keybindArea": "QTLdLq_keybindArea",
-	"actionSection": "QTLdLq_actionSection",
-	"note": "QTLdLq_note"
+	"keybindSection": "QTLdLq_keybindSection",
+	"actionSection": "QTLdLq_actionSection"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -292,10 +292,10 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
 	"dsarrow": "sqVpyW_dsarrow",
-	"dcontainer": "sqVpyW_dcontainer",
 	"ddown": "sqVpyW_ddown",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -434,10 +434,10 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"recording": "N-HDcq_recording",
-	"keybindInput": "N-HDcq_keybindInput",
 	"keybindButton": "N-HDcq_keybindButton",
+	"keybindInput": "N-HDcq_keybindInput",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindContainer": "N-HDcq_keybindContainer",
 	"pulse": "N-HDcq_pulse"
 };
@@ -1127,7 +1127,7 @@ var import_web = __toESM(require_web());
 const { flux: { dispatcher: FluxDispatcher }, ui: { ReactiveRoot } } = shelter;
 let child = null;
 const viewedKeybindsCallback = (payload) => {
-	if (payload.section !== "Keybinds") {
+	if (payload.section !== "keybinds_panel") {
 		if (child) {
 			child.remove();
 			child = null;
@@ -1150,10 +1150,10 @@ const viewedKeybindsCallback = (payload) => {
 		child = keybindsArea.appendChild((0, import_web.createComponent)(ReactiveRoot, { get children() {
 			return (0, import_web.createComponent)(Keybinds, {
 				get keybindActionTypes() {
-					return owner.keybindActionTypes.filter((k) => k.value !== "PUSH_TO_TALK");
+					return owner.props.keybindActionTypes.filter((k) => k.value !== "PUSH_TO_TALK");
 				},
 				get keybindDescriptions() {
-					return owner.keybindDescriptions;
+					return owner.props.keybindDescriptions;
 				}
 			});
 		} }));
