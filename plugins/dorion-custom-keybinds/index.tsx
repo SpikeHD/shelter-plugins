@@ -13,7 +13,7 @@ const {
 let child: Element = null
 
 const viewedKeybindsCallback = (payload) => {
-  if (payload.section !== 'Keybinds') {
+  if (payload.section !== 'keybinds_panel') {
     if (child) {
       child.remove()
       child = null
