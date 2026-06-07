@@ -82,14 +82,6 @@ const subscriptions = [
 
 register()
 
-// --- ADD THIS CODE RIGHT HERE ---
-// If the user is already looking at the Keybinds page on boot,
-// force the injection to run immediately!
-setTimeout(() => {
-  viewedKeybindsCallback({ section: 'Keybinds' })
-}, 500);
-// --------------------------------
-
 export const onUnload = () => {
   for (const unsub of subscriptions) {
     unsub()
