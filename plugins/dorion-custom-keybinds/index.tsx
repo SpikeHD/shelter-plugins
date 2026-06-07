@@ -13,7 +13,7 @@ const {
 let child: Element = null
 
 const viewedKeybindsCallback = (payload) => {
-  if (payload.section !== 'Keybinds') {
+  if (payload.section !== 'keybinds_panel') {
     if (child) {
       child.remove()
       child = null
@@ -58,10 +58,8 @@ const viewedKeybindsCallback = (payload) => {
         <Keybinds
           // Remove PUSH_TO_TALK because that is set in the voice & video section and I can't be assed
           // to come up with a good way to handle it being set somewhere else right now
-          // @ts-expect-error it does exist I promise
-          keybindActionTypes={owner.keybindActionTypes.filter((k) => k.value !== 'PUSH_TO_TALK')}
-          // @ts-expect-error it does exist I promise
-          keybindDescriptions={owner.keybindDescriptions}
+          keybindActionTypes={owner.props.keybindActionTypes.filter((k) => k.value !== 'PUSH_TO_TALK')}
+          keybindDescriptions={owner.props.keybindDescriptions}
         />
       </ReactiveRoot>
     )
