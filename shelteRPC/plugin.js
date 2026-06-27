@@ -269,16 +269,16 @@ const timestampToRelative = (timestamp) => {
 //#endregion
 //#region plugins/shelteRPC/components/GameCard.scss
 const classes$3 = {
-	"cardNone": "zS7Qtq_cardNone",
-	"trash": "zS7Qtq_trash",
-	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
-	"gameCardInfo": "zS7Qtq_gameCardInfo",
-	"gameCardName": "zS7Qtq_gameCardName",
 	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
+	"trash": "zS7Qtq_trash",
 	"cardPlaying": "zS7Qtq_cardPlaying",
+	"cardNone": "zS7Qtq_cardNone",
 	"cardPlayed": "zS7Qtq_cardPlayed",
 	"gameCard": "zS7Qtq_gameCard",
-	"gameCardIcons": "zS7Qtq_gameCardIcons"
+	"gameCardIcons": "zS7Qtq_gameCardIcons",
+	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
+	"gameCardInfo": "zS7Qtq_gameCardInfo",
+	"gameCardName": "zS7Qtq_gameCardName"
 };
 const css$3 = `.zS7Qtq_gameCard {
   width: 100%;
@@ -462,10 +462,10 @@ var GameCard_default = (props) => {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$2 = {
-	"dsarrow": "sqVpyW_dsarrow",
 	"dcontainer": "sqVpyW_dcontainer",
 	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"ddown": "sqVpyW_ddown"
+	"ddown": "sqVpyW_ddown",
+	"dsarrow": "sqVpyW_dsarrow"
 };
 const css$2 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -606,8 +606,8 @@ const Dropdown = (props) => {
 const classes$1 = {
 	"addIt": "yVnOSq_addIt",
 	"tophead": "yVnOSq_tophead",
-	"modalhead": "yVnOSq_modalhead",
 	"shead": "yVnOSq_shead",
+	"modalhead": "yVnOSq_modalhead",
 	"description": "yVnOSq_description"
 };
 const css$1 = `.yVnOSq_description {
@@ -831,6 +831,15 @@ if (!injectedCss) {
 }
 let maybeUnregisterGameSettings = [() => {}];
 let ws;
+let reconnectTimer = null;
+let unloading = false;
+function scheduleReconnect() {
+	if (unloading || reconnectTimer) return;
+	reconnectTimer = setTimeout(() => {
+		reconnectTimer = null;
+		onLoad();
+	}, store.retryWait ?? 3e3);
+}
 const apps = {};
 store.currentlyPlaying = "";
 async function lookupApp(appId) {
@@ -905,12 +914,24 @@ const retry = async (fn, times = 5, wait = 500) => {
 	return result;
 };
 const onLoad = async () => {
-	if (ws && ws?.close) ws.close();
+	unloading = false;
+	if (reconnectTimer) {
+		clearTimeout(reconnectTimer);
+		reconnectTimer = null;
+	}
+	if (ws) {
+		ws.onclose = null;
+		ws.onerror = null;
+		ws.close();
+		ws = null;
+	}
 	const connected = await retry(async (curTry) => {
 		ws = new WebSocket("ws://" + (store.connAddr || "127.0.0.1:1337"));
 		ws.onmessage = handleMessage;
-		ws.onerror = (e) => {
-			throw e;
+		ws.onerror = () => {
+			try {
+				ws?.close?.();
+			} catch {}
 		};
 		await new Promise((r) => setTimeout(r, 1e3));
 		if (ws.readyState !== WebSocket.OPEN) {
@@ -925,6 +946,7 @@ const onLoad = async () => {
 		}
 		return true;
 	}, store.retryCount ?? 3, store.retryWait ?? 3e3);
+	maybeUnregisterGameSettings.forEach((section) => section());
 	maybeUnregisterGameSettings = [
 		registerSection("divider"),
 		registerSection("header", "shelteRPC"),
@@ -934,9 +956,10 @@ const onLoad = async () => {
 	ws.onclose = () => {
 		showToast({
 			title: "ShelteRPC",
-			content: "ShelteRPC server disconnected",
+			content: "ShelteRPC server disconnected; reconnecting...",
 			duration: 3e3
 		});
+		scheduleReconnect();
 	};
 	showToast({
 		title: "ShelteRPC",
@@ -945,6 +968,11 @@ const onLoad = async () => {
 	});
 };
 const onUnload = async () => {
+	unloading = true;
+	if (reconnectTimer) {
+		clearTimeout(reconnectTimer);
+		reconnectTimer = null;
+	}
 	if (ws?.close) ws.close?.();
 	if (maybeUnregisterGameSettings) maybeUnregisterGameSettings.forEach((section) => section());
 };
