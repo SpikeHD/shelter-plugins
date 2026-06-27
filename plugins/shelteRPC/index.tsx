@@ -34,7 +34,19 @@ if (!injectedCss) {
 
 let maybeUnregisterGameSettings = [() => {}]
 
-let ws: WebSocket
+let ws: WebSocket | null
+let reconnectTimer: ReturnType<typeof setTimeout> | null = null
+let unloading = false
+
+function scheduleReconnect() {
+  if (unloading || reconnectTimer) return
+
+  reconnectTimer = setTimeout(() => {
+    reconnectTimer = null
+    onLoad()
+  }, store.retryWait ?? 3000)
+}
+
 const apps: Record<string, { name: string } | string> = {}
 
 // when we load, set current game as nothing
@@ -157,14 +169,27 @@ const retry = async (fn: (curTry: number) => any, times: number = 5, wait: numbe
 }
 
 export const onLoad = async () => {
-  if (ws && ws?.close) ws.close()
+  unloading = false
+
+  if (reconnectTimer) {
+    clearTimeout(reconnectTimer)
+    reconnectTimer = null
+  }
+
+  if (ws) {
+    ws.onclose = null
+    ws.onerror = null
+    ws.close()
+    ws = null
+  }
 
   const connected = await retry(
     async (curTry) => {
       ws = new WebSocket('ws://' + (store.connAddr || '127.0.0.1:1337'))
       ws.onmessage = handleMessage
-      ws.onerror = (e) => { throw e }
-
+      ws.onerror = () => {
+        try { ws?.close?.() } catch {}
+      }
       await new Promise((r) => setTimeout(r, 1000))
 
       if (ws.readyState !== WebSocket.OPEN) {
@@ -186,6 +211,8 @@ export const onLoad = async () => {
     store.retryWait ?? 3000,
   )
 
+  maybeUnregisterGameSettings.forEach((section) => section())
+  
   maybeUnregisterGameSettings = [
     registerSection('divider'),
     registerSection('header', 'shelteRPC'),
@@ -198,13 +225,15 @@ export const onLoad = async () => {
   ]
 
   if (!connected) return
-
+  
   ws.onclose = () => {
     showToast({
       title: 'ShelteRPC',
-      content: 'ShelteRPC server disconnected',
+      content: 'ShelteRPC server disconnected; reconnecting...',
       duration: 3000,
     })
+  
+    scheduleReconnect()
   }
 
   showToast({
@@ -215,6 +244,13 @@ export const onLoad = async () => {
 }
 
 export const onUnload = async () => {
+  unloading = true
+
+  if (reconnectTimer) {
+    clearTimeout(reconnectTimer)
+    reconnectTimer = null
+  }
+
   if (ws?.close) ws.close?.()
 
   if (maybeUnregisterGameSettings) {
