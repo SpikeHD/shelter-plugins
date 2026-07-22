@@ -159,6 +159,7 @@ var dorion_rpc$2 = {
 	"successfully_installed": "Successfully installed shelteRPC!",
 	"server": "Server",
 	"integrated_server": "Integrated rich presence server",
+	"rpc_port": "Server Port",
 	"work_in_progress": "This is a work in progress, and won't do EVERYTHING arRPC does quite yet.",
 	"integrated_server_note": "Enable the integrated RPC server, eliminating the need for a separate arRPC server running. Pairs best with {{shelteRPCLink}}, also works with {{arRPCLink}}.",
 	"advanced_settings": "Advanced Settings",
