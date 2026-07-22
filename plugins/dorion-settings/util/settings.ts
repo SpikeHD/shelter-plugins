@@ -25,4 +25,10 @@ export const defaultConfig = {
   blur_css: true,
   client_mods: ['Shelter'],
   unread_badge: true,
+
+  rpc_port: 1337,
+  rpc_process_scanner: true,
+  rpc_ipc_connector: true,
+  rpc_websocket_connector: true,
+  rpc_secondary_events: true,
 }

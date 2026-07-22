@@ -39,11 +39,11 @@ export function RPCPage() {
   })
 
   const setSettings = (fn: (DorionSettings) => DorionSettings, requiresRestart?: boolean) => {
-    setSettingsState(fn(settings()))
+    const newSettings = fn(settings())
+    setSettingsState(newSettings)
 
-    // Save the settings
     invoke('write_config_file', {
-      contents: JSON.stringify(fn(settings())),
+      contents: JSON.stringify(newSettings),
     })
 
     // If a restart is now required, set that
@@ -135,9 +135,11 @@ export function RPCPage() {
         <div class={classes.stextboxInput}>
           <TextBox
             value={settings().rpc_port.toString()}
-            onChange={(v) => {
+            onChange={(e) => {
+              const v = e.target.value
               setSettings(p => {
-                return { ...p, rpc_port: parseInt(v) }
+                const port = parseInt(v)
+                return isNaN(port) ? p : { ...p, rpc_port: port }
               }, true)
             }}
           />
