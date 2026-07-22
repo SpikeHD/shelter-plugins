@@ -158,10 +158,10 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-settings/pages/PerformancePage.tsx.scss
 const classes$12 = {
+	"tophead": "ZN8ggW_tophead",
 	"stext": "ZN8ggW_stext",
-	"shead": "ZN8ggW_shead",
 	"pbuttons": "ZN8ggW_pbuttons",
-	"tophead": "ZN8ggW_tophead"
+	"shead": "ZN8ggW_shead"
 };
 const css$12 = `.ZN8ggW_tophead {
   margin-bottom: 16px;
@@ -193,10 +193,10 @@ const css$12 = `.ZN8ggW_tophead {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$11 = {
-	"dcontainer": "sqVpyW_dcontainer",
+	"ddown": "sqVpyW_ddown",
 	"dsarrow": "sqVpyW_dsarrow",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"ddown": "sqVpyW_ddown"
+	"dcontainer": "sqVpyW_dcontainer",
+	"ddownplaceholder": "sqVpyW_ddownplaceholder"
 };
 const css$11 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -455,7 +455,12 @@ const defaultConfig = {
 	blur: "none",
 	blur_css: true,
 	client_mods: ["Shelter"],
-	unread_badge: true
+	unread_badge: true,
+	rpc_port: 1337,
+	rpc_process_scanner: true,
+	rpc_ipc_connector: true,
+	rpc_websocket_connector: true,
+	rpc_secondary_events: true
 };
 
 //#endregion
@@ -780,11 +785,11 @@ function PerformancePage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx.scss
 const classes$8 = {
-	"tophead": "_2nPZKq_tophead",
-	"pbuttons": "_2nPZKq_pbuttons",
+	"shead": "_2nPZKq_shead",
 	"splitbutton": "_2nPZKq_splitbutton",
 	"sbutton": "_2nPZKq_sbutton",
-	"shead": "_2nPZKq_shead"
+	"tophead": "_2nPZKq_tophead",
+	"pbuttons": "_2nPZKq_pbuttons"
 };
 const css$8 = `._2nPZKq_tophead {
   margin-bottom: 16px;
@@ -964,10 +969,10 @@ function ProfilesPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/SettingsPage.tsx.scss
 const classes$7 = {
-	"left16": "akYvUa_left16",
 	"ohead": "akYvUa_ohead",
 	"tophead": "akYvUa_tophead",
-	"shead": "akYvUa_shead"
+	"shead": "akYvUa_shead",
+	"left16": "akYvUa_left16"
 };
 const css$7 = `.akYvUa_tophead {
   margin-bottom: 16px;
@@ -993,10 +998,10 @@ const css$7 = `.akYvUa_tophead {
 //#endregion
 //#region components/Radio.tsx.scss
 const classes$6 = {
-	"radioButtonInner": "Ch7osa_radioButtonInner",
 	"radioButton": "Ch7osa_radioButton",
-	"selected": "Ch7osa_selected",
-	"radio": "Ch7osa_radio"
+	"radio": "Ch7osa_radio",
+	"radioButtonInner": "Ch7osa_radioButtonInner",
+	"selected": "Ch7osa_selected"
 };
 const css$6 = `.Ch7osa_radio {
   color: var(--interactive-normal);
@@ -1456,14 +1461,14 @@ function SettingsPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx.scss
 const classes$5 = {
-	"card": "yPVoxW_card",
-	"badges": "yPVoxW_badges",
-	"contents": "yPVoxW_contents",
 	"badge": "yPVoxW_badge",
-	"title": "yPVoxW_title",
-	"spin": "yPVoxW_spin",
 	"spinner": "yPVoxW_spinner",
-	"tophead": "yPVoxW_tophead"
+	"card": "yPVoxW_card",
+	"contents": "yPVoxW_contents",
+	"spin": "yPVoxW_spin",
+	"badges": "yPVoxW_badges",
+	"tophead": "yPVoxW_tophead",
+	"title": "yPVoxW_title"
 };
 const css$5 = `.yPVoxW_tophead {
   justify-content: space-between;
@@ -3643,17 +3648,17 @@ function ChangelogPage() {
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx.scss
 const classes$4 = {
-	"top16": "XZjauW_top16",
-	"plistrow": "XZjauW_plistrow",
-	"pbuttons": "XZjauW_pbuttons",
 	"plist": "XZjauW_plist",
-	"pheader": "XZjauW_pheader",
+	"scell": "XZjauW_scell",
 	"mcell": "XZjauW_mcell",
+	"shead": "XZjauW_shead",
+	"plistrow": "XZjauW_plistrow",
 	"left16": "XZjauW_left16",
 	"top32": "XZjauW_top32",
-	"scell": "XZjauW_scell",
+	"top16": "XZjauW_top16",
+	"pheader": "XZjauW_pheader",
 	"sbutton": "XZjauW_sbutton",
-	"shead": "XZjauW_shead"
+	"pbuttons": "XZjauW_pbuttons"
 };
 const css$4 = `.XZjauW_shead {
   margin-top: 16px;
@@ -3815,16 +3820,16 @@ else if (modName === "Equicord" && newClientMods.includes("Vencord")) newClientM
 //#endregion
 //#region plugins/dorion-settings/components/PluginList.tsx.scss
 const classes$3 = {
-	"scell": "V6is4W_scell",
-	"top16": "V6is4W_top16",
-	"pbuttons": "V6is4W_pbuttons",
-	"plist": "V6is4W_plist",
-	"sbutton": "V6is4W_sbutton",
-	"pheader": "V6is4W_pheader",
-	"mcell": "V6is4W_mcell",
-	"plistrow": "V6is4W_plistrow",
+	"top32": "V6is4W_top32",
 	"left16": "V6is4W_left16",
-	"top32": "V6is4W_top32"
+	"pbuttons": "V6is4W_pbuttons",
+	"pheader": "V6is4W_pheader",
+	"top16": "V6is4W_top16",
+	"mcell": "V6is4W_mcell",
+	"scell": "V6is4W_scell",
+	"plistrow": "V6is4W_plistrow",
+	"plist": "V6is4W_plist",
+	"sbutton": "V6is4W_sbutton"
 };
 const css$3 = `.V6is4W_plist {
   flex-direction: column;
@@ -4032,10 +4037,10 @@ function PluginList(props) {
 const classes$2 = {
 	"tophead": "X31w8G_tophead",
 	"left16": "X31w8G_left16",
-	"pbuttons": "X31w8G_pbuttons",
-	"shead": "X31w8G_shead",
 	"card": "X31w8G_card",
-	"openButton": "X31w8G_openButton"
+	"openButton": "X31w8G_openButton",
+	"pbuttons": "X31w8G_pbuttons",
+	"shead": "X31w8G_shead"
 };
 const css$2 = `.X31w8G_tophead {
   margin-bottom: 16px;
@@ -4213,9 +4218,9 @@ const reloadThemes = async () => {
 //#endregion
 //#region plugins/dorion-settings/pages/ThemesPage.tsx.scss
 const classes$1 = {
-	"tophead": "oAx4fa_tophead",
 	"shead": "oAx4fa_shead",
-	"pbuttons": "oAx4fa_pbuttons"
+	"pbuttons": "oAx4fa_pbuttons",
+	"tophead": "oAx4fa_tophead"
 };
 const css$1 = `.oAx4fa_tophead {
   margin-bottom: 16px;
@@ -4461,12 +4466,12 @@ function ThemesPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/RPC.tsx.scss
 const classes = {
-	"customNote": "ycw7DW_customNote",
-	"bot16": "ycw7DW_bot16",
 	"customInstallBtn": "ycw7DW_customInstallBtn",
 	"stextboxInput": "ycw7DW_stextboxInput",
 	"stextbox": "ycw7DW_stextbox",
-	"shead": "ycw7DW_shead"
+	"shead": "ycw7DW_shead",
+	"bot16": "ycw7DW_bot16",
+	"customNote": "ycw7DW_customNote"
 };
 const css = `.ycw7DW_shead {
   margin-top: 16px;
@@ -4530,8 +4535,9 @@ function RPCPage() {
 		setRestartRequired(window?.__DORION_RESTART__ === true);
 	});
 	const setSettings = (fn, requiresRestart$1) => {
-		setSettingsState(fn(settings()));
-		invoke("write_config_file", { contents: JSON.stringify(fn(settings())) });
+		const newSettings = fn(settings());
+		setSettingsState(newSettings);
+		invoke("write_config_file", { contents: JSON.stringify(newSettings) });
 		if (requiresRestart$1) {
 			setRestartRequired(true);
 			backendRestartRequired(true);
@@ -4656,11 +4662,13 @@ function RPCPage() {
 				get value() {
 					return settings().rpc_port.toString();
 				},
-				onChange: (v) => {
+				onChange: (e) => {
+					const v = e.target.value;
 					setSettings((p) => {
-						return {
+						const port = parseInt(v);
+						return isNaN(port) ? p : {
 							...p,
-							rpc_port: parseInt(v)
+							rpc_port: port
 						};
 					}, true);
 				}
