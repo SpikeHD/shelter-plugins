@@ -37,6 +37,7 @@ interface DorionSettings {
   win7_style_notifications: boolean;
 
   // RPC-specific options
+  rpc_port: number;
   rpc_process_scanner: boolean;
   rpc_ipc_connector: boolean;
   rpc_websocket_connector: boolean;

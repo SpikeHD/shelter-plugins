@@ -8,6 +8,7 @@ const {
   ui: {
     Button,
     Text,
+    TextBox,
     SwitchItem,
     Header,
     HeaderTags,
@@ -125,6 +126,23 @@ export function RPCPage() {
       >
         {t('dorion_rpc.integrated_server')}
       </SwitchItem>
+
+      <div class={classes.stextbox}>
+        <Text class={classes.stext}>
+          {t('dorion_rpc.rpc_port')}
+        </Text>
+
+        <div class={classes.stextboxInput}>
+          <TextBox
+            value={settings().rpc_port.toString()}
+            onChange={(v) => {
+              setSettings(p => {
+                return { ...p, rpc_port: parseInt(v) }
+              }, true)
+            }}
+          />
+        </div>
+      </div>
 
       <Header class={classes.shead}>{t('dorion_rpc.advanced_settings')}</Header>
 

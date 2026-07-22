@@ -19,3 +19,15 @@
   font-weight: 400;
   font-size: 14px;
 }
+
+.stextbox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .stextboxInput {
+    width: 20%;
+  }
+}
