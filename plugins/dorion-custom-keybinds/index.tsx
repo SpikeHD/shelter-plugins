@@ -13,7 +13,7 @@ const {
 let child: Element = null
 
 const viewedKeybindsCallback = (payload) => {
-  if (payload.section !== 'keybinds_panel') {
+  if (payload.section !== 'system_panel') {
     if (child) {
       child.remove()
       child = null
@@ -22,20 +22,24 @@ const viewedKeybindsCallback = (payload) => {
     return
   }
 
-  const el = document.querySelector('[data-nav-anchor-key="keybinds_setting"]')
+  const el = document.querySelector('[data-nav-anchor-key="system_custom_keybinds_category"]')
   if (el) {
     if (child?.isConnected) {
+      console.warn('Keybinds component already mounted, skipping')
       return
     }
 
-    const browserNotice = el.querySelector('[class*="browserNotice"]')
+    const browserNotice = el.querySelector('[data-nav-anchor-key="custom_keybinds_setting"]')
     if (!browserNotice) {
+      console.warn('Could not find browser notice element, skipping')
       return
     }
 
+    // TODO we cannot get keybinds list from the owner anymore
     const owner = shelter.util.getFiberOwner(browserNotice)
     const keybindsArea = browserNotice.parentElement
     if (!owner || !keybindsArea) {
+      console.warn('Could not find owner or keybinds area, skipping')
       return
     }
 
@@ -45,6 +49,7 @@ const viewedKeybindsCallback = (payload) => {
 
     const keybindsContainer = keybindsArea.parentElement?.parentElement
     if (!keybindsContainer) {
+      console.warn('Could not find keybinds container, skipping')
       return
     }
 
