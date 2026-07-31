@@ -154,14 +154,14 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$3 = {
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"header": "Zz-Z3G_header",
-	"keybindsHeader": "Zz-Z3G_keybindsHeader",
 	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"header": "Zz-Z3G_header",
 	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"keybindsHeader": "Zz-Z3G_keybindsHeader",
+	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindSection": "Zz-Z3G_keybindSection"
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton"
 };
 const css$3 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -230,12 +230,12 @@ const css$3 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$2 = {
+	"keybindRoot": "QTLdLq_keybindRoot",
+	"keybindArea": "QTLdLq_keybindArea",
 	"removeButton": "QTLdLq_removeButton",
 	"note": "QTLdLq_note",
 	"actionSection": "QTLdLq_actionSection",
-	"keybindRoot": "QTLdLq_keybindRoot",
-	"keybindSection": "QTLdLq_keybindSection",
-	"keybindArea": "QTLdLq_keybindArea"
+	"keybindSection": "QTLdLq_keybindSection"
 };
 const css$2 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -292,10 +292,10 @@ const css$2 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/Dropdown.tsx.scss
 const classes$1 = {
-	"dcontainer": "sqVpyW_dcontainer",
 	"dsarrow": "sqVpyW_dsarrow",
 	"ddown": "sqVpyW_ddown",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder"
+	"ddownplaceholder": "sqVpyW_ddownplaceholder",
+	"dcontainer": "sqVpyW_dcontainer"
 };
 const css$1 = `.sqVpyW_ddown {
   box-sizing: border-box;
@@ -434,12 +434,12 @@ const Dropdown = (props) => {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindInput": "N-HDcq_keybindInput",
-	"pulse": "N-HDcq_pulse",
-	"recording": "N-HDcq_recording",
 	"keybindContainer": "N-HDcq_keybindContainer",
 	"keybindButton": "N-HDcq_keybindButton",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder"
+	"pulse": "N-HDcq_pulse",
+	"recording": "N-HDcq_recording"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
@@ -1127,24 +1127,36 @@ var import_web = __toESM(require_web());
 const { flux: { dispatcher: FluxDispatcher }, ui: { ReactiveRoot } } = shelter;
 let child = null;
 const viewedKeybindsCallback = (payload) => {
-	if (payload.section !== "keybinds_panel") {
+	if (payload.section !== "system_panel") {
 		if (child) {
 			child.remove();
 			child = null;
 		}
 		return;
 	}
-	const el = document.querySelector("[data-nav-anchor-key=\"keybinds_setting\"]");
+	const el = document.querySelector("[data-nav-anchor-key=\"system_custom_keybinds_category\"]");
 	if (el) {
-		if (child?.isConnected) return;
-		const browserNotice = el.querySelector("[class*=\"browserNotice\"]");
-		if (!browserNotice) return;
+		if (child?.isConnected) {
+			console.warn("Keybinds component already mounted, skipping");
+			return;
+		}
+		const browserNotice = el.querySelector("[data-nav-anchor-key=\"custom_keybinds_setting\"]");
+		if (!browserNotice) {
+			console.warn("Could not find browser notice element, skipping");
+			return;
+		}
 		const owner = shelter.util.getFiberOwner(browserNotice);
 		const keybindsArea = browserNotice.parentElement;
-		if (!owner || !keybindsArea) return;
+		if (!owner || !keybindsArea) {
+			console.warn("Could not find owner or keybinds area, skipping");
+			return;
+		}
 		browserNotice.style.display = "none";
 		const keybindsContainer = keybindsArea.parentElement?.parentElement;
-		if (!keybindsContainer) return;
+		if (!keybindsContainer) {
+			console.warn("Could not find keybinds container, skipping");
+			return;
+		}
 		const defaultKeybinds = keybindsContainer.querySelector("fieldset")?.parentElement;
 		if (defaultKeybinds) defaultKeybinds.style.marginTop = "0";
 		child = keybindsArea.appendChild((0, import_web.createComponent)(ReactiveRoot, { get children() {
