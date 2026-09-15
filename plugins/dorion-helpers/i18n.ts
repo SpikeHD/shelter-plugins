@@ -1,5 +1,9 @@
 import en from '../../i18n/en.json' with { type: 'json' }
+import hi from '../../i18n/hi.json' with { type: 'json' }
 import id from '../../i18n/id.json' with { type: 'json' }
+import ja from '../../i18n/ja.json' with { type: 'json' }
+import ko from '../../i18n/ko.json' with { type: 'json' }
+import pt from '../../i18n/pt.json' with { type: 'json' }
 import ru from '../../i18n/ru.json' with { type: 'json' }
 
 // Global window types for translations
@@ -16,7 +20,11 @@ const languages: {
   [key: string]: Record<string, unknown>
 } = {
   en,
+  hi,
   id,
+  ja,
+  ko,
+  pt,
   ru,
 }
 
