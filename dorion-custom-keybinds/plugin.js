@@ -153,17 +153,17 @@ function t(key, replace) {
 
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
-const classes$3 = {
-	"keybindsButton": "Zz-Z3G_keybindsButton",
-	"header": "Zz-Z3G_header",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+const classes$2 = {
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
 	"keybindSection": "Zz-Z3G_keybindSection",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
 	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"header": "Zz-Z3G_header",
+	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindRestartButton": "Zz-Z3G_keybindRestartButton"
 };
-const css$3 = `.Zz-Z3G_keybindSection {
+const css$2 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
@@ -229,15 +229,15 @@ const css$3 = `.Zz-Z3G_keybindSection {
 
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
-const classes$2 = {
+const classes$1 = {
 	"keybindRoot": "QTLdLq_keybindRoot",
 	"keybindArea": "QTLdLq_keybindArea",
-	"removeButton": "QTLdLq_removeButton",
-	"note": "QTLdLq_note",
 	"actionSection": "QTLdLq_actionSection",
-	"keybindSection": "QTLdLq_keybindSection"
+	"note": "QTLdLq_note",
+	"keybindSection": "QTLdLq_keybindSection",
+	"removeButton": "QTLdLq_removeButton"
 };
-const css$2 = `.QTLdLq_keybindRoot {
+const css$1 = `.QTLdLq_keybindRoot {
   flex-direction: column;
   width: 100%;
   margin-bottom: 16px;
@@ -290,156 +290,14 @@ const css$2 = `.QTLdLq_keybindRoot {
 `;
 
 //#endregion
-//#region components/Dropdown.tsx.scss
-const classes$1 = {
-	"dsarrow": "sqVpyW_dsarrow",
-	"ddown": "sqVpyW_ddown",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dcontainer": "sqVpyW_dcontainer"
-};
-const css$1 = `.sqVpyW_ddown {
-  box-sizing: border-box;
-  width: 100%;
-  color: var(--text-default);
-  background-color: var(--background-base-lowest);
-  appearance: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  font-size: 16px;
-  transition: border-color .2s ease-in-out;
-}
-
-.sqVpyW_ddown option {
-  color: var(--text-default);
-  background: #333;
-}
-
-.sqVpyW_dcontainer {
-  width: 100%;
-  position: relative;
-}
-
-.sqVpyW_dsarrow {
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-.sqVpyW_dsarrow path {
-  fill: var(--text-subtle);
-}
-
-.sqVpyW_ddownplaceholder {
-  color: var(--text-subtle);
-}
-`;
-
-//#endregion
-//#region components/SelectArrow.tsx
-var import_web$39 = __toESM(require_web(), 1);
-var import_web$40 = __toESM(require_web(), 1);
-var import_web$41 = __toESM(require_web(), 1);
-var import_web$42 = __toESM(require_web(), 1);
-const _tmpl$$4 = /*#__PURE__*/ (0, import_web$39.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
-const SelectArrow = (props) => (() => {
-	const _el$ = (0, import_web$42.getNextElement)(_tmpl$$4);
-	(0, import_web$41.effect)(() => (0, import_web$40.setAttribute)(_el$, "class", props.class));
-	return _el$;
-})();
-
-//#endregion
-//#region components/Dropdown.tsx
-var import_web$29 = __toESM(require_web(), 1);
-var import_web$30 = __toESM(require_web(), 1);
-var import_web$31 = __toESM(require_web(), 1);
-var import_web$32 = __toESM(require_web(), 1);
-var import_web$33 = __toESM(require_web(), 1);
-var import_web$34 = __toESM(require_web(), 1);
-var import_web$35 = __toESM(require_web(), 1);
-var import_web$36 = __toESM(require_web(), 1);
-var import_web$37 = __toESM(require_web(), 1);
-var import_web$38 = __toESM(require_web(), 1);
-const _tmpl$$3 = /*#__PURE__*/ (0, import_web$29.template)(`<div><select><!#><!/><!#><!/></select><!#><!/></div>`, 10), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$29.template)(`<option value=""></option>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web$29.template)(`<option></option>`, 2);
-const { ui: { injectCss: injectCss$3 } } = shelter;
-let injectedCss$3 = false;
-const Dropdown = (props) => {
-	if (!injectedCss$3) {
-		injectedCss$3 = true;
-		injectCss$3(css$1);
-	}
-	return (() => {
-		const _el$ = (0, import_web$34.getNextElement)(_tmpl$$3), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$36.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$36.getNextMarker)(_el$5.nextSibling), _el$7 = _el$2.nextSibling, [_el$8, _co$3] = (0, import_web$36.getNextMarker)(_el$7.nextSibling);
-		_el$2.addEventListener("change", (e) => {
-			props.onChange(e);
-			if (props.immutable) {
-				e.preventDefault();
-				e.stopPropagation();
-				e.target.value = props.value;
-			}
-		});
-		(0, import_web$37.insert)(_el$2, (() => {
-			const _c$ = (0, import_web$38.memo)(() => !!props.placeholder);
-			return () => _c$() && (() => {
-				const _el$9 = (0, import_web$34.getNextElement)(_tmpl$2$2);
-				(0, import_web$37.insert)(_el$9, () => props.placeholder);
-				(0, import_web$33.effect)((_p$) => {
-					const _v$8 = classes$1.ddownplaceholder, _v$9 = props.value === "";
-					_v$8 !== _p$._v$8 && (0, import_web$32.className)(_el$9, _p$._v$8 = _v$8);
-					_v$9 !== _p$._v$9 && (_el$9.selected = _p$._v$9 = _v$9);
-					return _p$;
-				}, {
-					_v$8: undefined,
-					_v$9: undefined
-				});
-				return _el$9;
-			})();
-		})(), _el$4, _co$);
-		(0, import_web$37.insert)(_el$2, () => props.options?.map((o) => (() => {
-			const _el$0 = (0, import_web$34.getNextElement)(_tmpl$3);
-			(0, import_web$37.insert)(_el$0, () => o.label);
-			(0, import_web$33.effect)(() => _el$0.selected = o.value === props.value);
-			(0, import_web$33.effect)(() => _el$0.value = o.value);
-			return _el$0;
-		})()), _el$6, _co$2);
-		(0, import_web$37.insert)(_el$, (0, import_web$35.createComponent)(SelectArrow, { get ["class"]() {
-			return classes$1.dsarrow;
-		} }), _el$8, _co$3);
-		(0, import_web$33.effect)((_p$) => {
-			const _v$ = classes$1.dcontainer, _v$2 = props.style, _v$3 = classes$1.ddown + " " + (props.placeholder && props.value === "" ? classes$1.ddownplaceholder : ""), _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
-			_v$ !== _p$._v$ && (0, import_web$32.className)(_el$, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$31.style)(_el$, _v$2, _p$._v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$32.className)(_el$2, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$30.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$30.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
-			_v$6 !== _p$._v$6 && (0, import_web$30.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
-			_v$7 !== _p$._v$7 && (_el$2.disabled = _p$._v$7 = _v$7);
-			return _p$;
-		}, {
-			_v$: undefined,
-			_v$2: undefined,
-			_v$3: undefined,
-			_v$4: undefined,
-			_v$5: undefined,
-			_v$6: undefined,
-			_v$7: undefined
-		});
-		return _el$;
-	})();
-};
-
-//#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindInput": "N-HDcq_keybindInput",
-	"keybindContainer": "N-HDcq_keybindContainer",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"recording": "N-HDcq_recording",
 	"keybindButton": "N-HDcq_keybindButton",
-	"pulse": "N-HDcq_pulse",
-	"recording": "N-HDcq_recording"
+	"keybindContainer": "N-HDcq_keybindContainer",
+	"pulse": "N-HDcq_pulse"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
@@ -638,7 +496,7 @@ var import_web$16 = __toESM(require_web());
 var import_web$17 = __toESM(require_web());
 var import_web$18 = __toESM(require_web());
 const _tmpl$$1 = /*#__PURE__*/ (0, import_web$9.template)(`<svg width="256" height="256" viewBox="0 0 256 256" style="height: 100%"><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 11 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 c -4.295 -4.296 -4.295 -11.261 0 -15.557 l 68 -68 c 4.297 -4.296 11.26 -4.296 15.557 0 c 4.296 4.296 4.296 11.261 0 15.557 l -68 68 C 16.63 88.926 13.815 90 11 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path><path d="M 79 90 c -2.815 0 -5.63 -1.074 -7.778 -3.222 l -68 -68 c -4.295 -4.296 -4.295 -11.261 0 -15.557 c 4.296 -4.296 11.261 -4.296 15.557 0 l 68 68 c 4.296 4.296 4.296 11.261 0 15.557 C 84.63 88.926 81.815 90 79 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: var(--status-danger); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"></path></g></svg>`, 8), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$9.template)(`<div><div><div><!#><!/><!#><!/></div><div><!#><!/><!#><!/></div><div></div></div><!#><!/></div>`, 20);
-const { ui: { Text: Text$1, HeaderTags, Header, injectCss: injectCss$1 }, solid: { createSignal: createSignal$1 } } = shelter;
+const { ui: { Text: Text$1, HeaderTags, Header, injectCss: injectCss$1, Select, SelectOption }, solid: { createSignal: createSignal$1 } } = shelter;
 const RemoveIcon = (props) => (() => {
 	const _el$ = (0, import_web$16.getNextElement)(_tmpl$$1);
 	(0, import_web$18.addEventListener)(_el$, "click", props.onClick, true);
@@ -649,7 +507,7 @@ let injectedCss$1 = false;
 function KeybindSection(props) {
 	if (!injectedCss$1) {
 		injectedCss$1 = true;
-		injectCss$1(css$2);
+		injectCss$1(css$1);
 	}
 	const [keybindType, setKeybindType] = createSignal$1(props.internalName || props.keybind?.key || props.keybindActionTypes[0].value);
 	const old = props.keybind;
@@ -661,21 +519,28 @@ function KeybindSection(props) {
 			},
 			children: "Action"
 		}), _el$6, _co$);
-		(0, import_web$14.insert)(_el$4, (0, import_web$15.createComponent)(Dropdown, {
+		(0, import_web$14.insert)(_el$4, (0, import_web$15.createComponent)(Select, {
 			get value() {
 				return props.internalName || props.keybind?.key || props.keybindActionTypes[0].value;
 			},
-			get options() {
-				return props.keybindActionTypes;
-			},
-			onChange: (e) => {
-				setKeybindType(e.target.value);
+			onChange: (v) => {
+				setKeybindType(String(v));
 				props.onKeybindChange({
 					keys: props.keybind.keys || [],
-					key: e.target.value
+					key: String(v)
 				}, old);
 			},
-			style: "width: 90%"
+			style: { width: "90%" },
+			get children() {
+				return props.keybindActionTypes.map((a) => (0, import_web$15.createComponent)(SelectOption, {
+					get value() {
+						return a.value;
+					},
+					get children() {
+						return a.label;
+					}
+				}));
+			}
 		}), _el$8, _co$2);
 		(0, import_web$14.insert)(_el$9, (0, import_web$15.createComponent)(Header, {
 			get size() {
@@ -698,14 +563,14 @@ function KeybindSection(props) {
 		(0, import_web$14.insert)(_el$12, (0, import_web$15.createComponent)(RemoveIcon, { onClick: () => props.onKeybindRemove(old) }));
 		(0, import_web$14.insert)(_el$2, (0, import_web$15.createComponent)(Text$1, {
 			get ["class"]() {
-				return classes$2.note;
+				return classes$1.note;
 			},
 			get children() {
 				return props.keybindDescriptions[keybindType()];
 			}
 		}), _el$14, _co$5);
 		(0, import_web$12.effect)((_p$) => {
-			const _v$ = classes$2.keybindRoot, _v$2 = classes$2.keybindSection, _v$3 = classes$2.actionSection, _v$4 = classes$2.keybindArea, _v$5 = classes$2.removeButton;
+			const _v$ = classes$1.keybindRoot, _v$2 = classes$1.keybindSection, _v$3 = classes$1.actionSection, _v$4 = classes$1.keybindArea, _v$5 = classes$1.removeButton;
 			_v$ !== _p$._v$ && (0, import_web$11.className)(_el$2, _p$._v$ = _v$);
 			_v$2 !== _p$._v$2 && (0, import_web$11.className)(_el$3, _p$._v$2 = _v$2);
 			_v$3 !== _p$._v$3 && (0, import_web$11.className)(_el$4, _p$._v$3 = _v$3);
@@ -740,7 +605,7 @@ let injectedCss = false;
 function Keybinds(props) {
 	if (!injectedCss) {
 		injectedCss = true;
-		injectCss(css$3);
+		injectCss(css$2);
 	}
 	const [keybindsEnabled$1, setKeybindsEnabled] = createSignal(false);
 	const [keybindEnabledChanged, setKeybindEnabledChanged] = createSignal(false);
@@ -770,7 +635,7 @@ function Keybinds(props) {
 				} }), _el$11, _co$4);
 				(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(Button, {
 					get ["class"]() {
-						return classes$3.keybindRestartButton;
+						return classes$2.keybindRestartButton;
 					},
 					grow: true,
 					onClick: () => {
@@ -780,7 +645,7 @@ function Keybinds(props) {
 						return t("dorion_keybinds.restart");
 					}
 				}), _el$13, _co$5);
-				(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$1, classes$3.keybindRestartCard));
+				(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$1, classes$2.keybindRestartCard));
 				return _el$1;
 			})();
 		})(), _el$8, _co$2);
@@ -789,7 +654,7 @@ function Keybinds(props) {
 		} }));
 		(0, import_web$6.insert)(_el$2, (0, import_web$7.createComponent)(Button, {
 			get ["class"]() {
-				return classes$3.keybindsButton;
+				return classes$2.keybindsButton;
 			},
 			grow: true,
 			onClick: () => {
@@ -851,7 +716,7 @@ function Keybinds(props) {
 			}
 		})), _el$0, _co$3);
 		(0, import_web$3.effect)((_p$) => {
-			const _v$ = classes$3.keybindSection, _v$2 = classes$3.keybindsHeader, _v$3 = classes$3.keybindsBanner, _v$4 = classes$3.keybindsSwitch;
+			const _v$ = classes$2.keybindSection, _v$2 = classes$2.keybindsHeader, _v$3 = classes$2.keybindsBanner, _v$4 = classes$2.keybindsSwitch;
 			_v$ !== _p$._v$ && (0, import_web$2.className)(_el$, _p$._v$ = _v$);
 			_v$2 !== _p$._v$2 && (0, import_web$2.className)(_el$2, _p$._v$2 = _v$2);
 			_v$3 !== _p$._v$3 && (0, import_web$2.className)(_el$3, _p$._v$3 = _v$3);

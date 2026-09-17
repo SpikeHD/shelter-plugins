@@ -268,19 +268,19 @@ const timestampToRelative = (timestamp) => {
 
 //#endregion
 //#region plugins/shelteRPC/components/GameCard.scss
-const classes$3 = {
-	"gameCardName": "zS7Qtq_gameCardName",
+const classes$2 = {
 	"gameCardInfo": "zS7Qtq_gameCardInfo",
+	"gameCardName": "zS7Qtq_gameCardName",
 	"cardNone": "zS7Qtq_cardNone",
-	"trash": "zS7Qtq_trash",
-	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
+	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
+	"cardPlaying": "zS7Qtq_cardPlaying",
 	"gameCardIcons": "zS7Qtq_gameCardIcons",
 	"gameCard": "zS7Qtq_gameCard",
-	"cardPlaying": "zS7Qtq_cardPlaying",
+	"trash": "zS7Qtq_trash",
 	"cardPlayed": "zS7Qtq_cardPlayed",
-	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed"
+	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp"
 };
-const css$3 = `.zS7Qtq_gameCard {
+const css$2 = `.zS7Qtq_gameCard {
   width: 100%;
   height: 72px;
   color: var(--text-default);
@@ -365,21 +365,21 @@ const css$3 = `.zS7Qtq_gameCard {
 
 //#endregion
 //#region plugins/shelteRPC/components/GameCard.tsx
-var import_web$27 = __toESM(require_web(), 1);
-var import_web$28 = __toESM(require_web(), 1);
-var import_web$29 = __toESM(require_web(), 1);
-var import_web$30 = __toESM(require_web(), 1);
-var import_web$31 = __toESM(require_web(), 1);
-var import_web$32 = __toESM(require_web(), 1);
-var import_web$33 = __toESM(require_web(), 1);
-var import_web$34 = __toESM(require_web(), 1);
-var import_web$35 = __toESM(require_web(), 1);
-const _tmpl$$4 = /*#__PURE__*/ (0, import_web$27.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 3.999V2H9V3.999H3V5.999H21V3.999H15Z"></path><path fill="currentColor" d="M5 6.99902V18.999C5 20.101 5.897 20.999 7 20.999H17C18.103 20.999 19 20.101 19 18.999V6.99902H5ZM11 17H9V11H11V17ZM15 17H13V11H15V17Z"></path></svg>`, 6), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$27.template)(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"></path></svg>`, 4), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$27.template)(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z"></path></svg>`, 4), _tmpl$4 = /*#__PURE__*/ (0, import_web$27.template)(`<div><div><span></span><span></span></div><div><!#><!/><!#><!/></div></div>`, 14), _tmpl$5 = /*#__PURE__*/ (0, import_web$27.template)(`<span></span>`, 2);
-const { ui: { injectCss: injectCss$3 }, plugin: { store: store$2 }, solid: { createSignal: createSignal$1 } } = shelter;
-const trashIcon = () => (0, import_web$35.getNextElement)(_tmpl$$4);
-const hideIcon = () => (0, import_web$35.getNextElement)(_tmpl$2$2);
-const hideClosed = () => (0, import_web$35.getNextElement)(_tmpl$3$1);
-let injectedCss$3 = false;
+var import_web$13 = __toESM(require_web(), 1);
+var import_web$14 = __toESM(require_web(), 1);
+var import_web$15 = __toESM(require_web(), 1);
+var import_web$16 = __toESM(require_web(), 1);
+var import_web$17 = __toESM(require_web(), 1);
+var import_web$18 = __toESM(require_web(), 1);
+var import_web$19 = __toESM(require_web(), 1);
+var import_web$20 = __toESM(require_web(), 1);
+var import_web$21 = __toESM(require_web(), 1);
+const _tmpl$$2 = /*#__PURE__*/ (0, import_web$13.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 3.999V2H9V3.999H3V5.999H21V3.999H15Z"></path><path fill="currentColor" d="M5 6.99902V18.999C5 20.101 5.897 20.999 7 20.999H17C18.103 20.999 19 20.101 19 18.999V6.99902H5ZM11 17H9V11H11V17ZM15 17H13V11H15V17Z"></path></svg>`, 6), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$13.template)(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"></path></svg>`, 4), _tmpl$3 = /*#__PURE__*/ (0, import_web$13.template)(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.885 14.988l3.104-3.098.011.11c0 1.654-1.346 3-3 3l-.115-.012zm8.048-8.032l-3.274 3.268c.212.554.341 1.149.341 1.776 0 2.757-2.243 5-5 5-.631 0-1.229-.13-1.785-.344l-2.377 2.372c1.276.588 2.671.972 4.177.972 7.733 0 11.985-8.449 11.985-8.449s-1.415-2.478-4.067-4.595zm1.431-3.536l-18.619 18.58-1.382-1.422 3.455-3.447c-3.022-2.45-4.818-5.58-4.818-5.58s4.446-7.551 12.015-7.551c1.825 0 3.456.426 4.886 1.075l3.081-3.075 1.382 1.42zm-13.751 10.922l1.519-1.515c-.077-.264-.132-.538-.132-.827 0-1.654 1.346-3 3-3 .291 0 .567.055.833.134l1.518-1.515c-.704-.382-1.496-.619-2.351-.619-2.757 0-5 2.243-5 5 0 .852.235 1.641.613 2.342z"></path></svg>`, 4), _tmpl$4 = /*#__PURE__*/ (0, import_web$13.template)(`<div><div><span></span><span></span></div><div><!#><!/><!#><!/></div></div>`, 14), _tmpl$5 = /*#__PURE__*/ (0, import_web$13.template)(`<span></span>`, 2);
+const { ui: { injectCss: injectCss$2 }, plugin: { store: store$2 }, solid: { createSignal: createSignal$1 } } = shelter;
+const trashIcon = () => (0, import_web$21.getNextElement)(_tmpl$$2);
+const hideIcon = () => (0, import_web$21.getNextElement)(_tmpl$2$1);
+const hideClosed = () => (0, import_web$21.getNextElement)(_tmpl$3);
+let injectedCss$2 = false;
 const deleteGame = (name) => {
 	if (backend !== "None") event.emit("remove_detectable", {
 		name,
@@ -390,62 +390,62 @@ const deleteGame = (name) => {
 	if (store$2.currentlyPlaying === name) store$2.currentlyPlaying = "";
 };
 var GameCard_default = (props) => {
-	if (!injectedCss$3) {
-		injectedCss$3 = true;
-		injectCss$3(css$3);
+	if (!injectedCss$2) {
+		injectedCss$2 = true;
+		injectCss$2(css$2);
 	}
 	const [hide, setHide] = createSignal$1(props.name ? store$2.previouslyPlayed[props.name]?.hide : false);
 	return (() => {
-		const _el$4 = (0, import_web$35.getNextElement)(_tmpl$4), _el$5 = _el$4.firstChild, _el$6 = _el$5.firstChild, _el$7 = _el$6.nextSibling, _el$8 = _el$5.nextSibling, _el$9 = _el$8.firstChild, [_el$0, _co$] = (0, import_web$32.getNextMarker)(_el$9.nextSibling), _el$1 = _el$0.nextSibling, [_el$10, _co$2] = (0, import_web$32.getNextMarker)(_el$1.nextSibling);
-		(0, import_web$33.insert)(_el$6, () => props.name || "No game detected");
-		(0, import_web$33.insert)(_el$7, (() => {
-			const _c$ = (0, import_web$34.memo)(() => props.type === "played");
+		const _el$4 = (0, import_web$21.getNextElement)(_tmpl$4), _el$5 = _el$4.firstChild, _el$6 = _el$5.firstChild, _el$7 = _el$6.nextSibling, _el$8 = _el$5.nextSibling, _el$9 = _el$8.firstChild, [_el$0, _co$] = (0, import_web$18.getNextMarker)(_el$9.nextSibling), _el$1 = _el$0.nextSibling, [_el$10, _co$2] = (0, import_web$18.getNextMarker)(_el$1.nextSibling);
+		(0, import_web$19.insert)(_el$6, () => props.name || "No game detected");
+		(0, import_web$19.insert)(_el$7, (() => {
+			const _c$ = (0, import_web$20.memo)(() => props.type === "played");
 			return () => _c$() ? ["Last played: ", (() => {
-				const _el$11 = (0, import_web$35.getNextElement)(_tmpl$5);
-				(0, import_web$33.insert)(_el$11, () => timestampToRelative(props.lastPlayed));
-				(0, import_web$31.effect)(() => (0, import_web$30.className)(_el$11, classes$3.lastPlayedTimestamp));
+				const _el$11 = (0, import_web$21.getNextElement)(_tmpl$5);
+				(0, import_web$19.insert)(_el$11, () => timestampToRelative(props.lastPlayed));
+				(0, import_web$17.effect)(() => (0, import_web$16.className)(_el$11, classes$2.lastPlayedTimestamp));
 				return _el$11;
 			})()] : props.type === "playing" && props.name ? "Now playing!" : "What are you playing?";
 		})());
-		(0, import_web$33.insert)(_el$8, (() => {
-			const _c$2 = (0, import_web$34.memo)(() => !!props.local);
+		(0, import_web$19.insert)(_el$8, (() => {
+			const _c$2 = (0, import_web$20.memo)(() => !!props.local);
 			return () => _c$2() && (() => {
-				const _el$12 = (0, import_web$35.getNextElement)(_tmpl$5);
+				const _el$12 = (0, import_web$21.getNextElement)(_tmpl$5);
 				_el$12.$$click = () => {
 					deleteGame(props.name || "");
 				};
-				(0, import_web$33.insert)(_el$12, trashIcon);
-				(0, import_web$31.effect)(() => (0, import_web$30.className)(_el$12, classes$3.trash));
-				(0, import_web$29.runHydrationEvents)();
+				(0, import_web$19.insert)(_el$12, trashIcon);
+				(0, import_web$17.effect)(() => (0, import_web$16.className)(_el$12, classes$2.trash));
+				(0, import_web$15.runHydrationEvents)();
 				return _el$12;
 			})();
 		})(), _el$0, _co$);
-		(0, import_web$33.insert)(_el$8, (() => {
-			const _c$3 = (0, import_web$34.memo)(() => !!(props.name && props.type !== "playing"));
+		(0, import_web$19.insert)(_el$8, (() => {
+			const _c$3 = (0, import_web$20.memo)(() => !!(props.name && props.type !== "playing"));
 			return () => _c$3() && (() => {
-				const _el$13 = (0, import_web$35.getNextElement)(_tmpl$5);
+				const _el$13 = (0, import_web$21.getNextElement)(_tmpl$5);
 				_el$13.$$click = () => {
 					if (!props.name) return;
 					const key = Object.keys(store$2.previouslyPlayed).find((k) => store$2.previouslyPlayed[k].name === props.name);
 					store$2.previouslyPlayed[key].hide = !hide();
 					setHide(!hide());
 				};
-				(0, import_web$33.insert)(_el$13, (() => {
-					const _c$4 = (0, import_web$34.memo)(() => !!hide());
+				(0, import_web$19.insert)(_el$13, (() => {
+					const _c$4 = (0, import_web$20.memo)(() => !!hide());
 					return () => _c$4() ? hideClosed() : hideIcon();
 				})());
-				(0, import_web$31.effect)(() => (0, import_web$30.className)(_el$13, classes$3.hide));
-				(0, import_web$29.runHydrationEvents)();
+				(0, import_web$17.effect)(() => (0, import_web$16.className)(_el$13, classes$2.hide));
+				(0, import_web$15.runHydrationEvents)();
 				return _el$13;
 			})();
 		})(), _el$10, _co$2);
-		(0, import_web$31.effect)((_p$) => {
-			const _v$ = classes$3.gameCard + " " + (props.type === "playing" && props.name ? classes$3.cardPlaying : props.type === "played" ? classes$3.cardPlayed : classes$3.cardNone), _v$2 = classes$3.gameCardInfo, _v$3 = classes$3.gameCardName, _v$4 = classes$3.gameCardLastPlayed, _v$5 = classes$3.gameCardIcons;
-			_v$ !== _p$._v$ && (0, import_web$30.className)(_el$4, _p$._v$ = _v$);
-			_v$2 !== _p$._v$2 && (0, import_web$30.className)(_el$5, _p$._v$2 = _v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$30.className)(_el$6, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$30.className)(_el$7, _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$30.className)(_el$8, _p$._v$5 = _v$5);
+		(0, import_web$17.effect)((_p$) => {
+			const _v$ = classes$2.gameCard + " " + (props.type === "playing" && props.name ? classes$2.cardPlaying : props.type === "played" ? classes$2.cardPlayed : classes$2.cardNone), _v$2 = classes$2.gameCardInfo, _v$3 = classes$2.gameCardName, _v$4 = classes$2.gameCardLastPlayed, _v$5 = classes$2.gameCardIcons;
+			_v$ !== _p$._v$ && (0, import_web$16.className)(_el$4, _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$16.className)(_el$5, _p$._v$2 = _v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$16.className)(_el$6, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$16.className)(_el$7, _p$._v$4 = _v$4);
+			_v$5 !== _p$._v$5 && (0, import_web$16.className)(_el$8, _p$._v$5 = _v$5);
 			return _p$;
 		}, {
 			_v$: undefined,
@@ -457,158 +457,16 @@ var GameCard_default = (props) => {
 		return _el$4;
 	})();
 };
-(0, import_web$28.delegateEvents)(["click"]);
-
-//#endregion
-//#region components/Dropdown.tsx.scss
-const classes$2 = {
-	"dcontainer": "sqVpyW_dcontainer",
-	"dsarrow": "sqVpyW_dsarrow",
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"ddown": "sqVpyW_ddown"
-};
-const css$2 = `.sqVpyW_ddown {
-  box-sizing: border-box;
-  width: 100%;
-  color: var(--text-default);
-  background-color: var(--background-base-lowest);
-  appearance: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  font-size: 16px;
-  transition: border-color .2s ease-in-out;
-}
-
-.sqVpyW_ddown option {
-  color: var(--text-default);
-  background: #333;
-}
-
-.sqVpyW_dcontainer {
-  width: 100%;
-  position: relative;
-}
-
-.sqVpyW_dsarrow {
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-.sqVpyW_dsarrow path {
-  fill: var(--text-subtle);
-}
-
-.sqVpyW_ddownplaceholder {
-  color: var(--text-subtle);
-}
-`;
-
-//#endregion
-//#region components/SelectArrow.tsx
-var import_web$23 = __toESM(require_web(), 1);
-var import_web$24 = __toESM(require_web(), 1);
-var import_web$25 = __toESM(require_web(), 1);
-var import_web$26 = __toESM(require_web(), 1);
-const _tmpl$$3 = /*#__PURE__*/ (0, import_web$23.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
-const SelectArrow = (props) => (() => {
-	const _el$ = (0, import_web$26.getNextElement)(_tmpl$$3);
-	(0, import_web$25.effect)(() => (0, import_web$24.setAttribute)(_el$, "class", props.class));
-	return _el$;
-})();
-
-//#endregion
-//#region components/Dropdown.tsx
-var import_web$13 = __toESM(require_web(), 1);
-var import_web$14 = __toESM(require_web(), 1);
-var import_web$15 = __toESM(require_web(), 1);
-var import_web$16 = __toESM(require_web(), 1);
-var import_web$17 = __toESM(require_web(), 1);
-var import_web$18 = __toESM(require_web(), 1);
-var import_web$19 = __toESM(require_web(), 1);
-var import_web$20 = __toESM(require_web(), 1);
-var import_web$21 = __toESM(require_web(), 1);
-var import_web$22 = __toESM(require_web(), 1);
-const _tmpl$$2 = /*#__PURE__*/ (0, import_web$13.template)(`<div><select><!#><!/><!#><!/></select><!#><!/></div>`, 10), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$13.template)(`<option value=""></option>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web$13.template)(`<option></option>`, 2);
-const { ui: { injectCss: injectCss$2 } } = shelter;
-let injectedCss$2 = false;
-const Dropdown = (props) => {
-	if (!injectedCss$2) {
-		injectedCss$2 = true;
-		injectCss$2(css$2);
-	}
-	return (() => {
-		const _el$ = (0, import_web$18.getNextElement)(_tmpl$$2), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$20.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$20.getNextMarker)(_el$5.nextSibling), _el$7 = _el$2.nextSibling, [_el$8, _co$3] = (0, import_web$20.getNextMarker)(_el$7.nextSibling);
-		_el$2.addEventListener("change", (e) => {
-			props.onChange(e);
-			if (props.immutable) {
-				e.preventDefault();
-				e.stopPropagation();
-				e.target.value = props.value;
-			}
-		});
-		(0, import_web$21.insert)(_el$2, (() => {
-			const _c$ = (0, import_web$22.memo)(() => !!props.placeholder);
-			return () => _c$() && (() => {
-				const _el$9 = (0, import_web$18.getNextElement)(_tmpl$2$1);
-				(0, import_web$21.insert)(_el$9, () => props.placeholder);
-				(0, import_web$17.effect)((_p$) => {
-					const _v$8 = classes$2.ddownplaceholder, _v$9 = props.value === "";
-					_v$8 !== _p$._v$8 && (0, import_web$16.className)(_el$9, _p$._v$8 = _v$8);
-					_v$9 !== _p$._v$9 && (_el$9.selected = _p$._v$9 = _v$9);
-					return _p$;
-				}, {
-					_v$8: undefined,
-					_v$9: undefined
-				});
-				return _el$9;
-			})();
-		})(), _el$4, _co$);
-		(0, import_web$21.insert)(_el$2, () => props.options?.map((o) => (() => {
-			const _el$0 = (0, import_web$18.getNextElement)(_tmpl$3);
-			(0, import_web$21.insert)(_el$0, () => o.label);
-			(0, import_web$17.effect)(() => _el$0.selected = o.value === props.value);
-			(0, import_web$17.effect)(() => _el$0.value = o.value);
-			return _el$0;
-		})()), _el$6, _co$2);
-		(0, import_web$21.insert)(_el$, (0, import_web$19.createComponent)(SelectArrow, { get ["class"]() {
-			return classes$2.dsarrow;
-		} }), _el$8, _co$3);
-		(0, import_web$17.effect)((_p$) => {
-			const _v$ = classes$2.dcontainer, _v$2 = props.style, _v$3 = classes$2.ddown + " " + (props.placeholder && props.value === "" ? classes$2.ddownplaceholder : ""), _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
-			_v$ !== _p$._v$ && (0, import_web$16.className)(_el$, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$15.style)(_el$, _v$2, _p$._v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$16.className)(_el$2, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$14.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$14.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
-			_v$6 !== _p$._v$6 && (0, import_web$14.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
-			_v$7 !== _p$._v$7 && (_el$2.disabled = _p$._v$7 = _v$7);
-			return _p$;
-		}, {
-			_v$: undefined,
-			_v$2: undefined,
-			_v$3: undefined,
-			_v$4: undefined,
-			_v$5: undefined,
-			_v$6: undefined,
-			_v$7: undefined
-		});
-		return _el$;
-	})();
-};
+(0, import_web$14.delegateEvents)(["click"]);
 
 //#endregion
 //#region plugins/shelteRPC/components/RegisteredGames.scss
 const classes$1 = {
-	"description": "yVnOSq_description",
 	"shead": "yVnOSq_shead",
-	"modalhead": "yVnOSq_modalhead",
 	"addIt": "yVnOSq_addIt",
-	"tophead": "yVnOSq_tophead"
+	"modalhead": "yVnOSq_modalhead",
+	"tophead": "yVnOSq_tophead",
+	"description": "yVnOSq_description"
 };
 const css$1 = `.yVnOSq_description {
   margin-top: 8px;
@@ -644,7 +502,7 @@ var import_web$10 = __toESM(require_web(), 1);
 var import_web$11 = __toESM(require_web(), 1);
 var import_web$12 = __toESM(require_web(), 1);
 const _tmpl$$1 = /*#__PURE__*/ (0, import_web$7.template)(`<a target="_blank">Add it!</a>`, 2);
-const { ui: { Divider, Header: Header$1, HeaderTags: HeaderTags$1, Text: Text$1, TextBox: TextBox$1, injectCss: injectCss$1, openConfirmationModal }, solid: { createSignal, createEffect }, plugin: { store: store$1 } } = shelter;
+const { ui: { Divider, Header: Header$1, HeaderTags: HeaderTags$1, Text: Text$1, TextBox: TextBox$1, injectCss: injectCss$1, openConfirmationModal, Select, SelectOption }, solid: { createSignal, createEffect }, plugin: { store: store$1 } } = shelter;
 let injectedCss$1 = false;
 var RegisteredGames_default = () => {
 	if (!injectedCss$1) {
@@ -753,17 +611,19 @@ function addIt() {
 		body: () => (0, import_web$11.memo)((() => {
 			const _c$2 = (0, import_web$11.memo)(() => windows().length > 0);
 			return () => _c$2() ? [
-				(0, import_web$12.createComponent)(Dropdown, {
-					get options() {
-						return windows().filter((w, i, a) => a.findIndex((w2) => w2.process_name === w.process_name) === i).map((w) => ({
-							label: w.process_name,
-							value: w.pid
-						}));
-					},
+				(0, import_web$12.createComponent)(Select, {
 					placeholder: "Select process...",
-					maxVisibleItems: 5,
-					closeOnSelect: true,
-					onChange: (e) => setSelected(Number(e.target.value))
+					onChange: (v) => setSelected(Number(v)),
+					get children() {
+						return windows().filter((w, i, a) => a.findIndex((w2) => w2.process_name === w.process_name) === i).map((w) => (0, import_web$12.createComponent)(SelectOption, {
+							get value() {
+								return w.pid;
+							},
+							get children() {
+								return w.process_name;
+							}
+						}));
+					}
 				}),
 				(0, import_web$12.createComponent)(Header$1, {
 					get ["class"]() {

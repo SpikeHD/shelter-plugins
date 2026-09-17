@@ -157,13 +157,13 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 
 //#endregion
 //#region plugins/dorion-settings/pages/PerformancePage.tsx.scss
-const classes$12 = {
+const classes$11 = {
 	"tophead": "ZN8ggW_tophead",
+	"shead": "ZN8ggW_shead",
 	"stext": "ZN8ggW_stext",
-	"pbuttons": "ZN8ggW_pbuttons",
-	"shead": "ZN8ggW_shead"
+	"pbuttons": "ZN8ggW_pbuttons"
 };
-const css$12 = `.ZN8ggW_tophead {
+const css$11 = `.ZN8ggW_tophead {
   margin-bottom: 16px;
 }
 
@@ -189,148 +189,6 @@ const css$12 = `.ZN8ggW_tophead {
   display: flex;
 }
 `;
-
-//#endregion
-//#region components/Dropdown.tsx.scss
-const classes$11 = {
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow",
-	"dcontainer": "sqVpyW_dcontainer",
-	"ddown": "sqVpyW_ddown"
-};
-const css$11 = `.sqVpyW_ddown {
-  box-sizing: border-box;
-  width: 100%;
-  color: var(--text-default);
-  background-color: var(--background-base-lowest);
-  appearance: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  font-size: 16px;
-  transition: border-color .2s ease-in-out;
-}
-
-.sqVpyW_ddown option {
-  color: var(--text-default);
-  background: #333;
-}
-
-.sqVpyW_dcontainer {
-  width: 100%;
-  position: relative;
-}
-
-.sqVpyW_dsarrow {
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-.sqVpyW_dsarrow path {
-  fill: var(--text-subtle);
-}
-
-.sqVpyW_ddownplaceholder {
-  color: var(--text-subtle);
-}
-`;
-
-//#endregion
-//#region components/SelectArrow.tsx
-var import_web$101 = __toESM(require_web(), 1);
-var import_web$102 = __toESM(require_web(), 1);
-var import_web$103 = __toESM(require_web(), 1);
-var import_web$104 = __toESM(require_web(), 1);
-const _tmpl$$13 = /*#__PURE__*/ (0, import_web$101.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
-const SelectArrow = (props) => (() => {
-	const _el$ = (0, import_web$104.getNextElement)(_tmpl$$13);
-	(0, import_web$103.effect)(() => (0, import_web$102.setAttribute)(_el$, "class", props.class));
-	return _el$;
-})();
-
-//#endregion
-//#region components/Dropdown.tsx
-var import_web$91 = __toESM(require_web(), 1);
-var import_web$92 = __toESM(require_web(), 1);
-var import_web$93 = __toESM(require_web(), 1);
-var import_web$94 = __toESM(require_web(), 1);
-var import_web$95 = __toESM(require_web(), 1);
-var import_web$96 = __toESM(require_web(), 1);
-var import_web$97 = __toESM(require_web(), 1);
-var import_web$98 = __toESM(require_web(), 1);
-var import_web$99 = __toESM(require_web(), 1);
-var import_web$100 = __toESM(require_web(), 1);
-const _tmpl$$12 = /*#__PURE__*/ (0, import_web$91.template)(`<div><select><!#><!/><!#><!/></select><!#><!/></div>`, 10), _tmpl$2$5 = /*#__PURE__*/ (0, import_web$91.template)(`<option value=""></option>`, 2), _tmpl$3$4 = /*#__PURE__*/ (0, import_web$91.template)(`<option></option>`, 2);
-const { ui: { injectCss: injectCss$13 } } = shelter;
-let injectedCss$13 = false;
-const Dropdown = (props) => {
-	if (!injectedCss$13) {
-		injectedCss$13 = true;
-		injectCss$13(css$11);
-	}
-	return (() => {
-		const _el$ = (0, import_web$96.getNextElement)(_tmpl$$12), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$98.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$98.getNextMarker)(_el$5.nextSibling), _el$7 = _el$2.nextSibling, [_el$8, _co$3] = (0, import_web$98.getNextMarker)(_el$7.nextSibling);
-		_el$2.addEventListener("change", (e) => {
-			props.onChange(e);
-			if (props.immutable) {
-				e.preventDefault();
-				e.stopPropagation();
-				e.target.value = props.value;
-			}
-		});
-		(0, import_web$99.insert)(_el$2, (() => {
-			const _c$ = (0, import_web$100.memo)(() => !!props.placeholder);
-			return () => _c$() && (() => {
-				const _el$9 = (0, import_web$96.getNextElement)(_tmpl$2$5);
-				(0, import_web$99.insert)(_el$9, () => props.placeholder);
-				(0, import_web$95.effect)((_p$) => {
-					const _v$8 = classes$11.ddownplaceholder, _v$9 = props.value === "";
-					_v$8 !== _p$._v$8 && (0, import_web$94.className)(_el$9, _p$._v$8 = _v$8);
-					_v$9 !== _p$._v$9 && (_el$9.selected = _p$._v$9 = _v$9);
-					return _p$;
-				}, {
-					_v$8: undefined,
-					_v$9: undefined
-				});
-				return _el$9;
-			})();
-		})(), _el$4, _co$);
-		(0, import_web$99.insert)(_el$2, () => props.options?.map((o) => (() => {
-			const _el$0 = (0, import_web$96.getNextElement)(_tmpl$3$4);
-			(0, import_web$99.insert)(_el$0, () => o.label);
-			(0, import_web$95.effect)(() => _el$0.selected = o.value === props.value);
-			(0, import_web$95.effect)(() => _el$0.value = o.value);
-			return _el$0;
-		})()), _el$6, _co$2);
-		(0, import_web$99.insert)(_el$, (0, import_web$97.createComponent)(SelectArrow, { get ["class"]() {
-			return classes$11.dsarrow;
-		} }), _el$8, _co$3);
-		(0, import_web$95.effect)((_p$) => {
-			const _v$ = classes$11.dcontainer, _v$2 = props.style, _v$3 = classes$11.ddown + " " + (props.placeholder && props.value === "" ? classes$11.ddownplaceholder : ""), _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
-			_v$ !== _p$._v$ && (0, import_web$94.className)(_el$, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$93.style)(_el$, _v$2, _p$._v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$94.className)(_el$2, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$92.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$92.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
-			_v$6 !== _p$._v$6 && (0, import_web$92.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
-			_v$7 !== _p$._v$7 && (_el$2.disabled = _p$._v$7 = _v$7);
-			return _p$;
-		}, {
-			_v$: undefined,
-			_v$2: undefined,
-			_v$3: undefined,
-			_v$4: undefined,
-			_v$5: undefined,
-			_v$6: undefined,
-			_v$7: undefined
-		});
-		return _el$;
-	})();
-};
 
 //#endregion
 //#region components/Card.tsx.scss
@@ -376,8 +234,8 @@ const Card = (props) => {
 //#endregion
 //#region plugins/dorion-settings/components/WarningCard.tsx.scss
 const classes$9 = {
-	"restartCard": "_3UjfSq_restartCard",
-	"restartButton": "_3UjfSq_restartButton"
+	"restartButton": "_3UjfSq_restartButton",
+	"restartCard": "_3UjfSq_restartCard"
 };
 const css$9 = `._3UjfSq_restartCard {
   background-color: var(--info-warning-background);
@@ -474,7 +332,7 @@ var import_web$81 = __toESM(require_web(), 1);
 var import_web$82 = __toESM(require_web(), 1);
 var import_web$83 = __toESM(require_web(), 1);
 const _tmpl$$10 = /*#__PURE__*/ (0, import_web$76.template)(`<div></div>`, 2), _tmpl$2$4 = /*#__PURE__*/ (0, import_web$76.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$3$3 = /*#__PURE__*/ (0, import_web$76.template)(`<b></b>`, 2), _tmpl$4$2 = /*#__PURE__*/ (0, import_web$76.template)(`<p></p>`, 2), _tmpl$5$2 = /*#__PURE__*/ (0, import_web$76.template)(`<a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank"><!#><!/>.</a>`, 4);
-const { ui: { injectCss: injectCss$10, openConfirmationModal, SwitchItem: SwitchItem$3, Button: Button$5, Header: Header$6, HeaderTags: HeaderTags$6, showToast: showToast$2 }, solid: { createSignal: createSignal$9, createEffect: createEffect$5 } } = shelter;
+const { ui: { injectCss: injectCss$10, openConfirmationModal, SwitchItem: SwitchItem$3, Button: Button$5, Header: Header$6, HeaderTags: HeaderTags$6, showToast: showToast$2, Select: Select$2, SelectOption: SelectOption$2 }, solid: { createSignal: createSignal$9, createEffect: createEffect$5 } } = shelter;
 let injectedCss$10 = false;
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 function PerformancePage() {
@@ -484,7 +342,7 @@ function PerformancePage() {
 	const [restartRequired, setRestartRequired] = createSignal$9(false);
 	if (!injectedCss$10) {
 		injectedCss$10 = true;
-		injectCss$10(css$12);
+		injectCss$10(css$11);
 	}
 	const setSettings = (fn, requiresRestart$1) => {
 		setState(fn(state()));
@@ -533,7 +391,7 @@ function PerformancePage() {
 				return HeaderTags$6.H1;
 			},
 			get ["class"]() {
-				return classes$12.tophead;
+				return classes$11.tophead;
 			},
 			get children() {
 				return t("dorion_performance.title");
@@ -545,7 +403,7 @@ function PerformancePage() {
 		})()),
 		(0, import_web$83.createComponent)(Header$6, {
 			get ["class"]() {
-				return classes$12.shead;
+				return classes$11.shead;
 			},
 			get children() {
 				return t("dorion_performance.cache");
@@ -589,7 +447,7 @@ function PerformancePage() {
 		}),
 		(0, import_web$83.createComponent)(Header$6, {
 			get ["class"]() {
-				return classes$12.shead;
+				return classes$11.shead;
 			},
 			get children() {
 				return t("dorion_performance.optional_features");
@@ -700,27 +558,26 @@ function PerformancePage() {
 		}),
 		(0, import_web$83.createComponent)(Header$6, {
 			get ["class"]() {
-				return classes$12.shead;
+				return classes$11.shead;
 			},
 			get children() {
 				return t("dorion_performance.blur_transparency");
 			}
 		}),
-		(0, import_web$83.createComponent)(Dropdown, {
+		(0, import_web$83.createComponent)(Select$2, {
 			get value() {
 				return state().blur;
 			},
-			get selected() {
-				return state().blur;
-			},
-			onChange: (e) => setSettings((settings) => ({
+			onChange: (v) => setSettings((settings) => ({
 				...settings,
-				blur: e.target.value
+				blur: String(v)
 			}), true),
-			get options() {
-				return blurOptions().map((b) => ({
-					label: capitalize(b),
-					value: b
+			get children() {
+				return blurOptions().map((b) => (0, import_web$83.createComponent)(SelectOption$2, {
+					value: b,
+					get children() {
+						return capitalize(b);
+					}
 				}));
 			}
 		}),
@@ -731,7 +588,7 @@ function PerformancePage() {
 				(0, import_web$81.insert)(_el$0, () => t("dorion_performance.window_vibrancy_crate"), _el$11, _co$3);
 				return _el$0;
 			})() }));
-			(0, import_web$79.effect)(() => (0, import_web$78.className)(_el$, classes$12.stext));
+			(0, import_web$79.effect)(() => (0, import_web$78.className)(_el$, classes$11.stext));
 			return _el$;
 		})(),
 		(0, import_web$83.createComponent)(SwitchItem$3, {
@@ -776,7 +633,7 @@ function PerformancePage() {
 					return t("dorion_performance.clear_css_cache");
 				}
 			}), _el$6, _co$2);
-			(0, import_web$79.effect)(() => (0, import_web$78.className)(_el$2, classes$12.pbuttons));
+			(0, import_web$79.effect)(() => (0, import_web$78.className)(_el$2, classes$11.pbuttons));
 			return _el$2;
 		})()
 	];
@@ -785,10 +642,10 @@ function PerformancePage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx.scss
 const classes$8 = {
-	"splitbutton": "_2nPZKq_splitbutton",
-	"sbutton": "_2nPZKq_sbutton",
 	"tophead": "_2nPZKq_tophead",
+	"splitbutton": "_2nPZKq_splitbutton",
 	"pbuttons": "_2nPZKq_pbuttons",
+	"sbutton": "_2nPZKq_sbutton",
 	"shead": "_2nPZKq_shead"
 };
 const css$8 = `._2nPZKq_tophead {
@@ -832,7 +689,7 @@ var import_web$73 = __toESM(require_web(), 1);
 var import_web$74 = __toESM(require_web(), 1);
 var import_web$75 = __toESM(require_web(), 1);
 const _tmpl$$9 = /*#__PURE__*/ (0, import_web$69.template)(`<div><!#><!/><!#><!/></div>`, 6);
-const { ui: { Header: Header$5, Button: Button$4, HeaderTags: HeaderTags$5, TextBox: TextBox$2, injectCss: injectCss$9, Divider: Divider$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$3 }, solid: { createSignal: createSignal$8, createEffect: createEffect$4 } } = shelter;
+const { ui: { Header: Header$5, Button: Button$4, HeaderTags: HeaderTags$5, TextBox: TextBox$2, injectCss: injectCss$9, Divider: Divider$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$3, Select: Select$1, SelectOption: SelectOption$1 }, solid: { createSignal: createSignal$8, createEffect: createEffect$4 } } = shelter;
 let injectedCss$9 = false;
 function ProfilesPage() {
 	const [profileList, setProfileList] = createSignal$8([]);
@@ -881,23 +738,19 @@ function ProfilesPage() {
 				return t("dorion_profiles.title");
 			}
 		}),
-		(0, import_web$75.createComponent)(Dropdown, {
-			get options() {
-				return profileList().map((p) => {
-					return {
-						label: p,
-						value: p
-					};
-				});
+		(0, import_web$75.createComponent)(Select$1, {
+			get value() {
+				return profile();
 			},
 			get placeholder() {
 				return t("dorion_profiles.select_profile");
 			},
-			maxVisibleItems: 5,
-			closeOnSelect: true,
-			onChange: (e) => setProfile(e.target.value),
-			get selected() {
-				return profile();
+			onChange: (v) => setProfile(String(v)),
+			get children() {
+				return profileList().map((p) => (0, import_web$75.createComponent)(SelectOption$1, {
+					value: p,
+					children: p
+				}));
 			}
 		}),
 		(0, import_web$75.createComponent)(Header$5, {
@@ -971,8 +824,8 @@ function ProfilesPage() {
 const classes$7 = {
 	"shead": "akYvUa_shead",
 	"ohead": "akYvUa_ohead",
-	"tophead": "akYvUa_tophead",
-	"left16": "akYvUa_left16"
+	"left16": "akYvUa_left16",
+	"tophead": "akYvUa_tophead"
 };
 const css$7 = `.akYvUa_tophead {
   margin-bottom: 16px;
@@ -998,9 +851,9 @@ const css$7 = `.akYvUa_tophead {
 //#endregion
 //#region components/Radio.tsx.scss
 const classes$6 = {
+	"radioButtonInner": "Ch7osa_radioButtonInner",
 	"radio": "Ch7osa_radio",
 	"selected": "Ch7osa_selected",
-	"radioButtonInner": "Ch7osa_radioButtonInner",
 	"radioButton": "Ch7osa_radioButton"
 };
 const css$6 = `.Ch7osa_radio {
@@ -1461,14 +1314,14 @@ function SettingsPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx.scss
 const classes$5 = {
-	"card": "yPVoxW_card",
-	"contents": "yPVoxW_contents",
-	"spin": "yPVoxW_spin",
+	"title": "yPVoxW_title",
+	"tophead": "yPVoxW_tophead",
 	"badge": "yPVoxW_badge",
 	"badges": "yPVoxW_badges",
+	"contents": "yPVoxW_contents",
+	"spin": "yPVoxW_spin",
 	"spinner": "yPVoxW_spinner",
-	"title": "yPVoxW_title",
-	"tophead": "yPVoxW_tophead"
+	"card": "yPVoxW_card"
 };
 const css$5 = `.yPVoxW_tophead {
   justify-content: space-between;
@@ -3648,17 +3501,17 @@ function ChangelogPage() {
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx.scss
 const classes$4 = {
-	"left16": "XZjauW_left16",
-	"sbutton": "XZjauW_sbutton",
-	"plistrow": "XZjauW_plistrow",
-	"mcell": "XZjauW_mcell",
-	"pheader": "XZjauW_pheader",
 	"top32": "XZjauW_top32",
-	"top16": "XZjauW_top16",
+	"pheader": "XZjauW_pheader",
+	"mcell": "XZjauW_mcell",
+	"plistrow": "XZjauW_plistrow",
+	"plist": "XZjauW_plist",
 	"shead": "XZjauW_shead",
 	"scell": "XZjauW_scell",
-	"plist": "XZjauW_plist",
-	"pbuttons": "XZjauW_pbuttons"
+	"pbuttons": "XZjauW_pbuttons",
+	"sbutton": "XZjauW_sbutton",
+	"top16": "XZjauW_top16",
+	"left16": "XZjauW_left16"
 };
 const css$4 = `.XZjauW_shead {
   margin-top: 16px;
@@ -3820,16 +3673,16 @@ else if (modName === "Equicord" && newClientMods.includes("Vencord")) newClientM
 //#endregion
 //#region plugins/dorion-settings/components/PluginList.tsx.scss
 const classes$3 = {
-	"scell": "V6is4W_scell",
-	"plist": "V6is4W_plist",
-	"pheader": "V6is4W_pheader",
+	"left16": "V6is4W_left16",
 	"pbuttons": "V6is4W_pbuttons",
 	"sbutton": "V6is4W_sbutton",
+	"plist": "V6is4W_plist",
+	"scell": "V6is4W_scell",
 	"plistrow": "V6is4W_plistrow",
+	"mcell": "V6is4W_mcell",
+	"pheader": "V6is4W_pheader",
 	"top16": "V6is4W_top16",
-	"left16": "V6is4W_left16",
-	"top32": "V6is4W_top32",
-	"mcell": "V6is4W_mcell"
+	"top32": "V6is4W_top32"
 };
 const css$3 = `.V6is4W_plist {
   flex-direction: column;
@@ -4036,11 +3889,11 @@ function PluginList(props) {
 //#region plugins/dorion-settings/pages/PluginsPage.tsx.scss
 const classes$2 = {
 	"openButton": "X31w8G_openButton",
-	"tophead": "X31w8G_tophead",
-	"shead": "X31w8G_shead",
 	"card": "X31w8G_card",
+	"shead": "X31w8G_shead",
 	"left16": "X31w8G_left16",
-	"pbuttons": "X31w8G_pbuttons"
+	"pbuttons": "X31w8G_pbuttons",
+	"tophead": "X31w8G_tophead"
 };
 const css$2 = `.X31w8G_tophead {
   margin-bottom: 16px;
@@ -4219,8 +4072,8 @@ const reloadThemes = async () => {
 //#region plugins/dorion-settings/pages/ThemesPage.tsx.scss
 const classes$1 = {
 	"tophead": "oAx4fa_tophead",
-	"pbuttons": "oAx4fa_pbuttons",
-	"shead": "oAx4fa_shead"
+	"shead": "oAx4fa_shead",
+	"pbuttons": "oAx4fa_pbuttons"
 };
 const css$1 = `.oAx4fa_tophead {
   margin-bottom: 16px;
@@ -4336,7 +4189,7 @@ var import_web$13 = __toESM(require_web(), 1);
 var import_web$14 = __toESM(require_web(), 1);
 var import_web$15 = __toESM(require_web(), 1);
 const _tmpl$$1 = /*#__PURE__*/ (0, import_web$8.template)(`<div><!#><!/><!#><!/></div>`, 6);
-const { ui: { Header: Header$1, Button: Button$1, HeaderTags: HeaderTags$1, injectCss: injectCss$1, Divider, ButtonSizes }, solid: { createSignal: createSignal$1, createEffect: createEffect$1 } } = shelter;
+const { ui: { Header: Header$1, Button: Button$1, HeaderTags: HeaderTags$1, injectCss: injectCss$1, Divider, ButtonSizes, Select, SelectOption }, solid: { createSignal: createSignal$1, createEffect: createEffect$1 } } = shelter;
 let injectedCss$1 = false;
 function ThemesPage() {
 	if (!injectedCss$1) {
@@ -4403,35 +4256,48 @@ function ThemesPage() {
 				return t("dorion_themes.theme");
 			}
 		}),
-		(0, import_web$14.memo)(() => settings().themes.map((theme) => (0, import_web$15.createComponent)(Dropdown, {
-			style: "margin-bottom: 8px;",
-			key: theme,
+		(0, import_web$14.memo)(() => settings().themes.map((theme) => (0, import_web$15.createComponent)(Select, {
+			style: { "margin-bottom": "8px" },
 			value: theme,
-			onChange: (e) => {
-				appendTheme(theme, e.target.value);
+			onChange: (v) => {
+				appendTheme(theme, String(v));
 				reloadThemes();
 			},
-			get options() {
-				return [{
-					label: t("dorion_themes.none"),
-					value: "none"
-				}, ...themes()];
+			get children() {
+				return [(0, import_web$15.createComponent)(SelectOption, {
+					value: "none",
+					get children() {
+						return t("dorion_themes.none");
+					}
+				}), (0, import_web$14.memo)(() => themes().map((o) => (0, import_web$15.createComponent)(SelectOption, {
+					get value() {
+						return o.value;
+					},
+					get children() {
+						return o.label;
+					}
+				})))];
 			}
 		}))),
-		(0, import_web$15.createComponent)(Dropdown, {
-			style: "margin-bottom: 8px;",
-			value: "",
-			onChange: (e) => {
-				appendTheme("none", e.target.value);
+		(0, import_web$15.createComponent)(Select, {
+			style: { "margin-bottom": "8px" },
+			onChange: (v) => {
+				appendTheme("none", String(v));
 				reloadThemes();
 			},
 			get placeholder() {
 				return t("dorion_themes.select_theme");
 			},
-			get options() {
-				return [...themes()];
-			},
-			immutable: true
+			get children() {
+				return themes().map((o) => (0, import_web$15.createComponent)(SelectOption, {
+					get value() {
+						return o.value;
+					},
+					get children() {
+						return o.label;
+					}
+				}));
+			}
 		}),
 		(0, import_web$15.createComponent)(Divider, {
 			mt: 16,
@@ -4468,10 +4334,10 @@ function ThemesPage() {
 const classes = {
 	"customNote": "ycw7DW_customNote",
 	"customInstallBtn": "ycw7DW_customInstallBtn",
-	"stextbox": "ycw7DW_stextbox",
-	"stextboxInput": "ycw7DW_stextboxInput",
 	"shead": "ycw7DW_shead",
-	"bot16": "ycw7DW_bot16"
+	"stextbox": "ycw7DW_stextbox",
+	"bot16": "ycw7DW_bot16",
+	"stextboxInput": "ycw7DW_stextboxInput"
 };
 const css = `.ycw7DW_shead {
   margin-top: 16px;

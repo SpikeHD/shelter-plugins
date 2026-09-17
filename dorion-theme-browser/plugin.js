@@ -122,148 +122,6 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 } });
 
 //#endregion
-//#region components/Dropdown.tsx.scss
-const classes$2 = {
-	"ddownplaceholder": "sqVpyW_ddownplaceholder",
-	"dsarrow": "sqVpyW_dsarrow",
-	"dcontainer": "sqVpyW_dcontainer",
-	"ddown": "sqVpyW_ddown"
-};
-const css$2 = `.sqVpyW_ddown {
-  box-sizing: border-box;
-  width: 100%;
-  color: var(--text-default);
-  background-color: var(--background-base-lowest);
-  appearance: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  font-size: 16px;
-  transition: border-color .2s ease-in-out;
-}
-
-.sqVpyW_ddown option {
-  color: var(--text-default);
-  background: #333;
-}
-
-.sqVpyW_dcontainer {
-  width: 100%;
-  position: relative;
-}
-
-.sqVpyW_dsarrow {
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-.sqVpyW_dsarrow path {
-  fill: var(--text-subtle);
-}
-
-.sqVpyW_ddownplaceholder {
-  color: var(--text-subtle);
-}
-`;
-
-//#endregion
-//#region components/SelectArrow.tsx
-var import_web$28 = __toESM(require_web(), 1);
-var import_web$29 = __toESM(require_web(), 1);
-var import_web$30 = __toESM(require_web(), 1);
-var import_web$31 = __toESM(require_web(), 1);
-const _tmpl$$3 = /*#__PURE__*/ (0, import_web$28.template)(`<svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59003L12 13.17L7.41 8.59003L6 10L12 16L18 10L16.59 8.59003Z"></path></svg>`, 4);
-const SelectArrow = (props) => (() => {
-	const _el$ = (0, import_web$31.getNextElement)(_tmpl$$3);
-	(0, import_web$30.effect)(() => (0, import_web$29.setAttribute)(_el$, "class", props.class));
-	return _el$;
-})();
-
-//#endregion
-//#region components/Dropdown.tsx
-var import_web$18 = __toESM(require_web(), 1);
-var import_web$19 = __toESM(require_web(), 1);
-var import_web$20 = __toESM(require_web(), 1);
-var import_web$21 = __toESM(require_web(), 1);
-var import_web$22 = __toESM(require_web(), 1);
-var import_web$23 = __toESM(require_web(), 1);
-var import_web$24 = __toESM(require_web(), 1);
-var import_web$25 = __toESM(require_web(), 1);
-var import_web$26 = __toESM(require_web(), 1);
-var import_web$27 = __toESM(require_web(), 1);
-const _tmpl$$2 = /*#__PURE__*/ (0, import_web$18.template)(`<div><select><!#><!/><!#><!/></select><!#><!/></div>`, 10), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$18.template)(`<option value=""></option>`, 2), _tmpl$3$2 = /*#__PURE__*/ (0, import_web$18.template)(`<option></option>`, 2);
-const { ui: { injectCss: injectCss$2 } } = shelter;
-let injectedCss$2 = false;
-const Dropdown = (props) => {
-	if (!injectedCss$2) {
-		injectedCss$2 = true;
-		injectCss$2(css$2);
-	}
-	return (() => {
-		const _el$ = (0, import_web$23.getNextElement)(_tmpl$$2), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$25.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$25.getNextMarker)(_el$5.nextSibling), _el$7 = _el$2.nextSibling, [_el$8, _co$3] = (0, import_web$25.getNextMarker)(_el$7.nextSibling);
-		_el$2.addEventListener("change", (e) => {
-			props.onChange(e);
-			if (props.immutable) {
-				e.preventDefault();
-				e.stopPropagation();
-				e.target.value = props.value;
-			}
-		});
-		(0, import_web$26.insert)(_el$2, (() => {
-			const _c$ = (0, import_web$27.memo)(() => !!props.placeholder);
-			return () => _c$() && (() => {
-				const _el$9 = (0, import_web$23.getNextElement)(_tmpl$2$2);
-				(0, import_web$26.insert)(_el$9, () => props.placeholder);
-				(0, import_web$22.effect)((_p$) => {
-					const _v$8 = classes$2.ddownplaceholder, _v$9 = props.value === "";
-					_v$8 !== _p$._v$8 && (0, import_web$21.className)(_el$9, _p$._v$8 = _v$8);
-					_v$9 !== _p$._v$9 && (_el$9.selected = _p$._v$9 = _v$9);
-					return _p$;
-				}, {
-					_v$8: undefined,
-					_v$9: undefined
-				});
-				return _el$9;
-			})();
-		})(), _el$4, _co$);
-		(0, import_web$26.insert)(_el$2, () => props.options?.map((o) => (() => {
-			const _el$0 = (0, import_web$23.getNextElement)(_tmpl$3$2);
-			(0, import_web$26.insert)(_el$0, () => o.label);
-			(0, import_web$22.effect)(() => _el$0.selected = o.value === props.value);
-			(0, import_web$22.effect)(() => _el$0.value = o.value);
-			return _el$0;
-		})()), _el$6, _co$2);
-		(0, import_web$26.insert)(_el$, (0, import_web$24.createComponent)(SelectArrow, { get ["class"]() {
-			return classes$2.dsarrow;
-		} }), _el$8, _co$3);
-		(0, import_web$22.effect)((_p$) => {
-			const _v$ = classes$2.dcontainer, _v$2 = props.style, _v$3 = classes$2.ddown + " " + (props.placeholder && props.value === "" ? classes$2.ddownplaceholder : ""), _v$4 = props.placeholder, _v$5 = props.id, _v$6 = props["aria-label"], _v$7 = props.disabled;
-			_v$ !== _p$._v$ && (0, import_web$21.className)(_el$, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$20.style)(_el$, _v$2, _p$._v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$21.className)(_el$2, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$19.setAttribute)(_el$2, "placeholder", _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$19.setAttribute)(_el$2, "id", _p$._v$5 = _v$5);
-			_v$6 !== _p$._v$6 && (0, import_web$19.setAttribute)(_el$2, "aria-label", _p$._v$6 = _v$6);
-			_v$7 !== _p$._v$7 && (_el$2.disabled = _p$._v$7 = _v$7);
-			return _p$;
-		}, {
-			_v$: undefined,
-			_v$2: undefined,
-			_v$3: undefined,
-			_v$4: undefined,
-			_v$5: undefined,
-			_v$6: undefined,
-			_v$7: undefined
-		});
-		return _el$;
-	})();
-};
-
-//#endregion
 //#region util/debounce.ts
 const debounce = (fn, delay) => {
 	let timer = null;
@@ -379,12 +237,12 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
+	"contents": "JQAzuG_contents",
+	"info": "JQAzuG_info",
 	"thumbnail": "JQAzuG_thumbnail",
 	"installButton": "JQAzuG_installButton",
-	"info": "JQAzuG_info",
-	"name": "JQAzuG_name",
 	"themeCard": "JQAzuG_themeCard",
-	"contents": "JQAzuG_contents"
+	"name": "JQAzuG_name"
 };
 const css$1 = `.JQAzuG_themeCard {
   text-align: left;
@@ -538,14 +396,14 @@ const themeInstallationModel = async (link, name) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
-	"pagesOuter": "gqruia_pagesOuter",
-	"bot16": "gqruia_bot16",
 	"sortSection": "gqruia_sortSection",
-	"searchBox": "gqruia_searchBox",
-	"pageBtn": "gqruia_pageBtn",
-	"shead": "gqruia_shead",
+	"pages": "gqruia_pages",
+	"pagesOuter": "gqruia_pagesOuter",
 	"themeCards": "gqruia_themeCards",
-	"pages": "gqruia_pages"
+	"shead": "gqruia_shead",
+	"pageBtn": "gqruia_pageBtn",
+	"bot16": "gqruia_bot16",
+	"searchBox": "gqruia_searchBox"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
@@ -633,7 +491,7 @@ var import_web$6 = __toESM(require_web(), 1);
 var import_web$7 = __toESM(require_web(), 1);
 var import_web$8 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><span></span></div>`, 6), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<div><div><div>&lt; <!#><!/></div><input type="number"><div><!#><!/> &gt;</div></div></div>`, 13);
-const { ui: { injectCss, Divider, Header, HeaderTags, TextBox }, solid: { createSignal, createEffect } } = shelter;
+const { ui: { injectCss, Divider, Header, HeaderTags, TextBox, Select, SelectOption }, solid: { createSignal, createEffect } } = shelter;
 let injectedCss = false;
 function ThemePage() {
 	if (!injectedCss) {
@@ -669,45 +527,57 @@ function ThemePage() {
 		}),
 		(() => {
 			const _el$ = (0, import_web$5.getNextElement)(_tmpl$), _el$3 = _el$.firstChild, [_el$4, _co$] = (0, import_web$6.getNextMarker)(_el$3.nextSibling), _el$2 = _el$4.nextSibling;
-			(0, import_web$7.insert)(_el$, (0, import_web$8.createComponent)(Dropdown, {
+			(0, import_web$7.insert)(_el$, (0, import_web$8.createComponent)(Select, {
 				get value() {
 					return sort();
 				},
-				onChange: (e) => {
-					setSort(e.target.value);
+				onChange: (v) => {
+					setSort(String(v));
 					loadThemes();
 				},
-				style: "width: 30%;",
-				get options() {
-					return [
-						{
-							label: t("dorion_themes.popular"),
-							value: "popular"
-						},
-						{
-							label: t("dorion_themes.creation_date"),
-							value: "creationdate"
-						},
-						{
-							label: t("dorion_themes.name"),
-							value: "name"
-						},
-						{
-							label: t("dorion_themes.likes"),
-							value: "likes"
-						},
-						{
-							label: t("dorion_themes.downloads"),
-							value: "downloads"
-						},
-						{
-							label: t("dorion_themes.recently_updated"),
-							value: "recentlyupdated"
-						}
-					];
-				},
+				style: { width: "30%" },
 				get placeholder() {
 					return t("dorion_themes.sort_by");
+				},
+				get children() {
+					return [
+						(0, import_web$8.createComponent)(SelectOption, {
+							value: "popular",
+							get children() {
+								return t("dorion_themes.popular");
+							}
+						}),
+						(0, import_web$8.createComponent)(SelectOption, {
+							value: "creationdate",
+							get children() {
+								return t("dorion_themes.creation_date");
+							}
+						}),
+						(0, import_web$8.createComponent)(SelectOption, {
+							value: "name",
+							get children() {
+								return t("dorion_themes.name");
+							}
+						}),
+						(0, import_web$8.createComponent)(SelectOption, {
+							value: "likes",
+							get children() {
+								return t("dorion_themes.likes");
+							}
+						}),
+						(0, import_web$8.createComponent)(SelectOption, {
+							value: "downloads",
+							get children() {
+								return t("dorion_themes.downloads");
+							}
+						}),
+						(0, import_web$8.createComponent)(SelectOption, {
+							value: "recentlyupdated",
+							get children() {
+								return t("dorion_themes.recently_updated");
+							}
+						})
+					];
 				}
 			}), _el$4, _co$);
 			(0, import_web$7.insert)(_el$2, (0, import_web$8.createComponent)(TextBox, {
