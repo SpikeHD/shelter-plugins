@@ -1,6 +1,5 @@
 import { invoke, event, appName } from '../../../api/api.js'
 import GameCard from './GameCard.jsx'
-import { Dropdown } from '../../../components/Dropdown.jsx'
 
 import { css, classes } from './RegisteredGames.scss'
 
@@ -13,6 +12,8 @@ const {
     TextBox,
     injectCss,
     openConfirmationModal,
+    Select,
+    SelectOption,
   },
   solid: {
     createSignal,
@@ -142,18 +143,17 @@ function addIt() {
         {
           windows().length > 0 ? (
             <>
-              <Dropdown
-                options={
-                  // Unique
-                  windows().filter((w: ProcessWindow, i: number, a: ProcessWindow[]) => a.findIndex((w2: ProcessWindow) => w2.process_name === w.process_name) === i).map((w: ProcessWindow) => ({
-                    label: w.process_name,
-                    value: w.pid,
-                  }))}
+              <Select
                 placeholder={'Select process...'}
-                maxVisibleItems={5}
-                closeOnSelect={true}
-                onChange={(e) => setSelected(Number(e.target.value))}
-              />
+                onChange={(v) => setSelected(Number(v))}
+              >
+                {windows()
+                  // Unique
+                  .filter((w: ProcessWindow, i: number, a: ProcessWindow[]) => a.findIndex((w2: ProcessWindow) => w2.process_name === w.process_name) === i)
+                  .map((w: ProcessWindow) => (
+                    <SelectOption value={w.pid}>{w.process_name}</SelectOption>
+                  ))}
+              </Select>
 
               <Header
                 class={classes.modalhead}

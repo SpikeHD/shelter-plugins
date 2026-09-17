@@ -1,13 +1,12 @@
 import { invoke } from '../../../api/api.js'
 import { t } from '../../../util/i18n.js'
 import { reloadThemes } from '../../../util/theme.js'
-import { Dropdown } from '../../../components/Dropdown.jsx'
 import { css, classes } from './ThemesPage.tsx.scss'
 import { installThemeModal } from '../util/theme.jsx'
 import { defaultConfig } from '../util/settings.js'
 
 const {
-  ui: { Header, Button, HeaderTags, injectCss, Divider, ButtonSizes },
+  ui: { Header, Button, HeaderTags, injectCss, Divider, ButtonSizes, Select, SelectOption },
   solid: { createSignal, createEffect },
 } = shelter
 
@@ -85,31 +84,35 @@ export function ThemesPage() {
 
       {
         settings().themes.map((theme) => (
-          <Dropdown
-            style={'margin-bottom: 8px;'}
-            key={theme}
+          <Select
+            style={{ 'margin-bottom': '8px' }}
             value={theme}
-            onChange={(e) => {
-              appendTheme(theme, e.target.value)
+            onChange={(v) => {
+              appendTheme(theme, String(v))
               reloadThemes()
             }}
-            options={[{ label: t('dorion_themes.none'), value: 'none' }, ...themes()]}
-          />
+          >
+            <SelectOption value="none">{t('dorion_themes.none')}</SelectOption>
+            {themes().map((o) => (
+              <SelectOption value={o.value}>{o.label}</SelectOption>
+            ))}
+          </Select>
         )
         )
       }
 
-      <Dropdown
-        style={'margin-bottom: 8px;'}
-        value={''}
-        onChange={(e) => {
-          appendTheme('none', e.target.value)
+      <Select
+        style={{ 'margin-bottom': '8px' }}
+        onChange={(v) => {
+          appendTheme('none', String(v))
           reloadThemes()
         }}
         placeholder={t('dorion_themes.select_theme')}
-        options={[...themes()]}
-        immutable={true}
-      />
+      >
+        {themes().map((o) => (
+          <SelectOption value={o.value}>{o.label}</SelectOption>
+        ))}
+      </Select>
 
       <Divider mt={16} mb={16} />
 

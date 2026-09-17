@@ -1,7 +1,6 @@
 import { appName, backendRestartRequired, invoke } from '../../../api/api.js'
 import { t } from '../../../util/i18n.js'
 import { css, classes } from './PerformancePage.tsx.scss'
-import { Dropdown } from '../../../components/Dropdown.jsx'
 import { WarningCard } from '../components/WarningCard.jsx'
 import { defaultConfig } from '../util/settings.js'
 
@@ -13,7 +12,9 @@ const {
     Button,
     Header,
     HeaderTags,
-    showToast
+    showToast,
+    Select,
+    SelectOption
   },
   solid: { createSignal, createEffect },
 } = shelter
@@ -232,22 +233,21 @@ export function PerformancePage() {
 
       <Header class={classes.shead}>{t('dorion_performance.blur_transparency')}</Header>
 
-      <Dropdown
+      <Select
         value={state().blur}
-        selected={state().blur}
-        onChange={(e) =>
+        onChange={(v) =>
           setSettings((settings) => (
             {
               ...settings,
-              blur: e.target.value,
+              blur: String(v),
             }
           ), true)
         }
-        options={blurOptions().map((b) => ({
-          label: capitalize(b),
-          value: b,
-        }))}
-      />
+      >
+        {blurOptions().map((b) => (
+          <SelectOption value={b}>{capitalize(b)}</SelectOption>
+        ))}
+      </Select>
 
       <div class={classes.stext}>
         {t('dorion_performance.blur_warning', {

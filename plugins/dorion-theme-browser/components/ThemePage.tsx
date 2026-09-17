@@ -1,4 +1,3 @@
-import { Dropdown } from '../../../components/Dropdown.jsx'
 import { debounce } from '../../../util/debounce.js'
 import { themeListEndpoint } from '../api.js'
 import { ThemeCard } from './ThemeCard.jsx'
@@ -11,7 +10,9 @@ const {
     Divider,
     Header,
     HeaderTags,
-    TextBox
+    TextBox,
+    Select,
+    SelectOption
   },
   solid: {
     createSignal,
@@ -47,23 +48,22 @@ export function ThemePage() {
       <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_themes.title')}</Header>
 
       <div class={classes.sortSection}>
-        <Dropdown
+        <Select
           value={sort()}
-          onChange={(e) => {
-            setSort(e.target.value)
+          onChange={(v) => {
+            setSort(String(v))
             loadThemes()
           }}
-          style='width: 30%;'
-          options={[
-            { label: t('dorion_themes.popular'), value: 'popular' },
-            { label: t('dorion_themes.creation_date'), value: 'creationdate' },
-            { label: t('dorion_themes.name'), value: 'name' },
-            { label: t('dorion_themes.likes'), value: 'likes' },
-            { label: t('dorion_themes.downloads'), value: 'downloads' },
-            { label: t('dorion_themes.recently_updated'), value: 'recentlyupdated' },
-          ]}
+          style={{ width: '30%' }}
           placeholder={t('dorion_themes.sort_by')}
-        />
+        >
+          <SelectOption value="popular">{t('dorion_themes.popular')}</SelectOption>
+          <SelectOption value="creationdate">{t('dorion_themes.creation_date')}</SelectOption>
+          <SelectOption value="name">{t('dorion_themes.name')}</SelectOption>
+          <SelectOption value="likes">{t('dorion_themes.likes')}</SelectOption>
+          <SelectOption value="downloads">{t('dorion_themes.downloads')}</SelectOption>
+          <SelectOption value="recentlyupdated">{t('dorion_themes.recently_updated')}</SelectOption>
+        </Select>
 
         <span class={classes.searchBox}>
           <TextBox

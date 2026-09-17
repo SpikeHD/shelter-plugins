@@ -1,10 +1,9 @@
 import { invoke, process } from '../../../api/api.js'
 import { t } from '../../../util/i18n.js'
-import { Dropdown } from '../../../components/Dropdown.jsx'
 import { css, classes } from './ProfilesPage.tsx.scss'
 
 const {
-  ui: { Header, Button, HeaderTags, TextBox, injectCss, Divider, ButtonColors, ButtonSizes },
+  ui: { Header, Button, HeaderTags, TextBox, injectCss, Divider, ButtonColors, ButtonSizes, Select, SelectOption },
   solid: { createSignal, createEffect },
 } = shelter
 
@@ -76,19 +75,15 @@ export function ProfilesPage() {
   return (
     <>
       <Header tag={HeaderTags.H1} class={classes.tophead}>{t('dorion_profiles.title')}</Header>
-      <Dropdown
-        options={profileList().map((p: string) => {
-          return {
-            label: p,
-            value: p,
-          }
-        })}
+      <Select
+        value={profile()}
         placeholder={t('dorion_profiles.select_profile')}
-        maxVisibleItems={5}
-        closeOnSelect={true}
-        onChange={(e) => setProfile(e.target.value)}
-        selected={profile()}
-      />
+        onChange={(v) => setProfile(String(v))}
+      >
+        {profileList().map((p: string) => (
+          <SelectOption value={p}>{p}</SelectOption>
+        ))}
+      </Select>
 
       <Header class={classes.shead}>{t('dorion_profiles.create_profile')}</Header>
       <TextBox

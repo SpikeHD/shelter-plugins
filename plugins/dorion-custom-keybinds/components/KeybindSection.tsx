@@ -1,5 +1,4 @@
 import { css, classes } from './KeybindSection.tsx.scss'
-import { Dropdown } from '../../../components/Dropdown'
 import { KeybindInput } from '../../../components/KeybindInput'
 
 const {
@@ -7,7 +6,9 @@ const {
     Text,
     HeaderTags,
     Header,
-    injectCss
+    injectCss,
+    Select,
+    SelectOption
   },
   solid: {
     createSignal
@@ -60,18 +61,21 @@ export function KeybindSection(props: Props) {
             Action
           </Header>
 
-          <Dropdown
+          <Select
             value={props.internalName || props.keybind?.key || props.keybindActionTypes[0].value}
-            options={props.keybindActionTypes}
-            onChange={(e) => {
-              setKeybindType(e.target.value)
+            onChange={(v) => {
+              setKeybindType(String(v))
               props.onKeybindChange({
                 keys: props.keybind.keys || [],
-                key: e.target.value,
+                key: String(v),
               }, old)
             }}
-            style='width: 90%'
-          ></Dropdown>
+            style={{ width: '90%' }}
+          >
+            {props.keybindActionTypes.map((a) => (
+              <SelectOption value={a.value}>{a.label}</SelectOption>
+            ))}
+          </Select>
         </div>
 
         <div class={classes.keybindArea}>
