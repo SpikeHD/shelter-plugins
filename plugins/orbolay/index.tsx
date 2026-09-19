@@ -9,6 +9,10 @@ const {
   ui: { showToast },
 } = shelter
 
+export interface Config {
+  port: number;
+}
+
 interface ChannelState {
   userId: string;
   channelId: string;
@@ -20,8 +24,14 @@ interface ChannelState {
   selfStream: boolean;
 }
 
-export interface Config {
-  port: number;
+interface SoundboardSoundPayload {
+  sound_id: string;
+  name: string;
+  volume: number;
+  emoji_id: string | null;
+  emoji_name: string | null;
+  guild_id: string | null;
+  available: boolean;
 }
 
 let ws: WebSocket
@@ -38,6 +48,45 @@ const waitForPopulate = async (fn) => {
     if (result) return result
     await new Promise((r) => setTimeout(r, 500))
   }
+}
+
+const toSoundboardPayload = (sound: any, fallbackGuild?: string): SoundboardSoundPayload | null => {
+  if (!sound?.soundId) return null
+
+  const guildId = sound.guildId ?? fallbackGuild
+
+  return {
+    sound_id: sound.soundId,
+    name: sound.name,
+    volume: sound.volume,
+    emoji_id: sound.emojiId ?? null,
+    emoji_name: sound.emojiName ?? null,
+    guild_id: !guildId || guildId === '0' ? null : guildId,
+    available: sound.available,
+  }
+}
+
+const getSoundboardSounds = (): SoundboardSoundPayload[] => {
+  const store: any = shelter.flux.stores?.SoundboardStore
+  const sounds: SoundboardSoundPayload[] = []
+
+  for (const [guildKey, guildSounds] of store.getSounds()) {
+    for (const sound of guildSounds ?? []) {
+      const payload = toSoundboardPayload(sound, guildKey)
+      if (payload) sounds.push(payload)
+    }
+  }
+
+  return sounds
+}
+
+const sendSoundboardUpdate = () => {
+  if (!ws || ws.readyState !== WebSocket.OPEN) return
+
+  const sounds = getSoundboardSounds()
+  if (!sounds.length) return
+
+  ws.send(JSON.stringify({ cmd: 'SOUNDBOARD_UPDATE', sounds }))
 }
 
 const handleSpeaking = (dispatch) => {
@@ -91,6 +140,8 @@ const handleVoiceStateUpdates = async (dispatch) => {
         )
 
         currentChannel = state.channelId
+
+        sendSoundboardUpdate()
 
         break
       } else if (!state.channelId) {
@@ -309,6 +360,8 @@ const createWebsocket = () => {
     ws?.send(JSON.stringify({ cmd: 'STREAMER_MODE', enabled: StreamerModeStore?.enabled }))
 
     currentChannel = userVoiceState.channelId
+
+    sendSoundboardUpdate()
   }
 }
 
