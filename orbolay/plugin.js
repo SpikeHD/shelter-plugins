@@ -108,6 +108,38 @@ const waitForPopulate = async (fn) => {
 		await new Promise((r) => setTimeout(r, 500));
 	}
 };
+const toSoundboardPayload = (sound, fallbackGuild) => {
+	const soundId = sound?.soundId ?? sound?.sound_id;
+	if (!soundId) return null;
+	const guildId = sound?.guildId ?? sound?.guild_id ?? fallbackGuild;
+	return {
+		sound_id: soundId,
+		name: sound.name,
+		volume: sound.volume,
+		emoji_id: sound?.emojiId ?? sound?.emoji_id ?? null,
+		emoji_name: sound?.emojiName ?? sound?.emoji_name ?? null,
+		guild_id: !guildId || guildId === "0" ? null : guildId,
+		available: sound.available
+	};
+};
+const getSoundboardSounds = () => {
+	const store$2 = shelter.flux.stores?.SoundboardStore;
+	const sounds = [];
+	for (const [guildKey, guildSounds] of store$2.getSounds()) for (const sound of guildSounds ?? []) {
+		const payload = toSoundboardPayload(sound, guildKey);
+		if (payload) sounds.push(payload);
+	}
+	return sounds;
+};
+const sendSoundboardUpdate = () => {
+	if (!ws || ws.readyState !== WebSocket.OPEN) return;
+	const sounds = getSoundboardSounds();
+	if (!sounds.length) return;
+	ws.send(JSON.stringify({
+		cmd: "SOUNDBOARD_UPDATE",
+		sounds
+	}));
+};
 const handleSpeaking = (dispatch) => {
 	ws?.send?.(JSON.stringify({
 		cmd: "VOICE_STATE_UPDATE",
@@ -139,6 +171,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 					}))
 				}));
 				currentChannel = state.channelId;
+				sendSoundboardUpdate();
 				break;
 			} else if (!state.channelId) {
 				ws?.send(JSON.stringify({ cmd: "CHANNEL_LEFT" }));
@@ -294,6 +327,7 @@ const createWebsocket = () => {
 			enabled: StreamerModeStore?.enabled
 		}));
 		currentChannel = userVoiceState.channelId;
+		sendSoundboardUpdate();
 	};
 };
 const onLoad = () => {
