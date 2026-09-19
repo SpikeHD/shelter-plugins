@@ -109,15 +109,14 @@ const waitForPopulate = async (fn) => {
 	}
 };
 const toSoundboardPayload = (sound, fallbackGuild) => {
-	const soundId = sound?.soundId ?? sound?.sound_id;
-	if (!soundId) return null;
-	const guildId = sound?.guildId ?? sound?.guild_id ?? fallbackGuild;
+	if (!sound?.soundId) return null;
+	const guildId = sound.guildId ?? fallbackGuild;
 	return {
-		sound_id: soundId,
+		sound_id: sound.soundId,
 		name: sound.name,
 		volume: sound.volume,
-		emoji_id: sound?.emojiId ?? sound?.emoji_id ?? null,
-		emoji_name: sound?.emojiName ?? sound?.emoji_name ?? null,
+		emoji_id: sound.emojiId ?? null,
+		emoji_name: sound.emojiName ?? null,
 		guild_id: !guildId || guildId === "0" ? null : guildId,
 		available: sound.available
 	};

@@ -154,14 +154,14 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$2 = {
-	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
 	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"keybindSection": "Zz-Z3G_keybindSection",
 	"header": "Zz-Z3G_header",
-	"keybindsButton": "Zz-Z3G_keybindsButton",
 	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner"
+	"keybindsButton": "Zz-Z3G_keybindsButton"
 };
 const css$2 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -234,8 +234,8 @@ const classes$1 = {
 	"keybindArea": "QTLdLq_keybindArea",
 	"removeButton": "QTLdLq_removeButton",
 	"note": "QTLdLq_note",
-	"keybindSection": "QTLdLq_keybindSection",
-	"actionSection": "QTLdLq_actionSection"
+	"actionSection": "QTLdLq_actionSection",
+	"keybindSection": "QTLdLq_keybindSection"
 };
 const css$1 = `.QTLdLq_keybindRoot {
   flex-direction: column;
@@ -292,12 +292,12 @@ const css$1 = `.QTLdLq_keybindRoot {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindContainer": "N-HDcq_keybindContainer",
-	"recording": "N-HDcq_recording",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"pulse": "N-HDcq_pulse",
 	"keybindButton": "N-HDcq_keybindButton",
-	"keybindInput": "N-HDcq_keybindInput"
+	"recording": "N-HDcq_recording",
+	"keybindContainer": "N-HDcq_keybindContainer",
+	"keybindInput": "N-HDcq_keybindInput",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
