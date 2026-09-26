@@ -45,9 +45,8 @@ const updateNotificationBadge = () => {
   const friendRequests = RelationshipStore.getPendingCount()
   const total = friendRequests + mentions
 
-  if (!total && unread) invoke('notification_count', { amount: -1 })
-
-  invoke('notification_count', { amount: total })
+  const amount = !total && unread ? -1 : total
+  invoke('notification_count', { amount })
 }
 
 export const onLoad = () => {
