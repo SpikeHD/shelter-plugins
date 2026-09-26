@@ -87,12 +87,17 @@ export function Keybinds(props: Props) {
           class={classes.keybindsButton}
           grow={true}
           onClick={() => {
+            const currentKeybinds = keybindSections()
+
+            // Multiple unassigned rows cannot be saved as distinct keybinds.
+            if (currentKeybinds.some((section) => section.key === 'UNASSIGNED')) return
+
             // Ensure keybinds list max is the same as the keybindActionTypes list
-            if (keybindSections().length >= props.keybindActionTypes.length) {
+            if (currentKeybinds.length >= props.keybindActionTypes.length) {
               return
             }
 
-            updateKeybinds([...keybindSections(), {
+            updateKeybinds([...currentKeybinds, {
               key: 'UNASSIGNED',
               keys: []
             }])
@@ -158,7 +163,7 @@ export function Keybinds(props: Props) {
               updateKeybinds(newKeybinds)
             }}
             onKeybindRemove={(keybind) => {
-              updateKeybinds(keybindSections().filter((bind) => bind.key !== keybind.key))
+              updateKeybinds(keybindSections().filter((bind) => bind !== keybind))
             }}
           />
         ))
