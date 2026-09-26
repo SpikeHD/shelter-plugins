@@ -1,5 +1,6 @@
 import { Keybinds } from './components/Keybinds'
 import { register, unregister } from './util/events'
+import { fallbackActionTypes, fallbackActionDescriptions } from './util/actionOptions'
 
 const {
   flux: {
@@ -12,13 +13,14 @@ const {
 
 let child: Element = null
 
+const unmount = () => {
+  child?.remove()
+  child = null
+}
+
 const viewedKeybindsCallback = (payload) => {
   if (payload.section !== 'system_panel') {
-    if (child) {
-      child.remove()
-      child = null
-    }
-
+    unmount()
     return
   }
 
@@ -28,24 +30,37 @@ const viewedKeybindsCallback = (payload) => {
       console.warn('Keybinds component already mounted, skipping')
       return
     }
+    unmount()
 
-    const browserNotice = el.querySelector('[data-nav-anchor-key="custom_keybinds_setting"]')
+    const browserNotice = el.querySelector<HTMLElement>('[data-nav-anchor-key="custom_keybinds_setting"]')
     if (!browserNotice) {
       console.warn('Could not find browser notice element, skipping')
       return
     }
 
-    // TODO we cannot get keybinds list from the owner anymore
     const owner = shelter.util.getFiberOwner(browserNotice)
     const keybindsArea = browserNotice.parentElement
-    if (!owner || !keybindsArea) {
-      console.warn('Could not find owner or keybinds area, skipping')
+    if (!keybindsArea) {
+      console.warn('Could not find keybinds area, skipping')
       return
     }
 
-    // hide browser notice
-    // @ts-expect-error this is real
-    browserNotice.style.display = 'none'
+    const ownerActionTypes = owner?.props?.keybindActionTypes
+    // Push to Talk is configured in Voice & Video, so exclude it here.
+    const availableActions = Array.isArray(ownerActionTypes)
+      ? ownerActionTypes.filter((action) =>
+        typeof action?.value === 'string' &&
+        typeof action?.label === 'string' &&
+        action.value !== 'PUSH_TO_TALK'
+      )
+      : []
+    const actionTypes = availableActions.some((action) => action.value !== 'UNASSIGNED')
+      ? availableActions
+      : fallbackActionTypes.filter((action) => action.value !== 'PUSH_TO_TALK')
+    const actionDescriptions = {
+      ...fallbackActionDescriptions,
+      ...owner?.props?.keybindDescriptions,
+    }
 
     const keybindsContainer = keybindsArea.parentElement?.parentElement
     if (!keybindsContainer) {
@@ -54,17 +69,20 @@ const viewedKeybindsCallback = (payload) => {
     }
 
     // Remove big margin on the default keybinds bit
+    browserNotice.style.display = 'none'
+
     const defaultKeybinds = keybindsContainer.querySelector('fieldset')?.parentElement
-    if (defaultKeybinds)
-      defaultKeybinds.style.marginTop = '0'
+    if (defaultKeybinds) defaultKeybinds.style.marginTop = '0'
+
+    // Also remove the divider, we create our own
+    const divider = document.querySelector('div[class^=categories] > div[class^=divider]')
+    if (divider) divider.remove()
 
     child = keybindsArea.appendChild(
       <ReactiveRoot>
         <Keybinds
-          // Remove PUSH_TO_TALK because that is set in the voice & video section and I can't be assed
-          // to come up with a good way to handle it being set somewhere else right now
-          keybindActionTypes={owner.props.keybindActionTypes.filter((k) => k.value !== 'PUSH_TO_TALK')}
-          keybindDescriptions={owner.props.keybindDescriptions}
+          keybindActionTypes={actionTypes}
+          keybindDescriptions={actionDescriptions}
         />
       </ReactiveRoot>
     )
@@ -79,16 +97,14 @@ const trackSettingsViewedCallback = (payload) => {
   })
 }
 
-const subscriptions = [
-  FluxDispatcher.subscribe('TRACK', trackSettingsViewedCallback)
-]
+FluxDispatcher.subscribe('TRACK', trackSettingsViewedCallback)
 
 register()
 
 export const onUnload = () => {
-  for (const unsub of subscriptions) {
-    unsub()
-  }
+  unmount()
+
+  FluxDispatcher.unsubscribe('TRACK', trackSettingsViewedCallback)
 
   unregister()
 }

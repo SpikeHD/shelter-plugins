@@ -20,7 +20,7 @@ let injectedCss = false
 
 interface Props {
   keybindActionTypes: KeybindActionType[]
-  keybindDescriptions: KeybindDescription[]
+  keybindDescriptions: KeybindDescription
 }
 
 export function Keybinds(props: Props) {
@@ -75,7 +75,7 @@ export function Keybinds(props: Props) {
           </div>
         )
       }
-        
+
       <div class={classes.keybindsHeader}>
         <div class={classes.keybindsBanner}>
           <Text>
@@ -87,12 +87,17 @@ export function Keybinds(props: Props) {
           class={classes.keybindsButton}
           grow={true}
           onClick={() => {
+            const currentKeybinds = keybindSections()
+
+            // Multiple unassigned rows cannot be saved as distinct keybinds.
+            if (currentKeybinds.some((section) => section.key === 'UNASSIGNED')) return
+
             // Ensure keybinds list max is the same as the keybindActionTypes list
-            if (keybindSections().length >= props.keybindActionTypes.length) {
+            if (currentKeybinds.length >= props.keybindActionTypes.length) {
               return
             }
 
-            updateKeybinds([...keybindSections(), {
+            updateKeybinds([...currentKeybinds, {
               key: 'UNASSIGNED',
               keys: []
             }])
@@ -148,7 +153,7 @@ export function Keybinds(props: Props) {
 
                 return
               }
-              
+
               const newKeybinds = keybindSections().filter(
                 bind => bind.key !== keybind.key && bind.key !== old.key
               )
@@ -157,8 +162,9 @@ export function Keybinds(props: Props) {
 
               updateKeybinds(newKeybinds)
             }}
-            onKeybindRemove={(keybind) => {
-              updateKeybinds(keybindSections().filter((bind) => bind.key !== keybind.key))
+            onKeybindRemove={(key) => {
+              // Edits replace row objects, but action keys remain unique.
+              updateKeybinds(keybindSections().filter((bind) => bind.key !== key))
             }}
           />
         ))

@@ -3,6 +3,7 @@ import { KeybindInput } from '../../../components/KeybindInput'
 
 const {
   ui: {
+    Divider,
     Text,
     HeaderTags,
     Header,
@@ -20,11 +21,11 @@ interface Props {
   enabled?: boolean
 
   keybindActionTypes: KeybindActionType[]
-  keybindDescriptions: KeybindDescription[]
+  keybindDescriptions: KeybindDescription
   keybind?: Keybind
 
   onKeybindChange: (keybind: Keybind, old: Keybind) => void
-  onKeybindRemove: (keybind: Keybind) => void
+  onKeybindRemove: (key: string) => void
 
   // Not to be confused with keybind related stuff, this is just so it can be used in a loop
   key?: any
@@ -96,14 +97,15 @@ export function KeybindSection(props: Props) {
         </div>
 
         <div class={classes.removeButton}>
-          <RemoveIcon onClick={() => props.onKeybindRemove(old)} />
+          <RemoveIcon onClick={() => props.onKeybindRemove(keybindType())} />
         </div>
       </div>
 
       <Text class={classes.note}>
         {props.keybindDescriptions[keybindType()]}
       </Text>
-    </div>
 
+      <Divider class={classes.divider} />
+    </div>
   )
 }
