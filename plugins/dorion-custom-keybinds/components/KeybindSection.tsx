@@ -24,7 +24,7 @@ interface Props {
   keybind?: Keybind
 
   onKeybindChange: (keybind: Keybind, old: Keybind) => void
-  onKeybindRemove: (keybind: Keybind) => void
+  onKeybindRemove: (key: string) => void
 
   // Not to be confused with keybind related stuff, this is just so it can be used in a loop
   key?: any
@@ -96,7 +96,7 @@ export function KeybindSection(props: Props) {
         </div>
 
         <div class={classes.removeButton}>
-          <RemoveIcon onClick={() => props.onKeybindRemove(old)} />
+          <RemoveIcon onClick={() => props.onKeybindRemove(keybindType())} />
         </div>
       </div>
 

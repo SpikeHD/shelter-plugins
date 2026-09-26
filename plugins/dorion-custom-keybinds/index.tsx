@@ -56,9 +56,16 @@ const viewedKeybindsCallback = (payload) => {
     }
 
     const ownerActionTypes = owner?.props?.keybindActionTypes
-    const actionTypes = Array.isArray(ownerActionTypes) && ownerActionTypes.length
-      ? ownerActionTypes
-      : fallbackActionTypes
+    const availableActions = Array.isArray(ownerActionTypes)
+      ? ownerActionTypes.filter((action) =>
+        typeof action?.value === 'string' &&
+        typeof action?.label === 'string' &&
+        action.value !== 'PUSH_TO_TALK'
+      )
+      : []
+    const actionTypes = availableActions.some((action) => action.value !== 'UNASSIGNED')
+      ? availableActions
+      : fallbackActionTypes.filter((action) => action.value !== 'PUSH_TO_TALK')
     const actionDescriptions = {
       ...fallbackActionDescriptions,
       ...owner?.props?.keybindDescriptions,
@@ -84,9 +91,8 @@ const viewedKeybindsCallback = (payload) => {
     child = keybindsArea.appendChild(
       <ReactiveRoot>
         <Keybinds
-          // Remove PUSH_TO_TALK because that is set in the voice & video section and I can't be assed
-          // to come up with a good way to handle it being set somewhere else right now
-          keybindActionTypes={actionTypes.filter((k) => k.value !== 'PUSH_TO_TALK')}
+          // Push to Talk is configured in Voice & Video, so exclude it here.
+          keybindActionTypes={actionTypes}
           keybindDescriptions={actionDescriptions}
         />
       </ReactiveRoot>

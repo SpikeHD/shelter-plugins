@@ -162,8 +162,9 @@ export function Keybinds(props: Props) {
 
               updateKeybinds(newKeybinds)
             }}
-            onKeybindRemove={(keybind) => {
-              updateKeybinds(keybindSections().filter((bind) => bind !== keybind))
+            onKeybindRemove={(key) => {
+              // Edits replace row objects, but action keys remain unique.
+              updateKeybinds(keybindSections().filter((bind) => bind.key !== key))
             }}
           />
         ))
