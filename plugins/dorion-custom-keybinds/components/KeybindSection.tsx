@@ -3,6 +3,7 @@ import { KeybindInput } from '../../../components/KeybindInput'
 
 const {
   ui: {
+    Divider,
     Text,
     HeaderTags,
     Header,
@@ -103,7 +104,8 @@ export function KeybindSection(props: Props) {
       <Text class={classes.note}>
         {props.keybindDescriptions[keybindType()]}
       </Text>
-    </div>
 
+      <Divider class={classes.divider} />
+    </div>
   )
 }

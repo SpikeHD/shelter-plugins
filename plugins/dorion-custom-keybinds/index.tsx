@@ -30,6 +30,7 @@ const viewedKeybindsCallback = (payload) => {
       console.warn('Keybinds component already mounted, skipping')
       return
     }
+    unmount()
 
     const browserNotice = el.querySelector<HTMLElement>('[data-nav-anchor-key="custom_keybinds_setting"]')
     if (!browserNotice) {
@@ -72,6 +73,10 @@ const viewedKeybindsCallback = (payload) => {
 
     const defaultKeybinds = keybindsContainer.querySelector('fieldset')?.parentElement
     if (defaultKeybinds) defaultKeybinds.style.marginTop = '0'
+
+    // Also remove the divider, we create our own
+    const divider = document.querySelector('div[class^=categories] > div[class^=divider]')
+    if (divider) divider.remove()
 
     child = keybindsArea.appendChild(
       <ReactiveRoot>

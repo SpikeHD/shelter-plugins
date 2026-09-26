@@ -75,7 +75,7 @@ export function Keybinds(props: Props) {
           </div>
         )
       }
-        
+
       <div class={classes.keybindsHeader}>
         <div class={classes.keybindsBanner}>
           <Text>
@@ -153,7 +153,7 @@ export function Keybinds(props: Props) {
 
                 return
               }
-              
+
               const newKeybinds = keybindSections().filter(
                 bind => bind.key !== keybind.key && bind.key !== old.key
               )
