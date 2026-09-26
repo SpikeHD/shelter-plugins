@@ -1,5 +1,3 @@
-// Discord does not always expose these values on the settings component's props.
-// Keep the fallback aligned with the actions handled by actionMap.ts.
 export const fallbackActionTypes: KeybindActionType[] = [
   { value: 'UNASSIGNED', label: 'Unassigned' },
   { value: 'TOGGLE_MUTE', label: 'Toggle Mute' },

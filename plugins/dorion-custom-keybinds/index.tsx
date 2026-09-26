@@ -12,20 +12,10 @@ const {
 } = shelter
 
 let child: Element = null
-let notice: HTMLElement = null
-let noticeDisplay = ''
-let defaultKeybinds: HTMLElement = null
-let defaultKeybindsMarginTop = ''
 
 const unmount = () => {
   child?.remove()
   child = null
-
-  if (notice) notice.style.display = noticeDisplay
-  notice = null
-
-  if (defaultKeybinds) defaultKeybinds.style.marginTop = defaultKeybindsMarginTop
-  defaultKeybinds = null
 }
 
 const viewedKeybindsCallback = (payload) => {
@@ -40,7 +30,6 @@ const viewedKeybindsCallback = (payload) => {
       console.warn('Keybinds component already mounted, skipping')
       return
     }
-    unmount()
 
     const browserNotice = el.querySelector<HTMLElement>('[data-nav-anchor-key="custom_keybinds_setting"]')
     if (!browserNotice) {
@@ -56,6 +45,7 @@ const viewedKeybindsCallback = (payload) => {
     }
 
     const ownerActionTypes = owner?.props?.keybindActionTypes
+    // Push to Talk is configured in Voice & Video, so exclude it here.
     const availableActions = Array.isArray(ownerActionTypes)
       ? ownerActionTypes.filter((action) =>
         typeof action?.value === 'string' &&
@@ -78,20 +68,14 @@ const viewedKeybindsCallback = (payload) => {
     }
 
     // Remove big margin on the default keybinds bit
-    notice = browserNotice
-    noticeDisplay = browserNotice.style.display
     browserNotice.style.display = 'none'
 
-    defaultKeybinds = keybindsContainer.querySelector('fieldset')?.parentElement
-    if (defaultKeybinds) {
-      defaultKeybindsMarginTop = defaultKeybinds.style.marginTop
-      defaultKeybinds.style.marginTop = '0'
-    }
+    const defaultKeybinds = keybindsContainer.querySelector('fieldset')?.parentElement
+    if (defaultKeybinds) defaultKeybinds.style.marginTop = '0'
 
     child = keybindsArea.appendChild(
       <ReactiveRoot>
         <Keybinds
-          // Push to Talk is configured in Voice & Video, so exclude it here.
           keybindActionTypes={actionTypes}
           keybindDescriptions={actionDescriptions}
         />
