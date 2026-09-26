@@ -20,7 +20,7 @@ let injectedCss = false
 
 interface Props {
   keybindActionTypes: KeybindActionType[]
-  keybindDescriptions: KeybindDescription[]
+  keybindDescriptions: KeybindDescription
 }
 
 export function Keybinds(props: Props) {

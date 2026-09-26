@@ -1,5 +1,6 @@
 import { Keybinds } from './components/Keybinds'
 import { register, unregister } from './util/events'
+import { fallbackActionTypes, fallbackActionDescriptions } from './util/actionOptions'
 
 const {
   flux: {
@@ -35,12 +36,20 @@ const viewedKeybindsCallback = (payload) => {
       return
     }
 
-    // TODO we cannot get keybinds list from the owner anymore
     const owner = shelter.util.getFiberOwner(browserNotice)
     const keybindsArea = browserNotice.parentElement
-    if (!owner || !keybindsArea) {
-      console.warn('Could not find owner or keybinds area, skipping')
+    if (!keybindsArea) {
+      console.warn('Could not find keybinds area, skipping')
       return
+    }
+
+    const ownerActionTypes = owner?.props?.keybindActionTypes
+    const actionTypes = Array.isArray(ownerActionTypes) && ownerActionTypes.length
+      ? ownerActionTypes
+      : fallbackActionTypes
+    const actionDescriptions = {
+      ...fallbackActionDescriptions,
+      ...owner?.props?.keybindDescriptions,
     }
 
     // hide browser notice
@@ -63,8 +72,8 @@ const viewedKeybindsCallback = (payload) => {
         <Keybinds
           // Remove PUSH_TO_TALK because that is set in the voice & video section and I can't be assed
           // to come up with a good way to handle it being set somewhere else right now
-          keybindActionTypes={owner.props.keybindActionTypes.filter((k) => k.value !== 'PUSH_TO_TALK')}
-          keybindDescriptions={owner.props.keybindDescriptions}
+          keybindActionTypes={actionTypes.filter((k) => k.value !== 'PUSH_TO_TALK')}
+          keybindDescriptions={actionDescriptions}
         />
       </ReactiveRoot>
     )

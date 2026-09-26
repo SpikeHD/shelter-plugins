@@ -20,7 +20,7 @@ interface Props {
   enabled?: boolean
 
   keybindActionTypes: KeybindActionType[]
-  keybindDescriptions: KeybindDescription[]
+  keybindDescriptions: KeybindDescription
   keybind?: Keybind
 
   onKeybindChange: (keybind: Keybind, old: Keybind) => void
