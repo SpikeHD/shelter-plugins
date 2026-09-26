@@ -12,14 +12,25 @@ const {
 } = shelter
 
 let child: Element = null
+let notice: HTMLElement = null
+let noticeDisplay = ''
+let defaultKeybinds: HTMLElement = null
+let defaultKeybindsMarginTop = ''
+
+const unmount = () => {
+  child?.remove()
+  child = null
+
+  if (notice) notice.style.display = noticeDisplay
+  notice = null
+
+  if (defaultKeybinds) defaultKeybinds.style.marginTop = defaultKeybindsMarginTop
+  defaultKeybinds = null
+}
 
 const viewedKeybindsCallback = (payload) => {
   if (payload.section !== 'system_panel') {
-    if (child) {
-      child.remove()
-      child = null
-    }
-
+    unmount()
     return
   }
 
@@ -29,8 +40,9 @@ const viewedKeybindsCallback = (payload) => {
       console.warn('Keybinds component already mounted, skipping')
       return
     }
+    unmount()
 
-    const browserNotice = el.querySelector('[data-nav-anchor-key="custom_keybinds_setting"]')
+    const browserNotice = el.querySelector<HTMLElement>('[data-nav-anchor-key="custom_keybinds_setting"]')
     if (!browserNotice) {
       console.warn('Could not find browser notice element, skipping')
       return
@@ -52,10 +64,6 @@ const viewedKeybindsCallback = (payload) => {
       ...owner?.props?.keybindDescriptions,
     }
 
-    // hide browser notice
-    // @ts-expect-error this is real
-    browserNotice.style.display = 'none'
-
     const keybindsContainer = keybindsArea.parentElement?.parentElement
     if (!keybindsContainer) {
       console.warn('Could not find keybinds container, skipping')
@@ -63,9 +71,15 @@ const viewedKeybindsCallback = (payload) => {
     }
 
     // Remove big margin on the default keybinds bit
-    const defaultKeybinds = keybindsContainer.querySelector('fieldset')?.parentElement
-    if (defaultKeybinds)
+    notice = browserNotice
+    noticeDisplay = browserNotice.style.display
+    browserNotice.style.display = 'none'
+
+    defaultKeybinds = keybindsContainer.querySelector('fieldset')?.parentElement
+    if (defaultKeybinds) {
+      defaultKeybindsMarginTop = defaultKeybinds.style.marginTop
       defaultKeybinds.style.marginTop = '0'
+    }
 
     child = keybindsArea.appendChild(
       <ReactiveRoot>
@@ -88,16 +102,14 @@ const trackSettingsViewedCallback = (payload) => {
   })
 }
 
-const subscriptions = [
-  FluxDispatcher.subscribe('TRACK', trackSettingsViewedCallback)
-]
+FluxDispatcher.subscribe('TRACK', trackSettingsViewedCallback)
 
 register()
 
 export const onUnload = () => {
-  for (const unsub of subscriptions) {
-    unsub()
-  }
+  unmount()
+
+  FluxDispatcher.unsubscribe('TRACK', trackSettingsViewedCallback)
 
   unregister()
 }
