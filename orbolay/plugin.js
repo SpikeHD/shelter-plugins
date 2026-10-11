@@ -98,8 +98,10 @@ const Settings = (props) => {
 //#region plugins/orbolay/index.tsx
 var import_web = __toESM(require_web(), 1);
 const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore, StreamerModeStore } }, plugin: { store }, ui: { showToast } } = shelter;
-let ws;
+let ws = null;
 let currentChannel = null;
+let retryTimer = null;
+let stopped = false;
 const defaultConfig = { port: 6888 };
 const waitForPopulate = async (fn) => {
 	while (true) {
@@ -263,31 +265,22 @@ const incoming = (payload) => {
 };
 const createWebsocket = () => {
 	console.log("Attempting to connect to Orbolay server");
-	if (ws?.close) ws?.close();
-	setTimeout(() => {
-		if (ws?.readyState !== WebSocket.OPEN) {
-			console.log("Orbolay websocket is not ready");
-			showToast({
-				title: "Orbolay",
-				content: "Failed to connect to Orbolay server. Make sure Orbolay is opened before refreshing Discord.",
-				duration: 5e3
-			});
-			ws = null;
-			return;
-		}
-	}, 1e3);
+	if (ws?.close) ws.close();
 	const port = store && typeof store.port === "number" ? store.port : defaultConfig.port;
 	ws = new WebSocket("ws://127.0.0.1:" + String(port));
-	ws.onerror = (e) => {
+	ws.onerror = () => {
 		ws?.close?.();
 		ws = null;
-		throw e;
 	};
 	ws.onmessage = (e) => {
 		incoming(JSON.parse(e.data));
 	};
 	ws.onclose = () => {
 		ws = null;
+		if (!stopped) {
+			if (retryTimer) clearTimeout(retryTimer);
+			retryTimer = setTimeout(createWebsocket, 5e3);
+		}
 	};
 	ws.onopen = async () => {
 		showToast({
@@ -331,6 +324,8 @@ const createWebsocket = () => {
 };
 const onLoad = () => {
 	if (store && store.port === undefined) store.port = defaultConfig.port;
+	stopped = false;
+	if (retryTimer) clearTimeout(retryTimer);
 	createWebsocket();
 	dispatcher.subscribe("SPEAKING", handleSpeaking);
 	dispatcher.subscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
@@ -342,7 +337,10 @@ const onUnload = () => {
 	dispatcher.unsubscribe("VOICE_STATE_UPDATES", handleVoiceStateUpdates);
 	dispatcher.unsubscribe("RPC_NOTIFICATION_CREATE", handleMessageNotification);
 	dispatcher.unsubscribe("STREAMER_MODE_UPDATE", handleStreamerModeUpdate);
-	if (ws?.close) ws?.close();
+	stopped = true;
+	if (retryTimer) clearTimeout(retryTimer);
+	if (ws?.close) ws.close();
+	ws = null;
 };
 const settings = () => (0, import_web.createComponent)(Settings, { ws });
 
