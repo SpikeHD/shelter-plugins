@@ -34,8 +34,10 @@ interface SoundboardSoundPayload {
   available: boolean;
 }
 
-let ws: WebSocket
+let ws: WebSocket | null = null
 let currentChannel = null
+let retryTimer: ReturnType<typeof setTimeout> | null = null
+let stopped = false
 
 export const defaultConfig: Config = {
   port: 6888,
@@ -272,34 +274,24 @@ const createWebsocket = () => {
   console.log('Attempting to connect to Orbolay server')
 
   // First ensure old connection is closed
-  if (ws?.close) ws?.close()
-
-  setTimeout(() => {
-    // If the ws is not ready, kill it and log
-    if (ws?.readyState !== WebSocket.OPEN) {
-      console.log('Orbolay websocket is not ready')
-      showToast({
-        title: 'Orbolay',
-        content: 'Failed to connect to Orbolay server. Make sure Orbolay is opened before refreshing Discord.',
-        duration: 5000,
-      })
-      ws = null
-      return
-    }
-  }, 1000)
+  if (ws?.close) ws.close()
 
   const port = (store && typeof store.port === 'number') ? store.port : defaultConfig.port
   ws = new WebSocket('ws://127.0.0.1:' + String(port))
-  ws.onerror = (e) => {
+  ws.onerror = () => {
     ws?.close?.()
     ws = null
-    throw e
   }
   ws.onmessage = (e) => {
     incoming(JSON.parse(e.data))
   }
   ws.onclose = () => {
     ws = null
+
+    if (!stopped) {
+      if (retryTimer) clearTimeout(retryTimer)
+      retryTimer = setTimeout(createWebsocket, 5000)
+    }
   }
   ws.onopen = async () => {
     showToast({
@@ -369,6 +361,9 @@ export const onLoad = () => {
   // Ensure the store has a port value; keep all other configuration out of the plugin store
   if (store && store.port === undefined) store.port = defaultConfig.port
 
+  stopped = false
+  if (retryTimer) clearTimeout(retryTimer)
+
   createWebsocket()
 
   dispatcher.subscribe('SPEAKING', handleSpeaking)
@@ -383,8 +378,12 @@ export const onUnload = () => {
   dispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
   dispatcher.unsubscribe('STREAMER_MODE_UPDATE', handleStreamerModeUpdate)
 
+  stopped = true
+  if (retryTimer) clearTimeout(retryTimer)
+
   // Close websocket
-  if (ws?.close) ws?.close()
+  if (ws?.close) ws.close()
+  ws = null
 }
 
 export const settings = () => <Settings ws={ws} />
