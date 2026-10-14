@@ -107,6 +107,46 @@ const settingsHandler = (payload) => {
   })
 }
 
+// Discord's own "Enable Desktop Notifications" switch dispatches this action. The custom switch
+// injected by settingsHandler can't be placed on newer settings UIs, so the native switch is what
+// people end up using. Persist its value to the Dorion config so it isn't silently dropped.
+const desktopTypeHandler = async (payload) => {
+  const enabled = payload.desktopType !== 'NEVER'
+
+  try {
+    // Start from what is on disk, not from our copy loaded at startup, so we never
+    // overwrite settings that were changed elsewhere in the meantime
+    const cfg = JSON.parse(await invoke('read_config_file'))
+
+    if (cfg.desktop_notifications === enabled) return
+
+    const next = { ...cfg, desktop_notifications: enabled }
+
+    await invoke('write_config_file', {
+      contents: JSON.stringify(next)
+    })
+
+    setSettings(next)
+
+    // Same as the custom switch: let Discord know whether we are allowed to show notifications.
+    // This runs after the awaits above, so it is not dispatched in the middle of another dispatch
+    FluxDispatcher.dispatch({
+      type: 'NOTIFICATIONS_SET_PERMISSION_STATE',
+      enabled: enabled ? 'ENABLED' : 'DISABLED'
+    })
+
+    if (enabled) {
+      invoke('send_notification', {
+        title: t('dorion_notifications.desktop_notifications_enabled_title'),
+        body: t('dorion_notifications.desktop_notifications_enabled_body'),
+        icon: '',
+      })
+    }
+  } catch (e) {
+    console.error('[Dorion Notifications] Failed to save the desktop notifications setting', e)
+  }
+}
+
 const notifHandler = (payload) => {
   // @ts-expect-error this is added by Dorion
   if (!settings()?.desktop_notifications || !window.Notification?.__IS_STUBBED__) return
@@ -126,6 +166,7 @@ const notifHandler = (payload) => {
 }
 
 FluxDispatcher.subscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
+FluxDispatcher.subscribe('NOTIFICATIONS_SET_DESKTOP_TYPE', desktopTypeHandler)
 FluxDispatcher.subscribe('RPC_NOTIFICATION_CREATE', notifHandler)
 
 export const onLoad = async () => {
@@ -139,5 +180,6 @@ export const onLoad = async () => {
 
 export const onUnload = () => {
   FluxDispatcher.unsubscribe('USER_SETTINGS_MODAL_SET_SECTION', settingsHandler)
+  FluxDispatcher.unsubscribe('NOTIFICATIONS_SET_DESKTOP_TYPE', desktopTypeHandler)
   FluxDispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', notifHandler)
 }
