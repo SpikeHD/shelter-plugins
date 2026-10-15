@@ -1,38 +1,7 @@
 (function(exports) {
 
-//#region rolldown:runtime
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function() {
-	return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
-var __copyProps = (to, from, except, desc) => {
-	if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++) {
-		key = keys[i];
-		if (!__hasOwnProp.call(to, key) && key !== except) __defProp(to, key, {
-			get: ((k) => from[k]).bind(null, key),
-			enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable
-		});
-	}
-	return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", {
-	value: mod,
-	enumerable: true
-}) : target, mod));
+"use strict";
 
-//#endregion
-
-//#region solid-js/web
-var require_web = __commonJS({ "solid-js/web"(exports, module) {
-	module.exports = shelter.solidWeb;
-} });
-
-//#endregion
 //#region api/dorion.ts
 var dorion_default = {
 	name: "Dorion",
@@ -153,77 +122,43 @@ function t(key, replace) {
 
 //#endregion
 //#region plugins/dorion-notifications/index.tsx
-var import_web = __toESM(require_web(), 1);
-const { ui: { SwitchItem, ReactiveRoot }, flux: { dispatcher: FluxDispatcher }, solid: { createSignal }, observeDom } = shelter;
+const { flux: { dispatcher: FluxDispatcher }, solid: { createSignal } } = shelter;
 const [settings, setSettings] = createSignal(null);
-let child = null;
-const settingsHandler = (payload) => {
-	if (payload.section !== "Notifications") {
-		if (child) {
-			child.remove();
-			child = null;
-		}
-		return;
+const saveSettings = async (patch) => {
+	try {
+		const cfg = JSON.parse(await invoke("read_config_file"));
+		if (Object.keys(patch).every((k) => cfg[k] === patch[k])) return false;
+		const next = {
+			...cfg,
+			...patch
+		};
+		await invoke("write_config_file", { contents: JSON.stringify(next) });
+		setSettings(next);
+		return true;
+	} catch (e) {
+		console.error("[Dorion Notifications] Failed to save settings", e);
+		return false;
 	}
-	const unsub = observeDom("#notifications-tab", () => {
-		unsub();
-		const notifSelector = "div[class*=\"contentColumn\"] div[class*=\"container\"]";
-		const node = document.querySelector(notifSelector);
-		if (!node) return;
-		node.style.display = "none";
-		const next = node.nextElementSibling;
-		if (next) next.style.display = "none";
-		const NotificationSettings = () => [(0, import_web.createComponent)(SwitchItem, {
-			get note() {
-				return t("dorion_notifications.desktop_notifications_note");
-			},
-			get value() {
-				return settings()?.desktop_notifications;
-			},
-			onChange: (value) => {
-				setSettings({
-					...settings(),
-					desktop_notifications: value
-				});
-				FluxDispatcher.dispatch({
-					type: "NOTIFICATIONS_SET_PERMISSION_STATE",
-					enabled: value ? "ENABLED" : "DISABLED"
-				});
-				invoke("write_config_file", { contents: JSON.stringify(settings()) });
-				if (value) invoke("send_notification", {
-					title: t("dorion_notifications.desktop_notifications_enabled_title"),
-					body: t("dorion_notifications.desktop_notifications_enabled_body"),
-					icon: ""
-				});
-			},
-			get children() {
-				return t("dorion_notifications.enable_desktop_notifications");
-			}
-		}), (0, import_web.createComponent)(SwitchItem, {
-			get note() {
-				return t("dorion_notifications.unread_badge_note");
-			},
-			get value() {
-				return settings()?.unread_badge;
-			},
-			onChange: async (value) => {
-				setSettings({
-					...settings(),
-					unread_badge: value
-				});
-				await invoke("write_config_file", { contents: JSON.stringify(settings()) });
-				api.shouldShowUnreadBadge = value;
-				if (!value) invoke("notif_count", { amount: 0 });
-else api.util.applyNotificationCount();
-			},
-			get children() {
-				return t("dorion_notifications.enable_unread_badge");
-			}
-		})];
-		child = node.parentElement.insertBefore((0, import_web.createComponent)(ReactiveRoot, { get children() {
-			return (0, import_web.createComponent)(NotificationSettings, {});
-		} }), node.parentElement.firstChild);
+};
+const desktopTypeHandler = async (payload) => {
+	const enabled = payload.desktopType !== "NEVER";
+	if (!await saveSettings({ desktop_notifications: enabled })) return;
+	FluxDispatcher.dispatch({
+		type: "NOTIFICATIONS_SET_PERMISSION_STATE",
+		enabled: enabled ? "ENABLED" : "DISABLED"
 	});
+	if (enabled) invoke("send_notification", {
+		title: t("dorion_notifications.desktop_notifications_enabled_title"),
+		body: t("dorion_notifications.desktop_notifications_enabled_body"),
+		icon: ""
+	});
+};
+const unreadBadgeHandler = async (payload) => {
+	const enabled = !payload.disableUnreadBadge;
+	if (!await saveSettings({ unread_badge: enabled })) return;
+	api.shouldShowUnreadBadge = enabled;
+	if (!enabled) invoke("notif_count", { amount: 0 });
+else api.util.applyNotificationCount();
 };
 const notifHandler = (payload) => {
 	if (!settings()?.desktop_notifications || !window.Notification?.__IS_STUBBED__) return;
@@ -239,7 +174,8 @@ const notifHandler = (payload) => {
 		}
 	});
 };
-FluxDispatcher.subscribe("USER_SETTINGS_MODAL_SET_SECTION", settingsHandler);
+FluxDispatcher.subscribe("NOTIFICATIONS_SET_DESKTOP_TYPE", desktopTypeHandler);
+FluxDispatcher.subscribe("NOTIFICATIONS_SET_DISABLE_UNREAD_BADGE", unreadBadgeHandler);
 FluxDispatcher.subscribe("RPC_NOTIFICATION_CREATE", notifHandler);
 const onLoad = async () => {
 	const cfg = JSON.parse(await invoke("read_config_file"));
@@ -247,7 +183,8 @@ const onLoad = async () => {
 	if (cfg.desktop_notifications) Notification.requestPermission();
 };
 const onUnload = () => {
-	FluxDispatcher.unsubscribe("USER_SETTINGS_MODAL_SET_SECTION", settingsHandler);
+	FluxDispatcher.unsubscribe("NOTIFICATIONS_SET_DESKTOP_TYPE", desktopTypeHandler);
+	FluxDispatcher.unsubscribe("NOTIFICATIONS_SET_DISABLE_UNREAD_BADGE", unreadBadgeHandler);
 	FluxDispatcher.unsubscribe("RPC_NOTIFICATION_CREATE", notifHandler);
 };
 

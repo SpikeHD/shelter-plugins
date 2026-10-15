@@ -95,10 +95,6 @@ var dorion_themes$2 = {
 	"search_placeholder": "Search..."
 };
 var dorion_notifications$2 = {
-	"enable_desktop_notifications": "Enable Desktop Notifications",
-	"desktop_notifications_note": "If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings.",
-	"enable_unread_badge": "Enable Unread Message Badge",
-	"unread_badge_note": "Shows a red badge on the app icon when you have unread messages.",
 	"desktop_notifications_enabled_title": "Desktop Notifications Enabled",
 	"desktop_notifications_enabled_body": "You will now receive desktop notifications!"
 };
@@ -313,10 +309,6 @@ var dorion_themes$1 = {
 	"search_placeholder": "Cari..."
 };
 var dorion_notifications$1 = {
-	"enable_desktop_notifications": "Izinkan Notifikasi Desktop",
-	"desktop_notifications_note": "Jika Anda mencari notifikasi per-saluran atau per-server, klik kanan ikon server yang diinginkan dan pilih Pengaturan Notifikasi.",
-	"enable_unread_badge": "Izinkan Lambang Pesan Tak Terbaca",
-	"unread_badge_note": "Tampilkan lambang merah di ikon server dengan pesan-pesan belum terbaca.",
 	"desktop_notifications_enabled_title": "Notifikasi Desktop Diaktifkan",
 	"desktop_notifications_enabled_body": "Anda sekarang akan menerima notifikasi desktop!"
 };
@@ -530,10 +522,6 @@ var dorion_themes = {
 	"search_placeholder": "Поиск..."
 };
 var dorion_notifications = {
-	"enable_desktop_notifications": "Включить уведомления на рабочем столе",
-	"desktop_notifications_note": "Если вам нужны уведомления для каждого канала или сервера, щёлкните правой кнопкой мыши по значку нужного сервера и выберите «Параметры уведомлений».",
-	"enable_unread_badge": "Включить значок непрочитанного сообщения",
-	"unread_badge_note": "При наличии непрочитанных сообщений на значке приложения отображается красный значок.",
 	"desktop_notifications_enabled_title": "Уведомления на рабочем столе включены",
 	"desktop_notifications_enabled_body": "Теперь вы будете получать уведомления на рабочий стол!"
 };
