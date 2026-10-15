@@ -154,13 +154,13 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$2 = {
-	"keybindSection": "Zz-Z3G_keybindSection",
-	"keybindsHeader": "Zz-Z3G_keybindsHeader",
 	"keybindsBanner": "Zz-Z3G_keybindsBanner",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"keybindsHeader": "Zz-Z3G_keybindsHeader",
 	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
 	"header": "Zz-Z3G_header"
 };
 const css$2 = `.Zz-Z3G_keybindSection {
@@ -230,13 +230,13 @@ const css$2 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$1 = {
+	"keybindArea": "QTLdLq_keybindArea",
+	"note": "QTLdLq_note",
 	"keybindSection": "QTLdLq_keybindSection",
 	"divider": "QTLdLq_divider",
-	"note": "QTLdLq_note",
-	"keybindRoot": "QTLdLq_keybindRoot",
-	"actionSection": "QTLdLq_actionSection",
 	"removeButton": "QTLdLq_removeButton",
-	"keybindArea": "QTLdLq_keybindArea"
+	"actionSection": "QTLdLq_actionSection",
+	"keybindRoot": "QTLdLq_keybindRoot"
 };
 const css$1 = `.QTLdLq_divider {
   margin-top: 16px;
@@ -297,12 +297,12 @@ const css$1 = `.QTLdLq_divider {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindInput": "N-HDcq_keybindInput",
 	"pulse": "N-HDcq_pulse",
-	"keybindContainer": "N-HDcq_keybindContainer",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"keybindButton": "N-HDcq_keybindButton",
 	"recording": "N-HDcq_recording",
-	"keybindButton": "N-HDcq_keybindButton"
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
+	"keybindInput": "N-HDcq_keybindInput",
+	"keybindContainer": "N-HDcq_keybindContainer"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
