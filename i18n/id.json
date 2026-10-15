@@ -91,10 +91,6 @@
     "search_placeholder": "Cari..."
   },
   "dorion_notifications": {
-    "enable_desktop_notifications": "Izinkan Notifikasi Desktop",
-    "desktop_notifications_note": "Jika Anda mencari notifikasi per-saluran atau per-server, klik kanan ikon server yang diinginkan dan pilih Pengaturan Notifikasi.",
-    "enable_unread_badge": "Izinkan Lambang Pesan Tak Terbaca",
-    "unread_badge_note": "Tampilkan lambang merah di ikon server dengan pesan-pesan belum terbaca.",
     "desktop_notifications_enabled_title": "Notifikasi Desktop Diaktifkan",
     "desktop_notifications_enabled_body": "Anda sekarang akan menerima notifikasi desktop!"
   },

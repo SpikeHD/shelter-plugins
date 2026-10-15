@@ -91,10 +91,6 @@
     "search_placeholder": "検索..."
   },
   "dorion_notifications": {
-    "enable_desktop_notifications": "デスクトップ通知を有効にする",
-    "desktop_notifications_note": "チャンネルごとやサーバーごとの通知を設定したい場合は、目的のサーバーアイコンを右クリックして通知設定を選択してください。",
-    "enable_unread_badge": "未読メッセージバッジを有効にする",
-    "unread_badge_note": "未読メッセージがある場合、アプリアイコンに赤いバッジを表示します。",
     "desktop_notifications_enabled_title": "デスクトップ通知が有効になりました",
     "desktop_notifications_enabled_body": "これからデスクトップ通知を受け取ることができます！"
   },

@@ -91,10 +91,6 @@
     "search_placeholder": "Buscar..."
   },
   "dorion_notifications": {
-    "enable_desktop_notifications": "Habilitar Notificações na Área de Trabalho",
-    "desktop_notifications_note": "Se quer ficar de olho em notificações por canal ou por servidor, basta clicar com o botão direito no icone do servidor em questão e selecionar as Configurações de Notificações.",
-    "enable_unread_badge": "Habilitar o emblema de Mensagens Não Lidas",
-    "unread_badge_note": "Mostrar um emblema vermelho no icone do aplicativo quando houver mensagens não lidas.",
     "desktop_notifications_enabled_title": "Notificações da Área de Trabalho habilitados",
     "desktop_notifications_enabled_body": "Você irá receber notificações na área de trabalho!"
   },

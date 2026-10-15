@@ -91,10 +91,6 @@
     "search_placeholder": "검색..."
   },
   "dorion_notifications": {
-    "enable_desktop_notifications": "PC 알림 활성화",
-    "desktop_notifications_note": "만약 채널별 또는 서버별 알림을 찾으신다면, 서버 아이콘을 우클릭하고 알림 설정을 선택하세요.",
-    "enable_unread_badge": "읽지 않은 메시지 배지 활성화",
-    "unread_badge_note": "만약 읽지 않은 메시지가 있다면 빨간색 배지를 활성화해요.",
     "desktop_notifications_enabled_title": "PC 알림 활성화됨",
     "desktop_notifications_enabled_body": "이제 시스템 알림을 받으실거예요!"
   },

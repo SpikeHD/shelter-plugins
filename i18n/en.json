@@ -91,10 +91,6 @@
     "search_placeholder": "Search..."
   },
   "dorion_notifications": {
-    "enable_desktop_notifications": "Enable Desktop Notifications",
-    "desktop_notifications_note": "If you're looking for per-channel or per-server notifications, right-click the desired server icon and select Notification Settings.",
-    "enable_unread_badge": "Enable Unread Message Badge",
-    "unread_badge_note": "Shows a red badge on the app icon when you have unread messages.",
     "desktop_notifications_enabled_title": "Desktop Notifications Enabled",
     "desktop_notifications_enabled_body": "You will now receive desktop notifications!"
   },
