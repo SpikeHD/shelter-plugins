@@ -159,8 +159,8 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#region plugins/dorion-settings/pages/PerformancePage.tsx.scss
 const classes$11 = {
 	"tophead": "ZN8ggW_tophead",
-	"stext": "ZN8ggW_stext",
 	"shead": "ZN8ggW_shead",
+	"stext": "ZN8ggW_stext",
 	"pbuttons": "ZN8ggW_pbuttons"
 };
 const css$11 = `.ZN8ggW_tophead {
@@ -201,13 +201,13 @@ const css$10 = `.iitjua_card {
 
 //#endregion
 //#region components/Card.tsx
-var import_web$85 = __toESM(require_web(), 1);
-var import_web$86 = __toESM(require_web(), 1);
-var import_web$87 = __toESM(require_web(), 1);
-var import_web$88 = __toESM(require_web(), 1);
-var import_web$89 = __toESM(require_web(), 1);
-var import_web$90 = __toESM(require_web(), 1);
-const _tmpl$$11 = /*#__PURE__*/ (0, import_web$85.template)(`<div></div>`, 2);
+var import_web$97 = __toESM(require_web(), 1);
+var import_web$98 = __toESM(require_web(), 1);
+var import_web$99 = __toESM(require_web(), 1);
+var import_web$100 = __toESM(require_web(), 1);
+var import_web$101 = __toESM(require_web(), 1);
+var import_web$102 = __toESM(require_web(), 1);
+const _tmpl$$17 = /*#__PURE__*/ (0, import_web$97.template)(`<div></div>`, 2);
 const { ui: { injectCss: injectCss$12 } } = shelter;
 let injectedCss$12 = false;
 const Card = (props) => {
@@ -216,12 +216,12 @@ const Card = (props) => {
 		injectCss$12(css$10);
 	}
 	return (() => {
-		const _el$ = (0, import_web$89.getNextElement)(_tmpl$$11);
-		(0, import_web$90.insert)(_el$, () => props.children);
-		(0, import_web$88.effect)((_p$) => {
+		const _el$ = (0, import_web$101.getNextElement)(_tmpl$$17);
+		(0, import_web$102.insert)(_el$, () => props.children);
+		(0, import_web$100.effect)((_p$) => {
 			const _v$ = classes$10.card + ` ${props.class}`, _v$2 = props.style;
-			_v$ !== _p$._v$ && (0, import_web$87.className)(_el$, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$86.style)(_el$, _v$2, _p$._v$2);
+			_v$ !== _p$._v$ && (0, import_web$99.className)(_el$, _p$._v$ = _v$);
+			_p$._v$2 = (0, import_web$98.style)(_el$, _v$2, _p$._v$2);
 			return _p$;
 		}, {
 			_v$: undefined,
@@ -234,8 +234,8 @@ const Card = (props) => {
 //#endregion
 //#region plugins/dorion-settings/components/WarningCard.tsx.scss
 const classes$9 = {
-	"restartCard": "_3UjfSq_restartCard",
-	"restartButton": "_3UjfSq_restartButton"
+	"restartButton": "_3UjfSq_restartButton",
+	"restartCard": "_3UjfSq_restartCard"
 };
 const css$9 = `._3UjfSq_restartCard {
   background-color: var(--info-warning-background);
@@ -256,7 +256,7 @@ const css$9 = `._3UjfSq_restartCard {
 
 //#endregion
 //#region plugins/dorion-settings/components/WarningCard.tsx
-var import_web$84 = __toESM(require_web(), 1);
+var import_web$96 = __toESM(require_web(), 1);
 const { ui: { injectCss: injectCss$11, Text: Text$6, Button: Button$6 } } = shelter;
 let injectedCss$11 = false;
 function WarningCard() {
@@ -264,15 +264,15 @@ function WarningCard() {
 		injectedCss$11 = true;
 		injectCss$11(css$9);
 	}
-	return (0, import_web$84.createComponent)(Card, {
+	return (0, import_web$96.createComponent)(Card, {
 		style: { marginTop: "1rem" },
 		get ["class"]() {
 			return classes$9.restartCard;
 		},
 		get children() {
-			return [(0, import_web$84.createComponent)(Text$6, { get children() {
+			return [(0, import_web$96.createComponent)(Text$6, { get children() {
 				return t("dorion_warning_card.restart_message");
-			} }), (0, import_web$84.createComponent)(Button$6, {
+			} }), (0, import_web$96.createComponent)(Button$6, {
 				onClick: () => process.relaunch(),
 				get ["class"]() {
 					return classes$9.restartButton;
@@ -323,15 +323,15 @@ const defaultConfig = {
 
 //#endregion
 //#region plugins/dorion-settings/pages/PerformancePage.tsx
-var import_web$76 = __toESM(require_web(), 1);
-var import_web$77 = __toESM(require_web(), 1);
-var import_web$78 = __toESM(require_web(), 1);
-var import_web$79 = __toESM(require_web(), 1);
-var import_web$80 = __toESM(require_web(), 1);
-var import_web$81 = __toESM(require_web(), 1);
-var import_web$82 = __toESM(require_web(), 1);
-var import_web$83 = __toESM(require_web(), 1);
-const _tmpl$$10 = /*#__PURE__*/ (0, import_web$76.template)(`<div></div>`, 2), _tmpl$2$4 = /*#__PURE__*/ (0, import_web$76.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$3$3 = /*#__PURE__*/ (0, import_web$76.template)(`<b></b>`, 2), _tmpl$4$2 = /*#__PURE__*/ (0, import_web$76.template)(`<p></p>`, 2), _tmpl$5$2 = /*#__PURE__*/ (0, import_web$76.template)(`<a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank"><!#><!/>.</a>`, 4);
+var import_web$88 = __toESM(require_web(), 1);
+var import_web$89 = __toESM(require_web(), 1);
+var import_web$90 = __toESM(require_web(), 1);
+var import_web$91 = __toESM(require_web(), 1);
+var import_web$92 = __toESM(require_web(), 1);
+var import_web$93 = __toESM(require_web(), 1);
+var import_web$94 = __toESM(require_web(), 1);
+var import_web$95 = __toESM(require_web(), 1);
+const _tmpl$$16 = /*#__PURE__*/ (0, import_web$88.template)(`<div></div>`, 2), _tmpl$2$4 = /*#__PURE__*/ (0, import_web$88.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$3$3 = /*#__PURE__*/ (0, import_web$88.template)(`<b></b>`, 2), _tmpl$4$2 = /*#__PURE__*/ (0, import_web$88.template)(`<p></p>`, 2), _tmpl$5$2 = /*#__PURE__*/ (0, import_web$88.template)(`<a href="https://github.com/tauri-apps/window-vibrancy#available-functions" target="_blank"><!#><!/>.</a>`, 4);
 const { ui: { injectCss: injectCss$10, openConfirmationModal, SwitchItem: SwitchItem$3, Button: Button$5, Header: Header$6, HeaderTags: HeaderTags$6, showToast: showToast$2, Select: Select$2, SelectOption: SelectOption$2 }, solid: { createSignal: createSignal$9, createEffect: createEffect$5 } } = shelter;
 let injectedCss$10 = false;
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -386,7 +386,7 @@ function PerformancePage() {
 		}).then(() => invoke("set_clear_cache"), () => {});
 	};
 	return [
-		(0, import_web$83.createComponent)(Header$6, {
+		(0, import_web$95.createComponent)(Header$6, {
 			get tag() {
 				return HeaderTags$6.H1;
 			},
@@ -397,11 +397,11 @@ function PerformancePage() {
 				return t("dorion_performance.title");
 			}
 		}),
-		(0, import_web$82.memo)((() => {
-			const _c$ = (0, import_web$82.memo)(() => !!restartRequired());
-			return () => _c$() && (0, import_web$83.createComponent)(WarningCard, {});
+		(0, import_web$94.memo)((() => {
+			const _c$ = (0, import_web$94.memo)(() => !!restartRequired());
+			return () => _c$() && (0, import_web$95.createComponent)(WarningCard, {});
 		})()),
-		(0, import_web$83.createComponent)(Header$6, {
+		(0, import_web$95.createComponent)(Header$6, {
 			get ["class"]() {
 				return classes$11.shead;
 			},
@@ -409,7 +409,7 @@ function PerformancePage() {
 				return t("dorion_performance.cache");
 			}
 		}),
-		(0, import_web$83.createComponent)(SwitchItem$3, {
+		(0, import_web$95.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().cache_css;
 			},
@@ -424,7 +424,7 @@ function PerformancePage() {
 				return t("dorion_performance.cache_css");
 			}
 		}),
-		(0, import_web$83.createComponent)(SwitchItem$3, {
+		(0, import_web$95.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().auto_clear_cache;
 			},
@@ -436,7 +436,7 @@ function PerformancePage() {
 				return platform() !== "windows";
 			},
 			get tooltipNote() {
-				return (0, import_web$82.memo)(() => platform() !== "windows")() && t("dorion_performance.windows_only");
+				return (0, import_web$94.memo)(() => platform() !== "windows")() && t("dorion_performance.windows_only");
 			},
 			get note() {
 				return t("dorion_performance.auto_clear_cache_note", { appName });
@@ -445,7 +445,7 @@ function PerformancePage() {
 				return t("dorion_performance.auto_clear_cache");
 			}
 		}),
-		(0, import_web$83.createComponent)(Header$6, {
+		(0, import_web$95.createComponent)(Header$6, {
 			get ["class"]() {
 				return classes$11.shead;
 			},
@@ -453,7 +453,7 @@ function PerformancePage() {
 				return t("dorion_performance.optional_features");
 			}
 		}),
-		(0, import_web$83.createComponent)(SwitchItem$3, {
+		(0, import_web$95.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().win7_style_notifications;
 			},
@@ -471,7 +471,7 @@ function PerformancePage() {
 				return t("dorion_performance.win7_notifications");
 			}
 		}),
-		(0, import_web$83.createComponent)(SwitchItem$3, {
+		(0, import_web$95.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().streamer_mode_detection;
 			},
@@ -481,11 +481,11 @@ function PerformancePage() {
 			}), false),
 			get note() {
 				return [
-					(0, import_web$82.memo)(() => t("dorion_performance.streamer_mode_detection_note")),
+					(0, import_web$94.memo)(() => t("dorion_performance.streamer_mode_detection_note")),
 					" ",
 					(() => {
-						const _el$7 = (0, import_web$80.getNextElement)(_tmpl$3$3);
-						(0, import_web$81.insert)(_el$7, () => t("dorion_performance.streamer_mode_detection_requirement"));
+						const _el$7 = (0, import_web$92.getNextElement)(_tmpl$3$3);
+						(0, import_web$93.insert)(_el$7, () => t("dorion_performance.streamer_mode_detection_requirement"));
 						return _el$7;
 					})()
 				];
@@ -497,7 +497,7 @@ function PerformancePage() {
 				return t("dorion_performance.streamer_mode_detection");
 			}
 		}),
-		(0, import_web$83.createComponent)(SwitchItem$3, {
+		(0, import_web$95.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().disable_hardware_accel;
 			},
@@ -515,7 +515,7 @@ function PerformancePage() {
 				return t("dorion_performance.disable_hardware_accel");
 			}
 		}),
-		(0, import_web$83.createComponent)(SwitchItem$3, {
+		(0, import_web$95.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().client_plugins || state().client_plugins === null || state().client_plugins === undefined;
 			},
@@ -529,8 +529,8 @@ function PerformancePage() {
 				}
 				openConfirmationModal({
 					body: () => (() => {
-						const _el$8 = (0, import_web$80.getNextElement)(_tmpl$4$2);
-						(0, import_web$81.insert)(_el$8, () => t("dorion_performance.disable_plugins_warning", { appName }));
+						const _el$8 = (0, import_web$92.getNextElement)(_tmpl$4$2);
+						(0, import_web$93.insert)(_el$8, () => t("dorion_performance.disable_plugins_warning", { appName }));
 						return _el$8;
 					})(),
 					header: () => t("dorion_performance.absolutely_sure"),
@@ -544,19 +544,19 @@ function PerformancePage() {
 			get note() {
 				return [
 					(() => {
-						const _el$9 = (0, import_web$80.getNextElement)(_tmpl$3$3);
-						(0, import_web$81.insert)(_el$9, () => t("dorion_performance.do_not_disable"));
+						const _el$9 = (0, import_web$92.getNextElement)(_tmpl$3$3);
+						(0, import_web$93.insert)(_el$9, () => t("dorion_performance.do_not_disable"));
 						return _el$9;
 					})(),
 					" ",
-					(0, import_web$82.memo)(() => t("dorion_performance.disable_plugins_note"))
+					(0, import_web$94.memo)(() => t("dorion_performance.disable_plugins_note"))
 				];
 			},
 			get children() {
 				return t("dorion_performance.enable_dorion_plugins");
 			}
 		}),
-		(0, import_web$83.createComponent)(Header$6, {
+		(0, import_web$95.createComponent)(Header$6, {
 			get ["class"]() {
 				return classes$11.shead;
 			},
@@ -564,7 +564,7 @@ function PerformancePage() {
 				return t("dorion_performance.blur_transparency");
 			}
 		}),
-		(0, import_web$83.createComponent)(Select$2, {
+		(0, import_web$95.createComponent)(Select$2, {
 			get value() {
 				return state().blur;
 			},
@@ -573,7 +573,7 @@ function PerformancePage() {
 				blur: String(v)
 			}), true),
 			get children() {
-				return blurOptions().map((b) => (0, import_web$83.createComponent)(SelectOption$2, {
+				return blurOptions().map((b) => (0, import_web$95.createComponent)(SelectOption$2, {
 					value: b,
 					get children() {
 						return capitalize(b);
@@ -582,16 +582,16 @@ function PerformancePage() {
 			}
 		}),
 		(() => {
-			const _el$ = (0, import_web$80.getNextElement)(_tmpl$$10);
-			(0, import_web$81.insert)(_el$, () => t("dorion_performance.blur_warning", { windowVibrancyLink: (() => {
-				const _el$0 = (0, import_web$80.getNextElement)(_tmpl$5$2), _el$10 = _el$0.firstChild, [_el$11, _co$3] = (0, import_web$77.getNextMarker)(_el$10.nextSibling), _el$1 = _el$11.nextSibling;
-				(0, import_web$81.insert)(_el$0, () => t("dorion_performance.window_vibrancy_crate"), _el$11, _co$3);
+			const _el$ = (0, import_web$92.getNextElement)(_tmpl$$16);
+			(0, import_web$93.insert)(_el$, () => t("dorion_performance.blur_warning", { windowVibrancyLink: (() => {
+				const _el$0 = (0, import_web$92.getNextElement)(_tmpl$5$2), _el$10 = _el$0.firstChild, [_el$11, _co$3] = (0, import_web$89.getNextMarker)(_el$10.nextSibling), _el$1 = _el$11.nextSibling;
+				(0, import_web$93.insert)(_el$0, () => t("dorion_performance.window_vibrancy_crate"), _el$11, _co$3);
 				return _el$0;
 			})() }));
-			(0, import_web$79.effect)(() => (0, import_web$78.className)(_el$, classes$11.stext));
+			(0, import_web$91.effect)(() => (0, import_web$90.className)(_el$, classes$11.stext));
 			return _el$;
 		})(),
-		(0, import_web$83.createComponent)(SwitchItem$3, {
+		(0, import_web$95.createComponent)(SwitchItem$3, {
 			get value() {
 				return state().blur_css;
 			},
@@ -610,8 +610,8 @@ function PerformancePage() {
 			}
 		}),
 		(() => {
-			const _el$2 = (0, import_web$80.getNextElement)(_tmpl$2$4), _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$77.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$77.getNextMarker)(_el$5.nextSibling);
-			(0, import_web$81.insert)(_el$2, (0, import_web$83.createComponent)(Button$5, {
+			const _el$2 = (0, import_web$92.getNextElement)(_tmpl$2$4), _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$89.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$89.getNextMarker)(_el$5.nextSibling);
+			(0, import_web$93.insert)(_el$2, (0, import_web$95.createComponent)(Button$5, {
 				onClick: clearWebCache,
 				style: {
 					width: "100%",
@@ -622,7 +622,7 @@ function PerformancePage() {
 					return t("dorion_performance.wipe_web_data");
 				}
 			}), _el$4, _co$);
-			(0, import_web$81.insert)(_el$2, (0, import_web$83.createComponent)(Button$5, {
+			(0, import_web$93.insert)(_el$2, (0, import_web$95.createComponent)(Button$5, {
 				onClick: clearCSSCache,
 				style: {
 					width: "100%",
@@ -633,7 +633,7 @@ function PerformancePage() {
 					return t("dorion_performance.clear_css_cache");
 				}
 			}), _el$6, _co$2);
-			(0, import_web$79.effect)(() => (0, import_web$78.className)(_el$2, classes$11.pbuttons));
+			(0, import_web$91.effect)(() => (0, import_web$90.className)(_el$2, classes$11.pbuttons));
 			return _el$2;
 		})()
 	];
@@ -642,11 +642,11 @@ function PerformancePage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx.scss
 const classes$8 = {
-	"tophead": "_2nPZKq_tophead",
-	"splitbutton": "_2nPZKq_splitbutton",
 	"sbutton": "_2nPZKq_sbutton",
-	"pbuttons": "_2nPZKq_pbuttons",
-	"shead": "_2nPZKq_shead"
+	"shead": "_2nPZKq_shead",
+	"splitbutton": "_2nPZKq_splitbutton",
+	"tophead": "_2nPZKq_tophead",
+	"pbuttons": "_2nPZKq_pbuttons"
 };
 const css$8 = `._2nPZKq_tophead {
   margin-bottom: 16px;
@@ -681,14 +681,14 @@ const css$8 = `._2nPZKq_tophead {
 
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx
-var import_web$69 = __toESM(require_web(), 1);
-var import_web$70 = __toESM(require_web(), 1);
-var import_web$71 = __toESM(require_web(), 1);
-var import_web$72 = __toESM(require_web(), 1);
-var import_web$73 = __toESM(require_web(), 1);
-var import_web$74 = __toESM(require_web(), 1);
-var import_web$75 = __toESM(require_web(), 1);
-const _tmpl$$9 = /*#__PURE__*/ (0, import_web$69.template)(`<div><!#><!/><!#><!/></div>`, 6);
+var import_web$81 = __toESM(require_web(), 1);
+var import_web$82 = __toESM(require_web(), 1);
+var import_web$83 = __toESM(require_web(), 1);
+var import_web$84 = __toESM(require_web(), 1);
+var import_web$85 = __toESM(require_web(), 1);
+var import_web$86 = __toESM(require_web(), 1);
+var import_web$87 = __toESM(require_web(), 1);
+const _tmpl$$15 = /*#__PURE__*/ (0, import_web$81.template)(`<div><!#><!/><!#><!/></div>`, 6);
 const { ui: { Header: Header$5, Button: Button$4, HeaderTags: HeaderTags$5, TextBox: TextBox$2, injectCss: injectCss$9, Divider: Divider$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$3, Select: Select$1, SelectOption: SelectOption$1 }, solid: { createSignal: createSignal$8, createEffect: createEffect$4 } } = shelter;
 let injectedCss$9 = false;
 function ProfilesPage() {
@@ -727,7 +727,7 @@ function ProfilesPage() {
 		setNewProfile(value);
 	};
 	return [
-		(0, import_web$75.createComponent)(Header$5, {
+		(0, import_web$87.createComponent)(Header$5, {
 			get tag() {
 				return HeaderTags$5.H1;
 			},
@@ -738,7 +738,7 @@ function ProfilesPage() {
 				return t("dorion_profiles.title");
 			}
 		}),
-		(0, import_web$75.createComponent)(Select$1, {
+		(0, import_web$87.createComponent)(Select$1, {
 			get value() {
 				return profile();
 			},
@@ -747,13 +747,13 @@ function ProfilesPage() {
 			},
 			onChange: (v) => setProfile(String(v)),
 			get children() {
-				return profileList().map((p) => (0, import_web$75.createComponent)(SelectOption$1, {
+				return profileList().map((p) => (0, import_web$87.createComponent)(SelectOption$1, {
 					value: p,
 					children: p
 				}));
 			}
 		}),
-		(0, import_web$75.createComponent)(Header$5, {
+		(0, import_web$87.createComponent)(Header$5, {
 			get ["class"]() {
 				return classes$8.shead;
 			},
@@ -761,7 +761,7 @@ function ProfilesPage() {
 				return t("dorion_profiles.create_profile");
 			}
 		}),
-		(0, import_web$75.createComponent)(TextBox$2, {
+		(0, import_web$87.createComponent)(TextBox$2, {
 			type: "text",
 			get value() {
 				return newProfile();
@@ -771,7 +771,7 @@ function ProfilesPage() {
 				return t("dorion_profiles.profile_name_placeholder");
 			}
 		}),
-		(0, import_web$75.createComponent)(Button$4, {
+		(0, import_web$87.createComponent)(Button$4, {
 			onClick: createProfile,
 			get ["class"]() {
 				return classes$8.sbutton;
@@ -783,13 +783,13 @@ function ProfilesPage() {
 				return t("dorion_profiles.create_profile");
 			}
 		}),
-		(0, import_web$75.createComponent)(Divider$1, {
+		(0, import_web$87.createComponent)(Divider$1, {
 			mt: 16,
 			mb: 16
 		}),
 		(() => {
-			const _el$ = (0, import_web$72.getNextElement)(_tmpl$$9), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$73.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$73.getNextMarker)(_el$4.nextSibling);
-			(0, import_web$74.insert)(_el$, (0, import_web$75.createComponent)(Button$4, {
+			const _el$ = (0, import_web$84.getNextElement)(_tmpl$$15), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$85.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$85.getNextMarker)(_el$4.nextSibling);
+			(0, import_web$86.insert)(_el$, (0, import_web$87.createComponent)(Button$4, {
 				onClick: saveProfile,
 				get size() {
 					return ButtonSizes$3.MEDIUM;
@@ -798,7 +798,7 @@ function ProfilesPage() {
 					return t("dorion_profiles.save_and_restart");
 				}
 			}), _el$3, _co$);
-			(0, import_web$74.insert)(_el$, (0, import_web$75.createComponent)(Button$4, {
+			(0, import_web$86.insert)(_el$, (0, import_web$87.createComponent)(Button$4, {
 				onClick: deleteProfile,
 				get disabled() {
 					return profile() === "default" || internalProfile() === profile;
@@ -813,7 +813,7 @@ function ProfilesPage() {
 					return t("dorion_profiles.delete_profile");
 				}
 			}), _el$5, _co$2);
-			(0, import_web$71.effect)(() => (0, import_web$70.className)(_el$, classes$8.pbuttons));
+			(0, import_web$83.effect)(() => (0, import_web$82.className)(_el$, classes$8.pbuttons));
 			return _el$;
 		})()
 	];
@@ -822,10 +822,10 @@ function ProfilesPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/SettingsPage.tsx.scss
 const classes$7 = {
-	"tophead": "akYvUa_tophead",
-	"left16": "akYvUa_left16",
 	"ohead": "akYvUa_ohead",
-	"shead": "akYvUa_shead"
+	"left16": "akYvUa_left16",
+	"shead": "akYvUa_shead",
+	"tophead": "akYvUa_tophead"
 };
 const css$7 = `.akYvUa_tophead {
   margin-bottom: 16px;
@@ -851,10 +851,10 @@ const css$7 = `.akYvUa_tophead {
 //#endregion
 //#region components/Radio.tsx.scss
 const classes$6 = {
+	"radioButton": "Ch7osa_radioButton",
 	"radioButtonInner": "Ch7osa_radioButtonInner",
 	"selected": "Ch7osa_selected",
-	"radio": "Ch7osa_radio",
-	"radioButton": "Ch7osa_radioButton"
+	"radio": "Ch7osa_radio"
 };
 const css$6 = `.Ch7osa_radio {
   color: var(--interactive-normal);
@@ -913,17 +913,17 @@ const css$6 = `.Ch7osa_radio {
 
 //#endregion
 //#region components/Radio.tsx
-var import_web$59 = __toESM(require_web(), 1);
-var import_web$60 = __toESM(require_web(), 1);
-var import_web$61 = __toESM(require_web(), 1);
-var import_web$62 = __toESM(require_web(), 1);
-var import_web$63 = __toESM(require_web(), 1);
-var import_web$64 = __toESM(require_web(), 1);
-var import_web$65 = __toESM(require_web(), 1);
-var import_web$66 = __toESM(require_web(), 1);
-var import_web$67 = __toESM(require_web(), 1);
-var import_web$68 = __toESM(require_web(), 1);
-const _tmpl$$8 = /*#__PURE__*/ (0, import_web$59.template)(`<div><div></div><!#><!/></div>`, 6), _tmpl$2$3 = /*#__PURE__*/ (0, import_web$59.template)(`<div></div>`, 2);
+var import_web$71 = __toESM(require_web(), 1);
+var import_web$72 = __toESM(require_web(), 1);
+var import_web$73 = __toESM(require_web(), 1);
+var import_web$74 = __toESM(require_web(), 1);
+var import_web$75 = __toESM(require_web(), 1);
+var import_web$76 = __toESM(require_web(), 1);
+var import_web$77 = __toESM(require_web(), 1);
+var import_web$78 = __toESM(require_web(), 1);
+var import_web$79 = __toESM(require_web(), 1);
+var import_web$80 = __toESM(require_web(), 1);
+const _tmpl$$14 = /*#__PURE__*/ (0, import_web$71.template)(`<div><div></div><!#><!/></div>`, 6), _tmpl$2$3 = /*#__PURE__*/ (0, import_web$71.template)(`<div></div>`, 2);
 const { ui: { injectCss: injectCss$8, Text: Text$5 } } = shelter;
 let injectedCss$8 = false;
 const Radio = (props) => {
@@ -935,41 +935,41 @@ const Radio = (props) => {
 		props.onClick(props.value);
 	};
 	return (() => {
-		const _el$ = (0, import_web$63.getNextElement)(_tmpl$$8), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, [_el$4, _co$] = (0, import_web$65.getNextMarker)(_el$3.nextSibling);
+		const _el$ = (0, import_web$75.getNextElement)(_tmpl$$14), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, [_el$4, _co$] = (0, import_web$77.getNextMarker)(_el$3.nextSibling);
 		_el$.$$click = onRadioClick;
-		(0, import_web$67.insert)(_el$2, (() => {
-			const _c$ = (0, import_web$68.memo)(() => !!props.selected);
+		(0, import_web$79.insert)(_el$2, (() => {
+			const _c$ = (0, import_web$80.memo)(() => !!props.selected);
 			return () => _c$() && (() => {
-				const _el$5 = (0, import_web$63.getNextElement)(_tmpl$2$3);
-				(0, import_web$62.effect)(() => (0, import_web$61.className)(_el$5, classes$6.radioButtonInner));
+				const _el$5 = (0, import_web$75.getNextElement)(_tmpl$2$3);
+				(0, import_web$74.effect)(() => (0, import_web$73.className)(_el$5, classes$6.radioButtonInner));
 				return _el$5;
 			})();
 		})());
-		(0, import_web$67.insert)(_el$, (0, import_web$66.createComponent)(Text$5, { get children() {
+		(0, import_web$79.insert)(_el$, (0, import_web$78.createComponent)(Text$5, { get children() {
 			return props.label;
 		} }), _el$4, _co$);
-		(0, import_web$62.effect)((_p$) => {
+		(0, import_web$74.effect)((_p$) => {
 			const _v$ = classes$6.radio + (props.selected ? ` ${classes$6.selected}` : ""), _v$2 = classes$6.radioButton;
-			_v$ !== _p$._v$ && (0, import_web$61.className)(_el$, _p$._v$ = _v$);
-			_v$2 !== _p$._v$2 && (0, import_web$61.className)(_el$2, _p$._v$2 = _v$2);
+			_v$ !== _p$._v$ && (0, import_web$73.className)(_el$, _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$73.className)(_el$2, _p$._v$2 = _v$2);
 			return _p$;
 		}, {
 			_v$: undefined,
 			_v$2: undefined
 		});
-		(0, import_web$64.runHydrationEvents)();
+		(0, import_web$76.runHydrationEvents)();
 		return _el$;
 	})();
 };
-(0, import_web$60.delegateEvents)(["click"]);
+(0, import_web$72.delegateEvents)(["click"]);
 
 //#endregion
 //#region components/RadioGroup.tsx
-var import_web$55 = __toESM(require_web(), 1);
-var import_web$56 = __toESM(require_web(), 1);
-var import_web$57 = __toESM(require_web(), 1);
-var import_web$58 = __toESM(require_web(), 1);
-const _tmpl$$7 = /*#__PURE__*/ (0, import_web$55.template)(`<div></div>`, 2);
+var import_web$67 = __toESM(require_web(), 1);
+var import_web$68 = __toESM(require_web(), 1);
+var import_web$69 = __toESM(require_web(), 1);
+var import_web$70 = __toESM(require_web(), 1);
+const _tmpl$$13 = /*#__PURE__*/ (0, import_web$67.template)(`<div></div>`, 2);
 const { ui: { injectCss: injectCss$7 } } = shelter;
 let injectedCss$7 = false;
 const RadioGroup = (props) => {
@@ -978,8 +978,8 @@ const RadioGroup = (props) => {
 		injectCss$7(css$6);
 	}
 	return (() => {
-		const _el$ = (0, import_web$57.getNextElement)(_tmpl$$7);
-		(0, import_web$58.insert)(_el$, () => props.options.map((o) => (0, import_web$56.createComponent)(Radio, {
+		const _el$ = (0, import_web$69.getNextElement)(_tmpl$$13);
+		(0, import_web$70.insert)(_el$, () => props.options.map((o) => (0, import_web$68.createComponent)(Radio, {
 			get ["class"]() {
 				return classes$6.radioGroupItem;
 			},
@@ -1002,12 +1002,12 @@ const RadioGroup = (props) => {
 
 //#endregion
 //#region plugins/dorion-settings/pages/SettingsPage.tsx
-var import_web$50 = __toESM(require_web(), 1);
-var import_web$51 = __toESM(require_web(), 1);
-var import_web$52 = __toESM(require_web(), 1);
-var import_web$53 = __toESM(require_web(), 1);
-var import_web$54 = __toESM(require_web(), 1);
-const _tmpl$$6 = /*#__PURE__*/ (0, import_web$50.template)(`<a href="https://github.com/SpikeHD/shelter-plugins" target="_blank"></a>`, 2);
+var import_web$62 = __toESM(require_web(), 1);
+var import_web$63 = __toESM(require_web(), 1);
+var import_web$64 = __toESM(require_web(), 1);
+var import_web$65 = __toESM(require_web(), 1);
+var import_web$66 = __toESM(require_web(), 1);
+const _tmpl$$12 = /*#__PURE__*/ (0, import_web$62.template)(`<a href="https://github.com/SpikeHD/shelter-plugins" target="_blank"></a>`, 2);
 const { ui: { SwitchItem: SwitchItem$2, Header: Header$4, HeaderTags: HeaderTags$4, Slider, injectCss: injectCss$6 }, solid: { createSignal: createSignal$7, createEffect: createEffect$3 } } = shelter;
 let injectedCss$6 = false;
 function SettingsPage() {
@@ -1030,7 +1030,7 @@ function SettingsPage() {
 		}
 	};
 	return [
-		(0, import_web$54.createComponent)(Header$4, {
+		(0, import_web$66.createComponent)(Header$4, {
 			get tag() {
 				return HeaderTags$4.H1;
 			},
@@ -1041,11 +1041,11 @@ function SettingsPage() {
 				return t("dorion_settings.title", { appName });
 			}
 		}),
-		(0, import_web$53.memo)((() => {
-			const _c$ = (0, import_web$53.memo)(() => !!restartRequired());
-			return () => _c$() && (0, import_web$54.createComponent)(WarningCard, {});
+		(0, import_web$65.memo)((() => {
+			const _c$ = (0, import_web$65.memo)(() => !!restartRequired());
+			return () => _c$() && (0, import_web$66.createComponent)(WarningCard, {});
 		})()),
-		(0, import_web$54.createComponent)(Header$4, {
+		(0, import_web$66.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
@@ -1053,7 +1053,7 @@ function SettingsPage() {
 				return t("dorion_settings.client_type");
 			}
 		}),
-		(0, import_web$54.createComponent)(RadioGroup, {
+		(0, import_web$66.createComponent)(RadioGroup, {
 			get options() {
 				return [
 					{
@@ -1082,7 +1082,7 @@ function SettingsPage() {
 				return settings().client_type;
 			}
 		}),
-		(0, import_web$54.createComponent)(Header$4, {
+		(0, import_web$66.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
@@ -1090,7 +1090,7 @@ function SettingsPage() {
 				return t("dorion_settings.window");
 			}
 		}),
-		(0, import_web$54.createComponent)(Header$4, {
+		(0, import_web$66.createComponent)(Header$4, {
 			get tag() {
 				return HeaderTags$4.H4;
 			},
@@ -1102,7 +1102,7 @@ function SettingsPage() {
 				return t("dorion_settings.zoom_level");
 			}
 		}),
-		(0, import_web$54.createComponent)(Slider, {
+		(0, import_web$66.createComponent)(Slider, {
 			min: 50,
 			max: 125,
 			get steps() {
@@ -1123,7 +1123,7 @@ function SettingsPage() {
 			},
 			tick: 25
 		}),
-		(0, import_web$54.createComponent)(SwitchItem$2, {
+		(0, import_web$66.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().sys_tray;
 			},
@@ -1142,7 +1142,7 @@ function SettingsPage() {
 				return t("dorion_settings.sys_tray");
 			}
 		}),
-		(0, import_web$54.createComponent)(SwitchItem$2, {
+		(0, import_web$66.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().start_maximized;
 			},
@@ -1158,7 +1158,7 @@ function SettingsPage() {
 				return t("dorion_settings.start_maximized");
 			}
 		}),
-		(0, import_web$54.createComponent)(Header$4, {
+		(0, import_web$66.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
@@ -1166,7 +1166,7 @@ function SettingsPage() {
 				return t("dorion_settings.startup");
 			}
 		}),
-		(0, import_web$54.createComponent)(SwitchItem$2, {
+		(0, import_web$66.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().open_on_startup;
 			},
@@ -1186,7 +1186,7 @@ function SettingsPage() {
 				return t("dorion_settings.open_on_startup");
 			}
 		}),
-		(0, import_web$54.createComponent)(SwitchItem$2, {
+		(0, import_web$66.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().startup_minimized;
 			},
@@ -1208,7 +1208,7 @@ function SettingsPage() {
 				return t("dorion_settings.start_minimized");
 			}
 		}),
-		(0, import_web$54.createComponent)(Header$4, {
+		(0, import_web$66.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
@@ -1216,7 +1216,7 @@ function SettingsPage() {
 				return t("dorion_settings.misc");
 			}
 		}),
-		(0, import_web$54.createComponent)(SwitchItem$2, {
+		(0, import_web$66.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().multi_instance;
 			},
@@ -1235,7 +1235,7 @@ function SettingsPage() {
 				return t("dorion_settings.multi_instance");
 			}
 		}),
-		(0, import_web$54.createComponent)(SwitchItem$2, {
+		(0, import_web$66.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().use_native_titlebar;
 			},
@@ -1254,7 +1254,7 @@ function SettingsPage() {
 				return t("dorion_settings.use_native_titlebar");
 			}
 		}),
-		(0, import_web$54.createComponent)(Header$4, {
+		(0, import_web$66.createComponent)(Header$4, {
 			get ["class"]() {
 				return classes$7.shead;
 			},
@@ -1262,7 +1262,7 @@ function SettingsPage() {
 				return t("dorion_settings.updates");
 			}
 		}),
-		(0, import_web$54.createComponent)(SwitchItem$2, {
+		(0, import_web$66.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().autoupdate;
 			},
@@ -1276,11 +1276,11 @@ function SettingsPage() {
 				});
 			},
 			get note() {
-				return (0, import_web$53.memo)(() => t("dorion_settings.autoupdate_note", {
+				return (0, import_web$65.memo)(() => t("dorion_settings.autoupdate_note", {
 					appName,
 					shelterPluginsLink: (() => {
-						const _el$ = (0, import_web$51.getNextElement)(_tmpl$$6);
-						(0, import_web$52.insert)(_el$, () => t("common.spikehd_shelter_plugins"));
+						const _el$ = (0, import_web$63.getNextElement)(_tmpl$$12);
+						(0, import_web$64.insert)(_el$, () => t("common.spikehd_shelter_plugins"));
 						return _el$;
 					})()
 				}));
@@ -1289,7 +1289,7 @@ function SettingsPage() {
 				return t("dorion_settings.autoupdate");
 			}
 		}),
-		(0, import_web$54.createComponent)(SwitchItem$2, {
+		(0, import_web$66.createComponent)(SwitchItem$2, {
 			get value() {
 				return settings().update_notify === undefined || settings().update_notify;
 			},
@@ -1314,14 +1314,14 @@ function SettingsPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx.scss
 const classes$5 = {
-	"spin": "yPVoxW_spin",
-	"title": "yPVoxW_title",
-	"tophead": "yPVoxW_tophead",
 	"card": "yPVoxW_card",
-	"contents": "yPVoxW_contents",
-	"spinner": "yPVoxW_spinner",
+	"tophead": "yPVoxW_tophead",
+	"title": "yPVoxW_title",
+	"badges": "yPVoxW_badges",
 	"badge": "yPVoxW_badge",
-	"badges": "yPVoxW_badges"
+	"spinner": "yPVoxW_spinner",
+	"contents": "yPVoxW_contents",
+	"spin": "yPVoxW_spin"
 };
 const css$5 = `.yPVoxW_tophead {
   justify-content: space-between;
@@ -3327,16 +3327,16 @@ async function fixImageLinks(scope) {
 
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx
-var import_web$41 = __toESM(require_web(), 1);
-var import_web$42 = __toESM(require_web(), 1);
-var import_web$43 = __toESM(require_web(), 1);
-var import_web$44 = __toESM(require_web(), 1);
-var import_web$45 = __toESM(require_web(), 1);
-var import_web$46 = __toESM(require_web(), 1);
-var import_web$47 = __toESM(require_web(), 1);
-var import_web$48 = __toESM(require_web(), 1);
-var import_web$49 = __toESM(require_web(), 1);
-const _tmpl$$5 = /*#__PURE__*/ (0, import_web$41.template)(`<div><div></div></div>`, 4), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$41.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$3$2 = /*#__PURE__*/ (0, import_web$41.template)(`<span></span>`, 2), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$41.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$5$1 = /*#__PURE__*/ (0, import_web$41.template)(`<div><!#><!/><!#><!/><div></div></div>`, 8);
+var import_web$53 = __toESM(require_web(), 1);
+var import_web$54 = __toESM(require_web(), 1);
+var import_web$55 = __toESM(require_web(), 1);
+var import_web$56 = __toESM(require_web(), 1);
+var import_web$57 = __toESM(require_web(), 1);
+var import_web$58 = __toESM(require_web(), 1);
+var import_web$59 = __toESM(require_web(), 1);
+var import_web$60 = __toESM(require_web(), 1);
+var import_web$61 = __toESM(require_web(), 1);
+const _tmpl$$11 = /*#__PURE__*/ (0, import_web$53.template)(`<div><div></div></div>`, 4), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$53.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$3$2 = /*#__PURE__*/ (0, import_web$53.template)(`<span></span>`, 2), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$53.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$5$1 = /*#__PURE__*/ (0, import_web$53.template)(`<div><!#><!/><!#><!/><div></div></div>`, 8);
 const PAGE_ID = `${appName.toLowerCase()}-changelog-tab`;
 const { ui: { injectCss: injectCss$5, Header: Header$3, HeaderTags: HeaderTags$3, Button: Button$3, ButtonSizes: ButtonSizes$2, ButtonColors, Text: Text$4, LinkButton }, solid: { createSignal: createSignal$6, createEffect: createEffect$2 } } = shelter;
 let injectedCss$5 = false;
@@ -3367,7 +3367,7 @@ function ChangelogPage() {
 		setLoading(false);
 		await fixImageLinks(document.getElementById(PAGE_ID));
 	}
-	return [(0, import_web$48.createComponent)(Header$3, {
+	return [(0, import_web$60.createComponent)(Header$3, {
 		get tag() {
 			return HeaderTags$3.H1;
 		},
@@ -3375,7 +3375,7 @@ function ChangelogPage() {
 			return classes$5.tophead;
 		},
 		get children() {
-			return [(0, import_web$49.memo)(() => t("dorion_changelog.title")), (0, import_web$48.createComponent)(Button$3, {
+			return [(0, import_web$61.memo)(() => t("dorion_changelog.title")), (0, import_web$60.createComponent)(Button$3, {
 				onClick: refresh,
 				get disabled() {
 					return loading();
@@ -3385,25 +3385,25 @@ function ChangelogPage() {
 				}
 			})];
 		}
-	}), (0, import_web$49.memo)((() => {
-		const _c$ = (0, import_web$49.memo)(() => !!loading());
+	}), (0, import_web$61.memo)((() => {
+		const _c$ = (0, import_web$61.memo)(() => !!loading());
 		return () => _c$() ? (() => {
-			const _el$ = (0, import_web$47.getNextElement)(_tmpl$$5), _el$2 = _el$.firstChild;
-			(0, import_web$46.effect)((_p$) => {
+			const _el$ = (0, import_web$59.getNextElement)(_tmpl$$11), _el$2 = _el$.firstChild;
+			(0, import_web$58.effect)((_p$) => {
 				const _v$ = classes$5.card, _v$2 = classes$5.spinner;
-				_v$ !== _p$._v$ && (0, import_web$45.className)(_el$, _p$._v$ = _v$);
-				_v$2 !== _p$._v$2 && (0, import_web$45.className)(_el$2, _p$._v$2 = _v$2);
+				_v$ !== _p$._v$ && (0, import_web$57.className)(_el$, _p$._v$ = _v$);
+				_v$2 !== _p$._v$2 && (0, import_web$57.className)(_el$2, _p$._v$2 = _v$2);
 				return _p$;
 			}, {
 				_v$: undefined,
 				_v$2: undefined
 			});
 			return _el$;
-		})() : [(0, import_web$49.memo)((() => {
-			const _c$2 = (0, import_web$49.memo)(() => !!updateCheck().includes("dorion"));
+		})() : [(0, import_web$61.memo)((() => {
+			const _c$2 = (0, import_web$61.memo)(() => !!updateCheck().includes("dorion"));
 			return () => _c$2() && (() => {
-				const _el$3 = (0, import_web$47.getNextElement)(_tmpl$2$2), _el$4 = _el$3.firstChild, [_el$5, _co$] = (0, import_web$43.getNextMarker)(_el$4.nextSibling), _el$6 = _el$5.nextSibling, [_el$7, _co$2] = (0, import_web$43.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$3] = (0, import_web$43.getNextMarker)(_el$8.nextSibling);
-				(0, import_web$44.insert)(_el$3, (0, import_web$48.createComponent)(Header$3, {
+				const _el$3 = (0, import_web$59.getNextElement)(_tmpl$2$2), _el$4 = _el$3.firstChild, [_el$5, _co$] = (0, import_web$55.getNextMarker)(_el$4.nextSibling), _el$6 = _el$5.nextSibling, [_el$7, _co$2] = (0, import_web$55.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$3] = (0, import_web$55.getNextMarker)(_el$8.nextSibling);
+				(0, import_web$56.insert)(_el$3, (0, import_web$60.createComponent)(Header$3, {
 					get tag() {
 						return HeaderTags$3.H1;
 					},
@@ -3414,10 +3414,10 @@ function ChangelogPage() {
 						return t("dorion_changelog.update_available");
 					}
 				}), _el$5, _co$);
-				(0, import_web$44.insert)(_el$3, (0, import_web$48.createComponent)(Text$4, { get children() {
+				(0, import_web$56.insert)(_el$3, (0, import_web$60.createComponent)(Text$4, { get children() {
 					return t("dorion_changelog.current_version", { version: currentVersion() });
 				} }), _el$7, _co$2);
-				(0, import_web$44.insert)(_el$3, (0, import_web$48.createComponent)(Button$3, {
+				(0, import_web$56.insert)(_el$3, (0, import_web$60.createComponent)(Button$3, {
 					get size() {
 						return ButtonSizes$2.LARGE;
 					},
@@ -3429,14 +3429,14 @@ function ChangelogPage() {
 						return t("dorion_changelog.update_to", { version: latestVersion() });
 					}
 				}), _el$9, _co$3);
-				(0, import_web$46.effect)(() => (0, import_web$45.className)(_el$3, classes$5.card));
+				(0, import_web$58.effect)(() => (0, import_web$57.className)(_el$3, classes$5.card));
 				return _el$3;
 			})();
-		})()), (0, import_web$49.memo)((() => {
-			const _c$3 = (0, import_web$49.memo)(() => !!(releases() != null && releases().length > 0));
+		})()), (0, import_web$61.memo)((() => {
+			const _c$3 = (0, import_web$61.memo)(() => !!(releases() != null && releases().length > 0));
 			return () => _c$3() && releases().map((release) => (() => {
-				const _el$0 = (0, import_web$47.getNextElement)(_tmpl$5$1), _el$16 = _el$0.firstChild, [_el$17, _co$6] = (0, import_web$43.getNextMarker)(_el$16.nextSibling), _el$18 = _el$17.nextSibling, [_el$19, _co$7] = (0, import_web$43.getNextMarker)(_el$18.nextSibling), _el$15 = _el$19.nextSibling;
-				(0, import_web$44.insert)(_el$0, (0, import_web$48.createComponent)(Header$3, {
+				const _el$0 = (0, import_web$59.getNextElement)(_tmpl$5$1), _el$16 = _el$0.firstChild, [_el$17, _co$6] = (0, import_web$55.getNextMarker)(_el$16.nextSibling), _el$18 = _el$17.nextSibling, [_el$19, _co$7] = (0, import_web$55.getNextMarker)(_el$18.nextSibling), _el$15 = _el$19.nextSibling;
+				(0, import_web$56.insert)(_el$0, (0, import_web$60.createComponent)(Header$3, {
 					get tag() {
 						return HeaderTags$3.H1;
 					},
@@ -3445,35 +3445,35 @@ function ChangelogPage() {
 					},
 					get children() {
 						return [(() => {
-							const _el$1 = (0, import_web$47.getNextElement)(_tmpl$3$2);
-							(0, import_web$44.insert)(_el$1, () => release.name);
+							const _el$1 = (0, import_web$59.getNextElement)(_tmpl$3$2);
+							(0, import_web$56.insert)(_el$1, () => release.name);
 							return _el$1;
 						})(), (() => {
-							const _el$10 = (0, import_web$47.getNextElement)(_tmpl$4$1), _el$11 = _el$10.firstChild, [_el$12, _co$4] = (0, import_web$43.getNextMarker)(_el$11.nextSibling), _el$13 = _el$12.nextSibling, [_el$14, _co$5] = (0, import_web$43.getNextMarker)(_el$13.nextSibling);
-							(0, import_web$44.insert)(_el$10, (() => {
-								const _c$4 = (0, import_web$49.memo)(() => currentVersion() == release.tag_name);
+							const _el$10 = (0, import_web$59.getNextElement)(_tmpl$4$1), _el$11 = _el$10.firstChild, [_el$12, _co$4] = (0, import_web$55.getNextMarker)(_el$11.nextSibling), _el$13 = _el$12.nextSibling, [_el$14, _co$5] = (0, import_web$55.getNextMarker)(_el$13.nextSibling);
+							(0, import_web$56.insert)(_el$10, (() => {
+								const _c$4 = (0, import_web$61.memo)(() => currentVersion() == release.tag_name);
 								return () => _c$4() && (() => {
-									const _el$20 = (0, import_web$47.getNextElement)(_tmpl$3$2);
-									(0, import_web$44.insert)(_el$20, () => t("dorion_changelog.current"));
-									(0, import_web$46.effect)(() => (0, import_web$45.className)(_el$20, classes$5.badge));
+									const _el$20 = (0, import_web$59.getNextElement)(_tmpl$3$2);
+									(0, import_web$56.insert)(_el$20, () => t("dorion_changelog.current"));
+									(0, import_web$58.effect)(() => (0, import_web$57.className)(_el$20, classes$5.badge));
 									return _el$20;
 								})();
 							})(), _el$12, _co$4);
-							(0, import_web$44.insert)(_el$10, (() => {
-								const _c$5 = (0, import_web$49.memo)(() => releases()[0].tag_name == release.tag_name);
+							(0, import_web$56.insert)(_el$10, (() => {
+								const _c$5 = (0, import_web$61.memo)(() => releases()[0].tag_name == release.tag_name);
 								return () => _c$5() && (() => {
-									const _el$21 = (0, import_web$47.getNextElement)(_tmpl$3$2);
-									(0, import_web$44.insert)(_el$21, () => t("dorion_changelog.latest"));
-									(0, import_web$46.effect)(() => (0, import_web$45.className)(_el$21, classes$5.badge));
+									const _el$21 = (0, import_web$59.getNextElement)(_tmpl$3$2);
+									(0, import_web$56.insert)(_el$21, () => t("dorion_changelog.latest"));
+									(0, import_web$58.effect)(() => (0, import_web$57.className)(_el$21, classes$5.badge));
 									return _el$21;
 								})();
 							})(), _el$14, _co$5);
-							(0, import_web$46.effect)(() => (0, import_web$45.className)(_el$10, classes$5.badges));
+							(0, import_web$58.effect)(() => (0, import_web$57.className)(_el$10, classes$5.badges));
 							return _el$10;
 						})()];
 					}
 				}), _el$17, _co$6);
-				(0, import_web$44.insert)(_el$0, (0, import_web$48.createComponent)(LinkButton, {
+				(0, import_web$56.insert)(_el$0, (0, import_web$60.createComponent)(LinkButton, {
 					get href() {
 						return release.html_url;
 					},
@@ -3481,11 +3481,11 @@ function ChangelogPage() {
 						return t("dorion_changelog.view_on_github");
 					}
 				}), _el$19, _co$7);
-				(0, import_web$46.effect)((_p$) => {
+				(0, import_web$58.effect)((_p$) => {
 					const _v$3 = classes$5.card, _v$4 = classes$5.contents, _v$5 = release.body;
-					_v$3 !== _p$._v$3 && (0, import_web$45.className)(_el$0, _p$._v$3 = _v$3);
-					_v$4 !== _p$._v$4 && (0, import_web$45.className)(_el$15, _p$._v$4 = _v$4);
-					_v$5 !== _p$._v$5 && (0, import_web$42.innerHTML)(_el$15, _p$._v$5 = _v$5);
+					_v$3 !== _p$._v$3 && (0, import_web$57.className)(_el$0, _p$._v$3 = _v$3);
+					_v$4 !== _p$._v$4 && (0, import_web$57.className)(_el$15, _p$._v$4 = _v$4);
+					_v$5 !== _p$._v$5 && (0, import_web$54.innerHTML)(_el$15, _p$._v$5 = _v$5);
 					return _p$;
 				}, {
 					_v$3: undefined,
@@ -3501,17 +3501,17 @@ function ChangelogPage() {
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx.scss
 const classes$4 = {
-	"top32": "XZjauW_top32",
 	"pheader": "XZjauW_pheader",
-	"top16": "XZjauW_top16",
-	"pbuttons": "XZjauW_pbuttons",
 	"sbutton": "XZjauW_sbutton",
-	"mcell": "XZjauW_mcell",
-	"plistrow": "XZjauW_plistrow",
-	"plist": "XZjauW_plist",
-	"shead": "XZjauW_shead",
+	"scell": "XZjauW_scell",
 	"left16": "XZjauW_left16",
-	"scell": "XZjauW_scell"
+	"top16": "XZjauW_top16",
+	"top32": "XZjauW_top32",
+	"mcell": "XZjauW_mcell",
+	"shead": "XZjauW_shead",
+	"pbuttons": "XZjauW_pbuttons",
+	"plist": "XZjauW_plist",
+	"plistrow": "XZjauW_plistrow"
 };
 const css$4 = `.XZjauW_shead {
   margin-top: 16px;
@@ -3590,8 +3590,8 @@ const css$4 = `.XZjauW_shead {
 
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx
-var import_web$39 = __toESM(require_web(), 1);
-var import_web$40 = __toESM(require_web(), 1);
+var import_web$51 = __toESM(require_web(), 1);
+var import_web$52 = __toESM(require_web(), 1);
 const { ui: { SwitchItem: SwitchItem$1, Text: Text$3, injectCss: injectCss$4 }, solid: { createSignal: createSignal$5 } } = shelter;
 let injectedCss$4 = false;
 const getClientMods = async () => {
@@ -3643,20 +3643,20 @@ else if (modName === "Equicord" && newClientMods.includes("Vencord")) newClientM
 		setSettingsState(fn(settings()));
 		invoke("write_config_file", { contents: JSON.stringify(fn(settings())) });
 	};
-	return [(0, import_web$40.memo)((() => {
-		const _c$ = (0, import_web$40.memo)(() => clientMods().length === 0);
-		return () => _c$() && (0, import_web$39.createComponent)(Text$3, {
+	return [(0, import_web$52.memo)((() => {
+		const _c$ = (0, import_web$52.memo)(() => clientMods().length === 0);
+		return () => _c$() && (0, import_web$51.createComponent)(Text$3, {
 			get ["class"]() {
 				return classes$4.left16;
 			},
 			children: "Client mods not available. Please update."
 		});
-	})()), (0, import_web$40.memo)(() => clientMods().map((modName) => {
+	})()), (0, import_web$52.memo)(() => clientMods().map((modName) => {
 		const isVencordOrEquicord = modName === "Vencord" || modName === "Equicord";
 		const isMutuallyExcluded = isVencordOrEquicord && (modName === "Vencord" && settings().client_mods?.includes("Equicord") || modName === "Equicord" && settings().client_mods?.includes("Vencord"));
 		let note = "";
 		if (modName === "Shelter") note = "Shelter is required for Dorion to function properly.";
-		return (0, import_web$39.createComponent)(SwitchItem$1, {
+		return (0, import_web$51.createComponent)(SwitchItem$1, {
 			disabled: modName === "Shelter" || isMutuallyExcluded,
 			get value() {
 				return settings().client_mods?.includes(modName) || false;
@@ -3674,15 +3674,15 @@ else if (modName === "Equicord" && newClientMods.includes("Vencord")) newClientM
 //#region plugins/dorion-settings/components/PluginList.tsx.scss
 const classes$3 = {
 	"sbutton": "V6is4W_sbutton",
-	"scell": "V6is4W_scell",
-	"left16": "V6is4W_left16",
-	"plistrow": "V6is4W_plistrow",
 	"plist": "V6is4W_plist",
-	"pbuttons": "V6is4W_pbuttons",
 	"pheader": "V6is4W_pheader",
+	"plistrow": "V6is4W_plistrow",
+	"left16": "V6is4W_left16",
+	"pbuttons": "V6is4W_pbuttons",
+	"scell": "V6is4W_scell",
 	"top32": "V6is4W_top32",
-	"mcell": "V6is4W_mcell",
-	"top16": "V6is4W_top16"
+	"top16": "V6is4W_top16",
+	"mcell": "V6is4W_mcell"
 };
 const css$3 = `.V6is4W_plist {
   flex-direction: column;
@@ -3756,16 +3756,16 @@ const css$3 = `.V6is4W_plist {
 
 //#endregion
 //#region plugins/dorion-settings/components/PluginList.tsx
-var import_web$30 = __toESM(require_web(), 1);
-var import_web$31 = __toESM(require_web(), 1);
-var import_web$32 = __toESM(require_web(), 1);
-var import_web$33 = __toESM(require_web(), 1);
-var import_web$34 = __toESM(require_web(), 1);
-var import_web$35 = __toESM(require_web(), 1);
-var import_web$36 = __toESM(require_web(), 1);
-var import_web$37 = __toESM(require_web(), 1);
-var import_web$38 = __toESM(require_web(), 1);
-const _tmpl$$4 = /*#__PURE__*/ (0, import_web$30.template)(`<div><div><div></div><div></div><div></div></div><!#><!/><!#><!/></div>`, 14), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$30.template)(`<div></div>`, 2), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$30.template)(`<div><div></div><div></div><div></div></div>`, 8);
+var import_web$42 = __toESM(require_web(), 1);
+var import_web$43 = __toESM(require_web(), 1);
+var import_web$44 = __toESM(require_web(), 1);
+var import_web$45 = __toESM(require_web(), 1);
+var import_web$46 = __toESM(require_web(), 1);
+var import_web$47 = __toESM(require_web(), 1);
+var import_web$48 = __toESM(require_web(), 1);
+var import_web$49 = __toESM(require_web(), 1);
+var import_web$50 = __toESM(require_web(), 1);
+const _tmpl$$10 = /*#__PURE__*/ (0, import_web$42.template)(`<div><div><div></div><div></div><div></div></div><!#><!/><!#><!/></div>`, 14), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$42.template)(`<div></div>`, 2), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$42.template)(`<div><div></div><div></div><div></div></div>`, 8);
 const { ui: { Switch, Text: Text$2, injectCss: injectCss$3 }, solid: { createSignal: createSignal$4 } } = shelter;
 let injectedCss$3 = false;
 const getPlugins = async () => {
@@ -3782,28 +3782,28 @@ function PluginList(props) {
 		setPlugins(await getPlugins());
 	})();
 	return (() => {
-		const _el$ = (0, import_web$34.getNextElement)(_tmpl$$4), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, _el$5 = _el$4.nextSibling, _el$6 = _el$2.nextSibling, [_el$7, _co$] = (0, import_web$35.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$2] = (0, import_web$35.getNextMarker)(_el$8.nextSibling);
-		(0, import_web$37.insert)(_el$3, (0, import_web$38.createComponent)(Text$2, {}));
-		(0, import_web$37.insert)(_el$4, (0, import_web$38.createComponent)(Text$2, { children: "Enabled" }));
-		(0, import_web$37.insert)(_el$5, (0, import_web$38.createComponent)(Text$2, { children: "Preload" }));
-		(0, import_web$37.insert)(_el$, (() => {
-			const _c$ = (0, import_web$36.memo)(() => Object.entries(plugins()).length === 0);
+		const _el$ = (0, import_web$46.getNextElement)(_tmpl$$10), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, _el$5 = _el$4.nextSibling, _el$6 = _el$2.nextSibling, [_el$7, _co$] = (0, import_web$47.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$2] = (0, import_web$47.getNextMarker)(_el$8.nextSibling);
+		(0, import_web$49.insert)(_el$3, (0, import_web$50.createComponent)(Text$2, {}));
+		(0, import_web$49.insert)(_el$4, (0, import_web$50.createComponent)(Text$2, { children: "Enabled" }));
+		(0, import_web$49.insert)(_el$5, (0, import_web$50.createComponent)(Text$2, { children: "Preload" }));
+		(0, import_web$49.insert)(_el$, (() => {
+			const _c$ = (0, import_web$48.memo)(() => Object.entries(plugins()).length === 0);
 			return () => _c$() && (() => {
-				const _el$0 = (0, import_web$34.getNextElement)(_tmpl$2$1);
-				(0, import_web$37.insert)(_el$0, (0, import_web$38.createComponent)(Text$2, {
+				const _el$0 = (0, import_web$46.getNextElement)(_tmpl$2$1);
+				(0, import_web$49.insert)(_el$0, (0, import_web$50.createComponent)(Text$2, {
 					get ["class"]() {
 						return classes$3.left16;
 					},
 					children: "No plugins found"
 				}));
-				(0, import_web$33.effect)(() => (0, import_web$32.className)(_el$0, classes$3.plistrow));
+				(0, import_web$45.effect)(() => (0, import_web$44.className)(_el$0, classes$3.plistrow));
 				return _el$0;
 			})();
 		})(), _el$7, _co$);
-		(0, import_web$37.insert)(_el$, () => Object.entries(plugins()).map(([filename, plugin]) => (() => {
-			const _el$1 = (0, import_web$34.getNextElement)(_tmpl$3$1), _el$10 = _el$1.firstChild, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling;
-			(0, import_web$31.setAttribute)(_el$1, "key", filename);
-			(0, import_web$37.insert)(_el$10, (0, import_web$38.createComponent)(Text$2, {
+		(0, import_web$49.insert)(_el$, () => Object.entries(plugins()).map(([filename, plugin]) => (() => {
+			const _el$1 = (0, import_web$46.getNextElement)(_tmpl$3$1), _el$10 = _el$1.firstChild, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling;
+			(0, import_web$43.setAttribute)(_el$1, "key", filename);
+			(0, import_web$49.insert)(_el$10, (0, import_web$50.createComponent)(Text$2, {
 				get ["class"]() {
 					return classes$3.left16;
 				},
@@ -3811,7 +3811,7 @@ function PluginList(props) {
 					return plugin.name;
 				}
 			}));
-			(0, import_web$37.insert)(_el$11, (0, import_web$38.createComponent)(Switch, {
+			(0, import_web$49.insert)(_el$11, (0, import_web$50.createComponent)(Switch, {
 				get checked() {
 					return plugin.enabled;
 				},
@@ -3831,7 +3831,7 @@ function PluginList(props) {
 					marginRight: "4px"
 				}
 			}));
-			(0, import_web$37.insert)(_el$12, (0, import_web$38.createComponent)(Switch, {
+			(0, import_web$49.insert)(_el$12, (0, import_web$50.createComponent)(Switch, {
 				get checked() {
 					return plugin.preload;
 				},
@@ -3851,12 +3851,12 @@ function PluginList(props) {
 				},
 				style: { marginRight: "4px" }
 			}));
-			(0, import_web$33.effect)((_p$) => {
+			(0, import_web$45.effect)((_p$) => {
 				const _v$6 = classes$3.plistrow, _v$7 = classes$3.mcell, _v$8 = classes$3.scell, _v$9 = classes$3.scell;
-				_v$6 !== _p$._v$6 && (0, import_web$32.className)(_el$1, _p$._v$6 = _v$6);
-				_v$7 !== _p$._v$7 && (0, import_web$32.className)(_el$10, _p$._v$7 = _v$7);
-				_v$8 !== _p$._v$8 && (0, import_web$32.className)(_el$11, _p$._v$8 = _v$8);
-				_v$9 !== _p$._v$9 && (0, import_web$32.className)(_el$12, _p$._v$9 = _v$9);
+				_v$6 !== _p$._v$6 && (0, import_web$44.className)(_el$1, _p$._v$6 = _v$6);
+				_v$7 !== _p$._v$7 && (0, import_web$44.className)(_el$10, _p$._v$7 = _v$7);
+				_v$8 !== _p$._v$8 && (0, import_web$44.className)(_el$11, _p$._v$8 = _v$8);
+				_v$9 !== _p$._v$9 && (0, import_web$44.className)(_el$12, _p$._v$9 = _v$9);
 				return _p$;
 			}, {
 				_v$6: undefined,
@@ -3866,13 +3866,13 @@ function PluginList(props) {
 			});
 			return _el$1;
 		})()), _el$9, _co$2);
-		(0, import_web$33.effect)((_p$) => {
+		(0, import_web$45.effect)((_p$) => {
 			const _v$ = classes$3.plist, _v$2 = classes$3.pheader + " " + classes$3.plistrow, _v$3 = classes$3.mcell, _v$4 = classes$3.scell, _v$5 = classes$3.scell;
-			_v$ !== _p$._v$ && (0, import_web$32.className)(_el$, _p$._v$ = _v$);
-			_v$2 !== _p$._v$2 && (0, import_web$32.className)(_el$2, _p$._v$2 = _v$2);
-			_v$3 !== _p$._v$3 && (0, import_web$32.className)(_el$3, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$32.className)(_el$4, _p$._v$4 = _v$4);
-			_v$5 !== _p$._v$5 && (0, import_web$32.className)(_el$5, _p$._v$5 = _v$5);
+			_v$ !== _p$._v$ && (0, import_web$44.className)(_el$, _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$44.className)(_el$2, _p$._v$2 = _v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$44.className)(_el$3, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$44.className)(_el$4, _p$._v$4 = _v$4);
+			_v$5 !== _p$._v$5 && (0, import_web$44.className)(_el$5, _p$._v$5 = _v$5);
 			return _p$;
 		}, {
 			_v$: undefined,
@@ -3888,12 +3888,12 @@ function PluginList(props) {
 //#endregion
 //#region plugins/dorion-settings/pages/PluginsPage.tsx.scss
 const classes$2 = {
-	"tophead": "X31w8G_tophead",
-	"shead": "X31w8G_shead",
 	"left16": "X31w8G_left16",
-	"openButton": "X31w8G_openButton",
 	"pbuttons": "X31w8G_pbuttons",
-	"card": "X31w8G_card"
+	"card": "X31w8G_card",
+	"tophead": "X31w8G_tophead",
+	"openButton": "X31w8G_openButton",
+	"shead": "X31w8G_shead"
 };
 const css$2 = `.X31w8G_tophead {
   margin-bottom: 16px;
@@ -3931,15 +3931,15 @@ const css$2 = `.X31w8G_tophead {
 
 //#endregion
 //#region plugins/dorion-settings/pages/PluginsPage.tsx
-var import_web$22 = __toESM(require_web(), 1);
-var import_web$23 = __toESM(require_web(), 1);
-var import_web$24 = __toESM(require_web(), 1);
-var import_web$25 = __toESM(require_web(), 1);
-var import_web$26 = __toESM(require_web(), 1);
-var import_web$27 = __toESM(require_web(), 1);
-var import_web$28 = __toESM(require_web(), 1);
-var import_web$29 = __toESM(require_web(), 1);
-const _tmpl$$3 = /*#__PURE__*/ (0, import_web$22.template)(`<div><!#><!/><!#><!/></div>`, 6);
+var import_web$34 = __toESM(require_web(), 1);
+var import_web$35 = __toESM(require_web(), 1);
+var import_web$36 = __toESM(require_web(), 1);
+var import_web$37 = __toESM(require_web(), 1);
+var import_web$38 = __toESM(require_web(), 1);
+var import_web$39 = __toESM(require_web(), 1);
+var import_web$40 = __toESM(require_web(), 1);
+var import_web$41 = __toESM(require_web(), 1);
+const _tmpl$$9 = /*#__PURE__*/ (0, import_web$34.template)(`<div><!#><!/><!#><!/></div>`, 6);
 const { ui: { Header: Header$2, Button: Button$2, HeaderTags: HeaderTags$2, injectCss: injectCss$2, ButtonSizes: ButtonSizes$1 }, solid: { createSignal: createSignal$3 } } = shelter;
 let injectedCss$2 = false;
 function PluginsPage() {
@@ -3955,7 +3955,7 @@ function PluginsPage() {
 		invoke("open_extensions");
 	};
 	return [
-		(0, import_web$29.createComponent)(Header$2, {
+		(0, import_web$41.createComponent)(Header$2, {
 			get tag() {
 				return HeaderTags$2.H1;
 			},
@@ -3966,11 +3966,11 @@ function PluginsPage() {
 				return t("dorion_plugins.title");
 			}
 		}),
-		(0, import_web$28.memo)((() => {
-			const _c$ = (0, import_web$28.memo)(() => !!restartRequired());
-			return () => _c$() && (0, import_web$29.createComponent)(WarningCard, {});
+		(0, import_web$40.memo)((() => {
+			const _c$ = (0, import_web$40.memo)(() => !!restartRequired());
+			return () => _c$() && (0, import_web$41.createComponent)(WarningCard, {});
 		})()),
-		(0, import_web$29.createComponent)(Header$2, {
+		(0, import_web$41.createComponent)(Header$2, {
 			get ["class"]() {
 				return classes$2.shead;
 			},
@@ -3978,10 +3978,10 @@ function PluginsPage() {
 				return t("dorion_plugins.client_mods");
 			}
 		}),
-		(0, import_web$29.createComponent)(ClientModList, { onChange: () => {
+		(0, import_web$41.createComponent)(ClientModList, { onChange: () => {
 			setRestartRequired(true);
 		} }),
-		(0, import_web$29.createComponent)(Header$2, {
+		(0, import_web$41.createComponent)(Header$2, {
 			get ["class"]() {
 				return classes$2.shead;
 			},
@@ -3989,12 +3989,12 @@ function PluginsPage() {
 				return t("dorion_plugins.plugins");
 			}
 		}),
-		(0, import_web$29.createComponent)(PluginList, { onChange: () => {
+		(0, import_web$41.createComponent)(PluginList, { onChange: () => {
 			setRestartRequired(true);
 		} }),
 		(() => {
-			const _el$ = (0, import_web$25.getNextElement)(_tmpl$$3), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$26.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$26.getNextMarker)(_el$4.nextSibling);
-			(0, import_web$27.insert)(_el$, (0, import_web$29.createComponent)(Button$2, {
+			const _el$ = (0, import_web$37.getNextElement)(_tmpl$$9), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$38.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$38.getNextMarker)(_el$4.nextSibling);
+			(0, import_web$39.insert)(_el$, (0, import_web$41.createComponent)(Button$2, {
 				get size() {
 					return ButtonSizes$1.MEDIUM;
 				},
@@ -4011,7 +4011,7 @@ function PluginsPage() {
 					return t("dorion_plugins.open_plugins_folder");
 				}
 			}), _el$3, _co$);
-			(0, import_web$27.insert)(_el$, (0, import_web$29.createComponent)(Button$2, {
+			(0, import_web$39.insert)(_el$, (0, import_web$41.createComponent)(Button$2, {
 				get size() {
 					return ButtonSizes$1.MEDIUM;
 				},
@@ -4028,7 +4028,7 @@ function PluginsPage() {
 					return t("dorion_plugins.open_extensions_folder");
 				}
 			}), _el$5, _co$2);
-			(0, import_web$24.effect)(() => (0, import_web$23.className)(_el$, classes$2.pbuttons));
+			(0, import_web$36.effect)(() => (0, import_web$35.className)(_el$, classes$2.pbuttons));
 			return _el$;
 		})()
 	];
@@ -4098,11 +4098,11 @@ const css$1 = `.oAx4fa_tophead {
 
 //#endregion
 //#region util/modal.tsx
-var import_web$21 = __toESM(require_web(), 1);
+var import_web$33 = __toESM(require_web(), 1);
 const { ui: { ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter } } = shelter;
-const confirmModal = (props) => (0, import_web$21.createComponent)(ModalRoot, { get children() {
+const confirmModal = (props) => (0, import_web$33.createComponent)(ModalRoot, { get children() {
 	return [
-		(0, import_web$21.createComponent)(ModalHeader, {
+		(0, import_web$33.createComponent)(ModalHeader, {
 			get close() {
 				return props.onCancel;
 			},
@@ -4110,10 +4110,10 @@ const confirmModal = (props) => (0, import_web$21.createComponent)(ModalRoot, { 
 				return props.header;
 			}
 		}),
-		(0, import_web$21.createComponent)(ModalBody, { get children() {
+		(0, import_web$33.createComponent)(ModalBody, { get children() {
 			return props.body;
 		} }),
-		(0, import_web$21.createComponent)(ModalConfirmFooter, {
+		(0, import_web$33.createComponent)(ModalConfirmFooter, {
 			get onConfirm() {
 				return props.onConfirm;
 			},
@@ -4135,12 +4135,12 @@ const confirmModal = (props) => (0, import_web$21.createComponent)(ModalRoot, { 
 
 //#endregion
 //#region plugins/dorion-settings/util/theme.tsx
-var import_web$16 = __toESM(require_web(), 1);
-var import_web$17 = __toESM(require_web(), 1);
-var import_web$18 = __toESM(require_web(), 1);
-var import_web$19 = __toESM(require_web(), 1);
-var import_web$20 = __toESM(require_web(), 1);
-const _tmpl$$2 = /*#__PURE__*/ (0, import_web$16.template)(`<div><!#><!/><div></div></div>`, 6);
+var import_web$28 = __toESM(require_web(), 1);
+var import_web$29 = __toESM(require_web(), 1);
+var import_web$30 = __toESM(require_web(), 1);
+var import_web$31 = __toESM(require_web(), 1);
+var import_web$32 = __toESM(require_web(), 1);
+const _tmpl$$8 = /*#__PURE__*/ (0, import_web$28.template)(`<div><!#><!/><div></div></div>`, 6);
 const { ui: { openModal, TextBox: TextBox$1, Text: Text$1 }, solid: { createSignal: createSignal$2 } } = shelter;
 const installThemeModal = async (addToList) => {
 	const [link$1, setLink] = createSignal$2("");
@@ -4148,8 +4148,8 @@ const installThemeModal = async (addToList) => {
 	openModal((props) => confirmModal({
 		header: "Install Theme",
 		body: (() => {
-			const _el$ = (0, import_web$17.getNextElement)(_tmpl$$2), _el$3 = _el$.firstChild, [_el$4, _co$] = (0, import_web$18.getNextMarker)(_el$3.nextSibling), _el$2 = _el$4.nextSibling;
-			(0, import_web$19.insert)(_el$, (0, import_web$20.createComponent)(TextBox$1, {
+			const _el$ = (0, import_web$29.getNextElement)(_tmpl$$8), _el$3 = _el$.firstChild, [_el$4, _co$] = (0, import_web$30.getNextMarker)(_el$3.nextSibling), _el$2 = _el$4.nextSibling;
+			(0, import_web$31.insert)(_el$, (0, import_web$32.createComponent)(TextBox$1, {
 				get value() {
 					return link$1();
 				},
@@ -4160,7 +4160,7 @@ const installThemeModal = async (addToList) => {
 			_el$2.style.setProperty("justify-content", "center");
 			_el$2.style.setProperty("align-items", "center");
 			_el$2.style.setProperty("height", "24px");
-			(0, import_web$19.insert)(_el$2, (0, import_web$20.createComponent)(Text$1, { get children() {
+			(0, import_web$31.insert)(_el$2, (0, import_web$32.createComponent)(Text$1, { get children() {
 				return status();
 			} }));
 			return _el$;
@@ -4180,15 +4180,15 @@ const installThemeModal = async (addToList) => {
 
 //#endregion
 //#region plugins/dorion-settings/pages/ThemesPage.tsx
-var import_web$8 = __toESM(require_web(), 1);
-var import_web$9 = __toESM(require_web(), 1);
-var import_web$10 = __toESM(require_web(), 1);
-var import_web$11 = __toESM(require_web(), 1);
-var import_web$12 = __toESM(require_web(), 1);
-var import_web$13 = __toESM(require_web(), 1);
-var import_web$14 = __toESM(require_web(), 1);
-var import_web$15 = __toESM(require_web(), 1);
-const _tmpl$$1 = /*#__PURE__*/ (0, import_web$8.template)(`<div><!#><!/><!#><!/></div>`, 6);
+var import_web$20 = __toESM(require_web(), 1);
+var import_web$21 = __toESM(require_web(), 1);
+var import_web$22 = __toESM(require_web(), 1);
+var import_web$23 = __toESM(require_web(), 1);
+var import_web$24 = __toESM(require_web(), 1);
+var import_web$25 = __toESM(require_web(), 1);
+var import_web$26 = __toESM(require_web(), 1);
+var import_web$27 = __toESM(require_web(), 1);
+const _tmpl$$7 = /*#__PURE__*/ (0, import_web$20.template)(`<div><!#><!/><!#><!/></div>`, 6);
 const { ui: { Header: Header$1, Button: Button$1, HeaderTags: HeaderTags$1, injectCss: injectCss$1, Divider, ButtonSizes, Select, SelectOption }, solid: { createSignal: createSignal$1, createEffect: createEffect$1 } } = shelter;
 let injectedCss$1 = false;
 function ThemesPage() {
@@ -4237,7 +4237,7 @@ function ThemesPage() {
 		});
 	};
 	return [
-		(0, import_web$15.createComponent)(Header$1, {
+		(0, import_web$27.createComponent)(Header$1, {
 			get tag() {
 				return HeaderTags$1.H1;
 			},
@@ -4248,7 +4248,7 @@ function ThemesPage() {
 				return t("dorion_themes.title");
 			}
 		}),
-		(0, import_web$15.createComponent)(Header$1, {
+		(0, import_web$27.createComponent)(Header$1, {
 			get ["class"]() {
 				return classes$1.shead;
 			},
@@ -4256,7 +4256,7 @@ function ThemesPage() {
 				return t("dorion_themes.theme");
 			}
 		}),
-		(0, import_web$14.memo)(() => settings().themes.map((theme) => (0, import_web$15.createComponent)(Select, {
+		(0, import_web$26.memo)(() => settings().themes.map((theme) => (0, import_web$27.createComponent)(Select, {
 			style: { "margin-bottom": "8px" },
 			value: theme,
 			onChange: (v) => {
@@ -4264,12 +4264,12 @@ function ThemesPage() {
 				reloadThemes();
 			},
 			get children() {
-				return [(0, import_web$15.createComponent)(SelectOption, {
+				return [(0, import_web$27.createComponent)(SelectOption, {
 					value: "none",
 					get children() {
 						return t("dorion_themes.none");
 					}
-				}), (0, import_web$14.memo)(() => themes().map((o) => (0, import_web$15.createComponent)(SelectOption, {
+				}), (0, import_web$26.memo)(() => themes().map((o) => (0, import_web$27.createComponent)(SelectOption, {
 					get value() {
 						return o.value;
 					},
@@ -4279,7 +4279,7 @@ function ThemesPage() {
 				})))];
 			}
 		}))),
-		(0, import_web$15.createComponent)(Select, {
+		(0, import_web$27.createComponent)(Select, {
 			style: { "margin-bottom": "8px" },
 			onChange: (v) => {
 				appendTheme("none", String(v));
@@ -4289,7 +4289,7 @@ function ThemesPage() {
 				return t("dorion_themes.select_theme");
 			},
 			get children() {
-				return themes().map((o) => (0, import_web$15.createComponent)(SelectOption, {
+				return themes().map((o) => (0, import_web$27.createComponent)(SelectOption, {
 					get value() {
 						return o.value;
 					},
@@ -4299,13 +4299,13 @@ function ThemesPage() {
 				}));
 			}
 		}),
-		(0, import_web$15.createComponent)(Divider, {
+		(0, import_web$27.createComponent)(Divider, {
 			mt: 16,
 			mb: 16
 		}),
 		(() => {
-			const _el$ = (0, import_web$11.getNextElement)(_tmpl$$1), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$12.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$12.getNextMarker)(_el$4.nextSibling);
-			(0, import_web$13.insert)(_el$, (0, import_web$15.createComponent)(Button$1, {
+			const _el$ = (0, import_web$23.getNextElement)(_tmpl$$7), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$24.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$24.getNextMarker)(_el$4.nextSibling);
+			(0, import_web$25.insert)(_el$, (0, import_web$27.createComponent)(Button$1, {
 				get size() {
 					return ButtonSizes.MEDIUM;
 				},
@@ -4314,7 +4314,7 @@ function ThemesPage() {
 					return t("dorion_themes.install_from_link");
 				}
 			}), _el$3, _co$);
-			(0, import_web$13.insert)(_el$, (0, import_web$15.createComponent)(Button$1, {
+			(0, import_web$25.insert)(_el$, (0, import_web$27.createComponent)(Button$1, {
 				get size() {
 					return ButtonSizes.MEDIUM;
 				},
@@ -4323,7 +4323,7 @@ function ThemesPage() {
 					return t("dorion_themes.open_folder");
 				}
 			}), _el$5, _co$2);
-			(0, import_web$10.effect)(() => (0, import_web$9.className)(_el$, classes$1.pbuttons));
+			(0, import_web$22.effect)(() => (0, import_web$21.className)(_el$, classes$1.pbuttons));
 			return _el$;
 		})()
 	];
@@ -4333,10 +4333,10 @@ function ThemesPage() {
 //#region plugins/dorion-settings/pages/RPC.tsx.scss
 const classes = {
 	"stextbox": "ycw7DW_stextbox",
+	"shead": "ycw7DW_shead",
+	"customNote": "ycw7DW_customNote",
 	"stextboxInput": "ycw7DW_stextboxInput",
 	"customInstallBtn": "ycw7DW_customInstallBtn",
-	"customNote": "ycw7DW_customNote",
-	"shead": "ycw7DW_shead",
 	"bot16": "ycw7DW_bot16"
 };
 const css = `.ycw7DW_shead {
@@ -4376,15 +4376,15 @@ const css = `.ycw7DW_shead {
 
 //#endregion
 //#region plugins/dorion-settings/pages/RPC.tsx
-var import_web = __toESM(require_web(), 1);
-var import_web$1 = __toESM(require_web(), 1);
-var import_web$2 = __toESM(require_web(), 1);
-var import_web$3 = __toESM(require_web(), 1);
-var import_web$4 = __toESM(require_web(), 1);
-var import_web$5 = __toESM(require_web(), 1);
-var import_web$6 = __toESM(require_web(), 1);
-var import_web$7 = __toESM(require_web(), 1);
-const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><div></div></div>`, 6), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<b></b>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<br>`, 1), _tmpl$4 = /*#__PURE__*/ (0, import_web.template)(`<a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank"></a>`, 2), _tmpl$5 = /*#__PURE__*/ (0, import_web.template)(`<a href="https://github.com/OpenAsar/arRPC" target="_blank"></a>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web.template)(`<a href="https://github.com/LeonardSSH/vscord" target="_blank"></a>`, 2);
+var import_web$12 = __toESM(require_web(), 1);
+var import_web$13 = __toESM(require_web(), 1);
+var import_web$14 = __toESM(require_web(), 1);
+var import_web$15 = __toESM(require_web(), 1);
+var import_web$16 = __toESM(require_web(), 1);
+var import_web$17 = __toESM(require_web(), 1);
+var import_web$18 = __toESM(require_web(), 1);
+var import_web$19 = __toESM(require_web(), 1);
+const _tmpl$$6 = /*#__PURE__*/ (0, import_web$12.template)(`<div><!#><!/><div></div></div>`, 6), _tmpl$2 = /*#__PURE__*/ (0, import_web$12.template)(`<b></b>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web$12.template)(`<br>`, 1), _tmpl$4 = /*#__PURE__*/ (0, import_web$12.template)(`<a href="https://github.com/SpikeHD/shelter-plugins?tab=readme-ov-file#shelterpc" target="_blank"></a>`, 2), _tmpl$5 = /*#__PURE__*/ (0, import_web$12.template)(`<a href="https://github.com/OpenAsar/arRPC" target="_blank"></a>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$12.template)(`<a href="https://github.com/LeonardSSH/vscord" target="_blank"></a>`, 2);
 const { ui: { Button, Text, TextBox, SwitchItem, Header, HeaderTags, injectCss, showToast }, solid: { createSignal, createEffect } } = shelter;
 let injectedCss = false;
 function RPCPage() {
@@ -4426,7 +4426,7 @@ function RPCPage() {
 		});
 	};
 	return [
-		(0, import_web$7.createComponent)(Header, {
+		(0, import_web$19.createComponent)(Header, {
 			get tag() {
 				return HeaderTags.H1;
 			},
@@ -4437,11 +4437,11 @@ function RPCPage() {
 				return t("dorion_rpc.title");
 			}
 		}),
-		(0, import_web$6.memo)((() => {
-			const _c$ = (0, import_web$6.memo)(() => !!restartRequired());
-			return () => _c$() && (0, import_web$7.createComponent)(WarningCard, {});
+		(0, import_web$18.memo)((() => {
+			const _c$ = (0, import_web$18.memo)(() => !!restartRequired());
+			return () => _c$() && (0, import_web$19.createComponent)(WarningCard, {});
 		})()),
-		(0, import_web$7.createComponent)(Header, {
+		(0, import_web$19.createComponent)(Header, {
 			get ["class"]() {
 				return classes.shead;
 			},
@@ -4449,7 +4449,7 @@ function RPCPage() {
 				return t("dorion_rpc.plugin");
 			}
 		}),
-		(0, import_web$7.createComponent)(Button, {
+		(0, import_web$19.createComponent)(Button, {
 			onClick: tryInstallShelteRPC,
 			get ["class"]() {
 				return classes.customInstallBtn;
@@ -4461,23 +4461,23 @@ function RPCPage() {
 				return t("dorion_rpc.install_shelterpc");
 			}
 		}),
-		(0, import_web$7.createComponent)(Text, {
+		(0, import_web$19.createComponent)(Text, {
 			get ["class"]() {
 				return classes.customNote;
 			},
 			get children() {
-				return [(0, import_web$6.memo)(() => (0, import_web$6.memo)(() => !!shelteRPCInstalled())() && [
+				return [(0, import_web$18.memo)(() => (0, import_web$18.memo)(() => !!shelteRPCInstalled())() && [
 					(() => {
-						const _el$5 = (0, import_web$3.getNextElement)(_tmpl$2);
-						(0, import_web$5.insert)(_el$5, () => t("dorion_rpc.already_installed"));
+						const _el$5 = (0, import_web$15.getNextElement)(_tmpl$2);
+						(0, import_web$17.insert)(_el$5, () => t("dorion_rpc.already_installed"));
 						return _el$5;
 					})(),
-					(0, import_web$3.getNextElement)(_tmpl$3),
-					(0, import_web$3.getNextElement)(_tmpl$3)
-				]), (0, import_web$6.memo)(() => t("dorion_rpc.install_note"))];
+					(0, import_web$15.getNextElement)(_tmpl$3),
+					(0, import_web$15.getNextElement)(_tmpl$3)
+				]), (0, import_web$18.memo)(() => t("dorion_rpc.install_note"))];
 			}
 		}),
-		(0, import_web$7.createComponent)(Header, {
+		(0, import_web$19.createComponent)(Header, {
 			get ["class"]() {
 				return classes.shead;
 			},
@@ -4485,7 +4485,7 @@ function RPCPage() {
 				return t("dorion_rpc.server");
 			}
 		}),
-		(0, import_web$7.createComponent)(SwitchItem, {
+		(0, import_web$19.createComponent)(SwitchItem, {
 			get value() {
 				return settings().rpc_server;
 			},
@@ -4497,15 +4497,15 @@ function RPCPage() {
 				return t("dorion_rpc.work_in_progress");
 			},
 			get note() {
-				return (0, import_web$6.memo)(() => t("dorion_rpc.integrated_server_note", {
+				return (0, import_web$18.memo)(() => t("dorion_rpc.integrated_server_note", {
 					shelteRPCLink: (() => {
-						const _el$8 = (0, import_web$3.getNextElement)(_tmpl$4);
-						(0, import_web$5.insert)(_el$8, () => t("common.shelterpc"));
+						const _el$8 = (0, import_web$15.getNextElement)(_tmpl$4);
+						(0, import_web$17.insert)(_el$8, () => t("common.shelterpc"));
 						return _el$8;
 					})(),
 					arRPCLink: (() => {
-						const _el$9 = (0, import_web$3.getNextElement)(_tmpl$5);
-						(0, import_web$5.insert)(_el$9, () => t("common.arrpc"));
+						const _el$9 = (0, import_web$15.getNextElement)(_tmpl$5);
+						(0, import_web$17.insert)(_el$9, () => t("common.arrpc"));
 						return _el$9;
 					})()
 				}));
@@ -4515,8 +4515,8 @@ function RPCPage() {
 			}
 		}),
 		(() => {
-			const _el$ = (0, import_web$3.getNextElement)(_tmpl$), _el$3 = _el$.firstChild, [_el$4, _co$] = (0, import_web$4.getNextMarker)(_el$3.nextSibling), _el$2 = _el$4.nextSibling;
-			(0, import_web$5.insert)(_el$, (0, import_web$7.createComponent)(Text, {
+			const _el$ = (0, import_web$15.getNextElement)(_tmpl$$6), _el$3 = _el$.firstChild, [_el$4, _co$] = (0, import_web$16.getNextMarker)(_el$3.nextSibling), _el$2 = _el$4.nextSibling;
+			(0, import_web$17.insert)(_el$, (0, import_web$19.createComponent)(Text, {
 				get ["class"]() {
 					return classes.stext;
 				},
@@ -4524,7 +4524,7 @@ function RPCPage() {
 					return t("dorion_rpc.rpc_port");
 				}
 			}), _el$4, _co$);
-			(0, import_web$5.insert)(_el$2, (0, import_web$7.createComponent)(TextBox, {
+			(0, import_web$17.insert)(_el$2, (0, import_web$19.createComponent)(TextBox, {
 				get value() {
 					return settings().rpc_port.toString();
 				},
@@ -4539,10 +4539,10 @@ function RPCPage() {
 					}, true);
 				}
 			}));
-			(0, import_web$2.effect)((_p$) => {
+			(0, import_web$14.effect)((_p$) => {
 				const _v$ = classes.stextbox, _v$2 = classes.stextboxInput;
-				_v$ !== _p$._v$ && (0, import_web$1.className)(_el$, _p$._v$ = _v$);
-				_v$2 !== _p$._v$2 && (0, import_web$1.className)(_el$2, _p$._v$2 = _v$2);
+				_v$ !== _p$._v$ && (0, import_web$13.className)(_el$, _p$._v$ = _v$);
+				_v$2 !== _p$._v$2 && (0, import_web$13.className)(_el$2, _p$._v$2 = _v$2);
 				return _p$;
 			}, {
 				_v$: undefined,
@@ -4550,7 +4550,7 @@ function RPCPage() {
 			});
 			return _el$;
 		})(),
-		(0, import_web$7.createComponent)(Header, {
+		(0, import_web$19.createComponent)(Header, {
 			get ["class"]() {
 				return classes.shead;
 			},
@@ -4558,7 +4558,7 @@ function RPCPage() {
 				return t("dorion_rpc.advanced_settings");
 			}
 		}),
-		(0, import_web$7.createComponent)(SwitchItem, {
+		(0, import_web$19.createComponent)(SwitchItem, {
 			get value() {
 				return settings().rpc_process_scanner;
 			},
@@ -4580,7 +4580,7 @@ function RPCPage() {
 				return t("dorion_rpc.enable_process_scanner");
 			}
 		}),
-		(0, import_web$7.createComponent)(SwitchItem, {
+		(0, import_web$19.createComponent)(SwitchItem, {
 			get value() {
 				return settings().rpc_ipc_connector;
 			},
@@ -4596,11 +4596,11 @@ function RPCPage() {
 				return !settings().rpc_server;
 			},
 			get note() {
-				return (0, import_web$6.memo)(() => t("dorion_rpc.ipc_connector_note", {
+				return (0, import_web$18.memo)(() => t("dorion_rpc.ipc_connector_note", {
 					appName,
 					vscordLink: (() => {
-						const _el$0 = (0, import_web$3.getNextElement)(_tmpl$6);
-						(0, import_web$5.insert)(_el$0, () => t("common.vscord"));
+						const _el$0 = (0, import_web$15.getNextElement)(_tmpl$6);
+						(0, import_web$17.insert)(_el$0, () => t("common.vscord"));
 						return _el$0;
 					})()
 				}));
@@ -4609,7 +4609,7 @@ function RPCPage() {
 				return t("dorion_rpc.enable_ipc_connector");
 			}
 		}),
-		(0, import_web$7.createComponent)(SwitchItem, {
+		(0, import_web$19.createComponent)(SwitchItem, {
 			get value() {
 				return settings().rpc_websocket_connector;
 			},
@@ -4631,7 +4631,7 @@ function RPCPage() {
 				return t("dorion_rpc.enable_websocket_connector");
 			}
 		}),
-		(0, import_web$7.createComponent)(SwitchItem, {
+		(0, import_web$19.createComponent)(SwitchItem, {
 			get value() {
 				return settings().rpc_secondary_events;
 			},
@@ -4657,6 +4657,60 @@ function RPCPage() {
 }
 
 //#endregion
+//#region plugins/dorion-settings/icons/IconCog.tsx
+var import_web$10 = __toESM(require_web(), 1);
+var import_web$11 = __toESM(require_web(), 1);
+const _tmpl$$5 = /*#__PURE__*/ (0, import_web$10.template)(`<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><g><path d="M0,0h24v24H0V0z" fill="none"></path><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"></path></g></svg>`, 8);
+function IconCog() {
+	return (0, import_web$11.getNextElement)(_tmpl$$5);
+}
+
+//#endregion
+//#region plugins/dorion-settings/icons/IconPlugins.tsx
+var import_web$8 = __toESM(require_web(), 1);
+var import_web$9 = __toESM(require_web(), 1);
+const _tmpl$$4 = /*#__PURE__*/ (0, import_web$8.template)(`<svg xmlns="http://www.w3.org/2000/svg" role="img" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M18.559 12.8227C17.7884 13.4957 16.6663 13.3616 15.9404 12.641C14.7975 11.5063 11.4931 8.21104 11.4931 8.21104C10.897 7.63087 10.897 6.44662 11.4931 5.85464C12.319 5.03435 13.6053 3.75146 13.6053 3.75146C13.9641 3.39195 14.456 3.18972 14.9653 3.18886L18.3363 3.18425L19.5255 2L22.5 4.96048L21.3108 6.14473L21.3021 9.50878C21.2992 10.0164 21.0967 10.5026 20.735 10.8613C20.735 10.8613 19.5718 11.9384 18.559 12.8227ZM15.2315 13.9548L13.4954 15.8273C14.0972 16.4265 14.0972 16.9113 13.64 17.6997L11.3976 20.2485C11.0359 20.6081 10.5469 20.8103 10.0347 20.8111L6.66378 20.8158L5.47455 22L2.5 19.0395L3.68927 17.8553L3.70082 14.4912C3.70082 13.9836 3.90338 13.4974 4.26507 13.1387L6.37153 11.0404C6.96759 10.4485 8.15685 10.4485 8.73844 11.0404L8.74424 11.0465L10.5295 9.26998L11.7188 10.4542L9.93347 12.2305L12.3119 14.599L14.0972 12.8227L15.2315 13.9548Z"></path></svg>`, 4);
+function IconPlugins() {
+	return (0, import_web$9.getNextElement)(_tmpl$$4);
+}
+
+//#endregion
+//#region plugins/dorion-settings/icons/IconThemes.tsx
+var import_web$6 = __toESM(require_web(), 1);
+var import_web$7 = __toESM(require_web(), 1);
+const _tmpl$$3 = /*#__PURE__*/ (0, import_web$6.template)(`<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"></path><path d="M12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6Z" fill="currentColor"></path></svg>`, 6);
+function IconThemes() {
+	return (0, import_web$7.getNextElement)(_tmpl$$3);
+}
+
+//#endregion
+//#region plugins/dorion-settings/icons/IconPerformance.tsx
+var import_web$4 = __toESM(require_web(), 1);
+var import_web$5 = __toESM(require_web(), 1);
+const _tmpl$$2 = /*#__PURE__*/ (0, import_web$4.template)(`<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="currentColor"><path d="M7 2v11h3v9l7-12h-4l4-8z"></path></svg>`, 4);
+function IconPerformance() {
+	return (0, import_web$5.getNextElement)(_tmpl$$2);
+}
+
+//#endregion
+//#region plugins/dorion-settings/icons/IconProfile.tsx
+var import_web$2 = __toESM(require_web(), 1);
+var import_web$3 = __toESM(require_web(), 1);
+const _tmpl$$1 = /*#__PURE__*/ (0, import_web$2.template)(`<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>`, 4);
+function IconProfile() {
+	return (0, import_web$3.getNextElement)(_tmpl$$1);
+}
+
+//#endregion
+//#region plugins/dorion-settings/icons/IconChangelog.tsx
+var import_web = __toESM(require_web(), 1);
+var import_web$1 = __toESM(require_web(), 1);
+const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="currentColor"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"></path></svg>`, 4);
+function IconChangelog() {
+	return (0, import_web$1.getNextElement)(_tmpl$);
+}
+
+//#endregion
 //#region plugins/dorion-settings/index.tsx
 const { settings: { registerSection }, flux: { dispatcher }, util: { sleep } } = shelter;
 let settingsUninjects = [];
@@ -4665,12 +4719,12 @@ let settingsUninjects = [];
 	settingsUninjects = [
 		registerSection("divider"),
 		registerSection("header", appName),
-		registerSection("section", `${appName}-settings`, t("dorion_settings.title", { appName }), SettingsPage),
-		registerSection("section", `${appName}-plugins`, t("common.plugins"), PluginsPage),
-		registerSection("section", `${appName}-themes`, t("common.themes"), ThemesPage),
-		registerSection("section", `${appName}-performance`, t("dorion_performance.title"), PerformancePage),
+		registerSection("section", `${appName}-settings`, t("dorion_settings.title", { appName }), SettingsPage, { icon: IconCog }),
+		registerSection("section", `${appName}-plugins`, t("common.plugins"), PluginsPage, { icon: IconPlugins }),
+		registerSection("section", `${appName}-themes`, t("common.themes"), ThemesPage, { icon: IconThemes }),
+		registerSection("section", `${appName}-performance`, t("dorion_performance.title"), PerformancePage, { icon: IconPerformance }),
 		platform !== "macos" && registerSection("section", `${appName}-rpc`, t("dorion_rpc.title"), RPCPage),
-		registerSection("section", `${appName}-profiles`, t("dorion_profiles.title"), ProfilesPage)
+		registerSection("section", `${appName}-profiles`, t("dorion_profiles.title"), ProfilesPage, { icon: IconProfile })
 	];
 })();
 const appendAppVersion = async () => {
@@ -4700,7 +4754,10 @@ const checkForUpdates = async () => {
 	const updateCheck = await invoke("update_check");
 	let needsUpdate = false;
 	if (updateCheck.includes("dorion")) needsUpdate = true;
-	settingsUninjects.push(registerSection("section", `${appName}-changelog`, t("dorion_changelog.title"), ChangelogPage, { badgeCount: needsUpdate ? 1 : 0 }));
+	settingsUninjects.push(registerSection("section", `${appName}-changelog`, t("dorion_changelog.title"), ChangelogPage, {
+		icon: IconChangelog,
+		badgeCount: needsUpdate ? 1 : 0
+	}));
 };
 dispatcher.subscribe("USER_SETTINGS_MODAL_OPEN", appendAppVersion);
 checkForUpdates();
