@@ -9,6 +9,13 @@ import { PluginsPage } from './pages/PluginsPage.jsx'
 import { ThemesPage } from './pages/ThemesPage.jsx'
 import { RPCPage } from './pages/RPC.jsx'
 
+import { IconCog } from './icons/IconCog.jsx'
+import { IconPlugins } from './icons/IconPlugins.jsx'
+import { IconThemes } from './icons/IconThemes.jsx'
+import { IconPerformance } from './icons/IconPerformance.jsx'
+import { IconProfile } from './icons/IconProfile.jsx'
+import { IconChangelog } from './icons/IconChangelog.jsx'
+
 const {
   settings: {
     registerSection,
@@ -30,12 +37,22 @@ let settingsUninjects = []
   settingsUninjects = [
     registerSection('divider'),
     registerSection('header', appName),
-    registerSection('section', `${appName}-settings`, t('dorion_settings.title', { appName }), SettingsPage),
-    registerSection('section', `${appName}-plugins`, t('common.plugins'), PluginsPage),
-    registerSection('section', `${appName}-themes`, t('common.themes'), ThemesPage),
-    registerSection('section',  `${appName}-performance`, t('dorion_performance.title'), PerformancePage),
+    registerSection('section', `${appName}-settings`, t('dorion_settings.title', { appName }), SettingsPage, {
+      icon: IconCog,
+    }),
+    registerSection('section', `${appName}-plugins`, t('common.plugins'), PluginsPage, {
+      icon: IconPlugins,
+    }),
+    registerSection('section', `${appName}-themes`, t('common.themes'), ThemesPage, {
+      icon: IconThemes,
+    }),
+    registerSection('section',  `${appName}-performance`, t('dorion_performance.title'), PerformancePage, {
+      icon: IconPerformance,
+    }),
     platform !== 'macos' && registerSection('section', `${appName}-rpc`, t('dorion_rpc.title'), RPCPage),
-    registerSection('section', `${appName}-profiles`, t('dorion_profiles.title'), ProfilesPage),
+    registerSection('section', `${appName}-profiles`, t('dorion_profiles.title'), ProfilesPage, {
+      icon: IconProfile,
+    }),
   ]
 })()
 
@@ -83,6 +100,7 @@ const checkForUpdates = async () => {
 
   settingsUninjects.push(
     registerSection('section', `${appName}-changelog`, t('dorion_changelog.title'), ChangelogPage, {
+      icon: IconChangelog,
       badgeCount: needsUpdate ? 1 : 0
     })
   )
