@@ -52,6 +52,14 @@ const waitForPopulate = async (fn) => {
   }
 }
 
+const usernameFor = (guildId: string, userId: string) =>
+  // @ts-expect-error this exists
+  GuildMemberStore.getNick(guildId, userId) ||
+  // @ts-expect-error this exists
+  UserStore?.getUser(userId)?.globalName ||
+  // @ts-expect-error this exists
+  UserStore?.getUser(userId)?.username
+
 const toSoundboardPayload = (sound: any, fallbackGuild?: string): SoundboardSoundPayload | null => {
   if (!sound?.soundId) return null
 
@@ -124,11 +132,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
             cmd: 'CHANNEL_JOINED',
             states: Object.values(voiceStates).map((s: ChannelState) => ({
               userId: s.userId,
-              username:
-                // @ts-expect-error this exists
-                GuildMemberStore.getNick(guildId, s.userId) ||
-                // @ts-expect-error this exists
-                UserStore?.getUser(s.userId)?.globalName,
+              username: usernameFor(guildId, s.userId),
               // @ts-expect-error this exists
               avatarUrl: UserStore?.getUser(s.userId)?.avatar,
               channelId: s.channelId,
@@ -170,14 +174,10 @@ const handleVoiceStateUpdates = async (dispatch) => {
           cmd: 'VOICE_STATE_UPDATE',
           state: {
             userId: state.userId,
-            username:
-              // @ts-expect-error this exists
-              GuildMemberStore.getNick(guildId, state.userId) ||
-              // @ts-expect-error this exists
-              UserStore?.getUser(state.userId)?.globalName,
+            username: usernameFor(guildId, state.userId),
             // @ts-expect-error this exists
             avatarUrl: UserStore?.getUser(state.userId)?.avatar,
-            channelId: state.channelId ? state.channelId : '0',
+            channelId: state.channelId ?? null,
             deaf: state.deaf || state.selfDeaf,
             mute: state.mute || state.selfMute,
             streaming: state.selfStream,
@@ -330,11 +330,7 @@ const createWebsocket = () => {
         cmd: 'CHANNEL_JOINED',
         states: Object.values(channelState).map((s: ChannelState) => ({
           userId: s.userId,
-          username:
-            // @ts-expect-error this exists
-            GuildMemberStore.getNick(guildId, s.userId) ||
-            // @ts-expect-error this exists
-            UserStore?.getUser(s.userId)?.globalName,
+          username: usernameFor(guildId, s.userId),
           // @ts-expect-error this exists
           avatarUrl: UserStore?.getUser(s.userId)?.avatar,
           channelId: s.channelId,
