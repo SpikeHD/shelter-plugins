@@ -110,6 +110,7 @@ const waitForPopulate = async (fn) => {
 		await new Promise((r) => setTimeout(r, 500));
 	}
 };
+const usernameFor = (guildId, userId) => GuildMemberStore.getNick(guildId, userId) || UserStore?.getUser(userId)?.globalName || UserStore?.getUser(userId)?.username;
 const toSoundboardPayload = (sound, fallbackGuild) => {
 	if (!sound?.soundId) return null;
 	const guildId = sound.guildId ?? fallbackGuild;
@@ -162,7 +163,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 					cmd: "CHANNEL_JOINED",
 					states: Object.values(voiceStates).map((s) => ({
 						userId: s.userId,
-						username: GuildMemberStore.getNick(guildId, s.userId) || UserStore?.getUser(s.userId)?.globalName,
+						username: usernameFor(guildId, s.userId),
 						avatarUrl: UserStore?.getUser(s.userId)?.avatar,
 						channelId: s.channelId,
 						deaf: s.deaf || s.selfDeaf,
@@ -184,9 +185,9 @@ const handleVoiceStateUpdates = async (dispatch) => {
 			cmd: "VOICE_STATE_UPDATE",
 			state: {
 				userId: state.userId,
-				username: GuildMemberStore.getNick(guildId, state.userId) || UserStore?.getUser(state.userId)?.globalName,
+				username: usernameFor(guildId, state.userId),
 				avatarUrl: UserStore?.getUser(state.userId)?.avatar,
-				channelId: state.channelId ? state.channelId : "0",
+				channelId: state.channelId ?? null,
 				deaf: state.deaf || state.selfDeaf,
 				mute: state.mute || state.selfMute,
 				streaming: state.selfStream,
@@ -305,7 +306,7 @@ const createWebsocket = () => {
 			cmd: "CHANNEL_JOINED",
 			states: Object.values(channelState).map((s) => ({
 				userId: s.userId,
-				username: GuildMemberStore.getNick(guildId, s.userId) || UserStore?.getUser(s.userId)?.globalName,
+				username: usernameFor(guildId, s.userId),
 				avatarUrl: UserStore?.getUser(s.userId)?.avatar,
 				channelId: s.channelId,
 				deaf: s.deaf || s.selfDeaf,
