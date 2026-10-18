@@ -158,6 +158,10 @@ const handleVoiceStateUpdates = async (dispatch) => {
 		const guildId = state.guildId;
 		if (ourState) {
 			if (state.channelId && state.channelId !== currentChannel) {
+				if (!ws || ws.readyState !== WebSocket.OPEN) {
+					createWebsocket();
+					break;
+				}
 				const voiceStates = await waitForPopulate(() => VoiceStateStore?.getVoiceStatesForChannel(state.channelId));
 				ws?.send(JSON.stringify({
 					cmd: "CHANNEL_JOINED",
@@ -176,8 +180,8 @@ const handleVoiceStateUpdates = async (dispatch) => {
 				sendSoundboardUpdate();
 				break;
 			} else if (!state.channelId) {
-				ws?.send(JSON.stringify({ cmd: "CHANNEL_LEFT" }));
 				currentChannel = null;
+				ws?.send(JSON.stringify({ cmd: "CHANNEL_LEFT" }));
 				break;
 			}
 		}
@@ -266,7 +270,14 @@ const incoming = (payload) => {
 };
 const createWebsocket = () => {
 	console.log("Attempting to connect to Orbolay server");
-	if (ws?.close) ws.close();
+	if (ws) {
+		ws.onopen = null;
+		ws.onmessage = null;
+		ws.onerror = null;
+		ws.onclose = null;
+		ws.close();
+		ws = null;
+	}
 	const port = store && typeof store.port === "number" ? store.port : defaultConfig.port;
 	ws = new WebSocket("ws://127.0.0.1:" + String(port));
 	ws.onerror = () => {
@@ -278,6 +289,7 @@ const createWebsocket = () => {
 	};
 	ws.onclose = () => {
 		ws = null;
+		currentChannel = null;
 		if (!stopped) {
 			if (retryTimer) clearTimeout(retryTimer);
 			retryTimer = setTimeout(createWebsocket, 5e3);
