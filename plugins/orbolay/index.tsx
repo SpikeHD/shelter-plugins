@@ -122,6 +122,12 @@ const handleVoiceStateUpdates = async (dispatch) => {
 
     if (ourState) {
       if (state.channelId && state.channelId !== currentChannel) {
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
+          createWebsocket()
+          // A new socket's onopen handler resyncs the current channel, will retry this function. 
+          break
+        }
+
         const voiceStates = await waitForPopulate(() =>
           // @ts-expect-error this exists
           VoiceStateStore?.getVoiceStatesForChannel(state.channelId)
@@ -287,6 +293,8 @@ const createWebsocket = () => {
   }
   ws.onclose = () => {
     ws = null
+    // Reset so the reconnect's onopen resyncs the current channel
+    currentChannel = null
 
     if (!stopped) {
       if (retryTimer) clearTimeout(retryTimer)
