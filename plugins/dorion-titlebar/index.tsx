@@ -1,6 +1,7 @@
 import { Controls, Titlebar } from './Titlebar.jsx'
 import { setMaximizeIcon } from './actions.js'
 import { css, classes } from './index.scss'
+import { MACOS_LAYOUT_CSS, initMacosTitlebar } from './macos.js'
 import { disobserve, waitForElm } from './waitElm.js'
 
 const {
@@ -9,6 +10,7 @@ const {
 } = shelter
 
 let injectedCss = false
+let macosCleanup: (() => void) | null = null
 
 const insertOne = (classNames: Array<string> | string, callbackFn: () => void) => {
   if (!Array.isArray(classNames)) classNames = [classNames]
@@ -66,7 +68,22 @@ const handleFullscreenExit = dispatch => {
 
 export const onLoad = async () => {
   // @ts-expect-error shut up
-  if (window?.__DORION_CONFIG__?.use_native_titlebar || await window?.__TAURI__?.core.invoke('get_platform') === 'macos') return
+  if (window?.__DORION_CONFIG__?.use_native_titlebar) return
+
+  // @ts-expect-error shut up
+  const platform = await window?.__TAURI__?.core.invoke('get_platform')
+
+  // On macOS the overlay titlebar uses the native traffic lights floating over
+  // Discord's own top bar, so none of the custom titlebar DOM below applies.
+  if (platform === 'macos') {
+    if (!injectedCss) {
+      injectCss(MACOS_LAYOUT_CSS)
+      injectedCss = true
+    }
+
+    macosCleanup = initMacosTitlebar()
+    return
+  }
 
   if (!injectedCss) {
     injectCss(css)
@@ -93,6 +110,8 @@ export const onLoad = async () => {
 
 export const onUnload = () => {
   disobserve()
+  macosCleanup?.()
+  macosCleanup = null
   dispatcher.unsubscribe('LAYER_PUSH', handleFullTitlebar)
   dispatcher.unsubscribe('LAYER_POP', handleControlsOnly)
   dispatcher.unsubscribe('LOGIN_SUCCESS', injectControls)
