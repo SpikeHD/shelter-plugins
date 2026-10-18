@@ -279,8 +279,17 @@ const incoming = (payload) => {
 const createWebsocket = () => {
   console.log('Attempting to connect to Orbolay server')
 
-  // First ensure old connection is closed
-  if (ws?.close) ws.close()
+  // Detach all handlers from the old socket BEFORE closing it, so its
+  // async close/error events can't clobber the new socket.
+  // This is because ws is a shared, module-level variable.
+  if (ws) {
+    ws.onopen = null
+    ws.onmessage = null
+    ws.onerror = null
+    ws.onclose = null
+    ws.close()
+    ws = null
+  }
 
   const port = (store && typeof store.port === 'number') ? store.port : defaultConfig.port
   ws = new WebSocket('ws://127.0.0.1:' + String(port))
