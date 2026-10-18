@@ -157,13 +157,13 @@ const handleVoiceStateUpdates = async (dispatch) => {
 
         break
       } else if (!state.channelId) {
+        currentChannel = null
+
         ws?.send(
           JSON.stringify({
             cmd: 'CHANNEL_LEFT',
           })
         )
-
-        currentChannel = null
 
         break
       }
