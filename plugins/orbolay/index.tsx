@@ -91,16 +91,17 @@ const getSoundboardSounds = (): SoundboardSoundPayload[] => {
 }
 
 const sendSoundboardUpdate = () => {
-  if (!ws || ws.readyState !== WebSocket.OPEN) return
-
   const sounds = getSoundboardSounds()
   if (!sounds.length) return
 
-  ws.send(JSON.stringify({ cmd: 'SOUNDBOARD_UPDATE', sounds }))
+  safeSend(JSON.stringify({ cmd: 'SOUNDBOARD_UPDATE', sounds }))
 }
 
+// send() throws when the socket is CONNECTING/CLOSING; drop instead
+const safeSend = (data: string) => (ws?.readyState === WebSocket.OPEN) ? ws.send(data) : null
+
 const handleSpeaking = (dispatch) => {
-  ws?.send?.(
+  safeSend(
     JSON.stringify({
       cmd: 'VOICE_STATE_UPDATE',
       state: {
@@ -127,7 +128,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
           VoiceStateStore?.getVoiceStatesForChannel(state.channelId)
         )
 
-        ws?.send(
+        safeSend(
           JSON.stringify({
             cmd: 'CHANNEL_JOINED',
             states: Object.values(voiceStates).map((s: ChannelState) => ({
@@ -169,7 +170,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
       (state.channelId === currentChannel ||
         state.oldChannelId === currentChannel)
     ) {
-      ws?.send(
+      safeSend(
         JSON.stringify({
           cmd: 'VOICE_STATE_UPDATE',
           state: {
@@ -191,7 +192,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 }
 
 const handleMessageNotification = (dispatch) => {
-  ws?.send(
+  safeSend(
     JSON.stringify({
       cmd: 'MESSAGE_NOTIFICATION',
       message: {
@@ -207,7 +208,7 @@ const handleMessageNotification = (dispatch) => {
 }
 
 const handleStreamerModeUpdate = (dispatch) => {
-  ws?.send(JSON.stringify({ cmd: 'STREAMER_MODE', enabled: dispatch.value }))
+  safeSend(JSON.stringify({ cmd: 'STREAMER_MODE', enabled: dispatch.value }))
 }
 
 const incoming = (payload) => {
