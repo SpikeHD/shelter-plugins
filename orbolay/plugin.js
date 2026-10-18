@@ -134,16 +134,16 @@ const getSoundboardSounds = () => {
 	return sounds;
 };
 const sendSoundboardUpdate = () => {
-	if (!ws || ws.readyState !== WebSocket.OPEN) return;
 	const sounds = getSoundboardSounds();
 	if (!sounds.length) return;
-	ws.send(JSON.stringify({
+	safeSend(JSON.stringify({
 		cmd: "SOUNDBOARD_UPDATE",
 		sounds
 	}));
 };
+const safeSend = (data) => ws?.readyState === WebSocket.OPEN ? ws.send(data) : null;
 const handleSpeaking = (dispatch) => {
-	ws?.send?.(JSON.stringify({
+	safeSend(JSON.stringify({
 		cmd: "VOICE_STATE_UPDATE",
 		state: {
 			userId: dispatch.userId,
@@ -163,7 +163,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 					break;
 				}
 				const voiceStates = await waitForPopulate(() => VoiceStateStore?.getVoiceStatesForChannel(state.channelId));
-				ws?.send(JSON.stringify({
+				safeSend(JSON.stringify({
 					cmd: "CHANNEL_JOINED",
 					states: Object.values(voiceStates).map((s) => ({
 						userId: s.userId,
@@ -185,7 +185,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 				break;
 			}
 		}
-		if (!!currentChannel && (state.channelId === currentChannel || state.oldChannelId === currentChannel)) ws?.send(JSON.stringify({
+		if (!!currentChannel && (state.channelId === currentChannel || state.oldChannelId === currentChannel)) safeSend(JSON.stringify({
 			cmd: "VOICE_STATE_UPDATE",
 			state: {
 				userId: state.userId,
@@ -201,7 +201,7 @@ const handleVoiceStateUpdates = async (dispatch) => {
 	}
 };
 const handleMessageNotification = (dispatch) => {
-	ws?.send(JSON.stringify({
+	safeSend(JSON.stringify({
 		cmd: "MESSAGE_NOTIFICATION",
 		message: {
 			title: dispatch.title,
@@ -214,7 +214,7 @@ const handleMessageNotification = (dispatch) => {
 	}));
 };
 const handleStreamerModeUpdate = (dispatch) => {
-	ws?.send(JSON.stringify({
+	safeSend(JSON.stringify({
 		cmd: "STREAMER_MODE",
 		enabled: dispatch.value
 	}));
