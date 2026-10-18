@@ -35,13 +35,13 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/dorion-titlebar/index.scss
 const classes = {
-	"svgunmax": "e6P4KG_svgunmax",
+	"topmax": "e6P4KG_topmax",
 	"topright": "e6P4KG_topright",
-	"dorion_topbar": "e6P4KG_dorion_topbar",
 	"topmin": "e6P4KG_topmin",
+	"svgunmax": "e6P4KG_svgunmax",
 	"topclose": "e6P4KG_topclose",
 	"maximized": "e6P4KG_maximized",
-	"topmax": "e6P4KG_topmax",
+	"dorion_topbar": "e6P4KG_dorion_topbar",
 	"svgmax": "e6P4KG_svgmax"
 };
 const css = `.e6P4KG_dorion_topbar {
@@ -279,6 +279,89 @@ const Controls = (props) => {
 (0, import_web$2.delegateEvents)(["click"]);
 
 //#endregion
+//#region plugins/dorion-titlebar/macos.ts
+const TITLEBAR_SELECTORS = ["div[class^=\"base\"] > div[class^=\"bar_\"]", "div[class^=\"base\"] > div[class*=\"-bar\"]"];
+const OVERLAY_DRAG_SELECTORS = ["#loadingContainer"];
+const MODAL_SELECTORS = ["div[data-mana-component=\"layer-modal\"]"];
+const DRAG_STRIP_ID = "dorion-titlebar-drag";
+const FALLBACK_TITLEBAR_HEIGHT = 30;
+const FALLBACK_THROTTLE_MS = 250;
+const MACOS_LAYOUT_CSS = `
+:root[data-dorion-platform='macos'],
+:root[data-dorion-platform='macos'] :is(body, #app-mount) {
+  width: auto !important;
+  height: auto !important;
+}
+`;
+function isMacosOverlayTitlebar() {
+	const tauri = window.__TAURI__;
+	return document.documentElement.dataset.dorionPlatform === "macos" && tauri?.webviewWindow?.getCurrentWebviewWindow?.()?.label === "main" && !window.__DORION_CONFIG__?.use_native_titlebar;
+}
+function getTitlebarHeight() {
+	for (const selector of TITLEBAR_SELECTORS) {
+		const bottom = document.querySelector(selector)?.getBoundingClientRect().bottom ?? 0;
+		if (bottom > 0) return bottom;
+	}
+	return FALLBACK_TITLEBAR_HEIGHT;
+}
+function initMacosTitlebar() {
+	if (!isMacosOverlayTitlebar()) return () => {};
+	let dragStrip = null;
+	const syncDragStrip = () => {
+		const modalOpen = MODAL_SELECTORS.some((selector) => document.querySelector(selector));
+		if (!modalOpen) {
+			dragStrip?.remove();
+			dragStrip = null;
+			return;
+		}
+		if (dragStrip) return;
+		dragStrip = document.createElement("div");
+		dragStrip.id = DRAG_STRIP_ID;
+		dragStrip.setAttribute("data-tauri-drag-region", "true");
+		dragStrip.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: ${getTitlebarHeight()}px;
+      background: transparent;
+      pointer-events: auto;
+      cursor: default;
+      z-index: 2147483647;
+    `;
+		document.body.appendChild(dragStrip);
+	};
+	const applyDragRegions = () => {
+		document.querySelectorAll([...TITLEBAR_SELECTORS, ...OVERLAY_DRAG_SELECTORS].join(", ")).forEach((elm) => {
+			elm.setAttribute("data-tauri-drag-region", "deep");
+		});
+		syncDragStrip();
+	};
+	let throttle;
+	const observer$1 = new MutationObserver(() => {
+		if (throttle) return;
+		throttle = setTimeout(() => {
+			throttle = undefined;
+			applyDragRegions();
+		}, FALLBACK_THROTTLE_MS);
+	});
+	observer$1.observe(document, {
+		childList: true,
+		subtree: true,
+		attributes: true,
+		attributeFilter: ["class"]
+	});
+	applyDragRegions();
+	return () => {
+		observer$1.disconnect();
+		if (throttle) clearTimeout(throttle);
+		throttle = undefined;
+		dragStrip?.remove();
+		dragStrip = null;
+	};
+}
+
+//#endregion
 //#region plugins/dorion-titlebar/waitElm.ts
 const { util: { log } } = shelter;
 let observer = null;
@@ -369,6 +452,7 @@ const waitForElm = async (queries, cfg = {}) => {
 var import_web = __toESM(require_web(), 1);
 const { ui: { injectCss }, flux: { dispatcher } } = shelter;
 let injectedCss = false;
+let macosCleanup = null;
 const insertOne = (classNames, callbackFn) => {
 	if (!Array.isArray(classNames)) classNames = [classNames];
 	classNames.forEach((className) => {
@@ -423,7 +507,16 @@ const handleFullscreenExit = (dispatch) => {
 	injectControls();
 };
 const onLoad = async () => {
-	if (window?.__DORION_CONFIG__?.use_native_titlebar || await window?.__TAURI__?.core.invoke("get_platform") === "macos") return;
+	if (window?.__DORION_CONFIG__?.use_native_titlebar) return;
+	const platform = await window?.__TAURI__?.core.invoke("get_platform");
+	if (platform === "macos") {
+		if (!injectedCss) {
+			injectCss(MACOS_LAYOUT_CSS);
+			injectedCss = true;
+		}
+		macosCleanup = initMacosTitlebar();
+		return;
+	}
 	if (!injectedCss) {
 		injectCss(css);
 		injectedCss = true;
@@ -442,6 +535,8 @@ const onLoad = async () => {
 };
 const onUnload = () => {
 	disobserve();
+	macosCleanup?.();
+	macosCleanup = null;
 	dispatcher.unsubscribe("LAYER_PUSH", handleFullTitlebar);
 	dispatcher.unsubscribe("LAYER_POP", handleControlsOnly);
 	dispatcher.unsubscribe("LOGIN_SUCCESS", injectControls);
