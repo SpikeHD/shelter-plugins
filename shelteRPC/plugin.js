@@ -33,135 +33,6 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/raid/webpackChunk.js
-var webpackChunk_default = (key) => {
-	key ??= Object.keys(window).find((key$1) => key$1.startsWith("webpackChunk"));
-	if (!window[key]) return;
-	let wpRequire;
-	window[key].push([
-		[Symbol()],
-		{},
-		(e) => {
-			wpRequire = e;
-		}
-	]);
-	window[key].pop();
-	return [wpRequire.c ?? Object.fromEntries(Object.entries(wpRequire.m).map(([k]) => [k, {
-		id: k,
-		loaded: true,
-		exports: wpRequire(k)
-	}])), wpRequire];
-};
-
-//#endregion
-//#region node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/filters.js
-const byProps = (props) => (m) => props.every((p) => m[p] !== undefined);
-const byProtos = (protos) => (m) => m.prototype && protos.every((p) => m.prototype[p] !== undefined);
-const byDisplayName = (name, defaultExp = true) => (m) => (defaultExp ? m.displayName : m.default?.displayName) === name;
-const byKeyword = (strs) => (m) => strs.every((s) => Object.keys(m).some((k) => k.toLowerCase().includes(s.toLowerCase())));
-const byDispNameDeep = (name) => (m) => {
-	const regex = new RegExp(`(${name}$)|((\\w+\\()+${name}\\))`);
-	if (regex.test(m.displayName)) return true;
-	if (typeof m.$$typeof !== "symbol") return;
-	if (m.Consumer !== undefined) return;
-	if (m.type || m.render) {
-		while (typeof m.type === "object" || typeof m.render === "object") m = m.type ?? m.render;
-		if (regex.test(m.type?.displayName)) return true;
-		if (regex.test(m.render?.displayName)) return true;
-	}
-};
-const isKeyable = (m) => typeof m === "object" || typeof m === "function";
-const byNestedProps = (props) => (m) => isKeyable(m) && Object.values(m).some((v) => isKeyable(v) && props.some((p) => v?.[p] !== undefined));
-const allByCode = (modules, loaders) => (code) => Object.entries(loaders).filter(([, m]) => m.toString().match(code)).map(([id]) => modules[id]?.exports).filter((m) => m);
-
-//#endregion
-//#region node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/batch.js
-const batchFilter = (modules, filterList) => {
-	const found = [];
-	const checkModule = (mod) => filterList.forEach(([filter$1, multi], i) => {
-		if (multi && !found[i]) found[i] = [];
-		if (filter$1(mod)) {
-			if (multi) found[i].push(mod);
-else if (!found[i]) found[i] = mod;
-		}
-	});
-	for (const mid in modules) {
-		const module$1 = modules[mid].exports;
-		if (!module$1 || module$1 === window) continue;
-		if (module$1.default && module$1.__esModule) checkModule(module$1.default);
-		checkModule(module$1);
-	}
-	return found;
-};
-const makeFakeWp = (filterList) => ({
-	find: (f) => filterList.push([f, false]),
-	findAll: (f) => filterList.push([f, true]),
-	findByProps: (...p) => filterList.push([byProps(p), false]),
-	findByPropsAll: (...p) => filterList.push([byProps(p), true]),
-	findByPrototypes: (...p) => filterList.push([byProtos(p), false]),
-	findByPrototypesAll: (...p) => filterList.push([byProtos(p), true]),
-	findByNestedProps: (...p) => filterList.push([byNestedProps(p), false]),
-	findByNestedPropsAll: (...p) => filterList.push([byNestedProps(p), true]),
-	findByDisplayName: (n, d) => filterList.push([byDisplayName(n, d), false]),
-	findByDisplayNameAll: (n, d) => filterList.push([byDisplayName(n, d), true]),
-	findByDispNameDeep: (n) => filterList.push([byDispNameDeep(n), false]),
-	findByDispNameDeepAll: (n) => filterList.push([byDispNameDeep(n), true]),
-	findByKeyword: (...s) => filterList.push([byKeyword(s), false]),
-	findByKeywordAll: (...s) => filterList.push([byKeyword(s), true])
-});
-var batch_default = (mods) => (cb) => {
-	const fList = [];
-	const fakeWp = makeFakeWp(fList);
-	cb(fakeWp);
-	return batchFilter(mods, fList);
-};
-
-//#endregion
-//#region node_modules/.pnpm/@cumjar+websmack@1.2.0/node_modules/@cumjar/websmack/src/api/index.js
-const filter = (modules, single = true) => (filterFunc) => {
-	const found = [];
-	for (const mid in modules) {
-		const module$1 = modules[mid].exports;
-		if (!module$1 || module$1 === window) continue;
-		if (module$1.default && module$1.__esModule && filterFunc(module$1.default)) {
-			if (single) return module$1.default;
-			found.push(module$1.default);
-		}
-		if (filterFunc(module$1)) {
-			if (single) return module$1;
-			found.push(module$1);
-		}
-	}
-	if (!single) return found;
-};
-var api_default = ([, modules, wpR]) => {
-	const find = filter(modules);
-	const findAll = filter(modules, false);
-	const findByCodeAll = wpR ? allByCode(modules, wpR.m) : () => {
-		throw new Error("findByCode does not work with this bundler");
-	};
-	return {
-		batchFind: batch_default(modules),
-		find,
-		findAll,
-		findByProps: (...p) => find(byProps(p)),
-		findByPropsAll: (...p) => findAll(byProps(p)),
-		findByPrototypes: (...p) => find(byProtos(p)),
-		findByPrototypesAll: (...p) => findAll(byProtos(p)),
-		findByNestedProps: (...p) => find(byNestedProps(p)),
-		findByNestedPropsAll: (...p) => findAll(byNestedProps(p)),
-		findByDisplayName: (d, p) => find(byDisplayName(d, p)),
-		findByDisplayNameAll: (d, p) => findAll(byDisplayName(d, p)),
-		findByDispNameDeep: (d) => find(byDispNameDeep(d)),
-		findByDispNameDeepAll: (d) => findAll(byDispNameDeep(d)),
-		findByKeyword: (...k) => find(byKeyword(k)),
-		findByKeywordAll: (...k) => findAll(byKeyword(k)),
-		findByCodeAll,
-		findByCode: (c$1) => findByCodeAll(c$1)[0]
-	};
-};
-
-//#endregion
 //#region api/dorion.ts
 var dorion_default = {
 	name: "Dorion",
@@ -269,16 +140,16 @@ const timestampToRelative = (timestamp) => {
 //#endregion
 //#region plugins/shelteRPC/components/GameCard.scss
 const classes$2 = {
-	"cardPlaying": "zS7Qtq_cardPlaying",
-	"gameCard": "zS7Qtq_gameCard",
-	"trash": "zS7Qtq_trash",
-	"gameCardName": "zS7Qtq_gameCardName",
-	"gameCardIcons": "zS7Qtq_gameCardIcons",
-	"cardPlayed": "zS7Qtq_cardPlayed",
 	"cardNone": "zS7Qtq_cardNone",
 	"gameCardInfo": "zS7Qtq_gameCardInfo",
+	"trash": "zS7Qtq_trash",
+	"gameCard": "zS7Qtq_gameCard",
+	"gameCardName": "zS7Qtq_gameCardName",
+	"gameCardIcons": "zS7Qtq_gameCardIcons",
 	"gameCardLastPlayed": "zS7Qtq_gameCardLastPlayed",
-	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp"
+	"lastPlayedTimestamp": "zS7Qtq_lastPlayedTimestamp",
+	"cardPlayed": "zS7Qtq_cardPlayed",
+	"cardPlaying": "zS7Qtq_cardPlaying"
 };
 const css$2 = `.zS7Qtq_gameCard {
   width: 100%;
@@ -462,11 +333,11 @@ var GameCard_default = (props) => {
 //#endregion
 //#region plugins/shelteRPC/components/RegisteredGames.scss
 const classes$1 = {
-	"shead": "yVnOSq_shead",
 	"addIt": "yVnOSq_addIt",
-	"modalhead": "yVnOSq_modalhead",
 	"tophead": "yVnOSq_tophead",
-	"description": "yVnOSq_description"
+	"description": "yVnOSq_description",
+	"modalhead": "yVnOSq_modalhead",
+	"shead": "yVnOSq_shead"
 };
 const css$1 = `.yVnOSq_description {
   margin-top: 8px;
@@ -680,10 +551,28 @@ var import_web$5 = __toESM(require_web(), 1);
 var import_web$6 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<br>`, 1), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><!#><!/></div>`, 6);
 const { flux: { dispatcher: FluxDispatcher }, settings: { registerSection }, ui: { Header, HeaderTags, TextBox, Text, showToast, injectCss }, plugin: { store }, http } = shelter;
-const chunk = webpackChunk_default();
-const wp = chunk && api_default([undefined, ...chunk]);
-const c = wp.findByCode("getAssetImage: ");
-const fetchAssetIds = async (id, asset) => (await (c ? c.fetchAssetIds(id, [asset, null]) : () => null))[0];
+const assetCache = new Map();
+async function resolveExternalImage(appId, url) {
+	const cached = assetCache.get(url);
+	if (cached) return cached;
+	try {
+		const res = await http.post({
+			url: `/applications/${appId}/external-assets`,
+			body: { urls: [url] },
+			oldFormErrors: false
+		});
+		const path = res?.body?.[0]?.external_asset_path;
+		if (!path) return null;
+		assetCache.set(url, `mp:${path}`);
+		return `mp:${path}`;
+	} catch {
+		return null;
+	}
+}
+async function resolveImage(appId, image) {
+	if (/^https?:\/\//i.test(image)) return resolveExternalImage(appId, image);
+	return image;
+}
 let injectedCss = false;
 if (!injectedCss) {
 	injectedCss = true;
@@ -709,8 +598,8 @@ async function handleMessage(e) {
 	const data = JSON.parse(e.data);
 	const assets = data.activity?.assets;
 	if (data.cmd) return handleCmd(data);
-	if (assets?.large_image && data.activity?.application_id) assets.large_image = await fetchAssetIds(data.activity.application_id, assets.large_image);
-	if (assets?.small_image && data.activity?.application_id) assets.small_image = await fetchAssetIds(data.activity.application_id, assets.small_image);
+	if (assets?.large_image && data.activity?.application_id) assets.large_image = await resolveImage(data.activity.application_id, assets.large_image);
+	if (assets?.small_image && data.activity?.application_id) assets.small_image = await resolveImage(data.activity.application_id, assets.small_image);
 	if (data.activity) {
 		const appId = data.activity.application_id;
 		apps[appId] ||= await lookupApp(appId).catch(() => "Unknown");
