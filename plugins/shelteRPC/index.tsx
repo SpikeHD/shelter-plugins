@@ -1,4 +1,3 @@
-import { createApi, webpackChunk } from '@cumjar/websmack'
 import { backend, invoke } from '../../api/api.js'
 import RegisteredGames from './components/RegisteredGames.jsx'
 import { css, classes } from './index.scss'
@@ -20,10 +19,31 @@ const {
   http,
 } = shelter
 
-const chunk = webpackChunk()
-const wp = chunk && createApi([undefined, ...chunk])
-const c = wp.findByCode('getAssetImage: ')
-const fetchAssetIds = async (id, asset) => (await (c ? c.fetchAssetIds(id, [asset, null]) : () => null))[0]
+const assetCache = new Map<string, string>()
+
+async function resolveExternalImage(appId: string, url: string): Promise<string | null> {
+  const cached = assetCache.get(url)
+  if (cached) return cached
+
+  try {
+    const res = await http.post({
+      url: `/applications/${appId}/external-assets`,
+      body: { urls: [url] },
+      oldFormErrors: false,
+    })
+    const path = res?.body?.[0]?.external_asset_path
+    if (!path) return null
+    assetCache.set(url, `mp:${path}`)
+    return `mp:${path}`
+  } catch {
+    return null
+  }
+}
+
+async function resolveImage(appId: string, image: string): Promise<string | null> {
+  if (/^https?:\/\//i.test(image)) return resolveExternalImage(appId, image)
+  return image
+}
 
 let injectedCss = false
 
@@ -63,12 +83,12 @@ async function handleMessage(e: MessageEvent<string>) {
   if (data.cmd) return handleCmd(data)
 
   if (assets?.large_image && data.activity?.application_id)
-    assets.large_image = await fetchAssetIds(
+    assets.large_image = await resolveImage(
       data.activity.application_id,
       assets.large_image
     )
   if (assets?.small_image && data.activity?.application_id)
-    assets.small_image = await fetchAssetIds(
+    assets.small_image = await resolveImage(
       data.activity.application_id,
       assets.small_image
     )
@@ -120,7 +140,7 @@ const handleCmd = async (payload: any) => {
       // This should never happen
       return
     }
-    
+
     // This is mostly to better replicate client behaviour
     FluxDispatcher.dispatch({
       type: 'INVITE_RESOLVE',
@@ -212,7 +232,7 @@ export const onLoad = async () => {
   )
 
   maybeUnregisterGameSettings.forEach((section) => section())
-  
+
   maybeUnregisterGameSettings = [
     registerSection('divider'),
     registerSection('header', 'shelteRPC'),
@@ -225,14 +245,14 @@ export const onLoad = async () => {
   ]
 
   if (!connected) return
-  
+
   ws.onclose = () => {
     showToast({
       title: 'ShelteRPC',
       content: 'ShelteRPC server disconnected; reconnecting...',
       duration: 3000,
     })
-  
+
     scheduleReconnect()
   }
 
