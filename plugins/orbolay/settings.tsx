@@ -6,7 +6,9 @@ const {
     injectCss,
     Text,
     TextBox,
-    Divider
+    Divider,
+    Button,
+    showToast
   },
   plugin: {
     store
@@ -38,6 +40,15 @@ export const Settings = (props: Props) => {
     submitSettings()
   }
 
+  const openConfig = () => {
+    if (props?.ws?.readyState !== WebSocket.OPEN) {
+      showToast({ title: 'Orbolay Bridge', content: 'Not connected to Orbolay', duration: 3000 })
+      return
+    }
+
+    props.ws.send(JSON.stringify({ cmd: 'OPEN_CONFIG' }))
+  }
+
   return (
     <>
       <div class={classes.container}>
@@ -49,6 +60,10 @@ export const Settings = (props: Props) => {
         />
       </div>
       <Divider />
+      <div class={classes.container}>
+        <Text>Orbolay Settings</Text>
+        <Button onClick={openConfig}>Open</Button>
+      </div>
     </>
   )
 }
