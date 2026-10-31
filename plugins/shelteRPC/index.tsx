@@ -208,7 +208,7 @@ export const onLoad = async () => {
       ws = new WebSocket('ws://' + (store.connAddr || '127.0.0.1:1337'))
       ws.onmessage = handleMessage
       ws.onerror = () => {
-        try { ws?.close?.() } catch {}
+        try { ws?.close?.() } catch { /* already closed */ }
       }
       await new Promise((r) => setTimeout(r, 1000))
 
