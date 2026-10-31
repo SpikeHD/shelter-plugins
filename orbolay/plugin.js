@@ -62,7 +62,7 @@ var import_web$5 = __toESM(require_web(), 1);
 var import_web$6 = __toESM(require_web(), 1);
 var import_web$7 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web$1.template)(`<div><!#><!/><!#><!/></div>`, 6);
-const { ui: { injectCss, Text, TextBox, Divider }, plugin: { store: store$1 } } = shelter;
+const { ui: { injectCss, Text, TextBox, Divider, Button, showToast: showToast$1 }, plugin: { store: store$1 } } = shelter;
 let injectedCss = false;
 const Settings = (props) => {
 	if (!injectedCss) {
@@ -79,19 +79,43 @@ const Settings = (props) => {
 		store$1[key] = value;
 		submitSettings();
 	};
-	return [(() => {
-		const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$5.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$5.getNextMarker)(_el$4.nextSibling);
-		(0, import_web$6.insert)(_el$, (0, import_web$7.createComponent)(Text, { children: "Orbolay Port" }), _el$3, _co$);
-		(0, import_web$6.insert)(_el$, (0, import_web$7.createComponent)(TextBox, {
-			get value() {
-				return store$1.port ?? defaultConfig.port;
-			},
-			onInput: (v) => set("port", parseInt(v) || defaultConfig.port),
-			type: "number"
-		}), _el$5, _co$2);
-		(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$, classes.container));
-		return _el$;
-	})(), (0, import_web$7.createComponent)(Divider, {})];
+	const openConfig = () => {
+		if (props?.ws?.readyState !== WebSocket.OPEN) {
+			showToast$1({
+				title: "Orbolay Bridge",
+				content: "Not connected to Orbolay",
+				duration: 3e3
+			});
+			return;
+		}
+		props.ws.send(JSON.stringify({ cmd: "OPEN_CONFIG" }));
+	};
+	return [
+		(() => {
+			const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, [_el$3, _co$] = (0, import_web$5.getNextMarker)(_el$2.nextSibling), _el$4 = _el$3.nextSibling, [_el$5, _co$2] = (0, import_web$5.getNextMarker)(_el$4.nextSibling);
+			(0, import_web$6.insert)(_el$, (0, import_web$7.createComponent)(Text, { children: "Orbolay Port" }), _el$3, _co$);
+			(0, import_web$6.insert)(_el$, (0, import_web$7.createComponent)(TextBox, {
+				get value() {
+					return store$1.port ?? defaultConfig.port;
+				},
+				onInput: (v) => set("port", parseInt(v) || defaultConfig.port),
+				type: "number"
+			}), _el$5, _co$2);
+			(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$, classes.container));
+			return _el$;
+		})(),
+		(0, import_web$7.createComponent)(Divider, {}),
+		(() => {
+			const _el$6 = (0, import_web$4.getNextElement)(_tmpl$), _el$7 = _el$6.firstChild, [_el$8, _co$3] = (0, import_web$5.getNextMarker)(_el$7.nextSibling), _el$9 = _el$8.nextSibling, [_el$0, _co$4] = (0, import_web$5.getNextMarker)(_el$9.nextSibling);
+			(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(Text, { children: "Orbolay Settings" }), _el$8, _co$3);
+			(0, import_web$6.insert)(_el$6, (0, import_web$7.createComponent)(Button, {
+				onClick: openConfig,
+				children: "Open"
+			}), _el$0, _co$4);
+			(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$6, classes.container));
+			return _el$6;
+		})()
+	];
 };
 
 //#endregion

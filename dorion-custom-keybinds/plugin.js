@@ -154,14 +154,14 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$2 = {
-	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindsButton": "Zz-Z3G_keybindsButton",
 	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"keybindSection": "Zz-Z3G_keybindSection",
 	"keybindsBanner": "Zz-Z3G_keybindsBanner",
 	"header": "Zz-Z3G_header",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton"
+	"keybindsHeader": "Zz-Z3G_keybindsHeader",
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"keybindsButton": "Zz-Z3G_keybindsButton",
+	"keybindSection": "Zz-Z3G_keybindSection"
 };
 const css$2 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -230,8 +230,8 @@ const css$2 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$1 = {
-	"keybindSection": "QTLdLq_keybindSection",
 	"divider": "QTLdLq_divider",
+	"keybindSection": "QTLdLq_keybindSection",
 	"keybindRoot": "QTLdLq_keybindRoot",
 	"keybindArea": "QTLdLq_keybindArea",
 	"actionSection": "QTLdLq_actionSection",
@@ -297,12 +297,12 @@ const css$1 = `.QTLdLq_divider {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"recording": "N-HDcq_recording",
+	"pulse": "N-HDcq_pulse",
+	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
 	"keybindButton": "N-HDcq_keybindButton",
 	"keybindInput": "N-HDcq_keybindInput",
-	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
-	"pulse": "N-HDcq_pulse",
-	"keybindContainer": "N-HDcq_keybindContainer"
+	"keybindContainer": "N-HDcq_keybindContainer",
+	"recording": "N-HDcq_recording"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);

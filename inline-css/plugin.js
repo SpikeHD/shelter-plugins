@@ -524,8 +524,8 @@ var loader = {
 const classes$1 = {
 	"controls": "alHKPa_controls",
 	"glyph-margin": "alHKPa_glyph-margin",
-	"popout": "alHKPa_popout",
 	"ceditor": "alHKPa_ceditor",
+	"popout": "alHKPa_popout",
 	"line-numbers": "alHKPa_line-numbers",
 	"monaco-editor": "alHKPa_monaco-editor"
 };
@@ -626,13 +626,13 @@ const Popout = () => (0, import_web$22.getNextElement)(_tmpl$$3);
 //#endregion
 //#region plugins/inline-css/components/Window.scss
 const classes = {
-	"topbar": "EVeMMG_topbar",
+	"content": "EVeMMG_content",
 	"main": "EVeMMG_main",
 	"exit": "EVeMMG_exit",
+	"inner": "EVeMMG_inner",
+	"topbar": "EVeMMG_topbar",
 	"window": "EVeMMG_window",
-	"content": "EVeMMG_content",
-	"resize": "EVeMMG_resize",
-	"inner": "EVeMMG_inner"
+	"resize": "EVeMMG_resize"
 };
 const css = `.EVeMMG_window {
   z-index: 99999;
