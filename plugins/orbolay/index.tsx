@@ -3,7 +3,7 @@ import { Settings } from './settings.jsx'
 const {
   flux: {
     dispatcher,
-    stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore, StreamerModeStore },
+    stores: { ChannelStore, GuildMemberStore, RelationshipStore, UserStore, VoiceStateStore, StreamerModeStore },
   },
   plugin: { store },
   ui: { showToast },
@@ -53,6 +53,8 @@ const waitForPopulate = async (fn) => {
 }
 
 const usernameFor = (guildId: string, userId: string) =>
+  // @ts-expect-error this exists
+  (!guildId && RelationshipStore.getNickname(userId)) ||
   // @ts-expect-error this exists
   GuildMemberStore.getNick(guildId, userId) ||
   // @ts-expect-error this exists
