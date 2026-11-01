@@ -160,8 +160,8 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 const classes$11 = {
 	"tophead": "ZN8ggW_tophead",
 	"pbuttons": "ZN8ggW_pbuttons",
-	"stext": "ZN8ggW_stext",
-	"shead": "ZN8ggW_shead"
+	"shead": "ZN8ggW_shead",
+	"stext": "ZN8ggW_stext"
 };
 const css$11 = `.ZN8ggW_tophead {
   margin-bottom: 16px;
@@ -642,11 +642,11 @@ function PerformancePage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ProfilesPage.tsx.scss
 const classes$8 = {
-	"tophead": "_2nPZKq_tophead",
-	"pbuttons": "_2nPZKq_pbuttons",
 	"sbutton": "_2nPZKq_sbutton",
+	"shead": "_2nPZKq_shead",
 	"splitbutton": "_2nPZKq_splitbutton",
-	"shead": "_2nPZKq_shead"
+	"pbuttons": "_2nPZKq_pbuttons",
+	"tophead": "_2nPZKq_tophead"
 };
 const css$8 = `._2nPZKq_tophead {
   margin-bottom: 16px;
@@ -823,9 +823,9 @@ function ProfilesPage() {
 //#region plugins/dorion-settings/pages/SettingsPage.tsx.scss
 const classes$7 = {
 	"tophead": "akYvUa_tophead",
+	"ohead": "akYvUa_ohead",
 	"left16": "akYvUa_left16",
-	"shead": "akYvUa_shead",
-	"ohead": "akYvUa_ohead"
+	"shead": "akYvUa_shead"
 };
 const css$7 = `.akYvUa_tophead {
   margin-bottom: 16px;
@@ -851,9 +851,9 @@ const css$7 = `.akYvUa_tophead {
 //#endregion
 //#region components/Radio.tsx.scss
 const classes$6 = {
-	"selected": "Ch7osa_selected",
 	"radioButton": "Ch7osa_radioButton",
 	"radioButtonInner": "Ch7osa_radioButtonInner",
+	"selected": "Ch7osa_selected",
 	"radio": "Ch7osa_radio"
 };
 const css$6 = `.Ch7osa_radio {
@@ -1314,14 +1314,14 @@ function SettingsPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/ChangelogPage.tsx.scss
 const classes$5 = {
-	"title": "yPVoxW_title",
-	"badges": "yPVoxW_badges",
-	"spinner": "yPVoxW_spinner",
 	"contents": "yPVoxW_contents",
-	"spin": "yPVoxW_spin",
+	"spinner": "yPVoxW_spinner",
+	"badges": "yPVoxW_badges",
+	"badge": "yPVoxW_badge",
 	"card": "yPVoxW_card",
+	"spin": "yPVoxW_spin",
 	"tophead": "yPVoxW_tophead",
-	"badge": "yPVoxW_badge"
+	"title": "yPVoxW_title"
 };
 const css$5 = `.yPVoxW_tophead {
   justify-content: space-between;
@@ -3501,17 +3501,17 @@ function ChangelogPage() {
 //#endregion
 //#region plugins/dorion-settings/components/ClientModList.tsx.scss
 const classes$4 = {
-	"shead": "XZjauW_shead",
-	"pheader": "XZjauW_pheader",
-	"mcell": "XZjauW_mcell",
-	"left16": "XZjauW_left16",
-	"scell": "XZjauW_scell",
-	"plistrow": "XZjauW_plistrow",
-	"sbutton": "XZjauW_sbutton",
-	"top32": "XZjauW_top32",
 	"plist": "XZjauW_plist",
+	"sbutton": "XZjauW_sbutton",
+	"pheader": "XZjauW_pheader",
+	"left16": "XZjauW_left16",
 	"top16": "XZjauW_top16",
-	"pbuttons": "XZjauW_pbuttons"
+	"top32": "XZjauW_top32",
+	"shead": "XZjauW_shead",
+	"mcell": "XZjauW_mcell",
+	"scell": "XZjauW_scell",
+	"pbuttons": "XZjauW_pbuttons",
+	"plistrow": "XZjauW_plistrow"
 };
 const css$4 = `.XZjauW_shead {
   margin-top: 16px;
@@ -3673,16 +3673,16 @@ else if (modName === "Equicord" && newClientMods.includes("Vencord")) newClientM
 //#endregion
 //#region plugins/dorion-settings/components/PluginList.tsx.scss
 const classes$3 = {
-	"left16": "V6is4W_left16",
-	"plist": "V6is4W_plist",
-	"sbutton": "V6is4W_sbutton",
-	"top32": "V6is4W_top32",
-	"pbuttons": "V6is4W_pbuttons",
 	"scell": "V6is4W_scell",
-	"plistrow": "V6is4W_plistrow",
-	"mcell": "V6is4W_mcell",
 	"top16": "V6is4W_top16",
-	"pheader": "V6is4W_pheader"
+	"mcell": "V6is4W_mcell",
+	"pheader": "V6is4W_pheader",
+	"plist": "V6is4W_plist",
+	"top32": "V6is4W_top32",
+	"sbutton": "V6is4W_sbutton",
+	"pbuttons": "V6is4W_pbuttons",
+	"plistrow": "V6is4W_plistrow",
+	"left16": "V6is4W_left16"
 };
 const css$3 = `.V6is4W_plist {
   flex-direction: column;
@@ -4071,8 +4071,8 @@ const reloadThemes = async () => {
 //#endregion
 //#region plugins/dorion-settings/pages/ThemesPage.tsx.scss
 const classes$1 = {
-	"pbuttons": "oAx4fa_pbuttons",
 	"shead": "oAx4fa_shead",
+	"pbuttons": "oAx4fa_pbuttons",
 	"tophead": "oAx4fa_tophead"
 };
 const css$1 = `.oAx4fa_tophead {
@@ -4332,12 +4332,12 @@ function ThemesPage() {
 //#endregion
 //#region plugins/dorion-settings/pages/RPC.tsx.scss
 const classes = {
-	"customInstallBtn": "ycw7DW_customInstallBtn",
-	"bot16": "ycw7DW_bot16",
-	"customNote": "ycw7DW_customNote",
-	"stextboxInput": "ycw7DW_stextboxInput",
 	"shead": "ycw7DW_shead",
-	"stextbox": "ycw7DW_stextbox"
+	"customInstallBtn": "ycw7DW_customInstallBtn",
+	"customNote": "ycw7DW_customNote",
+	"bot16": "ycw7DW_bot16",
+	"stextbox": "ycw7DW_stextbox",
+	"stextboxInput": "ycw7DW_stextboxInput"
 };
 const css = `.ycw7DW_shead {
   margin-top: 16px;

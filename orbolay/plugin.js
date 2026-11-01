@@ -121,7 +121,7 @@ const Settings = (props) => {
 //#endregion
 //#region plugins/orbolay/index.tsx
 var import_web = __toESM(require_web(), 1);
-const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, UserStore, VoiceStateStore, StreamerModeStore } }, plugin: { store }, ui: { showToast } } = shelter;
+const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, RelationshipStore, UserStore, VoiceStateStore, StreamerModeStore } }, plugin: { store }, ui: { showToast } } = shelter;
 let ws = null;
 let currentChannel = null;
 let retryTimer = null;
@@ -134,7 +134,7 @@ const waitForPopulate = async (fn) => {
 		await new Promise((r) => setTimeout(r, 500));
 	}
 };
-const usernameFor = (guildId, userId) => GuildMemberStore.getNick(guildId, userId) || UserStore?.getUser(userId)?.globalName || UserStore?.getUser(userId)?.username;
+const usernameFor = (guildId, userId) => !guildId && RelationshipStore.getNickname(userId) || GuildMemberStore.getNick(guildId, userId) || UserStore?.getUser(userId)?.globalName || UserStore?.getUser(userId)?.username;
 const toSoundboardPayload = (sound, fallbackGuild) => {
 	if (!sound?.soundId) return null;
 	const guildId = sound.guildId ?? fallbackGuild;
