@@ -38,6 +38,7 @@ let ws: WebSocket | null = null
 let currentChannel = null
 let retryTimer: ReturnType<typeof setTimeout> | null = null
 let stopped = false
+let voiceChatEnabled = false
 
 export const defaultConfig: Config = {
   port: 6888,
@@ -215,6 +216,39 @@ const handleMessageNotification = (dispatch) => {
   )
 }
 
+const handleMessageCreate = ({ channelId, message }) => {
+  if (!voiceChatEnabled || !currentChannel || channelId !== currentChannel || !message?.guild_id) return
+  // @ts-expect-error this exists
+  if (StreamerModeStore?.enabled) return
+
+  const { author } = message
+
+  safeSend(
+    JSON.stringify({
+      cmd: 'VOICE_CHANNEL_MESSAGE',
+      channel_id: channelId,
+      // @ts-expect-error this exists
+      channel_name: ChannelStore?.getChannel?.(channelId)?.name ?? null,
+      message: {
+        id: message.id,
+        type: message.type,
+        guild_id: message.guild_id,
+        content: message.content,
+        nick: usernameFor(message.guild_id, author.id) ?? null,
+        // @ts-expect-error this exists
+        blocked: RelationshipStore?.isBlockedOrIgnored?.(author.id) ?? false,
+        author: {
+          id: author.id,
+          username: author.username,
+          global_name: author.global_name ?? author.globalName ?? null,
+          avatar: author.avatar ?? null,
+        },
+        mentions: (message.mentions ?? []).map(m => ({ id: m.id, username: m.username, global_name: m.global_name ?? m.globalName ?? null })),
+      },
+    })
+  )
+}
+
 const handleStreamerModeUpdate = (dispatch) => {
   safeSend(JSON.stringify({ cmd: 'STREAMER_MODE', enabled: dispatch.value }))
 }
@@ -276,11 +310,15 @@ const incoming = (payload) => {
 
     break
   }
+  case 'SET_VOICE_CHANNEL_CHAT':
+    voiceChatEnabled = payload.enabled === true
+    break
   }
 }
 
 const createWebsocket = () => {
   console.log('Attempting to connect to Orbolay server')
+  voiceChatEnabled = false
 
   // Detach all handlers from the old socket BEFORE closing it, so its
   // async close/error events can't clobber the new socket.
@@ -386,6 +424,7 @@ export const onLoad = () => {
   dispatcher.subscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
   dispatcher.subscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
   dispatcher.subscribe('STREAMER_MODE_UPDATE', handleStreamerModeUpdate)
+  dispatcher.subscribe('MESSAGE_CREATE', handleMessageCreate)
 }
 
 export const onUnload = () => {
@@ -393,6 +432,7 @@ export const onUnload = () => {
   dispatcher.unsubscribe('VOICE_STATE_UPDATES', handleVoiceStateUpdates)
   dispatcher.unsubscribe('RPC_NOTIFICATION_CREATE', handleMessageNotification)
   dispatcher.unsubscribe('STREAMER_MODE_UPDATE', handleStreamerModeUpdate)
+  dispatcher.unsubscribe('MESSAGE_CREATE', handleMessageCreate)
 
   stopped = true
   if (retryTimer) clearTimeout(retryTimer)
