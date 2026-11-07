@@ -53,7 +53,7 @@ const components = [
     name: 'Server tags',
     description: 'Removes the server tags that appear next to people\'s names',
     rules: `
-      div[class*=nameAndDecorators] span[class*=clanTag] { display: none !important; }
+      span[class*=clanTag] { display: none !important; }
     `
   },
 
