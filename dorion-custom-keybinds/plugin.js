@@ -154,14 +154,14 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$2 = {
+	"keybindSection": "Zz-Z3G_keybindSection",
 	"keybindsButton": "Zz-Z3G_keybindsButton",
 	"keybindsBanner": "Zz-Z3G_keybindsBanner",
-	"header": "Zz-Z3G_header",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
 	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindSection": "Zz-Z3G_keybindSection",
+	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
 	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
-	"keybindsSwitch": "Zz-Z3G_keybindsSwitch"
+	"header": "Zz-Z3G_header",
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton"
 };
 const css$2 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -230,13 +230,13 @@ const css$2 = `.Zz-Z3G_keybindSection {
 //#endregion
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$1 = {
-	"removeButton": "QTLdLq_removeButton",
-	"divider": "QTLdLq_divider",
-	"actionSection": "QTLdLq_actionSection",
+	"note": "QTLdLq_note",
 	"keybindArea": "QTLdLq_keybindArea",
-	"keybindSection": "QTLdLq_keybindSection",
 	"keybindRoot": "QTLdLq_keybindRoot",
-	"note": "QTLdLq_note"
+	"keybindSection": "QTLdLq_keybindSection",
+	"divider": "QTLdLq_divider",
+	"removeButton": "QTLdLq_removeButton",
+	"actionSection": "QTLdLq_actionSection"
 };
 const css$1 = `.QTLdLq_divider {
   margin-top: 16px;
@@ -297,12 +297,12 @@ const css$1 = `.QTLdLq_divider {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
-	"keybindButton": "N-HDcq_keybindButton",
 	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
-	"keybindInput": "N-HDcq_keybindInput",
-	"pulse": "N-HDcq_pulse",
 	"keybindContainer": "N-HDcq_keybindContainer",
-	"recording": "N-HDcq_recording"
+	"recording": "N-HDcq_recording",
+	"pulse": "N-HDcq_pulse",
+	"keybindButton": "N-HDcq_keybindButton",
+	"keybindInput": "N-HDcq_keybindInput"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
