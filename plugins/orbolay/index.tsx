@@ -3,7 +3,7 @@ import { Settings } from './settings.jsx'
 const {
   flux: {
     dispatcher,
-    stores: { ChannelStore, GuildMemberStore, RelationshipStore, UserStore, VoiceStateStore, StreamerModeStore },
+    stores: { ChannelStore, GuildMemberStore, GuildStore, RelationshipStore, UserStore, VoiceStateStore, StreamerModeStore },
   },
   plugin: { store },
   ui: { showToast },
@@ -229,6 +229,7 @@ const handleMessageCreate = ({ channelId, message }) => {
       channel_id: channelId,
       // @ts-expect-error this exists
       channel_name: ChannelStore?.getChannel?.(channelId)?.name ?? null,
+      guild_name: GuildStore?.getGuild?.(message.guild_id)?.name ?? null,
       message: {
         id: message.id,
         type: message.type,
