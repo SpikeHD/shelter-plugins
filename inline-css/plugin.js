@@ -523,11 +523,11 @@ var loader = {
 //#region plugins/inline-css/components/Editor.scss
 const classes$1 = {
 	"popout": "alHKPa_popout",
-	"glyph-margin": "alHKPa_glyph-margin",
-	"ceditor": "alHKPa_ceditor",
-	"monaco-editor": "alHKPa_monaco-editor",
 	"line-numbers": "alHKPa_line-numbers",
-	"controls": "alHKPa_controls"
+	"monaco-editor": "alHKPa_monaco-editor",
+	"ceditor": "alHKPa_ceditor",
+	"controls": "alHKPa_controls",
+	"glyph-margin": "alHKPa_glyph-margin"
 };
 const css$1 = `.alHKPa_ceditor {
   border-radius: 5px;
@@ -628,10 +628,10 @@ const Popout = () => (0, import_web$22.getNextElement)(_tmpl$$3);
 const classes = {
 	"window": "EVeMMG_window",
 	"content": "EVeMMG_content",
-	"topbar": "EVeMMG_topbar",
-	"exit": "EVeMMG_exit",
 	"inner": "EVeMMG_inner",
+	"exit": "EVeMMG_exit",
 	"main": "EVeMMG_main",
+	"topbar": "EVeMMG_topbar",
 	"resize": "EVeMMG_resize"
 };
 const css = `.EVeMMG_window {

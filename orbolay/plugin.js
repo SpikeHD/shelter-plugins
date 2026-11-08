@@ -121,7 +121,7 @@ const Settings = (props) => {
 //#endregion
 //#region plugins/orbolay/index.tsx
 var import_web = __toESM(require_web(), 1);
-const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, RelationshipStore, UserStore, VoiceStateStore, StreamerModeStore } }, plugin: { store }, ui: { showToast } } = shelter;
+const { flux: { dispatcher, stores: { ChannelStore, GuildMemberStore, GuildStore, RelationshipStore, UserStore, VoiceStateStore, StreamerModeStore } }, plugin: { store }, ui: { showToast } } = shelter;
 let ws = null;
 let currentChannel = null;
 let retryTimer = null;
@@ -246,6 +246,7 @@ const handleMessageCreate = ({ channelId, message }) => {
 		cmd: "VOICE_CHANNEL_MESSAGE",
 		channel_id: channelId,
 		channel_name: ChannelStore?.getChannel?.(channelId)?.name ?? null,
+		guild_name: GuildStore?.getGuild?.(message.guild_id)?.name ?? null,
 		message: {
 			id: message.id,
 			type: message.type,
