@@ -254,8 +254,8 @@ const after = getPatchFunc_default("a");
 //#endregion
 //#region plugins/userpfp/index.scss
 const classes = {
-	"settingItem": "eTp9Lq_settingItem",
-	"submit": "eTp9Lq_submit"
+	"submit": "eTp9Lq_submit",
+	"settingItem": "eTp9Lq_settingItem"
 };
 const css = `.eTp9Lq_submit {
   margin-bottom: 10px;

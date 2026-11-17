@@ -522,12 +522,12 @@ var loader = {
 //#endregion
 //#region plugins/inline-css/components/Editor.scss
 const classes$1 = {
+	"monaco-editor": "alHKPa_monaco-editor",
+	"ceditor": "alHKPa_ceditor",
+	"popout": "alHKPa_popout",
 	"glyph-margin": "alHKPa_glyph-margin",
 	"line-numbers": "alHKPa_line-numbers",
-	"controls": "alHKPa_controls",
-	"monaco-editor": "alHKPa_monaco-editor",
-	"popout": "alHKPa_popout",
-	"ceditor": "alHKPa_ceditor"
+	"controls": "alHKPa_controls"
 };
 const css$1 = `.alHKPa_ceditor {
   border-radius: 5px;
@@ -626,13 +626,13 @@ const Popout = () => (0, import_web$22.getNextElement)(_tmpl$$3);
 //#endregion
 //#region plugins/inline-css/components/Window.scss
 const classes = {
-	"topbar": "EVeMMG_topbar",
-	"main": "EVeMMG_main",
 	"exit": "EVeMMG_exit",
-	"resize": "EVeMMG_resize",
+	"topbar": "EVeMMG_topbar",
+	"window": "EVeMMG_window",
 	"content": "EVeMMG_content",
+	"main": "EVeMMG_main",
 	"inner": "EVeMMG_inner",
-	"window": "EVeMMG_window"
+	"resize": "EVeMMG_resize"
 };
 const css = `.EVeMMG_window {
   z-index: 99999;
