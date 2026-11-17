@@ -255,9 +255,9 @@ const after = getPatchFunc_default("a");
 //#region components/Radio.tsx.scss
 const classes = {
 	"radioButtonInner": "Ch7osa_radioButtonInner",
-	"radio": "Ch7osa_radio",
 	"radioButton": "Ch7osa_radioButton",
-	"selected": "Ch7osa_selected"
+	"selected": "Ch7osa_selected",
+	"radio": "Ch7osa_radio"
 };
 const css = `.Ch7osa_radio {
   color: var(--interactive-normal);
@@ -352,7 +352,11 @@ const Radio = (props) => {
 			return props.label;
 		} }), _el$4, _co$);
 		(0, import_web$10.effect)((_p$) => {
-			const _v$ = classes.radio + (props.selected ? ` ${classes.selected}` : ""), _v$2 = classes.radioButton;
+			const _v$ = [
+				classes.radio,
+				props.class,
+				props.selected && classes.selected
+			].filter(Boolean).join(" "), _v$2 = classes.radioButton;
 			_v$ !== _p$._v$ && (0, import_web$9.className)(_el$, _p$._v$ = _v$);
 			_v$2 !== _p$._v$2 && (0, import_web$9.className)(_el$2, _p$._v$2 = _v$2);
 			return _p$;

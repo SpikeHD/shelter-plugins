@@ -237,12 +237,12 @@ function t(key, replace) {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemeCard.tsx.scss
 const classes$1 = {
-	"themeCard": "JQAzuG_themeCard",
-	"info": "JQAzuG_info",
 	"thumbnail": "JQAzuG_thumbnail",
+	"info": "JQAzuG_info",
+	"themeCard": "JQAzuG_themeCard",
 	"name": "JQAzuG_name",
-	"installButton": "JQAzuG_installButton",
-	"contents": "JQAzuG_contents"
+	"contents": "JQAzuG_contents",
+	"installButton": "JQAzuG_installButton"
 };
 const css$1 = `.JQAzuG_themeCard {
   text-align: left;
@@ -396,14 +396,14 @@ const themeInstallationModel = async (link, name) => {
 //#endregion
 //#region plugins/dorion-theme-browser/components/ThemePage.tsx.scss
 const classes = {
-	"pageBtn": "gqruia_pageBtn",
-	"pages": "gqruia_pages",
-	"sortSection": "gqruia_sortSection",
-	"bot16": "gqruia_bot16",
-	"searchBox": "gqruia_searchBox",
 	"themeCards": "gqruia_themeCards",
+	"sortSection": "gqruia_sortSection",
+	"pagesOuter": "gqruia_pagesOuter",
+	"pageBtn": "gqruia_pageBtn",
+	"bot16": "gqruia_bot16",
+	"pages": "gqruia_pages",
 	"shead": "gqruia_shead",
-	"pagesOuter": "gqruia_pagesOuter"
+	"searchBox": "gqruia_searchBox"
 };
 const css = `.gqruia_shead {
   margin-top: 16px;
