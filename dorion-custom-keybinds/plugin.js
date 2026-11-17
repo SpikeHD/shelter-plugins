@@ -155,13 +155,13 @@ function t(key, replace) {
 //#region plugins/dorion-custom-keybinds/components/Keybinds.tsx.scss
 const classes$2 = {
 	"keybindSection": "Zz-Z3G_keybindSection",
-	"keybindsBanner": "Zz-Z3G_keybindsBanner",
+	"header": "Zz-Z3G_header",
 	"keybindsButton": "Zz-Z3G_keybindsButton",
-	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
-	"keybindsHeader": "Zz-Z3G_keybindsHeader",
-	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"keybindsBanner": "Zz-Z3G_keybindsBanner",
 	"keybindsSwitch": "Zz-Z3G_keybindsSwitch",
-	"header": "Zz-Z3G_header"
+	"keybindRestartButton": "Zz-Z3G_keybindRestartButton",
+	"keybindRestartCard": "Zz-Z3G_keybindRestartCard",
+	"keybindsHeader": "Zz-Z3G_keybindsHeader"
 };
 const css$2 = `.Zz-Z3G_keybindSection {
   flex-direction: column;
@@ -231,12 +231,12 @@ const css$2 = `.Zz-Z3G_keybindSection {
 //#region plugins/dorion-custom-keybinds/components/KeybindSection.tsx.scss
 const classes$1 = {
 	"keybindArea": "QTLdLq_keybindArea",
+	"actionSection": "QTLdLq_actionSection",
 	"removeButton": "QTLdLq_removeButton",
-	"keybindSection": "QTLdLq_keybindSection",
-	"note": "QTLdLq_note",
 	"divider": "QTLdLq_divider",
 	"keybindRoot": "QTLdLq_keybindRoot",
-	"actionSection": "QTLdLq_actionSection"
+	"keybindSection": "QTLdLq_keybindSection",
+	"note": "QTLdLq_note"
 };
 const css$1 = `.QTLdLq_divider {
   margin-top: 16px;
@@ -297,12 +297,12 @@ const css$1 = `.QTLdLq_divider {
 //#endregion
 //#region components/KeybindInput.tsx.scss
 const classes = {
+	"keybindContainer": "N-HDcq_keybindContainer",
 	"pulse": "N-HDcq_pulse",
+	"keybindButton": "N-HDcq_keybindButton",
 	"keybindInput": "N-HDcq_keybindInput",
 	"keybindPlaceholder": "N-HDcq_keybindPlaceholder",
-	"recording": "N-HDcq_recording",
-	"keybindButton": "N-HDcq_keybindButton",
-	"keybindContainer": "N-HDcq_keybindContainer"
+	"recording": "N-HDcq_recording"
 };
 const css = `.N-HDcq_keybindContainer {
   background: var(--background-base-lowest);
