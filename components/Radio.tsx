@@ -11,6 +11,7 @@ export const Radio: Component<{
     value: string;
     label: string;
     selected: boolean;
+    class?: string;
   }> = (props) => {
     if (!injectedCss) {
       injectedCss = true
@@ -22,7 +23,7 @@ export const Radio: Component<{
     }
   
     return (
-      <div class={classes.radio + (props.selected ? ` ${classes.selected}` : '')} onClick={onRadioClick}>
+      <div class={[classes.radio, props.class, props.selected && classes.selected].filter(Boolean).join(' ')} onClick={onRadioClick}>
         <div class={classes.radioButton}>
           {props.selected && <div class={classes.radioButtonInner}></div>}
         </div>

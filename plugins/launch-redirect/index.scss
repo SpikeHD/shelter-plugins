@@ -1,0 +1,46 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--interactive-normal);
+
+  margin-bottom: 8px;
+
+  &:hover {
+    background: var(--background-mod-subtle);
+  }
+
+  .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--checkbox-border-default);
+    flex-shrink: 0;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  &.selected {
+    color: var(--interactive-active);
+    background: var(--background-mod-subtle);
+
+    .dot {
+      position: relative;
+      background: var(--background-brand);
+      border-color: transparent;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        border-radius: 50%;
+        background: #fff;
+      }
+    }
+  }
+}
