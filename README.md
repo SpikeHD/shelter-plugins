@@ -22,6 +22,7 @@
   - [Disable F1](#disable-f1)
   - [Inline CSS](#inline-css)
   - [Invisible Typing](#invisible-typing)
+  - [Launch Redirect](#launch-redirect)
   - [No Reply Mention](#no-reply-mention)
   - [OpenAsar DOM Optimizer](#openasar-dom-optimizer)
   - [Orbolay Bridge](#orbolay-bridge)
@@ -76,6 +77,13 @@ Prevents others from seeing when you are typing.
 `https://spikehd.dev/shelter-plugins/invisible-typing/`
 
 ![invis-typing](https://github.com/SpikeHD/shelter-plugins/assets/25207995/9c50535f-4fcc-40c2-adff-3b989eb5470a)
+
+
+## Invisible Typing
+
+Override the page your client will navigate to on first launch, such as the DMs page, or a server/channel.
+
+`https://spikehd.dev/shelter-plugins/launch-redirect/`
 
 ## No Reply Mention
 
