@@ -670,9 +670,9 @@ else {
 //#endregion
 //#region plugins/plugin-browser/components/Plugins.scss
 const classes$1 = {
-	"pluginList": "L-W60G_pluginList",
-	"loading": "L-W60G_loading",
 	"subtitle": "L-W60G_subtitle",
+	"loading": "L-W60G_loading",
+	"pluginList": "L-W60G_pluginList",
 	"split": "L-W60G_split",
 	"repoHeader": "L-W60G_repoHeader"
 };
@@ -728,8 +728,8 @@ async function getAllPlugins() {
 //#endregion
 //#region plugins/plugin-browser/components/PluginCard.scss
 const classes = {
-	"buttonContainer": "THQemG_buttonContainer",
 	"installButton": "THQemG_installButton",
+	"buttonContainer": "THQemG_buttonContainer",
 	"contents": "THQemG_contents",
 	"pluginCard": "THQemG_pluginCard"
 };

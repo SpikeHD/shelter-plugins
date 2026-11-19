@@ -36,9 +36,9 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#region plugins/launch-redirect/index.scss
 const classes = {
 	"dot": "osDxmG_dot",
-	"row": "osDxmG_row",
 	"selected": "osDxmG_selected",
-	"label": "osDxmG_label"
+	"label": "osDxmG_label",
+	"row": "osDxmG_row"
 };
 const css = `.osDxmG_row {
   cursor: pointer;

@@ -3,8 +3,8 @@
 "use strict";
 
 //#region i18n/en.json
-var _lang$2 = "English";
-var common$2 = {
+var _lang$3 = "English";
+var common$3 = {
 	"settings": "Settings",
 	"plugins": "Plugins",
 	"themes": "Themes",
@@ -43,7 +43,7 @@ var common$2 = {
 	"arrpc": "arRPC",
 	"shelterpc": "shelteRPC"
 };
-var dorion_settings$2 = {
+var dorion_settings$3 = {
 	"title": "{{appName}} Settings",
 	"restart_required": "Restart Required",
 	"restart_warning": "Some changes require a restart to take effect.",
@@ -71,14 +71,14 @@ var dorion_settings$2 = {
 	"autoupdate_note": "Automatically update various {{appName}} components, such as {{shelterPluginsLink}}.",
 	"update_notify": "Notify me of updates"
 };
-var dorion_plugins$2 = {
+var dorion_plugins$3 = {
 	"title": "Client Mods & Plugins",
 	"client_mods": "Client Mods",
 	"plugins": "Plugins",
 	"open_plugins_folder": "Open Plugins Folder",
 	"open_extensions_folder": "Open Extensions Folder"
 };
-var dorion_themes$2 = {
+var dorion_themes$3 = {
 	"title": "Theme Browser",
 	"theme": "Theme",
 	"none": "None",
@@ -94,11 +94,11 @@ var dorion_themes$2 = {
 	"recently_updated": "Recently Updated",
 	"search_placeholder": "Search..."
 };
-var dorion_notifications$2 = {
+var dorion_notifications$3 = {
 	"desktop_notifications_enabled_title": "Desktop Notifications Enabled",
 	"desktop_notifications_enabled_body": "You will now receive desktop notifications!"
 };
-var dorion_keybinds$2 = {
+var dorion_keybinds$3 = {
 	"global_keybinds_experimental": "Global keybinds are an experimental feature!",
 	"add_keybind": "Add Keybind",
 	"enable_global_keybinds": "Enable Global Keybinds",
@@ -106,7 +106,7 @@ var dorion_keybinds$2 = {
 	"keybinds_restart_required": "Enabling or disabling global keybinds requires a restart to take effect.",
 	"restart": "Restart"
 };
-var dorion_updater$2 = {
+var dorion_updater$3 = {
 	"update_title": "{{appName}} Update",
 	"update_body": "A {{appName}} update has been fetched, and {{appName}} will restart momentarily.",
 	"updates_available": "Updates Available!",
@@ -114,7 +114,7 @@ var dorion_updater$2 = {
 	"update_complete": "Update Complete!",
 	"update_complete_body": "The update has been applied! Please restart to apply the changes."
 };
-var dorion_performance$2 = {
+var dorion_performance$3 = {
 	"title": "Performance & Extras",
 	"cache": "Cache",
 	"cache_css": "Cache CSS",
@@ -145,7 +145,7 @@ var dorion_performance$2 = {
 	"css_cache_cleared": "CSS Cache Cleared",
 	"clear_web_cache_warning": "Clearing web cache will log you out and reset your settings, but can often help solve permission-based issues.\n\nDo you want to proceed?"
 };
-var dorion_rpc$2 = {
+var dorion_rpc$3 = {
 	"title": "Rich Presence",
 	"plugin": "Plugin",
 	"install_shelterpc": "Install the shelteRPC plugin",
@@ -168,7 +168,7 @@ var dorion_rpc$2 = {
 	"enable_secondary_events": "Enable secondary events",
 	"secondary_events_note": "Enable this to allow {{appName}} to properly handle server invites opened in the browser. Does not work with arRPC."
 };
-var dorion_profiles$2 = {
+var dorion_profiles$3 = {
 	"title": "Profiles",
 	"create_profile": "Create Profile",
 	"select_profile": "Select profile...",
@@ -176,7 +176,7 @@ var dorion_profiles$2 = {
 	"save_and_restart": "Save and Restart",
 	"delete_profile": "Delete Selected Profile"
 };
-var dorion_changelog$2 = {
+var dorion_changelog$3 = {
 	"title": "Changelog",
 	"refresh": "Refresh",
 	"update_available": "Update available!",
@@ -186,19 +186,233 @@ var dorion_changelog$2 = {
 	"latest": "Latest",
 	"view_on_github": "View on GitHub"
 };
-var dorion_theme_card$2 = {
+var dorion_theme_card$3 = {
 	"install": "Install",
 	"installed": "Installed",
 	"likes": "{{count}} likes",
 	"downloads": "{{count}} downloads"
 };
-var dorion_warning_card$2 = {
+var dorion_warning_card$3 = {
 	"restart_required": "Restart Required",
 	"restart_message": "One or more settings have been changed that require a restart to take effect.",
 	"restart_now": "Restart Now",
 	"restart_later": "Restart Later"
 };
 var en_default = {
+	_lang: _lang$3,
+	common: common$3,
+	dorion_settings: dorion_settings$3,
+	dorion_plugins: dorion_plugins$3,
+	dorion_themes: dorion_themes$3,
+	dorion_notifications: dorion_notifications$3,
+	dorion_keybinds: dorion_keybinds$3,
+	dorion_updater: dorion_updater$3,
+	dorion_performance: dorion_performance$3,
+	dorion_rpc: dorion_rpc$3,
+	dorion_profiles: dorion_profiles$3,
+	dorion_changelog: dorion_changelog$3,
+	dorion_theme_card: dorion_theme_card$3,
+	dorion_warning_card: dorion_warning_card$3
+};
+
+//#endregion
+//#region i18n/es.json
+var _lang$2 = "Español";
+var common$2 = {
+	"settings": "Ajustes",
+	"plugins": "Plugins",
+	"themes": "Temas",
+	"enable": "Activar",
+	"disable": "Desactivar",
+	"restart": "Reiniciar",
+	"save": "Guardar",
+	"cancel": "Cancelar",
+	"confirm": "Confirmar",
+	"open": "Abrir",
+	"close": "Cerrar",
+	"add": "Añadir",
+	"remove": "Quitar",
+	"delete": "Eliminar",
+	"install": "Instalar",
+	"uninstall": "Desinstalar",
+	"update": "Actualizar",
+	"download": "Descargar",
+	"search": "Buscar",
+	"loading": "Cargando",
+	"error": "Error",
+	"success": "Éxito",
+	"warning": "Aviso",
+	"info": "Información",
+	"yes": "Sí",
+	"no": "No",
+	"ok": "Aceptar",
+	"got_it": "¡Entendido!",
+	"yes_please": "¡Sí, por favor!",
+	"nope": "¡No, gracias!",
+	"okay": "¡Vale!",
+	"previous": "Anterior",
+	"next": "Siguiente",
+	"spikehd_shelter_plugins": "SpikeHD/shelter-plugins",
+	"vscord": "VSCord",
+	"arrpc": "arRPC",
+	"shelterpc": "shelteRPC"
+};
+var dorion_settings$2 = {
+	"title": "Ajustes de {{appName}}",
+	"restart_required": "Reinicio necesario",
+	"restart_warning": "Algunos cambios requieren reiniciar para aplicarse.",
+	"client_type": "Tipo de cliente",
+	"client_type_default": "Predeterminado",
+	"client_type_ptb": "PTB",
+	"client_type_canary": "Canary",
+	"window": "Ventana",
+	"zoom_level": "Nivel de zoom",
+	"sys_tray": "Minimizar a la bandeja del sistema",
+	"sys_tray_note": "En lugar de cerrarse, {{appName}} seguirá ejecutándose en segundo plano y estará accesible desde la bandeja del sistema.",
+	"start_maximized": "Iniciar maximizado",
+	"startup": "Inicio",
+	"open_on_startup": "Abrir al iniciar el sistema",
+	"open_on_startup_note": "Abre {{appName}} cuando se inicia el sistema.",
+	"start_minimized": "Iniciar minimizado",
+	"start_minimized_note": "Se abre en segundo plano cuando se inicia el sistema.",
+	"misc": "Varios",
+	"multi_instance": "Permitir varias instancias",
+	"multi_instance_note": "Permite ejecutar varias instancias de {{appName}} a la vez.",
+	"use_native_titlebar": "Usar la barra de título nativa",
+	"use_native_titlebar_note": "Desactiva la barra de título personalizada y usa la nativa de tu sistema.",
+	"updates": "Actualizaciones",
+	"autoupdate": "Actualización automática",
+	"autoupdate_note": "Actualiza automáticamente varios componentes de {{appName}}, como {{shelterPluginsLink}}.",
+	"update_notify": "Avisarme de las actualizaciones"
+};
+var dorion_plugins$2 = {
+	"title": "Mods del cliente y plugins",
+	"client_mods": "Mods del cliente",
+	"plugins": "Plugins",
+	"open_plugins_folder": "Abrir carpeta de plugins",
+	"open_extensions_folder": "Abrir carpeta de extensiones"
+};
+var dorion_themes$2 = {
+	"title": "Explorador de temas",
+	"theme": "Tema",
+	"none": "Ninguno",
+	"select_theme": "Selecciona un tema...",
+	"install_from_link": "Instalar tema desde enlace",
+	"open_folder": "Abrir carpeta de temas",
+	"sort_by": "Ordenar por...",
+	"popular": "Popularidad",
+	"creation_date": "Fecha de creación",
+	"name": "Nombre",
+	"likes": "Me gusta",
+	"downloads": "Descargas",
+	"recently_updated": "Actualización reciente",
+	"search_placeholder": "Buscar..."
+};
+var dorion_notifications$2 = {
+	"desktop_notifications_enabled_title": "Notificaciones de escritorio activadas",
+	"desktop_notifications_enabled_body": "¡A partir de ahora recibirás notificaciones de escritorio!"
+};
+var dorion_keybinds$2 = {
+	"global_keybinds_experimental": "¡Los atajos de teclado globales son una función experimental!",
+	"add_keybind": "Añadir atajo",
+	"enable_global_keybinds": "Activar atajos de teclado globales",
+	"enable_global_keybinds_note": "Activa o desactiva los atajos de teclado globales. Requiere reiniciar.",
+	"keybinds_restart_required": "Para activar o desactivar los atajos de teclado globales hay que reiniciar.",
+	"restart": "Reiniciar"
+};
+var dorion_updater$2 = {
+	"update_title": "Actualización de {{appName}}",
+	"update_body": "Se ha descargado una actualización de {{appName}} y {{appName}} se reiniciará en unos instantes.",
+	"updates_available": "¡Hay actualizaciones disponibles!",
+	"updates_available_body": "Hay actualizaciones de {{appName}} disponibles. ¿Quieres aplicarlas? Puedes desactivar este aviso en los Ajustes de {{appName}}.",
+	"update_complete": "¡Actualización completada!",
+	"update_complete_body": "¡Se ha aplicado la actualización! Reinicia para aplicar los cambios."
+};
+var dorion_performance$2 = {
+	"title": "Rendimiento y extras",
+	"cache": "Caché",
+	"cache_css": "Guardar CSS en caché",
+	"cache_css_note": "Guarda en el disco el CSS que, de otro modo, se cargaría desde la web, lo que reduce los tiempos de carga.",
+	"auto_clear_cache": "Vaciar la caché automáticamente",
+	"auto_clear_cache_note": "Limpia la caché web cada vez que cierras {{appName}}. Suele contener imágenes, scripts y otros datos, ¡y se va acumulando!",
+	"windows_only": "Por ahora solo es compatible con Windows.",
+	"optional_features": "Funciones opcionales",
+	"win7_notifications": "Estilo de notificación alternativo",
+	"win7_notifications_note": "Usa el estilo de notificación alternativo de Windows 7. Solo es compatible con Windows.",
+	"streamer_mode_detection": "Detección del modo streamer",
+	"streamer_mode_detection_note": "Detecta OBS y Streamlabs OBS y activa automáticamente el modo streamer mientras se están ejecutando.",
+	"streamer_mode_detection_requirement": "Requiere tener activados el servidor RPC integrado y el escaneo de procesos de RPC (en la pestaña Rich Presence).",
+	"disable_hardware_accel": "Desactivar la aceleración por hardware",
+	"disable_hardware_accel_note": "Desactiva la aceleración por hardware, que puede dar problemas en algunos sistemas. Desactivarla también puede causar problemas de rendimiento en algunos sistemas. No compatible con macOS.",
+	"enable_dorion_plugins": "Activar los plugins de Dorion",
+	"do_not_disable": "NO DESACTIVES ESTA OPCIÓN.",
+	"disable_plugins_note": "Si lo haces, se perderán funciones esenciales. Toca esto solo si sabes lo que haces.",
+	"disable_plugins_warning": "Ya sé que el texto grande en negrita de \"NO DESACTIVES ESTO\" da muchas ganas de desactivarlo, pero no deberías. {{appName}} perderá varios sistemas esenciales, como todo el menú de ajustes.\n\nEsta opción está pensada solo para depuración, desarrollo y para ejecutar funciones antiguas de {{appName}} en versiones antiguas de {{appName}}. Si no es tu caso, no toques esto.",
+	"absolutely_sure": "¿Lo tienes ABSOLUTAMENTE claro?",
+	"blur_transparency": "Desenfoque y transparencia",
+	"blur_warning": "El efecto de desenfoque puede ser poco fiable, funcionar a medias y ser extremadamente lento, según el sistema operativo y la versión que uses. Para más contexto, consulta {{windowVibrancyLink}}",
+	"window_vibrancy_crate": "el crate window-vibrancy",
+	"blur_css": "Activar el CSS integrado de transparencia del fondo",
+	"blur_css_note": "Actívalo si no usas un tema diseñado para aprovechar las ventanas transparentes.",
+	"wipe_web_data": "Borrar todos los datos web",
+	"clear_css_cache": "Vaciar caché de CSS",
+	"css_cache_cleared": "Caché de CSS vaciada",
+	"clear_web_cache_warning": "Al borrar la caché web se cerrará tu sesión y se restablecerán tus ajustes, pero a menudo ayuda a resolver problemas de permisos.\n\n¿Quieres continuar?"
+};
+var dorion_rpc$2 = {
+	"title": "Rich Presence",
+	"plugin": "Plugin",
+	"install_shelterpc": "Instalar el plugin shelteRPC",
+	"already_installed": "¡Ya tienes instalado shelteRPC!",
+	"install_note": "No es obligatorio instalarlo y, si lo prefieres, puedes usar plugins de arRPC (p. ej., a través de Vencord), ¡pero el plugin shelteRPC tiene funciones extra que solo funcionan en Dorion!",
+	"error_installing": "Error al instalar shelteRPC; consulta la consola para más información",
+	"successfully_installed": "¡shelteRPC se ha instalado correctamente!",
+	"server": "Servidor",
+	"integrated_server": "Servidor de Rich Presence integrado",
+	"rpc_port": "Puerto del servidor",
+	"work_in_progress": "Esto sigue en desarrollo y todavía no hace TODO lo que hace arRPC.",
+	"integrated_server_note": "Activa el servidor RPC integrado, para que no haga falta ejecutar un servidor arRPC aparte. Funciona mejor con {{shelteRPCLink}}, aunque también es compatible con {{arRPCLink}}.",
+	"advanced_settings": "Ajustes avanzados",
+	"enable_process_scanner": "Activar el escáner de procesos",
+	"process_scanner_note": "Actívalo si quieres que {{appName}} busque procesos en ejecución. Es el componente de RPC que más afecta al rendimiento.",
+	"enable_ipc_connector": "Activar el conector IPC",
+	"ipc_connector_note": "Actívalo si quieres que {{appName}} se conecte a sockets locales. Cosas como la extensión {{vscordLink}} usan este método de conexión.",
+	"enable_websocket_connector": "Activar el conector WebSocket",
+	"websocket_connector_note": "Actívalo si quieres que {{appName}} acepte conexiones WebSocket locales.",
+	"enable_secondary_events": "Activar eventos secundarios",
+	"secondary_events_note": "Actívalo para que {{appName}} gestione correctamente las invitaciones a servidores abiertas en el navegador. No funciona con arRPC."
+};
+var dorion_profiles$2 = {
+	"title": "Perfiles",
+	"create_profile": "Crear perfil",
+	"select_profile": "Selecciona un perfil...",
+	"profile_name_placeholder": "Escribe un nombre para el nuevo perfil...",
+	"save_and_restart": "Guardar y reiniciar",
+	"delete_profile": "Eliminar el perfil seleccionado"
+};
+var dorion_changelog$2 = {
+	"title": "Registro de cambios",
+	"refresh": "Recargar",
+	"update_available": "¡Actualización disponible!",
+	"current_version": "Tu versión actual es la {{version}}",
+	"update_to": "Actualizar a {{version}}",
+	"current": "Actual",
+	"latest": "Más reciente",
+	"view_on_github": "Ver en GitHub"
+};
+var dorion_theme_card$2 = {
+	"install": "Instalar",
+	"installed": "Instalado",
+	"likes": "{{count}} me gusta",
+	"downloads": "{{count}} descargas"
+};
+var dorion_warning_card$2 = {
+	"restart_required": "Reinicio necesario",
+	"restart_message": "Se han cambiado uno o más ajustes que requieren reiniciar para aplicarse.",
+	"restart_now": "Reiniciar ahora",
+	"restart_later": "Reiniciar más tarde"
+};
+var es_default = {
 	_lang: _lang$2,
 	common: common$2,
 	dorion_settings: dorion_settings$2,
@@ -645,6 +859,7 @@ var ru_default = {
 //#region plugins/dorion-helpers/i18n.ts
 const languages = {
 	en: en_default,
+	es: es_default,
 	id: id_default,
 	ru: ru_default
 };
