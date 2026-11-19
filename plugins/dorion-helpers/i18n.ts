@@ -1,4 +1,5 @@
 import en from '../../i18n/en.json' with { type: 'json' }
+import es from '../../i18n/es.json' with { type: 'json' }
 import id from '../../i18n/id.json' with { type: 'json' }
 import ru from '../../i18n/ru.json' with { type: 'json' }
 
@@ -16,6 +17,7 @@ const languages: {
   [key: string]: Record<string, unknown>
 } = {
   en,
+  es,
   id,
   ru,
 }
